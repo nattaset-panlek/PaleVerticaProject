@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Aura_of_Flames
+  m_EditorClassIdentifier: 
+  Id: 107
+  Name: Aura of Flames
+  SkillElement: 3
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 5700261312303464520
+  Effects:
+  - rid: 5700261312303464521
+  VisualData: {fileID: 0}
+  BaseDamage: 5
+  BaseAOERadius: 3
+  BaseProjectileCount: 0
+  BaseManaCost: 5
+  IsToggle: 1
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 5
+  BaseFCT: 0.5
+  BaseCastDelay: 0
+  BaseCooldown: 1
+  Scalings:
+  - TargetField: 0
+    ScalingAttribute: 0
+    AttributeMultiplier: 100
+    GlobalMultiplier: 1
+    FlatBonus: 10
+    LevelMultiplier: 20
+  - TargetField: 8
+    ScalingAttribute: 0
+    AttributeMultiplier: 50
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
+  - TargetField: 1
+    ScalingAttribute: 26
+    AttributeMultiplier: 50
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
+  - TargetField: 1
+    ScalingAttribute: 221
+    AttributeMultiplier: 1
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5700261312303464520
+      type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+    - rid: 5700261312303464521
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        TargetAttribute: 0

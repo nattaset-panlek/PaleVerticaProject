@@ -1,0 +1,147 @@
+using UnityEngine;
+using CoreSystem.Data;
+
+namespace CoreSystem.Controllers
+{
+    /// <summary>
+    /// Versatile 2D Camera Controller with Smooth Follow, Zoom, and Screen Shake.
+    /// Supports dynamic target switching and special skill effects.
+    /// </summary>
+    public class CameraController : MonoBehaviour
+    {
+        public static CameraController Instance { get; private set; }
+
+        [Header("Follow Settings")]
+        public Transform Target;
+        public Vector2 FollowOffset = Vector2.zero;
+        [Range(0, 1)] public float SmoothSpeed = 0.125f;
+        public bool UseFixedUpdate = false;
+
+        [Header("Zoom Settings")]
+        public float MinZoom = 3f;
+        public float MaxZoom = 12f;
+        public float DefaultZoom = 6f;
+        public float ZoomSensitivity = 4f;
+        public float ZoomSmoothSpeed = 8f;
+
+        [Header("Boundaries (Optional)")]
+        public bool UseBounds = false;
+        public Vector2 MinBounds;
+        public Vector2 MaxBounds;
+
+        private Camera _cam;
+        private float _targetZoom;
+        
+        // Shake States
+        private float _shakeTimer;
+        private float _shakeAmount;
+        private Vector3 _shakeOffset;
+
+        private void Awake()
+        {
+            if (Instance == null) Instance = this;
+            _cam = GetComponent<Camera>();
+            _targetZoom = DefaultZoom;
+            if (_cam != null) _cam.orthographicSize = DefaultZoom;
+        }
+
+        private void Start()
+        {
+            // Auto-find player if target is null
+            if (Target == null)
+            {
+                var player = GameObject.FindGameObjectWithTag("Player");
+                if (player != null) Target = player.transform;
+            }
+        }
+
+        private void Update()
+        {
+            HandleZoomInput();
+            UpdateShake(Time.deltaTime);
+        }
+
+        private void LateUpdate()
+        {
+            if (!UseFixedUpdate) PerformFollow(Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            if (UseFixedUpdate) PerformFollow(Time.fixedDeltaTime);
+        }
+
+        private void HandleZoomInput()
+        {
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (Mathf.Abs(scroll) > 0.01f)
+            {
+                _targetZoom = Mathf.Clamp(_targetZoom - scroll * ZoomSensitivity, MinZoom, MaxZoom);
+            }
+
+            if (_cam != null && !Mathf.Approximately(_cam.orthographicSize, _targetZoom))
+            {
+                _cam.orthographicSize = Mathf.Lerp(_cam.orthographicSize, _targetZoom, Time.deltaTime * ZoomSmoothSpeed);
+            }
+        }
+
+        private Vector2 _currentOffset;
+        private Vector2 _targetOffset;
+
+        private void PerformFollow(float dt)
+        {
+            if (Target == null) return;
+
+            // Smooth Offset Transition
+            _currentOffset = Vector2.Lerp(_currentOffset, _targetOffset, dt * 5f);
+
+            Vector3 desiredPosition = new Vector3(
+                Target.position.x + _currentOffset.x,
+                Target.position.y + _currentOffset.y,
+                transform.position.z 
+            );
+
+            // Apply Shake Offset
+            desiredPosition += _shakeOffset;
+
+            if (UseBounds)
+            {
+                desiredPosition.x = Mathf.Clamp(desiredPosition.x, MinBounds.x, MaxBounds.x);
+                desiredPosition.y = Mathf.Clamp(desiredPosition.y, MinBounds.y, MaxBounds.y);
+            }
+
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, SmoothSpeed);
+        }
+
+        private void UpdateShake(float dt)
+        {
+            if (_shakeTimer > 0)
+            {
+                _shakeOffset = (Vector3)Random.insideUnitCircle * _shakeAmount;
+                _shakeTimer -= dt;
+            }
+            else
+            {
+                _shakeOffset = Vector3.zero;
+            }
+        }
+
+        #region Public API for Skills/Events
+        
+        public void ScreenShake(float duration, float amount)
+        {
+            _shakeTimer = duration;
+            _shakeAmount = amount;
+        }
+
+        public void SetTarget(Transform newTarget) => Target = newTarget;
+
+        public void SetZoom(float zoomLevel) => _targetZoom = Mathf.Clamp(zoomLevel, MinZoom, MaxZoom);
+
+        public void SetOffset(Vector2 offset) => _targetOffset = offset;
+        
+        public void ResetOffset() => _targetOffset = Vector2.zero;
+
+        #endregion
+    }
+}

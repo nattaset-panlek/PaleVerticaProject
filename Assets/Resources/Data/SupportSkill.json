@@ -1,0 +1,232 @@
+{
+    "SupportModifiers": [
+        {
+            "SkillID": 1001,
+            "ModifierName": "Multi-Shot",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "ProjectileCount",
+                    "Operation": "Add",
+                    "FlatValue": 1.0,
+                    "UsePayloadReference": false,
+                    "ReferencePayloadField": "BaseDamage",
+                    "PayloadMultiplier": 1.0,
+                    "UseAttributeReference": false,
+                    "ReferenceAttribute": "",
+                    "AttributeMultiplier": 1.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1002,
+            "ModifierName": "Echo",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "BaseDamage",
+                    "Operation": "Multiply",
+                    "FlatValue": 0.800000011920929,
+                    "UsePayloadReference": true,
+                    "ReferencePayloadField": "Cooldown",
+                    "PayloadMultiplier": 1.25,
+                    "UseAttributeReference": false,
+                    "ReferenceAttribute": "",
+                    "AttributeMultiplier": 1.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1003,
+            "ModifierName": "Pierce",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1004,
+            "ModifierName": "Chain",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1005,
+            "ModifierName": "Area Increase",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "AOERadius",
+                    "Operation": "Multiply",
+                    "FlatValue": 1.2999999523162842,
+                    "UsePayloadReference": false,
+                    "ReferencePayloadField": "",
+                    "PayloadMultiplier": 1.0,
+                    "UseAttributeReference": false,
+                    "ReferenceAttribute": "",
+                    "AttributeMultiplier": 1.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1006,
+            "ModifierName": "Damage Up",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "BaseDamage",
+                    "Operation": "Multiply",
+                    "FlatValue": 1.2000000476837159,
+                    "UsePayloadReference": false,
+                    "ReferencePayloadField": "",
+                    "PayloadMultiplier": 1.0,
+                    "UseAttributeReference": false,
+                    "ReferenceAttribute": "",
+                    "AttributeMultiplier": 1.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1007,
+            "ModifierName": "Cooldown Reduction",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1008,
+            "ModifierName": "Cost Reduction",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "ManaCost",
+                    "Operation": "Override",
+                    "FlatValue": 50.0,
+                    "UsePayloadReference": false,
+                    "ReferencePayloadField": "",
+                    "PayloadMultiplier": 1.0,
+                    "UseAttributeReference": false,
+                    "ReferenceAttribute": "",
+                    "AttributeMultiplier": 1.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1009,
+            "ModifierName": "Duration Up",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1010,
+            "ModifierName": "Status Chance Up",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1011,
+            "ModifierName": "Burn Chance",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1012,
+            "ModifierName": "Freeze Chance",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1013,
+            "ModifierName": "Knockback",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1014,
+            "ModifierName": "Critical Power",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "BaseDamage",
+                    "Operation": "Multiply",
+                    "FlatValue": 1.5,
+                    "UsePayloadReference": false,
+                    "ReferencePayloadField": "",
+                    "PayloadMultiplier": 1.0,
+                    "UseAttributeReference": true,
+                    "ReferenceAttribute": "LUK",
+                    "AttributeMultiplier": 0.05000000074505806
+                }
+            ]
+        },
+        {
+            "SkillID": 1015,
+            "ModifierName": "Mana Leech",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "ManaCost",
+                    "Operation": "Override",
+                    "FlatValue": 10.0,
+                    "UsePayloadReference": false,
+                    "ReferencePayloadField": "ManaCost",
+                    "PayloadMultiplier": 1.0,
+                    "UseAttributeReference": false,
+                    "ReferenceAttribute": "STR",
+                    "AttributeMultiplier": 1.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1016,
+            "ModifierName": "Life Leech",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1017,
+            "ModifierName": "Projectile Speed",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1018,
+            "ModifierName": "Split Projectile",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "ProjectileCount",
+                    "Operation": "Add",
+                    "FlatValue": 2.0,
+                    "UsePayloadReference": false,
+                    "ReferencePayloadField": "",
+                    "PayloadMultiplier": 1.0,
+                    "UseAttributeReference": false,
+                    "ReferenceAttribute": "",
+                    "AttributeMultiplier": 1.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1019,
+            "ModifierName": "Homing",
+            "Conditions": [],
+            "Effects": []
+        },
+        {
+            "SkillID": 1020,
+            "ModifierName": "Empowered Cast",
+            "Conditions": [],
+            "Effects": [
+                {
+                    "TargetField": "BaseDamage",
+                    "Operation": "Add",
+                    "FlatValue": 50.0,
+                    "UsePayloadReference": false,
+                    "ReferencePayloadField": "",
+                    "PayloadMultiplier": 1.0,
+                    "UseAttributeReference": true,
+                    "ReferenceAttribute": "INT",
+                    "AttributeMultiplier": 1.0
+                }
+            ]
+        }
+    ]
+}

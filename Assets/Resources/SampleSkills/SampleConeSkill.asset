@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: SampleConeSkill
+  m_EditorClassIdentifier: 
+  Id: 0
+  Name: Cleave
+  SkillElement: 0
+  BaseTargeting:
+    rid: 5700260996797694001
+  Effects:
+  - rid: 5700260996797694002
+  VisualData: {fileID: 0}
+  BaseDamage: 25
+  BaseAOERadius: 3
+  BaseProjectileCount: 0
+  BaseVCT: 0
+  BaseFCT: 0
+  BaseCastDelay: 0
+  BaseCooldown: 2
+  Scalings: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5700260996797694001
+      type: {class: ConeTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        ConeAngle: 120
+    - rid: 5700260996797694002
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        TargetAttribute: 0

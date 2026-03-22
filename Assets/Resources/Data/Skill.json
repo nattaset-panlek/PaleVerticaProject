@@ -1,0 +1,450 @@
+{
+    "ActiveSkills": [
+        {
+            "SkillID": 1001,
+            "SkillName": "Tackle",
+            "SkillElement": "Neutral",
+            "DamageType": "Physical",
+            "BaseDamage": 1.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 0.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.15000000596046449,
+            "BaseCooldown": 0.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Box",
+                "Radius": 1.9199999570846558,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 2.5
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": -1.5
+                }
+            },
+            "Scalings": [
+                {
+                    "TargetField": 0,
+                    "ScalingAttribute": 20,
+                    "AttributeMultiplier": 10.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                }
+            ],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1002,
+            "SkillName": "Hellfire Blast",
+            "SkillElement": "Fire",
+            "DamageType": "Physical",
+            "BaseDamage": 180.0,
+            "BaseAOERadius": 3.0,
+            "BaseProjectileCount": 1,
+            "BaseManaCost": 10.0,
+            "IsToggle": false,
+            "BaseVCT": 1.5,
+            "BaseFCT": 0.5,
+            "BaseCastDelay": 0.20000000298023225,
+            "BaseCooldown": 5.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Cone",
+                "Radius": 3.5,
+                "Angle": 50.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [
+                {
+                    "TargetField": 0,
+                    "ScalingAttribute": 0,
+                    "AttributeMultiplier": 2.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 50.0
+                }
+            ],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1003,
+            "SkillName": "Divine Blessing",
+            "SkillElement": "Holy",
+            "DamageType": "Magic",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 5.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 20.0,
+            "IsToggle": false,
+            "BaseVCT": 1.0,
+            "BaseFCT": 0.15000000596046449,
+            "BaseCastDelay": 0.15000000596046449,
+            "BaseCooldown": 0.0,
+            "Heal": 200.0,
+            "BaseTargeting": {
+                "Type": "Single",
+                "Radius": 2.5,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [
+                {
+                    "TargetField": 1,
+                    "ScalingAttribute": 221,
+                    "AttributeMultiplier": 1.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                }
+            ],
+            "Effects": [
+                {
+                    "EffectType": "ApplyTemporaryBuffEffect",
+                    "AttributeID": 22,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "Flat",
+                    "Duration": 5.0,
+                    "MaxStacks": 1,
+                    "BuffName": "Increate Agility",
+                    "Category": "Attribute",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                },
+                {
+                    "EffectType": "ApplyTemporaryBuffEffect",
+                    "AttributeID": 28,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "Flat",
+                    "Duration": 5.0,
+                    "MaxStacks": 1,
+                    "BuffName": "Increate Dexterity",
+                    "Category": "Attribute",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1004,
+            "SkillName": "Earthshatter",
+            "SkillElement": "Earth",
+            "DamageType": "Physical",
+            "BaseDamage": 50.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 10.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.25,
+            "BaseCooldown": 0.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Cone",
+                "Radius": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1005,
+            "SkillName": "Lightning Strike",
+            "SkillElement": "Electric",
+            "DamageType": "Physical",
+            "BaseDamage": 220.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 1,
+            "BaseManaCost": 15.0,
+            "IsToggle": false,
+            "BaseVCT": 0.20000000298023225,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.10000000149011612,
+            "BaseCooldown": 2.5,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Line",
+                "Radius": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [
+                {
+                    "TargetField": 0,
+                    "ScalingAttribute": 0,
+                    "AttributeMultiplier": 1.7999999523162842,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 20.0,
+                    "LevelMultiplier": 60.0
+                }
+            ],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1006,
+            "SkillName": "Shadow Dash",
+            "SkillElement": "Ghost",
+            "DamageType": "Physical",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 8.0,
+            "IsToggle": false,
+            "BaseVCT": 0.15000000596046449,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.10000000149011612,
+            "BaseCooldown": 0.5,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Self",
+                "Radius": 0.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "MovementEffectLogic",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "Category": "",
+                    "MovementType": "DashForward",
+                    "MovementDistance": 3.0,
+                    "ApplyOnce": true,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ]
+        },
+        {
+            "SkillID": 1007,
+            "SkillName": "Aura of Flames",
+            "SkillElement": "Fire",
+            "DamageType": "Magic",
+            "BaseDamage": 5.0,
+            "BaseAOERadius": 6.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 5.0,
+            "IsToggle": true,
+            "BaseVCT": 5.0,
+            "BaseFCT": 0.5,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 1.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Sphere",
+                "Radius": 3.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [
+                {
+                    "TargetField": 0,
+                    "ScalingAttribute": 0,
+                    "AttributeMultiplier": 100.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 10.0,
+                    "LevelMultiplier": 20.0
+                },
+                {
+                    "TargetField": 8,
+                    "ScalingAttribute": 0,
+                    "AttributeMultiplier": 50.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                },
+                {
+                    "TargetField": 1,
+                    "ScalingAttribute": 26,
+                    "AttributeMultiplier": 50.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                },
+                {
+                    "TargetField": 1,
+                    "ScalingAttribute": 221,
+                    "AttributeMultiplier": 1.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                }
+            ],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ]
+        }
+    ],
+    "SupportSkills": []
+}

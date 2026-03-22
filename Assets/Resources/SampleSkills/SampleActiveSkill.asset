@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: SampleActiveSkill
+  m_EditorClassIdentifier: 
+  Id: 0
+  Name: Fireball
+  SkillElement: 0
+  BaseTargeting:
+    rid: 5700260996797693994
+  Effects:
+  - rid: 5700260996797693995
+  VisualData: {fileID: 0}
+  BaseDamage: 10
+  BaseAOERadius: 0
+  BaseProjectileCount: 1
+  BaseVCT: 0
+  BaseFCT: 0
+  BaseCastDelay: 0
+  BaseCooldown: 1
+  Scalings: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 5700260996797693994
+      type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+    - rid: 5700260996797693995
+      type: {class: SpawnProjectileEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        ProjectilePrefab: {fileID: 1736493191930404398, guid: f43c29cc3d36b1347bf04cf4620a9812, type: 3}
+        DamageEffectToApply:
+          rid: 5700260996797693996
+    - rid: 5700260996797693996
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        TargetAttribute: 0

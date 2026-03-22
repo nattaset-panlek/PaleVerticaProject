@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Tackle
+  m_EditorClassIdentifier: 
+  Id: 101
+  Name: Tackle
+  SkillElement: 0
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 5700261312303464507
+  Effects:
+  - rid: 5700261312303464508
+  VisualData: {fileID: 0}
+  BaseDamage: 1
+  BaseAOERadius: 1.92
+  BaseProjectileCount: 0
+  BaseManaCost: 0
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 0
+  BaseFCT: 0
+  BaseCastDelay: 0.15
+  BaseCooldown: 0
+  Scalings:
+  - TargetField: 0
+    ScalingAttribute: 20
+    AttributeMultiplier: 10
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5700261312303464507
+      type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        BoxSize: {x: 2, y: 2.5}
+        Offset: {x: 0, y: -1.5}
+    - rid: 5700261312303464508
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        TargetAttribute: 0

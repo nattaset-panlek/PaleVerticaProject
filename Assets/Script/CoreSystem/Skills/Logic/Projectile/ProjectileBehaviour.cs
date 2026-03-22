@@ -1,0 +1,148 @@
+using System.Collections.Generic;
+using CoreSystem.Entity;
+using UnityEngine;
+
+namespace CoreSystem.Skills.Logic
+{
+    /// <summary>
+    /// Attach this to a Projectile Prefab so it knows how to deal damage using its Skill Payload.
+    /// </summary>
+    [RequireComponent(typeof(Collider2D))]
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class ProjectileBehaviour : MonoBehaviour
+    {
+        private SkillPayload payload;
+        private EffectLogic damageEffect;
+        private bool isInitialized = false;
+
+        [Header("Movement")]
+        public float Speed = 10f;
+
+        [Header("Hit Behavior")]
+        [Tooltip("Destroy this object after hitting an entity? (Useful for standard projectiles)")]
+        public bool DestroyOnHit = true;
+        
+        [Tooltip("If checked, damages entities repeatedly over time while they stay inside the trigger.")]
+        public bool IsContinuousDamage = false;
+        public float DamageTickRate = 0.5f;
+
+        private HashSet<IEntity> _alreadyHitEntities = new HashSet<IEntity>();
+        private Dictionary<IEntity, float> _continuousHitTimers = new Dictionary<IEntity, float>();
+
+        public void Initialize(SkillPayload payloadData, EffectLogic effectToApply)
+        {
+            this.payload = payloadData;
+            this.damageEffect = effectToApply;
+            this.isInitialized = true;
+
+            if (payload.AOERadius > 0f)
+            {
+                transform.localScale += new Vector3(payload.AOERadius, payload.AOERadius, 0f);
+            }
+            
+            // Optional: Destroy projectile after a timeout to prevent infinite floating
+            Destroy(gameObject, 5f);
+        }
+
+        private void Update()
+        {
+            if (isInitialized)
+            {
+                transform.Translate(Vector3.up * Speed * Time.deltaTime, Space.Self);
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!isInitialized || payload == null || payload.Caster == null)
+                return;
+
+            // Ignore collision with the caster themselves
+            if (other.gameObject == payload.Caster.gameObject)
+                return;
+
+            IEntity targetEntity = other.GetComponentInParent<IEntity>();
+
+            if (targetEntity != null)
+            {
+                if (IsContinuousDamage)
+                {
+                    // For continuous damage, we start tracking them in OnTriggerStay2D instead.
+                    // But we can apply the first hit immediately.
+                    TryApplyDamage(targetEntity, true);
+                }
+                else
+                {
+                    // Single-hit logic
+                    if (!_alreadyHitEntities.Contains(targetEntity))
+                    {
+                        TryApplyDamage(targetEntity, false);
+                        _alreadyHitEntities.Add(targetEntity);
+
+                        if (DestroyOnHit)
+                        {
+                            Destroy(gameObject);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (!isInitialized || !IsContinuousDamage || payload == null || payload.Caster == null)
+                return;
+
+            if (other.gameObject == payload.Caster.gameObject)
+                return;
+
+            IEntity targetEntity = other.GetComponentInParent<IEntity>();
+
+            if (targetEntity != null)
+            {
+                TryApplyDamage(targetEntity, true);
+            }
+        }
+
+        private void TryApplyDamage(IEntity targetEntity, bool isContinuous)
+        {
+            if (damageEffect == null) return;
+
+            if (isContinuous)
+            {
+                float lastHitTime = 0f;
+                if (_continuousHitTimers.TryGetValue(targetEntity, out lastHitTime))
+                {
+                    if (Time.time - lastHitTime < DamageTickRate)
+                    {
+                        return; // Not ready for next tick yet
+                    }
+                }
+                _continuousHitTimers[targetEntity] = Time.time;
+            }
+
+            // Apply damage/effect
+            if (payload.AOERadius > 0f)
+            {
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, payload.AOERadius);
+                HashSet<IEntity> hitEntities = new HashSet<IEntity>();
+                
+                foreach (var col in colliders)
+                {
+                    if (payload.Caster != null && col.gameObject == payload.Caster.gameObject)
+                        continue;
+                        
+                    IEntity hitEntity = col.GetComponentInParent<IEntity>();
+                    if (hitEntity != null && hitEntities.Add(hitEntity))
+                    {
+                        damageEffect.Apply(payload, hitEntity);
+                    }
+                }
+            }
+            else
+            {
+                damageEffect.Apply(payload, targetEntity);
+            }
+        }
+    }
+}
