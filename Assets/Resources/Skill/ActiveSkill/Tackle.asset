@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
   m_Name: Tackle
   m_EditorClassIdentifier: 
-  Id: 101
+  Id: 1001
   Name: Tackle
   SkillElement: 0
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261312303464507
+    rid: 5700261318793625792
   Effects:
-  - rid: 5700261312303464508
+  - rid: 5700261318793625793
   VisualData: {fileID: 0}
+  VisualPrefab: {fileID: 0}
+  CastVisualPrefab: {fileID: 0}
+  CastSpawnPoint: 0
   BaseDamage: 1
-  BaseAOERadius: 1.92
+  BaseAOERadius: 0
   BaseProjectileCount: 0
   BaseManaCost: 0
   IsToggle: 0
@@ -43,14 +46,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261312303464507
+    - rid: 5700261318793625792
       type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         BoxSize: {x: 2, y: 2.5}
-        Offset: {x: 0, y: -1.5}
-    - rid: 5700261312303464508
+        Offset: {x: 0, y: 1.5}
+    - rid: 5700261318793625793
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
-        TargetAttribute: 0
+        TargetAttribute: 1

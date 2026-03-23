@@ -27,7 +27,7 @@ public class AttributeListManager : MonoBehaviour
         AttributeType.WeaponATK,   // Weapon Physic
         AttributeType.WeaponMATK,  // Weapon Magic
         AttributeType.StatusDMG,   // Status DMG (Poison/Burn)
-        AttributeType.Defense, AttributeType.StatusDEF, AttributeType.StatusMDEF,
+        AttributeType.Defense, AttributeType.StatusDEF, AttributeType.StatusDEF,
         AttributeType.Hit, AttributeType.Flee,
         AttributeType.ASPD, AttributeType.MoveSpeed,
         AttributeType.WeightLimit
@@ -40,10 +40,10 @@ public class AttributeListManager : MonoBehaviour
         AttributeType.PerfectDodge,
 
         // 2. Casting Modifiers (Consolidated)
-        AttributeType.VCTReductionFlat,         // Marker for Variable Flat
-        AttributeType.CastTime,                 // Marker for Variable %
-        AttributeType.FCTReductionFlat,         // Marker for Fixed Flat
-        AttributeType.MaxFCTReduction,          // Marker for Fixed %
+        AttributeType.VariableCastTimeReduc,         // Marker for Variable Flat
+        AttributeType.VariableCastTimeReducPercent,  // Marker for Variable %
+        AttributeType.FixedCastTimeReduc,         // Marker for Fixed Flat
+        AttributeType.FixedCastTimeReducPercent,
         
         
         // 3. Elemental Offense
@@ -145,10 +145,10 @@ public class AttributeListManager : MonoBehaviour
 
     private bool IsConsolidatedCastAttribute(AttributeType type)
     {
-        return type == AttributeType.VCTReductionFlat || 
-               type == AttributeType.CastTime || 
-               type == AttributeType.FCTReductionFlat || 
-               type == AttributeType.MaxFCTReduction;
+        return type == AttributeType.VariableCastTimeReduc || 
+               type == AttributeType.VariableCastTimeReducPercent ||
+               type == AttributeType.FixedCastTimeReduc ||
+               type == AttributeType.FixedCastTimeReducPercent;
     }
 
     private void CreateConsolidatedBlock(AttributeType type)
@@ -176,49 +176,53 @@ public class AttributeListManager : MonoBehaviour
         tooltipTitle = "";
         tooltipDesc = "";
 
-        if (type == AttributeType.VCTReductionFlat)
+        if (type == AttributeType.VariableCastTimeReduc)
         {
             label = "ReductionVariableCastTimeFlat";
-            float val = manager.GetAttribute(AttributeType.VCTReductionFlat).CurrentValue;
+            float val = manager.GetAttribute(AttributeType.VariableCastTimeReduc).CurrentValue;
             valueStr = $"<b>{val:F2}s</b>";
             tooltipTitle = "<color=#25E3B7>Variable Cast Time Reduction (Flat)</color>";
             tooltipDesc = "Total seconds subtracted directly from variable cast time.";
         }
-        else if (type == AttributeType.CastTime)
+        else if (type == AttributeType.VariableCastTimeReducPercent)
         {
-            label = "ReductioVerableCastTime";
+            label = "TotalVariableCastTimeReduc";
             
             // Calculate effective % reduction (copied logic from SkillInstance)
-            float dex = manager.GetAttribute(AttributeType.DEX).CurrentValue;
-            float intel = manager.GetAttribute(AttributeType.INT).CurrentValue;
-            float gearReduc = manager.GetAttribute(AttributeType.GearVCTReduction).CurrentValue;
-            float skillReduc = manager.GetAttribute(AttributeType.SkillVCTReduction).CurrentValue;
+            float dex = manager.GetAttribute(AttributeType.DEX)?.CurrentValue ?? 0;
+            float intel = manager.GetAttribute(AttributeType.INT)?.CurrentValue ?? 0;
+            
+            // Use Percentage attributes instead of flat (seconds) ones
+            float gearReduc = manager.GetAttribute(AttributeType.GearVariableCastTimePercent)?.CurrentValue ?? 0;
+            float skillReduc = manager.GetAttribute(AttributeType.SkillVariableCastTimePercent)?.CurrentValue ?? 0;
+            float otherReduc = manager.GetAttribute(AttributeType.VariableCastTimeReducPercent)?.CurrentValue ?? 0;
 
             float statTerm = Mathf.Clamp01((dex * 2f + intel) / 530f);
             float statReduc = Mathf.Sqrt(statTerm);
             
-            float effectiveRatio = 1f - ( (1f - statReduc) * (1f - (gearReduc/100f)) * (1f - (skillReduc/100f)) );
+            // Formula: 1 - (1-stat)*(1-gear)*(1-skill)*(1-other)
+            float effectiveRatio = 1f - ( (1f - statReduc) * (1f - (gearReduc/100f)) * (1f - (skillReduc/100f)) * (1f - (otherReduc/100f)) );
             float percentVal = effectiveRatio * 100f;
 
             valueStr = $"<b>{percentVal:F0}%</b>";
-            tooltipTitle = "<color=#25E3B7>Variable Cast Time Reduction (%)</color>";
-            tooltipDesc = $"Total effective reduction percentage.\nBreakdown:\n- Stats (DEX/INT): {statReduc*100:F0}%\n- Gear: {gearReduc:F0}%\n- Skills: {skillReduc:F0}%";
+            tooltipTitle = "<color=#25E3B7>Variable Cast Time Reduction (Total %)</color>";
+            tooltipDesc = $"Total effective reduction percentage.\nBreakdown:\n- Stats (DEX/INT): {statReduc*100:F0}%\n- Gear: {gearReduc:F0}%\n- Skills: {skillReduc:F0}%\n- Other (Buffs): {otherReduc:F0}%";
         }
-        else if (type == AttributeType.FCTReductionFlat)
+        else if (type == AttributeType.FixedCastTimeReduc)
         {
-            label = "ReducFixeCastFlat";
-            float val = manager.GetAttribute(AttributeType.FCTReductionFlat).CurrentValue;
+            label = "FixedCastTimeReduc";
+            float val = manager.GetAttribute(AttributeType.FixedCastTimeReduc)?.CurrentValue ?? 0;
             valueStr = $"<b>{val:F2}s</b>";
             tooltipTitle = "<color=#25E3B7>Fixed Cast Time Reduction (Flat)</color>";
             tooltipDesc = "Total seconds subtracted directly from fixed cast time.";
         }
-        else if (type == AttributeType.MaxFCTReduction)
+        else if (type == AttributeType.FixedCastTimeReducPercent)
         {
-            label = "ReducFixeCastTime";
-            float val = manager.GetAttribute(AttributeType.MaxFCTReduction).CurrentValue;
+            label = "FixedCastTimeReducPercent";
+            float val = manager.GetAttribute(AttributeType.FixedCastTimeReducPercent)?.CurrentValue ?? 0;
             valueStr = $"<b>{val:F0}%</b>";
             tooltipTitle = "<color=#25E3B7>Fixed Cast Time Reduction (%)</color>";
-            tooltipDesc = "Percentage reduction for fixed cast time.";
+            tooltipDesc = "Percentage reduction to fixed cast time (only takes the highest value usually, but here showing total for generic info).";
         }
     }
 

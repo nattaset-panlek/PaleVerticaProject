@@ -3,14 +3,14 @@ using CoreSystem.Entity;
 using CoreSystem.Skills.Logic;
 using CoreSystem.Skills.Visuals;
 using UnityEngine;
+using CoreSystem;
 
 namespace CoreSystem.Skills
 {
-
     [System.Serializable]
     public class SkillCaster
     {
-        public List<SkillInstance> EquippedSkills = new List<SkillInstance>(new SkillInstance[5]);
+        public List<SkillInstance> EquippedSkills = new List<SkillInstance>(new SkillInstance[6]);
         
         public void EquipSkill(ActiveSkill skillData, int slotIndex)
         {
@@ -25,36 +25,36 @@ namespace CoreSystem.Skills
             EquippedSkills[slotIndex] = new SkillInstance(skillData);
         }
 
-        
-        // Skills granted from items/equipment that don't take up standard hotbar slots
         public List<SkillInstance> GrantedSkills = new List<SkillInstance>();
 
         [Header("Debug")]
         public List<GameObject> LastHitTargets = new List<GameObject>();
         
-        // --- State Machine ---
         public SkillCasterState CurrentState { get; private set; } = SkillCasterState.Idle;
         
-        // Context for current cast
         public SkillInstance ActiveSkillInstance => activeSkillInstance;
         private SkillInstance activeSkillInstance;
 
         public float CurrentCastTimeTotal => currentCastTimeTotal;
         private float currentCastTimeTotal;
-
+        private Vector3 activeTargetPosition;
+        private bool activeIsTargetSet;
+        private bool activeIsPositionLocked;
+        
         public float CurrentCastTimer => currentCastTimer;
         private float currentCastTimer;
         
-        // Global delay blocking all skills
         public float GlobalCastDelayTimer => globalCastDelayTimer;
         private float globalCastDelayTimer;
         
-        // --- Events / Callbacks ---
-        public System.Action<string, float> OnCastInitiated; // SkillName, TotalCastTime
-        public System.Action<float, float> OnCastProgress; // CurrentTime, TotalTime
-        public System.Action<string> OnCastExecuted; // SkillName
+        public System.Action<string, float> OnCastInitiated;
+        public System.Action<float, float> OnCastProgress;
+        public System.Action<string> OnCastExecuted;
         public System.Action OnCastInterrupted;
         
+        public int AimedSkillSlot = -1;
+
+
         private Character character;
 
         public void Initialize(Character owner)
@@ -64,7 +64,6 @@ namespace CoreSystem.Skills
 
         public void Tick(float dt)
         {
-            // Update individual skill cooldowns regardless of state
             for (int i = 0; i < EquippedSkills.Count; i++)
             {
                 if (EquippedSkills[i] != null)
@@ -77,20 +76,19 @@ namespace CoreSystem.Skills
                     GrantedSkills[i].UpdateCooldown(dt);
             }
 
-            // Handle Toggle Skills Execution
             UpdateToggleSkills();
 
-            // Handle State Machine
+            if (globalCastDelayTimer > 0)
+            {
+                globalCastDelayTimer -= dt;
+                if (globalCastDelayTimer <= 0 && CurrentState == SkillCasterState.CastDelay)
+                    CurrentState = SkillCasterState.Idle;
+            }
+
             switch (CurrentState)
             {
                 case SkillCasterState.Casting:
                     ProcessCastingState(dt);
-                    break;
-                case SkillCasterState.CastDelay:
-                    ProcessCastDelayState(dt);
-                    break;
-                case SkillCasterState.Idle:
-                default:
                     break;
             }
         }
@@ -104,21 +102,17 @@ namespace CoreSystem.Skills
                 {
                     if (instance.IsReady())
                     {
-                        // Check Mana
                         if (character != null && character.attributeSystem != null)
                         {
                             float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
                             if (currentMp < instance.SkillData.BaseManaCost)
                             {
-                                // Not enough mana, toggle off
                                 instance.IsToggledOn = false;
                                 OnCastInterrupted?.Invoke();
                                 continue;
                             }
                         }
 
-                        // Check if we are currently globally delayed or casting something else that blocks?
-                        // Usually toggle skills run on their own aura loop.
                         ExecutePipeline(instance);
                         instance.StartCooldown();
                         OnCastExecuted?.Invoke(instance.SkillData.Name + " (Toggle)");
@@ -130,33 +124,18 @@ namespace CoreSystem.Skills
         private void ProcessCastingState(float dt)
         {
             currentCastTimer += dt;
-            
-            // Notify UI of cast bar progress
             OnCastProgress?.Invoke(currentCastTimer, currentCastTimeTotal);
 
             if (currentCastTimer >= currentCastTimeTotal)
             {
-                // Execution Phase
                 ExecuteSkill(activeSkillInstance);
             }
         }
 
-        private void ProcessCastDelayState(float dt)
+        public void CastSkill(int slotIndex, Vector3 targetPos = default)
         {
-            globalCastDelayTimer -= dt;
-            if (globalCastDelayTimer <= 0f)
-            {
-                CurrentState = SkillCasterState.Idle;
-            }
-        }
-
-        public void CastSkill(int slotIndex)
-        {
-            if (CurrentState != SkillCasterState.Idle) 
-                return; // Blocked by Cast Delay or already casting
-
-            if (slotIndex < 0 || slotIndex >= EquippedSkills.Count)
-                return;
+            if (CurrentState != SkillCasterState.Idle) return;
+            if (slotIndex < 0 || slotIndex >= EquippedSkills.Count) return;
 
             SkillInstance instance = EquippedSkills[slotIndex];
             if (instance == null || instance.SkillData == null) return;
@@ -164,8 +143,6 @@ namespace CoreSystem.Skills
             if (instance.SkillData.IsToggle)
             {
                 instance.IsToggledOn = !instance.IsToggledOn;
-                
-                // Optional: Execute immediately when turned on if ready
                 if (instance.IsToggledOn && instance.IsReady())
                 {
                     ExecutePipeline(instance);
@@ -174,34 +151,22 @@ namespace CoreSystem.Skills
                 }
                 return;
             }
-
-            InitiateCastSequence(instance);
+            
+            InitiateCastSequence(instance, targetPos, targetPos != default);
         }
 
-        public void CastSkillDirectly(ActiveSkill skillData)
+        public void CastSkillDirectly(ActiveSkill skillData, Vector3 targetPos = default, bool isTargetSet = false)
         {
             if (skillData == null) return;
-            
-            // Look for existing instance in GrantedSkills to respect cooldowns
-            SkillInstance instance = GrantedSkills.Find(s => s.SkillData == skillData);
-            
-            if (instance == null)
-            {
-                // If not found, create a temporary one (or we can just skip if auto-cast shouldn't use ungranted skills)
-                instance = new SkillInstance(skillData);
-            }
-
-            if (CurrentState != SkillCasterState.Idle) 
-                return;
-
-            InitiateCastSequence(instance);
+            SkillInstance instance = GrantedSkills.Find(s => s.SkillData == skillData) ?? new SkillInstance(skillData);
+            if (CurrentState != SkillCasterState.Idle) return;
+            InitiateCastSequence(instance, targetPos, isTargetSet);
         }
 
         public void GrantSkill(ActiveSkill skillData)
         {
             if (skillData == null) return;
             if (GrantedSkills.Exists(s => s.SkillData == skillData)) return;
-
             GrantedSkills.Add(new SkillInstance(skillData));
         }
 
@@ -211,7 +176,7 @@ namespace CoreSystem.Skills
             GrantedSkills.RemoveAll(s => s.SkillData == skillData);
         }
 
-        public SkillPayload BuildPayload(SkillInstance instance)
+        public SkillPayload BuildPayload(SkillInstance instance, Vector3 targetPos = default, bool isTargetSet = false, bool isLocked = false)
         {
             SkillPayload payload = new SkillPayload
             {
@@ -221,6 +186,9 @@ namespace CoreSystem.Skills
                 SkillElement = instance.SkillData != null ? instance.SkillData.SkillElement : ElementType.Neutral,
                 DamageType = instance.SkillData != null ? instance.SkillData.SkillDamageType : DamageType.Physical,
                 OriginPosition = character.transform.position,
+                TargetPosition = targetPos,
+                IsTargetPositionSet = isTargetSet,
+                IsPositionLocked = isLocked,
                 
                 BaseDamage = instance.SkillData != null ? instance.SkillData.BaseDamage : 0,
                 AOERadius = instance.SkillData != null ? instance.SkillData.BaseAOERadius : 0,
@@ -233,7 +201,6 @@ namespace CoreSystem.Skills
                 ManaCost = instance.SkillData != null ? instance.SkillData.BaseManaCost : 0
             };
 
-            // 1. Apply Dynamic Output Scalings
             if (instance.SkillData != null && instance.SkillData.Scalings != null && this.character != null && this.character.attributeSystem != null)
             {
                 var stats = this.character.attributeSystem;
@@ -243,7 +210,6 @@ namespace CoreSystem.Skills
                 }
             }
 
-            // 2. Apply Support Modifiers
             for (int i = 0; i < instance.LinkedModifiers.Count; i++)
             {
                 if (instance.LinkedModifiers[i] != null)
@@ -255,44 +221,69 @@ namespace CoreSystem.Skills
             return payload;
         }
 
-        private void InitiateCastSequence(SkillInstance instance)
+        private void InitiateCastSequence(SkillInstance instance, Vector3 targetPos = default, bool isTargetSet = false)
         {
-            if (instance == null || instance.SkillData == null || !instance.IsReady())
-                return; // Cooldown not ready
+            if (instance == null || instance.SkillData == null || !instance.IsReady()) return;
 
-            // Build payload early to get final ManaCost and CastTime
-            SkillPayload payload = BuildPayload(instance);
+            activeTargetPosition = targetPos;
+            activeIsTargetSet = isTargetSet;
+            activeIsPositionLocked = false;
+            
+            // Lock position for TargetLocationTargeting to prevent the target area from "following" the caster
+            if (isTargetSet && instance.SkillData.BaseTargeting is TargetLocationTargeting tlt)
+            {
+                activeTargetPosition = tlt.ClampTargetPosition(character.transform.position, targetPos);
+                activeIsPositionLocked = true;
+            }
 
-            // Check Mana
+            SkillPayload payload = BuildPayload(instance, activeTargetPosition, activeIsTargetSet, activeIsPositionLocked);
+
             if (character != null && character.attributeSystem != null)
             {
                 float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                if (currentMp < payload.ManaCost)
+                if (currentMp < payload.ManaCost) return;
+            }
+
+            activeSkillInstance = instance;
+            currentCastTimer = 0f;
+            currentCastTimeTotal = instance.CalculateCastTimeModified(character?.attributeSystem, payload.VCT, payload.FCT);
+
+            OnCastInitiated?.Invoke(instance.SkillData.Name, currentCastTimeTotal);
+
+            // Spawn Cast Visuals immediately if provided
+            if (instance.SkillData.CastVisualPrefab != null)
+            {
+                Vector3 spawnPos = payload.TargetPosition;
+                Transform parent = null;
+
+                if (instance.SkillData.CastSpawnPoint == VisualAppearance.CasterPosition)
                 {
-                    // Not enough mana
-                    return; 
+                    spawnPos = character.transform.position;
+                }
+                else if (instance.SkillData.CastSpawnPoint == VisualAppearance.FollowCaster)
+                {
+                    spawnPos = character.transform.position;
+                    parent = character.transform;
+                }
+                else if (!payload.IsTargetPositionSet)
+                {
+                    spawnPos = payload.OriginPosition;
+                }
+
+                GameObject castVfx = GameObject.Instantiate(instance.SkillData.CastVisualPrefab, spawnPos, Quaternion.identity, parent);
+                SkillVisualEffect sve = castVfx.GetComponent<SkillVisualEffect>();
+                if (sve != null)
+                {
+                    sve.Initialize(payload);
                 }
             }
 
-            // Initiation Phase
-            activeSkillInstance = instance;
-            currentCastTimer = 0f;
-            
-            // Calculate final cast time using the modified VCT/FCT from payload
-            currentCastTimeTotal = instance.CalculateCastTimeModified(character?.attributeSystem, payload.VCT, payload.FCT);
-
-            // Trigger UI Initiation
-            OnCastInitiated?.Invoke(instance.SkillData.Name, currentCastTimeTotal);
-
-            // Cast Time Phase
             if (currentCastTimeTotal <= 0f)
             {
-                // Instant cast
                 ExecuteSkill(instance);
             }
             else
             {
-                // Begin casting bar
                 CurrentState = SkillCasterState.Casting;
             }
         }
@@ -309,13 +300,7 @@ namespace CoreSystem.Skills
 
         private void ExecuteSkill(SkillInstance instance)
         {
-            // Rebuild payload to get latest targets/positions if needed, 
-            // but for simple timing/mana we already have it.
-            // However, ExecutePipeline rebuilds it for the full execution.
-            SkillPayload payload = BuildPayload(instance);
-
-            // 1. Trigger cooldowns & delays
-            // Use modified values from payload
+            SkillPayload payload = BuildPayload(instance, activeTargetPosition, activeIsTargetSet, activeIsPositionLocked);
             instance.StartCooldown(payload.Cooldown);
 
             if (payload.CastDelay > 0f)
@@ -328,12 +313,8 @@ namespace CoreSystem.Skills
                 CurrentState = SkillCasterState.Idle;
             }
 
-            // 2. Visual / UI cue for execution
             OnCastExecuted?.Invoke(instance.SkillData.Name);
-
-            // 3. Process the actual effects
             ExecutePipeline(instance, payload);
-
             activeSkillInstance = null;
         }
 
@@ -341,7 +322,6 @@ namespace CoreSystem.Skills
         {
             if (payload == null) payload = BuildPayload(instance);
 
-            // 0. Consume Mana
             if (this.character != null && this.character.attributeSystem != null && payload.ManaCost > 0f)
             {
                 var mpAttr = this.character.attributeSystem.GetAttribute(AttributeType.MP);
@@ -350,23 +330,19 @@ namespace CoreSystem.Skills
                 mpAttr.Recalculate();
             }
 
-            // If it's a persistent continuous area, spawn a handler and exit early
             if (instance.SkillData.IsContinuousArea && instance.SkillData.BaseTargeting != null)
             {
                 GameObject areaGo = new GameObject("ContinuousArea_" + instance.SkillData.Name);
-                areaGo.transform.position = payload.OriginPosition;
+                areaGo.transform.position = payload.IsTargetPositionSet ? payload.TargetPosition : payload.OriginPosition;
                 
                 var areaBehaviour = areaGo.AddComponent<ContinuousAreaBehaviour>();
                 areaBehaviour.Initialize(payload, instance.SkillData.BaseTargeting, instance.SkillData.Effects, instance.SkillData.VisualData, instance.SkillData.AreaDuration, instance.SkillData.AreaTickRate);
-                
-                return; // Stop normal execution; the area handles effects
+                return;
             }
 
-            // Normal single-hit execution
             if (instance.SkillData.BaseTargeting != null)
             {
                 payload.Targets = instance.SkillData.BaseTargeting.GetTargets(payload);
-                
                 LastHitTargets.Clear();
                 for (int i = 0; i < payload.Targets.Count; i++)
                 {
@@ -382,9 +358,8 @@ namespace CoreSystem.Skills
                 EffectLogic effect = instance.SkillData.Effects[i];
                 if (effect != null)
                 {
-                    if (effect is CoreSystem.Skills.Logic.Effects.MovementEffectLogic mov && mov.ApplyOncePerCast)
+                    if (effect.ApplyOncePerCast)
                     {
-                        // Apply only once (using the first target if available, else null)
                         effect.Apply(payload, payload.Targets.Count > 0 ? payload.Targets[0] : null);
                     }
                     else
@@ -401,6 +376,18 @@ namespace CoreSystem.Skills
             {
                 VisualManager.Instance?.PlayVisual(instance.SkillData.VisualData, payload);
             }
+
+            if (instance.SkillData.VisualPrefab != null)
+            {
+                Vector3 spawnPos = payload.IsTargetPositionSet ? payload.TargetPosition : payload.OriginPosition;
+                GameObject vfxInstance = GameObject.Instantiate(instance.SkillData.VisualPrefab, spawnPos, Quaternion.identity);
+                
+                SkillVisualEffect sve = vfxInstance.GetComponent<SkillVisualEffect>();
+                if (sve != null)
+                {
+                    sve.Initialize(payload);
+                }
+            }
         }
 
 #if UNITY_EDITOR
@@ -410,18 +397,23 @@ namespace CoreSystem.Skills
 
             for (int i = 0; i < EquippedSkills.Count; i++)
             {
+                if (i != AimedSkillSlot) continue;
                 SkillInstance instance = EquippedSkills[i];
                 if (instance != null && instance.SkillData != null && instance.SkillData.BaseTargeting != null)
                 {
-                    SkillPayload mockPayload = new SkillPayload
+                    // Calculate mouse position
+                    Vector3 mousePos = Vector3.zero;
+                    if (Camera.main != null)
                     {
-                        Caster = this.character,
-                        OriginPosition = character.transform.position,
-                        AOERadius = instance.SkillData.BaseAOERadius
-                    };
+                        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        mousePos.z = 0f;
+                    }
+
+                    // Use BuildPayload to ensure scalings (e.g. AOE Increase) are reflected in the gizmo
+                    SkillPayload payload = BuildPayload(instance, mousePos, true);
                     
-                    Vector2 direction = character.transform.up; // Assuming front is UP in 2D
-                    instance.SkillData.BaseTargeting.DrawGizmos(character.transform.position, direction, mockPayload);
+                    Vector2 direction = character.transform.up;
+                    instance.SkillData.BaseTargeting.DrawGizmos(character.transform.position, direction, payload);
                 }
             }
         }

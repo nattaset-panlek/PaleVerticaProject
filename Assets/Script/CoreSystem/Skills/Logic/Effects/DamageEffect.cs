@@ -70,7 +70,7 @@ namespace CoreSystem.Skills.Logic
                     }
                 }
 
-                AttributeType defenseType = payload.DamageType == DamageType.Physical ? AttributeType.Defense : AttributeType.StatusMDEF;
+                AttributeType defenseType = payload.DamageType == DamageType.Physical ? AttributeType.Defense : AttributeType.StatusDEF;
                 float targetDefense = target.attributeSystem.GetAttribute(defenseType);
                 float finalDamage = Mathf.Max(1f, calculatedDamage - targetDefense);
 

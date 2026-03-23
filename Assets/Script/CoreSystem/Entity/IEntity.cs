@@ -11,6 +11,8 @@ namespace CoreSystem.Entity
         SizeType Size { get; }
         RaceType Race { get; }
         FactionType Faction { get; }
+        
+        void ApplyImpulse(Vector3 direction, float distance, float duration);
 
         void TriggerOnHit(IEntity target, float damage);
         void TriggerOnTakeDamage(IEntity attacker, float damage);

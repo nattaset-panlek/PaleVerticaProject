@@ -1,5 +1,7 @@
 using CoreSystem.Entity;
-using CoreSystem;
+using CoreSystem.Skills;
+using CoreSystem.Skills.Logic;
+using CoreSystem.Skills.Visuals;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +14,7 @@ namespace CoreSystem.Controllers
         private PlayerCharacter player;
         private Camera mainCamera;
         private bool _isDead;
+        private int _selectedSkillSlot = -1;
 
         [Header("UI Reference")]
         public Image HealthBar;
@@ -19,6 +22,9 @@ namespace CoreSystem.Controllers
 
         public TMP_Text HealthText;
         public TMP_Text ManaText;
+
+        public TMP_Text BaseLevel;
+        public TMP_Text JobLevel;
 
         [Header("Animation")]
         public Animator Anim;
@@ -37,11 +43,30 @@ namespace CoreSystem.Controllers
 
         private void Update()
         {
-            if (CheckDeath()) return;
+            if (_isDead) return;
 
             HandleMovement();
+            HandleLookDirection(); // Renamed from HandleMouseRotation in the instruction, keeping original name
             HandleSkillInput();
-            HandleLookDirection();
+
+            // Update Skill Indicator if aiming
+            if (_selectedSkillSlot != -1)
+            {
+                Vector3 mousePos = GetMouseWorldPosition();
+                Vector3 origin = transform.position;
+                Vector3 direction = (mousePos - origin).normalized;
+
+                // Get final targeting point with range clamping for the visual
+                var skill = player.skillCaster.EquippedSkills[_selectedSkillSlot];
+                Vector3 clampedPos = mousePos;
+                if (skill.SkillData.BaseTargeting is TargetLocationTargeting targetLoc)
+                {
+                    float dist = Vector2.Distance(origin, mousePos);
+                    if (dist > targetLoc.CastRange) clampedPos = origin + direction * targetLoc.CastRange;
+                }
+
+                SkillIndicatorManager.Instance?.UpdateIndicator(origin, clampedPos, direction);
+            }
             UpdateUI();
         }
 
@@ -102,6 +127,18 @@ namespace CoreSystem.Controllers
                     float maxMp = player.attributeSystem.GetAttribute(AttributeType.MaxMP).CurrentValue;
                     ManaText.text = $"{mp:F0}/{maxMp:F0}";
                 }
+
+                if (BaseLevel != null)
+                {
+                    int baseLevel = (int)(player.attributeSystem.GetAttribute(AttributeType.BaseLevel)?.CurrentValue ?? 1);
+                    BaseLevel.text = $"{baseLevel.ToString("000")}";
+                }
+
+                if (JobLevel != null)
+                {
+                    int jobLevel = (int)(player.attributeSystem.GetAttribute(AttributeType.JobLevel)?.CurrentValue ?? 1);
+                    JobLevel.text = $"{jobLevel.ToString("000")}";
+                }
             }
         }
 
@@ -118,7 +155,7 @@ namespace CoreSystem.Controllers
                 if (isMoving)
                 {
                     player.movementSystem.Move(direction);
-                    
+
                     if (ModelTransform != null)
                     {
                         if (horizontal > 0.1f)
@@ -148,27 +185,80 @@ namespace CoreSystem.Controllers
         {
             if (mainCamera != null)
             {
-                Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                mousePos.z = 0f;
-
+                Vector3 mousePos = GetMouseWorldPosition();
                 Vector3 directionToMouse = (mousePos - transform.position).normalized;
                 transform.up = directionToMouse;
             }
+        }
+
+        private Vector3 GetMouseWorldPosition()
+        {
+            if (mainCamera == null) return transform.position;
+            Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            mousePos.z = 0f;
+            return mousePos;
         }
 
         private void HandleSkillInput()
         {
             if (player.skillCaster != null)
             {
-                if (Input.GetMouseButtonDown(0)) player.skillCaster.CastSkill(0);
-                if (Input.GetMouseButtonDown(1)) player.skillCaster.CastSkill(1);
+                Vector3 mousePos = GetMouseWorldPosition();
 
-                if (Input.GetKeyDown(KeyCode.Alpha1)) player.skillCaster.CastSkill(0);
-                if (Input.GetKeyDown(KeyCode.Alpha2)) player.skillCaster.CastSkill(1);
-                if (Input.GetKeyDown(KeyCode.Alpha3)) player.skillCaster.CastSkill(2);
-                if (Input.GetKeyDown(KeyCode.Alpha4)) player.skillCaster.CastSkill(3);
-                if (Input.GetKeyDown(KeyCode.Alpha5)) player.skillCaster.CastSkill(4);
-                if (Input.GetKeyDown(KeyCode.Alpha6)) player.skillCaster.CastSkill(5);
+                // Selection Logic (Alpha Keys)
+                if (Input.GetKeyDown(KeyCode.Alpha1)) TryEnterAimingMode(0, mousePos);
+                if (Input.GetKeyDown(KeyCode.Alpha2)) TryEnterAimingMode(1, mousePos);
+                if (Input.GetKeyDown(KeyCode.Alpha3)) TryEnterAimingMode(2, mousePos);
+                if (Input.GetKeyDown(KeyCode.Alpha4)) TryEnterAimingMode(3, mousePos);
+                if (Input.GetKeyDown(KeyCode.Alpha5)) TryEnterAimingMode(4, mousePos);
+                if (Input.GetKeyDown(KeyCode.Alpha6)) TryEnterAimingMode(5, mousePos);
+
+                // Execution Logic (Left Click)
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (_selectedSkillSlot != -1)
+                    {
+                        player.skillCaster.CastSkill(_selectedSkillSlot, mousePos);
+                        _selectedSkillSlot = -1;
+                        player.skillCaster.AimedSkillSlot = -1;
+                        SkillIndicatorManager.Instance?.HideCurrent();
+                    }
+                }
+
+                // Cancellation Logic (Right Click)
+                if (Input.GetMouseButtonDown(1))
+                {
+                    _selectedSkillSlot = -1;
+                    player.skillCaster.AimedSkillSlot = -1;
+                    SkillIndicatorManager.Instance?.HideCurrent();
+                }
+            }
+        }
+
+        private void TryEnterAimingMode(int slot, Vector3 mousePos)
+        {
+            if (player.skillCaster == null) return;
+            if (slot < 0 || slot >= player.skillCaster.EquippedSkills.Count) return;
+
+            var instance = player.skillCaster.EquippedSkills[slot];
+            if (instance == null || instance.SkillData == null || instance.SkillData.BaseTargeting == null) return;
+
+            if (instance.SkillData.BaseTargeting.RequiresSelection)
+            {
+                _selectedSkillSlot = slot;
+                player.skillCaster.AimedSkillSlot = slot;
+
+                // Show Visual Indicator
+                var payload = player.skillCaster.BuildPayload(instance, mousePos, true);
+                SkillIndicatorManager.Instance?.ShowIndicator(payload, instance.SkillData.BaseTargeting);
+            }
+            else
+            {
+                // Instant Skill - Fire immediately
+                player.skillCaster.CastSkill(slot, mousePos);
+                _selectedSkillSlot = -1;
+                player.skillCaster.AimedSkillSlot = -1;
+                SkillIndicatorManager.Instance?.HideIndicator(); // Hide indicator for instant skills
             }
         }
 
@@ -180,15 +270,15 @@ namespace CoreSystem.Controllers
 
             GUILayout.BeginArea(new Rect(10, 10, 250, 300), GUI.skin.box);
             GUILayout.Label($"<b>Skill System Status</b>", new GUIStyle(GUI.skin.label) { richText = true, alignment = TextAnchor.MiddleCenter });
-            
+
             GUILayout.Label($"State: {caster.CurrentState}");
-            
+
             if (caster.CurrentState == SkillCasterState.Casting && caster.ActiveSkillInstance != null && caster.ActiveSkillInstance.SkillData != null)
             {
                 GUILayout.Label($"Casting: {caster.ActiveSkillInstance.SkillData.Name}");
                 GUILayout.Label($"Progress: {caster.CurrentCastTimer:F2} / {caster.CurrentCastTimeTotal:F2} s");
             }
-            
+
             if (caster.CurrentState == SkillCasterState.CastDelay)
             {
                 GUILayout.Label($"Cast Delay: {caster.GlobalCastDelayTimer:F2} s");
@@ -196,7 +286,7 @@ namespace CoreSystem.Controllers
 
             GUILayout.Space(10);
             GUILayout.Label($"<b>Equipped Skills</b>", new GUIStyle(GUI.skin.label) { richText = true, alignment = TextAnchor.MiddleCenter });
-            
+
             for (int i = 0; i < caster.EquippedSkills.Count; i++)
             {
                 var skill = caster.EquippedSkills[i];
@@ -204,11 +294,11 @@ namespace CoreSystem.Controllers
                 {
                     string color = skill.IsReady() ? "green" : "red";
                     string cdText = skill.IsReady() ? "Ready" : $"{skill.CurrentCooldown:F2}s";
-                    GUILayout.Label($"Slot {i+1}: {skill.SkillData.Name} - <color={color}>{cdText}</color>", new GUIStyle(GUI.skin.label) { richText = true });
+                    GUILayout.Label($"Slot {i + 1}: {skill.SkillData.Name} - <color={color}>{cdText}</color>", new GUIStyle(GUI.skin.label) { richText = true });
                 }
                 else
                 {
-                    GUILayout.Label($"Slot {i+1}: Empty", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Italic });
+                    GUILayout.Label($"Slot {i + 1}: Empty", new GUIStyle(GUI.skin.label) { fontStyle = FontStyle.Italic });
                 }
             }
 

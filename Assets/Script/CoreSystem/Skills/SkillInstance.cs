@@ -73,29 +73,39 @@ namespace CoreSystem.Skills
             }
 
             // --- VCT Calculation ---
-            float dex = stats.GetAttribute(AttributeType.DEX).CurrentValue;
-            float intel = stats.GetAttribute(AttributeType.INT).CurrentValue;
+            float dex = stats.GetAttribute(AttributeType.DEX)?.CurrentValue ?? 0;
+            float intel = stats.GetAttribute(AttributeType.INT)?.CurrentValue ?? 0;
 
-            float sumVCT = stats.GetAttribute(AttributeType.VCTReductionFlat).CurrentValue;
-            float sumGearVCTReduc = stats.GetAttribute(AttributeType.GearVCTReduction).CurrentValue;
-            float sumSkillVCTReduc = stats.GetAttribute(AttributeType.SkillVCTReduction).CurrentValue;
+            // Flat Reductions (Seconds)
+            float vctFlat = stats.GetAttribute(AttributeType.VariableCastTimeReduc)?.CurrentValue ?? 0;
+            float gearVCTFlat = stats.GetAttribute(AttributeType.GearVariableCastTime)?.CurrentValue ?? 0;
+            float skillVCTFlat = stats.GetAttribute(AttributeType.SkillVariableCastTime)?.CurrentValue ?? 0;
 
-            // Cap the stat reduction term so it doesn't go below 0 (no negative square root) or become negative cast time
-            float statTerm = (dex * 2f + intel) / 530f;
-            statTerm = Mathf.Clamp01(statTerm);
+            // Percentage Reductions
+            float vctPercent = stats.GetAttribute(AttributeType.VariableCastTimeReducPercent)?.CurrentValue ?? 0;
+            float gearVCTPercent = stats.GetAttribute(AttributeType.GearVariableCastTimePercent)?.CurrentValue ?? 0;
+            float skillVCTPercent = stats.GetAttribute(AttributeType.SkillVariableCastTimePercent)?.CurrentValue ?? 0;
+
+            float statTerm = Mathf.Clamp01((dex * 2f + intel) / 530f);
+            float statReduc = Mathf.Sqrt(statTerm);
             
-            float vct = (vctOverride - sumVCT) 
-                        * (1f - Mathf.Sqrt(statTerm)) 
-                        * (1f - (sumGearVCTReduc / 100f)) 
-                        * (1f - (sumSkillVCTReduc / 100f));
+            // Formula: (Base - Flats) * (1 - StatReduc) * (1 - Gear%) * (1 - Skill%) * (1 - Buff%)
+            float vctRemaining = vctOverride - vctFlat - gearVCTFlat - skillVCTFlat;
+            float vct = vctRemaining 
+                        * (1f - statReduc) 
+                        * (1f - (gearVCTPercent / 100f)) 
+                        * (1f - (skillVCTPercent / 100f))
+                        * (1f - (vctPercent / 100f));
             
             vct = Mathf.Max(0f, vct);
 
             // --- FCT Calculation ---
-            float sumFCT = stats.GetAttribute(AttributeType.FCTReductionFlat).CurrentValue;
-            float maxFCTReduc = stats.GetAttribute(AttributeType.MaxFCTReduction).CurrentValue; 
+            float fctFlat = stats.GetAttribute(AttributeType.FixedCastTimeReduc)?.CurrentValue ?? 0;
+            float fctPercent = stats.GetAttribute(AttributeType.FixedCastTimeReducPercent)?.CurrentValue ?? 0;
 
-            float fct = (fctOverride - sumFCT) * (1f - (maxFCTReduc / 100f));
+            // FCT logic: Base - Flat, then apply highest % reduction (usually) or multiplicative
+            // Here we use multiplicative for consistency with VCT
+            float fct = (fctOverride - fctFlat) * (1f - (fctPercent / 100f));
             fct = Mathf.Max(0f, fct);
 
             return vct + fct;

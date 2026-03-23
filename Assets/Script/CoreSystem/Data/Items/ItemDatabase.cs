@@ -164,19 +164,24 @@ namespace CoreSystem.Data.Items
                 switch (e.EffectType)
                 {
                     case "StatBonus":
+                    case "AttributeBonusEffect":
                         targetList.Add(new AttributeBonusEffect { Attribute = (AttributeType)e.AttributeID, Value = e.Value });
                         break;
                     case "SkillUnlock":
+                    case "SkillUnlockEffect":
                         // Prioritize SkillID if present, otherwise SkillName (backwards compatibility or data helper)
                         targetList.Add(new SkillUnlockEffect { SkillID = e.SkillID });
                         break;
                     case "AutoCast":
+                    case "AutoCastEffect":
                         if (System.Enum.TryParse(e.TriggerType, out AutoCastTrigger trigger))
                         {
-                            targetList.Add(new AutoCastEffect { TriggerType = trigger, TriggerChance = e.TriggerChance * 100f, SkillID = e.SkillID });
+                            // In JSON/Editor it's already 0-100, no need to multiply by 100
+                            targetList.Add(new AutoCastEffect { TriggerType = trigger, TriggerChance = e.TriggerChance, SkillID = e.SkillID });
                         }
                         break;
                     case "ScalingBonus":
+                    case "ScalingBonusEffect":
                         var scalingEffect = new ScalingBonusEffect
                         {
                             Threshold = e.ScalingThreshold,

@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
   m_Name: Shadow_Dash
   m_EditorClassIdentifier: 
-  Id: 106
+  Id: 1007
   Name: Shadow Dash
   SkillElement: 5
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261312303464518
+    rid: 5700261318793625810
   Effects:
-  - rid: 5700261312303464519
+  - rid: 5700261318793625811
   VisualData: {fileID: 0}
+  VisualPrefab: {fileID: 0}
+  CastVisualPrefab: {fileID: 0}
+  CastSpawnPoint: 0
   BaseDamage: 0
   BaseAOERadius: 0
   BaseProjectileCount: 0
@@ -37,14 +40,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261312303464518
+    - rid: 5700261318793625810
       type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261312303464519
+    - rid: 5700261318793625811
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
         Type: 1
         Distance: 3
         ApplyOncePerCast: 1
+        UseLerp: 1
+        LerpDuration: 0.15

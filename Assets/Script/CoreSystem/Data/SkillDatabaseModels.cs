@@ -44,6 +44,16 @@ namespace CoreSystem.Data.Skills
         
         public List<OutputScaling> Scalings;
         public List<EffectEntry> Effects;
+        
+        public string VisualPrefabName;
+        public string CastVisualPrefabName;
+        public string CastVisualSpawnPoint; // "Target" or "Caster"
+    }
+
+    public enum VisualSpawnPoint
+    {
+        Target,
+        Caster
     }
 
     [System.Serializable]
@@ -60,10 +70,14 @@ namespace CoreSystem.Data.Skills
         public float Duration;
         public int MaxStacks;
         public string BuffName;
+        public string PrefabPath;
         public string Category;
         public string MovementType;
         public float MovementDistance;
         public bool ApplyOnce;
+        public bool UseLerp;
+        public float LerpDuration;
+        public bool ParentToCaster;
 
         public List<int> ScalingSourceIDs;
         public float ScalingThreshold;
@@ -74,6 +88,7 @@ namespace CoreSystem.Data.Skills
     {
         public string Type;
         public float Radius;
+        public float CastRange = 5f;
         
         public float Angle = 60f;
         public UnityEngine.Vector2 BoxSize = new UnityEngine.Vector2(2f, 5f);

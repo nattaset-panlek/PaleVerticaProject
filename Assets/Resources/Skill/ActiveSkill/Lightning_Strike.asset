@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
   m_Name: Lightning_Strike
   m_EditorClassIdentifier: 
-  Id: 105
+  Id: 1006
   Name: Lightning Strike
   SkillElement: 4
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261312303464511
+    rid: 5700261318793625797
   Effects:
-  - rid: 5700261312303464512
+  - rid: 5700261318793625798
   VisualData: {fileID: 0}
+  VisualPrefab: {fileID: 0}
+  CastVisualPrefab: {fileID: 0}
+  CastSpawnPoint: 0
   BaseDamage: 220
-  BaseAOERadius: 5
+  BaseAOERadius: 10
   BaseProjectileCount: 1
   BaseManaCost: 15
   IsToggle: 0
@@ -40,16 +43,22 @@ MonoBehaviour:
     GlobalMultiplier: 1
     FlatBonus: 20
     LevelMultiplier: 60
+  - TargetField: 1
+    ScalingAttribute: 152
+    AttributeMultiplier: 0.2
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
   references:
     version: 2
     RefIds:
-    - rid: 5700261312303464511
+    - rid: 5700261318793625797
       type: {class: LinePierceTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         LineWidth: 1
-    - rid: 5700261312303464512
+    - rid: 5700261318793625798
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
-        TargetAttribute: 0
+        TargetAttribute: 1

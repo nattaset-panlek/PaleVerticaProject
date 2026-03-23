@@ -7,6 +7,8 @@ namespace CoreSystem.Skills.Logic
     [System.Serializable]
     public class SphereAOETargeting : TargetingLogic
     {
+        public override bool RequiresSelection => false;
+
         public override List<IEntity> GetTargets(SkillPayload payload)
         {
             List<IEntity> targets = new List<IEntity>();

@@ -18,6 +18,7 @@
             "BaseTargeting": {
                 "Type": "Box",
                 "Radius": 1.9199999570846558,
+                "CastRange": 5.0,
                 "Angle": 60.0,
                 "BoxSize": {
                     "x": 2.0,
@@ -25,7 +26,7 @@
                 },
                 "Offset": {
                     "x": 0.0,
-                    "y": -1.5
+                    "y": 1.5
                 }
             },
             "Scalings": [
@@ -51,22 +52,113 @@
                     "Duration": 0.0,
                     "MaxStacks": 0,
                     "BuffName": "",
+                    "PrefabPath": "",
                     "Category": "",
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
                     "ScalingSourceIDs": [],
                     "ScalingThreshold": 0.0
                 }
-            ]
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1002,
+            "SkillName": "Healing",
+            "SkillElement": "Holy",
+            "DamageType": "Magic",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 25.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 0.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Self",
+                "Radius": 0.0,
+                "CastRange": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [
+                {
+                    "TargetField": 3,
+                    "ScalingAttribute": 1,
+                    "AttributeMultiplier": 20.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                },
+                {
+                    "TargetField": 3,
+                    "ScalingAttribute": 139,
+                    "AttributeMultiplier": 1.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                },
+                {
+                    "TargetField": 3,
+                    "ScalingAttribute": 140,
+                    "AttributeMultiplier": 100.0,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                }
+            ],
+            "Effects": [
+                {
+                    "EffectType": "HealEffect",
+                    "AttributeID": 1,
+                    "Value": 30.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "Flat",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
+        },
+        {
+            "SkillID": 1003,
             "SkillName": "Hellfire Blast",
             "SkillElement": "Fire",
             "DamageType": "Physical",
             "BaseDamage": 180.0,
-            "BaseAOERadius": 3.0,
+            "BaseAOERadius": 3.5,
             "BaseProjectileCount": 1,
             "BaseManaCost": 10.0,
             "IsToggle": false,
@@ -78,7 +170,8 @@
             "BaseTargeting": {
                 "Type": "Cone",
                 "Radius": 3.5,
-                "Angle": 50.0,
+                "CastRange": 5.0,
+                "Angle": 245.0,
                 "BoxSize": {
                     "x": 2.0,
                     "y": 5.0
@@ -96,6 +189,14 @@
                     "GlobalMultiplier": 1.0,
                     "FlatBonus": 0.0,
                     "LevelMultiplier": 50.0
+                },
+                {
+                    "TargetField": 1,
+                    "ScalingAttribute": 152,
+                    "AttributeMultiplier": 0.03500000014901161,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
                 }
             ],
             "Effects": [
@@ -111,17 +212,24 @@
                     "Duration": 0.0,
                     "MaxStacks": 0,
                     "BuffName": "",
+                    "PrefabPath": "",
                     "Category": "",
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
                     "ScalingSourceIDs": [],
                     "ScalingThreshold": 0.0
                 }
-            ]
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
         },
         {
-            "SkillID": 1003,
+            "SkillID": 1004,
             "SkillName": "Divine Blessing",
             "SkillElement": "Holy",
             "DamageType": "Magic",
@@ -138,6 +246,7 @@
             "BaseTargeting": {
                 "Type": "Single",
                 "Radius": 2.5,
+                "CastRange": 5.0,
                 "Angle": 60.0,
                 "BoxSize": {
                     "x": 2.0,
@@ -161,7 +270,7 @@
             "Effects": [
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
-                    "AttributeID": 22,
+                    "AttributeID": 11,
                     "Value": 10.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -170,17 +279,21 @@
                     "ModType": "Flat",
                     "Duration": 5.0,
                     "MaxStacks": 1,
-                    "BuffName": "Increate Agility",
+                    "BuffName": "Increase Agility",
+                    "PrefabPath": "",
                     "Category": "Attribute",
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
                     "ScalingSourceIDs": [],
                     "ScalingThreshold": 0.0
                 },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
-                    "AttributeID": 28,
+                    "AttributeID": 17,
                     "Value": 10.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -189,18 +302,48 @@
                     "ModType": "Flat",
                     "Duration": 5.0,
                     "MaxStacks": 1,
-                    "BuffName": "Increate Dexterity",
+                    "BuffName": "Increase Dexterity",
+                    "PrefabPath": "",
                     "Category": "Attribute",
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                },
+                {
+                    "EffectType": "ApplyTemporaryBuffEffect",
+                    "AttributeID": 15,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "Flat",
+                    "Duration": 5.0,
+                    "MaxStacks": 1,
+                    "BuffName": "Increase Inteligence",
+                    "PrefabPath": "",
+                    "Category": "Default",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
                     "ScalingSourceIDs": [],
                     "ScalingThreshold": 0.0
                 }
-            ]
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
         },
         {
-            "SkillID": 1004,
+            "SkillID": 1005,
             "SkillName": "Earthshatter",
             "SkillElement": "Earth",
             "DamageType": "Physical",
@@ -217,6 +360,7 @@
             "BaseTargeting": {
                 "Type": "Cone",
                 "Radius": 5.0,
+                "CastRange": 5.0,
                 "Angle": 60.0,
                 "BoxSize": {
                     "x": 2.0,
@@ -241,22 +385,52 @@
                     "Duration": 0.0,
                     "MaxStacks": 0,
                     "BuffName": "",
+                    "PrefabPath": "",
                     "Category": "",
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                },
+                {
+                    "EffectType": "MovementEffectLogic",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "PushTargetAway",
+                    "MovementDistance": 5.0,
+                    "ApplyOnce": true,
+                    "UseLerp": true,
+                    "LerpDuration": 0.3499999940395355,
+                    "ParentToCaster": false,
                     "ScalingSourceIDs": [],
                     "ScalingThreshold": 0.0
                 }
-            ]
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
         },
         {
-            "SkillID": 1005,
+            "SkillID": 1006,
             "SkillName": "Lightning Strike",
             "SkillElement": "Electric",
             "DamageType": "Physical",
             "BaseDamage": 220.0,
-            "BaseAOERadius": 0.0,
+            "BaseAOERadius": 10.0,
             "BaseProjectileCount": 1,
             "BaseManaCost": 15.0,
             "IsToggle": false,
@@ -267,7 +441,8 @@
             "Heal": 0.0,
             "BaseTargeting": {
                 "Type": "Line",
-                "Radius": 5.0,
+                "Radius": 10.0,
+                "CastRange": 5.0,
                 "Angle": 60.0,
                 "BoxSize": {
                     "x": 2.0,
@@ -286,6 +461,14 @@
                     "GlobalMultiplier": 1.0,
                     "FlatBonus": 20.0,
                     "LevelMultiplier": 60.0
+                },
+                {
+                    "TargetField": 1,
+                    "ScalingAttribute": 152,
+                    "AttributeMultiplier": 0.20000000298023225,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
                 }
             ],
             "Effects": [
@@ -301,17 +484,24 @@
                     "Duration": 0.0,
                     "MaxStacks": 0,
                     "BuffName": "",
+                    "PrefabPath": "",
                     "Category": "",
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
                     "ScalingSourceIDs": [],
                     "ScalingThreshold": 0.0
                 }
-            ]
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
         },
         {
-            "SkillID": 1006,
+            "SkillID": 1007,
             "SkillName": "Shadow Dash",
             "SkillElement": "Ghost",
             "DamageType": "Physical",
@@ -328,6 +518,7 @@
             "BaseTargeting": {
                 "Type": "Self",
                 "Radius": 0.0,
+                "CastRange": 5.0,
                 "Angle": 60.0,
                 "BoxSize": {
                     "x": 2.0,
@@ -352,17 +543,24 @@
                     "Duration": 0.0,
                     "MaxStacks": 0,
                     "BuffName": "",
+                    "PrefabPath": "",
                     "Category": "",
                     "MovementType": "DashForward",
                     "MovementDistance": 3.0,
                     "ApplyOnce": true,
+                    "UseLerp": true,
+                    "LerpDuration": 0.15000000596046449,
+                    "ParentToCaster": false,
                     "ScalingSourceIDs": [],
                     "ScalingThreshold": 0.0
                 }
-            ]
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
         },
         {
-            "SkillID": 1007,
+            "SkillID": 1008,
             "SkillName": "Aura of Flames",
             "SkillElement": "Fire",
             "DamageType": "Magic",
@@ -379,6 +577,7 @@
             "BaseTargeting": {
                 "Type": "Sphere",
                 "Radius": 3.0,
+                "CastRange": 5.0,
                 "Angle": 60.0,
                 "BoxSize": {
                     "x": 2.0,
@@ -392,32 +591,32 @@
             "Scalings": [
                 {
                     "TargetField": 0,
-                    "ScalingAttribute": 0,
-                    "AttributeMultiplier": 100.0,
+                    "ScalingAttribute": 3,
+                    "AttributeMultiplier": 0.10000000149011612,
                     "GlobalMultiplier": 1.0,
                     "FlatBonus": 10.0,
                     "LevelMultiplier": 20.0
                 },
                 {
                     "TargetField": 8,
-                    "ScalingAttribute": 0,
-                    "AttributeMultiplier": 50.0,
+                    "ScalingAttribute": 7,
+                    "AttributeMultiplier": 0.10000000149011612,
                     "GlobalMultiplier": 1.0,
                     "FlatBonus": 0.0,
                     "LevelMultiplier": 0.0
                 },
                 {
                     "TargetField": 1,
-                    "ScalingAttribute": 26,
-                    "AttributeMultiplier": 50.0,
+                    "ScalingAttribute": 15,
+                    "AttributeMultiplier": 0.004999999888241291,
                     "GlobalMultiplier": 1.0,
                     "FlatBonus": 0.0,
                     "LevelMultiplier": 0.0
                 },
                 {
                     "TargetField": 1,
-                    "ScalingAttribute": 221,
-                    "AttributeMultiplier": 1.0,
+                    "ScalingAttribute": 152,
+                    "AttributeMultiplier": 0.05999999865889549,
                     "GlobalMultiplier": 1.0,
                     "FlatBonus": 0.0,
                     "LevelMultiplier": 0.0
@@ -436,14 +635,171 @@
                     "Duration": 0.0,
                     "MaxStacks": 0,
                     "BuffName": "",
+                    "PrefabPath": "",
                     "Category": "",
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
                     "ScalingSourceIDs": [],
                     "ScalingThreshold": 0.0
                 }
-            ]
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "Skill/VisualEffectSkill/Aura",
+            "CastVisualSpawnPoint": "FollowCaster"
+        },
+        {
+            "SkillID": 1009,
+            "SkillName": "Lightning Blessing",
+            "SkillElement": "Electric",
+            "DamageType": "Magic",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 10.0,
+            "IsToggle": false,
+            "BaseVCT": 2.0,
+            "BaseFCT": 0.15000000596046449,
+            "BaseCastDelay": 0.10000000149011612,
+            "BaseCooldown": 0.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Self",
+                "Radius": 2.0,
+                "CastRange": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "ApplyTemporaryBuffEffect",
+                    "AttributeID": 11,
+                    "Value": 30.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "Flat",
+                    "Duration": 1.0,
+                    "MaxStacks": 0,
+                    "BuffName": "Lightning Agility",
+                    "PrefabPath": "",
+                    "Category": "Attribute",
+                    "MovementType": "DashForward",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                },
+                {
+                    "EffectType": "ApplyTemporaryBuffEffect",
+                    "AttributeID": 132,
+                    "Value": 70.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "Flat",
+                    "Duration": 10.0,
+                    "MaxStacks": 0,
+                    "BuffName": "Lightning Speed",
+                    "PrefabPath": "",
+                    "Category": "Attribute",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
+        },
+        {
+            "SkillID": 1010,
+            "SkillName": "Fire Pila",
+            "SkillElement": "Fire",
+            "DamageType": "Magic",
+            "BaseDamage": 20.0,
+            "BaseAOERadius": 2.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 0.0,
+            "IsToggle": false,
+            "BaseVCT": 1.0,
+            "BaseFCT": 1.0,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 3.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "TargetLocation",
+                "Radius": 2.0,
+                "CastRange": 10.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "Scalings": [
+                {
+                    "TargetField": 1,
+                    "ScalingAttribute": 152,
+                    "AttributeMultiplier": 0.019999999552965165,
+                    "GlobalMultiplier": 1.0,
+                    "FlatBonus": 0.0,
+                    "LevelMultiplier": 0.0
+                }
+            ],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "VisualPrefabName": "",
+            "CastVisualPrefabName": "Skill/VisualEffectSkill/Danger",
+            "CastVisualSpawnPoint": "TargetPosition"
         }
     ],
     "SupportSkills": []

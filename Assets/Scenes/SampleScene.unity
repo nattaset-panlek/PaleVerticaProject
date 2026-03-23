@@ -5717,6 +5717,8 @@ MonoBehaviour:
   ManaBar: {fileID: 967362961}
   HealthText: {fileID: 1977286498}
   ManaText: {fileID: 1694608377}
+  BaseLevel: {fileID: 1439113922}
+  JobLevel: {fileID: 1850586743}
   Anim: {fileID: 1819255834}
   MovingBoolParam: IsMoving
   DeadTriggerParam: IsDead
@@ -5736,7 +5738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attributeSystem:
     initialAttributes:
-    - Type: 180
+    - Type: 130
       BaseValue: 5
   skillCaster:
     EquippedSkills:
@@ -5757,6 +5759,7 @@ MonoBehaviour:
       CurrentLevel: 0
     GrantedSkills: []
     LastHitTargets: []
+    AimedSkillSlot: -1
   expSystem:
     CurrentBaseExp: 0
     CurrentJobExp: 0
@@ -7473,7 +7476,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0}
+  m_BackGroundColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -7796,8 +7799,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2071368465}
   - {fileID: 310702323}
   - {fileID: 175154305}
+  - {fileID: 1332136148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1258883726
@@ -8203,6 +8208,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309069746}
   m_CullTransparentMesh: 1
+--- !u!1 &1332136147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1332136148}
+  - component: {fileID: 1332136149}
+  m_Layer: 0
+  m_Name: SkillIndicatorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1332136148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332136147}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244589126}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1332136149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332136147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e771981443b79246a3e5090853ef282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _circleTemplate: {fileID: 384336845891530293, guid: a31fa0212107e9740b522b11a61cb973, type: 3}
+  _lineTemplate: {fileID: 261498683354992525, guid: 2dd13e3ebd5744a47b8ad6f2f2007f42, type: 3}
+  _coneTemplate: {fileID: 4002355336748361883, guid: c7e8f3183ea0ddc4eaef8200b4cc57b2, type: 3}
 --- !u!1 &1341843993
 GameObject:
   m_ObjectHideFlags: 0
@@ -14211,12 +14263,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071368463}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1244589126}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2075497020
 GameObject:
@@ -15626,6 +15678,5 @@ SceneRoots:
   - {fileID: 935870568}
   - {fileID: 2034578795}
   - {fileID: 989288324}
-  - {fileID: 1244589126}
   - {fileID: 992352886}
-  - {fileID: 2071368465}
+  - {fileID: 1244589126}

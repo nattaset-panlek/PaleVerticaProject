@@ -70,7 +70,7 @@ namespace CoreSystem.Data.Items.Model
             else
             {
                 AddSystemModifier(player, AttributeType.Defense, phyValue);
-                AddSystemModifier(player, AttributeType.StatusMDEF, magValue);
+                AddSystemModifier(player, AttributeType.StatusDEF, magValue);
             }
         }
 

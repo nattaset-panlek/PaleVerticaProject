@@ -121,13 +121,13 @@ namespace CoreSystem.Attributes
             attributes[AttributeType.MaxHP].StatPercentBonus = vit * 0.01f;
             attributes[AttributeType.HealingItems].StatPercentBonus = vit * 0.02f;
             attributes[AttributeType.HPRecovery].StatFlatBonus = vit / 5f;
-            attributes[AttributeType.StatusMDEF].StatFlatBonus = (vit / 5f) + (dex / 5f); 
+            attributes[AttributeType.StatusDEF].StatFlatBonus = (vit / 5f) + (dex / 5f); 
 
             // --- INT (Intelligence) ---
             // MATK Influence
             attributes[AttributeType.MATK].StatFlatBonus = (@int * 1.5f) + (dex / 5f) + (luk / 3f);
             attributes[AttributeType.MaxMP].StatPercentBonus = @int * 0.01f;
-            attributes[AttributeType.StatusMDEF].StatFlatBonus += @int; 
+            attributes[AttributeType.StatusDEF].StatFlatBonus += @int; 
             
             float spRec = @int / 6f;
             if (@int >= 120) spRec += (@int - 120) / 2f; 
@@ -135,7 +135,6 @@ namespace CoreSystem.Attributes
 
             // --- DEX (Dexterity) ---
             attributes[AttributeType.Hit].StatFlatBonus = dex + (luk / 3f);
-            attributes[AttributeType.CastTime].StatPercentBonus = (dex + (@int / 2f)) / 5.3f / 100f; 
 
             // --- LUK (Luck) ---
             // Status ATK (Poison, Burn Damage) Influence - Adding LUK to StatusATK

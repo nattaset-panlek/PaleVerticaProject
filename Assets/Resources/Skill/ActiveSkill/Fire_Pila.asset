@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Fire_Pila
+  m_EditorClassIdentifier: 
+  Id: 1010
+  Name: Fire Pila
+  SkillElement: 3
+  SkillDamageType: 1
+  BaseTargeting:
+    rid: 5700261318793625804
+  Effects:
+  - rid: 5700261318793625805
+  VisualData: {fileID: 11400000, guid: 252ff6bea8093b249a9f521b4d1f1383, type: 2}
+  VisualPrefab: {fileID: 5586069453266129572, guid: 8e95953e86b2ea24aae1a04a0787e393, type: 3}
+  CastVisualPrefab: {fileID: 5586069453266129572, guid: 8e95953e86b2ea24aae1a04a0787e393, type: 3}
+  CastSpawnPoint: 0
+  BaseDamage: 20
+  BaseAOERadius: 2
+  BaseProjectileCount: 0
+  BaseManaCost: 0
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 1
+  BaseFCT: 1
+  BaseCastDelay: 0
+  BaseCooldown: 3
+  Scalings:
+  - TargetField: 1
+    ScalingAttribute: 152
+    AttributeMultiplier: 0.02
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5700261318793625804
+      type: {class: TargetLocationTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        CastRange: 10
+    - rid: 5700261318793625805
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        TargetAttribute: 1

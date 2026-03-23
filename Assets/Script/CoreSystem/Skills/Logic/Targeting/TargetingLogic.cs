@@ -16,6 +16,7 @@ namespace CoreSystem.Skills.Logic
     {
         public TargetAlignment AlignmentAction = TargetAlignment.Enemy;
         public bool IncludeSelf = false;
+        public virtual bool RequiresSelection => true;
 
         public abstract List<IEntity> GetTargets(SkillPayload payload);
 

@@ -13,6 +13,9 @@ namespace CoreSystem.Skills
         public DamageType DamageType;
         
         public Vector3 OriginPosition;
+        public Vector3 TargetPosition; // For ground-targeted skills
+        public bool IsTargetPositionSet; // To distinguish between 0,0,0 and unset
+        public bool IsPositionLocked; // If true, range-clamping should be skipped or anchored to the lock-in point
         public List<IEntity> Targets = new List<IEntity>();
         
         public float BaseDamage;
@@ -35,6 +38,8 @@ namespace CoreSystem.Skills
                 SkillLevel = this.SkillLevel,
                 SkillElement = this.SkillElement,
                 OriginPosition = this.OriginPosition,
+                TargetPosition = this.TargetPosition,
+                IsTargetPositionSet = this.IsTargetPositionSet,
                 Targets = new List<IEntity>(this.Targets),
                 BaseDamage = this.BaseDamage,
                 DamageType = this.DamageType,

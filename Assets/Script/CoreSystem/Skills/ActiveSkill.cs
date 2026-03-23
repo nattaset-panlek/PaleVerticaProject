@@ -21,6 +21,9 @@ namespace CoreSystem.Skills
         [SerializeReference, SubclassSelector]
         public List<EffectLogic> Effects = new List<EffectLogic>();
         public VisualPayload VisualData;
+        public GameObject VisualPrefab;
+        public GameObject CastVisualPrefab;
+        public VisualAppearance CastSpawnPoint = VisualAppearance.TargetPosition;
         
         public float BaseDamage;
         public float BaseAOERadius;
@@ -42,8 +45,8 @@ namespace CoreSystem.Skills
         public float BaseCastDelay; // Global delay applied to ALL skills after casting
         public float BaseCooldown; // Skill-specific cooldown
         
-        [Header("Dynamic Scaling")]
-        [Tooltip("Add formulas here like BaseDamage += (STR * 1.5)")]
+        [Header("Dynamic Scaling (Stat x AttrMult + Flat + LevelMult x Lv) x Global")]
+        [Tooltip("Formula: (Stat x AttrMult + FlatBonus + LevelMult x Level) x GlobalMult")]
         public List<OutputScaling> Scalings = new List<OutputScaling>();
     }
 }

@@ -207,5 +207,32 @@ namespace CoreSystem.Entity
             }
         }
 #endif
+        
+        public void ApplyImpulse(Vector3 direction, float distance, float duration)
+        {
+            if (gameObject.activeInHierarchy)
+            {
+                StartCoroutine(PerformImpulse(direction, distance, duration));
+            }
+        }
+
+        private System.Collections.IEnumerator PerformImpulse(Vector3 direction, float distance, float duration)
+        {
+            float elapsed = 0f;
+            Vector3 startPos = transform.position;
+            Vector3 targetPos = startPos + direction.normalized * distance;
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+                // Use smoothstep for better feeling knockback/dash
+                float smoothT = t * t * (3f - 2f * t);
+                transform.position = Vector3.Lerp(startPos, targetPos, smoothT);
+                yield return null;
+            }
+
+            transform.position = targetPos;
+        }
     }
 }

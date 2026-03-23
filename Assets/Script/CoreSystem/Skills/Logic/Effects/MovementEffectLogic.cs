@@ -23,6 +23,10 @@ namespace CoreSystem.Skills.Logic.Effects
         [Tooltip("If true, this effect only runs once per skill cast (useful for Caster dashes to avoid dashing 5 times if hitting 5 enemies).")]
         public bool ApplyOncePerCast = true;
 
+        [Header("Interpolation")]
+        public bool UseLerp = false;
+        public float LerpDuration = 0.2f;
+
         public override void Apply(SkillPayload payload, IEntity target)
         {
             if (payload.Caster == null) return;
@@ -32,36 +36,56 @@ namespace CoreSystem.Skills.Logic.Effects
                 case MovementType.TeleportToTarget:
                     if (target != null)
                     {
-                        payload.Caster.transform.position = target.transform.position;
-                        Debug.Log($"Teleported to target {target}");
+                        if (UseLerp)
+                        {
+                            Vector3 dir = (target.transform.position - payload.Caster.transform.position).normalized;
+                            float dist = Vector3.Distance(payload.Caster.transform.position, target.transform.position);
+                            payload.Caster.ApplyImpulse(dir, dist, LerpDuration);
+                        }
+                        else
+                        {
+                            payload.Caster.transform.position = target.transform.position;
+                        }
                     }
                     else
                     {
                         // Fallback: Teleport forward
-                        payload.Caster.transform.position += payload.Caster.transform.up * Distance;
-                        Debug.Log("Teleported forward (no target found)");
+                        if (UseLerp)
+                            payload.Caster.ApplyImpulse(payload.Caster.transform.up, Distance, LerpDuration);
+                        else
+                            payload.Caster.transform.position += payload.Caster.transform.up * Distance;
                     }
                     break;
                     
                 case MovementType.DashForward:
                     Vector3 forwardDir = payload.Caster.transform.up; // Assuming 2D Top-down default rotation
-                    payload.Caster.transform.position += forwardDir * Distance;
-                    Debug.Log($"Dashed forward {Distance} units");
+                    if (UseLerp)
+                        payload.Caster.ApplyImpulse(forwardDir, Distance, LerpDuration);
+                    else
+                        payload.Caster.transform.position += forwardDir * Distance;
                     break;
 
                 case MovementType.DashToTarget:
                     if (target != null)
                     {
                         Vector3 dirToTarget = (target.transform.position - payload.Caster.transform.position).normalized;
-                        payload.Caster.transform.position += dirToTarget * Distance;
-                        Debug.Log($"Dashed to target {target}");
+                        if (UseLerp)
+                        {
+                            float actualDist = Vector3.Distance(payload.Caster.transform.position, target.transform.position);
+                            payload.Caster.ApplyImpulse(dirToTarget, Mathf.Min(Distance, actualDist), LerpDuration);
+                        }
+                        else
+                        {
+                            payload.Caster.transform.position += dirToTarget * Distance;
+                        }
                     }
                     else
                     {
                         // Fallback: Dash forward
-                        Vector3 dirForw = payload.Caster.transform.up;
-                        payload.Caster.transform.position += dirForw * Distance;
-                        Debug.Log("Dashed forward (no target found)");
+                        if (UseLerp)
+                            payload.Caster.ApplyImpulse(payload.Caster.transform.up, Distance, LerpDuration);
+                        else
+                            payload.Caster.transform.position += payload.Caster.transform.up * Distance;
                     }
                     break;
 
@@ -69,8 +93,10 @@ namespace CoreSystem.Skills.Logic.Effects
                     if (target != null)
                     {
                         Vector3 pushDir = (target.transform.position - payload.Caster.transform.position).normalized;
-                        target.transform.position += pushDir * Distance;
-                        Debug.Log($"Pushed target {target} away");
+                        if (UseLerp)
+                            target.ApplyImpulse(pushDir, Distance, LerpDuration);
+                        else
+                            target.transform.position += pushDir * Distance;
                     }
                     else
                     {
@@ -82,8 +108,15 @@ namespace CoreSystem.Skills.Logic.Effects
                     if (target != null)
                     {
                         Vector3 pullDir = (payload.Caster.transform.position - target.transform.position).normalized;
-                        target.transform.position += pullDir * Distance;
-                        Debug.Log($"Pulled target {target} in");
+                        if (UseLerp)
+                        {
+                            float actualDist = Vector3.Distance(payload.Caster.transform.position, target.transform.position);
+                            target.ApplyImpulse(pullDir, Mathf.Min(Distance, actualDist), LerpDuration);
+                        }
+                        else
+                        {
+                            target.transform.position += pullDir * Distance;
+                        }
                     }
                     else
                     {

@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
   m_Name: Aura_of_Flames
   m_EditorClassIdentifier: 
-  Id: 107
+  Id: 1008
   Name: Aura of Flames
   SkillElement: 3
-  SkillDamageType: 0
+  SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261312303464520
+    rid: 5700261318793625812
   Effects:
-  - rid: 5700261312303464521
+  - rid: 5700261318793625813
   VisualData: {fileID: 0}
+  VisualPrefab: {fileID: 5586069453266129572, guid: a6e0641cf9b8a94498d37d3cbd932286, type: 3}
+  CastVisualPrefab: {fileID: 5586069453266129572, guid: a6e0641cf9b8a94498d37d3cbd932286, type: 3}
+  CastSpawnPoint: 2
   BaseDamage: 5
-  BaseAOERadius: 3
+  BaseAOERadius: 6
   BaseProjectileCount: 0
   BaseManaCost: 5
   IsToggle: 1
@@ -35,38 +38,38 @@ MonoBehaviour:
   BaseCooldown: 1
   Scalings:
   - TargetField: 0
-    ScalingAttribute: 0
-    AttributeMultiplier: 100
+    ScalingAttribute: 3
+    AttributeMultiplier: 0.1
     GlobalMultiplier: 1
     FlatBonus: 10
     LevelMultiplier: 20
   - TargetField: 8
-    ScalingAttribute: 0
-    AttributeMultiplier: 50
+    ScalingAttribute: 7
+    AttributeMultiplier: 0.1
     GlobalMultiplier: 1
     FlatBonus: 0
     LevelMultiplier: 0
   - TargetField: 1
-    ScalingAttribute: 26
-    AttributeMultiplier: 50
+    ScalingAttribute: 15
+    AttributeMultiplier: 0.005
     GlobalMultiplier: 1
     FlatBonus: 0
     LevelMultiplier: 0
   - TargetField: 1
-    ScalingAttribute: 221
-    AttributeMultiplier: 1
+    ScalingAttribute: 152
+    AttributeMultiplier: 0.06
     GlobalMultiplier: 1
     FlatBonus: 0
     LevelMultiplier: 0
   references:
     version: 2
     RefIds:
-    - rid: 5700261312303464520
+    - rid: 5700261318793625812
       type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261312303464521
+    - rid: 5700261318793625813
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
-        TargetAttribute: 0
+        TargetAttribute: 1

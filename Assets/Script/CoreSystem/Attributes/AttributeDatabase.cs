@@ -108,5 +108,6 @@ namespace CoreSystem.Attributes
         public string FullName;
         public string Description;
         public bool   IsPercent;
+        public string Mapping;
     }
 }

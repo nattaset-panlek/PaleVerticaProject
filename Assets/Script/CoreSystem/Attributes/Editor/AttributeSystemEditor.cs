@@ -27,10 +27,10 @@ namespace CoreSystem.Attributes.Editor
             AttributeType.ATK, AttributeType.StatusDMG, AttributeType.WeaponATK, AttributeType.ASPD, AttributeType.Hit, AttributeType.CriticalRate
         };
         private static readonly AttributeType[] offensiveMagTypes = {
-            AttributeType.MATK, AttributeType.CastTime
+            AttributeType.MATK
         };
         private static readonly AttributeType[] defensiveTypes = {
-            AttributeType.Defense, AttributeType.StatusDEF, AttributeType.StatusMDEF, AttributeType.Flee, AttributeType.PerfectDodge
+            AttributeType.Defense, AttributeType.StatusDEF, AttributeType.StatusDEF, AttributeType.Flee, AttributeType.PerfectDodge
         };
         private static readonly AttributeType[] criticalTypes = {
             AttributeType.CriticalDamage, AttributeType.CritResistance

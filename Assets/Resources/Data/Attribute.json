@@ -1,1236 +1,1354 @@
 {
     "Attributes": [
         {
-            "Id": 1001,
+            "Id": 1,
             "Icon": "attr_hp",
             "Name": "HP",
             "FullName": "Health",
             "Description": "Current health points.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "HP"
         },
         {
-            "Id": 1002,
+            "Id": 2,
             "Icon": "attr_hp_pct",
             "Name": "HP Percent",
             "FullName": "Health Points (Percent)",
             "Description": "Increases HP by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "HPPercent"
         },
         {
-            "Id": 1003,
+            "Id": 3,
             "Icon": "attr_maxhp",
             "Name": "Max HP",
             "FullName": "Maximum Hit Points",
             "Description": "Maximum health capacity.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MaxHP"
         },
         {
-            "Id": 1004,
+            "Id": 4,
             "Icon": "attr_maxhp_pct",
             "Name": "Max HP Percent",
-            "FullName": "Maximum Hit Points (Percent)",
-            "Description": "Increases Max HP by a percentage.",
-            "IsPercent": true
+            "FullName": "Maximum Health (Percent)",
+            "Description": "Increases Max Health by a percentage.",
+            "IsPercent": true,
+            "Mapping": "MaxHPPercent"
         },
         {
-            "Id": 1005,
+            "Id": 5,
             "Icon": "attr_mp",
             "Name": "MP",
-            "FullName": "Mana Points",
+            "FullName": "Mana",
             "Description": "Current mana points.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MP"
         },
         {
-            "Id": 1006,
+            "Id": 6,
             "Icon": "attr_mp_pct",
             "Name": "MP Percent",
-            "FullName": "Mana Points (Percent)",
+            "FullName": "Mana (Percent)",
             "Description": "Increases MP by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "MPPercent"
         },
         {
-            "Id": 1007,
+            "Id": 7,
             "Icon": "attr_maxmp",
             "Name": "Max MP",
-            "FullName": "Maximum Mana Points",
+            "FullName": "Maximum Mana",
             "Description": "Maximum mana capacity.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MaxMP"
         },
         {
-            "Id": 1008,
+            "Id": 8,
             "Icon": "attr_maxmp_pct",
             "Name": "Max MP Percent",
             "FullName": "Maximum Mana (Percent)",
-            "Description": "Increases Max MP by a percentage.",
-            "IsPercent": true
+            "Description": "Increases Max Mana by a percentage.",
+            "IsPercent": true,
+            "Mapping": "MaxMPPercent"
         },
         {
-            "Id": 1009,
+            "Id": 9,
             "Icon": "attr_str",
             "Name": "STR",
             "FullName": "Strength",
             "Description": "Increases physical attack and weight limit.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "STR"
         },
         {
-            "Id": 1010,
+            "Id": 10,
             "Icon": "attr_str_pct",
             "Name": "STR Percent",
             "FullName": "Strength (Percent)",
             "Description": "Increases STR by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "STRPercent"
         },
         {
-            "Id": 1011,
+            "Id": 11,
             "Icon": "attr_agi",
             "Name": "AGI",
             "FullName": "Agility",
             "Description": "Increases attack speed and flee.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "AGI"
         },
         {
-            "Id": 1012,
+            "Id": 12,
             "Icon": "attr_agi_pct",
             "Name": "AGI Percent",
             "FullName": "Agility (Percent)",
             "Description": "Increases AGI by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "AGIPercent"
         },
         {
-            "Id": 1013,
+            "Id": 13,
             "Icon": "attr_vit",
             "Name": "VIT",
             "FullName": "Vitality",
             "Description": "Increases Max HP and defense.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "VIT"
         },
         {
-            "Id": 1014,
+            "Id": 14,
             "Icon": "attr_vit_pct",
             "Name": "VIT Percent",
             "FullName": "Vitality (Percent)",
             "Description": "Increases VIT by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "VITPercent"
         },
         {
-            "Id": 1015,
+            "Id": 15,
             "Icon": "attr_int",
             "Name": "INT",
             "FullName": "Intelligence",
             "Description": "Increases magic attack and Max MP.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "INT"
         },
         {
-            "Id": 1016,
+            "Id": 16,
             "Icon": "attr_int_pct",
             "Name": "INT Percent",
             "FullName": "Intelligence (Percent)",
             "Description": "Increases INT by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "INTPercent"
         },
         {
-            "Id": 1017,
+            "Id": 17,
             "Icon": "attr_dex",
             "Name": "DEX",
             "FullName": "Dexterity",
             "Description": "Increases hit rate and reduces cast time.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "DEX"
         },
         {
-            "Id": 1018,
+            "Id": 18,
             "Icon": "attr_dex_pct",
             "Name": "DEX Percent",
             "FullName": "Dexterity (Percent)",
             "Description": "Increases DEX by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "DEXPercent"
         },
         {
-            "Id": 1019,
+            "Id": 19,
             "Icon": "attr_luk",
             "Name": "LUK",
             "FullName": "Luck",
             "Description": "Affects criticals and status damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "LUK"
         },
         {
-            "Id": 1020,
+            "Id": 20,
             "Icon": "attr_luk_pct",
             "Name": "LUK Percent",
             "FullName": "Luck (Percent)",
             "Description": "Increases LUK by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "LUKPercent"
         },
         {
-            "Id": 1021,
+            "Id": 21,
             "Icon": "attr_atk",
             "Name": "ATK",
             "FullName": "Physical Attack",
             "Description": "Total physical attack power.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "ATK"
         },
         {
-            "Id": 1022,
+            "Id": 22,
             "Icon": "attr_atk_pct",
             "Name": "ATK Percent",
             "FullName": "Physical Attack (Percent)",
             "Description": "Increases ATK by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "ATKPercent"
         },
         {
-            "Id": 1023,
+            "Id": 23,
             "Icon": "attr_matk",
             "Name": "M.ATK",
             "FullName": "Magic Attack",
             "Description": "Total magic attack power.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MATK"
         },
         {
-            "Id": 1024,
+            "Id": 24,
             "Icon": "attr_matk_pct",
             "Name": "M.ATK Percent",
             "FullName": "Magic Attack (Percent)",
             "Description": "Increases M.ATK by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "MATKPercent"
         },
         {
-            "Id": 1025,
+            "Id": 25,
             "Icon": "attr_satk",
             "Name": "Status DMG",
             "FullName": "Status Damage",
             "Description": "Damage bonus for status effects.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "StatusDMG"
         },
         {
-            "Id": 1026,
+            "Id": 26,
             "Icon": "attr_satk_pct",
             "Name": "Status DMG Percent",
             "FullName": "Status Damage (Percent)",
             "Description": "Increases Status DMG by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "StatusDMGPercent"
         },
         {
-            "Id": 1027,
+            "Id": 27,
             "Icon": "attr_watk",
             "Name": "Weapon ATK",
             "FullName": "Weapon Physical Attack",
             "Description": "Base physical weapon power.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "WeaponATK"
         },
         {
-            "Id": 1028,
+            "Id": 28,
             "Icon": "attr_watk_pct",
             "Name": "Weapon ATK Percent",
             "FullName": "Weapon Physical Attack (Percent)",
             "Description": "Increases Weapon ATK by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "WeaponATKPercent"
         },
         {
-            "Id": 1029,
+            "Id": 29,
             "Icon": "attr_wmatk",
             "Name": "Weapon M.ATK",
             "FullName": "Weapon Magic Attack",
             "Description": "Base magic weapon power.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "WeaponMATK"
         },
         {
-            "Id": 1030,
+            "Id": 30,
             "Icon": "attr_wmatk_pct",
             "Name": "Weapon M.ATK Percent",
             "FullName": "Weapon Magic Attack (Percent)",
             "Description": "Increases Weapon M.ATK by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "WeaponMATKPercent"
         },
         {
-            "Id": 1031,
+            "Id": 31,
             "Icon": "attr_def",
             "Name": "DEF",
             "FullName": "Physical Defense",
             "Description": "Reduces physical damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "Defense"
         },
         {
-            "Id": 1032,
+            "Id": 32,
             "Icon": "attr_def_pct",
             "Name": "DEF Percent",
             "FullName": "Physical Defense (Percent)",
             "Description": "Increases DEF by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "DefensePercent"
         },
         {
-            "Id": 1033,
+            "Id": 33,
             "Icon": "attr_sdef",
             "Name": "Status DEF",
             "FullName": "Stat Defense",
             "Description": "Defense from character stats.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "StatusDEF"
         },
         {
-            "Id": 1034,
+            "Id": 34,
             "Icon": "attr_sdef_pct",
             "Name": "Status DEF Percent",
             "FullName": "Stat Defense (Percent)",
             "Description": "Increases Status DEF by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "StatusDEFPercent"
         },
         {
-            "Id": 1035,
+            "Id": 35,
             "Icon": "attr_smdef",
             "Name": "M.DEF",
             "FullName": "Magic Defense",
             "Description": "Reduces magic damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MDEF"
         },
         {
-            "Id": 1036,
+            "Id": 36,
             "Icon": "attr_smdef_pct",
             "Name": "M.DEF Percent",
             "FullName": "Magic Defense (Percent)",
             "Description": "Increases M.DEF by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "MDEFPercent"
         },
         {
-            "Id": 1037,
+            "Id": 37,
             "Icon": "attr_hit",
             "Name": "HIT",
             "FullName": "Hit Rate",
             "Description": "Chance to hit enemies.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "Hit"
         },
         {
-            "Id": 1038,
+            "Id": 38,
             "Icon": "attr_hit_pct",
             "Name": "HIT Percent",
             "FullName": "Hit Rate (Percent)",
             "Description": "Increases HIT by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "HitPercent"
         },
         {
-            "Id": 1039,
+            "Id": 39,
             "Icon": "attr_flee",
             "Name": "FLEE",
             "FullName": "Flee Rate",
             "Description": "Chance to evade physical attacks.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "Flee"
         },
         {
-            "Id": 1040,
+            "Id": 40,
             "Icon": "attr_flee_pct",
             "Name": "FLEE Percent",
             "FullName": "Flee Rate (Percent)",
             "Description": "Increases FLEE by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "FleePercent"
         },
         {
-            "Id": 1041,
+            "Id": 41,
             "Icon": "attr_aspd",
             "Name": "ASPD",
             "FullName": "Attack Speed",
             "Description": "Attack frequency.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "ASPD"
         },
         {
-            "Id": 1042,
+            "Id": 42,
             "Icon": "attr_aspd_pct",
             "Name": "ASPD Percent",
             "FullName": "Attack Speed (Percent)",
             "Description": "Increases ASPD by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "ASPDPercent"
         },
         {
-            "Id": 1043,
+            "Id": 43,
             "Icon": "attr_crit",
             "Name": "Crit Rate",
             "FullName": "Critical Rate",
             "Description": "Chance for critical hits.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "CriticalRate"
         },
         {
-            "Id": 1044,
+            "Id": 44,
             "Icon": "attr_crit_pct",
             "Name": "Crit Rate Percent",
             "FullName": "Critical Rate (Percent)",
             "Description": "Increases Crit Rate by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "CriticalRatePercent"
         },
         {
-            "Id": 1045,
+            "Id": 45,
             "Icon": "attr_pdodge",
             "Name": "Perfect Dodge",
             "FullName": "Perfect Dodge",
             "Description": "Flat dodge chance.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "PerfectDodge"
         },
         {
-            "Id": 1046,
+            "Id": 46,
             "Icon": "attr_pdodge_pct",
             "Name": "P.Dodge Percent",
             "FullName": "Perfect Dodge (Percent)",
             "Description": "Increases Perfect Dodge by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "PerfectDodgePercent"
         },
         {
-            "Id": 1047,
+            "Id": 47,
             "Icon": "attr_critdmg",
             "Name": "Crit DMG",
             "FullName": "Critical Damage",
             "Description": "Multiplier for critical damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "CriticalDamage"
         },
         {
-            "Id": 1048,
+            "Id": 48,
             "Icon": "attr_critdmg_pct",
             "Name": "Crit DMG Percent",
             "FullName": "Critical Damage (Percent)",
             "Description": "Increases Crit DMG by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "CriticalDamagePercent"
         },
         {
-            "Id": 1049,
+            "Id": 49,
             "Icon": "attr_critres",
             "Name": "Crit Resist",
             "FullName": "Critical Resistance",
             "Description": "Reduces chance to be crit.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "CritResistance"
         },
         {
-            "Id": 1050,
+            "Id": 50,
             "Icon": "attr_critres_pct",
             "Name": "Crit Resist Percent",
             "FullName": "Critical Resistance (Percent)",
             "Description": "Increases Crit Resistance by a percentage.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "CritResistancePercent"
         },
         {
-            "Id": 1051,
+            "Id": 51,
             "Icon": "attr_neutral_dmg",
             "Name": "Neutral DMG",
             "FullName": "Neutral Damage",
             "Description": "Neutral element bonus.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "NeutralDamage"
         },
         {
-            "Id": 1052,
+            "Id": 52,
             "Icon": "attr_neutral_dmg_pct",
             "Name": "Neutral DMG Percent",
             "FullName": "Neutral Damage (Percent)",
             "Description": "Increases Neutral Damage by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "NeutralDamagePercent"
         },
         {
-            "Id": 1053,
+            "Id": 53,
             "Icon": "attr_water_dmg",
             "Name": "Water DMG",
             "FullName": "Water Damage",
             "Description": "Water element bonus.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "NeutralResist"
         },
         {
-            "Id": 1054,
+            "Id": 54,
             "Icon": "attr_water_dmg_pct",
             "Name": "Water DMG Percent",
             "FullName": "Water Damage (Percent)",
             "Description": "Increases Water Damage by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "NeutralResistPercent"
         },
         {
-            "Id": 1055,
+            "Id": 55,
             "Icon": "attr_earth_dmg",
             "Name": "Earth DMG",
             "FullName": "Earth Damage",
             "Description": "Earth element bonus.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "WaterDamage"
         },
         {
-            "Id": 1056,
+            "Id": 56,
             "Icon": "attr_earth_dmg_pct",
             "Name": "Earth DMG Percent",
             "FullName": "Earth Damage (Percent)",
             "Description": "Increases Earth Damage by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "WaterDamagePercent"
         },
         {
-            "Id": 1057,
+            "Id": 57,
             "Icon": "attr_fire_dmg",
             "Name": "Fire DMG",
             "FullName": "Fire Damage",
             "Description": "Fire element bonus.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "WaterResist"
         },
         {
-            "Id": 1058,
+            "Id": 58,
             "Icon": "attr_fire_dmg_pct",
-            "Name": "Fire Damage (Percent)",
-            "FullName": "",
+            "Name": "Fire DMG Percent",
+            "FullName": "Fire Damage (Percent)",
             "Description": "Increases Fire Damage by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "WaterResistPercent"
         },
         {
-            "Id": 1059,
+            "Id": 59,
             "Icon": "attr_elec_dmg",
             "Name": "Electric DMG",
             "FullName": "Electric Damage",
             "Description": "Electric element bonus.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "EarthDamage"
         },
         {
-            "Id": 1060,
+            "Id": 60,
             "Icon": "attr_elec_dmg_pct",
             "Name": "Electric DMG Percent",
             "FullName": "Electric Damage (Percent)",
             "Description": "Increases Electric Damage by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "EarthDamagePercent"
         },
         {
-            "Id": 1061,
+            "Id": 61,
             "Icon": "attr_ghost_dmg",
             "Name": "Ghost DMG",
             "FullName": "Ghost Damage",
             "Description": "Ghost element bonus.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "EarthResist"
         },
         {
-            "Id": 1062,
+            "Id": 62,
             "Icon": "attr_ghost_dmg_pct",
             "Name": "Ghost DMG Percent",
             "FullName": "Ghost Damage (Percent)",
             "Description": "Increases Ghost Damage by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "EarthResistPercent"
         },
         {
-            "Id": 1063,
+            "Id": 63,
             "Icon": "attr_holy_dmg",
             "Name": "Holy DMG",
             "FullName": "Holy Damage",
             "Description": "Holy element bonus.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "FireDamage"
         },
         {
-            "Id": 1064,
+            "Id": 64,
             "Icon": "attr_holy_dmg_pct",
             "Name": "Holy DMG Percent",
             "FullName": "Holy Damage (Percent)",
             "Description": "Increases Holy Damage by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "FireDamagePercent"
         },
         {
-            "Id": 1065,
+            "Id": 65,
             "Icon": "attr_neutral_res",
             "Name": "Neutral Res",
             "FullName": "Neutral Resistance",
             "Description": "Reduces neutral damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "FireResist"
         },
         {
-            "Id": 1066,
+            "Id": 66,
             "Icon": "attr_neutral_res_pct",
             "Name": "Neutral Res Percent",
             "FullName": "Neutral Resist (Percent)",
             "Description": "Increases Neutral Resist by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "FireResistPercent"
         },
         {
-            "Id": 1067,
+            "Id": 67,
             "Icon": "attr_water_res",
             "Name": "Water Res",
             "FullName": "Water Resistance",
             "Description": "Reduces water damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "ElectricDamage"
         },
         {
-            "Id": 1068,
+            "Id": 68,
             "Icon": "attr_water_res_pct",
             "Name": "Water Res Percent",
             "FullName": "Water Resist (Percent)",
             "Description": "Increases Water Resist by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "ElectricDamagePercent"
         },
         {
-            "Id": 1069,
+            "Id": 69,
             "Icon": "attr_earth_res",
             "Name": "Earth Res",
             "FullName": "Earth Resistance",
             "Description": "Reduces earth damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "ElectricResist"
         },
         {
-            "Id": 1070,
+            "Id": 70,
             "Icon": "attr_earth_res_pct",
             "Name": "Earth Res Percent",
             "FullName": "Earth Resist (Percent)",
             "Description": "Increases Earth Resist by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "ElectricResistPercent"
         },
         {
-            "Id": 1071,
+            "Id": 71,
             "Icon": "attr_fire_res",
             "Name": "Fire Res",
             "FullName": "Fire Resistance",
             "Description": "Reduces fire damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "GhostDamage"
         },
         {
-            "Id": 1072,
+            "Id": 72,
             "Icon": "attr_fire_res_pct",
             "Name": "Fire Res Percent",
             "FullName": "Fire Resist (Percent)",
             "Description": "Increases Fire Resist by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "GhostDamagePercent"
         },
         {
-            "Id": 1073,
+            "Id": 73,
             "Icon": "attr_elec_res",
             "Name": "Electric Res",
             "FullName": "Electric Resistance",
             "Description": "Reduces electric damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "GhostResist"
         },
         {
-            "Id": 1074,
+            "Id": 74,
             "Icon": "attr_elec_res_pct",
             "Name": "Electric Res Percent",
             "FullName": "Electric Resist (Percent)",
             "Description": "Increases Electric Resist by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "GhostResistPercent"
         },
         {
-            "Id": 1075,
+            "Id": 75,
             "Icon": "attr_ghost_res",
             "Name": "Ghost Res",
             "FullName": "Ghost Resistance",
             "Description": "Reduces ghost damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "HolyDamage"
         },
         {
-            "Id": 1076,
+            "Id": 76,
             "Icon": "attr_ghost_res_pct",
             "Name": "Ghost Res Percent",
             "FullName": "Ghost Resist (Percent)",
             "Description": "Increases Ghost Resist by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "HolyDamagePercent"
         },
         {
-            "Id": 1077,
+            "Id": 77,
             "Icon": "attr_holy_res",
             "Name": "Holy Res",
             "FullName": "Holy Resistance",
             "Description": "Reduces holy damage.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "HolyResist"
         },
         {
-            "Id": 1078,
+            "Id": 78,
             "Icon": "attr_holy_res_pct",
             "Name": "Holy Res Percent",
             "FullName": "Holy Resist (Percent)",
             "Description": "Increases Holy Resist by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "HolyResistPercent"
         },
         {
-            "Id": 1079,
+            "Id": 79,
             "Icon": "attr_small_dmg",
             "Name": "Small DMG Bonus",
             "FullName": "Small Size Damage Bonus",
             "Description": "Dmg bonus vs Small.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "SmallDamage"
         },
         {
-            "Id": 1080,
+            "Id": 80,
             "Icon": "attr_small_dmg_pct",
             "Name": "Small DMG Bonus Percent",
             "FullName": "Small Size Damage Bonus (Percent)",
             "Description": "Dmg bonus vs Small (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "SmallDamagePercent"
         },
         {
-            "Id": 1081,
+            "Id": 81,
             "Icon": "attr_medium_dmg",
             "Name": "Med DMG Bonus",
             "FullName": "Medium Size Damage Bonus",
             "Description": "Dmg bonus vs Medium.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "SmallResist"
         },
         {
-            "Id": 1082,
+            "Id": 82,
             "Icon": "attr_medium_dmg_pct",
             "Name": "Med DMG Bonus Percent",
             "FullName": "Medium Size Damage Bonus (Percent)",
             "Description": "Dmg bonus vs Medium (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "SmallResistPercent"
         },
         {
-            "Id": 1083,
+            "Id": 83,
             "Icon": "attr_large_dmg",
             "Name": "Large DMG Bonus",
             "FullName": "Large Size Damage Bonus",
             "Description": "Dmg bonus vs Large.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MediumDamage"
         },
         {
-            "Id": 1084,
+            "Id": 84,
             "Icon": "attr_large_dmg_pct",
             "Name": "Large DMG Bonus Percent",
             "FullName": "Large Size Damage Bonus (Percent)",
             "Description": "Dmg bonus vs Large (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "MediumDamagePercent"
         },
         {
-            "Id": 1085,
+            "Id": 85,
             "Icon": "attr_small_res",
             "Name": "Small Res",
             "FullName": "Small Size Resistance",
             "Description": "Def bonus vs Small.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MediumResist"
         },
         {
-            "Id": 1086,
+            "Id": 86,
             "Icon": "attr_small_res_pct",
             "Name": "Small Res Percent",
             "FullName": "Small Size Resist (Percent)",
             "Description": "Def bonus vs Small (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "MediumResistPercent"
         },
         {
-            "Id": 1087,
+            "Id": 87,
             "Icon": "attr_medium_res",
             "Name": "Med Res",
             "FullName": "Medium Size Resistance",
             "Description": "Def bonus vs Medium.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "LargeDamage"
         },
         {
-            "Id": 1088,
+            "Id": 88,
             "Icon": "attr_medium_res_pct",
             "Name": "Med Res Percent",
             "FullName": "Medium Size Resist (Percent)",
             "Description": "Def bonus vs Medium (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "LargeDamagePercent"
         },
         {
-            "Id": 1089,
+            "Id": 89,
             "Icon": "attr_large_res",
             "Name": "Large Res",
             "FullName": "Large Size Resistance",
             "Description": "Def bonus vs Large.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "LargeResist"
         },
         {
-            "Id": 1090,
+            "Id": 90,
             "Icon": "attr_large_res_pct",
             "Name": "Large Res Percent",
             "FullName": "Large Size Resist (Percent)",
             "Description": "Def bonus vs Large (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "LargeResistPercent"
         },
         {
-            "Id": 1091,
+            "Id": 91,
             "Icon": "attr_formless_dmg",
             "Name": "Formless DMG Bonus",
             "FullName": "Formless Race DMG Bonus",
             "Description": "Dmg vs Formless.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "FormlessDamage"
         },
         {
-            "Id": 1092,
+            "Id": 92,
             "Icon": "attr_formless_dmg_pct",
             "Name": "Formless DMG Bonus Percent",
             "FullName": "Formless Race DMG Bonus (Percent)",
             "Description": "Dmg vs Formless (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "FormlessDamagePercent"
         },
         {
-            "Id": 1093,
+            "Id": 93,
             "Icon": "attr_undead_dmg",
             "Name": "Undead DMG Bonus",
             "FullName": "Undead Race DMG Bonus",
             "Description": "Dmg vs Undead.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "FormlessResist"
         },
         {
-            "Id": 1094,
+            "Id": 94,
             "Icon": "attr_undead_dmg_pct",
             "Name": "Undead DMG Bonus Percent",
             "FullName": "Undead Race DMG Bonus (Percent)",
             "Description": "Dmg vs Undead (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "FormlessResistPercent"
         },
         {
-            "Id": 1095,
+            "Id": 95,
             "Icon": "attr_brute_dmg",
             "Name": "Brute DMG Bonus",
             "FullName": "Brute Race DMG Bonus",
             "Description": "Dmg vs Brute.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "UndeadDamage"
         },
         {
-            "Id": 1096,
+            "Id": 96,
             "Icon": "attr_brute_dmg_pct",
             "Name": "Brute DMG Bonus Percent",
             "FullName": "Brute Race DMG Bonus (Percent)",
             "Description": "Dmg vs Brute (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "UndeadDamagePercent"
         },
         {
-            "Id": 1097,
+            "Id": 97,
             "Icon": "attr_plant_dmg",
             "Name": "Plant DMG Bonus",
             "FullName": "Plant Race DMG Bonus",
             "Description": "Dmg vs Plant.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "UndeadResist"
         },
         {
-            "Id": 1098,
+            "Id": 98,
             "Icon": "attr_plant_dmg_pct",
             "Name": "Plant DMG Bonus Percent",
             "FullName": "Plant Race DMG Bonus (Percent)",
             "Description": "Dmg vs Plant (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "UndeadResistPercent"
         },
         {
-            "Id": 1099,
+            "Id": 99,
             "Icon": "attr_insect_dmg",
             "Name": "Insect DMG Bonus",
             "FullName": "Insect Race DMG Bonus",
             "Description": "Dmg vs Insect.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "BruteDamage"
         },
         {
-            "Id": 1100,
+            "Id": 100,
             "Icon": "attr_insect_dmg_pct",
             "Name": "Insect DMG Bonus Percent",
             "FullName": "Insect Race DMG Bonus (Percent)",
             "Description": "Dmg vs Insect (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "BruteDamagePercent"
         },
         {
-            "Id": 1101,
+            "Id": 101,
             "Icon": "attr_fish_dmg",
             "Name": "Fish DMG Bonus",
             "FullName": "Fish Race DMG Bonus",
             "Description": "Dmg vs Fish.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "BruteResist"
         },
         {
-            "Id": 1102,
+            "Id": 102,
             "Icon": "attr_fish_dmg_pct",
             "Name": "Fish DMG Bonus Percent",
             "FullName": "Fish Race DMG Bonus (Percent)",
             "Description": "Dmg vs Fish (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "BruteResistPercent"
         },
         {
-            "Id": 1103,
+            "Id": 103,
             "Icon": "attr_demon_dmg",
             "Name": "Demon DMG Bonus",
             "FullName": "Demon Race DMG Bonus",
             "Description": "Dmg vs Demon.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "PlantDamage"
         },
         {
-            "Id": 1104,
+            "Id": 104,
             "Icon": "attr_demon_dmg_pct",
             "Name": "Demon DMG Bonus Percent",
             "FullName": "Demon Race DMG Bonus (Percent)",
             "Description": "Dmg vs Demon (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "PlantDamagePercent"
         },
         {
-            "Id": 1105,
+            "Id": 105,
             "Icon": "attr_demihuman_dmg",
             "Name": "Demi-H DMG Bonus",
             "FullName": "Demi-Human Race DMG Bonus",
             "Description": "Dmg vs Demi-Human.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "PlantResist"
         },
         {
-            "Id": 1106,
+            "Id": 106,
             "Icon": "attr_demihuman_dmg_pct",
             "Name": "Demi-H DMG Bonus Percent",
             "FullName": "Demi-Human Race DMG Bonus (Percent)",
             "Description": "Dmg vs Demi-H (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "PlantResistPercent"
         },
         {
-            "Id": 1107,
+            "Id": 107,
             "Icon": "attr_angel_dmg",
             "Name": "Angel DMG Bonus",
             "FullName": "Angel Race DMG Bonus",
             "Description": "Dmg vs Angel.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "InsectDamage"
         },
         {
-            "Id": 1108,
+            "Id": 108,
             "Icon": "attr_angel_dmg_pct",
             "Name": "Angel DMG Bonus Percent",
             "FullName": "Angel Race DMG Bonus (Percent)",
             "Description": "Dmg vs Angel (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "InsectDamagePercent"
         },
         {
-            "Id": 1109,
+            "Id": 109,
             "Icon": "attr_dragon_dmg",
             "Name": "Dragon DMG Bonus",
             "FullName": "Dragon Race DMG Bonus",
             "Description": "Dmg vs Dragon.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "InsectResist"
         },
         {
-            "Id": 1110,
+            "Id": 110,
             "Icon": "attr_dragon_dmg_pct",
             "Name": "Dragon DMG Bonus Percent",
             "FullName": "Dragon Race DMG Bonus (Percent)",
             "Description": "Dmg vs Dragon (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "InsectResistPercent"
         },
         {
-            "Id": 1111,
+            "Id": 111,
             "Icon": "attr_formless_res",
             "Name": "Formless Res",
             "FullName": "Formless Race Res",
             "Description": "Def vs Formless.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "FishDamage"
         },
         {
-            "Id": 1112,
+            "Id": 112,
             "Icon": "attr_formless_res_pct",
             "Name": "Formless Res Percent",
             "FullName": "Formless Race Res (Percent)",
             "Description": "Def vs Formless (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "FishDamagePercent"
         },
         {
-            "Id": 1113,
+            "Id": 113,
             "Icon": "attr_undead_res",
             "Name": "Undead Res",
             "FullName": "Undead Race Res",
             "Description": "Def vs Undead.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "FishResist"
         },
         {
-            "Id": 1114,
+            "Id": 114,
             "Icon": "attr_undead_res_pct",
             "Name": "Undead Res Percent",
             "FullName": "Undead Race Res (Percent)",
             "Description": "Def vs Undead (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "FishResistPercent"
         },
         {
-            "Id": 1115,
+            "Id": 115,
             "Icon": "attr_brute_res",
             "Name": "Brute Res",
             "FullName": "Brute Race Res",
             "Description": "Def vs Brute.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "DemonDamage"
         },
         {
-            "Id": 1116,
+            "Id": 116,
             "Icon": "attr_brute_res_pct",
             "Name": "Brute Res Percent",
             "FullName": "Brute Race Res (Percent)",
             "Description": "Def vs Brute (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "DemonDamagePercent"
         },
         {
-            "Id": 1117,
+            "Id": 117,
             "Icon": "attr_plant_res",
             "Name": "Plant Res",
             "FullName": "Plant Race Res",
             "Description": "Def vs Plant.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "DemonResist"
         },
         {
-            "Id": 1118,
+            "Id": 118,
             "Icon": "attr_plant_res_pct",
             "Name": "Plant Res Percent",
             "FullName": "Plant Race Res (Percent)",
             "Description": "Def vs Plant (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "DemonResistPercent"
         },
         {
-            "Id": 1119,
+            "Id": 119,
             "Icon": "attr_insect_res",
             "Name": "Insect Res",
             "FullName": "Insect Race Res",
             "Description": "Def vs Insect.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "DemiHumanDamage"
         },
         {
-            "Id": 1120,
+            "Id": 120,
             "Icon": "attr_insect_res_pct",
             "Name": "Insect Res Percent",
             "FullName": "Insect Race Res (Percent)",
             "Description": "Def vs Insect (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "DemiHumanDamagePercent"
         },
         {
-            "Id": 1121,
+            "Id": 121,
             "Icon": "attr_fish_res",
             "Name": "Fish Res",
             "FullName": "Fish Race Res",
             "Description": "Def vs Fish.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "DemiHumanResist"
         },
         {
-            "Id": 1122,
+            "Id": 122,
             "Icon": "attr_fish_res_pct",
             "Name": "Fish Res Percent",
             "FullName": "Fish Race Res (Percent)",
             "Description": "Def vs Fish (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "DemiHumanResistPercent"
         },
         {
-            "Id": 1123,
+            "Id": 123,
             "Icon": "attr_demon_res",
             "Name": "Demon Res",
             "FullName": "Demon Race Res",
             "Description": "Def vs Demon.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "AngelDamage"
         },
         {
-            "Id": 1124,
+            "Id": 124,
             "Icon": "attr_demon_res_pct",
             "Name": "Demon Res Percent",
             "FullName": "Demon Race Res (Percent)",
             "Description": "Def vs Demon (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "AngelDamagePercent"
         },
         {
-            "Id": 1125,
+            "Id": 125,
             "Icon": "attr_demihuman_res",
             "Name": "Demi-H Res",
             "FullName": "Demi-Human Race Res",
             "Description": "Def vs Demi-Human.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "AngelResist"
         },
         {
-            "Id": 1126,
+            "Id": 126,
             "Icon": "attr_demihuman_res_pct",
             "Name": "Demi-H Res Percent",
             "FullName": "Demi-Human Race Res (Percent)",
             "Description": "Def vs Demi-H (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "AngelResistPercent"
         },
         {
-            "Id": 1127,
+            "Id": 127,
             "Icon": "attr_angel_res",
             "Name": "Angel Res",
             "FullName": "Angel Race Res",
             "Description": "Def vs Angel.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "DragonDamage"
         },
         {
-            "Id": 1128,
+            "Id": 128,
             "Icon": "attr_angel_res_pct",
             "Name": "Angel Res Percent",
             "FullName": "Angel Race Res (Percent)",
             "Description": "Def vs Angel (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "DragonDamagePercent"
         },
         {
-            "Id": 1129,
+            "Id": 129,
             "Icon": "attr_dragon_res",
             "Name": "Dragon Res",
             "FullName": "Dragon Race Res",
             "Description": "Def vs Dragon.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "DragonResist"
         },
         {
-            "Id": 1130,
+            "Id": 130,
             "Icon": "attr_dragon_res_pct",
             "Name": "Dragon Res Percent",
             "FullName": "Dragon Race Res (Percent)",
             "Description": "Def vs Dragon (Percent).",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "DragonResistPercent"
         },
         {
-            "Id": 1131,
+            "Id": 131,
             "Icon": "attr_movespd",
-            "Name": "Move SPD",
+            "Name": "Movement Speed",
             "FullName": "Movement Speed",
             "Description": "Character walk speed.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MoveSpeed"
         },
         {
-            "Id": 1132,
+            "Id": 132,
             "Icon": "attr_movespd_pct",
-            "Name": "Move SPD Percent",
+            "Name": "Move Speed Percent",
             "FullName": "Movement Speed (Percent)",
             "Description": "Increases Walk Speed by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "MoveSpeedPercent"
         },
         {
-            "Id": 1133,
+            "Id": 133,
             "Icon": "attr_weight",
-            "Name": "Weight Lmt",
+            "Name": "Weight",
             "FullName": "Weight Limit",
             "Description": "Max carry weight.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "WeightLimit"
         },
         {
-            "Id": 1134,
+            "Id": 134,
             "Icon": "attr_weight_pct",
-            "Name": "Weight Lmt Percent",
+            "Name": "Weight Percent",
             "FullName": "Weight Limit (Percent)",
             "Description": "Increases Weight by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "WeightLimitPercent"
         },
         {
-            "Id": 1135,
+            "Id": 135,
             "Icon": "attr_hprec",
-            "Name": "HP Recov",
-            "FullName": "HP Recovery",
+            "Name": "Health Recov",
+            "FullName": "Health Recovery",
             "Description": "Passive HP regen amount.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "HPRecovery"
         },
         {
-            "Id": 1136,
+            "Id": 136,
             "Icon": "attr_hprec_pct",
-            "Name": "HP Recov Percent",
-            "FullName": "HP Recovery (Percent)",
-            "Description": "Increases HP Regen by  Percent.",
-            "IsPercent": true
+            "Name": "Health Recov Percent",
+            "FullName": "Health Recovery (Percent)",
+            "Description": "Increases Health Regen by  Percent.",
+            "IsPercent": true,
+            "Mapping": "HPRecoveryPercent"
         },
         {
-            "Id": 1137,
+            "Id": 137,
             "Icon": "attr_mprec",
-            "Name": "MP Recov",
-            "FullName": "MP Recovery",
+            "Name": "Mana Recov",
+            "FullName": "Mana Recovery",
             "Description": "Passive MP regen amount.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "MPRecovery"
         },
         {
-            "Id": 1138,
+            "Id": 138,
             "Icon": "attr_mprec_pct",
-            "Name": "MP Recov Percent",
-            "FullName": "MP Recovery (Percent)",
+            "Name": "Mana Recov Percent",
+            "FullName": "Mana Recovery (Percent)",
             "Description": "Increases MP Regen by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "MPRecoveryPercent"
         },
         {
-            "Id": 1139,
+            "Id": 139,
             "Icon": "attr_heal",
-            "Name": "Heal Eff",
-            "FullName": "Healing Item Eff",
+            "Name": "Healing",
+            "FullName": "Healing Effect",
             "Description": "Item healing power.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "HealingItems"
         },
         {
-            "Id": 1140,
+            "Id": 140,
             "Icon": "attr_heal_pct",
-            "Name": "Heal Eff Percent",
-            "FullName": "Healing Item Eff (Percent)",
+            "Name": "Healing Percent",
+            "FullName": "Healing Effect (Percent)",
             "Description": "Increases Heal by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "HealingItemsPercent"
         },
         {
-            "Id": 1141,
+            "Id": 141,
             "Icon": "attr_fct_flat",
-            "Name": "FCT Reduc",
-            "FullName": "Fixed Cast Reduction",
+            "Name": "Fixed Cast Time",
+            "FullName": "Fixed Cast Time Reduction",
             "Description": "Reduces fixed cast time.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "FixedCastTimeReduc"
         },
         {
-            "Id": 1142,
+            "Id": 142,
             "Icon": "attr_fct_flat_pct",
-            "Name": "FCT Reduc Percent",
-            "FullName": "Fixed Cast Reduc (Percent)",
+            "Name": "Fixed Cast Time Percent",
+            "FullName": "Fixed Cast Reduction (Percent)",
             "Description": "Increases FCT Reduc by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "FixedCastTimeReducPercent"
         },
         {
-            "Id": 1143,
-            "Icon": "attr_cast",
-            "Name": "Cast Time",
-            "FullName": "Total Cast Time",
-            "Description": "Time to cast skills.",
-            "IsPercent": false
-        },
-        {
-            "Id": 1144,
-            "Icon": "attr_cast_pct",
-            "Name": "Cast Time Percent",
-            "FullName": "Cast Time (Percent)",
-            "Description": "Reduces total cast by  Percent.",
-            "IsPercent": true
-        },
-        {
-            "Id": 1145,
+            "Id": 143,
             "Icon": "attr_gear_vct",
-            "Name": "Gear VCT",
-            "FullName": "Gear VCT Reduction",
+            "Name": "Gear Variable Cast Time",
+            "FullName": "Gear Variable Cast Time Reduction",
             "Description": "VCT from equipment.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "GearVariableCastTime"
         },
         {
-            "Id": 1146,
+            "Id": 144,
             "Icon": "attr_gear_vct_pct",
             "Name": "Gear VCT Percent",
-            "FullName": "Gear VCT Reduc (Percent)",
+            "FullName": "Gear Variable Cast Time Reduction (Percent)",
             "Description": "Increases Gear VCT by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "GearVariableCastTimePercent"
         },
         {
-            "Id": 1147,
+            "Id": 145,
             "Icon": "attr_skill_vct",
-            "Name": "Skill VCT",
-            "FullName": "Skill VCT Reduction",
+            "Name": "Skill Variable Cast Time",
+            "FullName": "Skill Variable Cast Time Reduction",
             "Description": "VCT from passive skills.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "SkillVariableCastTime"
         },
         {
-            "Id": 1148,
+            "Id": 146,
             "Icon": "attr_skill_vct_pct",
-            "Name": "Skill VCT Percent",
-            "FullName": "Skill VCT Reduc (Percent)",
+            "Name": "Skill Variable Cast Time Percent",
+            "FullName": "Skill Variable Cast Time Reduction (Percent)",
             "Description": "Increases Skill VCT by  Percent.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "SkillVariableCastTimePercent"
         },
         {
-            "Id": 1149,
+            "Id": 147,
             "Icon": "attr_vct_flat",
-            "Name": "VCT Reduc",
-            "FullName": "VCT Reduction Flat",
+            "Name": "Variable Cast Time Reduction",
+            "FullName": "Variable Cast Time Reduction Flat",
             "Description": "Flat reduction to variable cast time.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "VariableCastTimeReduc"
         },
         {
-            "Id": 1150,
+            "Id": 148,
             "Icon": "attr_vct_flat_pct",
-            "Name": "VCT Reduc Percent",
-            "FullName": "VCT Reduction (Percent)",
+            "Name": "Variable Cast Time Reduc Percent",
+            "FullName": "Variable Cast Time Reduction (Percent)",
             "Description": "Percentage reduction to VCT.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "VariableCastTimeReducPercent"
         },
         {
-            "Id": 1151,
-            "Icon": "attr_max_fct",
-            "Name": "Max FCT Red",
-            "FullName": "Max FCT Reduc Gap",
-            "Description": "Cap for FCT reduction.",
-            "IsPercent": false
-        },
-        {
-            "Id": 1152,
-            "Icon": "attr_max_fct_pct",
-            "Name": "Max FCT  Percent",
-            "FullName": "Max FCT Reduc (Percent)",
-            "Description": "Increases FCT Cap by  Percent.",
-            "IsPercent": true
-        },
-        {
-            "Id": 1153,
+            "Id": 149,
             "Icon": "attr_true_dmg",
             "Name": "True DMG",
             "FullName": "True Damage",
             "Description": "Damage ignoring all def.",
-            "IsPercent": false
+            "IsPercent": false,
+            "Mapping": "TrueDamage"
         },
         {
-            "Id": 1154,
+            "Id": 150,
             "Icon": "attr_radius_area_of_effect",
             "Name": "AOE",
             "FullName": "Area Of Effect",
             "Description": "Increases the impact radius and coverage area of skills.",
-            "IsPercent": true
+            "IsPercent": true,
+            "Mapping": "AOE"
         }
     ]
 }

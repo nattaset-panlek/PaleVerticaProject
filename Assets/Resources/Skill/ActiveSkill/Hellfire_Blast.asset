@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
   m_Name: Hellfire_Blast
   m_EditorClassIdentifier: 
-  Id: 102
+  Id: 1003
   Name: Hellfire Blast
   SkillElement: 3
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261312303464513
+    rid: 5700261318793625799
   Effects:
-  - rid: 5700261312303464514
+  - rid: 5700261318793625800
   VisualData: {fileID: 0}
+  VisualPrefab: {fileID: 0}
+  CastVisualPrefab: {fileID: 0}
+  CastSpawnPoint: 0
   BaseDamage: 180
   BaseAOERadius: 3.5
   BaseProjectileCount: 1
@@ -40,16 +43,22 @@ MonoBehaviour:
     GlobalMultiplier: 1
     FlatBonus: 0
     LevelMultiplier: 50
+  - TargetField: 1
+    ScalingAttribute: 152
+    AttributeMultiplier: 0.035
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
   references:
     version: 2
     RefIds:
-    - rid: 5700261312303464513
+    - rid: 5700261318793625799
       type: {class: ConeTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-        ConeAngle: 50
-    - rid: 5700261312303464514
+        ConeAngle: 245
+    - rid: 5700261318793625800
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
-        TargetAttribute: 0
+        TargetAttribute: 1
