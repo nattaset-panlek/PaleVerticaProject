@@ -24,11 +24,18 @@ namespace CoreSystem.Skills
             CurrentLevel = level;
             if (skillTemplate != null)
             {
-                // Try to get a synchronized clone from the Database
-                ActiveSkill syncedSkill = Database.GetSynchronizedSkill(skillTemplate.Id);
-                
-                // If database isn't ready or doesn't have it, fallback to the template itself
-                SkillData = syncedSkill != null ? syncedSkill : skillTemplate;
+                if (Application.isPlaying)
+                {
+                    // Try to get a synchronized clone from the Database
+                    ActiveSkill syncedSkill = Database.GetSynchronizedSkill(skillTemplate.Id);
+                    
+                    // If database isn't ready or doesn't have it, fallback to the template itself
+                    SkillData = syncedSkill != null ? syncedSkill : skillTemplate;
+                }
+                else
+                {
+                    SkillData = skillTemplate;
+                }
             }
         }
 

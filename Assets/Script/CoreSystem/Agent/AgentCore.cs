@@ -56,9 +56,6 @@ namespace CoreSystem.Controllers
         [Tooltip("0 = Solo. Same GroupID agents coordinate and alert each other.")]
         public int GroupID = 0;
         public float AlertRadius = 12f;
-        [Tooltip("Radius to detect group buddies for separation steering.")]
-        public float SeparationRadius = 1.5f;
-        public float SeparationStrength = 2.5f;
 
         // ─── Skill Pool ───────────────────────────────────────────
         [System.Serializable]
@@ -66,17 +63,18 @@ namespace CoreSystem.Controllers
         {
             public ActiveSkill Skill;
             public bool IsEquipped = true;
+            [Tooltip("AI-specific delay (seconds) before this skill can be used again by THIS agent.")]
+            public float AIDelay = 2.0f;
         }
 
         [Header("Skill Pool")]
         [Tooltip("The list of skills this agent can use. Toggle 'IsEquipped' to enable/disable at runtime.")]
         public List<SkillEquipEntry> SkillPool = new List<SkillEquipEntry>();
         
-        [Tooltip("If checked, use the FixedCastChanceValue. Otherwise, it's 100% if any skill is ready.")]
-        public bool FixedCastChance = false;
-        
-        [Range(0f, 100f)]
-        public float FixedCastChanceValue = 100f;
+        [Tooltip("Global delay (seconds) between AI skill casts to prevent spamming.")]
+        public float AISkillCooldown = 1.5f;
+
+        private float _aiSkillCooldownTimer;
 
         // ─── Animation ────────────────────────────────────────────
         [Header("Animation")]
@@ -101,6 +99,8 @@ namespace CoreSystem.Controllers
         private float _stateTimer;
         private float _orbitAngle;
         private float _orbitFlipTimer;
+        
+        private Dictionary<int, float> _aiSkillIndividualTimers = new Dictionary<int, float>();
 
         private float _decisionTickRate = 0.2f;
         private float _nextDecisionTime;
@@ -123,6 +123,20 @@ namespace CoreSystem.Controllers
         public AIState CurrentState => _currentState;
         public Transform Target => _target;
         public Character Character => _character;
+
+        // ─── Debug Monitor ─────────────────────────────────────────
+        [System.Serializable]
+        public struct SkillMonitorEntry
+        {
+            public string SkillName;
+            public string Cooldown;
+            public string AIDelay;
+            public string Status;
+        }
+
+        [Header("Skill Monitor (Debug)")]
+        public List<SkillMonitorEntry> SkillMonitor = new List<SkillMonitorEntry>();
+        public float GlobalAICooldownTimer;
 
         // ═══════════════════════════════════════════════════════════
         //   Lifecycle
@@ -221,6 +235,53 @@ namespace CoreSystem.Controllers
                 _nextDecisionTime = Time.time + _decisionTickRate;
                 Think();
             }
+
+            if (_aiSkillCooldownTimer > 0)
+                _aiSkillCooldownTimer -= Time.deltaTime;
+            
+            GlobalAICooldownTimer = _aiSkillCooldownTimer;
+
+            // Update individual skill timers
+            List<int> keys = new List<int>(_aiSkillIndividualTimers.Keys);
+            foreach (var key in keys)
+            {
+                if (_aiSkillIndividualTimers[key] > 0)
+                    _aiSkillIndividualTimers[key] -= Time.deltaTime;
+            }
+
+            UpdateSkillMonitor();
+        }
+
+        private void UpdateSkillMonitor()
+        {
+#if UNITY_EDITOR
+            if (_character == null || _character.skillCaster == null) return;
+
+            SkillMonitor.Clear();
+            foreach (var instance in _character.skillCaster.EquippedSkills)
+            {
+                if (instance == null || instance.SkillData == null) continue;
+
+                SkillMonitorEntry entry = new SkillMonitorEntry();
+                entry.SkillName = instance.SkillData.Name;
+                entry.Cooldown = instance.CurrentCooldown.ToString("F1") + "s";
+                
+                _aiSkillIndividualTimers.TryGetValue(instance.SkillData.Id, out float aiDelay);
+                entry.AIDelay = aiDelay.ToString("F1") + "s";
+
+                if (instance.CurrentCooldown > 0) entry.Status = "On Cooldown";
+                else if (aiDelay > 0) entry.Status = "AI Delay";
+                else entry.Status = "Ready";
+
+                // If currently casting this specific skill
+                if (_character.skillCaster.CurrentState == SkillCasterState.Casting && _character.skillCaster.ActiveSkillInstance == instance)
+                {
+                    entry.Status = $"Casting ({_character.skillCaster.CurrentCastTimer:F1}/{_character.skillCaster.CurrentCastTimeTotal:F1})";
+                }
+
+                SkillMonitor.Add(entry);
+            }
+#endif
         }
 
         private void LateUpdate()
@@ -305,8 +366,7 @@ namespace CoreSystem.Controllers
             else // Roam
             {
                 Vector3 intendedDir = (_roamDestination - transform.position).normalized;
-                Vector3 sep = ComputeAvoidance(intendedDir);
-                NavigateTo(_roamDestination, sep);
+                NavigateTo(_roamDestination, Vector3.zero);
 
                 bool arrived = Vector3.Distance(transform.position, _roamDestination) < 0.5f;
                 bool timeout = _stateTimer > 8f;
@@ -319,8 +379,7 @@ namespace CoreSystem.Controllers
             if (_target == null) { SetState(AIState.Idle); return; }
 
             Vector3 intendedDir = (_target.position - transform.position).normalized;
-            Vector3 sep = ComputeAvoidance(intendedDir);
-            NavigateTo(_target.position, sep);
+            NavigateTo(_target.position, Vector3.zero);
         }
 
         private void UpdateAttack()
@@ -333,13 +392,11 @@ namespace CoreSystem.Controllers
 
             // Determine desired position based on CombatStyle
             Vector3 desiredPosition = ComputeCombatPosition();
-            Vector3 intendedDir = (desiredPosition - transform.position).normalized;
-            Vector3 sep = ComputeAvoidance(intendedDir);
             float distToDesired = Vector3.Distance(transform.position, desiredPosition);
 
             if (distToDesired > 0.4f)
             {
-                MoveTowardsLocation(desiredPosition, sep);
+                MoveTowardsLocation(desiredPosition, Vector3.zero);
             }
             else
             {
@@ -411,64 +468,7 @@ namespace CoreSystem.Controllers
             return transform.position;
         }
 
-        // ═══════════════════════════════════════════════════════════
-        //   Avoidance Steering
-        // ═══════════════════════════════════════════════════════════
-
-        private Vector3 ComputeAvoidance(Vector3 intendedDir)
-        {
-            Collider2D[] cols = Physics2D.OverlapCircleAll(transform.position, SeparationRadius);
-            Vector3 sep = Vector3.zero;
-            int count = 0;
-
-            foreach (var col in cols)
-            {
-                var c = col.GetComponent<Character>();
-                if (c == null || c == _character) continue; // ignore self
-                if (_target != null && c.transform == _target) continue; // don't avoid our target
-
-                Vector3 toOther = c.transform.position - transform.position;
-                float d = toOther.magnitude;
-                
-                // Weight based on distance: stronger push when closer. 0 at edge of SeparationRadius.
-                float weight = 1f - (d / SeparationRadius);
-                if (weight <= 0f) continue;
-
-                if (d < 0.05f) { d = 0.05f; toOther = Random.insideUnitCircle.normalized * d; }
-
-                // Basic separation: push backward proportionally
-                Vector3 push = -toOther.normalized * weight;
-
-                // Sidestep: if they are in front of our intended direction, apply lateral force
-                if (intendedDir != Vector3.zero)
-                {
-                    float dot = Vector3.Dot(intendedDir, toOther.normalized);
-                    if (dot > 0.3f) // They are to some degree in front of us
-                    {
-                        Vector3 perp = new Vector3(-intendedDir.y, intendedDir.x, 0f);
-                        
-                        // Push laterally harder based on weight
-                        if (Vector3.Dot(perp, toOther) > 0)
-                            push -= perp * (weight * 2f); // Step left
-                        else
-                            push += perp * (weight * 2f); // Step right
-                    }
-                }
-
-                sep += push;
-                count++;
-            }
-
-            if (count > 0)
-            {
-                // Clamp combined forces so it doesn't exceed SeparationStrength when many agents stack
-                return Vector3.ClampMagnitude(sep, 1f) * SeparationStrength;
-            }
-                
-            return Vector3.zero;
-        }
-
-        // ═══════════════════════════════════════════════════════════
+        // ─── Pathfinding ───────────────────────────────────────────
         //   Movement & Pathfinding
         // ═══════════════════════════════════════════════════════════
 
@@ -516,16 +516,6 @@ namespace CoreSystem.Controllers
         {
             Vector3 dir = (dest - transform.position).normalized;
             Vector3 combined = dir + separationForce; // We will normalize later
-
-            // If the avoidance force is overwhelmingly blocking our path, 
-            // yield (stand still) to let the other agent pass instead of vibrating.
-            if (separationForce.magnitude > 0.1f && Vector3.Dot(dir, combined.normalized) <= 0.1f)
-            {
-                StopMovement();
-                // We can also update flip to look at destination while waiting
-                UpdateVisualFlip(dir);
-                return;
-            }
 
             if (_character.movementSystem != null)
                 _character.movementSystem.Move(combined.normalized);
@@ -598,6 +588,10 @@ namespace CoreSystem.Controllers
                     float currentMp = _character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
                     if (currentMp >= skill.SkillData.BaseManaCost)
                     {
+                        // 1.1 Individual AI Delay Check
+                        if (_aiSkillIndividualTimers.TryGetValue(skill.SkillData.Id, out float delay) && delay > 0)
+                            continue;
+
                         readyPool.Add(skill);
                     }
                 }
@@ -605,18 +599,25 @@ namespace CoreSystem.Controllers
 
             if (readyPool.Count == 0) return;
 
-            // 2. Probability Logic
-            float p = FixedCastChance ? FixedCastChanceValue : 100f; // P=n*100% (assumed 100% if n > 0)
+            // 2. AI Global Cooldown Check
+            if (_aiSkillCooldownTimer > 0) return;
+
+            // 3. Selection: Randomly pick one
+            int index = Random.Range(0, readyPool.Count);
+            var selected = readyPool[index];
             
-            if (Random.Range(0f, 100f) <= p)
+            Vector3 targetPos = _target != null ? _target.position : transform.position;
+            _character.skillCaster.CastSkill(selected, targetPos, _target != null);
+
+            // Set Individual AI Delay
+            var entry = SkillPool.Find(e => e.Skill != null && e.Skill.Id == selected.SkillData.Id);
+            if (entry != null)
             {
-                // 3. Selection: Randomly pick one
-                int index = Random.Range(0, readyPool.Count);
-                var selected = readyPool[index];
-                
-                Vector3 targetPos = _target != null ? _target.position : transform.position;
-                _character.skillCaster.CastSkill(selected, targetPos, _target != null);
+                _aiSkillIndividualTimers[selected.SkillData.Id] = entry.AIDelay;
             }
+
+            // Set Global AI Cooldown
+            _aiSkillCooldownTimer = AISkillCooldown;
         }
 
         private float GetEngageRange()
@@ -816,9 +817,9 @@ namespace CoreSystem.Controllers
             Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 0.35f);
             Gizmos.DrawWireSphere(transform.position, LoseSightRadius);
 
-            // Separation radius (cyan)
-            Gizmos.color = new Color(0, 1, 1, 0.35f);
-            Gizmos.DrawWireSphere(transform.position, SeparationRadius);
+            // Lose Sight (gray)
+            Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 0.35f);
+            Gizmos.DrawWireSphere(transform.position, LoseSightRadius);
 
             // Roam destination (blue)
             if (_currentState == AIState.Roam)

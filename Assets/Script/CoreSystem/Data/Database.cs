@@ -36,7 +36,10 @@ namespace CoreSystem.Data
                             _instance = go.AddComponent<Database>();
                             Debug.LogWarning("Database prefab not found in Resources/Prefab/. A temporary GameObject was created.");
                         }
-                        DontDestroyOnLoad(_instance.gameObject);
+                        if (Application.isPlaying)
+                        {
+                            DontDestroyOnLoad(_instance.gameObject);
+                        }
                     }
                 }
 
@@ -54,7 +57,10 @@ namespace CoreSystem.Data
             if (_instance == null)
             {
                 _instance = this;
-                DontDestroyOnLoad(gameObject);
+                if (Application.isPlaying)
+                {
+                    DontDestroyOnLoad(gameObject);
+                }
                 Initialize();
             }
             else if (_instance != this)

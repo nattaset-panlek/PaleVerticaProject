@@ -187,12 +187,14 @@ MonoBehaviour:
       BaseValue: 500
     - Type: 137
       BaseValue: 20
+    - Type: 131
+      BaseValue: 2
   skillCaster:
     EquippedSkills:
     - SkillData: {fileID: 11400000, guid: 33124fff1a0296b41b77db2eef325970, type: 2}
       LinkedModifiers: []
       CurrentLevel: 1
-    - SkillData: {fileID: 11400000, guid: 8babf2eaa325f79408d90c7c2968e7a3, type: 2}
+    - SkillData: {fileID: 11400000, guid: 96c6a8482beeef847a55252a9fdeebbc, type: 2}
       LinkedModifiers: []
       CurrentLevel: 1
     GrantedSkills: []
@@ -271,15 +273,14 @@ MonoBehaviour:
   CanRoam: 1
   GroupID: 0
   AlertRadius: 12
-  SeparationRadius: 1.5
-  SeparationStrength: 2.5
   SkillPool:
   - Skill: {fileID: 11400000, guid: 33124fff1a0296b41b77db2eef325970, type: 2}
     IsEquipped: 1
-  - Skill: {fileID: 11400000, guid: 8babf2eaa325f79408d90c7c2968e7a3, type: 2}
+    AIDelay: 5
+  - Skill: {fileID: 11400000, guid: 96c6a8482beeef847a55252a9fdeebbc, type: 2}
     IsEquipped: 1
-  FixedCastChance: 0
-  FixedCastChanceValue: 50
+    AIDelay: 2
+  AISkillCooldown: 1.5
   Anim: {fileID: 1349630177222271429}
   MovingBoolParam: IsMoving
   DeadTriggerParam: IsDead
