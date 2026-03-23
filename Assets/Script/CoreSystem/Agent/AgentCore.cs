@@ -1,6 +1,7 @@
 using CoreSystem.Entity;
 using CoreSystem.Enums;
 using CoreSystem.Pathfinding;
+using CoreSystem.Skills;
 using CoreSystem.Skills.Logic;
 using CoreSystem.UI;
 using System.Collections.Generic;
@@ -59,6 +60,24 @@ namespace CoreSystem.Controllers
         public float SeparationRadius = 1.5f;
         public float SeparationStrength = 2.5f;
 
+        // ─── Skill Pool ───────────────────────────────────────────
+        [System.Serializable]
+        public class SkillEquipEntry
+        {
+            public ActiveSkill Skill;
+            public bool IsEquipped = true;
+        }
+
+        [Header("Skill Pool")]
+        [Tooltip("The list of skills this agent can use. Toggle 'IsEquipped' to enable/disable at runtime.")]
+        public List<SkillEquipEntry> SkillPool = new List<SkillEquipEntry>();
+        
+        [Tooltip("If checked, use the FixedCastChanceValue. Otherwise, it's 100% if any skill is ready.")]
+        public bool FixedCastChance = false;
+        
+        [Range(0f, 100f)]
+        public float FixedCastChanceValue = 100f;
+
         // ─── Animation ────────────────────────────────────────────
         [Header("Animation")]
         public Animator Anim;
@@ -115,6 +134,44 @@ namespace CoreSystem.Controllers
             _homePosition = transform.position;
             if (string.IsNullOrEmpty(AgentName))
                 AgentName = gameObject.name;
+
+            InitializeSkills();
+        }
+
+        private void InitializeSkills()
+        {
+            if (_character != null && _character.skillCaster != null)
+            {
+                UpdateEquippedList();
+            }
+        }
+
+        public void UpdateEquippedList()
+        {
+            if (_character == null || _character.skillCaster == null) return;
+            
+            _character.skillCaster.EquippedSkills.Clear();
+            foreach (var entry in SkillPool)
+            {
+                if (entry != null && entry.Skill != null && entry.IsEquipped)
+                {
+                    _character.skillCaster.EquippedSkills.Add(new SkillInstance(entry.Skill));
+                }
+            }
+        }
+
+        private void OnValidate()
+        {
+            // Sync in editor
+            if (!Application.isPlaying && _character == null)
+            {
+                _character = GetComponent<Character>();
+            }
+            
+            if (!Application.isPlaying && _character != null && _character.skillCaster != null)
+            {
+                UpdateEquippedList();
+            }
         }
 
         private void OnEnable()
@@ -523,22 +580,42 @@ namespace CoreSystem.Controllers
 
         private void TryCastSkill()
         {
-            if (_character.skillCaster == null) return;
+            if (_character == null || _character.skillCaster == null || _character.skillCaster.CurrentState != SkillCasterState.Idle) return;
 
-            for (int i = 0; i < _character.skillCaster.EquippedSkills.Count; i++)
+            // 1. Filter Ready Pool
+            var readyPool = new List<SkillInstance>();
+            foreach (var skill in _character.skillCaster.EquippedSkills)
             {
-                var skill = _character.skillCaster.EquippedSkills[i];
                 if (skill == null || !skill.IsReady() || skill.SkillData == null) continue;
 
+                // Range Check
                 float range = skill.SkillData.BaseAOERadius > 0 ? skill.SkillData.BaseAOERadius : AttackRange;
-                bool isSelf = skill.SkillData.BaseTargeting is SelfTargeting;
-                if (isSelf) range = DetectionRadius;
+                if (skill.SkillData.BaseTargeting is SelfTargeting) range = DetectionRadius;
 
                 if (_target == null || Vector3.Distance(transform.position, _target.position) <= range)
                 {
-                    _character.skillCaster.CastSkill(i);
-                    break;
+                    // Mana Check
+                    float currentMp = _character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
+                    if (currentMp >= skill.SkillData.BaseManaCost)
+                    {
+                        readyPool.Add(skill);
+                    }
                 }
+            }
+
+            if (readyPool.Count == 0) return;
+
+            // 2. Probability Logic
+            float p = FixedCastChance ? FixedCastChanceValue : 100f; // P=n*100% (assumed 100% if n > 0)
+            
+            if (Random.Range(0f, 100f) <= p)
+            {
+                // 3. Selection: Randomly pick one
+                int index = Random.Range(0, readyPool.Count);
+                var selected = readyPool[index];
+                
+                Vector3 targetPos = _target != null ? _target.position : transform.position;
+                _character.skillCaster.CastSkill(selected, targetPos, _target != null);
             }
         }
 

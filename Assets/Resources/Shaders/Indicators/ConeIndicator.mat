@@ -34,10 +34,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _AngleOffset: 0
-    - _ConeAngle: 75
+    - _BorderWidth: 0.1
+    - _ConeAngle: 184
+    - _EdgeSoftness: 0.5
     - _FillAmount: 1
+    - _GlowIntensity: 3.48
     - _ScrollSpeed: 0
-    - _Softness: 0.01
+    - _Softness: 5.21
     - _Thickness: 0.025
     - _WorldThickness: 0.15
     m_Colors:

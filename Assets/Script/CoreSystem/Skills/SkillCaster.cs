@@ -10,7 +10,7 @@ namespace CoreSystem.Skills
     [System.Serializable]
     public class SkillCaster
     {
-        public List<SkillInstance> EquippedSkills = new List<SkillInstance>(new SkillInstance[6]);
+        public List<SkillInstance> EquippedSkills = new List<SkillInstance>();
         
         public void EquipSkill(ActiveSkill skillData, int slotIndex)
         {
@@ -153,6 +153,13 @@ namespace CoreSystem.Skills
             }
             
             InitiateCastSequence(instance, targetPos, targetPos != default);
+        }
+
+        public void CastSkill(SkillInstance instance, Vector3 targetPos = default, bool isTargetSet = false)
+        {
+            if (CurrentState != SkillCasterState.Idle) return;
+            if (instance == null || instance.SkillData == null) return;
+            InitiateCastSequence(instance, targetPos, isTargetSet);
         }
 
         public void CastSkillDirectly(ActiveSkill skillData, Vector3 targetPos = default, bool isTargetSet = false)

@@ -181,20 +181,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attributeSystem:
     initialAttributes:
-    - Type: 180
-      BaseValue: 2
+    - Type: 7
+      BaseValue: 300
     - Type: 2
       BaseValue: 500
+    - Type: 137
+      BaseValue: 20
   skillCaster:
     EquippedSkills:
     - SkillData: {fileID: 0}
       LinkedModifiers: []
       CurrentLevel: 1
-    - SkillData: {fileID: 0}
-      LinkedModifiers: []
-      CurrentLevel: 1
     GrantedSkills: []
     LastHitTargets: []
+    AimedSkillSlot: -1
   expSystem:
     CurrentBaseExp: 0
     CurrentJobExp: 0
@@ -253,10 +253,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AgentName: Agent
-  Behavior: 1
+  Behavior: 2
   Combat: 0
   DetectionRadius: 10
-  AttackRange: 1
+  AttackRange: 1.5
   LoseSightRadius: 15
   PreferredRangeMin: 5
   PreferredRangeMax: 7
@@ -270,6 +270,11 @@ MonoBehaviour:
   AlertRadius: 12
   SeparationRadius: 1.5
   SeparationStrength: 2.5
+  SkillPool:
+  - Skill: {fileID: 11400000, guid: 96c6a8482beeef847a55252a9fdeebbc, type: 2}
+    IsEquipped: 1
+  FixedCastChance: 0
+  FixedCastChanceValue: 50
   Anim: {fileID: 1349630177222271429}
   MovingBoolParam: IsMoving
   DeadTriggerParam: IsDead
