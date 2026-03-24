@@ -18,6 +18,8 @@ namespace CoreSystem.Movement
 
         public void Move(Vector3 direction)
         {
+            if (owner != null && owner.IsStunned) return;
+
             float currentMoveSpeed = attributeSystem.GetAttribute(AttributeType.MoveSpeed) * speedMultiplier;
             owner.transform.position += direction.normalized * (currentMoveSpeed * Time.deltaTime);
         }

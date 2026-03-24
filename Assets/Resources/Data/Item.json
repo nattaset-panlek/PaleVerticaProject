@@ -3280,7 +3280,7 @@
                 },
                 {
                     "EffectType": "AttributeBonusEffect",
-                    "AttributeID": 151,
+                    "AttributeID": 147,
                     "Value": 0.5,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -3350,8 +3350,8 @@
             "Effects": [
                 {
                     "EffectType": "AttributeBonusEffect",
-                    "AttributeID": 37,
-                    "Value": 200.0,
+                    "AttributeID": 44,
+                    "Value": 100.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
                     "SkillName": "",

@@ -19,6 +19,14 @@ namespace CoreSystem.Skills.Visuals
                 // Apply the Box offset relative to the rotation
                 _lineBox.transform.localPosition = box.Offset;
             }
+            else if (logic is LinePierceTargeting linePierce)
+            {
+                float length = payload.AOERadius;
+                float width = linePierce.LineWidth * 2f;
+                
+                _lineBox.transform.localScale = new Vector3(width, length, 1f);
+                _lineBox.transform.localPosition = new Vector3(0f, length / 2f, 0f);
+            }
         }
 
         public void UpdateState(Vector3 origin, Vector3 target, Vector2 direction)

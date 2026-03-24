@@ -17,11 +17,11 @@ MonoBehaviour:
   SkillElement: 6
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261318793625806
+    rid: 5700261340068708367
   Effects:
-  - rid: 5700261318793625807
-  - rid: 5700261318793625808
-  - rid: 5700261318793625809
+  - rid: 5700261340068708368
+  - rid: 5700261340068708369
+  - rid: 5700261340068708370
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   CastVisualPrefab: {fileID: 0}
@@ -48,12 +48,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261318793625806
+    - rid: 5700261340068708367
       type: {class: SingleTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261318793625807
+    - rid: 5700261340068708368
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 11
@@ -64,7 +64,7 @@ MonoBehaviour:
         BuffName: Increase Agility
         Category: 1
         Icon: {fileID: 0}
-    - rid: 5700261318793625808
+    - rid: 5700261340068708369
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 17
@@ -75,7 +75,7 @@ MonoBehaviour:
         BuffName: Increase Dexterity
         Category: 1
         Icon: {fileID: 0}
-    - rid: 5700261318793625809
+    - rid: 5700261340068708370
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 15

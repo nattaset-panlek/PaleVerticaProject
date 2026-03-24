@@ -9,19 +9,24 @@ namespace CoreSystem.Skills.Logic.Effects
         DashForward,
         DashToTarget,
         PushTargetAway,
-        PullTargetIn
+        PullTargetIn,
+        StunTarget
     }
 
     [CreateAssetMenu(fileName = "NewMovementEffect", menuName = "Skill System/Effects/Movement")]
     public class MovementEffectLogic : EffectLogic
     {
         public MovementType Type;
-        
+
         [Tooltip("How far to dash or push. Ignored for TeleportToTarget.")]
         public float Distance = 5f;
-        
+
         [Tooltip("If true, this effect only runs once per skill cast (useful for Caster dashes to avoid dashing 5 times if hitting 5 enemies).")]
         public bool ApplyOncePerCast = true;
+
+        [Header("Stun Settings")]
+        public float StunDuration = 1.0f;
+
 
         [Header("Interpolation")]
         public bool UseLerp = false;
@@ -56,7 +61,7 @@ namespace CoreSystem.Skills.Logic.Effects
                             payload.Caster.transform.position += payload.Caster.transform.up * Distance;
                     }
                     break;
-                    
+
                 case MovementType.DashForward:
                     Vector3 forwardDir = payload.Caster.transform.up; // Assuming 2D Top-down default rotation
                     if (UseLerp)
@@ -123,7 +128,14 @@ namespace CoreSystem.Skills.Logic.Effects
                         // Removed spammy log
                     }
                     break;
+                case MovementType.StunTarget:
+                    if (target != null)
+                    {
+                        target.ApplyStun(StunDuration);
+                    }
+                    break;
             }
         }
     }
 }
+

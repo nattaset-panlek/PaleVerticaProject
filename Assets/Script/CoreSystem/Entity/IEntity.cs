@@ -13,6 +13,8 @@ namespace CoreSystem.Entity
         FactionType Faction { get; }
         
         void ApplyImpulse(Vector3 direction, float distance, float duration);
+        void ApplyStun(float duration);
+        bool IsStunned { get; }
 
         void TriggerOnHit(IEntity target, float damage);
         void TriggerOnTakeDamage(IEntity attacker, float damage);

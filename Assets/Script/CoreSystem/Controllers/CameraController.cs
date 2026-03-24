@@ -35,6 +35,7 @@ namespace CoreSystem.Controllers
         // Shake States
         private float _shakeTimer;
         private float _shakeAmount;
+        private float _shakeDuration;
         private Vector3 _shakeOffset;
 
         private void Awake()
@@ -117,7 +118,9 @@ namespace CoreSystem.Controllers
         {
             if (_shakeTimer > 0)
             {
-                _shakeOffset = (Vector3)Random.insideUnitCircle * _shakeAmount;
+                // Simple linear decay for smoother shake feel
+                float factor = _shakeDuration > 0 ? (_shakeTimer / _shakeDuration) : 1f;
+                _shakeOffset = (Vector3)Random.insideUnitCircle * (_shakeAmount * factor);
                 _shakeTimer -= dt;
             }
             else
@@ -131,6 +134,7 @@ namespace CoreSystem.Controllers
         public void ScreenShake(float duration, float amount)
         {
             _shakeTimer = duration;
+            _shakeDuration = duration;
             _shakeAmount = amount;
         }
 

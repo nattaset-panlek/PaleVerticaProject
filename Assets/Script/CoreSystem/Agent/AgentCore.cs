@@ -101,6 +101,8 @@ namespace CoreSystem.Controllers
         private float _orbitFlipTimer;
         
         private Dictionary<int, float> _aiSkillIndividualTimers = new Dictionary<int, float>();
+        public float GlobalAICooldownTimer => _aiSkillCooldownTimer;
+        public IReadOnlyDictionary<int, float> IndividualAIDelayTimers => _aiSkillIndividualTimers;
 
         private float _decisionTickRate = 0.2f;
         private float _nextDecisionTime;
@@ -123,20 +125,6 @@ namespace CoreSystem.Controllers
         public AIState CurrentState => _currentState;
         public Transform Target => _target;
         public Character Character => _character;
-
-        // ─── Debug Monitor ─────────────────────────────────────────
-        [System.Serializable]
-        public struct SkillMonitorEntry
-        {
-            public string SkillName;
-            public string Cooldown;
-            public string AIDelay;
-            public string Status;
-        }
-
-        [Header("Skill Monitor (Debug)")]
-        public List<SkillMonitorEntry> SkillMonitor = new List<SkillMonitorEntry>();
-        public float GlobalAICooldownTimer;
 
         // ═══════════════════════════════════════════════════════════
         //   Lifecycle
@@ -238,8 +226,6 @@ namespace CoreSystem.Controllers
 
             if (_aiSkillCooldownTimer > 0)
                 _aiSkillCooldownTimer -= Time.deltaTime;
-            
-            GlobalAICooldownTimer = _aiSkillCooldownTimer;
 
             // Update individual skill timers
             List<int> keys = new List<int>(_aiSkillIndividualTimers.Keys);
@@ -248,40 +234,6 @@ namespace CoreSystem.Controllers
                 if (_aiSkillIndividualTimers[key] > 0)
                     _aiSkillIndividualTimers[key] -= Time.deltaTime;
             }
-
-            UpdateSkillMonitor();
-        }
-
-        private void UpdateSkillMonitor()
-        {
-#if UNITY_EDITOR
-            if (_character == null || _character.skillCaster == null) return;
-
-            SkillMonitor.Clear();
-            foreach (var instance in _character.skillCaster.EquippedSkills)
-            {
-                if (instance == null || instance.SkillData == null) continue;
-
-                SkillMonitorEntry entry = new SkillMonitorEntry();
-                entry.SkillName = instance.SkillData.Name;
-                entry.Cooldown = instance.CurrentCooldown.ToString("F1") + "s";
-                
-                _aiSkillIndividualTimers.TryGetValue(instance.SkillData.Id, out float aiDelay);
-                entry.AIDelay = aiDelay.ToString("F1") + "s";
-
-                if (instance.CurrentCooldown > 0) entry.Status = "On Cooldown";
-                else if (aiDelay > 0) entry.Status = "AI Delay";
-                else entry.Status = "Ready";
-
-                // If currently casting this specific skill
-                if (_character.skillCaster.CurrentState == SkillCasterState.Casting && _character.skillCaster.ActiveSkillInstance == instance)
-                {
-                    entry.Status = $"Casting ({_character.skillCaster.CurrentCastTimer:F1}/{_character.skillCaster.CurrentCastTimeTotal:F1})";
-                }
-
-                SkillMonitor.Add(entry);
-            }
-#endif
         }
 
         private void LateUpdate()
@@ -296,7 +248,7 @@ namespace CoreSystem.Controllers
 
         private void Think()
         {
-            if (_currentState == AIState.Dead || _currentState == AIState.Flee) return;
+            if (_currentState == AIState.Dead || _currentState == AIState.Flee || (_character != null && _character.IsStunned)) return;
 
             if (_target == null)
             {

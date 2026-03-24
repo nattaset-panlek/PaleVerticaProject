@@ -4,6 +4,7 @@ using UnityEditor;
 using CoreSystem.Controllers;
 using CoreSystem.Agent;
 using CoreSystem.Attributes;
+using CoreSystem.Skills;
 
 namespace CoreSystem.EditorScripts
 {
@@ -226,10 +227,100 @@ namespace CoreSystem.EditorScripts
                     if (foundCount == 0)
                         EditorGUILayout.HelpBox("No attributes match your search.", MessageType.None);
                 }
+                
+                EditorGUILayout.Space(5);
+                DrawSkillSection(agent);
 
                 EditorGUILayout.EndVertical();
                 EditorGUI.indentLevel--;
                 EditorGUILayout.Space(2);
+            }
+
+            EditorGUILayout.EndVertical();
+        }
+
+        private void DrawSkillSection(AgentCore agent)
+        {
+            if (agent.Character == null || agent.Character.skillCaster == null) return;
+
+            var caster = agent.Character.skillCaster;
+            
+            GUILayout.Label("⚔ Skills Monitor", EditorStyles.boldLabel);
+            EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+            // Global AI Cooldown
+            if (agent.GlobalAICooldownTimer > 0)
+            {
+                Rect r = EditorGUILayout.GetControlRect(false, 16);
+                EditorGUI.ProgressBar(r, agent.GlobalAICooldownTimer / agent.AISkillCooldown, $"Global AI CD: {agent.GlobalAICooldownTimer:F1}s");
+            }
+
+            foreach (var skill in caster.EquippedSkills)
+            {
+                if (skill == null || skill.SkillData == null) continue;
+
+                EditorGUILayout.BeginHorizontal();
+                GUILayout.Label(skill.SkillData.Name, GUILayout.Width(150));
+                
+                // Status indicator
+                string status = "Ready";
+                Color statusColor = Color.green;
+                
+                if (skill.CurrentCooldown > 0)
+                {
+                    status = "CD";
+                    statusColor = Color.yellow;
+                }
+                else if (caster.CurrentState == SkillCasterState.Casting && caster.ActiveSkillInstance == skill)
+                {
+                    status = "Casting";
+                    statusColor = new Color(1, 0.5f, 0); // Orange
+                }
+                
+                GUI.color = statusColor;
+                GUILayout.Label($"[{status}]", GUILayout.Width(80));
+                GUI.color = Color.white;
+
+                // AI Individual Delay
+                float aiDelayLeft = 0;
+                float aiDelayMax = 1;
+                var aiEntry = agent.SkillPool.Find(e => e.Skill != null && e.Skill.Id == skill.SkillData.Id);
+                if (aiEntry != null)
+                {
+                    aiDelayMax = aiEntry.AIDelay;
+                    if (agent.IndividualAIDelayTimers.TryGetValue(skill.SkillData.Id, out float val))
+                        aiDelayLeft = val;
+                }
+
+                if (aiDelayLeft > 0)
+                {
+                    // Draw mini AI Delay Progress bar
+                    Rect r = EditorGUILayout.GetControlRect(false, 16, GUILayout.Width(100));
+                    EditorGUI.ProgressBar(r, aiDelayLeft / aiDelayMax, $"AI:{aiDelayLeft:F1}s");
+                }
+                else
+                {
+                    GUILayout.Label("AI Ready", GUILayout.Width(100));
+                }
+
+                // Mechanical Cooldown Progress bar
+                if (skill.CurrentCooldown > 0)
+                {
+                    Rect r = EditorGUILayout.GetControlRect(false, 16);
+                    EditorGUI.ProgressBar(r, skill.CurrentCooldown / skill.SkillData.BaseCooldown, $"CD:{skill.CurrentCooldown:F1}s");
+                }
+                else if (caster.CurrentState == SkillCasterState.Casting && caster.ActiveSkillInstance == skill)
+                {
+                    Rect r = EditorGUILayout.GetControlRect(false, 16);
+                    float progress = caster.CurrentCastTimer / caster.CurrentCastTimeTotal;
+                    EditorGUI.ProgressBar(r, progress, $"CASTING...");
+                }
+                else
+                {
+                    GUILayout.FlexibleSpace();
+                }
+
+                EditorGUILayout.EndHorizontal();
             }
 
             EditorGUILayout.EndVertical();

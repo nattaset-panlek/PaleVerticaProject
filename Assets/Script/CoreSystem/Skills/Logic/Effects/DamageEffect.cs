@@ -1,5 +1,6 @@
 using CoreSystem.Attributes;
 using CoreSystem.Entity;
+using CoreSystem.UI;
 using UnityEngine;
 
 namespace CoreSystem.Skills.Logic
@@ -33,7 +34,7 @@ namespace CoreSystem.Skills.Logic
                 float elementAdvantage = ElementAdvantageTable.GetMultiplier(payload.SkillElement, target.Element);
                 calculatedDamage *= elementAdvantage;
 
-                // Apply Modifiers from attacker and defender
+                bool isCritical = false;
                 if (payload.Caster != null && payload.Caster.attributeSystem != null)
                 {
                     AttributeSystem casterAttr = payload.Caster.attributeSystem;
@@ -64,6 +65,7 @@ namespace CoreSystem.Skills.Logic
 
                     if (Random.Range(0f, 100f) < finalCritChance)
                     {
+                        isCritical = true;
                         float critDmgBonus = casterAttr.GetAttribute(AttributeType.CriticalDamage);
                         // Base Critical damage 150% + bonus
                         calculatedDamage *= (1.5f + critDmgBonus);
@@ -87,6 +89,12 @@ namespace CoreSystem.Skills.Logic
                 }
                 
                 target.TriggerOnTakeDamage(payload.Caster, finalDamage);
+                
+                // Show floating damage text
+                if (DamageTextManager.Instance != null)
+                {
+                    DamageTextManager.Instance.ShowDamage(target.transform.position, finalDamage, payload.DamageType, payload.SkillElement, isCritical);
+                }
             }
         }
 

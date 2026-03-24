@@ -17,9 +17,9 @@ MonoBehaviour:
   SkillElement: 6
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261318793625814
+    rid: 5700261340068708375
   Effects:
-  - rid: 5700261318793625815
+  - rid: 5700261340068708376
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   CastVisualPrefab: {fileID: 0}
@@ -58,12 +58,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261318793625814
+    - rid: 5700261340068708375
       type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261318793625815
+    - rid: 5700261340068708376
       type: {class: HealEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1

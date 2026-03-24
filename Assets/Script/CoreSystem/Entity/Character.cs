@@ -126,6 +126,19 @@ namespace CoreSystem.Entity
         public RaceType Race => race;
         public FactionType Faction => faction;
 
+        public float StunDuration { get; private set; }
+        public bool IsStunned => StunDuration > 0;
+
+        public void ApplyStun(float duration)
+        {
+            if (duration > StunDuration)
+            {
+                StunDuration = duration;
+                // Interrupt casting if stunning
+                skillCaster?.InterruptCast();
+            }
+        }
+
         public event System.Action<IEntity, float> OnHitTarget;
         public event System.Action<IEntity, float> OnTakeDamage;
         public event System.Action OnCostumeChanged;
@@ -151,8 +164,15 @@ namespace CoreSystem.Entity
 
         protected virtual void Update()
         {
+            if (StunDuration > 0)
+            {
+                StunDuration -= Time.deltaTime;
+                // While stunned, we might still allow recovery but no more thinking/movement (handled in subclasses/MovementSystem)
+            }
+
             if (skillCaster != null)
             {
+                // SkillCaster state is checked internally (e.g. can't cast while stunned if we implement that check)
                 skillCaster.Tick(Time.deltaTime);
             }
 

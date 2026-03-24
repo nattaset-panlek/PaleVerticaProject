@@ -22,6 +22,11 @@ namespace CoreSystem.Entity
             GameData.Player.SkillManager.Bind(this.skillCaster);
             GameData.Player.EquipmentManager.Bind(this);
             GameData.Player.CostumeManager.Bind(this);
+
+            // Screen Shake on Take Damage
+            OnTakeDamage += (attacker, damage) => {
+                CoreSystem.Controllers.CameraController.Instance?.ScreenShake(0.15f, 0.4f);
+            };
         }
 
         [Header("Debug UI")]

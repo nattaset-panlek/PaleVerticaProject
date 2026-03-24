@@ -3,6 +3,8 @@ namespace CoreSystem
     public enum DamageType
     {
         Physical,
-        Magic
+        Magic,
+        Status,
+        Elemental
     }
 }

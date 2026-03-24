@@ -1,13 +1,14 @@
-Shader "Custom/SkillIndicatorSimple"
+Shader "Custom/SkillIndicatorArea"
 {
     Properties
     {
         [NoScaleOffset] _IndicatorPattern ("Indicator Pattern", 2D) = "white" {}
-        _MainColor ("Main Color", Color) = (0, 0.5, 1, 0.3)
-        _BorderColor ("Border Color", Color) = (0, 0.8, 1, 1)
+        [HDR] _MainColor ("Main Color", Color) = (0, 0.5, 1, 0.3)
+        [HDR] _BorderColor ("Border Color", Color) = (0, 0.8, 1, 1)
         _WorldThickness ("Border Width (World)", Range(0, 1)) = 0.1
         _Softness ("Softness", Range(0, 0.1)) = 0.01
         _RotationSpeed ("Rotation Speed", Range(-10, 10)) = 0.0
+        _InnerFade ("Inner Fade Focus", Range(0, 1)) = 0.3
     }
     SubShader
     {
@@ -36,7 +37,8 @@ Shader "Custom/SkillIndicatorSimple"
                 float4 vertex : SV_POSITION;
                 float4 color : COLOR;
                 float2 uv : TEXCOORD0;
-                float2 worldScale : TEXCOORD1;
+                float2 rotUV : TEXCOORD1;
+                float avgScale : TEXCOORD2;
             };
 
             sampler2D _IndicatorPattern;
@@ -45,6 +47,7 @@ Shader "Custom/SkillIndicatorSimple"
             float _WorldThickness;
             float _Softness;
             float _RotationSpeed;
+            float _InnerFade;
 
             v2f vert (appdata v)
             {
@@ -53,49 +56,43 @@ Shader "Custom/SkillIndicatorSimple"
                 o.color = v.color;
                 o.uv = v.uv;
 
-                // Extract average scale from unity_ObjectToWorld
                 float3 scale;
                 scale.x = length(unity_ObjectToWorld._m00_m01_m02);
                 scale.y = length(unity_ObjectToWorld._m10_m11_m12);
-                o.worldScale = scale.xy;
+                o.avgScale = (scale.x + scale.y) * 0.5;
+
+                float angle = _Time.y * _RotationSpeed;
+                float s = sin(angle);
+                float c = cos(angle);
+                float2x2 rotationMatrix = float2x2(c, -s, s, c);
+                
+                float2 centeredUV = v.uv - 0.5;
+                o.rotUV = mul(rotationMatrix, centeredUV) + 0.5;
 
                 return o;
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // Centered UV for rotation and distance calculations (-1 to 1)
                 float2 pos = (i.uv - 0.5) * 2.0;
                 float dist = length(pos);
 
-                // Constant thickness calculation (UV space)
-                float avgScale = (i.worldScale.x + i.worldScale.y) * 0.5;
-                float uvThickness = _WorldThickness / (avgScale + 0.0001);
+                float uvThickness = _WorldThickness / (i.avgScale + 0.0001);
 
-                // Rotation Math
-                float angle = _Time.y * _RotationSpeed;
-                float s = sin(angle);
-                float c = cos(angle);
-                float2x2 rotationMatrix = float2x2(c, -s, s, c);
-                float2 rotUV = mul(rotationMatrix, pos) * 0.5 + 0.5;
+                fixed4 patternColor = tex2D(_IndicatorPattern, saturate(i.rotUV));
 
-                // Sample Texture Pattern
-                fixed4 patternColor = tex2D(_IndicatorPattern, saturate(rotUV));
-
-                // Circle masking
                 float alpha = smoothstep(1.0 + _Softness, 1.0 - _Softness, dist);
-                
-                // Border masking logic (UV space thicknes)
+
                 float edge1 = 1.0 - uvThickness;
                 float borderAlpha = smoothstep(edge1 - _Softness, edge1 + _Softness, dist);
-                
-                // Combine Fill and Texture
+
+                float innerFadeAlpha = smoothstep(0.0, max(_InnerFade, 0.001), dist);
+
                 fixed4 fillColor = _MainColor * patternColor;
-                
-                // Overlay Border
+                fillColor.a *= innerFadeAlpha;
+
                 fixed4 finalCol = lerp(fillColor, _BorderColor, borderAlpha);
-                
-                // Apply global fading
+
                 finalCol *= i.color;
                 finalCol.a *= alpha;
 

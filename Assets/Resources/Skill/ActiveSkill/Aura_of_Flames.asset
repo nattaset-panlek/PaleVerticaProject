@@ -17,9 +17,9 @@ MonoBehaviour:
   SkillElement: 3
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261318793625812
+    rid: 5700261340068708373
   Effects:
-  - rid: 5700261318793625813
+  - rid: 5700261340068708374
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 5586069453266129572, guid: a6e0641cf9b8a94498d37d3cbd932286, type: 3}
   CastVisualPrefab: {fileID: 5586069453266129572, guid: a6e0641cf9b8a94498d37d3cbd932286, type: 3}
@@ -64,12 +64,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261318793625812
+    - rid: 5700261340068708373
       type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261318793625813
+    - rid: 5700261340068708374
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1
