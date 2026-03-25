@@ -1,0 +1,156 @@
+{
+    "Sets": [
+        {
+            "SetID": "SwiftBlader",
+            "SetName": "Swift Blader",
+            "BonusLevels": [
+                {
+                    "RequiredPieces": 2,
+                    "Effects": [
+                        {
+                            "EffectType": "StatBonus",
+                            "AttributeID": 152,
+                            "Value": 10.0,
+                            "TriggerType": "",
+                            "TriggerChance": 0.0,
+                            "SkillName": "",
+                            "SkillID": 0,
+                            "ModType": "",
+                            "Duration": 0.0,
+                            "MaxStacks": 0,
+                            "BuffName": "",
+                            "PrefabPath": "",
+                            "Category": "",
+                            "MovementType": "",
+                            "MovementDistance": 0.0,
+                            "ApplyOnce": false,
+                            "UseLerp": false,
+                            "LerpDuration": 0.0,
+                            "ParentToCaster": false,
+                            "ScalingSourceIDs": [],
+                            "ScalingThreshold": 0.0
+                        }
+                    ]
+                },
+                {
+                    "RequiredPieces": 4,
+                    "Effects": [
+                        {
+                            "EffectType": "StatBonus",
+                            "AttributeID": 152,
+                            "Value": 10.0,
+                            "TriggerType": "",
+                            "TriggerChance": 0.0,
+                            "SkillName": "",
+                            "SkillID": 0,
+                            "ModType": "",
+                            "Duration": 0.0,
+                            "MaxStacks": 0,
+                            "BuffName": "",
+                            "PrefabPath": "",
+                            "Category": "",
+                            "MovementType": "",
+                            "MovementDistance": 0.0,
+                            "ApplyOnce": false,
+                            "UseLerp": false,
+                            "LerpDuration": 0.0,
+                            "ParentToCaster": false,
+                            "ScalingSourceIDs": [],
+                            "ScalingThreshold": 0.0
+                        }
+                    ]
+                },
+                {
+                    "RequiredPieces": 6,
+                    "Effects": [
+                        {
+                            "EffectType": "StatBonus",
+                            "AttributeID": 152,
+                            "Value": 20.0,
+                            "TriggerType": "",
+                            "TriggerChance": 0.0,
+                            "SkillName": "",
+                            "SkillID": 0,
+                            "ModType": "",
+                            "Duration": 0.0,
+                            "MaxStacks": 0,
+                            "BuffName": "",
+                            "PrefabPath": "",
+                            "Category": "",
+                            "MovementType": "",
+                            "MovementDistance": 0.0,
+                            "ApplyOnce": false,
+                            "UseLerp": false,
+                            "LerpDuration": 0.0,
+                            "ParentToCaster": false,
+                            "ScalingSourceIDs": [],
+                            "ScalingThreshold": 0.0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "SetID": "TemporalSage",
+            "SetName": "Temporal Sage",
+            "BonusLevels": [
+                {
+                    "RequiredPieces": 3,
+                    "Effects": [
+                        {
+                            "EffectType": "StatBonus",
+                            "AttributeID": 152,
+                            "Value": 20.0,
+                            "TriggerType": "",
+                            "TriggerChance": 0.0,
+                            "SkillName": "",
+                            "SkillID": 0,
+                            "ModType": "",
+                            "Duration": 0.0,
+                            "MaxStacks": 0,
+                            "BuffName": "",
+                            "PrefabPath": "",
+                            "Category": "",
+                            "MovementType": "",
+                            "MovementDistance": 0.0,
+                            "ApplyOnce": false,
+                            "UseLerp": false,
+                            "LerpDuration": 0.0,
+                            "ParentToCaster": false,
+                            "ScalingSourceIDs": [],
+                            "ScalingThreshold": 0.0
+                        }
+                    ]
+                },
+                {
+                    "RequiredPieces": 5,
+                    "Effects": [
+                        {
+                            "EffectType": "StatBonus",
+                            "AttributeID": 152,
+                            "Value": 20.0,
+                            "TriggerType": "",
+                            "TriggerChance": 0.0,
+                            "SkillName": "",
+                            "SkillID": 0,
+                            "ModType": "",
+                            "Duration": 0.0,
+                            "MaxStacks": 0,
+                            "BuffName": "",
+                            "PrefabPath": "",
+                            "Category": "",
+                            "MovementType": "",
+                            "MovementDistance": 0.0,
+                            "ApplyOnce": false,
+                            "UseLerp": false,
+                            "LerpDuration": 0.0,
+                            "ParentToCaster": false,
+                            "ScalingSourceIDs": [],
+                            "ScalingThreshold": 0.0
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -21,7 +21,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1002,
@@ -44,7 +45,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1003,
@@ -67,7 +69,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1004,
@@ -90,7 +93,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1005,
@@ -113,7 +117,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1006,
@@ -136,7 +141,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1007,
@@ -159,7 +165,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1008,
@@ -182,7 +189,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1009,
@@ -205,7 +213,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1010,
@@ -228,7 +237,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1011,
@@ -251,7 +261,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1012,
@@ -274,7 +285,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1013,
@@ -297,7 +309,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1014,
@@ -320,7 +333,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1015,
@@ -343,7 +357,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1016,
@@ -366,7 +381,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1017,
@@ -389,7 +405,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1018,
@@ -412,7 +429,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1019,
@@ -435,7 +453,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 1020,
@@ -458,7 +477,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2001,
@@ -481,7 +501,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2002,
@@ -504,7 +525,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2003,
@@ -527,7 +549,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2004,
@@ -550,7 +573,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2005,
@@ -573,7 +597,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2006,
@@ -596,7 +621,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2007,
@@ -619,7 +645,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2008,
@@ -642,7 +669,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2009,
@@ -665,7 +693,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2010,
@@ -688,7 +717,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2011,
@@ -711,7 +741,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2012,
@@ -734,7 +765,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2013,
@@ -757,7 +789,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2014,
@@ -780,7 +813,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2015,
@@ -803,7 +837,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2016,
@@ -826,7 +861,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2017,
@@ -849,7 +885,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2018,
@@ -872,7 +909,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2019,
@@ -895,7 +933,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 2020,
@@ -918,7 +957,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3001,
@@ -988,7 +1028,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3002,
@@ -1010,7 +1051,7 @@
             "MaxSockets": 0,
             "Effects": [
                 {
-                    "EffectType": "EffectLogic",
+                    "EffectType": "StatBonus",
                     "AttributeID": 106,
                     "Value": 10.0,
                     "TriggerType": "",
@@ -1033,7 +1074,7 @@
                     "ScalingThreshold": 0.0
                 },
                 {
-                    "EffectType": "EffectLogic",
+                    "EffectType": "StatBonus",
                     "AttributeID": 2,
                     "Value": 25.0,
                     "TriggerType": "",
@@ -1058,7 +1099,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3003,
@@ -1128,7 +1170,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3004,
@@ -1198,7 +1241,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3005,
@@ -1268,7 +1312,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3006,
@@ -1338,7 +1383,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3007,
@@ -1408,7 +1454,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3008,
@@ -1478,7 +1525,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3009,
@@ -1548,7 +1596,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3010,
@@ -1618,7 +1667,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3011,
@@ -1688,7 +1738,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3012,
@@ -1758,7 +1809,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3013,
@@ -1828,7 +1880,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3014,
@@ -1851,7 +1904,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 62,
+                    "AttributeID": 128,
                     "Value": 15.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -1874,7 +1927,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 80,
+                    "AttributeID": 21,
                     "Value": 25.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -1898,7 +1951,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3015,
@@ -1921,7 +1975,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 94,
+                    "AttributeID": 22,
                     "Value": 180.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -1967,7 +2021,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 95,
+                    "AttributeID": 102,
                     "Value": 25.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -1991,7 +2045,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3016,
@@ -2014,7 +2069,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 94,
+                    "AttributeID": 102,
                     "Value": 50.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2061,7 +2116,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3017,
@@ -2084,7 +2140,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 96,
+                    "AttributeID": 76,
                     "Value": 65.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2131,7 +2187,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3018,
@@ -2154,7 +2211,7 @@
             "Effects": [
                 {
                     "EffectType": "EquipmentEffect",
-                    "AttributeID": 112,
+                    "AttributeID": 74,
                     "Value": 70.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2177,7 +2234,7 @@
                 },
                 {
                     "EffectType": "EquipmentEffect",
-                    "AttributeID": 96,
+                    "AttributeID": 76,
                     "Value": 70.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2201,7 +2258,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3019,
@@ -2224,7 +2282,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 110,
+                    "AttributeID": 72,
                     "Value": 85.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2247,7 +2305,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 58,
+                    "AttributeID": 74,
                     "Value": 30.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2271,7 +2329,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3020,
@@ -2317,7 +2376,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 58,
+                    "AttributeID": 74,
                     "Value": 20.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2341,7 +2400,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3021,
@@ -2364,7 +2424,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 42,
+                    "AttributeID": 24,
                     "Value": 110.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2387,7 +2447,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 96,
+                    "AttributeID": 76,
                     "Value": 25.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2411,7 +2471,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3022,
@@ -2481,7 +2542,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3023,
@@ -2551,7 +2613,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3024,
@@ -2574,7 +2637,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 94,
+                    "AttributeID": 44,
                     "Value": 95.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2597,7 +2660,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 62,
+                    "AttributeID": 72,
                     "Value": 40.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2621,7 +2684,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3025,
@@ -2644,7 +2708,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 42,
+                    "AttributeID": 24,
                     "Value": 60.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2667,7 +2731,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 90,
+                    "AttributeID": 64,
                     "Value": 20.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2691,7 +2755,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3026,
@@ -2714,7 +2779,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 91,
+                    "AttributeID": 63,
                     "Value": 12.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2737,7 +2802,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 106,
+                    "AttributeID": 66,
                     "Value": 15.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2761,7 +2826,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3027,
@@ -2784,7 +2850,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 102,
+                    "AttributeID": 58,
                     "Value": 55.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2807,7 +2873,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 103,
+                    "AttributeID": 74,
                     "Value": 35.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2831,7 +2897,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3028,
@@ -2854,7 +2921,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 102,
+                    "AttributeID": 56,
                     "Value": 15.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2877,7 +2944,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 86,
+                    "AttributeID": 72,
                     "Value": 8.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2901,7 +2968,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3029,
@@ -2924,7 +2992,7 @@
             "Effects": [
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 96,
+                    "AttributeID": 68,
                     "Value": 190.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2947,7 +3015,7 @@
                 },
                 {
                     "EffectType": "StatBonus",
-                    "AttributeID": 92,
+                    "AttributeID": 76,
                     "Value": 30.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -2971,7 +3039,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3030,
@@ -2994,7 +3063,7 @@
             "Effects": [
                 {
                     "EffectType": "AttributeBonusEffect",
-                    "AttributeID": 11,
+                    "AttributeID": 132,
                     "Value": 20.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -3017,7 +3086,7 @@
                 },
                 {
                     "EffectType": "SkillUnlockEffect",
-                    "AttributeID": 92,
+                    "AttributeID": 68,
                     "Value": 15.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -3064,7 +3133,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3031,
@@ -3134,7 +3204,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3032,
@@ -3157,8 +3228,8 @@
             "Effects": [
                 {
                     "EffectType": "AttributeBonusEffect",
-                    "AttributeID": 152,
-                    "Value": 20.0,
+                    "AttributeID": 137,
+                    "Value": 50.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
                     "SkillName": "",
@@ -3176,14 +3247,15 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [
-                        26
+                        15
                     ],
                     "ScalingThreshold": 10.0
                 }
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3033,
@@ -3206,7 +3278,7 @@
             "Effects": [
                 {
                     "EffectType": "AttributeBonusEffect",
-                    "AttributeID": 2,
+                    "AttributeID": 3,
                     "Value": 1.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
@@ -3225,14 +3297,15 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [
-                        6
+                        7
                     ],
                     "ScalingThreshold": 2.0
                 }
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3034,
@@ -3256,7 +3329,7 @@
                 {
                     "EffectType": "AttributeBonusEffect",
                     "AttributeID": 144,
-                    "Value": 50.0,
+                    "Value": 10.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
                     "SkillName": "",
@@ -3274,9 +3347,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [
-                        28
+                        15,
+                        17
                     ],
-                    "ScalingThreshold": 10.0
+                    "ScalingThreshold": 50.0
                 },
                 {
                     "EffectType": "AttributeBonusEffect",
@@ -3327,7 +3401,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 3035,
@@ -3350,8 +3425,8 @@
             "Effects": [
                 {
                     "EffectType": "AttributeBonusEffect",
-                    "AttributeID": 44,
-                    "Value": 100.0,
+                    "AttributeID": 9,
+                    "Value": 5.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
                     "SkillName": "",
@@ -3368,13 +3443,141 @@
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
-                    "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingSourceIDs": [
+                        210
+                    ],
+                    "ScalingThreshold": 50.0
+                },
+                {
+                    "EffectType": "AttributeBonusEffect",
+                    "AttributeID": 11,
+                    "Value": 5.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [
+                        210
+                    ],
+                    "ScalingThreshold": 50.0
+                },
+                {
+                    "EffectType": "AttributeBonusEffect",
+                    "AttributeID": 13,
+                    "Value": 5.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [
+                        210
+                    ],
+                    "ScalingThreshold": 50.0
+                },
+                {
+                    "EffectType": "AttributeBonusEffect",
+                    "AttributeID": 15,
+                    "Value": 5.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [
+                        210
+                    ],
+                    "ScalingThreshold": 50.0
+                },
+                {
+                    "EffectType": "AttributeBonusEffect",
+                    "AttributeID": 17,
+                    "Value": 5.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [
+                        210
+                    ],
+                    "ScalingThreshold": 50.0
+                },
+                {
+                    "EffectType": "AttributeBonusEffect",
+                    "AttributeID": 19,
+                    "Value": 5.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [
+                        210
+                    ],
+                    "ScalingThreshold": 50.0
                 }
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4001,
@@ -3467,7 +3670,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4002,
@@ -3560,7 +3764,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4003,
@@ -3653,7 +3858,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4004,
@@ -3746,7 +3952,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4005,
@@ -3816,7 +4023,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4006,
@@ -3909,7 +4117,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4007,
@@ -3979,7 +4188,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4008,
@@ -4049,7 +4259,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4009,
@@ -4119,7 +4330,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4010,
@@ -4189,7 +4401,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4011,
@@ -4259,7 +4472,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4012,
@@ -4329,7 +4543,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4013,
@@ -4399,7 +4614,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4014,
@@ -4469,7 +4685,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4015,
@@ -4539,7 +4756,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4016,
@@ -4609,7 +4827,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4017,
@@ -4679,7 +4898,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4018,
@@ -4772,7 +4992,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4019,
@@ -4842,7 +5063,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 4020,
@@ -4912,7 +5134,8 @@
             ],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5001,
@@ -4935,7 +5158,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5002,
@@ -4958,7 +5182,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5003,
@@ -4981,7 +5206,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5004,
@@ -5004,7 +5230,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5005,
@@ -5027,7 +5254,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5006,
@@ -5050,7 +5278,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5007,
@@ -5073,7 +5302,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5008,
@@ -5096,7 +5326,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5009,
@@ -5119,7 +5350,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5010,
@@ -5142,7 +5374,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5011,
@@ -5165,7 +5398,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5012,
@@ -5188,7 +5422,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5013,
@@ -5211,7 +5446,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5014,
@@ -5234,7 +5470,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5015,
@@ -5257,7 +5494,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5016,
@@ -5280,7 +5518,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5017,
@@ -5303,7 +5542,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5018,
@@ -5326,7 +5566,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5019,
@@ -5349,7 +5590,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 5020,
@@ -5372,7 +5614,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6001,
@@ -5395,7 +5638,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6002,
@@ -5418,7 +5662,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6003,
@@ -5441,7 +5686,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6004,
@@ -5464,7 +5710,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6005,
@@ -5487,7 +5734,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6006,
@@ -5510,7 +5758,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6007,
@@ -5533,7 +5782,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6008,
@@ -5556,7 +5806,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6009,
@@ -5579,7 +5830,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6010,
@@ -5602,7 +5854,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6011,
@@ -5625,7 +5878,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6012,
@@ -5648,7 +5902,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6013,
@@ -5671,7 +5926,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6014,
@@ -5694,7 +5950,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6015,
@@ -5717,7 +5974,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6016,
@@ -5740,7 +5998,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6017,
@@ -5763,7 +6022,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6018,
@@ -5786,7 +6046,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6019,
@@ -5809,7 +6070,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 6020,
@@ -5832,7 +6094,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9001,
@@ -5855,7 +6118,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9002,
@@ -5878,7 +6142,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9003,
@@ -5901,7 +6166,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9004,
@@ -5924,7 +6190,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9005,
@@ -5947,7 +6214,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9006,
@@ -5970,7 +6238,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9007,
@@ -5993,7 +6262,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9008,
@@ -6016,7 +6286,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9009,
@@ -6039,7 +6310,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9010,
@@ -6062,7 +6334,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9011,
@@ -6085,7 +6358,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9012,
@@ -6108,7 +6382,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9013,
@@ -6131,7 +6406,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9014,
@@ -6154,7 +6430,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9015,
@@ -6177,7 +6454,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9016,
@@ -6200,7 +6478,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9017,
@@ -6223,7 +6502,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9018,
@@ -6246,7 +6526,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9019,
@@ -6269,7 +6550,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 9020,
@@ -6292,7 +6574,8 @@
             "Effects": [],
             "CostumeSlot": "",
             "LayerPriority": 0,
-            "VisualSpritePaths": []
+            "VisualSpritePaths": [],
+            "SetID": ""
         },
         {
             "ItemId": 8001,
@@ -6317,7 +6600,8 @@
             "LayerPriority": 10,
             "VisualSpritePaths": [
                 "Sprite/Model/Skeleton:Layer 5"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8002,
@@ -6342,7 +6626,8 @@
             "LayerPriority": 10,
             "VisualSpritePaths": [
                 "Sprite/Model/Skeleton:Body"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8003,
@@ -6368,7 +6653,8 @@
             "VisualSpritePaths": [
                 "Sprite/Model/Skeleton:ArmL",
                 "Sprite/Model/Skeleton:ArmR"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8004,
@@ -6394,7 +6680,8 @@
             "VisualSpritePaths": [
                 "Sprite/Model/Skeleton:LegL",
                 "Sprite/Model/Skeleton:LegR"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8005,
@@ -6419,7 +6706,8 @@
             "LayerPriority": 10,
             "VisualSpritePaths": [
                 "Sprite/Model/zombie:Head"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8006,
@@ -6444,7 +6732,8 @@
             "LayerPriority": 10,
             "VisualSpritePaths": [
                 "Sprite/Model/zombie:Body"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8007,
@@ -6470,7 +6759,8 @@
             "VisualSpritePaths": [
                 "Sprite/Model/zombie:ArmL",
                 "Sprite/Model/zombie:ArmR"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8008,
@@ -6496,7 +6786,8 @@
             "VisualSpritePaths": [
                 "Sprite/Model/zombie:LegL",
                 "Sprite/Model/zombie:LegR"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8009,
@@ -6521,7 +6812,8 @@
             "LayerPriority": 10,
             "VisualSpritePaths": [
                 "Sprite/Model/Acrxer:Head"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8010,
@@ -6546,7 +6838,8 @@
             "LayerPriority": 10,
             "VisualSpritePaths": [
                 "Sprite/Model/Acrxer:Body"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8011,
@@ -6572,7 +6865,8 @@
             "VisualSpritePaths": [
                 "Sprite/Model/Acrxer:ArmL",
                 "Sprite/Model/Acrxer:ArmR"
-            ]
+            ],
+            "SetID": ""
         },
         {
             "ItemId": 8012,
@@ -6598,7 +6892,536 @@
             "VisualSpritePaths": [
                 "Sprite/Model/Acrxer:LegL",
                 "Sprite/Model/Acrxer:LegR"
-            ]
+            ],
+            "SetID": ""
+        },
+        {
+            "ItemId": 3036,
+            "ItemType": "Equipment",
+            "Name": "Swift Blade",
+            "Description": {
+                "EN": "A lightweight rapier that feels like an extension of your arm.",
+                "TH": "ดาบแรเปียร์น้ำหนักเบาที่ให้ความรู้สึกเหมือนเป็นส่วนต่อขยายของแขนคุณ"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_movespd",
+            "EquipmentSlot": "WeaponOneHandRight",
+            "IsSupportRune": false,
+            "Rarity": "Epic",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 15.0,
+            "BaseMagic": 5.0,
+            "MaxSockets": 2,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "SwiftBlader"
+        },
+        {
+            "ItemId": 3037,
+            "ItemType": "Equipment",
+            "Name": "Swift Jacket",
+            "Description": {
+                "EN": "A sleek leather jacket designed for maximum mobility.",
+                "TH": "แจ็คเก็ตหนังทรงเพรียวบางที่ออกแบบมาเพื่อความคล่องตัวสูงสุด"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_movespd",
+            "EquipmentSlot": "Armor",
+            "IsSupportRune": false,
+            "Rarity": "Epic",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 10.0,
+            "BaseMagic": 0.0,
+            "MaxSockets": 1,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "SwiftBlader"
+        },
+        {
+            "ItemId": 3038,
+            "ItemType": "Equipment",
+            "Name": "Swift Cap",
+            "Description": {
+                "EN": "A comfortable cap that doesn't obstruct vision.",
+                "TH": "หมวกที่สวมใส่สบายและไม่บดบังทัศนวิสัย"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_movespd",
+            "EquipmentSlot": "Helm",
+            "IsSupportRune": false,
+            "Rarity": "Epic",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 5.0,
+            "BaseMagic": 0.0,
+            "MaxSockets": 1,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "SwiftBlader"
+        },
+        {
+            "ItemId": 3039,
+            "ItemType": "Equipment",
+            "Name": "Swift Gloves",
+            "Description": {
+                "EN": "Gloves that improve grip and finger dexterity.",
+                "TH": "ถุงมือที่ช่วยปรับปรุงการยึดเกาะและความคล่องตัวของนิ้ว"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_movespd",
+            "EquipmentSlot": "Glove",
+            "IsSupportRune": false,
+            "Rarity": "Epic",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 5.0,
+            "BaseMagic": 0.0,
+            "MaxSockets": 1,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "SwiftBlader"
+        },
+        {
+            "ItemId": 3040,
+            "ItemType": "Equipment",
+            "Name": "Swift Ring",
+            "Description": {
+                "EN": "A magic ring that quickens the wearer's pulse.",
+                "TH": "แหวนเวทมนตร์ที่ช่วยให้ชีพจรของผู้สวมใส่เต้นเร็วขึ้น"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_movespd",
+            "EquipmentSlot": "Accessory",
+            "IsSupportRune": false,
+            "Rarity": "Epic",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 0.0,
+            "BaseMagic": 5.0,
+            "MaxSockets": 0,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "SwiftBlader"
+        },
+        {
+            "ItemId": 3041,
+            "ItemType": "Equipment",
+            "Name": "Swift Charm",
+            "Description": {
+                "EN": "A talisman that seems to vibrate with kinetic energy.",
+                "TH": "เครื่องรางที่ดูเหมือนจะสั่นสะเทือนด้วยพลังงานจลน์"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_movespd",
+            "EquipmentSlot": "Talisman",
+            "IsSupportRune": false,
+            "Rarity": "Epic",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 0.0,
+            "BaseMagic": 5.0,
+            "MaxSockets": 0,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "SwiftBlader"
+        },
+        {
+            "ItemId": 3042,
+            "ItemType": "Equipment",
+            "Name": "Time Staff",
+            "Description": {
+                "EN": "A heavy staff topped with a ticking clock face.",
+                "TH": "ไม้เท้าหนักที่มียอดเป็นหน้าปัดนาฬิกาที่กำลังเดิน"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_cdr",
+            "EquipmentSlot": "WeaponTwoHand",
+            "IsSupportRune": false,
+            "Rarity": "Legendary",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 5.0,
+            "BaseMagic": 25.0,
+            "MaxSockets": 3,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 20.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "TemporalSage"
+        },
+        {
+            "ItemId": 3043,
+            "ItemType": "Equipment",
+            "Name": "Time Robe",
+            "Description": {
+                "EN": "Robes that seem to exist in multiple time periods at once.",
+                "TH": "เสื้อคลุมที่ดูเหมือนจะดำรงอยู่ในหลายช่วงเวลาพร้อมๆ กัน"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_cdr",
+            "EquipmentSlot": "Armor",
+            "IsSupportRune": false,
+            "Rarity": "Legendary",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 0.0,
+            "BaseMagic": 15.0,
+            "MaxSockets": 2,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "TemporalSage"
+        },
+        {
+            "ItemId": 3044,
+            "ItemType": "Equipment",
+            "Name": "Time Hat",
+            "Description": {
+                "EN": "A pointed hat that distorts the flow of time around the wearer.",
+                "TH": "หมวกปลายแหลมที่บิดเบือนการไหลของเวลารอบตัวผู้สวมใส่"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_cdr",
+            "EquipmentSlot": "Helm",
+            "IsSupportRune": false,
+            "Rarity": "Legendary",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 0.0,
+            "BaseMagic": 10.0,
+            "MaxSockets": 1,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "TemporalSage"
+        },
+        {
+            "ItemId": 3045,
+            "ItemType": "Equipment",
+            "Name": "Time Mittens",
+            "Description": {
+                "EN": "Mittens that feel warm regardless of the external time.",
+                "TH": "ถุงมืออุ่นที่ให้ความอบอุ่นโดยไม่คำนึงถึงเวลาภายนอก"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_cdr",
+            "EquipmentSlot": "Glove",
+            "IsSupportRune": false,
+            "Rarity": "Legendary",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 0.0,
+            "BaseMagic": 5.0,
+            "MaxSockets": 1,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "TemporalSage"
+        },
+        {
+            "ItemId": 3046,
+            "ItemType": "Equipment",
+            "Name": "Time Hourglass",
+            "Description": {
+                "EN": "A small hourglass accessory that flows backwards.",
+                "TH": "เครื่องประดับรูปถุงนาฬิกาทรายขนาดเล็กที่ทรายไหลย้อนกลับ"
+            },
+            "MaxStack": 1,
+            "IconPath": "attr_cdr",
+            "EquipmentSlot": "Accessory",
+            "IsSupportRune": false,
+            "Rarity": "Legendary",
+            "SkillID": 0,
+            "FragmentKind": "",
+            "BasePhysical": 0.0,
+            "BaseMagic": 5.0,
+            "MaxSockets": 0,
+            "Effects": [
+                {
+                    "EffectType": "StatBonus",
+                    "AttributeID": 152,
+                    "Value": 10.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0
+                }
+            ],
+            "CostumeSlot": "",
+            "LayerPriority": 0,
+            "VisualSpritePaths": [],
+            "SetID": "TemporalSage"
         }
     ]
 }

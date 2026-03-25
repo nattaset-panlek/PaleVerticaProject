@@ -116,6 +116,19 @@ namespace CoreSystem.Data
         {
             if (_character == null || slotIndex < 0 || slotIndex >= _character.EquipmentSlots.Length) return;
 
+            // Check if this specific instance is already equipped in another slot (uniqueness check)
+            // This prevents duplication when dragging an item from one slot to another (e.g. Accessory L -> R)
+            if (instance != null)
+            {
+                for (int i = 0; i < _character.EquipmentSlots.Length; i++)
+                {
+                    if (i != slotIndex && _character.EquipmentSlots[i] == instance)
+                    {
+                        UnequipInternal(i);
+                    }
+                }
+            }
+
             // ── TwoHand: clear อีก weapon slot ────────────────────────────
             if (instance != null && instance.Item is Equipment newEquip)
             {

@@ -1,4 +1,5 @@
 using CoreSystem.Data.Items;
+using CoreSystem.Data.Items.Model;
 using CoreSystem.UI.Utile;
 using CoreSystem.Utile;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ public class ItemSlotSquare : ItemSlotGlobal
     public TMP_Text QuanityValue;
     public GameObject EquipIcon;
     public GameObject ModifiedItem;
+    public GameObject HasSocket;
 
     public override void UpdateUI(ItemInstance item)
     {
@@ -28,6 +30,11 @@ public class ItemSlotSquare : ItemSlotGlobal
             {
                 bool isModified = equipInst.Advancement > 0 || (equipInst.SocketedFragments != null && equipInst.SocketedFragments.Count > 0);
                 ModifiedItem.SetActive(isModified);
+            }
+
+            if(HasSocket != null)
+            {
+                HasSocket.SetActive(((Equipment)equipInst.Item).MaxSockets > 0);
             }
         }
         else

@@ -114,7 +114,7 @@ namespace CoreSystem.Skills
                         }
 
                         ExecutePipeline(instance);
-                        instance.StartCooldown();
+                        instance.StartCooldown(instance.CalculateCooldownModified(character?.attributeSystem, instance.SkillData.BaseCooldown));
                         OnCastExecuted?.Invoke(instance.SkillData.Name + " (Toggle)");
                     }
                 }
@@ -146,7 +146,7 @@ namespace CoreSystem.Skills
                 if (instance.IsToggledOn && instance.IsReady())
                 {
                     ExecutePipeline(instance);
-                    instance.StartCooldown();
+                    instance.StartCooldown(instance.CalculateCooldownModified(character?.attributeSystem, instance.SkillData.BaseCooldown));
                     OnCastExecuted?.Invoke(instance.SkillData.Name + " (Toggle ON)");
                 }
                 return;
@@ -204,7 +204,7 @@ namespace CoreSystem.Skills
                 VCT = instance.SkillData != null ? instance.SkillData.BaseVCT : 0,
                 FCT = instance.SkillData != null ? instance.SkillData.BaseFCT : 0,
                 CastDelay = instance.SkillData != null ? instance.SkillData.BaseCastDelay : 0,
-                Cooldown = instance.SkillData != null ? instance.SkillData.BaseCooldown : 0,
+                Cooldown = instance.CalculateCooldownModified(this.character?.attributeSystem, instance.SkillData != null ? instance.SkillData.BaseCooldown : 0),
                 ManaCost = instance.SkillData != null ? instance.SkillData.BaseManaCost : 0
             };
 

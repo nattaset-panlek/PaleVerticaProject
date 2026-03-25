@@ -153,6 +153,8 @@ namespace CoreSystem
         VariableCastTimeReducPercent = 148,
         TrueDamage = 149,
         AOE = 150,
+        CooldownReduc = 151,
+        CooldownReducPercent = 152,
         BaseLevel = 210,
         JobLevel = 211,
     }

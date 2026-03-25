@@ -12,10 +12,14 @@ namespace CoreSystem.Data.Items
     public static class ItemDatabase
     {
         private static Dictionary<int, Item> _items = new Dictionary<int, Item>();
+        private static Dictionary<string, EquipmentSetData> _sets = new Dictionary<string, EquipmentSetData>();
 
         public static void Initialize()
         {
             _items.Clear();
+            _sets.Clear();
+            
+            LoadSets();
 
             TextAsset jsonFile = Resources.Load<TextAsset>("Data/Item");
             if (jsonFile == null)
@@ -104,6 +108,12 @@ namespace CoreSystem.Data.Items
                             IconPath = entry.IconPath
                         };
                         PopulateEffects(equip.Effects, entry.Effects);
+                        
+                        if (!string.IsNullOrEmpty(entry.SetID) && _sets.TryGetValue(entry.SetID, out EquipmentSetData setData))
+                        {
+                            equip.SetResource = setData;
+                        }
+                        
                         return equip;
                     }
                     return null;
@@ -153,6 +163,31 @@ namespace CoreSystem.Data.Items
                     Debug.LogWarning($"Unknown item type {entry.ItemType} for item {entry.ItemId}");
                     return null;
             }
+        }
+
+        private static void LoadSets()
+        {
+            TextAsset jsonFile = Resources.Load<TextAsset>("Data/ItemSet");
+            if (jsonFile == null) return;
+
+            ItemSetList setList = JsonUtility.FromJson<ItemSetList>(jsonFile.text);
+            if (setList == null || setList.Sets == null) return;
+
+            foreach (var sEntry in setList.Sets)
+            {
+                var setData = ScriptableObject.CreateInstance<EquipmentSetData>();
+                setData.SetName = sEntry.SetName;
+                
+                foreach (var bEntry in sEntry.BonusLevels)
+                {
+                    var bonusLevel = new SetBonusLevel { RequiredPieces = bEntry.RequiredPieces };
+                    PopulateEffects(bonusLevel.BonusEffects, bEntry.Effects);
+                    setData.BonusLevels.Add(bonusLevel);
+                }
+                
+                _sets[sEntry.SetID] = setData;
+            }
+            Debug.Log($"ItemDatabase: Loaded {_sets.Count} equipment sets from JSON.");
         }
 
         private static void PopulateEffects(List<EquipmentEffect> targetList, List<EffectEntry> entries)
@@ -254,6 +289,29 @@ namespace CoreSystem.Data.Items
         public string CostumeSlot;
         public int LayerPriority;
         public List<string> VisualSpritePaths;
+        
+        public string SetID; // New: Reference to a set in ItemSet.json
+    }
+
+    [System.Serializable]
+    public class ItemSetList
+    {
+        public List<ItemSetEntry> Sets;
+    }
+
+    [System.Serializable]
+    public class ItemSetEntry
+    {
+        public string SetID;
+        public string SetName;
+        public List<SetBonusEntry> BonusLevels;
+    }
+
+    [System.Serializable]
+    public class SetBonusEntry
+    {
+        public int RequiredPieces;
+        public List<EffectEntry> Effects;
     }
 
 }

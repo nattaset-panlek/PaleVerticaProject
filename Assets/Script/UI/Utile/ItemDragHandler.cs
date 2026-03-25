@@ -16,7 +16,7 @@ namespace CoreSystem.UI.Utile
         public static ItemInstance DraggedItem { get; private set; }
         public static IItemProvider ActiveSource { get; private set; }
 
-        private Image _dragIcon;
+        private RectTransform _dragVisual;
         private Canvas _canvas;
         private RectTransform _rectTransform;
 
@@ -35,24 +35,43 @@ namespace CoreSystem.UI.Utile
             DraggedItem = provider.GetItem();
             ActiveSource = provider;
 
-            // Create Visual
-            GameObject go = new GameObject("DragIcon");
-            go.transform.SetParent(_canvas.transform);
-            _dragIcon = go.AddComponent<Image>();
-            _dragIcon.sprite = provider.GetIcon();
-            _dragIcon.color = new Color(1, 1, 1, 0.6f);
-            _dragIcon.raycastTarget = false;
+            // Get the source gameObject to clone (usually the slot)
+            GameObject sourceGO = (provider as MonoBehaviour)?.gameObject ?? gameObject;
+
+            // Create Visual by cloning the gameobject
+            GameObject go = Instantiate(sourceGO, _canvas.transform);
+            go.name = "DragVisual_Clone";
             
-            // Set size
-            RectTransform iconRT = go.GetComponent<RectTransform>();
-            iconRT.sizeDelta = _rectTransform != null ? _rectTransform.sizeDelta : new Vector2(50, 50);
+            // Setup RectTransform to follow mouse
+            _dragVisual = go.GetComponent<RectTransform>();
+            _dragVisual.sizeDelta = _rectTransform != null ? _rectTransform.sizeDelta : new Vector2(50, 50);
+
+            // Important: Disable interaction and raycasting on the clone so it doesn't block the drop target
+            CanvasGroup group = go.GetComponent<CanvasGroup>();
+            if (group == null) group = go.AddComponent<CanvasGroup>();
+            group.alpha = 0.6f;
+            group.blocksRaycasts = false;
+            group.interactable = false;
+
+            // Clean up scripts on the clone to prevent unwanted behavior (multiple drag handlers, etc.)
+            MonoBehaviour[] scripts = go.GetComponentsInChildren<MonoBehaviour>();
+            foreach (var script in scripts)
+            {
+                // We keep visual components like Image, TMP_Text, etc. 
+                // but remove anything that implements Event interfaces or this script
+                if (script is IEventSystemHandler || script is ItemDragHandler || script is Selectable)
+                {
+                    // For selectables (Button, etc.), we can also just disable them, but removing is cleaner for a static clone
+                    Destroy(script);
+                }
+            }
 
             MoveIcon(eventData.position);
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (_dragIcon != null)
+            if (_dragVisual != null)
             {
                 MoveIcon(eventData.position);
             }
@@ -60,9 +79,9 @@ namespace CoreSystem.UI.Utile
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (_dragIcon != null)
+            if (_dragVisual != null)
             {
-                Destroy(_dragIcon.gameObject);
+                Destroy(_dragVisual.gameObject);
             }
             
             DraggedItem = null;
@@ -71,7 +90,7 @@ namespace CoreSystem.UI.Utile
 
         private void MoveIcon(Vector2 screenPos)
         {
-            if (_dragIcon == null || _canvas == null) return;
+            if (_dragVisual == null || _canvas == null) return;
 
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _canvas.transform as RectTransform, 
@@ -79,9 +98,10 @@ namespace CoreSystem.UI.Utile
                 _canvas.worldCamera, 
                 out Vector2 localPos))
             {
-                _dragIcon.rectTransform.localPosition = localPos;
+                _dragVisual.localPosition = localPos;
             }
         }
     }
 }
+
 

@@ -117,5 +117,16 @@ namespace CoreSystem.Skills
 
             return vct + fct;
         }
+
+        public float CalculateCooldownModified(AttributeSystem stats, float baseCooldown)
+        {
+            if (stats == null) return baseCooldown;
+
+            float flatReduc = stats.GetAttribute(AttributeType.CooldownReduc)?.CurrentValue ?? 0;
+            float percentReduc = stats.GetAttribute(AttributeType.CooldownReducPercent)?.CurrentValue ?? 0;
+
+            float finalCooldown = (baseCooldown - flatReduc) * (1f - (percentReduc / 100f));
+            return Mathf.Max(0f, finalCooldown);
+        }
     }
 }
