@@ -17,9 +17,9 @@ MonoBehaviour:
   SkillElement: 3
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261340068708373
+    rid: 5700261407901089814
   Effects:
-  - rid: 5700261340068708374
+  - rid: 5700261407901089815
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 5586069453266129572, guid: a6e0641cf9b8a94498d37d3cbd932286, type: 3}
   CastVisualPrefab: {fileID: 5586069453266129572, guid: a6e0641cf9b8a94498d37d3cbd932286, type: 3}
@@ -27,14 +27,14 @@ MonoBehaviour:
   BaseDamage: 5
   BaseAOERadius: 6
   BaseProjectileCount: 0
-  BaseManaCost: 5
+  BaseManaCost: 10
   IsToggle: 1
   IsContinuousArea: 0
   AreaDuration: 5
   AreaTickRate: 0.5
   BaseVCT: 5
   BaseFCT: 0.5
-  BaseCastDelay: 0
+  BaseCastDelay: 1
   BaseCooldown: 1
   Scalings:
   - TargetField: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     FlatBonus: 0
     LevelMultiplier: 0
   - TargetField: 1
-    ScalingAttribute: 152
+    ScalingAttribute: 150
     AttributeMultiplier: 0.06
     GlobalMultiplier: 1
     FlatBonus: 0
@@ -64,12 +64,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261340068708373
+    - rid: 5700261407901089814
       type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261340068708374
+    - rid: 5700261407901089815
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1

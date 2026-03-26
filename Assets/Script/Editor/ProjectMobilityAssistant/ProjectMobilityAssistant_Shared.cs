@@ -82,7 +82,21 @@ public partial class ProjectMobilityAssistant : EditorWindow
             if (filter != null && !filter(entry)) continue;
 
             Rect rect = EditorGUILayout.BeginHorizontal(GUILayout.Height(32));
-            if (selectedIndex == i) GUI.backgroundColor = new Color(0.1f, 0.6f, 1f, 0.6f);
+            
+            // ── Background & Accent Bar ──
+            if (selectedIndex == i)
+            {
+                // Vibrant background
+                GUI.color = new Color(0.15f, 0.45f, 0.9f, 0.8f);
+                GUI.DrawTexture(rect, EditorGUIUtility.whiteTexture);
+                GUI.color = Color.white;
+                
+                // Active Accent Bar (Left)
+                Rect accentRect = new Rect(rect.x, rect.y, 4, rect.height);
+                GUI.color = new Color(0.3f, 0.8f, 1f, 1f);
+                GUI.DrawTexture(accentRect, EditorGUIUtility.whiteTexture);
+                GUI.color = Color.white;
+            }
             
             if (GUILayout.Button("", "Label", GUILayout.ExpandWidth(true), GUILayout.Height(32)))
             {
@@ -94,7 +108,8 @@ public partial class ProjectMobilityAssistant : EditorWindow
             if (drawIcon != null) drawIcon(rect, entry);
 
             // Re-draw text on top of the button
-            GUI.Label(new Rect(rect.x + 10, rect.y, rect.width - 40, rect.height), label, selectedIndex == i ? EditorStyles.whiteLabel : EditorStyles.label);
+            var labelStyle = selectedIndex == i ? EditorStyles.whiteBoldLabel : EditorStyles.label;
+            GUI.Label(new Rect(rect.x + 12, rect.y, rect.width - 40, rect.height), label, labelStyle);
             
             // Reorder buttons (Note: these should also updates selection if we want consistency, but swap handles it internally usually)
             if (GUILayout.Button("▲", EditorStyles.miniButtonLeft, GUILayout.Width(20), GUILayout.Height(32))) { 
@@ -107,7 +122,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
             }
 
             EditorGUILayout.EndHorizontal();
-            GUI.backgroundColor = Color.white;
+            GUI.color = Color.white;
         }
         EditorGUILayout.EndScrollView();
 

@@ -6,6 +6,7 @@ using CoreSystem.Attributes;
 using System.Collections.Generic;
 using CoreSystem.Data.Skills;
 using CoreSystem.Skills;
+using CoreSystem.Skills.Modifiers;
 
 namespace CoreSystem.Data
 {
@@ -245,6 +246,67 @@ namespace CoreSystem.Data
             return clonedSkill;
         }
 
+        public SupportModifier GetSynchronizedSupportModifier(int id)
+        {
+            if (!_supportSkillAssets.TryGetValue(id, out SupportModifier templateAsset))
+            {
+                return null;
+            }
+
+            // Clone the asset safely
+            SupportModifier clonedModifier = ScriptableObject.Instantiate(templateAsset);
+            clonedModifier.name = templateAsset.name;
+
+            // Merge JSON Data if exists
+            if (_supportSkillJsonData.TryGetValue(id, out SupportSkillJsonData jsonData))
+            {
+                if (clonedModifier is GenericSupportModifier genericMod)
+                {
+                    genericMod.ModifierName = jsonData.ModifierName;
+                    
+                    if (jsonData.Effects != null)
+                    {
+                        genericMod.Effects.Clear();
+                        foreach (var eData in jsonData.Effects)
+                        {
+                            var effect = new SupportEffect
+                            {
+                                FlatValue = eData.FlatValue,
+                                PercentValue = eData.PercentValue,
+                                UsePayloadReference = eData.UsePayloadReference,
+                                PayloadMultiplier = eData.PayloadMultiplier,
+                                UseAttributeReference = eData.UseAttributeReference,
+                                AttributeMultiplier = eData.AttributeMultiplier
+                            };
+                            
+                            if (System.Enum.TryParse(eData.TargetField, out PayloadTarget target)) effect.TargetField = target;
+                            if (System.Enum.TryParse(eData.Operation, out ModifierOperation op)) effect.Operation = op;
+                            if (System.Enum.TryParse(eData.ReferencePayloadField, out PayloadTarget refP)) effect.ReferencePayloadField = refP;
+                            if (System.Enum.TryParse(eData.ReferenceAttribute, out AttributeType attr)) effect.ReferenceAttribute = attr;
+                            
+                            genericMod.Effects.Add(effect);
+                        }
+                    }
+
+                    if (jsonData.Conditions != null)
+                    {
+                        genericMod.Conditions.Clear();
+                        foreach (var cData in jsonData.Conditions)
+                        {
+                            var cond = new SupportCondition();
+                            if (System.Enum.TryParse(cData.Type, out SupportConditionType cType)) cond.Type = cType;
+                            if (System.Enum.TryParse(cData.RequiredElement, out ElementType el)) cond.RequiredElement = el;
+                            cond.RequiredSkillID = cData.RequiredSkillID;
+                            cond.MinSkillLevel = cData.MinSkillLevel;
+                            genericMod.Conditions.Add(cond);
+                        }
+                    }
+                }
+            }
+
+            return clonedModifier;
+        }
+
         // --- API METHODS ---
 
         public Item GetItemInternal(int id)
@@ -283,6 +345,7 @@ namespace CoreSystem.Data
         public static AttributeTemplate GetAttribute(AttributeType type) => AttributeDatabase.GetAttribute(type);
         public static AttributeTemplate GetAttributeById(int id) => AttributeDatabase.GetAttribute(id);
         public static ActiveSkill GetSynchronizedSkill(int id) => Instance.GetSynchronizedActiveSkill(id);
+        public static SupportModifier GetSynchronizedSupport(int id) => Instance.GetSynchronizedSupportModifier(id);
 
         public static List<Item> GetItems => Instance.GetItemsInternal();
         public static List<CharacterModel> Characters => Instance.GetCharactersInternal();
@@ -294,13 +357,13 @@ namespace CoreSystem.Data
             switch (slot)
             {
                 case EquipmentSlot.WeaponOneHandLeft:  return 0;
-                case EquipmentSlot.WeaponTwoHand:      return 0;   // Manager จะ handle TwoHand logic
+                case EquipmentSlot.WeaponTwoHand:      return 0;   
                 case EquipmentSlot.WeaponOneHandRight: return 7;
                 case EquipmentSlot.Helm:               return 1;
                 case EquipmentSlot.Armor:              return 2;
                 case EquipmentSlot.Glove:              return 3;
                 case EquipmentSlot.Talisman:           return 4;
-                case EquipmentSlot.Accessory:          return 5;   // default → slot แรก, Manager จะหา slot ว่าง
+                case EquipmentSlot.Accessory:          return 5;   
                 case EquipmentSlot.AccessoryLeft:      return 5;
                 case EquipmentSlot.AccessoryRight:     return 6;
                 default: return 0;

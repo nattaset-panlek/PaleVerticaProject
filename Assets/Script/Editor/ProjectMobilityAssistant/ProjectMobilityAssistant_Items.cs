@@ -82,21 +82,63 @@ public partial class ProjectMobilityAssistant : EditorWindow
                 entry.BaseMagic    = EditorGUILayout.FloatField("Base Magic", entry.BaseMagic);
                 entry.MaxSockets   = EditorGUILayout.IntField("Max Sockets", entry.MaxSockets);
             }
+            else if (entry.ItemType == "Costume")
+            {
+                if (System.Enum.TryParse(entry.CostumeSlot, out CoreSystem.CostumeSlot cSlot))
+                     entry.CostumeSlot = ((CoreSystem.CostumeSlot)EditorGUILayout.EnumPopup("Costume Slot", cSlot)).ToString();
+                else
+                     entry.CostumeSlot = EditorGUILayout.TextField("Costume Slot (Raw)", entry.CostumeSlot);
+
+                entry.LayerPriority = EditorGUILayout.IntField("Layer Priority", entry.LayerPriority);
+                
+                DrawSectionHeader("\uD83C\uD0AD Costume Sprite Layers");
+                if (entry.VisualSpritePaths == null) entry.VisualSpritePaths = new List<string>();
+                for (int i = 0; i < entry.VisualSpritePaths.Count; i++)
+                {
+                    EditorGUILayout.BeginVertical(SectionStyle);
+                    EditorGUILayout.BeginHorizontal();
+                    
+                    Sprite currentSprite = ResolveResourceSprite(entry.VisualSpritePaths[i]);
+                    Sprite newSprite = (Sprite)EditorGUILayout.ObjectField($"Layer {i}", currentSprite, typeof(Sprite), false);
+                    
+                    if (newSprite != currentSprite)
+                        entry.VisualSpritePaths[i] = GetResourcePath(newSprite);
+                    
+                    if (GUILayout.Button("X", GUILayout.Width(20))) { entry.VisualSpritePaths.RemoveAt(i); break; }
+                    EditorGUILayout.EndHorizontal();
+                    
+                    entry.VisualSpritePaths[i] = EditorGUILayout.TextField("Path", entry.VisualSpritePaths[i]);
+                    
+                    if (newSprite != null)
+                    {
+                         Texture2D preview = AssetPreview.GetAssetPreview(newSprite);
+                         if (preview != null)
+                            GUILayout.Label(new GUIContent(preview), GUILayout.Width(40), GUILayout.Height(40));
+                    }
+                    
+                    EditorGUILayout.EndVertical();
+                }
+                if (GUILayout.Button("\uFF0B Add Sprite Layer")) entry.VisualSpritePaths.Add("");
+            }
             
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.BeginVertical(SectionStyle);
-            EditorGUILayout.BeginHorizontal();
             GUILayout.Label("Visuals", EditorStyles.boldLabel);
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button("\uD83D\uDCC1  Resources/Sprite/Item", EditorStyles.miniButton))
-                EditorUtility.RevealInFinder("Assets/Resources/Sprite/Item");
-            EditorGUILayout.EndHorizontal();
             
-            entry.IconPath = EditorGUILayout.TextField("Path", entry.IconPath ?? "");
-
-            // Preview + Open Folder
             EditorGUILayout.BeginHorizontal();
+            Sprite currentIcon = ResolveResourceSprite(entry.IconPath);
+            Sprite newIcon = (Sprite)EditorGUILayout.ObjectField("Item Icon", currentIcon, typeof(Sprite), false);
+            
+            if (newIcon != currentIcon)
+            {
+                entry.IconPath = GetResourcePath(newIcon);
+            }
+            EditorGUILayout.EndHorizontal();
+
+            entry.IconPath = EditorGUILayout.TextField("Resource Path", entry.IconPath ?? "");
+
+            // Preview
             if (!string.IsNullOrEmpty(entry.IconPath))
             {
                 var sprite = ResolveResourceSprite(entry.IconPath);
@@ -104,24 +146,27 @@ public partial class ProjectMobilityAssistant : EditorWindow
                 {
                     Texture2D preview = AssetPreview.GetAssetPreview(sprite) ?? sprite.texture;
                     if (preview != null)
-                        GUILayout.Label(new GUIContent(preview), GUILayout.Width(52), GUILayout.Height(52));
+                    {
+                        EditorGUILayout.Space(5);
+                        Rect r = EditorGUILayout.GetControlRect(false, 64);
+                        r.width = 64;
+                        GUI.DrawTexture(r, preview, ScaleMode.ScaleToFit);
+                    }
                 }
                 else
                 {
-                    EditorGUILayout.HelpBox("Sprite not found", MessageType.Warning);
+                    EditorGUILayout.HelpBox("Sprite not found at specified path.", MessageType.Warning);
                 }
             }
-            GUILayout.FlexibleSpace();
-            if (GUILayout.Button("\uD83D\uDCC1  Open Sprite Folder", GUILayout.Height(28)))
-                EditorUtility.RevealInFinder("Assets/Resources/Sprite/Item");
-            EditorGUILayout.EndHorizontal();
-
             EditorGUILayout.EndVertical();
 
             // ── Effects ─────────────────────────────────────────────────────────
             DrawEffectSection(entry.Effects ?? (entry.Effects = new List<EffectEntry>()), false);
         }, 
-        (entry) => $"[{entry.ItemId}] {entry.Name}", 
+        (entry) => {
+            string effectLabel = (entry.Effects != null && entry.Effects.Count > 0) ? " ⚡" : "";
+            return $"[{entry.ItemId}] {entry.Name}{effectLabel}";
+        }, 
         () => {
             var e = new ItemEntry { Description = new LocalizedString(), ItemType = ItemType.Consumable.ToString(), Rarity = ItemRarity.Common.ToString() };
             e.ItemId = GetNextItemId(e.ItemType);
@@ -134,11 +179,16 @@ public partial class ProjectMobilityAssistant : EditorWindow
             }
         },
         (entry) => {
+            if (_showOnlyWithEffects && (entry.Effects == null || entry.Effects.Count == 0)) return false;
             if (_itemTypeFilterIndex == 0) return true;
             return entry.ItemType == _itemTypeNames[_itemTypeFilterIndex];
         },
         () => {
-            EditorGUILayout.LabelField("Filter by Type:");
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("Filter by Type:", GUILayout.Width(100));
+            _showOnlyWithEffects = EditorGUILayout.ToggleLeft("Show Only with Effects (⚡)", _showOnlyWithEffects);
+            EditorGUILayout.EndHorizontal();
+            
             _itemTypeFilterIndex = GUILayout.SelectionGrid(_itemTypeFilterIndex, _tabNamesForItems, 4, EditorStyles.miniButton); 
             EditorGUILayout.Space(5);
         });
@@ -180,8 +230,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
                     "ScalingBonusEffect",
                     "SkillUnlockEffect",
                     "AutoCastEffect",
-                    "EquipmentEffect",
-                    "StatBonus"
+                    "BonusCondition"
                 };
             }
 
@@ -257,6 +306,34 @@ public partial class ProjectMobilityAssistant : EditorWindow
         else if (effect.EffectType == "SkillUnlockEffect")
         {
             effect.SkillID = EditorGUILayout.IntField("Skill ID", effect.SkillID);
+        }
+        else if (effect.EffectType == "BonusCondition")
+        {
+            DrawSectionHeader("Condition Configuration");
+            EditorGUILayout.LabelField("If Attribute meets criteria, grant bonus.");
+            
+            // The Attribute to check
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Check Attr", GUILayout.Width(80));
+            DrawAttributeSelector(effect.ConditionAttributeID, (id) => effect.ConditionAttributeID = id);
+            EditorGUILayout.EndHorizontal();
+
+            // Comparison & Threshold
+            EditorGUILayout.BeginHorizontal();
+            effect.ConditionComparison = EditorGUILayout.TextField("Comparison", effect.ConditionComparison ?? ">=", GUILayout.Width(140));
+            effect.ConditionThreshold = EditorGUILayout.FloatField("Threshold", effect.ConditionThreshold);
+            EditorGUILayout.EndHorizontal();
+
+            EditorGUILayout.Space(5);
+            DrawSectionHeader("Bonus Award");
+            
+            // The Attribute to grant
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Bonus Attr", GUILayout.Width(80));
+            DrawAttributeSelector(effect.AttributeID, (id) => effect.AttributeID = id);
+            EditorGUILayout.EndHorizontal();
+
+            effect.Value = EditorGUILayout.FloatField("Bonus Value", effect.Value);
         }
     }
 

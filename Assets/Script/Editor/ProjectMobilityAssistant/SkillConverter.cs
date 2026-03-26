@@ -60,6 +60,14 @@ public static class SkillConverter
                 case "TargetLocation": logic = new TargetLocationTargeting { CastRange = data.BaseTargeting.CastRange > 0 ? data.BaseTargeting.CastRange : 7f }; break;
             }
             asset.BaseTargeting = logic;
+
+            if (logic != null)
+            {
+                if (System.Enum.TryParse(data.BaseTargeting.Alignment, out TargetAlignment alignment))
+                    logic.AlignmentAction = alignment;
+
+                logic.IncludeSelf = data.BaseTargeting.IncludeSelf;
+            }
         }
 
         if (data.Scalings != null)
@@ -197,6 +205,14 @@ public static class SkillConverter
                 case "TargetLocation": logic = new TargetLocationTargeting { CastRange = data.BaseTargeting.CastRange > 0 ? data.BaseTargeting.CastRange : 7f }; break;
             }
             asset.BaseTargeting = logic;
+
+            if (logic != null)
+            {
+                if (System.Enum.TryParse(data.BaseTargeting.Alignment, out TargetAlignment alignment))
+                    logic.AlignmentAction = alignment;
+
+                logic.IncludeSelf = data.BaseTargeting.IncludeSelf;
+            }
         }
 
         if (data.Scalings != null)

@@ -1,4 +1,4 @@
-using CoreSystem;
+﻿using CoreSystem;
 using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Effects;
 using CoreSystem.Data.Items.Model;
@@ -128,10 +128,10 @@ namespace CoreSystem.UI.Inventory
             }
 
             // Refine Info (Advancement)
-            if (instance is EquipmentInstance equipInst && equipInst.Advancement > 0)
+            if (instance is EquipmentInstance equipInst && equipInst.Reforge > 0)
             {
                 refineSection.SetActive(true);
-                refineValueText.text = $"{equipInst.Advancement}";
+                refineValueText.text = $"{equipInst.Reforge}";
             }
             else
             {
@@ -170,67 +170,53 @@ namespace CoreSystem.UI.Inventory
             socketSection.SetActive(false);
         }
 
+
         private void ShowEquipment(ItemInstance instance)
         {
-            Equipment equip = instance.Item as Equipment;
+            if (!(instance.Item is Equipment equip)) return;
 
-            // Equipment shows everything according to rules
             descriptionSection.SetActive(true);
 
+            bool isWeapon = equip.Slot == EquipmentSlot.WeaponOneHandLeft ||
+                            equip.Slot == EquipmentSlot.WeaponOneHandRight ||
+                            equip.Slot == EquipmentSlot.WeaponTwoHand;
 
+            float phyBonus = 0f;
+            float magBonus = 0f;
 
-            if (instance.Item is Equipment equipment)
+            if (instance is EquipmentInstance equipInst)
             {
+                float refineMultiplier = EquipmentDatabase.GetRefineMultiplier(equipInst.Refine);
+                float reforgeBonus = equipInst.Reforge * EquipmentDatabase.ReforgeValuePerLevel;
 
-                bool isWeapon = equipment.Slot == EquipmentSlot.WeaponOneHandLeft ||
-                                equipment.Slot == EquipmentSlot.WeaponOneHandRight ||
-                                equipment.Slot == EquipmentSlot.WeaponTwoHand;
+                phyBonus = (equip.BasePhysical * refineMultiplier) + reforgeBonus;
+                magBonus = (equip.BaseMagic * refineMultiplier) + reforgeBonus;
 
-                if (isWeapon)
+                if (equipInst.Refine > 0)
                 {
-                    descriptionContentText.text = $"<color=#C62828>Physical Attack: {equip.BasePhysical}</color>, <color=#1565C0>Magic Attack: {equip.BaseMagic}</color>\n" +
-                                                  $"{equip.Description}";
+                    itemNameText.text = $"{equip.Name} <color=#006FC0>+{equipInst.Refine}</color>";
                 }
-                else
-                {
-                    descriptionContentText.text = $"<color=#2E7D32>Defense: {equip.BasePhysical}</color>, <color=#6A1B9A>Magic Defense: {equip.BaseMagic}</color>\n" +
-                                                  $"{equip.Description}";
-                }
+            }
+
+            string phyBonusText = phyBonus > 0 ? $" <color=#006FC0>(+{phyBonus:F0})</color>" : "";
+            string magBonusText = magBonus > 0 ? $" <color=#006FC0>(+{magBonus:F0})</color>" : "";
+
+            string statsText = isWeapon
+                ? $"<color=#C62828>Physical Attack: {equip.BasePhysical}</color>{phyBonusText}, <color=#1565C0>Magic Attack: {equip.BaseMagic}</color>{magBonusText}"
+                : $"<color=#2E7D32>Defense: {equip.BasePhysical}</color>{phyBonusText}, <color=#6A1B9A>Magic Defense: {equip.BaseMagic}</color>{magBonusText}";
+
+            descriptionContentText.text = $"{statsText}\n\n{equip.Description}";
+
+            PopulateEffects(equip, equip.Effects);
+
+            if (instance is EquipmentInstance eInstance && eInstance.SocketedFragments != null && eInstance.SocketedFragments.Any(f => f != null))
+            {
+                socketSection.SetActive(true);
+                PopulateSocketList(socketContent, eInstance.SocketedFragments);
             }
             else
             {
-                descriptionContentText.text = equip.Description;
-            }
-
-            // Split Effects
-            List<AttributeBonusEffect> attrEffects = new List<AttributeBonusEffect>();
-            List<string> otherEffects = new List<string>();
-
-            foreach (var effect in equip.Effects)
-            {
-                if (effect is AttributeBonusEffect attr)
-                    attrEffects.Add(attr);
-                else
-                    otherEffects.Add(GetEffectDescription(effect));
-            }
-
-            if (attrEffects.Count > 0)
-            {
-                attributeSection.SetActive(true);
-                PopulateAttributeList(attributeContent, attrEffects);
-            }
-
-            if (otherEffects.Count > 0)
-            {
-                itemEffectSection.SetActive(true);
-                effectContentText.text = string.Join("\n", otherEffects);
-            }
-
-            // Sockets (Only if has fragments)
-            if (instance is EquipmentInstance equipInstance && equipInstance.SocketedFragments != null && equipInstance.SocketedFragments.Any(f => f != null))
-            {
-                socketSection.SetActive(true);
-                PopulateSocketList(socketContent, equipInstance.SocketedFragments);
+                socketSection.SetActive(false);
             }
         }
 
@@ -238,20 +224,69 @@ namespace CoreSystem.UI.Inventory
         {
             if (fragment == null) return;
 
-            // Show description
             descriptionSection.SetActive(true);
             descriptionContentText.text = fragment.Description;
 
-            // Fragment shows item effect and attribute
-            List<AttributeBonusEffect> attrEffects = new List<AttributeBonusEffect>();
-            List<string> otherEffects = new List<string>();
+            PopulateEffects(fragment, fragment.Effects);
+        }
 
-            foreach (var effect in fragment.Effects)
+        private void PopulateEffects(Item item, List<EquipmentEffect> effects)
+        {
+            if (effects == null) return;
+
+            List<AttributeBonusEffect> attrEffects = new List<AttributeBonusEffect>();
+            List<string> setEffects = new List<string>();
+            List<string> condEffects = new List<string>();
+            List<string> skillEffects = new List<string>();
+            List<string> etcEffects = new List<string>();
+
+            if (item is Equipment eq && eq.SetResource != null)
+            {
+                string setInfo = $"<color=#AB47BC>- Item Set {eq.SetResource.SetName}</color>";
+
+                if (eq.SetResource.BonusLevels != null)
+                {
+                    var sortedLevels = eq.SetResource.BonusLevels.OrderBy(l => l.RequiredPieces);
+                    foreach (var level in sortedLevels)
+                    {
+                        List<string> levelEffectDescs = new List<string>();
+                        if (level.BonusEffects != null)
+                        {
+                            foreach (var effect in level.BonusEffects)
+                            {
+                                string effectDesc = GetEffectDescription(effect);
+                                if (!string.IsNullOrEmpty(effectDesc))
+                                {
+                                    levelEffectDescs.Add(HighlightValues(effectDesc));
+                                }
+                            }
+                        }
+
+                        if (levelEffectDescs.Count > 0)
+                        {
+                            setInfo += $"\n  <color=#BA68C8>[{level.RequiredPieces}] Pieces </color> {string.Join(", ", levelEffectDescs)}";
+                        }
+                    }
+                }
+                setEffects.Add(setInfo);
+            }
+
+            foreach (var effect in effects)
             {
                 if (effect is AttributeBonusEffect attr)
+                {
                     attrEffects.Add(attr);
-                else
-                    otherEffects.Add(GetEffectDescription(effect));
+                    continue;
+                }
+
+                string desc = GetEffectDescription(effect);
+                if (string.IsNullOrEmpty(desc)) continue;
+
+                desc = $"- {HighlightValues(desc)}";
+
+                if (effect is ConditionalBonusEffect) condEffects.Add(desc);
+                else if (effect is SkillUnlockEffect) skillEffects.Add(desc);
+                else etcEffects.Add(desc);
             }
 
             if (attrEffects.Count > 0)
@@ -260,11 +295,28 @@ namespace CoreSystem.UI.Inventory
                 PopulateAttributeList(attributeContent, attrEffects);
             }
 
-            if (otherEffects.Count > 0)
+            List<string> combinedEffects = new List<string>();
+            combinedEffects.AddRange(setEffects);
+            combinedEffects.AddRange(condEffects);
+            combinedEffects.AddRange(skillEffects);
+            combinedEffects.AddRange(etcEffects);
+
+            if (combinedEffects.Count > 0)
             {
                 itemEffectSection.SetActive(true);
-                effectContentText.text = string.Join("\n", otherEffects);
+                effectContentText.text = string.Join("\n", combinedEffects);
             }
+        }
+
+        private string HighlightValues(string text)
+        {
+            return System.Text.RegularExpressions.Regex.Replace(text, @"([+-]?\d+(?:\.\d+)?%?)", match =>
+            {
+                string val = match.Value;
+                if (val.StartsWith("+")) return $"<color=#388E3C>{val}</color>";
+                if (val.StartsWith("-")) return $"<color=#D32F2F>{val}</color>";
+                return $"<color=#F9A825>{val}</color>";
+            });
         }
 
         private void ShowSkillRune(SkillRune skillRune)

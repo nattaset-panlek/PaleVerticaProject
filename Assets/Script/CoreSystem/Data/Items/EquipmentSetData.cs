@@ -8,12 +8,13 @@ namespace CoreSystem.Data.Items
     public class SetBonusLevel
     {
         public int RequiredPieces;
-        [SerializeReference] public List<EquipmentEffect> BonusEffects = new List<EquipmentEffect>();
+        public List<EquipmentEffect> BonusEffects = new List<EquipmentEffect>();
     }
 
-    [CreateAssetMenu(fileName = "NewEquipmentSet", menuName = "Item System/Equipment Set")]
-    public class EquipmentSetData : ScriptableObject
+    [System.Serializable]
+    public class EquipmentSetData
     {
+        public string SetID;
         public string SetName;
         public List<SetBonusLevel> BonusLevels = new List<SetBonusLevel>();
     }

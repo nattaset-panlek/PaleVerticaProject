@@ -18,18 +18,33 @@ namespace CoreSystem.Data.Items.Effects
 
         public override void Apply(Character player)
         {
-            // Note: In an event-driven system, this would listen to "OnStatChanged" to re-evaluate.
-            // For now, we evaluate once on equip, or if ticked during an update.
+            if (player == null || player.attributeSystem == null) return;
+            
+            _lastCharacter = player;
             Evaluate(player);
+            
+            player.attributeSystem.OnAttributesChanged += OnAttributesChanged;
         }
 
         public override void Remove(Character player)
         {
+            if (player != null && player.attributeSystem != null)
+            {
+                player.attributeSystem.OnAttributesChanged -= OnAttributesChanged;
+            }
+
             if (_isActive && BonusEffect != null)
             {
                 BonusEffect.Remove(player);
                 _isActive = false;
             }
+            _lastCharacter = null;
+        }
+
+        private Character _lastCharacter;
+        private void OnAttributesChanged()
+        {
+            if (_lastCharacter != null) Evaluate(_lastCharacter);
         }
 
         public void Evaluate(Character player)

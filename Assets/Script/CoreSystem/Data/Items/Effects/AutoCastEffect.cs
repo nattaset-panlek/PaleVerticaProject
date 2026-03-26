@@ -55,12 +55,12 @@ namespace CoreSystem.Data.Items.Effects
             {
                 if (Condition != null && !Condition.Evaluate(_boundPlayer)) return;
                 
-                // var skill = Database.GetSkillAsset(SkillID);
-                // if (skill != null)
-                // {
-                //     // Bypass normal slot restrictions, automatically cast the granted skill
-                //     _boundPlayer.skillCaster.CastSkillDirectly(skill);
-                // }
+                var skill = CoreSystem.Data.Database.GetSynchronizedSkill(SkillID);
+                if (skill != null)
+                {
+                    // Bypass normal slot restrictions, automatically cast the granted skill
+                    _boundPlayer.skillCaster.CastSkillDirectly(skill);
+                }
             }
         }
 

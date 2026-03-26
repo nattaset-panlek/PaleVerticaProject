@@ -102,10 +102,13 @@ namespace CoreSystem.Skills
                 {
                     if (instance.IsReady())
                     {
+                        // Use BuildPayload to get accurate modified mana cost
+                        SkillPayload payload = BuildPayload(instance);
+
                         if (character != null && character.attributeSystem != null)
                         {
                             float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                            if (currentMp < instance.SkillData.BaseManaCost)
+                            if (currentMp < payload.ManaCost)
                             {
                                 instance.IsToggledOn = false;
                                 OnCastInterrupted?.Invoke();
@@ -113,8 +116,8 @@ namespace CoreSystem.Skills
                             }
                         }
 
-                        ExecutePipeline(instance);
-                        instance.StartCooldown(instance.CalculateCooldownModified(character?.attributeSystem, instance.SkillData.BaseCooldown));
+                        ExecutePipeline(instance, payload);
+                        instance.StartCooldown(payload.Cooldown);
                         OnCastExecuted?.Invoke(instance.SkillData.Name + " (Toggle)");
                     }
                 }
@@ -142,12 +145,26 @@ namespace CoreSystem.Skills
 
             if (instance.SkillData.IsToggle)
             {
-                instance.IsToggledOn = !instance.IsToggledOn;
-                if (instance.IsToggledOn && instance.IsReady())
+                if (!instance.IsToggledOn) // Turning ON
                 {
-                    ExecutePipeline(instance);
-                    instance.StartCooldown(instance.CalculateCooldownModified(character?.attributeSystem, instance.SkillData.BaseCooldown));
-                    OnCastExecuted?.Invoke(instance.SkillData.Name + " (Toggle ON)");
+                    SkillPayload payload = BuildPayload(instance, targetPos, targetPos != default);
+                    if (character != null && character.attributeSystem != null)
+                    {
+                        float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
+                        if (currentMp < payload.ManaCost) return;
+                    }
+
+                    instance.IsToggledOn = true;
+                    if (instance.IsReady())
+                    {
+                        ExecutePipeline(instance, payload);
+                        instance.StartCooldown(payload.Cooldown);
+                        OnCastExecuted?.Invoke(instance.SkillData.Name + " (Toggle ON)");
+                    }
+                }
+                else // Turning OFF
+                {
+                    instance.IsToggledOn = false;
                 }
                 return;
             }

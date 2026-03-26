@@ -175,7 +175,8 @@ namespace CoreSystem.Data.Items
 
             foreach (var sEntry in setList.Sets)
             {
-                var setData = ScriptableObject.CreateInstance<EquipmentSetData>();
+                var setData = new EquipmentSetData();
+                setData.SetID = sEntry.SetID;
                 setData.SetName = sEntry.SetName;
                 
                 foreach (var bEntry in sEntry.BonusLevels)
@@ -215,7 +216,6 @@ namespace CoreSystem.Data.Items
                             targetList.Add(new AutoCastEffect { TriggerType = trigger, TriggerChance = e.TriggerChance, SkillID = e.SkillID });
                         }
                         break;
-                    case "ScalingBonus":
                     case "ScalingBonusEffect":
                         var scalingEffect = new ScalingBonusEffect
                         {
@@ -233,7 +233,39 @@ namespace CoreSystem.Data.Items
                         
                         targetList.Add(scalingEffect);
                         break;
+                    case "BonusCondition":
+                        var condBonus = new CoreSystem.Data.Items.Effects.ConditionalBonusEffect
+                        {
+                            Condition = new ConditionLogic
+                            {
+                                PrimaryAttribute = (AttributeType)e.ConditionAttributeID,
+                                Operator = ParseOperator(e.ConditionComparison),
+                                TargetValue = e.ConditionThreshold,
+                                JoinOperation = ConditionOperatorJoin.None
+                            },
+                            BonusEffect = new AttributeBonusEffect
+                            {
+                                Attribute = (AttributeType)e.AttributeID,
+                                Value = e.Value
+                            }
+                        };
+                        targetList.Add(condBonus);
+                        break;
                 }
+            }
+        }
+        
+        private static ConditionOperator ParseOperator(string op)
+        {
+            switch (op)
+            {
+                case ">":  return ConditionOperator.GreaterThan;
+                case "<":  return ConditionOperator.LessThan;
+                case "=":  
+                case "==": return ConditionOperator.Equal;
+                case ">=": return ConditionOperator.GreaterOrEqual;
+                case "<=": return ConditionOperator.LessOrEqual;
+                default:   return ConditionOperator.GreaterOrEqual; // Default
             }
         }
 

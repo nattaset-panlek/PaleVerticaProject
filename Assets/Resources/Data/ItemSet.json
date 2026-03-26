@@ -28,7 +28,10 @@
                             "LerpDuration": 0.0,
                             "ParentToCaster": false,
                             "ScalingSourceIDs": [],
-                            "ScalingThreshold": 0.0
+                            "ScalingThreshold": 0.0,
+                            "ConditionAttributeID": 0,
+                            "ConditionComparison": "",
+                            "ConditionThreshold": 0.0
                         }
                     ]
                 },
@@ -56,7 +59,10 @@
                             "LerpDuration": 0.0,
                             "ParentToCaster": false,
                             "ScalingSourceIDs": [],
-                            "ScalingThreshold": 0.0
+                            "ScalingThreshold": 0.0,
+                            "ConditionAttributeID": 0,
+                            "ConditionComparison": "",
+                            "ConditionThreshold": 0.0
                         }
                     ]
                 },
@@ -84,7 +90,10 @@
                             "LerpDuration": 0.0,
                             "ParentToCaster": false,
                             "ScalingSourceIDs": [],
-                            "ScalingThreshold": 0.0
+                            "ScalingThreshold": 0.0,
+                            "ConditionAttributeID": 0,
+                            "ConditionComparison": "",
+                            "ConditionThreshold": 0.0
                         }
                     ]
                 }
@@ -118,7 +127,10 @@
                             "LerpDuration": 0.0,
                             "ParentToCaster": false,
                             "ScalingSourceIDs": [],
-                            "ScalingThreshold": 0.0
+                            "ScalingThreshold": 0.0,
+                            "ConditionAttributeID": 0,
+                            "ConditionComparison": "",
+                            "ConditionThreshold": 0.0
                         }
                     ]
                 },
@@ -146,7 +158,10 @@
                             "LerpDuration": 0.0,
                             "ParentToCaster": false,
                             "ScalingSourceIDs": [],
-                            "ScalingThreshold": 0.0
+                            "ScalingThreshold": 0.0,
+                            "ConditionAttributeID": 0,
+                            "ConditionComparison": "",
+                            "ConditionThreshold": 0.0
                         }
                     ]
                 }

@@ -40,6 +40,7 @@ namespace CoreSystem.Skills.Modifiers
         
         [Header("Formula: (FlatValue + (PayloadRef * PayloadMult) + (AttrRef * AttrMult))")]
         public float FlatValue;
+        public float PercentValue; // New percentage bonus
 
         [Header("Payload Reference")]
         public bool UsePayloadReference;
@@ -73,7 +74,7 @@ namespace CoreSystem.Skills.Modifiers
             return total;
         }
 
-        private float GetPayloadValue(SkillPayload payload, PayloadTarget target)
+        public float GetPayloadValue(SkillPayload payload, PayloadTarget target)
         {
             switch (target)
             {
@@ -109,35 +110,45 @@ namespace CoreSystem.Skills.Modifiers
             foreach (var effect in Effects)
             {
                 float modValue = effect.CalculateModifierValue(payload);
+                float currentValue = effect.GetPayloadValue(payload, effect.TargetField);
+                
+                // 1. Apply Flat/Ref bonuses via the chosen operation first
+                float result = ApplyOperation(currentValue, modValue, effect.Operation);
+                
+                // 2. Apply Percent last on the resulting value
+                if (effect.PercentValue != 0)
+                {
+                    result += (result * effect.PercentValue / 100f);
+                }
 
                 switch (effect.TargetField)
                 {
                     case PayloadTarget.BaseDamage:
-                        payload.BaseDamage = ApplyOperation(payload.BaseDamage, modValue, effect.Operation);
+                        payload.BaseDamage = result;
                         break;
                     case PayloadTarget.AOERadius:
-                        payload.AOERadius = ApplyOperation(payload.AOERadius, modValue, effect.Operation);
+                        payload.AOERadius = result;
                         break;
                     case PayloadTarget.ProjectileCount:
-                        payload.ProjectileCount = (int)ApplyOperation(payload.ProjectileCount, modValue, effect.Operation);
+                        payload.ProjectileCount = (int)result;
                         break;
                     case PayloadTarget.Heal:
-                        payload.Heal = ApplyOperation(payload.Heal, modValue, effect.Operation);
+                        payload.Heal = result;
                         break;
                     case PayloadTarget.VCT:
-                        payload.VCT = ApplyOperation(payload.VCT, modValue, effect.Operation);
+                        payload.VCT = result;
                         break;
                     case PayloadTarget.FCT:
-                        payload.FCT = ApplyOperation(payload.FCT, modValue, effect.Operation);
+                        payload.FCT = result;
                         break;
                     case PayloadTarget.CastDelay:
-                        payload.CastDelay = ApplyOperation(payload.CastDelay, modValue, effect.Operation);
+                        payload.CastDelay = result;
                         break;
                     case PayloadTarget.Cooldown:
-                        payload.Cooldown = ApplyOperation(payload.Cooldown, modValue, effect.Operation);
+                        payload.Cooldown = result;
                         break;
                     case PayloadTarget.ManaCost:
-                        payload.ManaCost = ApplyOperation(payload.ManaCost, modValue, effect.Operation);
+                        payload.ManaCost = result;
                         break;
                 }
             }

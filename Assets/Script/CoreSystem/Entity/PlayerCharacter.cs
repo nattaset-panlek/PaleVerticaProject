@@ -1,4 +1,4 @@
-using CoreSystem;
+﻿using CoreSystem;
 using CoreSystem.Attributes;
 using CoreSystem.Data;
 using CoreSystem.Data.Items;
@@ -31,11 +31,13 @@ namespace CoreSystem.Entity
 
         [Header("Debug UI")]
         public bool ShowDebugUI = true;
-        private Rect _debugWindowRect = new Rect(20, 45, 400, 500);
+        private Rect _debugWindowRect = new Rect(20, 45, 450, 600);
         private int _selectedTab = 0;
         private Vector2 _scrollPos;
-        private string[] _tabLabels = { "Database", "Inventory", "Equipment", "Socketing", "Attributes", "Skills" };
+        private string[] _tabLabels = { "DB", "Inv", "Equip", "Socket", "Attr", "Skill", "Upgrade" };
         private bool _showFullMenu = true;
+        private string _searchQuery = "";
+        private EquipmentInstance _selectedUpgradeItem;
 
         private void OnGUI()
         {
@@ -57,6 +59,13 @@ namespace CoreSystem.Entity
         private void DrawDebugWindow(int windowID)
         {
             _selectedTab = GUILayout.Toolbar(_selectedTab, _tabLabels);
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Search:", GUILayout.Width(50));
+            _searchQuery = GUILayout.TextField(_searchQuery);
+            if (GUILayout.Button("Clear", GUILayout.Width(50))) _searchQuery = "";
+            GUILayout.EndHorizontal();
+
             _scrollPos = GUILayout.BeginScrollView(_scrollPos);
 
             switch (_selectedTab)
@@ -67,6 +76,7 @@ namespace CoreSystem.Entity
                 case 3: DrawSocketingTab(); break;
                 case 4: DrawAttributesTab(); break;
                 case 5: DrawSkillsTab(); break;
+                case 6: DrawUpgradeTab(); break;
             }
 
             GUILayout.EndScrollView();
@@ -78,10 +88,9 @@ namespace CoreSystem.Entity
         private void DrawDatabaseTab()
         {
             GUILayout.Label("--- All Possible Items (Models) ---", GUI.skin.box);
-            
+
             var allItems = Database.GetItems;
-            
-            // Grouping logic
+
             Dictionary<ItemType, List<Item>> groupedItems = new Dictionary<ItemType, List<Item>>();
             foreach (var item in allItems)
             {
@@ -100,7 +109,6 @@ namespace CoreSystem.Entity
                 {
                     if (group.Key == ItemType.Equipment)
                     {
-                        // Sub-group equipment by slot
                         Dictionary<EquipmentSlot, List<Equipment>> slotGroups = new Dictionary<EquipmentSlot, List<Equipment>>();
                         foreach (var item in group.Value)
                         {
@@ -114,6 +122,7 @@ namespace CoreSystem.Entity
                             GUILayout.Label($"  [ {slotGroup.Key} ]", GUI.skin.box);
                             foreach (var equip in slotGroup.Value)
                             {
+                                if (!string.IsNullOrEmpty(_searchQuery) && !equip.Name.ToLower().Contains(_searchQuery.ToLower())) continue;
                                 DrawItemRow(equip);
                             }
                         }
@@ -122,26 +131,13 @@ namespace CoreSystem.Entity
                     {
                         foreach (var item in group.Value)
                         {
+                            if (!string.IsNullOrEmpty(_searchQuery) && !item.Name.ToLower().Contains(_searchQuery.ToLower())) continue;
                             DrawItemRow(item);
                         }
                     }
                     GUILayout.Space(5);
                 }
             }
-        }
-
-        private void DrawItemRow(Item item)
-        {
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(15);
-            GUILayout.Label($"[{item.Id}] {item.Name}", GUILayout.ExpandWidth(true));
-            GUILayout.Label($"{item.Rarity}", GUILayout.Width(80));
-
-            if (GUILayout.Button("Collect", GUILayout.Width(70)))
-            {
-                GameData.Player.Inventory.AddItem(item);
-            }
-            GUILayout.EndHorizontal();
         }
 
         private void DrawInventoryTab()
@@ -153,12 +149,14 @@ namespace CoreSystem.Entity
                 GUILayout.Label("Inventory is empty.");
                 return;
             }
-            
+
             foreach (var instance in instances)
             {
+                if (!string.IsNullOrEmpty(_searchQuery) && !instance.Name.ToLower().Contains(_searchQuery.ToLower())) continue;
+
                 GUILayout.BeginHorizontal();
                 GUILayout.Label($"[{instance.Id}] {instance.Name} x{instance.Quantity}");
-                
+
                 if (instance.Item is Equipment equip)
                 {
                     if (GUILayout.Button("Equip", GUILayout.Width(60)))
@@ -173,16 +171,122 @@ namespace CoreSystem.Entity
                         GameData.Player.CostumeManager.Equip(instance);
                     }
                 }
-                
+
                 if (GUILayout.Button("Discard", GUILayout.Width(70)))
                 {
                     GameData.Player.Inventory.RemoveItemByInstance(instance.Id, instance.Quantity);
                 }
-                
+
                 GUILayout.EndHorizontal();
             }
         }
 
+        private void DrawUpgradeTab()
+        {
+            GUILayout.Label("--- Equipment Upgrade System ---", GUI.skin.box);
+            GUILayout.BeginHorizontal();
+
+            // คอลัมน์ซ้าย: รายชื่ออุปกรณ์ในตัว
+            GUILayout.BeginVertical(GUILayout.Width(180));
+            GUILayout.Label("Your Equipments:");
+            var invItems = GameData.Player.Inventory.GetAllItems();
+            var equipInstances = invItems.Where(it => it is EquipmentInstance).Cast<EquipmentInstance>().ToList();
+
+            foreach (var inst in equipInstances)
+            {
+                // ระบบ Search Filter
+                if (!string.IsNullOrEmpty(_searchQuery) && !inst.Name.ToLower().Contains(_searchQuery.ToLower()))
+                    continue;
+
+                bool isSelected = (_selectedUpgradeItem == inst);
+                GUI.color = isSelected ? Color.yellow : Color.white;
+
+                if (GUILayout.Button($"[{inst.Refine}] {inst.Name}"))
+                {
+                    _selectedUpgradeItem = inst;
+                }
+            }
+            GUI.color = Color.white;
+            GUILayout.EndVertical();
+
+            // คอลัมน์ขวา: ส่วนควบคุมการตีบวก
+            GUILayout.BeginVertical(GUI.skin.box);
+            if (_selectedUpgradeItem != null)
+            {
+                GUILayout.Label($"UPGRADING: <color=yellow>{_selectedUpgradeItem.Name}</color>", new GUIStyle(GUI.skin.label) { richText = true, fontStyle = FontStyle.Bold });
+                GUILayout.Space(10);
+
+                // --- ส่วน Refine ---
+                int maxRefine = EquipmentDatabase.RefineTable.Length - 1;
+                GUILayout.BeginHorizontal();
+                GUILayout.Label($"Refine Level: <b>{_selectedUpgradeItem.Refine} / {maxRefine}</b>", new GUIStyle(GUI.skin.label) { richText = true });
+                if (GUILayout.Button("Reset", GUILayout.Width(50))) _selectedUpgradeItem.Refine = 0;
+                GUILayout.EndHorizontal();
+
+                float currentMult = EquipmentDatabase.GetRefineMultiplier(_selectedUpgradeItem.Refine) * 100f;
+                GUILayout.Label($"Current Bonus: <color=#006FC0>+{currentMult:F0}% Base Stats</color>", new GUIStyle(GUI.skin.label) { richText = true });
+
+                if (GUILayout.Button("REFINE (+1)", GUILayout.Height(35)))
+                {
+                    _selectedUpgradeItem.Refine = Mathf.Min(maxRefine, _selectedUpgradeItem.Refine + 1);
+
+                    if (_selectedUpgradeItem.IsEquipped)
+                    {
+                        (_selectedUpgradeItem.Item as Equipment)?.ForceRefresh(this, _selectedUpgradeItem);
+                    }
+                }
+
+                GUILayout.Space(20);
+                GUI.backgroundColor = Color.cyan;
+
+                // --- ส่วน Reforge ---
+                GUILayout.BeginHorizontal();
+                GUILayout.Label($"Reforge Level: <b>{_selectedUpgradeItem.Reforge} / 100</b>", new GUIStyle(GUI.skin.label) { richText = true });
+                if (GUILayout.Button("Reset", GUILayout.Width(50))) _selectedUpgradeItem.Reforge = 0;
+                GUILayout.EndHorizontal();
+
+                float currentFlat = _selectedUpgradeItem.Reforge * EquipmentDatabase.ReforgeValuePerLevel;
+                GUILayout.Label($"Current Bonus: <color=#006FC0>+{currentFlat:F0} Flat Stats</color>", new GUIStyle(GUI.skin.label) { richText = true });
+
+                if (GUILayout.Button("REFORGE (+1)", GUILayout.Height(35)))
+                {
+                    _selectedUpgradeItem.Reforge = Mathf.Min(100, _selectedUpgradeItem.Reforge + 1);
+
+                    if (_selectedUpgradeItem.IsEquipped)
+                    {
+                        (_selectedUpgradeItem.Item as Equipment)?.ForceRefresh(this, _selectedUpgradeItem);
+                    }
+                }
+
+                GUI.backgroundColor = Color.white;
+            }
+            else
+            {
+                GUILayout.FlexibleSpace();
+                GUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                GUILayout.Label("Select an item to upgrade");
+                GUILayout.FlexibleSpace();
+                GUILayout.EndHorizontal();
+                GUILayout.FlexibleSpace();
+            }
+            GUILayout.EndVertical();
+
+            GUILayout.EndHorizontal();
+        }
+        private void DrawItemRow(Item item)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(15);
+            GUILayout.Label($"[{item.Id}] {item.Name}", GUILayout.ExpandWidth(true));
+            GUILayout.Label($"{item.Rarity}", GUILayout.Width(80));
+
+            if (GUILayout.Button("Collect", GUILayout.Width(70)))
+            {
+                GameData.Player.Inventory.AddItem(item);
+            }
+            GUILayout.EndHorizontal();
+        }
 
         private void DrawEquipmentTab()
         {

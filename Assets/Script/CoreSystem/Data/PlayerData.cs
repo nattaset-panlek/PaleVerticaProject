@@ -34,9 +34,9 @@ namespace CoreSystem.Data
     {
         private Entity.Character _character;
         
-        // Tracking active sets and applied bonuses
-        private Dictionary<EquipmentSetData, int> _activeSets = new Dictionary<EquipmentSetData, int>();
-        private Dictionary<EquipmentSetData, List<int>> _appliedSetBonusLevels = new Dictionary<EquipmentSetData, List<int>>();
+        // Tracking active sets and applied bonuses (by SetID)
+        private Dictionary<string, int> _activeSets = new Dictionary<string, int>();
+        private Dictionary<string, List<int>> _appliedSetBonusLevels = new Dictionary<string, List<int>>();
 
         public Action<EquipmentInstance> OnEquipmentChanged;
 
@@ -241,30 +241,32 @@ namespace CoreSystem.Data
 
         private void UpdateSetBonus(EquipmentSetData setData, int direction)
         {
-            if (setData == null || _character == null) return;
+            if (setData == null || string.IsNullOrEmpty(setData.SetID) || _character == null) return;
 
-            if (!_activeSets.ContainsKey(setData)) _activeSets[setData] = 0;
-            if (!_appliedSetBonusLevels.ContainsKey(setData)) _appliedSetBonusLevels[setData] = new List<int>();
+            string setID = setData.SetID;
 
-            _activeSets[setData] += direction;
-            int currentCount = _activeSets[setData];
+            if (!_activeSets.ContainsKey(setID)) _activeSets[setID] = 0;
+            if (!_appliedSetBonusLevels.ContainsKey(setID)) _appliedSetBonusLevels[setID] = new List<int>();
+
+            _activeSets[setID] += direction;
+            int currentCount = _activeSets[setID];
 
             // Evaluate all bonus levels
             foreach (var level in setData.BonusLevels)
             {
-                bool isApplied = _appliedSetBonusLevels[setData].Contains(level.RequiredPieces);
+                bool isApplied = _appliedSetBonusLevels[setID].Contains(level.RequiredPieces);
 
                 if (currentCount >= level.RequiredPieces && !isApplied)
                 {
                     // Apply newly met threshold
                     foreach (var effect in level.BonusEffects) effect.Apply(_character);
-                    _appliedSetBonusLevels[setData].Add(level.RequiredPieces);
+                    _appliedSetBonusLevels[setID].Add(level.RequiredPieces);
                 }
                 else if (currentCount < level.RequiredPieces && isApplied)
                 {
                     // Remove threshold that is no longer met
                     foreach (var effect in level.BonusEffects) effect.Remove(_character);
-                    _appliedSetBonusLevels[setData].Remove(level.RequiredPieces);
+                    _appliedSetBonusLevels[setID].Remove(level.RequiredPieces);
                 }
             }
         }

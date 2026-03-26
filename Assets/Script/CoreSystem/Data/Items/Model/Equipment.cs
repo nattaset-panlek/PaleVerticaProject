@@ -25,20 +25,20 @@ namespace CoreSystem.Data.Items.Model
 
         public void OnEquip(Entity.Character player, EquipmentInstance instance = null)
         {
-            ApplySystemBaselines(player);
+            ApplySystemBaselines(player, instance);
 
-            foreach(var effect in Effects)
+            foreach (var effect in Effects)
             {
                 effect.Apply(player);
             }
-            
+
             if (instance != null)
             {
-                foreach(var fragment in instance.SocketedFragments)
+                foreach (var fragment in instance.SocketedFragments)
                 {
                     if (fragment != null)
                     {
-                        foreach(var effect in fragment.Effects) 
+                        foreach (var effect in fragment.Effects)
                         {
                             effect.Apply(player);
                         }
@@ -47,20 +47,22 @@ namespace CoreSystem.Data.Items.Model
             }
         }
 
-        private void ApplySystemBaselines(Entity.Character player)
+        private void ApplySystemBaselines(Entity.Character player, EquipmentInstance instance)
         {
             if (player == null || player.attributeSystem == null) return;
 
-            bool isWeapon = Slot == EquipmentSlot.WeaponOneHandLeft || 
-                            Slot == EquipmentSlot.WeaponOneHandRight || 
+            bool isWeapon = Slot == EquipmentSlot.WeaponOneHandLeft ||
+                            Slot == EquipmentSlot.WeaponOneHandRight ||
                             Slot == EquipmentSlot.WeaponTwoHand;
 
-            // Adaptive mapping: 
-            // Weapon -> WeaponATK/MATK
-            // Armor/Gear -> Defense/StatusMDEF
-            
+            float refineMultiplier = instance != null ? EquipmentDatabase.GetRefineMultiplier(instance.Refine) : 0f;
+            float reforgeBonus = instance != null ? instance.Reforge * EquipmentDatabase.ReforgeValuePerLevel : 0f;
+
             float phyValue = Mathf.Max(1f, BasePhysical);
             float magValue = Mathf.Max(1f, BaseMagic);
+
+            phyValue = (phyValue * (1f + refineMultiplier)) + reforgeBonus;
+            magValue = (magValue * (1f + refineMultiplier)) + reforgeBonus;
 
             if (isWeapon)
             {
@@ -72,6 +74,20 @@ namespace CoreSystem.Data.Items.Model
                 AddSystemModifier(player, AttributeType.Defense, phyValue);
                 AddSystemModifier(player, AttributeType.StatusDEF, magValue);
             }
+        }
+
+        public void ForceRefresh(Entity.Character player, EquipmentInstance instance)
+        {
+            if (player == null || instance == null) return;
+
+            foreach (var record in _systemModifiers)
+            {
+                player.attributeSystem.RemoveModifier(record.type, record.mod);
+            }
+            _systemModifiers.Clear();
+
+            ApplySystemBaselines(player, instance);
+            player.attributeSystem.UpdateDerivedAttributes();
         }
 
         private void AddSystemModifier(Entity.Character player, AttributeType type, float value)

@@ -27,7 +27,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 1.5
-                }
+                },
+                "Alignment": "",
+                "IncludeSelf": false
             },
             "Scalings": [
                 {
@@ -61,7 +63,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 },
                 {
                     "EffectType": "MovementEffectLogic",
@@ -84,7 +89,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -118,7 +126,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "",
+                "IncludeSelf": false
             },
             "Scalings": [
                 {
@@ -168,7 +178,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -202,7 +215,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "",
+                "IncludeSelf": false
             },
             "Scalings": [
                 {
@@ -244,7 +259,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -267,8 +285,8 @@
             "BaseCooldown": 0.0,
             "Heal": 200.0,
             "BaseTargeting": {
-                "Type": "Single",
-                "Radius": 2.5,
+                "Type": "Sphere",
+                "Radius": 5.0,
                 "CastRange": 5.0,
                 "Angle": 60.0,
                 "BoxSize": {
@@ -278,7 +296,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "Ally",
+                "IncludeSelf": true
             },
             "Scalings": [
                 {
@@ -291,6 +311,32 @@
                 }
             ],
             "Effects": [
+                {
+                    "EffectType": "HealEffect",
+                    "AttributeID": 1,
+                    "Value": 200.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "Flat",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
+                },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
                     "AttributeID": 11,
@@ -312,7 +358,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
@@ -335,7 +384,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
@@ -358,7 +410,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -392,7 +447,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "",
+                "IncludeSelf": false
             },
             "Scalings": [],
             "Effects": [
@@ -417,7 +474,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 },
                 {
                     "EffectType": "MovementEffectLogic",
@@ -440,7 +500,10 @@
                     "LerpDuration": 0.3499999940395355,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -474,7 +537,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "",
+                "IncludeSelf": false
             },
             "Scalings": [
                 {
@@ -516,7 +581,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -550,7 +618,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "",
+                "IncludeSelf": false
             },
             "Scalings": [],
             "Effects": [
@@ -575,7 +645,10 @@
                     "LerpDuration": 0.15000000596046449,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -590,11 +663,11 @@
             "BaseDamage": 5.0,
             "BaseAOERadius": 6.0,
             "BaseProjectileCount": 0,
-            "BaseManaCost": 5.0,
+            "BaseManaCost": 10.0,
             "IsToggle": true,
             "BaseVCT": 5.0,
             "BaseFCT": 0.5,
-            "BaseCastDelay": 0.0,
+            "BaseCastDelay": 1.0,
             "BaseCooldown": 1.0,
             "Heal": 0.0,
             "BaseTargeting": {
@@ -609,7 +682,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "Enemy",
+                "IncludeSelf": false
             },
             "Scalings": [
                 {
@@ -638,7 +713,7 @@
                 },
                 {
                     "TargetField": 1,
-                    "ScalingAttribute": 152,
+                    "ScalingAttribute": 150,
                     "AttributeMultiplier": 0.05999999865889549,
                     "GlobalMultiplier": 1.0,
                     "FlatBonus": 0.0,
@@ -667,7 +742,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -701,7 +779,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "",
+                "IncludeSelf": false
             },
             "Scalings": [],
             "Effects": [
@@ -726,7 +806,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
@@ -749,7 +832,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",
@@ -783,7 +869,9 @@
                 "Offset": {
                     "x": 0.0,
                     "y": 0.0
-                }
+                },
+                "Alignment": "",
+                "IncludeSelf": false
             },
             "Scalings": [
                 {
@@ -817,7 +905,10 @@
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
                     "ScalingSourceIDs": [],
-                    "ScalingThreshold": 0.0
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
                 }
             ],
             "VisualPrefabName": "",

@@ -28,7 +28,7 @@ public class ItemSlotSquare : ItemSlotGlobal
             // แสดง icon พิเศษถ้ามีการตีบวก (Advancement) หรือใส่ Fragment (Socket)
             if (ModifiedItem != null)
             {
-                bool isModified = equipInst.Advancement > 0 || (equipInst.SocketedFragments != null && equipInst.SocketedFragments.Count > 0);
+                bool isModified = equipInst.Reforge > 0 || (equipInst.SocketedFragments != null && equipInst.SocketedFragments.Count > 0);
                 ModifiedItem.SetActive(isModified);
             }
 

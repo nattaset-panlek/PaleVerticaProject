@@ -31,7 +31,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
     }
 
     private ToolTab _currentTab = ToolTab.Dashboard;
-    private string[] _tabNames = { "Dashboard", "Attributes", "Items", "Skills", "Support Skills", "Characters", "ID Manager", "Item Sets" };
+    private string[] _tabNames = { "Dashboard", "Attributes", "Items", "Skills", "Support Skills", "Characters", "ID Manager", "Sets" };
 
     // JSON Paths
     private string _itemJsonPath = "Assets/Resources/Data/Item.json";
@@ -69,6 +69,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
     private int _skillElementFilterIndex = 0;
     private string[] _skillElementFilterNames;
     private string[] _tabNamesForItems = { "All", "Currency", "Consumable", "Equip", "Frag", "Res", "Rune", "Cos" };
+    private bool _showOnlyWithEffects = false;
     
     private Dictionary<string, int> _itemPrefixes = new Dictionary<string, int> {
         { "Currency", 1 }, { "Consumable", 2 }, { "Equipment", 3 }, { "Fragment", 4 },
@@ -142,6 +143,17 @@ public partial class ProjectMobilityAssistant : EditorWindow
 
     private void SaveAllData()
     {
+        // ── Pre-Save Cleanup for Item.json ──────────────────────────────────
+        // To keep the JSON clean as requested, we null out empty lists so they're omitted.
+        if (_itemData != null && _itemData.Items != null)
+        {
+            foreach (var item in _itemData.Items)
+            {
+                if (item.Effects != null && item.Effects.Count == 0) item.Effects = null;
+                if (item.VisualSpritePaths != null && item.VisualSpritePaths.Count == 0) item.VisualSpritePaths = null;
+            }
+        }
+
         SaveData(_attributeJsonPath, _attributeData);
         SaveData(_itemJsonPath, _itemData);
         SaveData(_skillJsonPath, _skillData);
@@ -190,7 +202,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
             case ToolTab.SupportSkills: DrawSupportSkillEditor(); break;
             case ToolTab.Characters:    DrawCharacterEditor(); break;
             case ToolTab.IdManager:     DrawIdManager(); break;
-            case ToolTab.Sets:          DrawItemSetEditor(); break;
+            case ToolTab.Sets: DrawItemSetEditor(); break;
         }
     }
 
@@ -198,5 +210,31 @@ public partial class ProjectMobilityAssistant : EditorWindow
     {
         if (string.IsNullOrEmpty(path)) return null;
         return Resources.Load<Sprite>(path);
+    }
+
+    private string GetResourcePath(Sprite sprite)
+    {
+        if (sprite == null) return "";
+        string assetPath = AssetDatabase.GetAssetPath(sprite);
+        if (string.IsNullOrEmpty(assetPath)) return "";
+
+        assetPath = assetPath.Replace('\\', '/');
+        
+        int resIndex = assetPath.IndexOf("/Resources/");
+        if (resIndex == -1) 
+        {
+            Debug.LogWarning($"Sprite '{sprite.name}' is not in a Resources folder.");
+            return "";
+        }
+
+        string resPath = assetPath.Substring(resIndex + 11);
+        int extIndex = resPath.LastIndexOf(".");
+        if (extIndex != -1) resPath = resPath.Substring(0, extIndex);
+
+        // If the sprite name matches the filename, or if user prefers clean path
+        string fileName = Path.GetFileNameWithoutExtension(assetPath);
+        if (AssetDatabase.IsMainAsset(sprite) || sprite.name == fileName) return resPath;
+        
+        return $"{resPath}:{sprite.name}";
     }
 }

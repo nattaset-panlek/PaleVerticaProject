@@ -39,6 +39,8 @@ public class AttributeListManager : MonoBehaviour
         AttributeType.CriticalRate, AttributeType.CriticalDamage, AttributeType.CritResistance,
         AttributeType.PerfectDodge,
 
+        AttributeType.CooldownReduc, AttributeType.CooldownReducPercent,
+
         // 2. Casting Modifiers (Consolidated)
         AttributeType.VariableCastTimeReduc,         // Marker for Variable Flat
         AttributeType.VariableCastTimeReducPercent,  // Marker for Variable %

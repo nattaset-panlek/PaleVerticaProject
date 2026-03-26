@@ -6,7 +6,8 @@ namespace CoreSystem.Data.Items
     [System.Serializable]
     public class EquipmentInstance : ItemInstance
     {
-        public int Advancement;
+        public int Refine;
+        public int Reforge;
         public bool IsEquipped;
         public List<Fragment> SocketedFragments = new List<Fragment>();
 

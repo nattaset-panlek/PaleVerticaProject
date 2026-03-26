@@ -72,7 +72,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
                 EditorGUILayout.LabelField($"\u2022 [{member.ItemId}] {member.Name} ({member.EquipmentSlot})");
             }
             
-        }, (entry) => string.IsNullOrEmpty(entry.SetName) ? $"[New Set]" : entry.SetName,
+        }, (entry) => string.IsNullOrEmpty(entry.SetName) ? $"[{entry.SetID}] New Set" : $"[{entry.SetID}] {entry.SetName}", 
         () => new ItemSetEntry { SetID = "NewSet", SetName = "New Set", BonusLevels = new List<SetBonusEntry>() });
     }
 

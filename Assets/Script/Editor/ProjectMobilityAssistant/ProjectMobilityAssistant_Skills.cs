@@ -236,6 +236,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
                 effect.Operation = ((ModifierOperation)EditorGUILayout.EnumPopup("Operation", op)).ToString();
                 
                 effect.FlatValue = EditorGUILayout.FloatField("Flat Value", effect.FlatValue);
+                effect.PercentValue = EditorGUILayout.FloatField("Percent Value (%)", effect.PercentValue);
 
                 effect.UsePayloadReference = EditorGUILayout.Toggle("Use Payload Ref", effect.UsePayloadReference);
                 if (effect.UsePayloadReference)

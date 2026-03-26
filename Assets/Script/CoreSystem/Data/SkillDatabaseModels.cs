@@ -81,6 +81,11 @@ namespace CoreSystem.Data.Skills
 
         public List<int> ScalingSourceIDs;
         public float ScalingThreshold;
+
+        // Condition-based bonuses
+        public int ConditionAttributeID;
+        public string ConditionComparison; // ">=", "<", etc.
+        public float ConditionThreshold;
     }
 
     [System.Serializable]
@@ -93,6 +98,9 @@ namespace CoreSystem.Data.Skills
         public float Angle = 60f;
         public UnityEngine.Vector2 BoxSize = new UnityEngine.Vector2(2f, 5f);
         public UnityEngine.Vector2 Offset = UnityEngine.Vector2.zero;
+
+        public string Alignment; // "Enemy", "Ally", "All"
+        public bool IncludeSelf;
     }
 
     [System.Serializable]
@@ -119,6 +127,7 @@ namespace CoreSystem.Data.Skills
         public string TargetField;
         public string Operation;
         public float FlatValue;
+        public float PercentValue;
         
         public bool UsePayloadReference;
         public string ReferencePayloadField;
