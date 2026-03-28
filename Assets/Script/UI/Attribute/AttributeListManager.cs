@@ -38,6 +38,7 @@ public class AttributeListManager : MonoBehaviour
         // 1. Critical & Precision
         AttributeType.CriticalRate, AttributeType.CriticalDamage, AttributeType.CritResistance,
         AttributeType.PerfectDodge,
+        AttributeType.AOE,
 
         AttributeType.CooldownReduc, AttributeType.CooldownReducPercent,
 

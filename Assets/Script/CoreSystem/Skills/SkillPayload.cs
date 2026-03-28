@@ -21,6 +21,7 @@ namespace CoreSystem.Skills
         public float BaseDamage;
         public float Heal;
         public float AOERadius;
+        public float CastRange;
         public int ProjectileCount;
         
         public float VCT;
@@ -45,6 +46,7 @@ namespace CoreSystem.Skills
                 DamageType = this.DamageType,
                 Heal = this.Heal,
                 AOERadius = this.AOERadius,
+                CastRange = this.CastRange,
                 ProjectileCount = this.ProjectileCount,
                 VCT = this.VCT,
                 FCT = this.FCT,

@@ -17,14 +17,15 @@ MonoBehaviour:
   SkillElement: 6
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261407901089807
+    rid: 5700261446840483859
   Effects:
-  - rid: 5700261407901089808
-  - rid: 5700261407901089809
-  - rid: 5700261407901089810
-  - rid: 5700261407901089811
+  - rid: 5700261446840483860
+  - rid: 5700261446840483861
+  - rid: 5700261446840483862
+  - rid: 5700261446840483863
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
+  VisualSpawnPoint: 0
   CastVisualPrefab: {fileID: 0}
   CastSpawnPoint: 0
   BaseDamage: 0
@@ -49,17 +50,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261407901089807
+    - rid: 5700261446840483859
       type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 1
         IncludeSelf: 1
-    - rid: 5700261407901089808
+    - rid: 5700261446840483860
       type: {class: HealEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1
         BaseHealAmount: 200
-    - rid: 5700261407901089809
+    - rid: 5700261446840483861
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 11
@@ -70,7 +71,7 @@ MonoBehaviour:
         BuffName: Increase Agility
         Category: 1
         Icon: {fileID: 0}
-    - rid: 5700261407901089810
+    - rid: 5700261446840483862
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 17
@@ -81,7 +82,7 @@ MonoBehaviour:
         BuffName: Increase Dexterity
         Category: 1
         Icon: {fileID: 0}
-    - rid: 5700261407901089811
+    - rid: 5700261446840483863
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 15

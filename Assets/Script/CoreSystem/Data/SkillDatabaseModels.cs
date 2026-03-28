@@ -22,6 +22,7 @@ namespace CoreSystem.Data.Skills
     public class ActiveSkillJsonData
     {
         public int SkillID;
+        public string CustomClassName;
         public string SkillName;
         public string SkillElement;
         public string DamageType;
@@ -46,6 +47,7 @@ namespace CoreSystem.Data.Skills
         public List<EffectEntry> Effects;
         
         public string VisualPrefabName;
+        public string VisualSpawnPoint;
         public string CastVisualPrefabName;
         public string CastVisualSpawnPoint; // "Target" or "Caster"
     }

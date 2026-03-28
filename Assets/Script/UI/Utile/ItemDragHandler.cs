@@ -11,10 +11,14 @@ namespace CoreSystem.UI.Utile
         Sprite GetIcon();
     }
 
-    public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public class ItemDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler, IPointerUpHandler
     {
         public static ItemInstance DraggedItem { get; private set; }
         public static IItemProvider ActiveSource { get; private set; }
+
+        [SerializeField] private float dragHoldThreshold = 0.05f;
+        private float _pointerDownTime;
+        private bool _isDragging = false;
 
         private RectTransform _dragVisual;
         private Canvas _canvas;
@@ -26,8 +30,24 @@ namespace CoreSystem.UI.Utile
             _rectTransform = GetComponent<RectTransform>();
         }
 
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            _pointerDownTime = Time.realtimeSinceStartup;
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+        }
+
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (Time.realtimeSinceStartup - _pointerDownTime < dragHoldThreshold)
+            {
+                eventData.pointerDrag = null;
+                return;
+            }
+
+            _isDragging = true;
             var provider = GetComponent<IItemProvider>();
             if (provider == null) provider = GetComponentInParent<IItemProvider>();
             if (provider == null || provider.GetItem() == null) return;
@@ -71,7 +91,7 @@ namespace CoreSystem.UI.Utile
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (_dragVisual != null)
+            if (_isDragging && _dragVisual != null)
             {
                 MoveIcon(eventData.position);
             }
@@ -79,11 +99,12 @@ namespace CoreSystem.UI.Utile
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            if (_dragVisual != null)
+            if (_isDragging && _dragVisual != null)
             {
                 Destroy(_dragVisual.gameObject);
             }
             
+            _isDragging = false;
             DraggedItem = null;
             ActiveSource = null;
         }

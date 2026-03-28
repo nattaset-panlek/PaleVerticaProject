@@ -10,7 +10,8 @@ namespace CoreSystem.Skills.Logic.Effects
         DashToTarget,
         PushTargetAway,
         PullTargetIn,
-        StunTarget
+        StunTarget,
+        PullToTargetPosition
     }
 
     [CreateAssetMenu(fileName = "NewMovementEffect", menuName = "Skill System/Effects/Movement")]
@@ -132,6 +133,26 @@ namespace CoreSystem.Skills.Logic.Effects
                     if (target != null)
                     {
                         target.ApplyStun(StunDuration);
+                    }
+                    break;
+                case MovementType.PullToTargetPosition:
+                    if (target != null)
+                    {
+                        Vector3 centerPos = payload.IsTargetPositionSet ? payload.TargetPosition : payload.OriginPosition;
+                        Vector3 pullDir = (centerPos - target.transform.position).normalized;
+                        float distToCenter = Vector3.Distance(centerPos, target.transform.position);
+                        
+                        // We use the 'Distance' field as a max pull range if it's set (> 0)
+                        float actualPullDistance = (Distance > 0) ? Mathf.Min(Distance, distToCenter) : distToCenter;
+
+                        if (UseLerp)
+                        {
+                            target.ApplyImpulse(pullDir, actualPullDistance, LerpDuration);
+                        }
+                        else
+                        {
+                            target.transform.position += pullDir * actualPullDistance;
+                        }
                     }
                     break;
             }

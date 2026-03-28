@@ -14,6 +14,7 @@ namespace CoreSystem.Skills
         public int CurrentLevel = 1;
 
         public bool IsToggledOn { get; set; }
+        public GameObject ActiveVisual { get; set; }
 
         public float CurrentCooldown { get; private set; }
 
@@ -127,6 +128,18 @@ namespace CoreSystem.Skills
 
             float finalCooldown = (baseCooldown - flatReduc) * (1f - (percentReduc / 100f));
             return Mathf.Max(0f, finalCooldown);
+        }
+
+        public float CalculateAOERadiusModified(AttributeSystem stats, float baseAOE)
+        {
+            if (stats == null) return baseAOE;
+
+            // Id 150 = AOE (Area Of Effect)
+            float aoeBonusPercent = stats.GetAttribute(AttributeType.AOE)?.CurrentValue ?? 0;
+
+            // Formula: Base * (1 + Bonus%)
+            float finalAOE = baseAOE * (1f + (aoeBonusPercent / 100f));
+            return Mathf.Max(0f, finalAOE);
         }
     }
 }

@@ -18,10 +18,13 @@ public partial class ProjectMobilityAssistant : EditorWindow
     {
         DrawEditor(_attributeData.Attributes, _attributeSelectedIndex, (idx) => _attributeSelectedIndex = idx, (entry) => {
             entry.Id = EditorGUILayout.IntField("ID", entry.Id);
-            entry.Name = EditorGUILayout.TextField("Full Name", entry.Name);
+            entry.Name = EditorGUILayout.TextField("Name (Short)", entry.Name);
+            entry.FullName = EditorGUILayout.TextField("Full Name", entry.FullName);
             entry.Mapping = EditorGUILayout.TextField("Mapping (Enum Name)", entry.Mapping);
-            entry.Description = EditorGUILayout.TextField("Description", entry.Description);
-        }, (entry) => $"[{entry.Id}] {entry.FullName}", 
+            entry.Icon = EditorGUILayout.TextField("Icon Name", entry.Icon);
+            entry.IsPercent = EditorGUILayout.Toggle("Is Percent (%)", entry.IsPercent);
+            entry.Description = EditorGUILayout.TextArea(entry.Description, GUILayout.Height(60));
+        }, (entry) => $"[{entry.Id}] {(string.IsNullOrEmpty(entry.FullName) ? entry.Name : entry.FullName)}", 
         () => new AttributeEntry { Id = _attributeData.Attributes.Count > 0 ? _attributeData.Attributes.Max(x => x.Id) + 1 : 1 },
         null, null,
         () => {

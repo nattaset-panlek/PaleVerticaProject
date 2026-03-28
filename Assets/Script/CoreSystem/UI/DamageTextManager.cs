@@ -21,6 +21,7 @@ namespace CoreSystem.UI
         [Header("Settings")]
         public GameObject DamageTextPrefab;
         public Canvas UICanvas;
+        public Transform DamageTextParent; // Optional parent for organizing damage text objects
 
         [Header("Icon - Type")]
         public Sprite IconPhysical;
@@ -61,7 +62,7 @@ namespace CoreSystem.UI
             
             Debug.Log($"[DamageTextManager] ShowDamage: {amount}, Type: {type}, Element: {element}, Critical: {isCritical}");
 
-            GameObject go = Instantiate(DamageTextPrefab, UICanvas.transform);
+            GameObject go = Instantiate(DamageTextPrefab, DamageTextParent.transform);
             var behaviour = go.GetComponent<DamageTextBehaviour>();
             
             if (behaviour == null)

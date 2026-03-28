@@ -56,4 +56,10 @@ public class InventoryManager : MonoBehaviour
         itemSlot.UpdateUI(item);
         return itemSlotObj;
     }
+
+    public GameObject CreateItemSlotSquareOnParent(Item item, Transform parent, int quanity = 1)
+    {
+        var itemInstance = new ItemInstance(-1, item.Id, quanity);
+        return CreateItemSlotSquareOnParent(itemInstance, parent);
+    }
 }

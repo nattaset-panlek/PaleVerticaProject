@@ -1,4 +1,4 @@
-﻿using CoreSystem;
+using CoreSystem;
 using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Effects;
 using CoreSystem.Data.Items.Model;
@@ -45,6 +45,9 @@ namespace CoreSystem.UI.Inventory
 
         [Header("Prefabs")]
         [SerializeField] private GameObject attributeBlockPrefab;
+        
+        [Header("Rebuild Layout")]
+        public Transform RebuildParent;
 
         private ItemInstance _currentItem;
 
@@ -159,6 +162,9 @@ namespace CoreSystem.UI.Inventory
                     ShowOther(item);
                     break;
             }
+
+            // Trigger Rebuild after all sections are setup
+            RebuildLayout(RebuildParent);
         }
         
 
@@ -242,7 +248,7 @@ namespace CoreSystem.UI.Inventory
 
             if (item is Equipment eq && eq.SetResource != null)
             {
-                string setInfo = $"<color=#AB47BC>- Item Set {eq.SetResource.SetName}</color>";
+                string setInfo = $"<b>Item Set <color=#AB47BC>{eq.SetResource.SetName}</color></b>";
 
                 if (eq.SetResource.BonusLevels != null)
                 {
@@ -264,7 +270,7 @@ namespace CoreSystem.UI.Inventory
 
                         if (levelEffectDescs.Count > 0)
                         {
-                            setInfo += $"\n  <color=#BA68C8>[{level.RequiredPieces}] Pieces </color> {string.Join(", ", levelEffectDescs)}";
+                            setInfo += $"\n  <color=#BA68C8>[{level.RequiredPieces}] Pieces </color> {string.Join(", ", levelEffectDescs).Replace("(Percent)", string.Empty)}";
                         }
                     }
                 }
@@ -282,7 +288,7 @@ namespace CoreSystem.UI.Inventory
                 string desc = GetEffectDescription(effect);
                 if (string.IsNullOrEmpty(desc)) continue;
 
-                desc = $"- {HighlightValues(desc)}";
+                desc = $"+ {HighlightValues(desc)}";
 
                 if (effect is ConditionalBonusEffect) condEffects.Add(desc);
                 else if (effect is SkillUnlockEffect) skillEffects.Add(desc);
@@ -409,10 +415,30 @@ namespace CoreSystem.UI.Inventory
             }
         }
 
+        private void RebuildLayout(Transform root)
+        {
+            if (root == null || !(root is RectTransform rect)) return;
+
+            // 1. Recursive call to children first (Bottom-Up)
+            foreach (Transform child in root)
+            {
+                RebuildLayout(child);
+            }
+
+            // 2. Clear current canvases forces to update positions
+            if (root.GetComponent<ContentSizeFitter>() != null || root.GetComponent<LayoutGroup>() != null)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
+            }
+        }
+
         private void ClearContainer(Transform container)
         {
-            foreach (Transform child in container)
-                Destroy(child.gameObject);
+            // Use for loop with DestroyImmediate for layout cleanup in same frame
+            for (int i = container.childCount - 1; i >= 0; i--)
+            {
+                DestroyImmediate(container.GetChild(i).gameObject);
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
     "ActiveSkills": [
         {
             "SkillID": 1001,
+            "CustomClassName": "",
             "SkillName": "Tackle",
             "SkillElement": "Neutral",
             "DamageType": "Physical",
@@ -96,11 +97,13 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1002,
+            "CustomClassName": "",
             "SkillName": "Healing",
             "SkillElement": "Holy",
             "DamageType": "Magic",
@@ -185,11 +188,13 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1003,
+            "CustomClassName": "",
             "SkillName": "Hellfire Blast",
             "SkillElement": "Fire",
             "DamageType": "Physical",
@@ -266,11 +271,13 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1004,
+            "CustomClassName": "",
             "SkillName": "Divine Blessing",
             "SkillElement": "Holy",
             "DamageType": "Magic",
@@ -417,11 +424,13 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "FollowCaster",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1005,
+            "CustomClassName": "",
             "SkillName": "Earthshatter",
             "SkillElement": "Earth",
             "DamageType": "Physical",
@@ -507,11 +516,13 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1006,
+            "CustomClassName": "",
             "SkillName": "Lightning Strike",
             "SkillElement": "Electric",
             "DamageType": "Physical",
@@ -588,11 +599,13 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1007,
+            "CustomClassName": "",
             "SkillName": "Shadow Dash",
             "SkillElement": "Ghost",
             "DamageType": "Physical",
@@ -652,16 +665,18 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1008,
+            "CustomClassName": "",
             "SkillName": "Aura of Flames",
             "SkillElement": "Fire",
             "DamageType": "Magic",
             "BaseDamage": 5.0,
-            "BaseAOERadius": 6.0,
+            "BaseAOERadius": 3.0,
             "BaseProjectileCount": 0,
             "BaseManaCost": 10.0,
             "IsToggle": true,
@@ -749,11 +764,13 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "FollowCaster",
             "CastVisualPrefabName": "Skill/VisualEffectSkill/Aura",
             "CastVisualSpawnPoint": "FollowCaster"
         },
         {
             "SkillID": 1009,
+            "CustomClassName": "",
             "SkillName": "Lightning Blessing",
             "SkillElement": "Electric",
             "DamageType": "Magic",
@@ -839,11 +856,13 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition"
         },
         {
             "SkillID": 1010,
+            "CustomClassName": "",
             "SkillName": "Fire Pila",
             "SkillElement": "Fire",
             "DamageType": "Magic",
@@ -853,14 +872,14 @@
             "BaseManaCost": 0.0,
             "IsToggle": false,
             "BaseVCT": 1.0,
-            "BaseFCT": 1.0,
+            "BaseFCT": 0.15000000596046449,
             "BaseCastDelay": 0.0,
-            "BaseCooldown": 3.0,
+            "BaseCooldown": 0.15000000596046449,
             "Heal": 0.0,
             "BaseTargeting": {
                 "Type": "TargetLocation",
                 "Radius": 2.0,
-                "CastRange": 10.0,
+                "CastRange": 5.0,
                 "Angle": 60.0,
                 "BoxSize": {
                     "x": 2.0,
@@ -912,6 +931,268 @@
                 }
             ],
             "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
+            "CastVisualPrefabName": "Skill/VisualEffectSkill/Danger",
+            "CastVisualSpawnPoint": "TargetPosition"
+        },
+        {
+            "SkillID": 0,
+            "CustomClassName": "CoreSystem.Skills.UniqueSkill.SummonSkill",
+            "SkillName": "Summon Valkyrie",
+            "SkillElement": "Neutral",
+            "DamageType": "Physical",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 50.0,
+            "IsToggle": false,
+            "BaseVCT": 2.0,
+            "BaseFCT": 0.5,
+            "BaseCastDelay": 1.0,
+            "BaseCooldown": 30.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Single",
+                "Radius": 0.0,
+                "CastRange": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Alignment": "",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [],
+            "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
+        },
+        {
+            "SkillID": 1011,
+            "CustomClassName": "CoreSystem.Skills.UniqueSkill.ParrySkill",
+            "SkillName": "Perfect Parry",
+            "SkillElement": "Neutral",
+            "DamageType": "Physical",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 15.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 5.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Single",
+                "Radius": 0.0,
+                "CastRange": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Alignment": "",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [],
+            "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
+        },
+        {
+            "SkillID": 1012,
+            "CustomClassName": "CoreSystem.Skills.UniqueSkill.ChainLightningSkill",
+            "SkillName": "Chain Lightning",
+            "SkillElement": "Electric",
+            "DamageType": "Magic",
+            "BaseDamage": 100.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 40.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 8.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Single",
+                "Radius": 0.0,
+                "CastRange": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Alignment": "",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [],
+            "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
+        },
+        {
+            "SkillID": 1013,
+            "CustomClassName": "CoreSystem.Skills.UniqueSkill.BlinkStrikeSkill",
+            "SkillName": "Blink Strike",
+            "SkillElement": "Neutral",
+            "DamageType": "Physical",
+            "BaseDamage": 150.0,
+            "BaseAOERadius": 1.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 30.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 6.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "TargetLocation",
+                "Radius": 1.0,
+                "CastRange": 8.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Alignment": "",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [],
+            "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
+        },
+        {
+            "SkillID": 1014,
+            "CustomClassName": "CoreSystem.Skills.UniqueSkill.TimeDilationSkill",
+            "SkillName": "Time Dilation",
+            "SkillElement": "Neutral",
+            "DamageType": "Magic",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 6.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 60.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 20.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Sphere",
+                "Radius": 6.0,
+                "CastRange": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Alignment": "",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [],
+            "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
+            "CastVisualPrefabName": "",
+            "CastVisualSpawnPoint": "TargetPosition"
+        },
+        {
+            "SkillID": 1015,
+            "CustomClassName": "",
+            "SkillName": "Force Nova",
+            "SkillElement": "Neutral",
+            "DamageType": "Magic",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 3.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 10.0,
+            "IsToggle": false,
+            "BaseVCT": 0.25,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.15000000596046449,
+            "BaseCooldown": 0.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "TargetLocation",
+                "Radius": 3.0,
+                "CastRange": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Alignment": "",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "MovementEffectLogic",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "PullTargetIn",
+                    "MovementDistance": 5.0,
+                    "ApplyOnce": true,
+                    "UseLerp": true,
+                    "LerpDuration": 1.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0
+                }
+            ],
+            "VisualPrefabName": "",
+            "VisualSpawnPoint": "",
             "CastVisualPrefabName": "Skill/VisualEffectSkill/Danger",
             "CastVisualSpawnPoint": "TargetPosition"
         }

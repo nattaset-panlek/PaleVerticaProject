@@ -61,8 +61,8 @@ namespace CoreSystem.Controllers
                 Vector3 clampedPos = mousePos;
                 if (skill.SkillData.BaseTargeting is TargetLocationTargeting targetLoc)
                 {
-                    float dist = Vector2.Distance(origin, mousePos);
-                    if (dist > targetLoc.CastRange) clampedPos = origin + direction * targetLoc.CastRange;
+                    float scaledRange = skill.CalculateAOERadiusModified(player.attributeSystem, targetLoc.CastRange);
+                    clampedPos = targetLoc.ClampTargetPosition(origin, mousePos, scaledRange);
                 }
 
                 SkillIndicatorManager.Instance?.UpdateIndicator(origin, clampedPos, direction);

@@ -14,9 +14,17 @@ public class ItemSlotSquare : ItemSlotGlobal
     public GameObject ModifiedItem;
     public GameObject HasSocket;
 
+    public Item Item;
+    public ItemInstance ItemInstance;
+
     public override void UpdateUI(ItemInstance item)
     {
         base.UpdateUI(item);
+
+        this.Item = item.Item;
+        this.ItemInstance = item;
+
+        HasSocket.SetActive(false);
 
         if (itemInstance is EquipmentInstance equipInst)
         {

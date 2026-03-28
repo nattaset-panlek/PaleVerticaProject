@@ -187,8 +187,6 @@ MonoBehaviour:
       BaseValue: 500
     - Type: 137
       BaseValue: 20
-    - Type: 131
-      BaseValue: 2
   skillCaster:
     EquippedSkills:
     - SkillData: {fileID: 11400000, guid: 33124fff1a0296b41b77db2eef325970, type: 2}

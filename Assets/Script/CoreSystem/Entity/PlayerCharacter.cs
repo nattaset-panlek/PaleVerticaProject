@@ -1,4 +1,4 @@
-﻿using CoreSystem;
+using CoreSystem;
 using CoreSystem.Attributes;
 using CoreSystem.Data;
 using CoreSystem.Data.Items;
@@ -91,6 +91,18 @@ namespace CoreSystem.Entity
 
             var allItems = Database.GetItems;
 
+            if (GUILayout.Button("DEBUG: ADD ALL ITEMS (GLOBAL)", GUILayout.Height(30)))
+            {
+#if UNITY_EDITOR
+                if (UnityEditor.EditorUtility.DisplayDialog("Confirm", "Do you want to add every item in the database?", "Yes", "No"))
+                {
+                    foreach (var item in allItems) GameData.Player.Inventory.AddItem(item);
+                }
+#else
+                foreach (var item in allItems) GameData.Player.Inventory.AddItem(item);
+#endif
+            }
+
             Dictionary<ItemType, List<Item>> groupedItems = new Dictionary<ItemType, List<Item>>();
             foreach (var item in allItems)
             {
@@ -103,7 +115,13 @@ namespace CoreSystem.Entity
                 string typeName = group.Key.ToString();
                 if (!_foldouts.ContainsKey(typeName)) _foldouts[typeName] = false;
 
-                _foldouts[typeName] = GUILayout.Toggle(_foldouts[typeName], $" {typeName} ({group.Value.Count})", "Button");
+                GUILayout.BeginHorizontal();
+                _foldouts[typeName] = GUILayout.Toggle(_foldouts[typeName], $" {typeName} ({group.Value.Count})", "Button", GUILayout.ExpandWidth(true));
+                if (GUILayout.Button("Add All", GUILayout.Width(70)))
+                {
+                    foreach (var item in group.Value) GameData.Player.Inventory.AddItem(item);
+                }
+                GUILayout.EndHorizontal();
 
                 if (_foldouts[typeName])
                 {
@@ -113,13 +131,23 @@ namespace CoreSystem.Entity
                         foreach (var item in group.Value)
                         {
                             var e = item as Equipment;
-                            if (!slotGroups.ContainsKey(e.Slot)) slotGroups[e.Slot] = new List<Equipment>();
-                            slotGroups[e.Slot].Add(e);
+                            if (e != null)
+                            {
+                                if (!slotGroups.ContainsKey(e.Slot)) slotGroups[e.Slot] = new List<Equipment>();
+                                slotGroups[e.Slot].Add(e);
+                            }
                         }
 
                         foreach (var slotGroup in slotGroups)
                         {
-                            GUILayout.Label($"  [ {slotGroup.Key} ]", GUI.skin.box);
+                            GUILayout.BeginHorizontal();
+                            GUILayout.Label($"  [ {slotGroup.Key} ]", GUI.skin.box, GUILayout.ExpandWidth(true));
+                            if (GUILayout.Button("Add All", GUILayout.Width(70)))
+                            {
+                                foreach (var item in slotGroup.Value) GameData.Player.Inventory.AddItem(item);
+                            }
+                            GUILayout.EndHorizontal();
+
                             foreach (var equip in slotGroup.Value)
                             {
                                 if (!string.IsNullOrEmpty(_searchQuery) && !equip.Name.ToLower().Contains(_searchQuery.ToLower())) continue;

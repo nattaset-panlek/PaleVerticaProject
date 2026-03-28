@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e9ce7710c1bda4994860190b945bf7, type: 3}
+  m_Name: Blink_Strike
+  m_EditorClassIdentifier: 
+  Id: 1013
+  Name: Blink Strike
+  SkillElement: 0
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 5700261446840483840
+  Effects: []
+  VisualData: {fileID: 0}
+  VisualPrefab: {fileID: 0}
+  VisualSpawnPoint: 0
+  CastVisualPrefab: {fileID: 0}
+  CastSpawnPoint: 0
+  BaseDamage: 150
+  BaseAOERadius: 1
+  BaseProjectileCount: 0
+  BaseManaCost: 30
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 0
+  BaseFCT: 0
+  BaseCastDelay: 0
+  BaseCooldown: 6
+  Scalings: []
+  StrikeDamageMult: 1.5
+  references:
+    version: 2
+    RefIds:
+    - rid: 5700261446840483840
+      type: {class: TargetLocationTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        CastRange: 8

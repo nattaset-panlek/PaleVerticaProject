@@ -17,11 +17,12 @@ MonoBehaviour:
   SkillElement: 5
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261407901089812
+    rid: 5700261446840483864
   Effects:
-  - rid: 5700261407901089813
+  - rid: 5700261446840483865
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
+  VisualSpawnPoint: 0
   CastVisualPrefab: {fileID: 0}
   CastSpawnPoint: 0
   BaseDamage: 0
@@ -40,12 +41,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261407901089812
+    - rid: 5700261446840483864
       type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261407901089813
+    - rid: 5700261446840483865
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
         Type: 1

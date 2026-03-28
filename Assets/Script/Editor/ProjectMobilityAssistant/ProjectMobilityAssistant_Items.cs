@@ -299,13 +299,20 @@ public partial class ProjectMobilityAssistant : EditorWindow
         }
         else if (effect.EffectType == "AutoCastEffect")
         {
-            effect.SkillID = EditorGUILayout.IntField("Skill ID", effect.SkillID);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Skill");
+            DrawSkillSelector(effect.SkillID, (id) => effect.SkillID = id);
+            EditorGUILayout.EndHorizontal();
+
             effect.TriggerType = EditorGUILayout.TextField("Trigger Type", effect.TriggerType);
             effect.TriggerChance = EditorGUILayout.Slider("Chance", effect.TriggerChance, 0, 100);
         }
         else if (effect.EffectType == "SkillUnlockEffect")
         {
-            effect.SkillID = EditorGUILayout.IntField("Skill ID", effect.SkillID);
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Unlock Skill");
+            DrawSkillSelector(effect.SkillID, (id) => effect.SkillID = id);
+            EditorGUILayout.EndHorizontal();
         }
         else if (effect.EffectType == "BonusCondition")
         {
@@ -334,6 +341,28 @@ public partial class ProjectMobilityAssistant : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             effect.Value = EditorGUILayout.FloatField("Bonus Value", effect.Value);
+        }
+    }
+
+    private void DrawSkillSelector(int currentId, System.Action<int> onSelected)
+    {
+        string currentName = "None (0)";
+        if (currentId > 0)
+        {
+            var skill = _skillData.ActiveSkills.FirstOrDefault(s => s.SkillID == currentId);
+            currentName = skill != null ? $"[{skill.SkillID}] {skill.SkillName}" : $"Unknown ({currentId})";
+        }
+
+        if (GUILayout.Button(currentName, EditorStyles.popup))
+        {
+            GenericMenu menu = new GenericMenu();
+            menu.AddItem(new GUIContent("None"), currentId == 0, () => onSelected(0));
+            foreach (var s in _skillData.ActiveSkills.OrderBy(s => s.SkillID))
+            {
+                int id = s.SkillID;
+                menu.AddItem(new GUIContent($"[{id}] {s.SkillName}"), currentId == id, () => onSelected(id));
+            }
+            menu.ShowAsContext();
         }
     }
 

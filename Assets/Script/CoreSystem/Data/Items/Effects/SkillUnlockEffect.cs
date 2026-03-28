@@ -12,18 +12,19 @@ namespace CoreSystem.Data.Items.Effects
         public override void Apply(Character player)
         {
             if (player == null || player.skillCaster == null) return;
+            player.skillCaster.GrantSkill(SkillID);
         }
 
         public override void Remove(Character player)
         {
             if (player == null || player.skillCaster == null) return;
+            player.skillCaster.RevokeSkill(SkillID);
         }
 
         public override string GetDescription()
         {
             var skill = CoreSystem.Data.Database.GetSynchronizedSkill(SkillID);
-            string skillName = skill != null ? skill.Name : $"Skill {SkillID}";
-            return $"Unlocks Skill: {skillName}";
+            return skill != null ? skill.Name : $"Unknown Skill ({SkillID})";
         }
     }
 }

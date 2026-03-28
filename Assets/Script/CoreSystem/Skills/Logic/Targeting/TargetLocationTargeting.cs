@@ -13,15 +13,19 @@ namespace CoreSystem.Skills.Logic
     {
         public float CastRange = 7f;
 
-        public Vector3 ClampTargetPosition(Vector3 origin, Vector3 target)
+        public Vector3 ClampTargetPosition(Vector3 origin, Vector3 target, float rangeOverride = -1f)
         {
-            if (CastRange <= 0) return target;
+            float range = rangeOverride >= 0 ? rangeOverride : CastRange;
+            if (range <= 0) return target;
 
-            float dist = Vector2.Distance(origin, target);
-            if (dist > CastRange)
+            Vector2 origin2d = new Vector2(origin.x, origin.y);
+            Vector2 target2d = new Vector2(target.x, target.y);
+            float dist = Vector2.Distance(origin2d, target2d);
+            if (dist > range)
             {
-                Vector3 dir = (target - origin).normalized;
-                return origin + dir * CastRange;
+                Vector2 dir2d = (target2d - origin2d).normalized;
+                Vector2 result2d = origin2d + dir2d * range;
+                return new Vector3(result2d.x, result2d.y, target.z);
             }
             return target;
         }
@@ -41,7 +45,7 @@ namespace CoreSystem.Skills.Logic
             // This prevents "Point A followings caster" if the payload was already clamped at start.
             if (!payload.IsPositionLocked)
             {
-                finalPoint = ClampTargetPosition(payload.OriginPosition, finalPoint);
+                finalPoint = ClampTargetPosition(payload.OriginPosition, finalPoint, payload.CastRange);
             }
 
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(finalPoint, effectiveAOE);
@@ -72,7 +76,7 @@ namespace CoreSystem.Skills.Logic
 #if UNITY_EDITOR
         public override void DrawGizmos(Vector3 center, Vector2 direction, SkillPayload payload = null)
         {
-            float effectiveRange = CastRange > 0 ? CastRange : 7f;
+            float effectiveRange = (payload != null && payload.CastRange > 0) ? payload.CastRange : (CastRange > 0 ? CastRange : 7f);
 
             // 1. Draw Cast Range circle (The Fixed area)
             UnityEditor.Handles.color = new Color(1f, 1f, 1f, 0.05f);
@@ -82,17 +86,17 @@ namespace CoreSystem.Skills.Logic
 
             // 2. Draw AOE circle at the target location (usually payload.TargetPosition)
             float aoe = (payload != null) ? payload.AOERadius : 2f;
-            Vector3 targetPos = center + (Vector3)direction.normalized * (CastRange * 0.7f); 
+            Vector3 targetPos = center + (Vector3)direction.normalized * (effectiveRange * 0.7f); 
             
             if (payload != null && payload.IsTargetPositionSet)
             {
                 targetPos = payload.TargetPosition;
                 // Clamp to CastRange for visual accuracy in indicators
                 float dist = Vector2.Distance(center, targetPos);
-                if (dist > CastRange)
+                if (dist > effectiveRange)
                 {
                     Vector3 dir = (targetPos - center).normalized;
-                    targetPos = center + dir * CastRange;
+                    targetPos = center + dir * effectiveRange;
                 }
             }
 

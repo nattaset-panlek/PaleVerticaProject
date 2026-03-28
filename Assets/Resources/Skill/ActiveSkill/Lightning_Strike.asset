@@ -17,11 +17,12 @@ MonoBehaviour:
   SkillElement: 4
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261407901089798
+    rid: 5700261446840483850
   Effects:
-  - rid: 5700261407901089799
+  - rid: 5700261446840483851
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
+  VisualSpawnPoint: 0
   CastVisualPrefab: {fileID: 0}
   CastSpawnPoint: 0
   BaseDamage: 220
@@ -52,13 +53,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261407901089798
+    - rid: 5700261446840483850
       type: {class: LinePierceTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         LineWidth: 1
-    - rid: 5700261407901089799
+    - rid: 5700261446840483851
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1

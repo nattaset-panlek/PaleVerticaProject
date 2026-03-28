@@ -32,7 +32,7 @@ namespace CoreSystem.Skills.Visuals
             // Set scale for caster range circle (Usually fixed)
             if (_rangeDisc != null && logic is TargetLocationTargeting targetLoc)
             {
-                float rangeDiameter = targetLoc.CastRange * 2f;
+                float rangeDiameter = payload.CastRange * 2f;
                 _rangeDisc.transform.localScale = new Vector3(rangeDiameter, rangeDiameter, 1f);
                 _rangeDisc.gameObject.SetActive(true);
             }

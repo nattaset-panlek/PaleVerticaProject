@@ -52,7 +52,7 @@ namespace CoreSystem.Attributes
             attributes[AttributeType.LUK].BaseValue = 1f;
 
             // Movement & Combat basics
-            attributes[AttributeType.MoveSpeed].BaseValue = 5f;
+            attributes[AttributeType.MoveSpeed].BaseValue = 100f;
             attributes[AttributeType.ASPD].BaseValue = 150f; 
             attributes[AttributeType.WeightLimit].BaseValue = 2000f;
             

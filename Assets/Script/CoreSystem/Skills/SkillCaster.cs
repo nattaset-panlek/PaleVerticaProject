@@ -55,6 +55,7 @@ namespace CoreSystem.Skills
         public int AimedSkillSlot = -1;
 
 
+        public Character CharacterRef => character;
         private Character character;
 
         public void Initialize(Character owner)
@@ -121,6 +122,12 @@ namespace CoreSystem.Skills
                         OnCastExecuted?.Invoke(instance.SkillData.Name + " (Toggle)");
                     }
                 }
+                else if (instance != null && instance.ActiveVisual != null)
+                {
+                    // Clean up visual if toggle was turned off elsewhere
+                    GameObject.Destroy(instance.ActiveVisual);
+                    instance.ActiveVisual = null;
+                }
             }
         }
 
@@ -165,6 +172,11 @@ namespace CoreSystem.Skills
                 else // Turning OFF
                 {
                     instance.IsToggledOn = false;
+                    if (instance.ActiveVisual != null)
+                    {
+                        GameObject.Destroy(instance.ActiveVisual);
+                        instance.ActiveVisual = null;
+                    }
                 }
                 return;
             }
@@ -190,14 +202,30 @@ namespace CoreSystem.Skills
         public void GrantSkill(ActiveSkill skillData)
         {
             if (skillData == null) return;
-            if (GrantedSkills.Exists(s => s.SkillData == skillData)) return;
+            if (GrantedSkills.Exists(s => s.SkillData != null && s.SkillData.Id == skillData.Id)) return;
             GrantedSkills.Add(new SkillInstance(skillData));
+        }
+
+        public void GrantSkill(int skillId)
+        {
+            if (GrantedSkills.Exists(s => s.SkillData != null && s.SkillData.Id == skillId)) return;
+            
+            var skillData = CoreSystem.Data.Database.GetSynchronizedSkill(skillId);
+            if (skillData != null)
+            {
+                GrantedSkills.Add(new SkillInstance(skillData));
+            }
         }
 
         public void RevokeSkill(ActiveSkill skillData)
         {
             if (skillData == null) return;
-            GrantedSkills.RemoveAll(s => s.SkillData == skillData);
+            RevokeSkill(skillData.Id);
+        }
+
+        public void RevokeSkill(int skillId)
+        {
+            GrantedSkills.RemoveAll(s => s.SkillData != null && s.SkillData.Id == skillId);
         }
 
         public SkillPayload BuildPayload(SkillInstance instance, Vector3 targetPos = default, bool isTargetSet = false, bool isLocked = false)
@@ -215,7 +243,10 @@ namespace CoreSystem.Skills
                 IsPositionLocked = isLocked,
                 
                 BaseDamage = instance.SkillData != null ? instance.SkillData.BaseDamage : 0,
-                AOERadius = instance.SkillData != null ? instance.SkillData.BaseAOERadius : 0,
+                AOERadius = instance.CalculateAOERadiusModified(this.character?.attributeSystem, instance.SkillData != null ? instance.SkillData.BaseAOERadius : 0),
+                CastRange = (instance.SkillData?.BaseTargeting is TargetLocationTargeting tlt) 
+                    ? instance.CalculateAOERadiusModified(this.character?.attributeSystem, tlt.CastRange) 
+                    : 0,
                 ProjectileCount = instance.SkillData != null ? instance.SkillData.BaseProjectileCount : 0,
                 
                 VCT = instance.SkillData != null ? instance.SkillData.BaseVCT : 0,
@@ -256,7 +287,8 @@ namespace CoreSystem.Skills
             // Lock position for TargetLocationTargeting to prevent the target area from "following" the caster
             if (isTargetSet && instance.SkillData.BaseTargeting is TargetLocationTargeting tlt)
             {
-                activeTargetPosition = tlt.ClampTargetPosition(character.transform.position, targetPos);
+                float castRange = instance.CalculateAOERadiusModified(character?.attributeSystem, tlt.CastRange);
+                activeTargetPosition = tlt.ClampTargetPosition(character.transform.position, targetPos, castRange);
                 activeIsPositionLocked = true;
             }
 
@@ -346,6 +378,7 @@ namespace CoreSystem.Skills
         {
             if (payload == null) payload = BuildPayload(instance);
 
+            // Universal mana consumption
             if (this.character != null && this.character.attributeSystem != null && payload.ManaCost > 0f)
             {
                 var mpAttr = this.character.attributeSystem.GetAttribute(AttributeType.MP);
@@ -354,63 +387,10 @@ namespace CoreSystem.Skills
                 mpAttr.Recalculate();
             }
 
-            if (instance.SkillData.IsContinuousArea && instance.SkillData.BaseTargeting != null)
+            // Delegate core logic to the skill asset (Polymorphism)
+            if (instance.SkillData != null)
             {
-                GameObject areaGo = new GameObject("ContinuousArea_" + instance.SkillData.Name);
-                areaGo.transform.position = payload.IsTargetPositionSet ? payload.TargetPosition : payload.OriginPosition;
-                
-                var areaBehaviour = areaGo.AddComponent<ContinuousAreaBehaviour>();
-                areaBehaviour.Initialize(payload, instance.SkillData.BaseTargeting, instance.SkillData.Effects, instance.SkillData.VisualData, instance.SkillData.AreaDuration, instance.SkillData.AreaTickRate);
-                return;
-            }
-
-            if (instance.SkillData.BaseTargeting != null)
-            {
-                payload.Targets = instance.SkillData.BaseTargeting.GetTargets(payload);
-                LastHitTargets.Clear();
-                for (int i = 0; i < payload.Targets.Count; i++)
-                {
-                    if (payload.Targets[i] is MonoBehaviour mb)
-                    {
-                        LastHitTargets.Add(mb.gameObject);
-                    }
-                }
-            }
-
-            for (int i = 0; i < instance.SkillData.Effects.Count; i++)
-            {
-                EffectLogic effect = instance.SkillData.Effects[i];
-                if (effect != null)
-                {
-                    if (effect.ApplyOncePerCast)
-                    {
-                        effect.Apply(payload, payload.Targets.Count > 0 ? payload.Targets[0] : null);
-                    }
-                    else
-                    {
-                        for (int j = 0; j < payload.Targets.Count; j++)
-                        {
-                            effect.Apply(payload, payload.Targets[j]);
-                        }
-                    }
-                }
-            }
-
-            if (instance.SkillData.VisualData != null)
-            {
-                VisualManager.Instance?.PlayVisual(instance.SkillData.VisualData, payload);
-            }
-
-            if (instance.SkillData.VisualPrefab != null)
-            {
-                Vector3 spawnPos = payload.IsTargetPositionSet ? payload.TargetPosition : payload.OriginPosition;
-                GameObject vfxInstance = GameObject.Instantiate(instance.SkillData.VisualPrefab, spawnPos, Quaternion.identity);
-                
-                SkillVisualEffect sve = vfxInstance.GetComponent<SkillVisualEffect>();
-                if (sve != null)
-                {
-                    sve.Initialize(payload);
-                }
+                instance.SkillData.Execute(payload, instance, this);
             }
         }
 

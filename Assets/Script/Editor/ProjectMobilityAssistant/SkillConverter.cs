@@ -15,10 +15,25 @@ public static class SkillConverter
 {
     public static void ShowConverter(ActiveSkillJsonData data)
     {
-        string path = EditorUtility.SaveFilePanelInProject("Save ActiveSkill Asset", data.SkillName, "asset", "Select location for the new skill asset", "Assets/Resources/Skill/ActiveSkill");
+        string defaultPath = "Assets/Resources/Skill/ActiveSkill";
+        if (!string.IsNullOrEmpty(data.CustomClassName)) defaultPath += "/Unique";
+        
+        string path = EditorUtility.SaveFilePanelInProject("Save ActiveSkill Asset", data.SkillName, "asset", "Select location for the new skill asset", defaultPath);
         if (string.IsNullOrEmpty(path)) return;
 
-        ActiveSkill asset = ScriptableObject.CreateInstance<ActiveSkill>();
+        ActiveSkill asset = null;
+        if (!string.IsNullOrEmpty(data.CustomClassName))
+        {
+            var type = System.Type.GetType(data.CustomClassName + ", Assembly-CSharp");
+            if (type != null && typeof(ActiveSkill).IsAssignableFrom(type))
+            {
+                asset = (ActiveSkill)ScriptableObject.CreateInstance(type);
+            }
+        }
+        
+        if (asset == null)
+            asset = ScriptableObject.CreateInstance<ActiveSkill>();
+
         asset.Id = data.SkillID;
         asset.Name = data.SkillName;
         
@@ -45,6 +60,9 @@ public static class SkillConverter
             
         if (System.Enum.TryParse(data.CastVisualSpawnPoint, out VisualAppearance castSpawn))
             asset.CastSpawnPoint = castSpawn;
+
+        if (System.Enum.TryParse(data.VisualSpawnPoint, out VisualAppearance visualSpawn))
+            asset.VisualSpawnPoint = visualSpawn;
             
         if (data.BaseTargeting != null)
         {
@@ -144,7 +162,17 @@ public static class SkillConverter
         int count = 0;
         foreach (var data in skills)
         {
-            string path = $"{folder}/{data.SkillName.Replace(" ", "_")}.asset";
+            string subFolder = folder;
+            if (!string.IsNullOrEmpty(data.CustomClassName))
+            {
+                subFolder = folder + "/Unique";
+                if (!AssetDatabase.IsValidFolder(subFolder))
+                {
+                    AssetDatabase.CreateFolder(folder, "Unique");
+                }
+            }
+            
+            string path = $"{subFolder}/{data.SkillName.Replace(" ", "_")}.asset";
             CreateOrUpdateAsset(data, path);
             count++;
         }
@@ -160,7 +188,18 @@ public static class SkillConverter
         bool isNew = false;
         if (asset == null)
         {
-            asset = ScriptableObject.CreateInstance<ActiveSkill>();
+            if (!string.IsNullOrEmpty(data.CustomClassName))
+            {
+                var type = System.Type.GetType(data.CustomClassName + ", Assembly-CSharp");
+                if (type != null && typeof(ActiveSkill).IsAssignableFrom(type))
+                {
+                    asset = (ActiveSkill)ScriptableObject.CreateInstance(type);
+                }
+            }
+
+            if (asset == null)
+                asset = ScriptableObject.CreateInstance<ActiveSkill>();
+
             isNew = true;
         }
 

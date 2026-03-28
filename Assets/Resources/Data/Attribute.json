@@ -1176,7 +1176,7 @@
             "Name": "Movement Speed",
             "FullName": "Movement Speed",
             "Description": "Character walk speed.",
-            "IsPercent": false,
+            "IsPercent": true,
             "Mapping": "MoveSpeed"
         },
         {
@@ -1344,7 +1344,7 @@
         {
             "Id": 150,
             "Icon": "attr_radius_area_of_effect",
-            "Name": "AOE",
+            "Name": "Area Of Effect",
             "FullName": "Area Of Effect",
             "Description": "Increases the impact radius and coverage area of skills.",
             "IsPercent": true,

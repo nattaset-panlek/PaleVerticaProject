@@ -40,6 +40,12 @@ namespace CoreSystem.Skills.Logic
         {
             while (_isInitialized)
             {
+                // If parented to caster, update origin position to follow
+                if (transform.parent != null && _payload.Caster != null && transform.parent == _payload.Caster.transform)
+                {
+                    _payload.OriginPosition = _payload.Caster.transform.position;
+                }
+
                 // Evaluate targets at the current origin
                 if (_targeting != null)
                 {
