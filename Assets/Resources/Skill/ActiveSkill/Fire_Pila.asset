@@ -17,11 +17,11 @@ MonoBehaviour:
   SkillElement: 3
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261446840483857
+    rid: 5700261453324353651
   Effects:
-  - rid: 5700261446840483858
+  - rid: 5700261453324353652
   VisualData: {fileID: 0}
-  VisualPrefab: {fileID: 5586069453266129572, guid: 8e95953e86b2ea24aae1a04a0787e393, type: 3}
+  VisualPrefab: {fileID: 0}
   VisualSpawnPoint: 0
   CastVisualPrefab: {fileID: 5586069453266129572, guid: 8e95953e86b2ea24aae1a04a0787e393, type: 3}
   CastSpawnPoint: 0
@@ -34,9 +34,9 @@ MonoBehaviour:
   AreaDuration: 5
   AreaTickRate: 0.5
   BaseVCT: 1
-  BaseFCT: 1
+  BaseFCT: 0.15
   BaseCastDelay: 0
-  BaseCooldown: 3
+  BaseCooldown: 0.15
   Scalings:
   - TargetField: 1
     ScalingAttribute: 152
@@ -47,13 +47,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483857
+    - rid: 5700261453324353651
       type: {class: TargetLocationTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-        CastRange: 10
-    - rid: 5700261446840483858
+        CastRange: 5
+    - rid: 5700261453324353652
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1

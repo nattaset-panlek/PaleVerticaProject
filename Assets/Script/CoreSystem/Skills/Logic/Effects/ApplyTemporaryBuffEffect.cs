@@ -15,6 +15,7 @@ namespace CoreSystem.Skills.Logic
         public string BuffName = "";
         public BuffCategory Category = BuffCategory.Attribute;
         public Sprite Icon;
+        public string BuffIconPath = "";
 
         public override void Apply(SkillPayload payload, IEntity target)
         {
@@ -33,7 +34,13 @@ namespace CoreSystem.Skills.Logic
                     
                     string finalBuffName = string.IsNullOrEmpty(BuffName) ? payload.SkillElement.ToString() + " Buff" : BuffName;
                     
-                    buffManager.ApplyTemporaryBuff(finalBuffName, TargetAttribute, buffModifier, Duration, Icon, Category, MaxStacks);
+                    Sprite finalIcon = Icon;
+                    if (finalIcon == null && !string.IsNullOrEmpty(BuffIconPath))
+                    {
+                        finalIcon = BuffIconLoader.Load(BuffIconPath);
+                    }
+
+                    buffManager.ApplyTemporaryBuff(finalBuffName, TargetAttribute, buffModifier, Duration, finalIcon, Category, MaxStacks);
                 }
             }
         }

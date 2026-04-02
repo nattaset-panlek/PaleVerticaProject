@@ -17,12 +17,12 @@ MonoBehaviour:
   SkillElement: 6
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261446840483859
+    rid: 5700261453324353653
   Effects:
-  - rid: 5700261446840483860
-  - rid: 5700261446840483861
-  - rid: 5700261446840483862
-  - rid: 5700261446840483863
+  - rid: 5700261453324353654
+  - rid: 5700261453324353655
+  - rid: 5700261453324353656
+  - rid: 5700261453324353657
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   VisualSpawnPoint: 0
@@ -32,14 +32,14 @@ MonoBehaviour:
   BaseAOERadius: 5
   BaseProjectileCount: 0
   BaseManaCost: 20
-  IsToggle: 0
+  IsToggle: 1
   IsContinuousArea: 0
   AreaDuration: 5
   AreaTickRate: 0.5
   BaseVCT: 1
   BaseFCT: 0.15
   BaseCastDelay: 0.15
-  BaseCooldown: 0
+  BaseCooldown: 1
   Scalings:
   - TargetField: 1
     ScalingAttribute: 221
@@ -50,17 +50,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483859
+    - rid: 5700261453324353653
       type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 1
         IncludeSelf: 1
-    - rid: 5700261446840483860
+    - rid: 5700261453324353654
       type: {class: HealEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1
         BaseHealAmount: 200
-    - rid: 5700261446840483861
+    - rid: 5700261453324353655
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 11
@@ -71,7 +71,8 @@ MonoBehaviour:
         BuffName: Increase Agility
         Category: 1
         Icon: {fileID: 0}
-    - rid: 5700261446840483862
+        BuffIconPath: 
+    - rid: 5700261453324353656
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 17
@@ -82,7 +83,8 @@ MonoBehaviour:
         BuffName: Increase Dexterity
         Category: 1
         Icon: {fileID: 0}
-    - rid: 5700261446840483863
+        BuffIconPath: 
+    - rid: 5700261453324353657
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 15
@@ -93,3 +95,4 @@ MonoBehaviour:
         BuffName: Increase Inteligence
         Category: 5
         Icon: {fileID: 0}
+        BuffIconPath: 

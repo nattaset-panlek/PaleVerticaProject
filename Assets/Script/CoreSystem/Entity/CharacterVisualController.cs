@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using CoreSystem.Data.Items.Model;
 using CoreSystem.Data.Items;
@@ -5,8 +7,9 @@ using CoreSystem.Data.Items;
 namespace CoreSystem.Entity
 {
     /// <summary>
-    /// Manages the visual representation of a character by reading costume data.
-    /// Replaces sprites with costume layers but falls back to default sprites if empty.
+    /// Manages the visual representation of a character.
+    /// Sprite layers are loaded async from Addressables.
+    /// Visual Prefabs are instantiated as children of model nodes after async load.
     /// </summary>
     public class CharacterVisualController : MonoBehaviour
     {
@@ -29,14 +32,18 @@ namespace CoreSystem.Entity
         public Sprite DefaultLegL;
         public Sprite DefaultLegR;
 
+        // Active prefab instances managed by this controller
+        private List<GameObject> _activeCostumePrefabs = new List<GameObject>();
+
+        // Addressable sessions per costume slot — key = slot index
+        private Dictionary<int, CostumeLoadSession> _loadSessions = new Dictionary<int, CostumeLoadSession>();
+
         private void OnEnable()
         {
             if (_character == null) _character = GetComponentInParent<Character>();
             
             if (_character != null)
-            {
                 _character.OnCostumeChanged += RefreshVisuals;
-            }
 
             // Capture defaults if not set
             if (DefaultHead == null && HeadRenderer != null) DefaultHead = HeadRenderer.sprite;
@@ -52,57 +59,123 @@ namespace CoreSystem.Entity
         private void OnDisable()
         {
             if (_character != null)
-            {
                 _character.OnCostumeChanged -= RefreshVisuals;
-            }
+
+            ReleaseAllSessions();
+            ClearCostumePrefabs();
         }
 
         [ContextMenu("Refresh Visuals")]
         public void RefreshVisuals()
         {
             if (_character == null) return;
-
-            UpdatePart(CostumeSlot.Head, HeadRenderer, DefaultHead);
-            UpdatePart(CostumeSlot.Body, BodyRenderer, DefaultBody);
-            
-            // Arms (L=index 0, R=index 1)
-            UpdateDualPart(CostumeSlot.Arms, ArmLRenderer, DefaultArmL, 0);
-            UpdateDualPart(CostumeSlot.Arms, ArmRRenderer, DefaultArmR, 1);
-            
-            // Legs (L=index 0, R=index 1)
-            UpdateDualPart(CostumeSlot.Legs, LegLRenderer, DefaultLegL, 0);
-            UpdateDualPart(CostumeSlot.Legs, LegRRenderer, DefaultLegR, 1);
+            StartCoroutine(RefreshVisualsAsync());
         }
 
-        private void UpdatePart(CostumeSlot slot, SpriteRenderer renderer, Sprite defaultSprite)
+        private IEnumerator RefreshVisualsAsync()
         {
-            if (renderer == null) return;
+            // --- 1. Reset all renderers to defaults first ---
+            SetSprite(HeadRenderer, DefaultHead);
+            SetSprite(BodyRenderer, DefaultBody);
+            SetSprite(ArmLRenderer, DefaultArmL);
+            SetSprite(ArmRRenderer, DefaultArmR);
+            SetSprite(LegLRenderer, DefaultLegL);
+            SetSprite(LegRRenderer, DefaultLegR);
 
-            var costumeInst = _character.CostumeSlots[(int)slot];
-            if (costumeInst != null && costumeInst.Item is Costume costume && costume.VisualSprites != null && costume.VisualSprites.Length > 0)
+            // --- 2. Clear all old addressable sessions and prefabs ---
+            ReleaseAllSessions();
+            ClearCostumePrefabs();
+
+            // --- 3. Load each equipped costume slot ---
+            for (int slotIdx = 0; slotIdx < _character.CostumeSlots.Length; slotIdx++)
             {
-                renderer.sprite = costume.VisualSprites[0];
-                // Apply layer priority offset if needed (optional)
-                // renderer.sortingOrder = costume.LayerPriority; 
-            }
-            else
-            {
-                renderer.sprite = defaultSprite;
+                var instance = _character.CostumeSlots[slotIdx];
+                if (instance == null || !(instance.Item is Costume costume)) continue;
+
+                var session = new CostumeLoadSession();
+                _loadSessions[slotIdx] = session;
+
+                // Load Sprites
+                yield return StartCoroutine(CostumeAddressableLoader.LoadSpritesAsync(
+                    costume,
+                    session,
+                    (spriteIndex, sprite) => ApplyCostumeSprite(costume.Slot, spriteIndex, sprite)
+                ));
+
+                // Load Prefabs
+                yield return StartCoroutine(CostumeAddressableLoader.LoadPrefabsAsync(
+                    costume,
+                    session,
+                    (pData, prefab) => InstantiateCostumePrefab(pData, prefab)
+                ));
             }
         }
 
-        private void UpdateDualPart(CostumeSlot slot, SpriteRenderer renderer, Sprite defaultSprite, int spriteIndex)
-        {
-            if (renderer == null) return;
+        // ── Sprite Application ──────────────────────────────────────────────
 
-            var costumeInst = _character.CostumeSlots[(int)slot];
-            if (costumeInst != null && costumeInst.Item is Costume costume && costume.VisualSprites != null && costume.VisualSprites.Length > spriteIndex)
+        private void ApplyCostumeSprite(CostumeSlot slot, int spriteIndex, Sprite sprite)
+        {
+            switch (slot)
             {
-                renderer.sprite = costume.VisualSprites[spriteIndex];
+                case CostumeSlot.Head:
+                    if (spriteIndex == 0) SetSprite(HeadRenderer, sprite);
+                    break;
+                case CostumeSlot.Body:
+                    if (spriteIndex == 0) SetSprite(BodyRenderer, sprite);
+                    break;
+                case CostumeSlot.Arms:
+                    if (spriteIndex == 0) SetSprite(ArmLRenderer, sprite);
+                    else if (spriteIndex == 1) SetSprite(ArmRRenderer, sprite);
+                    break;
+                case CostumeSlot.Legs:
+                    if (spriteIndex == 0) SetSprite(LegLRenderer, sprite);
+                    else if (spriteIndex == 1) SetSprite(LegRRenderer, sprite);
+                    break;
             }
-            else
+        }
+
+        private void SetSprite(SpriteRenderer renderer, Sprite sprite)
+        {
+            if (renderer != null) renderer.sprite = sprite;
+        }
+
+        // ── Prefab Management ───────────────────────────────────────────────
+
+        private void InstantiateCostumePrefab(CostumeVisualPrefabData pData, GameObject prefab)
+        {
+            Transform target = GetTargetNode(pData.TargetNode);
+            if (target == null || prefab == null) return;
+
+            GameObject go = Instantiate(prefab, target);
+            go.transform.localPosition = pData.Offset;
+            go.transform.localRotation = Quaternion.Euler(pData.Rotation);
+            go.transform.localScale    = pData.Scale;
+            _activeCostumePrefabs.Add(go);
+        }
+
+        private void ClearCostumePrefabs()
+        {
+            foreach (var go in _activeCostumePrefabs)
+                if (go != null) Destroy(go);
+            _activeCostumePrefabs.Clear();
+        }
+
+        private void ReleaseAllSessions()
+        {
+            foreach (var session in _loadSessions.Values)
+                session.Release();
+            _loadSessions.Clear();
+        }
+
+        private Transform GetTargetNode(CostumeSlot slot)
+        {
+            switch (slot)
             {
-                renderer.sprite = defaultSprite;
+                case CostumeSlot.Head: return HeadRenderer != null ? HeadRenderer.transform : transform;
+                case CostumeSlot.Body: return BodyRenderer != null ? BodyRenderer.transform : transform;
+                case CostumeSlot.Arms: return ArmLRenderer != null ? ArmLRenderer.transform : transform;
+                case CostumeSlot.Legs: return LegLRenderer != null ? LegLRenderer.transform : transform;
+                default: return transform;
             }
         }
     }

@@ -206,16 +206,72 @@ public partial class ProjectMobilityAssistant : EditorWindow
         }
     }
 
-    private Sprite ResolveResourceSprite(string path)
+    /// <summary>
+    /// Load a Sprite for editor preview using AssetDatabase — works with any folder, not just Resources.
+    /// </summary>
+    private Sprite ResolveEditorSprite(string addressableKeyOrPath)
     {
-        if (string.IsNullOrEmpty(path)) return null;
-        return Resources.Load<Sprite>(path);
+        if (string.IsNullOrEmpty(addressableKeyOrPath)) return null;
+
+        // 1. Try to find by Addressable key via AddressableAssetSettings
+#if UNITY_EDITOR
+        var settings = UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject.Settings;
+        if (settings != null)
+        {
+            foreach (var group in settings.groups)
+            {
+                if (group == null) continue;
+                foreach (var entry in group.entries)
+                {
+                    if (entry.address == addressableKeyOrPath)
+                    {
+                        return AssetDatabase.LoadAssetAtPath<Sprite>(entry.AssetPath);
+                    }
+                }
+            }
+        }
+#endif
+        // 2. Fallback: try direct asset path or Resources
+        var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(addressableKeyOrPath);
+        if (sprite != null) return sprite;
+        return Resources.Load<Sprite>(addressableKeyOrPath);
     }
 
-    private string GetResourcePath(Sprite sprite)
+    /// <summary>
+    /// Returns the Addressable address for a given asset.
+    /// Falls back to the asset filename if not registered.
+    /// </summary>
+    private string GetAddressableKey(UnityEngine.Object obj)
     {
-        if (sprite == null) return "";
-        string assetPath = AssetDatabase.GetAssetPath(sprite);
+        if (obj == null) return "";
+        string assetPath = AssetDatabase.GetAssetPath(obj);
+        if (string.IsNullOrEmpty(assetPath)) return "";
+
+#if UNITY_EDITOR
+        var settings = UnityEditor.AddressableAssets.AddressableAssetSettingsDefaultObject.Settings;
+        if (settings != null)
+        {
+            string guid = AssetDatabase.AssetPathToGUID(assetPath);
+            var entry = settings.FindAssetEntry(guid);
+            if (entry != null) return entry.address;
+        }
+#endif
+        // Fallback: use filename without extension
+        string name = Path.GetFileNameWithoutExtension(assetPath);
+        Debug.LogWarning($"[MobilityAssistant] '{obj.name}' is not registered as Addressable. Using filename as key: '{name}'. Please add it to an Addressables Group.");
+        return name;
+    }
+
+    // Kept for backwards compatibility with non-Addressable sprites (icon preview)
+    private Sprite ResolveResourceSprite(string path)
+    {
+        return ResolveEditorSprite(path);
+    }
+
+    private string GetResourcePath(UnityEngine.Object obj)
+    {
+        if (obj == null) return "";
+        string assetPath = AssetDatabase.GetAssetPath(obj);
         if (string.IsNullOrEmpty(assetPath)) return "";
 
         assetPath = assetPath.Replace('\\', '/');
@@ -223,7 +279,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
         int resIndex = assetPath.IndexOf("/Resources/");
         if (resIndex == -1) 
         {
-            Debug.LogWarning($"Sprite '{sprite.name}' is not in a Resources folder.");
+            Debug.LogWarning($"Object '{obj.name}' is not in a Resources folder.");
             return "";
         }
 
@@ -231,10 +287,15 @@ public partial class ProjectMobilityAssistant : EditorWindow
         int extIndex = resPath.LastIndexOf(".");
         if (extIndex != -1) resPath = resPath.Substring(0, extIndex);
 
-        // If the sprite name matches the filename, or if user prefers clean path
-        string fileName = Path.GetFileNameWithoutExtension(assetPath);
-        if (AssetDatabase.IsMainAsset(sprite) || sprite.name == fileName) return resPath;
+        if (obj is Sprite sprite)
+        {
+            // If the sprite name matches the filename, or if user prefers clean path
+            string fileName = Path.GetFileNameWithoutExtension(assetPath);
+            if (AssetDatabase.IsMainAsset(sprite) || sprite.name == fileName) return resPath;
+            
+            return $"{resPath}:{sprite.name}";
+        }
         
-        return $"{resPath}:{sprite.name}";
+        return resPath;
     }
 }

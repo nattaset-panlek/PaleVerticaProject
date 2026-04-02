@@ -17,42 +17,42 @@ MonoBehaviour:
   SkillElement: 0
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261446840483841
+    rid: 5700261453324353666
   Effects:
-  - rid: 5700261446840483842
+  - rid: 5700261453324353667
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   VisualSpawnPoint: 0
   CastVisualPrefab: {fileID: 5586069453266129572, guid: 8e95953e86b2ea24aae1a04a0787e393, type: 3}
   CastSpawnPoint: 0
   BaseDamage: 0
-  BaseAOERadius: 1
+  BaseAOERadius: 3
   BaseProjectileCount: 0
   BaseManaCost: 10
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
   AreaTickRate: 0.5
-  BaseVCT: 1
-  BaseFCT: 1
-  BaseCastDelay: 1
-  BaseCooldown: 1
+  BaseVCT: 0.25
+  BaseFCT: 0
+  BaseCastDelay: 0.15
+  BaseCooldown: 0
   Scalings: []
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483841
+    - rid: 5700261453324353666
       type: {class: TargetLocationTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         CastRange: 5
-    - rid: 5700261446840483842
+    - rid: 5700261453324353667
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
-        Type: 6
+        Type: 4
         Distance: 5
         ApplyOncePerCast: 1
-        StunDuration: 1
+        StunDuration: 0
         UseLerp: 1
         LerpDuration: 1

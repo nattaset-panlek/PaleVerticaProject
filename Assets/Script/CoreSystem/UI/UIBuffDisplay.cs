@@ -57,7 +57,7 @@ namespace CoreSystem.UI
                 }
 
                 // Update values
-                _activeIcons[buff].SetBuffIcon(buff.Icon, buff.RemainingDuration, buff.TotalDuration);
+                _activeIcons[buff].SetBuffIcon(buff);
             }
         }
     }

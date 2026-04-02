@@ -78,18 +78,19 @@ namespace CoreSystem.Skills.Logic
 
                 if (!string.IsNullOrEmpty(categoryIconName))
                 {
-                    finalIcon = Resources.Load<Sprite>($"Sprite/Buff/{categoryIconName}");
+                    finalIcon = BuffIconLoader.Load(categoryIconName);
+                    // Check if it actually loaded the requested one or just fallback
+                    if (finalIcon == BuffIconLoader.GetFallback() && categoryIconName != "Icon_Default_Buff")
+                    {
+                         // We could log here but maybe it's too spammy
+                    }
                 }
 
-                // 2. If specifically tagged failed or was Default, try Default icon
+                // 2. If specifically tagged failed or was Default, ensure we have fallback
                 if (finalIcon == null)
                 {
-                    finalIcon = Resources.Load<Sprite>("Sprite/Buff/Icon_Default_Buff");
-                }
-
-                if (finalIcon == null)
-                {
-                    Debug.LogWarning($"[BuffSystem] Missing Icon at Sprite/Buff/Icon_Default_Buff for buff: {sourceName} (Category: {category})");
+                    finalIcon = BuffIconLoader.GetFallback();
+                    Debug.LogWarning($"[BuffSystem] No specific icon found for buff '{sourceName}' (Category: {category}). Using Default.");
                 }
             }
 

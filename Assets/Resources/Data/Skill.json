@@ -67,7 +67,8 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 },
                 {
                     "EffectType": "MovementEffectLogic",
@@ -78,7 +79,7 @@
                     "SkillName": "",
                     "SkillID": 0,
                     "ModType": "",
-                    "Duration": 0.0,
+                    "Duration": 0.15000000596046449,
                     "MaxStacks": 0,
                     "BuffName": "",
                     "PrefabPath": "",
@@ -93,13 +94,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1002,
@@ -184,13 +187,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1003,
@@ -267,13 +272,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1004,
@@ -285,11 +292,11 @@
             "BaseAOERadius": 5.0,
             "BaseProjectileCount": 0,
             "BaseManaCost": 20.0,
-            "IsToggle": false,
+            "IsToggle": true,
             "BaseVCT": 1.0,
             "BaseFCT": 0.15000000596046449,
             "BaseCastDelay": 0.15000000596046449,
-            "BaseCooldown": 0.0,
+            "BaseCooldown": 1.0,
             "Heal": 200.0,
             "BaseTargeting": {
                 "Type": "Sphere",
@@ -342,7 +349,8 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
@@ -368,7 +376,8 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
@@ -394,7 +403,8 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
@@ -420,13 +430,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "FollowCaster",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1005,
@@ -486,7 +498,8 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 },
                 {
                     "EffectType": "MovementEffectLogic",
@@ -512,13 +525,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1006,
@@ -595,13 +610,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1007,
@@ -661,13 +678,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1008,
@@ -760,13 +779,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "FollowCaster",
             "CastVisualPrefabName": "Skill/VisualEffectSkill/Aura",
-            "CastVisualSpawnPoint": "FollowCaster"
+            "CastVisualSpawnPoint": "FollowCaster",
+            "UniqueFields": []
         },
         {
             "SkillID": 1009,
@@ -826,7 +847,8 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 },
                 {
                     "EffectType": "ApplyTemporaryBuffEffect",
@@ -852,13 +874,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1010,
@@ -927,13 +951,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "Skill/VisualEffectSkill/Danger",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 0,
@@ -972,7 +998,8 @@
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         },
         {
             "SkillID": 1011,
@@ -1011,7 +1038,24 @@
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": [
+                {
+                    "FieldName": "ParryWindow",
+                    "FieldType": "System.Single",
+                    "StringValue": "0"
+                },
+                {
+                    "FieldName": "CounterDamageMult",
+                    "FieldType": "System.Single",
+                    "StringValue": "0"
+                },
+                {
+                    "FieldName": "CounterVfx",
+                    "FieldType": "UnityEngine.GameObject",
+                    "StringValue": ""
+                }
+            ]
         },
         {
             "SkillID": 1012,
@@ -1050,7 +1094,24 @@
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": [
+                {
+                    "FieldName": "MaxJumps",
+                    "FieldType": "System.Int32",
+                    "StringValue": "0"
+                },
+                {
+                    "FieldName": "JumpRadius",
+                    "FieldType": "System.Single",
+                    "StringValue": "0"
+                },
+                {
+                    "FieldName": "DamageDecayPerJump",
+                    "FieldType": "System.Single",
+                    "StringValue": "0"
+                }
+            ]
         },
         {
             "SkillID": 1013,
@@ -1089,7 +1150,14 @@
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": [
+                {
+                    "FieldName": "StrikeDamageMult",
+                    "FieldType": "System.Single",
+                    "StringValue": "0"
+                }
+            ]
         },
         {
             "SkillID": 1014,
@@ -1097,18 +1165,18 @@
             "SkillName": "Time Dilation",
             "SkillElement": "Neutral",
             "DamageType": "Magic",
-            "BaseDamage": 0.0,
+            "BaseDamage": 1.0,
             "BaseAOERadius": 6.0,
             "BaseProjectileCount": 0,
-            "BaseManaCost": 60.0,
+            "BaseManaCost": 20.0,
             "IsToggle": false,
-            "BaseVCT": 0.0,
+            "BaseVCT": 1.0,
             "BaseFCT": 0.0,
-            "BaseCastDelay": 0.0,
-            "BaseCooldown": 20.0,
+            "BaseCastDelay": 0.10000000149011612,
+            "BaseCooldown": 1.0,
             "Heal": 0.0,
             "BaseTargeting": {
-                "Type": "Sphere",
+                "Type": "Self",
                 "Radius": 6.0,
                 "CastRange": 5.0,
                 "Angle": 60.0,
@@ -1127,8 +1195,40 @@
             "Effects": [],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualPrefabName": "Assets/Prefab/SkillS/Visual/TimeRift.prefab",
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": [
+                {
+                    "FieldName": "RecordDuration",
+                    "FieldType": "System.Single",
+                    "StringValue": "10"
+                },
+                {
+                    "FieldName": "RecordInterval",
+                    "FieldType": "System.Single",
+                    "StringValue": "2"
+                },
+                {
+                    "FieldName": "AffectCaster",
+                    "FieldType": "System.Boolean",
+                    "StringValue": "False"
+                },
+                {
+                    "FieldName": "RewindLerpDuration",
+                    "FieldType": "System.Single",
+                    "StringValue": "1"
+                },
+                {
+                    "FieldName": "ShowGhostTrail",
+                    "FieldType": "System.Boolean",
+                    "StringValue": "True"
+                },
+                {
+                    "FieldName": "GhostMaterial",
+                    "FieldType": "UnityEngine.Material",
+                    "StringValue": ""
+                }
+            ]
         },
         {
             "SkillID": 1015,
@@ -1188,13 +1288,15 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
                 }
             ],
             "VisualPrefabName": "",
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "Skill/VisualEffectSkill/Danger",
-            "CastVisualSpawnPoint": "TargetPosition"
+            "CastVisualSpawnPoint": "TargetPosition",
+            "UniqueFields": []
         }
     ],
     "SupportSkills": []

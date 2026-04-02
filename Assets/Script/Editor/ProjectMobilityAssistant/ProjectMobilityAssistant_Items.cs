@@ -91,72 +91,85 @@ public partial class ProjectMobilityAssistant : EditorWindow
 
                 entry.LayerPriority = EditorGUILayout.IntField("Layer Priority", entry.LayerPriority);
                 
-                DrawSectionHeader("\uD83C\uD0AD Costume Sprite Layers");
+                // ── Costume Sprite Layers (Addressable Keys) ──────────────────────
+                DrawSectionHeader("\uD83C\uD0AD Costume Sprite Layers  \u00B7  Addressables");
+                EditorGUILayout.HelpBox("ใส่ Addressable Key ของ Sprite (เช่น: \"Costume/Head_A_Sprite\")\nSet Label ใน Addressables Groups ด้วยนะ", MessageType.Info);
                 if (entry.VisualSpritePaths == null) entry.VisualSpritePaths = new List<string>();
                 for (int i = 0; i < entry.VisualSpritePaths.Count; i++)
                 {
                     EditorGUILayout.BeginVertical(SectionStyle);
                     EditorGUILayout.BeginHorizontal();
-                    
-                    Sprite currentSprite = ResolveResourceSprite(entry.VisualSpritePaths[i]);
-                    Sprite newSprite = (Sprite)EditorGUILayout.ObjectField($"Layer {i}", currentSprite, typeof(Sprite), false);
-                    
-                    if (newSprite != currentSprite)
-                        entry.VisualSpritePaths[i] = GetResourcePath(newSprite);
-                    
+                    GUILayout.Label($"Layer {i}", GUILayout.Width(60));
+                    entry.VisualSpritePaths[i] = EditorGUILayout.TextField(entry.VisualSpritePaths[i]);
                     if (GUILayout.Button("X", GUILayout.Width(20))) { entry.VisualSpritePaths.RemoveAt(i); break; }
                     EditorGUILayout.EndHorizontal();
-                    
-                    entry.VisualSpritePaths[i] = EditorGUILayout.TextField("Path", entry.VisualSpritePaths[i]);
-                    
-                    if (newSprite != null)
-                    {
-                         Texture2D preview = AssetPreview.GetAssetPreview(newSprite);
-                         if (preview != null)
-                            GUILayout.Label(new GUIContent(preview), GUILayout.Width(40), GUILayout.Height(40));
-                    }
-                    
                     EditorGUILayout.EndVertical();
                 }
                 if (GUILayout.Button("\uFF0B Add Sprite Layer")) entry.VisualSpritePaths.Add("");
+
+                // ── Costume Visual Prefabs (Addressable Keys) ──────────────────────
+                DrawSectionHeader("\u2728 Costume Visual Prefabs  \u00B7  Addressables");
+                EditorGUILayout.HelpBox("ใส่ Addressable Key ของ Prefab (เช่น: \"Costume/Wing_A_Prefab\")", MessageType.Info);
+                if (entry.VisualPrefabEntries == null) entry.VisualPrefabEntries = new List<CostumePrefabEntry>();
+                for (int i = 0; i < entry.VisualPrefabEntries.Count; i++)
+                {
+                    var pEntry = entry.VisualPrefabEntries[i];
+                    EditorGUILayout.BeginVertical(SectionStyle);
+                    
+                    EditorGUILayout.BeginHorizontal();
+                    GUILayout.Label($"Prefab {i}", GUILayout.Width(60));
+                    pEntry.PrefabKey = EditorGUILayout.TextField(pEntry.PrefabKey ?? "");
+                    if (GUILayout.Button("X", GUILayout.Width(20))) { entry.VisualPrefabEntries.RemoveAt(i); break; }
+                    EditorGUILayout.EndHorizontal();
+
+                    if (System.Enum.TryParse(pEntry.TargetNode, out CoreSystem.CostumeSlot node))
+                         pEntry.TargetNode = ((CoreSystem.CostumeSlot)EditorGUILayout.EnumPopup("Target Node", node)).ToString();
+                    else
+                         pEntry.TargetNode = EditorGUILayout.TextField("Node (Raw)", pEntry.TargetNode);
+
+                    pEntry.Offset   = EditorGUILayout.Vector3Field("Offset",   pEntry.Offset);
+                    pEntry.Rotation = EditorGUILayout.Vector3Field("Rotation", pEntry.Rotation);
+                    pEntry.Scale    = EditorGUILayout.Vector3Field("Scale",    pEntry.Scale == Vector3.zero ? Vector3.one : pEntry.Scale);
+
+                    EditorGUILayout.EndVertical();
+                }
+                if (GUILayout.Button("\uFF0B Add Visual Prefab")) entry.VisualPrefabEntries.Add(new CostumePrefabEntry { TargetNode = "Head", Scale = Vector3.one });
             }
             
             EditorGUILayout.EndVertical();
 
             EditorGUILayout.BeginVertical(SectionStyle);
             GUILayout.Label("Visuals", EditorStyles.boldLabel);
-            
+            EditorGUILayout.HelpBox("ลาก Sprite จากโฟลเดอร์ Assets/Addressable/Sprite/Item แล้วระบบจะดึง Addressable Key อัตโนมัติ", MessageType.Info);
+
             EditorGUILayout.BeginHorizontal();
-            Sprite currentIcon = ResolveResourceSprite(entry.IconPath);
+            Sprite currentIcon = ResolveEditorSprite(entry.IconPath);
             Sprite newIcon = (Sprite)EditorGUILayout.ObjectField("Item Icon", currentIcon, typeof(Sprite), false);
             
             if (newIcon != currentIcon)
             {
-                entry.IconPath = GetResourcePath(newIcon);
+                entry.IconPath = GetAddressableKey(newIcon);
             }
             EditorGUILayout.EndHorizontal();
 
-            entry.IconPath = EditorGUILayout.TextField("Resource Path", entry.IconPath ?? "");
+            entry.IconPath = EditorGUILayout.TextField("Addressable Key", entry.IconPath ?? "");
 
             // Preview
-            if (!string.IsNullOrEmpty(entry.IconPath))
+            Sprite previewSprite = ResolveEditorSprite(entry.IconPath);
+            if (previewSprite != null)
             {
-                var sprite = ResolveResourceSprite(entry.IconPath);
-                if (sprite != null)
+                Texture2D preview = AssetPreview.GetAssetPreview(previewSprite) ?? previewSprite.texture;
+                if (preview != null)
                 {
-                    Texture2D preview = AssetPreview.GetAssetPreview(sprite) ?? sprite.texture;
-                    if (preview != null)
-                    {
-                        EditorGUILayout.Space(5);
-                        Rect r = EditorGUILayout.GetControlRect(false, 64);
-                        r.width = 64;
-                        GUI.DrawTexture(r, preview, ScaleMode.ScaleToFit);
-                    }
+                    EditorGUILayout.Space(5);
+                    Rect r = EditorGUILayout.GetControlRect(false, 64);
+                    r.width = 64;
+                    GUI.DrawTexture(r, preview, ScaleMode.ScaleToFit);
                 }
-                else
-                {
-                    EditorGUILayout.HelpBox("Sprite not found at specified path.", MessageType.Warning);
-                }
+            }
+            else if (!string.IsNullOrEmpty(entry.IconPath))
+            {
+                EditorGUILayout.HelpBox($"Key '{entry.IconPath}' ไม่พบใน Addressables\nกรุณา Register Asset ใน Addressables Groups ก่อน", MessageType.Warning);
             }
             EditorGUILayout.EndVertical();
 

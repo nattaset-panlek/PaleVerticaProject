@@ -17,7 +17,7 @@ MonoBehaviour:
   SkillElement: 0
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261446840483840
+    rid: 5700261453324353635
   Effects: []
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
@@ -37,11 +37,11 @@ MonoBehaviour:
   BaseCastDelay: 0
   BaseCooldown: 6
   Scalings: []
-  StrikeDamageMult: 1.5
+  StrikeDamageMult: 0
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483840
+    - rid: 5700261453324353635
       type: {class: TargetLocationTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0

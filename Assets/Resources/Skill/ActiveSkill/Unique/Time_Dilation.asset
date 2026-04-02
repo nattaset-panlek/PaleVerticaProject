@@ -17,32 +17,37 @@ MonoBehaviour:
   SkillElement: 0
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261446840483871
+    rid: 5700261453324353668
   Effects: []
   VisualData: {fileID: 0}
-  VisualPrefab: {fileID: 0}
+  VisualPrefab: {fileID: 1356538419875941380, guid: 2fe19e400888f7c46ae848350997be5b, type: 3}
   VisualSpawnPoint: 0
   CastVisualPrefab: {fileID: 0}
   CastSpawnPoint: 0
-  BaseDamage: 0
+  BaseDamage: 1
   BaseAOERadius: 6
   BaseProjectileCount: 0
-  BaseManaCost: 60
+  BaseManaCost: 20
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
   AreaTickRate: 0.5
-  BaseVCT: 0
+  BaseVCT: 1
   BaseFCT: 0
-  BaseCastDelay: 0
-  BaseCooldown: 20
+  BaseCastDelay: 0.1
+  BaseCooldown: 1
   Scalings: []
-  TimeScale: 0.5
+  RecordDuration: 10
+  RecordInterval: 0.5
+  AffectCaster: 0
+  RewindLerpDuration: 1
+  ShowGhostTrail: 1
+  GhostMaterial: {fileID: 2100000, guid: bd7fdd0df491c694e8ed8e61855e5041, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483871
+    - rid: 5700261453324353668
       type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
-        AlignmentAction: 0
-        IncludeSelf: 0
+        AlignmentAction: 2
+        IncludeSelf: 1

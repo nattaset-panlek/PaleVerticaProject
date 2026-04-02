@@ -50,6 +50,16 @@ namespace CoreSystem.Data.Skills
         public string VisualSpawnPoint;
         public string CastVisualPrefabName;
         public string CastVisualSpawnPoint; // "Target" or "Caster"
+
+        public List<UniqueSkillFieldData> UniqueFields;
+    }
+
+    [System.Serializable]
+    public class UniqueSkillFieldData
+    {
+        public string FieldName;
+        public string FieldType;
+        public string StringValue;
     }
 
     public enum VisualSpawnPoint
@@ -88,6 +98,7 @@ namespace CoreSystem.Data.Skills
         public int ConditionAttributeID;
         public string ConditionComparison; // ">=", "<", etc.
         public float ConditionThreshold;
+        public string BuffIconPath;
     }
 
     [System.Serializable]

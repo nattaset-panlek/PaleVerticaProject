@@ -17,10 +17,10 @@ MonoBehaviour:
   SkillElement: 4
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261446840483854
+    rid: 5700261453324353648
   Effects:
-  - rid: 5700261446840483855
-  - rid: 5700261446840483856
+  - rid: 5700261453324353649
+  - rid: 5700261453324353650
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   VisualSpawnPoint: 0
@@ -42,12 +42,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483854
+    - rid: 5700261453324353648
       type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261446840483855
+    - rid: 5700261453324353649
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 11
@@ -58,7 +58,8 @@ MonoBehaviour:
         BuffName: Lightning Agility
         Category: 1
         Icon: {fileID: 0}
-    - rid: 5700261446840483856
+        BuffIconPath: 
+    - rid: 5700261453324353650
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 132
@@ -69,3 +70,4 @@ MonoBehaviour:
         BuffName: Lightning Speed
         Category: 1
         Icon: {fileID: 0}
+        BuffIconPath: 

@@ -145,13 +145,25 @@ namespace CoreSystem.Data.Items
                             IconPath = entry.IconPath
                         };
                         
-                        // Load visual sprites if paths are provided
-                        if (entry.VisualSpritePaths != null && entry.VisualSpritePaths.Count > 0)
+                        // Store Addressable keys only — sprites are loaded at runtime by CharacterVisualController
+                        if (entry.VisualSpritePaths != null)
+                            costume.VisualSpriteKeys = new List<string>(entry.VisualSpritePaths);
+                        
+                        // Store Addressable prefab data — GameObjects are loaded at runtime
+                        if (entry.VisualPrefabEntries != null)
                         {
-                            costume.VisualSprites = new Sprite[entry.VisualSpritePaths.Count];
-                            for (int i = 0; i < entry.VisualSpritePaths.Count; i++)
+                            foreach (var pEntry in entry.VisualPrefabEntries)
                             {
-                                costume.VisualSprites[i] = LoadSprite(entry.VisualSpritePaths[i]);
+                                if (System.Enum.TryParse(pEntry.TargetNode, out CostumeSlot tSlot))
+                                {
+                                    costume.VisualPrefabData.Add(new CostumeVisualPrefabData {
+                                        PrefabKey  = pEntry.PrefabKey,
+                                        TargetNode = tSlot,
+                                        Offset     = pEntry.Offset,
+                                        Rotation   = pEntry.Rotation,
+                                        Scale      = pEntry.Scale == Vector3.zero ? Vector3.one : pEntry.Scale
+                                    });
+                                }
                             }
                         }
                         
@@ -269,22 +281,6 @@ namespace CoreSystem.Data.Items
             }
         }
 
-        private static Sprite LoadSprite(string path)
-        {
-            if (string.IsNullOrEmpty(path)) return null;
-            if (path.Contains(":"))
-            {
-                string[] parts = path.Split(':');
-                string mainPath = parts[0];
-                string subName = parts[1];
-                Sprite[] allSprites = Resources.LoadAll<Sprite>(mainPath);
-                foreach (var sprite in allSprites)
-                {
-                    if (sprite.name == subName) return sprite;
-                }
-            }
-            return Resources.Load<Sprite>(path);
-        }
     }
 
     [System.Serializable]
@@ -320,9 +316,12 @@ namespace CoreSystem.Data.Items
         // Costume specific
         public string CostumeSlot;
         public int LayerPriority;
+        /// <summary>Addressable keys for costume sprite layers (e.g. "Costume/Head_A_Sprite").</summary>
         public List<string> VisualSpritePaths;
-        
-        public string SetID; // New: Reference to a set in ItemSet.json
+        /// <summary>Addressable prefab entries for visual attachments.</summary>
+        public List<CostumePrefabEntry> VisualPrefabEntries;
+
+        public string SetID;
     }
 
     [System.Serializable]
@@ -346,4 +345,14 @@ namespace CoreSystem.Data.Items
         public List<EffectEntry> Effects;
     }
 
+    [System.Serializable]
+    public class CostumePrefabEntry
+    {
+        /// <summary>Addressable key for the prefab (e.g. "Costume/Wing_A_Prefab").</summary>
+        public string PrefabKey;
+        public string TargetNode; // CostumeSlot enum string
+        public Vector3 Offset;
+        public Vector3 Rotation;
+        public Vector3 Scale = Vector3.one;
+    }
 }

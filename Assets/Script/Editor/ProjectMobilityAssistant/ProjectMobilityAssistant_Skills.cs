@@ -26,6 +26,134 @@ public partial class ProjectMobilityAssistant : EditorWindow
             GUILayout.Label("Basic Info", EditorStyles.boldLabel);
             entry.SkillID = EditorGUILayout.IntField("Skill ID", entry.SkillID);
             entry.SkillName = EditorGUILayout.TextField("Name", entry.SkillName);
+
+            // --- Unique Skill Script Mapping ---
+            EditorGUILayout.Space(5);
+            GUI.color = new Color(1f, 0.9f, 0.6f);
+            MonoScript currentScript = null;
+            if (!string.IsNullOrEmpty(entry.CustomClassName))
+            {
+                var t = System.Type.GetType(entry.CustomClassName + ", Assembly-CSharp");
+                if (t != null)
+                {
+                    var componentNames = AssetDatabase.FindAssets("t:MonoScript " + t.Name);
+                    foreach (var guid in componentNames)
+                    {
+                        var path = AssetDatabase.GUIDToAssetPath(guid);
+                        var script = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
+                        if (script != null && script.GetClass() == t)
+                        {
+                            currentScript = script;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            MonoScript newScript = (MonoScript)EditorGUILayout.ObjectField("Unique Skill Script", currentScript, typeof(MonoScript), false);
+            if (newScript != currentScript)
+            {
+                if (newScript != null)
+                {
+                    System.Type scriptClass = newScript.GetClass();
+                    if (scriptClass != null && typeof(ActiveSkill).IsAssignableFrom(scriptClass))
+                    {
+                        entry.CustomClassName = scriptClass.FullName;
+                    }
+                    else
+                    {
+                        EditorUtility.DisplayDialog("Invalid Script", "The script must inherit from ActiveSkill to be used here.", "OK");
+                        entry.CustomClassName = "";
+                    }
+                }
+                else
+                {
+                    entry.CustomClassName = "";
+                }
+            }
+            GUI.color = Color.white;
+
+            // --- Render Custom Fields via Reflection ---
+            if (!string.IsNullOrEmpty(entry.CustomClassName))
+            {
+                System.Type t = System.Type.GetType(entry.CustomClassName + ", Assembly-CSharp");
+                if (t != null)
+                {
+                    GUILayout.Label("Unique Skill Settings", EditorStyles.boldLabel);
+                    EditorGUILayout.BeginVertical(GUI.skin.box);
+                    
+                    if (entry.UniqueFields == null) entry.UniqueFields = new List<UniqueSkillFieldData>();
+                    
+                    var fields = t.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
+                    foreach (var field in fields)
+                    {
+                        var fData = entry.UniqueFields.FirstOrDefault(x => x.FieldName == field.Name);
+                        if (fData == null)
+                        {
+                            fData = new UniqueSkillFieldData { FieldName = field.Name, FieldType = field.FieldType.FullName, StringValue = "" };
+                            entry.UniqueFields.Add(fData);
+                        }
+                        
+                        EditorGUILayout.BeginHorizontal();
+                        EditorGUILayout.LabelField(field.Name, GUILayout.Width(120));
+                        
+                        if (field.FieldType == typeof(float))
+                        {
+                            float.TryParse(fData.StringValue, out float fVal);
+                            fVal = EditorGUILayout.FloatField(fVal);
+                            fData.StringValue = fVal.ToString();
+                        }
+                        else if (field.FieldType == typeof(int))
+                        {
+                            int.TryParse(fData.StringValue, out int iVal);
+                            iVal = EditorGUILayout.IntField(iVal);
+                            fData.StringValue = iVal.ToString();
+                        }
+                        else if (field.FieldType == typeof(string))
+                        {
+                            fData.StringValue = EditorGUILayout.TextField(fData.StringValue);
+                        }
+                        else if (field.FieldType == typeof(bool))
+                        {
+                            bool.TryParse(fData.StringValue, out bool bVal);
+                            bVal = EditorGUILayout.Toggle(bVal);
+                            fData.StringValue = bVal.ToString();
+                        }
+                        else if (field.FieldType == typeof(Vector2))
+                        {
+                            string[] parts = fData.StringValue.Split(',');
+                            Vector2 vVal = Vector2.zero;
+                            if (parts.Length == 2)
+                            {
+                                float.TryParse(parts[0], out vVal.x);
+                                float.TryParse(parts[1], out vVal.y);
+                            }
+                            vVal = EditorGUILayout.Vector2Field("", vVal);
+                            fData.StringValue = $"{vVal.x},{vVal.y}";
+                        }
+                        else if (field.FieldType == typeof(Vector3))
+                        {
+                            string[] parts = fData.StringValue.Split(',');
+                            Vector3 vVal = Vector3.zero;
+                            if (parts.Length == 3)
+                            {
+                                float.TryParse(parts[0], out vVal.x);
+                                float.TryParse(parts[1], out vVal.y);
+                                float.TryParse(parts[2], out vVal.z);
+                            }
+                            vVal = EditorGUILayout.Vector3Field("", vVal);
+                            fData.StringValue = $"{vVal.x},{vVal.y},{vVal.z}";
+                        }
+                        else
+                        {
+                            EditorGUILayout.LabelField($"Unsupported Type: {field.FieldType.Name}", EditorStyles.miniLabel);
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
+                    EditorGUILayout.EndVertical();
+                    EditorGUILayout.Space(5);
+                }
+            }
             
             // Enum for Element
             if (!System.Enum.TryParse(entry.SkillElement, out ElementType element)) element = ElementType.Neutral;
@@ -52,14 +180,24 @@ public partial class ProjectMobilityAssistant : EditorWindow
             GUILayout.Label("Visuals", EditorStyles.boldLabel);
             
             // Execution Prefab
-            var vfxObj = Resources.Load<GameObject>(entry.VisualPrefabName);
-            var newVfx = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Visual Prefab (Resources)", "Shown when skill activates. MUST be in a Resources folder."), vfxObj, typeof(GameObject), false);
-            if (newVfx != vfxObj) entry.VisualPrefabName = GetResourcesPath(newVfx);
+            GameObject vfxObj = null;
+            if (!string.IsNullOrEmpty(entry.VisualPrefabName))
+            {
+                if (entry.VisualPrefabName.StartsWith("Assets/")) vfxObj = AssetDatabase.LoadAssetAtPath<GameObject>(entry.VisualPrefabName);
+                else vfxObj = Resources.Load<GameObject>(entry.VisualPrefabName);
+            }
+            var newVfx = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Visual Prefab (Any Folder)", "Shown when skill activates. Saved into ScriptableObject on Convert."), vfxObj, typeof(GameObject), false);
+            if (newVfx != vfxObj) entry.VisualPrefabName = newVfx == null ? "" : AssetDatabase.GetAssetPath(newVfx);
             
             // Cast Prefab
-            var castVfxObj = Resources.Load<GameObject>(entry.CastVisualPrefabName);
-            var newCastVfx = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Cast Visual Prefab (Resources)", "Shown when casting starts. MUST be in a Resources folder."), castVfxObj, typeof(GameObject), false);
-            if (newCastVfx != castVfxObj) entry.CastVisualPrefabName = GetResourcesPath(newCastVfx);
+            GameObject castVfxObj = null;
+            if (!string.IsNullOrEmpty(entry.CastVisualPrefabName))
+            {
+                if (entry.CastVisualPrefabName.StartsWith("Assets/")) castVfxObj = AssetDatabase.LoadAssetAtPath<GameObject>(entry.CastVisualPrefabName);
+                else castVfxObj = Resources.Load<GameObject>(entry.CastVisualPrefabName);
+            }
+            var newCastVfx = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Cast Visual Prefab (Any Folder)", "Shown when casting starts. Saved into ScriptableObject on Convert."), castVfxObj, typeof(GameObject), false);
+            if (newCastVfx != castVfxObj) entry.CastVisualPrefabName = newCastVfx == null ? "" : AssetDatabase.GetAssetPath(newCastVfx);
 
             if (!System.Enum.TryParse(entry.CastVisualSpawnPoint, out VisualAppearance castSpawn)) castSpawn = VisualAppearance.TargetPosition;
             entry.CastVisualSpawnPoint = ((VisualAppearance)EditorGUILayout.EnumPopup("Cast Spawn Point", castSpawn)).ToString();
@@ -295,6 +433,18 @@ public partial class ProjectMobilityAssistant : EditorWindow
                     effect.MaxStacks = EditorGUILayout.IntField("Max Stacks", effect.MaxStacks);
                     if (!System.Enum.TryParse(effect.Category, out BuffCategory bCat)) bCat = BuffCategory.Default;
                     effect.Category = ((BuffCategory)EditorGUILayout.EnumPopup("Category", bCat)).ToString();
+
+                    // --- Buff Icon (Addressable) ---
+                    EditorGUILayout.BeginHorizontal();
+                    Sprite currentBuffIcon = ResolveEditorSprite(effect.BuffIconPath);
+                    Sprite newBuffIcon = (Sprite)EditorGUILayout.ObjectField("Buff Icon (Addressable)", currentBuffIcon, typeof(Sprite), false);
+                    if (newBuffIcon != currentBuffIcon)
+                    {
+                        effect.BuffIconPath = GetAddressableKey(newBuffIcon);
+                    }
+                    EditorGUILayout.EndHorizontal();
+                    if (!string.IsNullOrEmpty(effect.BuffIconPath))
+                        EditorGUILayout.LabelField("Icon Key:", effect.BuffIconPath, EditorStyles.miniLabel);
                 }
             }
         }
@@ -306,10 +456,18 @@ public partial class ProjectMobilityAssistant : EditorWindow
         {
             if (!System.Enum.TryParse(effect.MovementType, out CoreSystem.Skills.Logic.Effects.MovementType mType)) mType = CoreSystem.Skills.Logic.Effects.MovementType.DashForward;
             effect.MovementType = ((CoreSystem.Skills.Logic.Effects.MovementType)EditorGUILayout.EnumPopup("Move Type", mType)).ToString();
-            effect.MovementDistance = EditorGUILayout.FloatField("Distance", effect.MovementDistance);
-            effect.ApplyOnce = EditorGUILayout.Toggle("Apply Once per Cast", effect.ApplyOnce);
-            effect.UseLerp = EditorGUILayout.Toggle("Smooth (Lerp)", effect.UseLerp);
-            if (effect.UseLerp) effect.LerpDuration = EditorGUILayout.FloatField("Duration", effect.LerpDuration);
+            
+            if (mType == CoreSystem.Skills.Logic.Effects.MovementType.StunTarget)
+            {
+                effect.Duration = EditorGUILayout.FloatField("Stun Duration", effect.Duration);
+            }
+            else
+            {
+                effect.MovementDistance = EditorGUILayout.FloatField("Distance", effect.MovementDistance);
+                effect.ApplyOnce = EditorGUILayout.Toggle("Apply Once per Cast", effect.ApplyOnce);
+                effect.UseLerp = EditorGUILayout.Toggle("Smooth (Lerp)", effect.UseLerp);
+                if (effect.UseLerp) effect.LerpDuration = EditorGUILayout.FloatField("Duration", effect.LerpDuration);
+            }
         }
         else if (effect.EffectType == "SummonObjectEffect")
         {

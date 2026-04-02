@@ -17,10 +17,10 @@ MonoBehaviour:
   SkillElement: 0
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261446840483844
+    rid: 5700261453324353638
   Effects:
-  - rid: 5700261446840483845
-  - rid: 5700261446840483846
+  - rid: 5700261453324353639
+  - rid: 5700261453324353640
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   VisualSpawnPoint: 0
@@ -48,18 +48,18 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483844
+    - rid: 5700261453324353638
       type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         BoxSize: {x: 2, y: 2.5}
         Offset: {x: 0, y: 1.5}
-    - rid: 5700261446840483845
+    - rid: 5700261453324353639
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1
-    - rid: 5700261446840483846
+    - rid: 5700261453324353640
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
         Type: 5

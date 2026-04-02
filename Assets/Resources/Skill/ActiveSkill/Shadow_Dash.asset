@@ -17,9 +17,9 @@ MonoBehaviour:
   SkillElement: 5
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261446840483864
+    rid: 5700261453324353658
   Effects:
-  - rid: 5700261446840483865
+  - rid: 5700261453324353659
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   VisualSpawnPoint: 0
@@ -41,17 +41,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483864
+    - rid: 5700261453324353658
       type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261446840483865
+    - rid: 5700261453324353659
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
         Type: 1
         Distance: 3
         ApplyOncePerCast: 1
-        StunDuration: 1
+        StunDuration: 0
         UseLerp: 1
         LerpDuration: 0.15

@@ -21,18 +21,27 @@ public static class SkillConverter
         string path = EditorUtility.SaveFilePanelInProject("Save ActiveSkill Asset", data.SkillName, "asset", "Select location for the new skill asset", defaultPath);
         if (string.IsNullOrEmpty(path)) return;
 
-        ActiveSkill asset = null;
+        System.Type targetType = typeof(ActiveSkill);
         if (!string.IsNullOrEmpty(data.CustomClassName))
         {
-            var type = System.Type.GetType(data.CustomClassName + ", Assembly-CSharp");
-            if (type != null && typeof(ActiveSkill).IsAssignableFrom(type))
-            {
-                asset = (ActiveSkill)ScriptableObject.CreateInstance(type);
-            }
+            var t = System.Type.GetType(data.CustomClassName + ", Assembly-CSharp");
+            if (t != null && typeof(ActiveSkill).IsAssignableFrom(t)) targetType = t;
         }
+
+        ActiveSkill asset = AssetDatabase.LoadAssetAtPath<ActiveSkill>(path);
+        bool isNew = false;
         
+        if (asset != null && asset.GetType() != targetType)
+        {
+            AssetDatabase.DeleteAsset(path);
+            asset = null;
+        }
+
         if (asset == null)
-            asset = ScriptableObject.CreateInstance<ActiveSkill>();
+        {
+            asset = (ActiveSkill)ScriptableObject.CreateInstance(targetType);
+            isNew = true;
+        }
 
         asset.Id = data.SkillID;
         asset.Name = data.SkillName;
@@ -54,9 +63,15 @@ public static class SkillConverter
         asset.BaseAOERadius = data.BaseAOERadius;
         
         if (!string.IsNullOrEmpty(data.VisualPrefabName))
-            asset.VisualPrefab = Resources.Load<GameObject>(data.VisualPrefabName);
+        {
+            if (data.VisualPrefabName.StartsWith("Assets/")) asset.VisualPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.VisualPrefabName);
+            else asset.VisualPrefab = Resources.Load<GameObject>(data.VisualPrefabName);
+        }
         if (!string.IsNullOrEmpty(data.CastVisualPrefabName))
-            asset.CastVisualPrefab = Resources.Load<GameObject>(data.CastVisualPrefabName);
+        {
+            if (data.CastVisualPrefabName.StartsWith("Assets/")) asset.CastVisualPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.CastVisualPrefabName);
+            else asset.CastVisualPrefab = Resources.Load<GameObject>(data.CastVisualPrefabName);
+        }
             
         if (System.Enum.TryParse(data.CastVisualSpawnPoint, out VisualAppearance castSpawn))
             asset.CastSpawnPoint = castSpawn;
@@ -115,7 +130,8 @@ public static class SkillConverter
                                 Duration = e.Duration,
                                 MaxStacks = e.MaxStacks,
                                 BuffName = e.BuffName,
-                                Category = bCat
+                                Category = bCat,
+                                BuffIconPath = e.BuffIconPath
                             };
                         }
                         break;
@@ -127,15 +143,22 @@ public static class SkillConverter
                                 Distance = e.MovementDistance,
                                 ApplyOncePerCast = e.ApplyOnce,
                                 UseLerp = e.UseLerp,
-                                LerpDuration = e.LerpDuration
+                                LerpDuration = e.LerpDuration,
+                                StunDuration = e.Duration
                             };
                         }
                         break;
                     case "SummonObjectEffect":
+                        GameObject summonPrefab = null;
+                        if (!string.IsNullOrEmpty(e.PrefabPath))
+                        {
+                            if (e.PrefabPath.StartsWith("Assets/")) summonPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(e.PrefabPath);
+                            else summonPrefab = Resources.Load<GameObject>(e.PrefabPath);
+                        }
                         effect = new CoreSystem.Skills.Logic.Effects.SummonObjectEffect { 
                             Lifetime = e.Duration, 
                             ParentToCaster = e.ParentToCaster,
-                            Prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/" + e.PrefabPath + ".prefab")
+                            Prefab = summonPrefab
                         };
                         break;
                 }
@@ -143,7 +166,13 @@ public static class SkillConverter
             }
         }
 
-        AssetDatabase.CreateAsset(asset, path);
+        ApplyUniqueFields(asset, data);
+
+        if (isNew)
+            AssetDatabase.CreateAsset(asset, path);
+        else
+            EditorUtility.SetDirty(asset);
+
         AssetDatabase.SaveAssets();
     }
 
@@ -186,20 +215,23 @@ public static class SkillConverter
     {
         ActiveSkill asset = AssetDatabase.LoadAssetAtPath<ActiveSkill>(path);
         bool isNew = false;
+
+        System.Type targetType = typeof(ActiveSkill);
+        if (!string.IsNullOrEmpty(data.CustomClassName))
+        {
+            var t = System.Type.GetType(data.CustomClassName + ", Assembly-CSharp");
+            if (t != null && typeof(ActiveSkill).IsAssignableFrom(t)) targetType = t;
+        }
+
+        if (asset != null && asset.GetType() != targetType)
+        {
+            AssetDatabase.DeleteAsset(path);
+            asset = null;
+        }
+
         if (asset == null)
         {
-            if (!string.IsNullOrEmpty(data.CustomClassName))
-            {
-                var type = System.Type.GetType(data.CustomClassName + ", Assembly-CSharp");
-                if (type != null && typeof(ActiveSkill).IsAssignableFrom(type))
-                {
-                    asset = (ActiveSkill)ScriptableObject.CreateInstance(type);
-                }
-            }
-
-            if (asset == null)
-                asset = ScriptableObject.CreateInstance<ActiveSkill>();
-
+            asset = (ActiveSkill)ScriptableObject.CreateInstance(targetType);
             isNew = true;
         }
 
@@ -281,7 +313,8 @@ public static class SkillConverter
                                 Duration = e.Duration,
                                 MaxStacks = e.MaxStacks,
                                 BuffName = e.BuffName,
-                                Category = bCat
+                                Category = bCat,
+                                BuffIconPath = e.BuffIconPath
                             };
                         }
                         break;
@@ -293,7 +326,8 @@ public static class SkillConverter
                                 Distance = e.MovementDistance,
                                 ApplyOncePerCast = e.ApplyOnce,
                                 UseLerp = e.UseLerp,
-                                LerpDuration = e.LerpDuration
+                                LerpDuration = e.LerpDuration,
+                                StunDuration = e.Duration
                             };
                         }
                         break;
@@ -309,9 +343,61 @@ public static class SkillConverter
             }
         }
 
+        ApplyUniqueFields(asset, data);
+
         if (isNew)
             AssetDatabase.CreateAsset(asset, path);
         else
             EditorUtility.SetDirty(asset);
+    }
+
+    private static void ApplyUniqueFields(ActiveSkill asset, ActiveSkillJsonData data)
+    {
+        if (asset == null || data.UniqueFields == null || string.IsNullOrEmpty(data.CustomClassName)) return;
+        
+        System.Type t = asset.GetType();
+        
+        foreach (var fieldData in data.UniqueFields)
+        {
+            var fieldInfo = t.GetField(fieldData.FieldName, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
+            if (fieldInfo != null)
+            {
+                try
+                {
+                    if (fieldInfo.FieldType == typeof(float))
+                    {
+                        if (float.TryParse(fieldData.StringValue, out float fVal)) fieldInfo.SetValue(asset, fVal);
+                    }
+                    else if (fieldInfo.FieldType == typeof(int))
+                    {
+                        if (int.TryParse(fieldData.StringValue, out int iVal)) fieldInfo.SetValue(asset, iVal);
+                    }
+                    else if (fieldInfo.FieldType == typeof(string))
+                    {
+                        fieldInfo.SetValue(asset, fieldData.StringValue);
+                    }
+                    else if (fieldInfo.FieldType == typeof(bool))
+                    {
+                        if (bool.TryParse(fieldData.StringValue, out bool bVal)) fieldInfo.SetValue(asset, bVal);
+                    }
+                    else if (fieldInfo.FieldType == typeof(Vector2))
+                    {
+                        string[] parts = fieldData.StringValue.Split(',');
+                        if (parts.Length == 2 && float.TryParse(parts[0], out float x) && float.TryParse(parts[1], out float y))
+                            fieldInfo.SetValue(asset, new Vector2(x, y));
+                    }
+                    else if (fieldInfo.FieldType == typeof(Vector3))
+                    {
+                        string[] parts = fieldData.StringValue.Split(',');
+                        if (parts.Length == 3 && float.TryParse(parts[0], out float x) && float.TryParse(parts[1], out float y) && float.TryParse(parts[2], out float z))
+                            fieldInfo.SetValue(asset, new Vector3(x, y, z));
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogWarning($"[SkillConverter] Failed to parse custom field {fieldData.FieldName} for skill {data.SkillName}: {ex.Message}");
+                }
+            }
+        }
     }
 }

@@ -297,12 +297,18 @@ namespace CoreSystem.Skills
             if (character != null && character.attributeSystem != null)
             {
                 float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                if (currentMp < payload.ManaCost) return;
+                if (currentMp < payload.ManaCost) 
+                {
+                    Debug.LogWarning($"<color=red>Cast Failed:</color> Not enough MP for {instance.SkillData.Name}! (Need {payload.ManaCost}, Have {currentMp})");
+                    return;
+                }
             }
 
             activeSkillInstance = instance;
             currentCastTimer = 0f;
             currentCastTimeTotal = instance.CalculateCastTimeModified(character?.attributeSystem, payload.VCT, payload.FCT);
+
+            Debug.Log($"<color=cyan>Cast Skill:</color> {instance.SkillData.Name} <color=yellow>Time: {currentCastTimeTotal:F2}s</color>");
 
             OnCastInitiated?.Invoke(instance.SkillData.Name, currentCastTimeTotal);
 

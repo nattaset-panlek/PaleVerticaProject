@@ -17,9 +17,9 @@ MonoBehaviour:
   SkillElement: 3
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261446840483852
+    rid: 5700261453324353646
   Effects:
-  - rid: 5700261446840483853
+  - rid: 5700261453324353647
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   VisualSpawnPoint: 0
@@ -53,13 +53,13 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483852
+    - rid: 5700261453324353646
       type: {class: ConeTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         ConeAngle: 245
-    - rid: 5700261446840483853
+    - rid: 5700261453324353647
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1

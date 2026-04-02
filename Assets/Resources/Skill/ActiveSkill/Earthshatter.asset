@@ -17,10 +17,10 @@ MonoBehaviour:
   SkillElement: 2
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261446840483847
+    rid: 5700261453324353641
   Effects:
-  - rid: 5700261446840483848
-  - rid: 5700261446840483849
+  - rid: 5700261453324353642
+  - rid: 5700261453324353643
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 0}
   VisualSpawnPoint: 0
@@ -42,22 +42,22 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261446840483847
+    - rid: 5700261453324353641
       type: {class: ConeTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         ConeAngle: 60
-    - rid: 5700261446840483848
+    - rid: 5700261453324353642
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1
-    - rid: 5700261446840483849
+    - rid: 5700261453324353643
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
         Type: 3
         Distance: 5
         ApplyOncePerCast: 1
-        StunDuration: 1
+        StunDuration: 0
         UseLerp: 1
         LerpDuration: 0.35
