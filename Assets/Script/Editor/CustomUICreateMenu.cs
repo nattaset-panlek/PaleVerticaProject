@@ -118,6 +118,68 @@ namespace UI.Editor
             Selection.activeGameObject = btnObj;
         }
 
+        [MenuItem("GameObject/UI/Custom Components/Draggable Zoom Panel", false, 12)]
+        public static void CreateDraggableZoomPanel(MenuCommand menuCommand)
+        {
+            GameObject parent = menuCommand.context as GameObject;
+            if (parent == null || parent.GetComponentInParent<Canvas>() == null)
+                parent = FindOrCreateCanvas();
+
+            Sprite uiSprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/UISprite.psd");
+
+            // 1. Container
+            GameObject containerObj = new GameObject("Draggable Zoom Panel", typeof(RectTransform), typeof(Image), typeof(DraggableZoomPanel));
+            GameObjectUtility.SetParentAndAlign(containerObj, parent);
+
+            RectTransform containerRT = containerObj.GetComponent<RectTransform>();
+            containerRT.sizeDelta = new Vector2(800, 600);
+
+            Image containerImage = containerObj.GetComponent<Image>();
+            containerImage.color = new Color(0.1f, 0.1f, 0.1f, 1f);
+            containerImage.raycastTarget = true;
+            if (uiSprite != null) { containerImage.sprite = uiSprite; containerImage.type = Image.Type.Sliced; }
+
+            // 2. Content
+            GameObject contentObj = new GameObject("Content", typeof(RectTransform));
+            GameObjectUtility.SetParentAndAlign(contentObj, containerObj);
+
+            RectTransform contentRT = contentObj.GetComponent<RectTransform>();
+            contentRT.anchorMin        = new Vector2(0.5f, 0.5f);
+            contentRT.anchorMax        = new Vector2(0.5f, 0.5f);
+            contentRT.pivot            = new Vector2(0.5f, 0.5f);
+            contentRT.anchoredPosition = Vector2.zero;
+            contentRT.sizeDelta        = new Vector2(2000, 2000);
+
+            // 3. Link Content → DraggableZoomPanel
+            DraggableZoomPanel panel = containerObj.GetComponent<DraggableZoomPanel>();
+            SerializedObject so = new SerializedObject(panel);
+            so.FindProperty("_content").objectReferenceValue = contentRT;
+            so.ApplyModifiedProperties();
+
+            Undo.RegisterCreatedObjectUndo(containerObj, "Create Draggable Zoom Panel");
+            Selection.activeGameObject = containerObj;
+        }
+
+        [MenuItem("GameObject/UI/Custom Components/UI Line Renderer", false, 13)]
+        public static void CreateUILineRenderer(MenuCommand menuCommand)
+        {
+            GameObject parent = menuCommand.context as GameObject;
+            if (parent == null || parent.GetComponentInParent<Canvas>() == null)
+                parent = FindOrCreateCanvas();
+
+            GameObject go = new GameObject("UI Line Renderer", typeof(RectTransform), typeof(UI.Components.UILineRenderer));
+            GameObjectUtility.SetParentAndAlign(go, parent);
+
+            RectTransform rt = go.GetComponent<RectTransform>();
+            rt.anchorMin        = Vector2.zero;
+            rt.anchorMax        = Vector2.one;
+            rt.sizeDelta        = Vector2.zero;
+            rt.anchoredPosition = Vector2.zero;
+
+            Undo.RegisterCreatedObjectUndo(go, "Create UI Line Renderer");
+            Selection.activeGameObject = go;
+        }
+
         private static GameObject FindOrCreateCanvas()
         {
             Canvas canvas = Object.FindObjectOfType<Canvas>();
@@ -125,13 +187,10 @@ namespace UI.Editor
 
             GameObject canvasObj = new GameObject("Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObj.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
-            
-            // Also need EventSystem
+
             if (Object.FindObjectOfType<EventSystem>() == null)
-            {
                 new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-            }
-            
+
             return canvasObj;
         }
     }

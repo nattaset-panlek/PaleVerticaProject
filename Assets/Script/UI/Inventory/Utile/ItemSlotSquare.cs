@@ -45,16 +45,32 @@ public class ItemSlotSquare : ItemSlotGlobal
                 HasSocket.SetActive(((Equipment)equipInst.Item).MaxSockets > 0);
             }
         }
+        else if (itemInstance is CostumeInstance costumeInst)
+        {
+            if (EquipIcon != null) EquipIcon.SetActive(costumeInst.IsEquipped);
+            if (ModifiedItem != null) ModifiedItem.SetActive(false);
+            if (HasSocket != null) HasSocket.SetActive(false);
+        }
         else
         {
             if (EquipIcon != null) EquipIcon.SetActive(false);
             if (ModifiedItem != null) ModifiedItem.SetActive(false);
+            if (HasSocket != null) HasSocket.SetActive(false);
         }
 
         if (itemInstance != null && itemInstance.Item != null)
         {
-            QuanityValue.text = NumberFormatter.Format(itemInstance.Quantity);
-            QuanityLable.SetActive(itemInstance.Quantity > 1);
+            QuanityLable.SetActive(false);
+            if (itemInstance is EquipmentInstance equipment)
+            {
+                QuanityValue.text = NumberFormatter.Format(equipment.Refine);
+                QuanityLable.SetActive(equipment.Refine > 0);
+            }
+            else
+            {
+                QuanityValue.text = NumberFormatter.Format(itemInstance.Quantity);
+                QuanityLable.SetActive(itemInstance.Quantity > 1);
+            }
         }
     }
 }

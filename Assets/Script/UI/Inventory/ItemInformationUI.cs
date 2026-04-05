@@ -321,7 +321,7 @@ namespace CoreSystem.UI.Inventory
                 string val = match.Value;
                 if (val.StartsWith("+")) return $"<color=#388E3C>{val}</color>";
                 if (val.StartsWith("-")) return $"<color=#D32F2F>{val}</color>";
-                return $"<color=#F9A825>{val}</color>";
+                return $"<b><color=#419FAC>{val}</color></b>";
             });
         }
 

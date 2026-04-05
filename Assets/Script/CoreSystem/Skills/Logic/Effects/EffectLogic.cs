@@ -6,7 +6,7 @@ namespace CoreSystem.Skills.Logic
     [System.Serializable]
     public abstract class EffectLogic
     {
-        public virtual bool ApplyOncePerCast => false;
+        public virtual bool ApplyOncePerCast { get; set; } = false;
         public abstract void Apply(SkillPayload payload, IEntity target);
     }
 }

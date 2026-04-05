@@ -9,13 +9,13 @@ namespace CoreSystem.Data.Items.Effects
     {
         public int SkillID;
 
-        public override void Apply(Character player)
+        public override void Apply(Character player, ItemInstance instance = null)
         {
             if (player == null || player.skillCaster == null) return;
             player.skillCaster.GrantSkill(SkillID);
         }
 
-        public override void Remove(Character player)
+        public override void Remove(Character player, ItemInstance instance = null)
         {
             if (player == null || player.skillCaster == null) return;
             player.skillCaster.RevokeSkill(SkillID);

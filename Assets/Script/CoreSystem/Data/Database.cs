@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using CoreSystem.Data.Skills;
 using CoreSystem.Skills;
 using CoreSystem.Skills.Modifiers;
+using CoreSystem.SkillTree;
 
 namespace CoreSystem.Data
 {
@@ -96,7 +97,11 @@ namespace CoreSystem.Data
             Debug.Log("Database: Initializing Skills...");
             InitializeSkills();
 
-            // 4. Initialize Characters (Placeholder loading)
+            // 4. Initialize SkillTree
+            Debug.Log("Database: Initializing SkillTree...");
+            SkillTreeDatabase.Initialize();
+
+            // 5. Initialize Characters (Placeholder loading)
             Debug.Log("Database: Loading Characters...");
             LoadCharacters();
 
@@ -351,6 +356,12 @@ namespace CoreSystem.Data
         public static List<CharacterModel> Characters => Instance.GetCharactersInternal();
         public static List<AttributeTemplate> Attributes => AttributeDatabase.GetAllAttributes();
         public static List<ActiveSkill> Skills => Instance.GetAllSynchronizedSkillsInternal();
+
+        // --- SkillTree Static API ---
+        public static SkillTree.Models.SkillTreeNode GetSkillTreeNode(int id) => SkillTreeDatabase.GetNode(id);
+        public static System.Collections.Generic.List<SkillTree.Models.SkillTreeNode> GetAllSkillNodes() => SkillTreeDatabase.GetAllNodes();
+        public static SkillTree.Models.SkillTreeStats GetSkillTreeStats() => SkillTreeDatabase.GetActiveStats();
+        public static bool CanUnlockSkillTreeNode(int id) => SkillTreeDatabase.CanUnlock(id);
 
         public static int GetDefaultSlotForType(EquipmentSlot slot)
         {

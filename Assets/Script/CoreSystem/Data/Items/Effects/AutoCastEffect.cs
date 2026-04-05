@@ -24,7 +24,7 @@ namespace CoreSystem.Data.Items.Effects
         
         private Character _boundPlayer;
 
-        public override void Apply(Character player)
+        public override void Apply(Character player, ItemInstance instance = null)
         {
             if (player == null) return;
             _boundPlayer = player;
@@ -35,7 +35,7 @@ namespace CoreSystem.Data.Items.Effects
                 player.OnTakeDamage += HandleTrigger;
         }
 
-        public override void Remove(Character player)
+        public override void Remove(Character player, ItemInstance instance = null)
         {
             if (player == null) return;
 

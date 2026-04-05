@@ -20,7 +20,7 @@ namespace CoreSystem.Data.Items.Effects
         private float _lastAppliedBonus = 0f;
         private bool _isRecalculating = false;
 
-        public override void Apply(Character player)
+        public override void Apply(Character player, ItemInstance instance = null)
         {
             if (player == null || player.attributeSystem == null) return;
             _appliedPlayer = player;
@@ -32,7 +32,7 @@ namespace CoreSystem.Data.Items.Effects
             RecalculateScaling();
         }
 
-        public override void Remove(Character player)
+        public override void Remove(Character player, ItemInstance instance = null)
         {
             if (player == null || player.attributeSystem == null) return;
             

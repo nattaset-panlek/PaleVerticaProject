@@ -49,5 +49,25 @@ namespace CoreSystem.Utile
         {
             return Format((long)value);
         }
+
+        /// <summary>
+        /// Formats a number with comma separators. 
+        /// 1000 -> 1,000
+        /// 1000000 -> 1,000,000
+        /// </summary>
+        public static string FormatWithCommas(long value)
+        {
+            return value.ToString("N0");
+        }
+
+        public static string FormatWithCommas(int value)
+        {
+            return FormatWithCommas((long)value);
+        }
+
+        public static string FormatWithCommas(float value)
+        {
+            return FormatWithCommas((long)value);
+        }
     }
 }

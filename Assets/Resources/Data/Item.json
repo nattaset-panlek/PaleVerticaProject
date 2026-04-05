@@ -5456,7 +5456,7 @@
                 "TH": "กะโหลกขาวโพลนจากนักรบที่ล่วงลับ บัดนี้เป็นเพียงสิ่งสวมใส่เพื่อความสวยงาม"
             },
             "MaxStack": 1,
-            "IconPath": "",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Helmet_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Rare",
@@ -5465,7 +5465,35 @@
             "BasePhysical": 0.0,
             "BaseMagic": 0.0,
             "MaxSockets": 0,
-            "Effects": [],
+            "Effects": [
+                {
+                    "EffectType": "AttributeBonusEffect",
+                    "AttributeID": 98,
+                    "Value": 2.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                }
+            ],
             "CostumeSlot": "Head",
             "LayerPriority": 10,
             "VisualSpritePaths": [
@@ -5483,7 +5511,7 @@
                 "TH": "เกราะซี่โครงกระดูกที่ส่งเสียงกระทบกันในทุกก้าวเดิน"
             },
             "MaxStack": 1,
-            "IconPath": "",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Armor_Light_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Rare",
@@ -5510,7 +5538,7 @@
                 "TH": "ปลอกแขนกระดูก ไม่รวมเนื้อหนัง"
             },
             "MaxStack": 1,
-            "IconPath": "",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Glove_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Rare",
@@ -5566,7 +5594,7 @@
                 "TH": "หน้ากากที่ดูเหมือนใบหน้าซีดเซียวที่ทรุดโทรมของคนตายเดินดิน"
             },
             "MaxStack": 1,
-            "IconPath": "",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Helmet_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Epic",
@@ -5593,7 +5621,7 @@
                 "TH": "ชุดฝังศพที่ขาดรุ่งริ่งซึ่งยังมีกลิ่นอายของหลุมศพเก่า"
             },
             "MaxStack": 1,
-            "IconPath": "",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Armor_Light_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Epic",
@@ -5620,7 +5648,7 @@
                 "TH": "แขนที่พันผ้าพันแผลไว้เลียนแบบลักษณะของมัมมี่"
             },
             "MaxStack": 1,
-            "IconPath": "",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Glove_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Epic",
@@ -5676,7 +5704,7 @@
                 "TH": "ฮู้ดของเพชฌฆาต สีเข้มและดูน่าเกรงขาม"
             },
             "MaxStack": 1,
-            "IconPath": "Assets/Addressable/Sprite/Item/UI_WeaponAxe_Icon.png",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Helmet_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Legendary",
@@ -5703,7 +5731,7 @@
                 "TH": "ชุดหนังหนักๆ ของเพชฌฆาตมืออาชีพ"
             },
             "MaxStack": 1,
-            "IconPath": "Assets/Addressable/Sprite/Item/UI_WeaponAxe_Icon.png",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Armor_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Legendary",
@@ -5730,7 +5758,7 @@
                 "TH": "ปลอกแขนที่ออกแบบมาสำหรับการกวัดแกว่งอาวุธหนัก"
             },
             "MaxStack": 1,
-            "IconPath": "Assets/Addressable/Sprite/Item/UI_WeaponAxe_Icon.png",
+            "IconPath": "Assets/Addressable/Sprite/Item/UI_Glove_Icon.png",
             "EquipmentSlot": "",
             "IsSupportRune": false,
             "Rarity": "Legendary",
@@ -6547,9 +6575,9 @@
                     "BuffIconPath": ""
                 },
                 {
-                    "EffectType": "AttributeBonusEffect",
+                    "EffectType": "RefineBonusEffect",
                     "AttributeID": 150,
-                    "Value": 200.0,
+                    "Value": 150.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
                     "SkillName": "",
@@ -6570,7 +6598,7 @@
                     "ScalingThreshold": 0.0,
                     "ConditionAttributeID": 0,
                     "ConditionComparison": "",
-                    "ConditionThreshold": 0.0,
+                    "ConditionThreshold": 6.0,
                     "BuffIconPath": ""
                 }
             ],

@@ -14,7 +14,7 @@ namespace CoreSystem.Data.Items.Effects
         // Track modifiers applied to possibly multiple attributes (e.g. self and base)
         private System.Collections.Generic.List<(AttributeType type, AttributeModifier mod)> _activeModifiers = new System.Collections.Generic.List<(AttributeType, AttributeModifier)>();
 
-        public override void Apply(Character player)
+        public override void Apply(Character player, ItemInstance instance = null)
         {
             if (player == null || player.attributeSystem == null) return;
 
@@ -43,7 +43,7 @@ namespace CoreSystem.Data.Items.Effects
             }
         }
 
-        public override void Remove(Character player)
+        public override void Remove(Character player, ItemInstance instance = null)
         {
             if (player == null || player.attributeSystem == null) return;
             

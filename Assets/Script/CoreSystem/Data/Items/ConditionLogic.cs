@@ -65,8 +65,8 @@ namespace CoreSystem.Data.Items
                 ConditionOperator.GreaterThan => ">",
                 ConditionOperator.LessThan => "<",
                 ConditionOperator.Equal => "=",
-                ConditionOperator.GreaterOrEqual => ">=",
-                ConditionOperator.LessOrEqual => "<=",
+                ConditionOperator.GreaterOrEqual => ">",
+                ConditionOperator.LessOrEqual => "<",
                 _ => "?"
             };
 

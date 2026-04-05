@@ -13,6 +13,7 @@ namespace CoreSystem.Entity
 {
     public class PlayerCharacter : Character
     {
+        public string Name => "Player Character";
         public override void Initialize()
         {
             base.Initialize();
@@ -34,10 +35,14 @@ namespace CoreSystem.Entity
         private Rect _debugWindowRect = new Rect(20, 45, 450, 600);
         private int _selectedTab = 0;
         private Vector2 _scrollPos;
-        private string[] _tabLabels = { "DB", "Inv", "Equip", "Socket", "Attr", "Skill", "Upgrade" };
+        private string[] _tabLabels = { "DB", "Inv", "Equip", "Socket", "Attr", "Skill", "Upgrade", "Passive" };
         private bool _showFullMenu = true;
         private string _searchQuery = "";
         private EquipmentInstance _selectedUpgradeItem;
+
+        [Header("Passive Skill Tree")]
+        public List<int> UnlockedPassiveNodeIds = new List<int>();
+        public int PassivePoints = 0;
 
         private void OnGUI()
         {
@@ -77,10 +82,35 @@ namespace CoreSystem.Entity
                 case 4: DrawAttributesTab(); break;
                 case 5: DrawSkillsTab(); break;
                 case 6: DrawUpgradeTab(); break;
+                case 7: DrawPassiveTab(); break;
             }
 
             GUILayout.EndScrollView();
             GUI.DragWindow();
+        }
+
+        private void DrawPassiveTab()
+        {
+            GUILayout.Label("--- Passive Point Settings ---", GUI.skin.box);
+            GUILayout.Label($"Current Passive Points: <color=yellow><b>{PassivePoints}</b></color>", new GUIStyle(GUI.skin.label) { richText = true });
+            
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button("+1 PT")) PassivePoints++;
+            if (GUILayout.Button("+10 PT")) PassivePoints += 10;
+            if (GUILayout.Button("RESET ALL PT", GUILayout.Width(100))) {
+                PassivePoints += UnlockedPassiveNodeIds.Count;
+                UnlockedPassiveNodeIds.Clear();
+                // รีโหลด UI ถ้ามี Loader อยู่ในฉาก
+                FindObjectOfType<PassiveSkillLoader>()?.LoadFromPlayer(this);
+            }
+            GUILayout.EndHorizontal();
+
+            GUILayout.Space(10);
+            GUILayout.Label($"Unlocked Nodes: {UnlockedPassiveNodeIds.Count}");
+            foreach (var nid in UnlockedPassiveNodeIds)
+            {
+                GUILayout.Label($"- ID: {nid}");
+            }
         }
 
         private Dictionary<string, bool> _foldouts = new Dictionary<string, bool>();

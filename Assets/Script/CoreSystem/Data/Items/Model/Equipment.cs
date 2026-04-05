@@ -29,7 +29,7 @@ namespace CoreSystem.Data.Items.Model
 
             foreach (var effect in Effects)
             {
-                effect.Apply(player);
+                effect.Apply(player, instance);
             }
 
             if (instance != null)
@@ -40,7 +40,7 @@ namespace CoreSystem.Data.Items.Model
                     {
                         foreach (var effect in fragment.Effects)
                         {
-                            effect.Apply(player);
+                            effect.Apply(player, instance);
                         }
                     }
                 }
@@ -101,7 +101,7 @@ namespace CoreSystem.Data.Items.Model
         {
             foreach(var effect in Effects)
             {
-                effect.Remove(player);
+                effect.Remove(player, instance);
             }
 
             if (instance != null)
@@ -110,7 +110,7 @@ namespace CoreSystem.Data.Items.Model
                 {
                     if (fragment != null)
                     {
-                        foreach(var effect in fragment.Effects) effect.Remove(player);
+                        foreach(var effect in fragment.Effects) effect.Remove(player, instance);
                     }
                 }
             }

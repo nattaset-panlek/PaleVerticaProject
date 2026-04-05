@@ -99,7 +99,7 @@ namespace CoreSystem.Entity
                 yield return StartCoroutine(CostumeAddressableLoader.LoadSpritesAsync(
                     costume,
                     session,
-                    (spriteIndex, sprite) => ApplyCostumeSprite(costume.Slot, spriteIndex, sprite)
+                    (spriteIndex, sprite, isMultiple) => ApplyCostumeSprite(costume.Slot, spriteIndex, sprite, isMultiple)
                 ));
 
                 // Load Prefabs
@@ -113,8 +113,22 @@ namespace CoreSystem.Entity
 
         // ── Sprite Application ──────────────────────────────────────────────
 
-        private void ApplyCostumeSprite(CostumeSlot slot, int spriteIndex, Sprite sprite)
+        private void ApplyCostumeSprite(CostumeSlot slot, int spriteIndex, Sprite sprite, bool isMultiple)
         {
+            if (isMultiple)
+            {
+                // ถ้าโหลดแบบราย Sprite จากไฟล์ที่มีหลายอัน (เช่น .psb) 
+                // ให้ใช้ชื่อ Sprite เป็นตัวแยกแยะ (แปลงเป็นตัวเล็กเพื่อคความง่าย)
+                string sName = sprite.name.ToLower();
+                if (sName.Contains("head")) SetSprite(HeadRenderer, sprite);
+                else if (sName.Contains("body")) SetSprite(BodyRenderer, sprite);
+                else if (sName.Contains("arml") || (sName.Contains("arm") && sName.Contains("l"))) SetSprite(ArmLRenderer, sprite);
+                else if (sName.Contains("armr") || (sName.Contains("arm") && sName.Contains("r"))) SetSprite(ArmRRenderer, sprite);
+                else if (sName.Contains("legl") || (sName.Contains("leg") && sName.Contains("l"))) SetSprite(LegLRenderer, sprite);
+                else if (sName.Contains("legr") || (sName.Contains("leg") && sName.Contains("r"))) SetSprite(LegRRenderer, sprite);
+                return;
+            }
+
             switch (slot)
             {
                 case CostumeSlot.Head:

@@ -48,6 +48,9 @@ namespace CoreSystem.UI.Utile
                 return false;
             }
 
+            [Tooltip("Event ที่จะเรียกเมื่อ Window ถูกปิด (เรียกเฉพาะตอนกดปุ่มและ Window กำลังแสดงอยู่)")]
+            public UnityEvent OnClose;
+
             public void Toggle()
             {
                 if (WindowObject != null)
@@ -57,9 +60,12 @@ namespace CoreSystem.UI.Utile
 
                     if (newState)
                     {
-                        // สั่งให้ WindowObject อยู่ index บนหน้าสุดของ parent เสมอ
                         WindowObject.transform.SetAsLastSibling();
                         OnOpen?.Invoke();
+                    }
+                    else
+                    {
+                        OnClose?.Invoke();
                     }
 
                     WindowObject.SetActive(newState);

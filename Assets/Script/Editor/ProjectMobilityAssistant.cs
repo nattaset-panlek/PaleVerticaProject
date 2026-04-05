@@ -256,10 +256,9 @@ public partial class ProjectMobilityAssistant : EditorWindow
             if (entry != null) return entry.address;
         }
 #endif
-        // Fallback: use filename without extension
-        string name = Path.GetFileNameWithoutExtension(assetPath);
-        Debug.LogWarning($"[MobilityAssistant] '{obj.name}' is not registered as Addressable. Using filename as key: '{name}'. Please add it to an Addressables Group.");
-        return name;
+        // Fallback: use full asset path
+        Debug.LogWarning($"[MobilityAssistant] '{obj.name}' is not explicitly registered (may be implicitly via folder). Using full path as key: '{assetPath}'.");
+        return assetPath;
     }
 
     // Kept for backwards compatibility with non-Addressable sprites (icon preview)

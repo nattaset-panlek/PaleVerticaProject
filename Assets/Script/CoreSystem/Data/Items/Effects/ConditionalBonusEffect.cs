@@ -16,7 +16,7 @@ namespace CoreSystem.Data.Items.Effects
         
         private bool _isActive;
 
-        public override void Apply(Character player)
+        public override void Apply(Character player, ItemInstance instance = null)
         {
             if (player == null || player.attributeSystem == null) return;
             
@@ -26,7 +26,7 @@ namespace CoreSystem.Data.Items.Effects
             player.attributeSystem.OnAttributesChanged += OnAttributesChanged;
         }
 
-        public override void Remove(Character player)
+        public override void Remove(Character player, ItemInstance instance = null)
         {
             if (player != null && player.attributeSystem != null)
             {
@@ -68,8 +68,8 @@ namespace CoreSystem.Data.Items.Effects
         public override string GetDescription()
         {
             if (BonusEffect == null) return "Unknown Conditional Effect";
-            string condStr = Condition != null ? Condition.GetDescription() : "No Condition";
-            return $"{condStr}: {BonusEffect.GetDescription()}";
+            string condStr = Condition != null ? $"{Condition.GetDescription()}" : "No Condition";
+            return $"{condStr} {BonusEffect.GetDescription()}";
         }
     }
 }

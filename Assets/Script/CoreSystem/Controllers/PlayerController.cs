@@ -2,6 +2,7 @@ using CoreSystem.Entity;
 using CoreSystem.Skills;
 using CoreSystem.Skills.Logic;
 using CoreSystem.Skills.Visuals;
+using CoreSystem.Utile;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,11 @@ namespace CoreSystem.Controllers
 
         public TMP_Text BaseLevel;
         public TMP_Text JobLevel;
+
+        public TMP_Text ExpText;
+        public Image ExpBar;
+
+        public TMP_Text PassivePointText;
 
         [Header("Animation")]
         public Animator Anim;
@@ -138,6 +144,27 @@ namespace CoreSystem.Controllers
                 {
                     int jobLevel = (int)(player.attributeSystem.GetAttribute(AttributeType.JobLevel)?.CurrentValue ?? 1);
                     JobLevel.text = $"{jobLevel.ToString("000")}";
+                }
+
+                if (PassivePointText != null)
+                {
+                    int selected = (PassiveSkillLoader.Instance != null && PassiveSkillLoader.Instance.gameObject.activeInHierarchy) ? PassiveSkillLoader.Instance.SelectedCount : 0;
+                    int displayPoints = player.PassivePoints - selected;
+                    PassivePointText.text = $"{NumberFormatter.FormatWithCommas(displayPoints)}";
+                }
+
+                if (ExpText != null)
+                {
+                    float exp = player.expSystem.CurrentBaseExp;
+                    float nextLevelExp = player.expSystem.GetNextBaseExp((int)player.attributeSystem.GetAttribute(AttributeType.BaseLevel));
+                    ExpText.text = $"{NumberFormatter.FormatWithCommas((long)exp)} / {NumberFormatter.FormatWithCommas((long)nextLevelExp)}";
+                }
+
+                if (ExpBar != null)
+                {
+                    float exp = player.expSystem.CurrentBaseExp;
+                    float nextLevelExp = player.expSystem.GetNextBaseExp((int)player.attributeSystem.GetAttribute(AttributeType.BaseLevel));
+                    ExpBar.fillAmount = nextLevelExp > 0 ? (exp / nextLevelExp) : 0f;
                 }
             }
         }

@@ -1,0 +1,9794 @@
+{
+  "nodes": [
+    {
+      "id": 0,
+      "label": "Mage",
+      "kind": "active",
+      "role": "base",
+      "x": 0,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 1,
+      "label": "Sorcerer",
+      "kind": "active",
+      "role": "base",
+      "x": 160,
+      "y": -200,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 2,
+      "label": "Archer",
+      "kind": "active",
+      "role": "base",
+      "x": 280,
+      "y": 0,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_Skill.png",
+      "polySides": 6
+    },
+    {
+      "id": 3,
+      "label": "Gunner",
+      "kind": "active",
+      "role": "base",
+      "x": 240,
+      "y": 120,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 4,
+      "label": "Inquisitor",
+      "kind": "active",
+      "role": "base",
+      "x": 80,
+      "y": 240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 5,
+      "label": "Warrior",
+      "kind": "active",
+      "role": "base",
+      "x": 0,
+      "y": 280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 6,
+      "label": "Enchanter",
+      "kind": "active",
+      "role": "base",
+      "x": -80,
+      "y": 240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 7,
+      "label": "Assassin",
+      "kind": "active",
+      "role": "base",
+      "x": -240,
+      "y": 120,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 8,
+      "label": "Alchemist",
+      "kind": "active",
+      "role": "base",
+      "x": -280,
+      "y": 0,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 9,
+      "label": "Temmer",
+      "kind": "active",
+      "role": "base",
+      "x": -160,
+      "y": -200,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 10,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -1680,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 11,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 519,
+      "y": -1598,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 12,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 988,
+      "y": -1360,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 13,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 1360,
+      "y": -1000,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 14,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 1600,
+      "y": -520,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 15,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 1680,
+      "y": 0,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 16,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 1600,
+      "y": 520,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 17,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 1360,
+      "y": 1000,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 18,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 1000,
+      "y": 1360,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 19,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 519,
+      "y": 1598,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 20,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 1680,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 21,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -519,
+      "y": 1598,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 22,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -1000,
+      "y": 1360,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 23,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -1360,
+      "y": 1000,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 24,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1598,
+      "y": 519,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 25,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1680,
+      "y": -0.7408182206817175,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 26,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1600,
+      "y": -520,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 27,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -1360,
+      "y": -1000,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 28,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -988,
+      "y": -1360,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 29,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -519,
+      "y": -1598,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 30,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -1060,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 31,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 260,
+      "y": -1020,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 32,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 440,
+      "y": -960,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 33,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 560,
+      "y": -860,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 34,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 780,
+      "y": -700,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 35,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 915,
+      "y": -528,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 36,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1004,
+      "y": -326,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 37,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1050,
+      "y": -110,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 38,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 1050,
+      "y": 110.81873075307799,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 39,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 1004,
+      "y": 326,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 40,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 915,
+      "y": 528,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 41,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 780,
+      "y": 700,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 42,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 621,
+      "y": 854,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 43,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 430,
+      "y": 965,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 44,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 220,
+      "y": 1033,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 45,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 1056,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 46,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -220,
+      "y": 1033,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 47,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -430,
+      "y": 965,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 48,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -621,
+      "y": 854,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 49,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -800,
+      "y": 700,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 50,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -915,
+      "y": 528,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 51,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1004,
+      "y": 326,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 52,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1050.7408182206818,
+      "y": 110,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 53,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -1050,
+      "y": -110.74081822068172,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 54,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -1004,
+      "y": -326,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 55,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -915,
+      "y": -528,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 56,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -780,
+      "y": -700,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 57,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -600,
+      "y": -860,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 58,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -440,
+      "y": -960,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 59,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -260,
+      "y": -1020,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 60,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -520,
+      "y": 0,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 61,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 520,
+      "y": 0,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 62,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 63,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -620,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 64,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -780,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 65,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 140,
+      "y": -700,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 66,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 140,
+      "y": -540,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 67,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -460,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 68,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -140,
+      "y": -540,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 69,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -140,
+      "y": -700,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 70,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -920,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 71,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 800,
+      "y": -140,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 72,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 900,
+      "y": -100,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 73,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 940,
+      "y": 0,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 74,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 900,
+      "y": 100,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 75,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 800,
+      "y": 140,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 76,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 700,
+      "y": 100,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 77,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 660,
+      "y": 0,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 78,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 700,
+      "y": -100,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 79,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -800,
+      "y": -140,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 80,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -700,
+      "y": -100,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 81,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -660,
+      "y": 0,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 82,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -700,
+      "y": 100,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 83,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -800,
+      "y": 140,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 84,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -900,
+      "y": 100,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 85,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -940,
+      "y": 0,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 86,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -900,
+      "y": -100,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 87,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 660,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 88,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 120,
+      "y": 720,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 89,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 120,
+      "y": 860,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 90,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 920,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 91,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -120,
+      "y": 860,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 92,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -120,
+      "y": 720,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 93,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 780,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 94,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 440,
+      "y": -540,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 95,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 580,
+      "y": -460,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 96,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 580,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 97,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 440,
+      "y": -200,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 98,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 300,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 99,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 300,
+      "y": -460,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 100,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -440,
+      "y": -540,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 101,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -300,
+      "y": -460,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 102,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -300,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 103,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -440,
+      "y": -200,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 104,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -580,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 105,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -580,
+      "y": -460,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 106,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -437.543807740766,
+      "y": -369.8247690369359,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 107,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 449.04837418035964,
+      "y": -373.57256127053955,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 108,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 760,
+      "y": -560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 109,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -760,
+      "y": -560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 110,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 860,
+      "y": -620,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 111,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -860,
+      "y": -620,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 112,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -300,
+      "y": -699.451188363906,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 113,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -580,
+      "y": -1180,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 114,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 300,
+      "y": -700,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 115,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 540,
+      "y": -1180,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 116,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -960,
+      "y": 840,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 117,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 920,
+      "y": 840,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 118,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -800,
+      "y": 0,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 119,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 800,
+      "y": 0,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 120,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 780,
+      "y": -1180,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 121,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -780,
+      "y": -1180,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 122,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -780,
+      "y": -920,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 123,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 780,
+      "y": -920,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 124,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 125,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -1240,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 126,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -1560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 127,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -100,
+      "y": -420,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 128,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -200,
+      "y": -340,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 129,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 100,
+      "y": -420,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 130,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 200,
+      "y": -340,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 131,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -198.2601301707819,
+      "y": -440.3174556278088,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 132,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 200,
+      "y": -440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 133,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -240,
+      "y": -1680,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 134,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 240,
+      "y": -1680,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 135,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 160,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 136,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 160,
+      "y": -1480,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 137,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 160,
+      "y": -1320,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 138,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 240,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 139,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -160,
+      "y": -1480,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 140,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -160,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 141,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -160,
+      "y": -1320,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 142,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -240,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 143,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 840,
+      "y": -1360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 144,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -840,
+      "y": -1360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 145,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -120,
+      "y": -1040,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 146,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 120,
+      "y": -1040,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 147,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -1880,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 148,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": -2080,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 149,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 900,
+      "y": -920,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 150,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 1020,
+      "y": -920,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 151,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 900,
+      "y": -760,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 152,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 900,
+      "y": -1080,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 153,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -920,
+      "y": -920,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 154,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -920,
+      "y": -1000,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 155,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -920,
+      "y": -840,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 156,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1000,
+      "y": -1040,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 157,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -1000,
+      "y": -800,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 158,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -360,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 159,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 360,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 160,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -440,
+      "y": -1480,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 161,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 440,
+      "y": -1480,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 162,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 440,
+      "y": -1360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 163,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -440,
+      "y": -1360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 164,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -520,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 165,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 520,
+      "y": -1400,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 166,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -120,
+      "y": -880,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 167,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 120,
+      "y": -880,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 168,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -200,
+      "y": -800,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 169,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 200,
+      "y": -800,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 170,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -240,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 171,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 240,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 172,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -80,
+      "y": 360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 173,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 80,
+      "y": 360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 174,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -80,
+      "y": 520,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 175,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 80,
+      "y": 520,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 176,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -360,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 177,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 360,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 178,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 160,
+      "y": 560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 179,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -160,
+      "y": 560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 180,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -140,
+      "y": 320,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 181,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 140,
+      "y": 320,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 182,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 317.8770709364907,
+      "y": 201.48975591137423,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 183,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 400,
+      "y": 120,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 184,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 352,
+      "y": 280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 185,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 260,
+      "y": 260,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 186,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 180,
+      "y": 200,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 187,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -263.04816506908,
+      "y": 258.16489625034524,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 188,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -320,
+      "y": 200,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 189,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -340,
+      "y": 280,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 190,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -400,
+      "y": 120,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 191,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -180,
+      "y": 200,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 192,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -520,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 193,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 520,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 194,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -340,
+      "y": 540,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 195,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -200,
+      "y": 620,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 196,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -200,
+      "y": 780,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 197,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -340,
+      "y": 860,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 198,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -480,
+      "y": 780,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 199,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -480,
+      "y": 620,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 200,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 340,
+      "y": 540,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 201,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 480,
+      "y": 620,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 202,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 480,
+      "y": 780,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 203,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 340,
+      "y": 860,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 204,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 200,
+      "y": 780,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 205,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 200,
+      "y": 619.3296799539644,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 206,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 340,
+      "y": 700,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 207,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -340,
+      "y": 700,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 208,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -660.1173255406147,
+      "y": 574.6905773533001,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 209,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 660,
+      "y": 580,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 210,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 1300,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 211,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 1460,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 212,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -256.5387983887526,
+      "y": 1520.6703200460356,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 213,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 260,
+      "y": 1520,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 214,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1360,
+      "y": -60,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 215,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1359.181269246922,
+      "y": 60,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 216,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1360,
+      "y": -60,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 217,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1360,
+      "y": 60,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 218,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -60,
+      "y": 1140,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 219,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 60,
+      "y": 1140,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 220,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -80,
+      "y": 1560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 221,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 80,
+      "y": 1560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 222,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 60,
+      "y": -1620,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 223,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -60,
+      "y": -1620,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 224,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 61.58910283756866,
+      "y": -1742.3439173438892,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 225,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -60,
+      "y": -1740,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 226,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -240,
+      "y": -560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 227,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 240,
+      "y": -560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 228,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -800,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 229,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 800,
+      "y": 440,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 230,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 231,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 0,
+      "y": 560,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 232,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -1400,
+      "y": 0,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 233,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1400,
+      "y": 0,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 234,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1200,
+      "y": 80,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 235,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1200,
+      "y": -80,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 236,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 1200,
+      "y": -80,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 237,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 1200,
+      "y": 80,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 238,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 980,
+      "y": -620,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 239,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -980,
+      "y": -620,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 240,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1020,
+      "y": -540,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 241,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1140,
+      "y": -540,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 242,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 1060,
+      "y": -540,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 243,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 1180,
+      "y": -540,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 244,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -780,
+      "y": -460,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 245,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -680,
+      "y": -400,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 246,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -680,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 247,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -780,
+      "y": -220,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 248,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -880,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 249,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -880,
+      "y": -400,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 250,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 780,
+      "y": -460,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 251,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 880,
+      "y": -400,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 252,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 880,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 253,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 780,
+      "y": -220,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 254,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 680,
+      "y": -280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 255,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 680,
+      "y": -400,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 256,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 800,
+      "y": 320,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 257,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -800,
+      "y": 320,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 258,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 100,
+      "y": 1340,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 259,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -100,
+      "y": 1340,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 260,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -220,
+      "y": 1300,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 261,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 220,
+      "y": 1300,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 262,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1060,
+      "y": -700,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 263,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1180,
+      "y": -700,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 264,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1020,
+      "y": -700,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 265,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1140,
+      "y": -700,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 266,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1640,
+      "y": -280,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 267,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 1640,
+      "y": -280,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 268,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -1640,
+      "y": 280,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 269,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1640,
+      "y": 278.6818175093012,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 270,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1480,
+      "y": -1120,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 271,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1240,
+      "y": -1120,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 272,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1240,
+      "y": -880,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 273,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -1480,
+      "y": -880,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 274,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1240,
+      "y": -1120,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 275,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1480,
+      "y": -1120,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 276,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 1480,
+      "y": -880,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 277,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 1240,
+      "y": -880,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 278,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 1640,
+      "y": -1280,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 279,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 1680,
+      "y": -1160,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 280,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1520,
+      "y": -1320,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 281,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -1600,
+      "y": -1240,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 282,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1600,
+      "y": -1320,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 283,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1680,
+      "y": -1200,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 284,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1520,
+      "y": 1160,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 285,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 1520,
+      "y": 1160,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 286,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 880,
+      "y": 1240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 287,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1120,
+      "y": 1240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 288,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 1119.5738773611495,
+      "y": 1480.639183958276,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 289,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 880,
+      "y": 1480,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 290,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1120,
+      "y": 1240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 291,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -880,
+      "y": 1240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 292,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -880,
+      "y": 1480,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 293,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -1120,
+      "y": 1480,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 294,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1440,
+      "y": 840,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 295,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1200,
+      "y": 840,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 296,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1200,
+      "y": 1080,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 297,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -1440,
+      "y": 1080,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 298,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1200,
+      "y": 840,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 299,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1440,
+      "y": 840,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 300,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 1440,
+      "y": 1080,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 301,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 1200,
+      "y": 1080,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 302,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -840,
+      "y": 960,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 303,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -600,
+      "y": 960,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 304,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -600,
+      "y": 1200,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 305,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -800,
+      "y": 1160,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 306,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 600,
+      "y": 960,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 307,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 840,
+      "y": 960,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 308,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 800,
+      "y": 1160,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 309,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 605.7838951388133,
+      "y": 1200.6520131076484,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 310,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1380,
+      "y": 180,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 311,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1520,
+      "y": 240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 312,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 1460,
+      "y": 520,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 313,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 1300,
+      "y": 520,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 314,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 1200,
+      "y": 400,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 315,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 1237,
+      "y": 241,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 316,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -1380,
+      "y": 180,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "LUK": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 317,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -1240,
+      "y": 240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 318,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1200,
+      "y": 400,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 319,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1300,
+      "y": 520,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "AGI": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 320,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1480,
+      "y": 520,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "INT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 321,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -1520,
+      "y": 240,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "DEX": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 322,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -1380,
+      "y": 360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 323,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 1380,
+      "y": 360,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 324,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1365,
+      "y": -536,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 325,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1499,
+      "y": -481,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 326,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": 1554,
+      "y": -347,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 327,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": 1499,
+      "y": -213,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 328,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": 1365,
+      "y": -158,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 329,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": 1231,
+      "y": -213,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 330,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": 1176,
+      "y": -347,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 331,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": 1231,
+      "y": -481,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "STR": 1
+      }
+    },
+    {
+      "id": 332,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1323,
+      "y": -571,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "VIT": 1
+      }
+    },
+    {
+      "id": 333,
+      "label": "Node",
+      "kind": "active",
+      "role": "normal",
+      "x": -1322.3936891610908,
+      "y": -399.0346320358344,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 334,
+      "label": "Attribute Agility",
+      "kind": "active",
+      "role": "normal",
+      "x": -1134,
+      "y": -381,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "AGI": 1
+      }
+    },
+    {
+      "id": 335,
+      "label": "Attribute Intelligence",
+      "kind": "active",
+      "role": "normal",
+      "x": -1189,
+      "y": -248,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "INT": 1
+      }
+    },
+    {
+      "id": 336,
+      "label": "Attribute Dexterity",
+      "kind": "active",
+      "role": "normal",
+      "x": -1323,
+      "y": -192,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "DEX": 1
+      }
+    },
+    {
+      "id": 337,
+      "label": "Attribute Lucky",
+      "kind": "active",
+      "role": "normal",
+      "x": -1457,
+      "y": -248,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": {
+        "LUK": 1
+      }
+    },
+    {
+      "id": 338,
+      "label": "Attribute Strength",
+      "kind": "active",
+      "role": "normal",
+      "x": -1512,
+      "y": -381,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "STR": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 339,
+      "label": "Attribute Vitality",
+      "kind": "active",
+      "role": "normal",
+      "x": -1457,
+      "y": -515,
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "circle",
+      "extras": {
+        "VIT": 1
+      },
+      "iconPath": "SkillIcon/Icon_Attribute.png"
+    },
+    {
+      "id": 340,
+      "label": "New Node",
+      "kind": "active",
+      "role": "normal",
+      "x": 1360,
+      "y": -340,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "rect",
+      "extras": {},
+      "iconPath": "SkillIcon/Icon_KeySkill.png"
+    },
+    {
+      "id": 341,
+      "label": "Necomancer",
+      "kind": "active",
+      "role": "base",
+      "x": -240,
+      "y": -120,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    },
+    {
+      "id": 342,
+      "label": "Priest",
+      "kind": "active",
+      "role": "base",
+      "x": 240,
+      "y": -120,
+      "description": "",
+      "isActive": false,
+      "linkStyle": "curve",
+      "shape": "poly",
+      "extras": {},
+      "polySides": 6,
+      "iconPath": "SkillIcon/Icon_Skill.png"
+    }
+  ],
+  "edges": [
+    {
+      "id": 0,
+      "from": 0,
+      "to": 67,
+      "style": "curve"
+    },
+    {
+      "id": 1,
+      "from": 67,
+      "to": 0,
+      "style": "curve"
+    },
+    {
+      "id": 2,
+      "from": 67,
+      "to": 66,
+      "style": "curve"
+    },
+    {
+      "id": 3,
+      "from": 66,
+      "to": 67,
+      "style": "curve"
+    },
+    {
+      "id": 4,
+      "from": 66,
+      "to": 65,
+      "style": "curve"
+    },
+    {
+      "id": 5,
+      "from": 65,
+      "to": 66,
+      "style": "curve"
+    },
+    {
+      "id": 6,
+      "from": 65,
+      "to": 64,
+      "style": "curve"
+    },
+    {
+      "id": 7,
+      "from": 64,
+      "to": 65,
+      "style": "curve"
+    },
+    {
+      "id": 8,
+      "from": 64,
+      "to": 69,
+      "style": "curve"
+    },
+    {
+      "id": 9,
+      "from": 69,
+      "to": 64,
+      "style": "curve"
+    },
+    {
+      "id": 10,
+      "from": 69,
+      "to": 68,
+      "style": "curve"
+    },
+    {
+      "id": 11,
+      "from": 68,
+      "to": 69,
+      "style": "curve"
+    },
+    {
+      "id": 12,
+      "from": 68,
+      "to": 67,
+      "style": "curve"
+    },
+    {
+      "id": 13,
+      "from": 67,
+      "to": 68,
+      "style": "curve"
+    },
+    {
+      "id": 14,
+      "from": 64,
+      "to": 63,
+      "style": "curve"
+    },
+    {
+      "id": 15,
+      "from": 63,
+      "to": 64,
+      "style": "curve"
+    },
+    {
+      "id": 16,
+      "from": 64,
+      "to": 70,
+      "style": "curve"
+    },
+    {
+      "id": 17,
+      "from": 70,
+      "to": 64,
+      "style": "curve"
+    },
+    {
+      "id": 18,
+      "from": 70,
+      "to": 30,
+      "style": "curve"
+    },
+    {
+      "id": 19,
+      "from": 30,
+      "to": 70,
+      "style": "curve"
+    },
+    {
+      "id": 20,
+      "from": 60,
+      "to": 8,
+      "style": "curve"
+    },
+    {
+      "id": 21,
+      "from": 8,
+      "to": 60,
+      "style": "curve"
+    },
+    {
+      "id": 22,
+      "from": 60,
+      "to": 7,
+      "style": "curve"
+    },
+    {
+      "id": 23,
+      "from": 7,
+      "to": 60,
+      "style": "curve"
+    },
+    {
+      "id": 24,
+      "from": 2,
+      "to": 61,
+      "style": "curve"
+    },
+    {
+      "id": 25,
+      "from": 61,
+      "to": 2,
+      "style": "curve"
+    },
+    {
+      "id": 26,
+      "from": 3,
+      "to": 61,
+      "style": "curve"
+    },
+    {
+      "id": 27,
+      "from": 61,
+      "to": 3,
+      "style": "curve"
+    },
+    {
+      "id": 28,
+      "from": 60,
+      "to": 81,
+      "style": "curve"
+    },
+    {
+      "id": 29,
+      "from": 81,
+      "to": 60,
+      "style": "curve"
+    },
+    {
+      "id": 30,
+      "from": 81,
+      "to": 82,
+      "style": "curve"
+    },
+    {
+      "id": 31,
+      "from": 82,
+      "to": 81,
+      "style": "curve"
+    },
+    {
+      "id": 32,
+      "from": 82,
+      "to": 83,
+      "style": "curve"
+    },
+    {
+      "id": 33,
+      "from": 83,
+      "to": 82,
+      "style": "curve"
+    },
+    {
+      "id": 34,
+      "from": 83,
+      "to": 84,
+      "style": "curve"
+    },
+    {
+      "id": 35,
+      "from": 84,
+      "to": 83,
+      "style": "curve"
+    },
+    {
+      "id": 36,
+      "from": 84,
+      "to": 85,
+      "style": "curve"
+    },
+    {
+      "id": 37,
+      "from": 85,
+      "to": 84,
+      "style": "curve"
+    },
+    {
+      "id": 38,
+      "from": 85,
+      "to": 86,
+      "style": "curve"
+    },
+    {
+      "id": 39,
+      "from": 86,
+      "to": 85,
+      "style": "curve"
+    },
+    {
+      "id": 40,
+      "from": 86,
+      "to": 79,
+      "style": "curve"
+    },
+    {
+      "id": 41,
+      "from": 79,
+      "to": 86,
+      "style": "curve"
+    },
+    {
+      "id": 42,
+      "from": 79,
+      "to": 80,
+      "style": "curve"
+    },
+    {
+      "id": 43,
+      "from": 80,
+      "to": 79,
+      "style": "curve"
+    },
+    {
+      "id": 44,
+      "from": 80,
+      "to": 81,
+      "style": "curve"
+    },
+    {
+      "id": 45,
+      "from": 81,
+      "to": 80,
+      "style": "curve"
+    },
+    {
+      "id": 46,
+      "from": 61,
+      "to": 77,
+      "style": "curve"
+    },
+    {
+      "id": 47,
+      "from": 77,
+      "to": 61,
+      "style": "curve"
+    },
+    {
+      "id": 48,
+      "from": 77,
+      "to": 76,
+      "style": "curve"
+    },
+    {
+      "id": 49,
+      "from": 76,
+      "to": 77,
+      "style": "curve"
+    },
+    {
+      "id": 50,
+      "from": 76,
+      "to": 75,
+      "style": "curve"
+    },
+    {
+      "id": 51,
+      "from": 75,
+      "to": 76,
+      "style": "curve"
+    },
+    {
+      "id": 52,
+      "from": 75,
+      "to": 74,
+      "style": "curve"
+    },
+    {
+      "id": 53,
+      "from": 74,
+      "to": 75,
+      "style": "curve"
+    },
+    {
+      "id": 54,
+      "from": 74,
+      "to": 73,
+      "style": "curve"
+    },
+    {
+      "id": 55,
+      "from": 73,
+      "to": 74,
+      "style": "curve"
+    },
+    {
+      "id": 56,
+      "from": 73,
+      "to": 72,
+      "style": "curve"
+    },
+    {
+      "id": 57,
+      "from": 72,
+      "to": 73,
+      "style": "curve"
+    },
+    {
+      "id": 58,
+      "from": 72,
+      "to": 71,
+      "style": "curve"
+    },
+    {
+      "id": 59,
+      "from": 71,
+      "to": 72,
+      "style": "curve"
+    },
+    {
+      "id": 60,
+      "from": 71,
+      "to": 78,
+      "style": "curve"
+    },
+    {
+      "id": 61,
+      "from": 78,
+      "to": 71,
+      "style": "curve"
+    },
+    {
+      "id": 62,
+      "from": 78,
+      "to": 77,
+      "style": "curve"
+    },
+    {
+      "id": 63,
+      "from": 77,
+      "to": 78,
+      "style": "curve"
+    },
+    {
+      "id": 64,
+      "from": 73,
+      "to": 37,
+      "style": "curve"
+    },
+    {
+      "id": 65,
+      "from": 37,
+      "to": 73,
+      "style": "curve"
+    },
+    {
+      "id": 66,
+      "from": 73,
+      "to": 38,
+      "style": "curve"
+    },
+    {
+      "id": 67,
+      "from": 38,
+      "to": 73,
+      "style": "curve"
+    },
+    {
+      "id": 68,
+      "from": 38,
+      "to": 39,
+      "style": "curve"
+    },
+    {
+      "id": 69,
+      "from": 39,
+      "to": 38,
+      "style": "curve"
+    },
+    {
+      "id": 70,
+      "from": 37,
+      "to": 36,
+      "style": "curve"
+    },
+    {
+      "id": 71,
+      "from": 36,
+      "to": 37,
+      "style": "curve"
+    },
+    {
+      "id": 72,
+      "from": 85,
+      "to": 53,
+      "style": "curve"
+    },
+    {
+      "id": 73,
+      "from": 53,
+      "to": 85,
+      "style": "curve"
+    },
+    {
+      "id": 74,
+      "from": 85,
+      "to": 52,
+      "style": "curve"
+    },
+    {
+      "id": 75,
+      "from": 52,
+      "to": 85,
+      "style": "curve"
+    },
+    {
+      "id": 76,
+      "from": 53,
+      "to": 54,
+      "style": "curve"
+    },
+    {
+      "id": 77,
+      "from": 54,
+      "to": 53,
+      "style": "curve"
+    },
+    {
+      "id": 78,
+      "from": 52,
+      "to": 51,
+      "style": "curve"
+    },
+    {
+      "id": 79,
+      "from": 51,
+      "to": 52,
+      "style": "curve"
+    },
+    {
+      "id": 80,
+      "from": 87,
+      "to": 92,
+      "style": "curve"
+    },
+    {
+      "id": 81,
+      "from": 92,
+      "to": 87,
+      "style": "curve"
+    },
+    {
+      "id": 82,
+      "from": 92,
+      "to": 91,
+      "style": "curve"
+    },
+    {
+      "id": 83,
+      "from": 91,
+      "to": 92,
+      "style": "curve"
+    },
+    {
+      "id": 84,
+      "from": 91,
+      "to": 90,
+      "style": "curve"
+    },
+    {
+      "id": 85,
+      "from": 90,
+      "to": 91,
+      "style": "curve"
+    },
+    {
+      "id": 86,
+      "from": 90,
+      "to": 89,
+      "style": "curve"
+    },
+    {
+      "id": 87,
+      "from": 89,
+      "to": 90,
+      "style": "curve"
+    },
+    {
+      "id": 88,
+      "from": 89,
+      "to": 88,
+      "style": "curve"
+    },
+    {
+      "id": 89,
+      "from": 88,
+      "to": 89,
+      "style": "curve"
+    },
+    {
+      "id": 90,
+      "from": 88,
+      "to": 87,
+      "style": "curve"
+    },
+    {
+      "id": 91,
+      "from": 87,
+      "to": 88,
+      "style": "curve"
+    },
+    {
+      "id": 92,
+      "from": 90,
+      "to": 93,
+      "style": "curve"
+    },
+    {
+      "id": 93,
+      "from": 93,
+      "to": 90,
+      "style": "curve"
+    },
+    {
+      "id": 94,
+      "from": 90,
+      "to": 45,
+      "style": "curve"
+    },
+    {
+      "id": 95,
+      "from": 45,
+      "to": 90,
+      "style": "curve"
+    },
+    {
+      "id": 96,
+      "from": 45,
+      "to": 46,
+      "style": "curve"
+    },
+    {
+      "id": 97,
+      "from": 46,
+      "to": 45,
+      "style": "curve"
+    },
+    {
+      "id": 98,
+      "from": 45,
+      "to": 44,
+      "style": "curve"
+    },
+    {
+      "id": 99,
+      "from": 44,
+      "to": 45,
+      "style": "curve"
+    },
+    {
+      "id": 100,
+      "from": 44,
+      "to": 43,
+      "style": "curve"
+    },
+    {
+      "id": 101,
+      "from": 43,
+      "to": 44,
+      "style": "curve"
+    },
+    {
+      "id": 102,
+      "from": 1,
+      "to": 98,
+      "style": "curve"
+    },
+    {
+      "id": 103,
+      "from": 98,
+      "to": 1,
+      "style": "curve"
+    },
+    {
+      "id": 104,
+      "from": 98,
+      "to": 97,
+      "style": "curve"
+    },
+    {
+      "id": 105,
+      "from": 97,
+      "to": 98,
+      "style": "curve"
+    },
+    {
+      "id": 106,
+      "from": 97,
+      "to": 96,
+      "style": "curve"
+    },
+    {
+      "id": 107,
+      "from": 96,
+      "to": 97,
+      "style": "curve"
+    },
+    {
+      "id": 108,
+      "from": 96,
+      "to": 95,
+      "style": "curve"
+    },
+    {
+      "id": 109,
+      "from": 95,
+      "to": 96,
+      "style": "curve"
+    },
+    {
+      "id": 110,
+      "from": 95,
+      "to": 94,
+      "style": "curve"
+    },
+    {
+      "id": 111,
+      "from": 94,
+      "to": 95,
+      "style": "curve"
+    },
+    {
+      "id": 112,
+      "from": 94,
+      "to": 99,
+      "style": "curve"
+    },
+    {
+      "id": 113,
+      "from": 99,
+      "to": 94,
+      "style": "curve"
+    },
+    {
+      "id": 114,
+      "from": 99,
+      "to": 98,
+      "style": "curve"
+    },
+    {
+      "id": 115,
+      "from": 98,
+      "to": 99,
+      "style": "curve"
+    },
+    {
+      "id": 116,
+      "from": 9,
+      "to": 102,
+      "style": "curve"
+    },
+    {
+      "id": 117,
+      "from": 102,
+      "to": 9,
+      "style": "curve"
+    },
+    {
+      "id": 118,
+      "from": 102,
+      "to": 101,
+      "style": "curve"
+    },
+    {
+      "id": 119,
+      "from": 101,
+      "to": 102,
+      "style": "curve"
+    },
+    {
+      "id": 120,
+      "from": 101,
+      "to": 100,
+      "style": "curve"
+    },
+    {
+      "id": 121,
+      "from": 100,
+      "to": 101,
+      "style": "curve"
+    },
+    {
+      "id": 122,
+      "from": 100,
+      "to": 105,
+      "style": "curve"
+    },
+    {
+      "id": 123,
+      "from": 105,
+      "to": 100,
+      "style": "curve"
+    },
+    {
+      "id": 124,
+      "from": 105,
+      "to": 104,
+      "style": "curve"
+    },
+    {
+      "id": 125,
+      "from": 104,
+      "to": 105,
+      "style": "curve"
+    },
+    {
+      "id": 126,
+      "from": 104,
+      "to": 103,
+      "style": "curve"
+    },
+    {
+      "id": 127,
+      "from": 103,
+      "to": 104,
+      "style": "curve"
+    },
+    {
+      "id": 128,
+      "from": 103,
+      "to": 102,
+      "style": "curve"
+    },
+    {
+      "id": 129,
+      "from": 102,
+      "to": 103,
+      "style": "curve"
+    },
+    {
+      "id": 130,
+      "from": 105,
+      "to": 106,
+      "style": "curve"
+    },
+    {
+      "id": 131,
+      "from": 106,
+      "to": 105,
+      "style": "curve"
+    },
+    {
+      "id": 132,
+      "from": 95,
+      "to": 107,
+      "style": "curve"
+    },
+    {
+      "id": 133,
+      "from": 107,
+      "to": 95,
+      "style": "curve"
+    },
+    {
+      "id": 134,
+      "from": 105,
+      "to": 109,
+      "style": "curve"
+    },
+    {
+      "id": 135,
+      "from": 109,
+      "to": 105,
+      "style": "curve"
+    },
+    {
+      "id": 136,
+      "from": 109,
+      "to": 56,
+      "style": "curve"
+    },
+    {
+      "id": 137,
+      "from": 56,
+      "to": 109,
+      "style": "curve"
+    },
+    {
+      "id": 138,
+      "from": 109,
+      "to": 55,
+      "style": "curve"
+    },
+    {
+      "id": 139,
+      "from": 55,
+      "to": 109,
+      "style": "curve"
+    },
+    {
+      "id": 140,
+      "from": 95,
+      "to": 108,
+      "style": "curve"
+    },
+    {
+      "id": 141,
+      "from": 108,
+      "to": 95,
+      "style": "curve"
+    },
+    {
+      "id": 142,
+      "from": 108,
+      "to": 34,
+      "style": "curve"
+    },
+    {
+      "id": 143,
+      "from": 34,
+      "to": 108,
+      "style": "curve"
+    },
+    {
+      "id": 144,
+      "from": 108,
+      "to": 35,
+      "style": "curve"
+    },
+    {
+      "id": 145,
+      "from": 35,
+      "to": 108,
+      "style": "curve"
+    },
+    {
+      "id": 146,
+      "from": 55,
+      "to": 54,
+      "style": "curve"
+    },
+    {
+      "id": 147,
+      "from": 54,
+      "to": 55,
+      "style": "curve"
+    },
+    {
+      "id": 148,
+      "from": 35,
+      "to": 36,
+      "style": "curve"
+    },
+    {
+      "id": 149,
+      "from": 36,
+      "to": 35,
+      "style": "curve"
+    },
+    {
+      "id": 150,
+      "from": 108,
+      "to": 110,
+      "style": "curve"
+    },
+    {
+      "id": 151,
+      "from": 110,
+      "to": 108,
+      "style": "curve"
+    },
+    {
+      "id": 152,
+      "from": 109,
+      "to": 111,
+      "style": "curve"
+    },
+    {
+      "id": 153,
+      "from": 111,
+      "to": 109,
+      "style": "curve"
+    },
+    {
+      "id": 154,
+      "from": 57,
+      "to": 112,
+      "style": "curve"
+    },
+    {
+      "id": 155,
+      "from": 112,
+      "to": 57,
+      "style": "curve"
+    },
+    {
+      "id": 156,
+      "from": 59,
+      "to": 113,
+      "style": "curve"
+    },
+    {
+      "id": 157,
+      "from": 113,
+      "to": 59,
+      "style": "curve"
+    },
+    {
+      "id": 158,
+      "from": 113,
+      "to": 57,
+      "style": "curve"
+    },
+    {
+      "id": 159,
+      "from": 57,
+      "to": 113,
+      "style": "curve"
+    },
+    {
+      "id": 160,
+      "from": 113,
+      "to": 58,
+      "style": "curve"
+    },
+    {
+      "id": 161,
+      "from": 58,
+      "to": 113,
+      "style": "curve"
+    },
+    {
+      "id": 162,
+      "from": 31,
+      "to": 115,
+      "style": "curve"
+    },
+    {
+      "id": 163,
+      "from": 115,
+      "to": 31,
+      "style": "curve"
+    },
+    {
+      "id": 164,
+      "from": 115,
+      "to": 33,
+      "style": "curve"
+    },
+    {
+      "id": 165,
+      "from": 33,
+      "to": 115,
+      "style": "curve"
+    },
+    {
+      "id": 166,
+      "from": 115,
+      "to": 32,
+      "style": "curve"
+    },
+    {
+      "id": 167,
+      "from": 32,
+      "to": 115,
+      "style": "curve"
+    },
+    {
+      "id": 168,
+      "from": 114,
+      "to": 33,
+      "style": "curve"
+    },
+    {
+      "id": 169,
+      "from": 33,
+      "to": 114,
+      "style": "curve"
+    },
+    {
+      "id": 170,
+      "from": 46,
+      "to": 47,
+      "style": "curve"
+    },
+    {
+      "id": 171,
+      "from": 47,
+      "to": 46,
+      "style": "curve"
+    },
+    {
+      "id": 172,
+      "from": 117,
+      "to": 40,
+      "style": "curve"
+    },
+    {
+      "id": 173,
+      "from": 40,
+      "to": 117,
+      "style": "curve"
+    },
+    {
+      "id": 174,
+      "from": 117,
+      "to": 42,
+      "style": "curve"
+    },
+    {
+      "id": 175,
+      "from": 42,
+      "to": 117,
+      "style": "curve"
+    },
+    {
+      "id": 176,
+      "from": 116,
+      "to": 48,
+      "style": "curve"
+    },
+    {
+      "id": 177,
+      "from": 48,
+      "to": 116,
+      "style": "curve"
+    },
+    {
+      "id": 178,
+      "from": 116,
+      "to": 50,
+      "style": "curve"
+    },
+    {
+      "id": 179,
+      "from": 50,
+      "to": 116,
+      "style": "curve"
+    },
+    {
+      "id": 180,
+      "from": 116,
+      "to": 49,
+      "style": "curve"
+    },
+    {
+      "id": 181,
+      "from": 49,
+      "to": 116,
+      "style": "curve"
+    },
+    {
+      "id": 182,
+      "from": 117,
+      "to": 41,
+      "style": "curve"
+    },
+    {
+      "id": 183,
+      "from": 41,
+      "to": 117,
+      "style": "curve"
+    },
+    {
+      "id": 184,
+      "from": 51,
+      "to": 50,
+      "style": "curve"
+    },
+    {
+      "id": 185,
+      "from": 50,
+      "to": 51,
+      "style": "curve"
+    },
+    {
+      "id": 186,
+      "from": 39,
+      "to": 40,
+      "style": "curve"
+    },
+    {
+      "id": 187,
+      "from": 40,
+      "to": 39,
+      "style": "curve"
+    },
+    {
+      "id": 188,
+      "from": 48,
+      "to": 47,
+      "style": "curve"
+    },
+    {
+      "id": 189,
+      "from": 47,
+      "to": 48,
+      "style": "curve"
+    },
+    {
+      "id": 190,
+      "from": 43,
+      "to": 42,
+      "style": "curve"
+    },
+    {
+      "id": 191,
+      "from": 42,
+      "to": 43,
+      "style": "curve"
+    },
+    {
+      "id": 192,
+      "from": 81,
+      "to": 118,
+      "style": "curve"
+    },
+    {
+      "id": 193,
+      "from": 118,
+      "to": 81,
+      "style": "curve"
+    },
+    {
+      "id": 194,
+      "from": 77,
+      "to": 119,
+      "style": "curve"
+    },
+    {
+      "id": 195,
+      "from": 119,
+      "to": 77,
+      "style": "curve"
+    },
+    {
+      "id": 196,
+      "from": 56,
+      "to": 122,
+      "style": "curve"
+    },
+    {
+      "id": 197,
+      "from": 122,
+      "to": 56,
+      "style": "curve"
+    },
+    {
+      "id": 198,
+      "from": 122,
+      "to": 121,
+      "style": "curve"
+    },
+    {
+      "id": 199,
+      "from": 121,
+      "to": 122,
+      "style": "curve"
+    },
+    {
+      "id": 200,
+      "from": 34,
+      "to": 123,
+      "style": "curve"
+    },
+    {
+      "id": 201,
+      "from": 123,
+      "to": 34,
+      "style": "curve"
+    },
+    {
+      "id": 202,
+      "from": 123,
+      "to": 120,
+      "style": "curve"
+    },
+    {
+      "id": 203,
+      "from": 120,
+      "to": 123,
+      "style": "curve"
+    },
+    {
+      "id": 204,
+      "from": 120,
+      "to": 12,
+      "style": "curve"
+    },
+    {
+      "id": 205,
+      "from": 12,
+      "to": 120,
+      "style": "curve"
+    },
+    {
+      "id": 206,
+      "from": 121,
+      "to": 28,
+      "style": "curve"
+    },
+    {
+      "id": 207,
+      "from": 28,
+      "to": 121,
+      "style": "curve"
+    },
+    {
+      "id": 208,
+      "from": 28,
+      "to": 29,
+      "style": "curve"
+    },
+    {
+      "id": 209,
+      "from": 29,
+      "to": 28,
+      "style": "curve"
+    },
+    {
+      "id": 210,
+      "from": 11,
+      "to": 12,
+      "style": "curve"
+    },
+    {
+      "id": 211,
+      "from": 12,
+      "to": 11,
+      "style": "curve"
+    },
+    {
+      "id": 212,
+      "from": 30,
+      "to": 125,
+      "style": "curve"
+    },
+    {
+      "id": 213,
+      "from": 125,
+      "to": 30,
+      "style": "curve"
+    },
+    {
+      "id": 214,
+      "from": 125,
+      "to": 124,
+      "style": "curve"
+    },
+    {
+      "id": 215,
+      "from": 124,
+      "to": 125,
+      "style": "curve"
+    },
+    {
+      "id": 216,
+      "from": 124,
+      "to": 126,
+      "style": "curve"
+    },
+    {
+      "id": 217,
+      "from": 126,
+      "to": 124,
+      "style": "curve"
+    },
+    {
+      "id": 218,
+      "from": 129,
+      "to": 130,
+      "style": "curve"
+    },
+    {
+      "id": 219,
+      "from": 130,
+      "to": 129,
+      "style": "curve"
+    },
+    {
+      "id": 220,
+      "from": 127,
+      "to": 128,
+      "style": "curve"
+    },
+    {
+      "id": 221,
+      "from": 128,
+      "to": 127,
+      "style": "curve"
+    },
+    {
+      "id": 222,
+      "from": 127,
+      "to": 131,
+      "style": "curve"
+    },
+    {
+      "id": 223,
+      "from": 131,
+      "to": 127,
+      "style": "curve"
+    },
+    {
+      "id": 224,
+      "from": 128,
+      "to": 131,
+      "style": "curve"
+    },
+    {
+      "id": 225,
+      "from": 131,
+      "to": 128,
+      "style": "curve"
+    },
+    {
+      "id": 226,
+      "from": 130,
+      "to": 132,
+      "style": "curve"
+    },
+    {
+      "id": 227,
+      "from": 132,
+      "to": 130,
+      "style": "curve"
+    },
+    {
+      "id": 228,
+      "from": 129,
+      "to": 132,
+      "style": "curve"
+    },
+    {
+      "id": 229,
+      "from": 132,
+      "to": 129,
+      "style": "curve"
+    },
+    {
+      "id": 230,
+      "from": 134,
+      "to": 11,
+      "style": "curve"
+    },
+    {
+      "id": 231,
+      "from": 11,
+      "to": 134,
+      "style": "curve"
+    },
+    {
+      "id": 232,
+      "from": 133,
+      "to": 29,
+      "style": "curve"
+    },
+    {
+      "id": 233,
+      "from": 29,
+      "to": 133,
+      "style": "curve"
+    },
+    {
+      "id": 234,
+      "from": 124,
+      "to": 135,
+      "style": "curve"
+    },
+    {
+      "id": 235,
+      "from": 135,
+      "to": 124,
+      "style": "curve"
+    },
+    {
+      "id": 236,
+      "from": 135,
+      "to": 137,
+      "style": "curve"
+    },
+    {
+      "id": 237,
+      "from": 137,
+      "to": 135,
+      "style": "curve"
+    },
+    {
+      "id": 238,
+      "from": 135,
+      "to": 136,
+      "style": "curve"
+    },
+    {
+      "id": 239,
+      "from": 136,
+      "to": 135,
+      "style": "curve"
+    },
+    {
+      "id": 240,
+      "from": 135,
+      "to": 138,
+      "style": "curve"
+    },
+    {
+      "id": 241,
+      "from": 138,
+      "to": 135,
+      "style": "curve"
+    },
+    {
+      "id": 242,
+      "from": 124,
+      "to": 140,
+      "style": "curve"
+    },
+    {
+      "id": 243,
+      "from": 140,
+      "to": 124,
+      "style": "curve"
+    },
+    {
+      "id": 244,
+      "from": 140,
+      "to": 139,
+      "style": "curve"
+    },
+    {
+      "id": 245,
+      "from": 139,
+      "to": 140,
+      "style": "curve"
+    },
+    {
+      "id": 246,
+      "from": 140,
+      "to": 141,
+      "style": "curve"
+    },
+    {
+      "id": 247,
+      "from": 141,
+      "to": 140,
+      "style": "curve"
+    },
+    {
+      "id": 248,
+      "from": 140,
+      "to": 142,
+      "style": "curve"
+    },
+    {
+      "id": 249,
+      "from": 142,
+      "to": 140,
+      "style": "curve"
+    },
+    {
+      "id": 250,
+      "from": 12,
+      "to": 143,
+      "style": "curve"
+    },
+    {
+      "id": 251,
+      "from": 143,
+      "to": 12,
+      "style": "curve"
+    },
+    {
+      "id": 252,
+      "from": 28,
+      "to": 144,
+      "style": "curve"
+    },
+    {
+      "id": 253,
+      "from": 144,
+      "to": 28,
+      "style": "curve"
+    },
+    {
+      "id": 254,
+      "from": 30,
+      "to": 146,
+      "style": "curve"
+    },
+    {
+      "id": 255,
+      "from": 146,
+      "to": 30,
+      "style": "curve"
+    },
+    {
+      "id": 256,
+      "from": 146,
+      "to": 31,
+      "style": "curve"
+    },
+    {
+      "id": 257,
+      "from": 31,
+      "to": 146,
+      "style": "curve"
+    },
+    {
+      "id": 258,
+      "from": 30,
+      "to": 145,
+      "style": "curve"
+    },
+    {
+      "id": 259,
+      "from": 145,
+      "to": 30,
+      "style": "curve"
+    },
+    {
+      "id": 260,
+      "from": 145,
+      "to": 59,
+      "style": "curve"
+    },
+    {
+      "id": 261,
+      "from": 59,
+      "to": 145,
+      "style": "curve"
+    },
+    {
+      "id": 262,
+      "from": 10,
+      "to": 147,
+      "style": "curve"
+    },
+    {
+      "id": 263,
+      "from": 147,
+      "to": 10,
+      "style": "curve"
+    },
+    {
+      "id": 264,
+      "from": 147,
+      "to": 148,
+      "style": "curve"
+    },
+    {
+      "id": 265,
+      "from": 148,
+      "to": 147,
+      "style": "curve"
+    },
+    {
+      "id": 266,
+      "from": 123,
+      "to": 151,
+      "style": "curve"
+    },
+    {
+      "id": 267,
+      "from": 151,
+      "to": 123,
+      "style": "curve"
+    },
+    {
+      "id": 268,
+      "from": 151,
+      "to": 150,
+      "style": "curve"
+    },
+    {
+      "id": 269,
+      "from": 150,
+      "to": 151,
+      "style": "curve"
+    },
+    {
+      "id": 270,
+      "from": 150,
+      "to": 152,
+      "style": "curve"
+    },
+    {
+      "id": 271,
+      "from": 152,
+      "to": 150,
+      "style": "curve"
+    },
+    {
+      "id": 272,
+      "from": 152,
+      "to": 123,
+      "style": "curve"
+    },
+    {
+      "id": 273,
+      "from": 123,
+      "to": 152,
+      "style": "curve"
+    },
+    {
+      "id": 274,
+      "from": 150,
+      "to": 149,
+      "style": "curve"
+    },
+    {
+      "id": 275,
+      "from": 149,
+      "to": 150,
+      "style": "curve"
+    },
+    {
+      "id": 276,
+      "from": 122,
+      "to": 153,
+      "style": "curve"
+    },
+    {
+      "id": 277,
+      "from": 153,
+      "to": 122,
+      "style": "curve"
+    },
+    {
+      "id": 278,
+      "from": 154,
+      "to": 153,
+      "style": "curve"
+    },
+    {
+      "id": 279,
+      "from": 153,
+      "to": 154,
+      "style": "curve"
+    },
+    {
+      "id": 280,
+      "from": 153,
+      "to": 155,
+      "style": "curve"
+    },
+    {
+      "id": 281,
+      "from": 155,
+      "to": 153,
+      "style": "curve"
+    },
+    {
+      "id": 282,
+      "from": 155,
+      "to": 157,
+      "style": "curve"
+    },
+    {
+      "id": 283,
+      "from": 157,
+      "to": 155,
+      "style": "curve"
+    },
+    {
+      "id": 284,
+      "from": 154,
+      "to": 156,
+      "style": "curve"
+    },
+    {
+      "id": 285,
+      "from": 156,
+      "to": 154,
+      "style": "curve"
+    },
+    {
+      "id": 286,
+      "from": 11,
+      "to": 161,
+      "style": "curve"
+    },
+    {
+      "id": 287,
+      "from": 161,
+      "to": 11,
+      "style": "curve"
+    },
+    {
+      "id": 288,
+      "from": 161,
+      "to": 159,
+      "style": "curve"
+    },
+    {
+      "id": 289,
+      "from": 159,
+      "to": 161,
+      "style": "curve"
+    },
+    {
+      "id": 290,
+      "from": 29,
+      "to": 160,
+      "style": "curve"
+    },
+    {
+      "id": 291,
+      "from": 160,
+      "to": 29,
+      "style": "curve"
+    },
+    {
+      "id": 292,
+      "from": 161,
+      "to": 162,
+      "style": "curve"
+    },
+    {
+      "id": 293,
+      "from": 162,
+      "to": 161,
+      "style": "curve"
+    },
+    {
+      "id": 294,
+      "from": 160,
+      "to": 158,
+      "style": "curve"
+    },
+    {
+      "id": 295,
+      "from": 158,
+      "to": 160,
+      "style": "curve"
+    },
+    {
+      "id": 296,
+      "from": 160,
+      "to": 163,
+      "style": "curve"
+    },
+    {
+      "id": 297,
+      "from": 163,
+      "to": 160,
+      "style": "curve"
+    },
+    {
+      "id": 298,
+      "from": 160,
+      "to": 164,
+      "style": "curve"
+    },
+    {
+      "id": 299,
+      "from": 164,
+      "to": 160,
+      "style": "curve"
+    },
+    {
+      "id": 300,
+      "from": 161,
+      "to": 165,
+      "style": "curve"
+    },
+    {
+      "id": 301,
+      "from": 165,
+      "to": 161,
+      "style": "curve"
+    },
+    {
+      "id": 302,
+      "from": 70,
+      "to": 167,
+      "style": "curve"
+    },
+    {
+      "id": 303,
+      "from": 167,
+      "to": 70,
+      "style": "curve"
+    },
+    {
+      "id": 304,
+      "from": 70,
+      "to": 166,
+      "style": "curve"
+    },
+    {
+      "id": 305,
+      "from": 166,
+      "to": 70,
+      "style": "curve"
+    },
+    {
+      "id": 306,
+      "from": 167,
+      "to": 169,
+      "style": "curve"
+    },
+    {
+      "id": 307,
+      "from": 169,
+      "to": 167,
+      "style": "curve"
+    },
+    {
+      "id": 308,
+      "from": 166,
+      "to": 168,
+      "style": "curve"
+    },
+    {
+      "id": 309,
+      "from": 168,
+      "to": 166,
+      "style": "curve"
+    },
+    {
+      "id": 310,
+      "from": 168,
+      "to": 112,
+      "style": "curve"
+    },
+    {
+      "id": 311,
+      "from": 112,
+      "to": 168,
+      "style": "curve"
+    },
+    {
+      "id": 312,
+      "from": 169,
+      "to": 114,
+      "style": "curve"
+    },
+    {
+      "id": 313,
+      "from": 114,
+      "to": 169,
+      "style": "curve"
+    },
+    {
+      "id": 314,
+      "from": 5,
+      "to": 172,
+      "style": "curve"
+    },
+    {
+      "id": 315,
+      "from": 172,
+      "to": 5,
+      "style": "curve"
+    },
+    {
+      "id": 316,
+      "from": 5,
+      "to": 173,
+      "style": "curve"
+    },
+    {
+      "id": 317,
+      "from": 173,
+      "to": 5,
+      "style": "curve"
+    },
+    {
+      "id": 318,
+      "from": 173,
+      "to": 171,
+      "style": "curve"
+    },
+    {
+      "id": 319,
+      "from": 171,
+      "to": 173,
+      "style": "curve"
+    },
+    {
+      "id": 320,
+      "from": 172,
+      "to": 170,
+      "style": "curve"
+    },
+    {
+      "id": 321,
+      "from": 170,
+      "to": 172,
+      "style": "curve"
+    },
+    {
+      "id": 322,
+      "from": 171,
+      "to": 175,
+      "style": "curve"
+    },
+    {
+      "id": 323,
+      "from": 175,
+      "to": 171,
+      "style": "curve"
+    },
+    {
+      "id": 324,
+      "from": 170,
+      "to": 174,
+      "style": "curve"
+    },
+    {
+      "id": 325,
+      "from": 174,
+      "to": 170,
+      "style": "curve"
+    },
+    {
+      "id": 326,
+      "from": 6,
+      "to": 180,
+      "style": "curve"
+    },
+    {
+      "id": 327,
+      "from": 180,
+      "to": 6,
+      "style": "curve"
+    },
+    {
+      "id": 328,
+      "from": 180,
+      "to": 176,
+      "style": "curve"
+    },
+    {
+      "id": 329,
+      "from": 176,
+      "to": 180,
+      "style": "curve"
+    },
+    {
+      "id": 330,
+      "from": 176,
+      "to": 179,
+      "style": "curve"
+    },
+    {
+      "id": 331,
+      "from": 179,
+      "to": 176,
+      "style": "curve"
+    },
+    {
+      "id": 332,
+      "from": 4,
+      "to": 181,
+      "style": "curve"
+    },
+    {
+      "id": 333,
+      "from": 181,
+      "to": 4,
+      "style": "curve"
+    },
+    {
+      "id": 334,
+      "from": 181,
+      "to": 177,
+      "style": "curve"
+    },
+    {
+      "id": 335,
+      "from": 177,
+      "to": 181,
+      "style": "curve"
+    },
+    {
+      "id": 336,
+      "from": 177,
+      "to": 178,
+      "style": "curve"
+    },
+    {
+      "id": 337,
+      "from": 178,
+      "to": 177,
+      "style": "curve"
+    },
+    {
+      "id": 338,
+      "from": 187,
+      "to": 188,
+      "style": "curve"
+    },
+    {
+      "id": 339,
+      "from": 188,
+      "to": 187,
+      "style": "curve"
+    },
+    {
+      "id": 340,
+      "from": 188,
+      "to": 190,
+      "style": "curve"
+    },
+    {
+      "id": 341,
+      "from": 190,
+      "to": 188,
+      "style": "curve"
+    },
+    {
+      "id": 342,
+      "from": 180,
+      "to": 187,
+      "style": "curve"
+    },
+    {
+      "id": 343,
+      "from": 187,
+      "to": 180,
+      "style": "curve"
+    },
+    {
+      "id": 344,
+      "from": 187,
+      "to": 191,
+      "style": "curve"
+    },
+    {
+      "id": 345,
+      "from": 191,
+      "to": 187,
+      "style": "curve"
+    },
+    {
+      "id": 346,
+      "from": 187,
+      "to": 189,
+      "style": "curve"
+    },
+    {
+      "id": 347,
+      "from": 189,
+      "to": 187,
+      "style": "curve"
+    },
+    {
+      "id": 348,
+      "from": 181,
+      "to": 185,
+      "style": "curve"
+    },
+    {
+      "id": 349,
+      "from": 185,
+      "to": 181,
+      "style": "curve"
+    },
+    {
+      "id": 350,
+      "from": 185,
+      "to": 182,
+      "style": "curve"
+    },
+    {
+      "id": 351,
+      "from": 182,
+      "to": 185,
+      "style": "curve"
+    },
+    {
+      "id": 352,
+      "from": 182,
+      "to": 183,
+      "style": "curve"
+    },
+    {
+      "id": 353,
+      "from": 183,
+      "to": 182,
+      "style": "curve"
+    },
+    {
+      "id": 354,
+      "from": 185,
+      "to": 184,
+      "style": "curve"
+    },
+    {
+      "id": 355,
+      "from": 184,
+      "to": 185,
+      "style": "curve"
+    },
+    {
+      "id": 356,
+      "from": 185,
+      "to": 186,
+      "style": "curve"
+    },
+    {
+      "id": 357,
+      "from": 186,
+      "to": 185,
+      "style": "curve"
+    },
+    {
+      "id": 358,
+      "from": 184,
+      "to": 193,
+      "style": "curve"
+    },
+    {
+      "id": 359,
+      "from": 193,
+      "to": 184,
+      "style": "curve"
+    },
+    {
+      "id": 360,
+      "from": 189,
+      "to": 192,
+      "style": "curve"
+    },
+    {
+      "id": 361,
+      "from": 192,
+      "to": 189,
+      "style": "curve"
+    },
+    {
+      "id": 362,
+      "from": 179,
+      "to": 195,
+      "style": "curve"
+    },
+    {
+      "id": 363,
+      "from": 195,
+      "to": 179,
+      "style": "curve"
+    },
+    {
+      "id": 364,
+      "from": 195,
+      "to": 196,
+      "style": "curve"
+    },
+    {
+      "id": 365,
+      "from": 196,
+      "to": 195,
+      "style": "curve"
+    },
+    {
+      "id": 366,
+      "from": 195,
+      "to": 194,
+      "style": "curve"
+    },
+    {
+      "id": 367,
+      "from": 194,
+      "to": 195,
+      "style": "curve"
+    },
+    {
+      "id": 368,
+      "from": 194,
+      "to": 199,
+      "style": "curve"
+    },
+    {
+      "id": 369,
+      "from": 199,
+      "to": 194,
+      "style": "curve"
+    },
+    {
+      "id": 370,
+      "from": 199,
+      "to": 198,
+      "style": "curve"
+    },
+    {
+      "id": 371,
+      "from": 198,
+      "to": 199,
+      "style": "curve"
+    },
+    {
+      "id": 372,
+      "from": 198,
+      "to": 197,
+      "style": "curve"
+    },
+    {
+      "id": 373,
+      "from": 197,
+      "to": 198,
+      "style": "curve"
+    },
+    {
+      "id": 374,
+      "from": 197,
+      "to": 196,
+      "style": "curve"
+    },
+    {
+      "id": 375,
+      "from": 196,
+      "to": 197,
+      "style": "curve"
+    },
+    {
+      "id": 376,
+      "from": 178,
+      "to": 205,
+      "style": "curve"
+    },
+    {
+      "id": 377,
+      "from": 205,
+      "to": 178,
+      "style": "curve"
+    },
+    {
+      "id": 378,
+      "from": 205,
+      "to": 200,
+      "style": "curve"
+    },
+    {
+      "id": 379,
+      "from": 200,
+      "to": 205,
+      "style": "curve"
+    },
+    {
+      "id": 380,
+      "from": 200,
+      "to": 201,
+      "style": "curve"
+    },
+    {
+      "id": 381,
+      "from": 201,
+      "to": 200,
+      "style": "curve"
+    },
+    {
+      "id": 382,
+      "from": 201,
+      "to": 202,
+      "style": "curve"
+    },
+    {
+      "id": 383,
+      "from": 202,
+      "to": 201,
+      "style": "curve"
+    },
+    {
+      "id": 384,
+      "from": 202,
+      "to": 203,
+      "style": "curve"
+    },
+    {
+      "id": 385,
+      "from": 203,
+      "to": 202,
+      "style": "curve"
+    },
+    {
+      "id": 386,
+      "from": 203,
+      "to": 204,
+      "style": "curve"
+    },
+    {
+      "id": 387,
+      "from": 204,
+      "to": 203,
+      "style": "curve"
+    },
+    {
+      "id": 388,
+      "from": 204,
+      "to": 205,
+      "style": "curve"
+    },
+    {
+      "id": 389,
+      "from": 205,
+      "to": 204,
+      "style": "curve"
+    },
+    {
+      "id": 390,
+      "from": 203,
+      "to": 206,
+      "style": "curve"
+    },
+    {
+      "id": 391,
+      "from": 206,
+      "to": 203,
+      "style": "curve"
+    },
+    {
+      "id": 392,
+      "from": 197,
+      "to": 207,
+      "style": "curve"
+    },
+    {
+      "id": 393,
+      "from": 207,
+      "to": 197,
+      "style": "curve"
+    },
+    {
+      "id": 394,
+      "from": 192,
+      "to": 208,
+      "style": "curve"
+    },
+    {
+      "id": 395,
+      "from": 208,
+      "to": 192,
+      "style": "curve"
+    },
+    {
+      "id": 396,
+      "from": 208,
+      "to": 49,
+      "style": "curve"
+    },
+    {
+      "id": 397,
+      "from": 49,
+      "to": 208,
+      "style": "curve"
+    },
+    {
+      "id": 398,
+      "from": 193,
+      "to": 209,
+      "style": "curve"
+    },
+    {
+      "id": 399,
+      "from": 209,
+      "to": 193,
+      "style": "curve"
+    },
+    {
+      "id": 400,
+      "from": 209,
+      "to": 41,
+      "style": "curve"
+    },
+    {
+      "id": 401,
+      "from": 41,
+      "to": 209,
+      "style": "curve"
+    },
+    {
+      "id": 402,
+      "from": 45,
+      "to": 210,
+      "style": "curve"
+    },
+    {
+      "id": 403,
+      "from": 210,
+      "to": 45,
+      "style": "curve"
+    },
+    {
+      "id": 404,
+      "from": 210,
+      "to": 211,
+      "style": "curve"
+    },
+    {
+      "id": 405,
+      "from": 211,
+      "to": 210,
+      "style": "curve"
+    },
+    {
+      "id": 406,
+      "from": 211,
+      "to": 212,
+      "style": "curve"
+    },
+    {
+      "id": 407,
+      "from": 212,
+      "to": 211,
+      "style": "curve"
+    },
+    {
+      "id": 408,
+      "from": 211,
+      "to": 213,
+      "style": "curve"
+    },
+    {
+      "id": 409,
+      "from": 213,
+      "to": 211,
+      "style": "curve"
+    },
+    {
+      "id": 410,
+      "from": 213,
+      "to": 19,
+      "style": "curve"
+    },
+    {
+      "id": 411,
+      "from": 19,
+      "to": 213,
+      "style": "curve"
+    },
+    {
+      "id": 412,
+      "from": 212,
+      "to": 21,
+      "style": "curve"
+    },
+    {
+      "id": 413,
+      "from": 21,
+      "to": 212,
+      "style": "curve"
+    },
+    {
+      "id": 414,
+      "from": 215,
+      "to": 15,
+      "style": "curve"
+    },
+    {
+      "id": 415,
+      "from": 15,
+      "to": 215,
+      "style": "curve"
+    },
+    {
+      "id": 416,
+      "from": 15,
+      "to": 214,
+      "style": "curve"
+    },
+    {
+      "id": 417,
+      "from": 214,
+      "to": 15,
+      "style": "curve"
+    },
+    {
+      "id": 418,
+      "from": 25,
+      "to": 217,
+      "style": "curve"
+    },
+    {
+      "id": 419,
+      "from": 217,
+      "to": 25,
+      "style": "curve"
+    },
+    {
+      "id": 420,
+      "from": 216,
+      "to": 25,
+      "style": "curve"
+    },
+    {
+      "id": 421,
+      "from": 25,
+      "to": 216,
+      "style": "curve"
+    },
+    {
+      "id": 422,
+      "from": 198,
+      "to": 48,
+      "style": "curve"
+    },
+    {
+      "id": 423,
+      "from": 48,
+      "to": 198,
+      "style": "curve"
+    },
+    {
+      "id": 424,
+      "from": 202,
+      "to": 42,
+      "style": "curve"
+    },
+    {
+      "id": 425,
+      "from": 42,
+      "to": 202,
+      "style": "curve"
+    },
+    {
+      "id": 426,
+      "from": 210,
+      "to": 219,
+      "style": "curve"
+    },
+    {
+      "id": 427,
+      "from": 219,
+      "to": 210,
+      "style": "curve"
+    },
+    {
+      "id": 428,
+      "from": 219,
+      "to": 44,
+      "style": "curve"
+    },
+    {
+      "id": 429,
+      "from": 44,
+      "to": 219,
+      "style": "curve"
+    },
+    {
+      "id": 430,
+      "from": 210,
+      "to": 218,
+      "style": "curve"
+    },
+    {
+      "id": 431,
+      "from": 218,
+      "to": 210,
+      "style": "curve"
+    },
+    {
+      "id": 432,
+      "from": 218,
+      "to": 46,
+      "style": "curve"
+    },
+    {
+      "id": 433,
+      "from": 46,
+      "to": 218,
+      "style": "curve"
+    },
+    {
+      "id": 434,
+      "from": 20,
+      "to": 220,
+      "style": "curve"
+    },
+    {
+      "id": 435,
+      "from": 220,
+      "to": 20,
+      "style": "curve"
+    },
+    {
+      "id": 436,
+      "from": 20,
+      "to": 221,
+      "style": "curve"
+    },
+    {
+      "id": 437,
+      "from": 221,
+      "to": 20,
+      "style": "curve"
+    },
+    {
+      "id": 438,
+      "from": 220,
+      "to": 212,
+      "style": "curve"
+    },
+    {
+      "id": 439,
+      "from": 212,
+      "to": 220,
+      "style": "curve"
+    },
+    {
+      "id": 440,
+      "from": 221,
+      "to": 213,
+      "style": "curve"
+    },
+    {
+      "id": 441,
+      "from": 213,
+      "to": 221,
+      "style": "curve"
+    },
+    {
+      "id": 442,
+      "from": 147,
+      "to": 225,
+      "style": "curve"
+    },
+    {
+      "id": 443,
+      "from": 225,
+      "to": 147,
+      "style": "curve"
+    },
+    {
+      "id": 444,
+      "from": 225,
+      "to": 133,
+      "style": "curve"
+    },
+    {
+      "id": 445,
+      "from": 133,
+      "to": 225,
+      "style": "curve"
+    },
+    {
+      "id": 446,
+      "from": 133,
+      "to": 223,
+      "style": "curve"
+    },
+    {
+      "id": 447,
+      "from": 223,
+      "to": 133,
+      "style": "curve"
+    },
+    {
+      "id": 448,
+      "from": 223,
+      "to": 126,
+      "style": "curve"
+    },
+    {
+      "id": 449,
+      "from": 126,
+      "to": 223,
+      "style": "curve"
+    },
+    {
+      "id": 450,
+      "from": 126,
+      "to": 222,
+      "style": "curve"
+    },
+    {
+      "id": 451,
+      "from": 222,
+      "to": 126,
+      "style": "curve"
+    },
+    {
+      "id": 452,
+      "from": 222,
+      "to": 134,
+      "style": "curve"
+    },
+    {
+      "id": 453,
+      "from": 134,
+      "to": 222,
+      "style": "curve"
+    },
+    {
+      "id": 454,
+      "from": 134,
+      "to": 224,
+      "style": "curve"
+    },
+    {
+      "id": 455,
+      "from": 224,
+      "to": 134,
+      "style": "curve"
+    },
+    {
+      "id": 456,
+      "from": 147,
+      "to": 224,
+      "style": "curve"
+    },
+    {
+      "id": 457,
+      "from": 224,
+      "to": 147,
+      "style": "curve"
+    },
+    {
+      "id": 458,
+      "from": 131,
+      "to": 226,
+      "style": "curve"
+    },
+    {
+      "id": 459,
+      "from": 226,
+      "to": 131,
+      "style": "curve"
+    },
+    {
+      "id": 460,
+      "from": 226,
+      "to": 112,
+      "style": "curve"
+    },
+    {
+      "id": 461,
+      "from": 112,
+      "to": 226,
+      "style": "curve"
+    },
+    {
+      "id": 462,
+      "from": 132,
+      "to": 227,
+      "style": "curve"
+    },
+    {
+      "id": 463,
+      "from": 227,
+      "to": 132,
+      "style": "curve"
+    },
+    {
+      "id": 464,
+      "from": 227,
+      "to": 114,
+      "style": "curve"
+    },
+    {
+      "id": 465,
+      "from": 114,
+      "to": 227,
+      "style": "curve"
+    },
+    {
+      "id": 466,
+      "from": 40,
+      "to": 229,
+      "style": "curve"
+    },
+    {
+      "id": 467,
+      "from": 229,
+      "to": 40,
+      "style": "curve"
+    },
+    {
+      "id": 468,
+      "from": 50,
+      "to": 228,
+      "style": "curve"
+    },
+    {
+      "id": 469,
+      "from": 228,
+      "to": 50,
+      "style": "curve"
+    },
+    {
+      "id": 470,
+      "from": 87,
+      "to": 231,
+      "style": "curve"
+    },
+    {
+      "id": 471,
+      "from": 231,
+      "to": 87,
+      "style": "curve"
+    },
+    {
+      "id": 472,
+      "from": 231,
+      "to": 62,
+      "style": "curve"
+    },
+    {
+      "id": 473,
+      "from": 62,
+      "to": 231,
+      "style": "curve"
+    },
+    {
+      "id": 474,
+      "from": 62,
+      "to": 230,
+      "style": "curve"
+    },
+    {
+      "id": 475,
+      "from": 230,
+      "to": 62,
+      "style": "curve"
+    },
+    {
+      "id": 476,
+      "from": 230,
+      "to": 5,
+      "style": "curve"
+    },
+    {
+      "id": 477,
+      "from": 5,
+      "to": 230,
+      "style": "curve"
+    },
+    {
+      "id": 478,
+      "from": 15,
+      "to": 233,
+      "style": "curve"
+    },
+    {
+      "id": 479,
+      "from": 233,
+      "to": 15,
+      "style": "curve"
+    },
+    {
+      "id": 480,
+      "from": 25,
+      "to": 232,
+      "style": "curve"
+    },
+    {
+      "id": 481,
+      "from": 232,
+      "to": 25,
+      "style": "curve"
+    },
+    {
+      "id": 482,
+      "from": 215,
+      "to": 237,
+      "style": "curve"
+    },
+    {
+      "id": 483,
+      "from": 237,
+      "to": 215,
+      "style": "curve"
+    },
+    {
+      "id": 484,
+      "from": 237,
+      "to": 38,
+      "style": "curve"
+    },
+    {
+      "id": 485,
+      "from": 38,
+      "to": 237,
+      "style": "curve"
+    },
+    {
+      "id": 486,
+      "from": 214,
+      "to": 236,
+      "style": "curve"
+    },
+    {
+      "id": 487,
+      "from": 236,
+      "to": 214,
+      "style": "curve"
+    },
+    {
+      "id": 488,
+      "from": 236,
+      "to": 37,
+      "style": "curve"
+    },
+    {
+      "id": 489,
+      "from": 37,
+      "to": 236,
+      "style": "curve"
+    },
+    {
+      "id": 490,
+      "from": 52,
+      "to": 234,
+      "style": "curve"
+    },
+    {
+      "id": 491,
+      "from": 234,
+      "to": 52,
+      "style": "curve"
+    },
+    {
+      "id": 492,
+      "from": 234,
+      "to": 217,
+      "style": "curve"
+    },
+    {
+      "id": 493,
+      "from": 217,
+      "to": 234,
+      "style": "curve"
+    },
+    {
+      "id": 494,
+      "from": 216,
+      "to": 235,
+      "style": "curve"
+    },
+    {
+      "id": 495,
+      "from": 235,
+      "to": 216,
+      "style": "curve"
+    },
+    {
+      "id": 496,
+      "from": 235,
+      "to": 53,
+      "style": "curve"
+    },
+    {
+      "id": 497,
+      "from": 53,
+      "to": 235,
+      "style": "curve"
+    },
+    {
+      "id": 498,
+      "from": 110,
+      "to": 238,
+      "style": "curve"
+    },
+    {
+      "id": 499,
+      "from": 238,
+      "to": 110,
+      "style": "curve"
+    },
+    {
+      "id": 500,
+      "from": 111,
+      "to": 239,
+      "style": "curve"
+    },
+    {
+      "id": 501,
+      "from": 239,
+      "to": 111,
+      "style": "curve"
+    },
+    {
+      "id": 502,
+      "from": 239,
+      "to": 240,
+      "style": "curve"
+    },
+    {
+      "id": 503,
+      "from": 240,
+      "to": 239,
+      "style": "curve"
+    },
+    {
+      "id": 504,
+      "from": 240,
+      "to": 241,
+      "style": "curve"
+    },
+    {
+      "id": 505,
+      "from": 241,
+      "to": 240,
+      "style": "curve"
+    },
+    {
+      "id": 506,
+      "from": 238,
+      "to": 242,
+      "style": "curve"
+    },
+    {
+      "id": 507,
+      "from": 242,
+      "to": 238,
+      "style": "curve"
+    },
+    {
+      "id": 508,
+      "from": 242,
+      "to": 243,
+      "style": "curve"
+    },
+    {
+      "id": 509,
+      "from": 243,
+      "to": 242,
+      "style": "curve"
+    },
+    {
+      "id": 510,
+      "from": 109,
+      "to": 244,
+      "style": "curve"
+    },
+    {
+      "id": 511,
+      "from": 244,
+      "to": 109,
+      "style": "curve"
+    },
+    {
+      "id": 512,
+      "from": 244,
+      "to": 249,
+      "style": "curve"
+    },
+    {
+      "id": 513,
+      "from": 249,
+      "to": 244,
+      "style": "curve"
+    },
+    {
+      "id": 514,
+      "from": 249,
+      "to": 248,
+      "style": "curve"
+    },
+    {
+      "id": 515,
+      "from": 248,
+      "to": 249,
+      "style": "curve"
+    },
+    {
+      "id": 516,
+      "from": 248,
+      "to": 247,
+      "style": "curve"
+    },
+    {
+      "id": 517,
+      "from": 247,
+      "to": 248,
+      "style": "curve"
+    },
+    {
+      "id": 518,
+      "from": 247,
+      "to": 246,
+      "style": "curve"
+    },
+    {
+      "id": 519,
+      "from": 246,
+      "to": 247,
+      "style": "curve"
+    },
+    {
+      "id": 520,
+      "from": 246,
+      "to": 245,
+      "style": "curve"
+    },
+    {
+      "id": 521,
+      "from": 245,
+      "to": 246,
+      "style": "curve"
+    },
+    {
+      "id": 522,
+      "from": 250,
+      "to": 251,
+      "style": "curve"
+    },
+    {
+      "id": 523,
+      "from": 251,
+      "to": 250,
+      "style": "curve"
+    },
+    {
+      "id": 524,
+      "from": 251,
+      "to": 252,
+      "style": "curve"
+    },
+    {
+      "id": 525,
+      "from": 252,
+      "to": 251,
+      "style": "curve"
+    },
+    {
+      "id": 526,
+      "from": 252,
+      "to": 253,
+      "style": "curve"
+    },
+    {
+      "id": 527,
+      "from": 253,
+      "to": 252,
+      "style": "curve"
+    },
+    {
+      "id": 528,
+      "from": 253,
+      "to": 254,
+      "style": "curve"
+    },
+    {
+      "id": 529,
+      "from": 254,
+      "to": 253,
+      "style": "curve"
+    },
+    {
+      "id": 530,
+      "from": 254,
+      "to": 255,
+      "style": "curve"
+    },
+    {
+      "id": 531,
+      "from": 255,
+      "to": 254,
+      "style": "curve"
+    },
+    {
+      "id": 532,
+      "from": 255,
+      "to": 250,
+      "style": "curve"
+    },
+    {
+      "id": 533,
+      "from": 250,
+      "to": 255,
+      "style": "curve"
+    },
+    {
+      "id": 534,
+      "from": 108,
+      "to": 250,
+      "style": "curve"
+    },
+    {
+      "id": 535,
+      "from": 250,
+      "to": 108,
+      "style": "curve"
+    },
+    {
+      "id": 536,
+      "from": 245,
+      "to": 244,
+      "style": "curve"
+    },
+    {
+      "id": 537,
+      "from": 244,
+      "to": 245,
+      "style": "curve"
+    },
+    {
+      "id": 538,
+      "from": 228,
+      "to": 257,
+      "style": "curve"
+    },
+    {
+      "id": 539,
+      "from": 257,
+      "to": 228,
+      "style": "curve"
+    },
+    {
+      "id": 540,
+      "from": 211,
+      "to": 258,
+      "style": "curve"
+    },
+    {
+      "id": 541,
+      "from": 258,
+      "to": 211,
+      "style": "curve"
+    },
+    {
+      "id": 542,
+      "from": 211,
+      "to": 259,
+      "style": "curve"
+    },
+    {
+      "id": 543,
+      "from": 259,
+      "to": 211,
+      "style": "curve"
+    },
+    {
+      "id": 544,
+      "from": 259,
+      "to": 260,
+      "style": "curve"
+    },
+    {
+      "id": 545,
+      "from": 260,
+      "to": 259,
+      "style": "curve"
+    },
+    {
+      "id": 546,
+      "from": 258,
+      "to": 261,
+      "style": "curve"
+    },
+    {
+      "id": 547,
+      "from": 261,
+      "to": 258,
+      "style": "curve"
+    },
+    {
+      "id": 548,
+      "from": 238,
+      "to": 262,
+      "style": "curve"
+    },
+    {
+      "id": 549,
+      "from": 262,
+      "to": 238,
+      "style": "curve"
+    },
+    {
+      "id": 550,
+      "from": 262,
+      "to": 263,
+      "style": "curve"
+    },
+    {
+      "id": 551,
+      "from": 263,
+      "to": 262,
+      "style": "curve"
+    },
+    {
+      "id": 552,
+      "from": 239,
+      "to": 264,
+      "style": "curve"
+    },
+    {
+      "id": 553,
+      "from": 264,
+      "to": 239,
+      "style": "curve"
+    },
+    {
+      "id": 554,
+      "from": 264,
+      "to": 265,
+      "style": "curve"
+    },
+    {
+      "id": 555,
+      "from": 265,
+      "to": 264,
+      "style": "curve"
+    },
+    {
+      "id": 556,
+      "from": 229,
+      "to": 256,
+      "style": "curve"
+    },
+    {
+      "id": 557,
+      "from": 256,
+      "to": 229,
+      "style": "curve"
+    },
+    {
+      "id": 558,
+      "from": 15,
+      "to": 267,
+      "style": "curve"
+    },
+    {
+      "id": 559,
+      "from": 267,
+      "to": 15,
+      "style": "curve"
+    },
+    {
+      "id": 560,
+      "from": 267,
+      "to": 14,
+      "style": "curve"
+    },
+    {
+      "id": 561,
+      "from": 14,
+      "to": 267,
+      "style": "curve"
+    },
+    {
+      "id": 562,
+      "from": 15,
+      "to": 269,
+      "style": "curve"
+    },
+    {
+      "id": 563,
+      "from": 269,
+      "to": 15,
+      "style": "curve"
+    },
+    {
+      "id": 564,
+      "from": 269,
+      "to": 16,
+      "style": "curve"
+    },
+    {
+      "id": 565,
+      "from": 16,
+      "to": 269,
+      "style": "curve"
+    },
+    {
+      "id": 566,
+      "from": 25,
+      "to": 266,
+      "style": "curve"
+    },
+    {
+      "id": 567,
+      "from": 266,
+      "to": 25,
+      "style": "curve"
+    },
+    {
+      "id": 568,
+      "from": 266,
+      "to": 26,
+      "style": "curve"
+    },
+    {
+      "id": 569,
+      "from": 26,
+      "to": 266,
+      "style": "curve"
+    },
+    {
+      "id": 570,
+      "from": 25,
+      "to": 268,
+      "style": "curve"
+    },
+    {
+      "id": 571,
+      "from": 268,
+      "to": 25,
+      "style": "curve"
+    },
+    {
+      "id": 572,
+      "from": 268,
+      "to": 24,
+      "style": "curve"
+    },
+    {
+      "id": 573,
+      "from": 24,
+      "to": 268,
+      "style": "curve"
+    },
+    {
+      "id": 574,
+      "from": 272,
+      "to": 271,
+      "style": "curve"
+    },
+    {
+      "id": 575,
+      "from": 271,
+      "to": 272,
+      "style": "curve"
+    },
+    {
+      "id": 576,
+      "from": 271,
+      "to": 270,
+      "style": "curve"
+    },
+    {
+      "id": 577,
+      "from": 270,
+      "to": 271,
+      "style": "curve"
+    },
+    {
+      "id": 578,
+      "from": 270,
+      "to": 273,
+      "style": "curve"
+    },
+    {
+      "id": 579,
+      "from": 273,
+      "to": 270,
+      "style": "curve"
+    },
+    {
+      "id": 580,
+      "from": 273,
+      "to": 272,
+      "style": "curve"
+    },
+    {
+      "id": 581,
+      "from": 272,
+      "to": 273,
+      "style": "curve"
+    },
+    {
+      "id": 582,
+      "from": 270,
+      "to": 27,
+      "style": "curve"
+    },
+    {
+      "id": 583,
+      "from": 27,
+      "to": 270,
+      "style": "curve"
+    },
+    {
+      "id": 584,
+      "from": 277,
+      "to": 276,
+      "style": "curve"
+    },
+    {
+      "id": 585,
+      "from": 276,
+      "to": 277,
+      "style": "curve"
+    },
+    {
+      "id": 586,
+      "from": 276,
+      "to": 275,
+      "style": "curve"
+    },
+    {
+      "id": 587,
+      "from": 275,
+      "to": 276,
+      "style": "curve"
+    },
+    {
+      "id": 588,
+      "from": 275,
+      "to": 13,
+      "style": "curve"
+    },
+    {
+      "id": 589,
+      "from": 13,
+      "to": 275,
+      "style": "curve"
+    },
+    {
+      "id": 590,
+      "from": 275,
+      "to": 274,
+      "style": "curve"
+    },
+    {
+      "id": 591,
+      "from": 274,
+      "to": 275,
+      "style": "curve"
+    },
+    {
+      "id": 592,
+      "from": 274,
+      "to": 277,
+      "style": "curve"
+    },
+    {
+      "id": 593,
+      "from": 277,
+      "to": 274,
+      "style": "curve"
+    },
+    {
+      "id": 594,
+      "from": 280,
+      "to": 278,
+      "style": "curve"
+    },
+    {
+      "id": 595,
+      "from": 278,
+      "to": 280,
+      "style": "curve"
+    },
+    {
+      "id": 596,
+      "from": 278,
+      "to": 279,
+      "style": "curve"
+    },
+    {
+      "id": 597,
+      "from": 279,
+      "to": 278,
+      "style": "curve"
+    },
+    {
+      "id": 598,
+      "from": 28,
+      "to": 282,
+      "style": "curve"
+    },
+    {
+      "id": 599,
+      "from": 282,
+      "to": 28,
+      "style": "curve"
+    },
+    {
+      "id": 600,
+      "from": 282,
+      "to": 281,
+      "style": "curve"
+    },
+    {
+      "id": 601,
+      "from": 281,
+      "to": 282,
+      "style": "curve"
+    },
+    {
+      "id": 602,
+      "from": 281,
+      "to": 283,
+      "style": "curve"
+    },
+    {
+      "id": 603,
+      "from": 283,
+      "to": 281,
+      "style": "curve"
+    },
+    {
+      "id": 604,
+      "from": 12,
+      "to": 280,
+      "style": "curve"
+    },
+    {
+      "id": 605,
+      "from": 280,
+      "to": 12,
+      "style": "curve"
+    },
+    {
+      "id": 606,
+      "from": 281,
+      "to": 270,
+      "style": "curve"
+    },
+    {
+      "id": 607,
+      "from": 270,
+      "to": 281,
+      "style": "curve"
+    },
+    {
+      "id": 608,
+      "from": 278,
+      "to": 275,
+      "style": "curve"
+    },
+    {
+      "id": 609,
+      "from": 275,
+      "to": 278,
+      "style": "curve"
+    },
+    {
+      "id": 610,
+      "from": 283,
+      "to": 26,
+      "style": "curve"
+    },
+    {
+      "id": 611,
+      "from": 26,
+      "to": 283,
+      "style": "curve"
+    },
+    {
+      "id": 612,
+      "from": 279,
+      "to": 14,
+      "style": "curve"
+    },
+    {
+      "id": 613,
+      "from": 14,
+      "to": 279,
+      "style": "curve"
+    },
+    {
+      "id": 614,
+      "from": 16,
+      "to": 285,
+      "style": "curve"
+    },
+    {
+      "id": 615,
+      "from": 285,
+      "to": 16,
+      "style": "curve"
+    },
+    {
+      "id": 616,
+      "from": 285,
+      "to": 287,
+      "style": "curve"
+    },
+    {
+      "id": 617,
+      "from": 287,
+      "to": 285,
+      "style": "curve"
+    },
+    {
+      "id": 618,
+      "from": 287,
+      "to": 288,
+      "style": "curve"
+    },
+    {
+      "id": 619,
+      "from": 288,
+      "to": 287,
+      "style": "curve"
+    },
+    {
+      "id": 620,
+      "from": 288,
+      "to": 289,
+      "style": "curve"
+    },
+    {
+      "id": 621,
+      "from": 289,
+      "to": 288,
+      "style": "curve"
+    },
+    {
+      "id": 622,
+      "from": 289,
+      "to": 286,
+      "style": "curve"
+    },
+    {
+      "id": 623,
+      "from": 286,
+      "to": 289,
+      "style": "curve"
+    },
+    {
+      "id": 624,
+      "from": 286,
+      "to": 287,
+      "style": "curve"
+    },
+    {
+      "id": 625,
+      "from": 287,
+      "to": 286,
+      "style": "curve"
+    },
+    {
+      "id": 626,
+      "from": 288,
+      "to": 18,
+      "style": "curve"
+    },
+    {
+      "id": 627,
+      "from": 18,
+      "to": 288,
+      "style": "curve"
+    },
+    {
+      "id": 628,
+      "from": 19,
+      "to": 289,
+      "style": "curve"
+    },
+    {
+      "id": 629,
+      "from": 289,
+      "to": 19,
+      "style": "curve"
+    },
+    {
+      "id": 630,
+      "from": 21,
+      "to": 292,
+      "style": "curve"
+    },
+    {
+      "id": 631,
+      "from": 292,
+      "to": 21,
+      "style": "curve"
+    },
+    {
+      "id": 632,
+      "from": 292,
+      "to": 291,
+      "style": "curve"
+    },
+    {
+      "id": 633,
+      "from": 291,
+      "to": 292,
+      "style": "curve"
+    },
+    {
+      "id": 752,
+      "from": 291,
+      "to": 290,
+      "style": "curve"
+    },
+    {
+      "id": 753,
+      "from": 290,
+      "to": 291,
+      "style": "curve"
+    },
+    {
+      "id": 754,
+      "from": 290,
+      "to": 293,
+      "style": "curve"
+    },
+    {
+      "id": 755,
+      "from": 293,
+      "to": 290,
+      "style": "curve"
+    },
+    {
+      "id": 756,
+      "from": 293,
+      "to": 292,
+      "style": "curve"
+    },
+    {
+      "id": 757,
+      "from": 292,
+      "to": 293,
+      "style": "curve"
+    },
+    {
+      "id": 640,
+      "from": 293,
+      "to": 22,
+      "style": "curve"
+    },
+    {
+      "id": 641,
+      "from": 22,
+      "to": 293,
+      "style": "curve"
+    },
+    {
+      "id": 642,
+      "from": 24,
+      "to": 284,
+      "style": "curve"
+    },
+    {
+      "id": 643,
+      "from": 284,
+      "to": 24,
+      "style": "curve"
+    },
+    {
+      "id": 644,
+      "from": 284,
+      "to": 290,
+      "style": "curve"
+    },
+    {
+      "id": 645,
+      "from": 290,
+      "to": 284,
+      "style": "curve"
+    },
+    {
+      "id": 646,
+      "from": 301,
+      "to": 300,
+      "style": "curve"
+    },
+    {
+      "id": 647,
+      "from": 300,
+      "to": 301,
+      "style": "curve"
+    },
+    {
+      "id": 648,
+      "from": 300,
+      "to": 299,
+      "style": "curve"
+    },
+    {
+      "id": 649,
+      "from": 299,
+      "to": 300,
+      "style": "curve"
+    },
+    {
+      "id": 650,
+      "from": 299,
+      "to": 298,
+      "style": "curve"
+    },
+    {
+      "id": 651,
+      "from": 298,
+      "to": 299,
+      "style": "curve"
+    },
+    {
+      "id": 652,
+      "from": 298,
+      "to": 301,
+      "style": "curve"
+    },
+    {
+      "id": 653,
+      "from": 301,
+      "to": 298,
+      "style": "curve"
+    },
+    {
+      "id": 654,
+      "from": 298,
+      "to": 17,
+      "style": "curve"
+    },
+    {
+      "id": 655,
+      "from": 17,
+      "to": 298,
+      "style": "curve"
+    },
+    {
+      "id": 656,
+      "from": 285,
+      "to": 300,
+      "style": "curve"
+    },
+    {
+      "id": 657,
+      "from": 300,
+      "to": 285,
+      "style": "curve"
+    },
+    {
+      "id": 658,
+      "from": 284,
+      "to": 297,
+      "style": "curve"
+    },
+    {
+      "id": 659,
+      "from": 297,
+      "to": 284,
+      "style": "curve"
+    },
+    {
+      "id": 660,
+      "from": 297,
+      "to": 296,
+      "style": "curve"
+    },
+    {
+      "id": 661,
+      "from": 296,
+      "to": 297,
+      "style": "curve"
+    },
+    {
+      "id": 662,
+      "from": 296,
+      "to": 295,
+      "style": "curve"
+    },
+    {
+      "id": 663,
+      "from": 295,
+      "to": 296,
+      "style": "curve"
+    },
+    {
+      "id": 664,
+      "from": 295,
+      "to": 23,
+      "style": "curve"
+    },
+    {
+      "id": 665,
+      "from": 23,
+      "to": 295,
+      "style": "curve"
+    },
+    {
+      "id": 666,
+      "from": 295,
+      "to": 294,
+      "style": "curve"
+    },
+    {
+      "id": 667,
+      "from": 294,
+      "to": 295,
+      "style": "curve"
+    },
+    {
+      "id": 668,
+      "from": 294,
+      "to": 297,
+      "style": "curve"
+    },
+    {
+      "id": 669,
+      "from": 297,
+      "to": 294,
+      "style": "curve"
+    },
+    {
+      "id": 670,
+      "from": 291,
+      "to": 305,
+      "style": "curve"
+    },
+    {
+      "id": 671,
+      "from": 305,
+      "to": 291,
+      "style": "curve"
+    },
+    {
+      "id": 672,
+      "from": 305,
+      "to": 304,
+      "style": "curve"
+    },
+    {
+      "id": 673,
+      "from": 304,
+      "to": 305,
+      "style": "curve"
+    },
+    {
+      "id": 674,
+      "from": 305,
+      "to": 302,
+      "style": "curve"
+    },
+    {
+      "id": 675,
+      "from": 302,
+      "to": 305,
+      "style": "curve"
+    },
+    {
+      "id": 676,
+      "from": 302,
+      "to": 303,
+      "style": "curve"
+    },
+    {
+      "id": 677,
+      "from": 303,
+      "to": 302,
+      "style": "curve"
+    },
+    {
+      "id": 678,
+      "from": 303,
+      "to": 304,
+      "style": "curve"
+    },
+    {
+      "id": 679,
+      "from": 304,
+      "to": 303,
+      "style": "curve"
+    },
+    {
+      "id": 680,
+      "from": 286,
+      "to": 308,
+      "style": "curve"
+    },
+    {
+      "id": 681,
+      "from": 308,
+      "to": 286,
+      "style": "curve"
+    },
+    {
+      "id": 682,
+      "from": 308,
+      "to": 309,
+      "style": "curve"
+    },
+    {
+      "id": 683,
+      "from": 309,
+      "to": 308,
+      "style": "curve"
+    },
+    {
+      "id": 684,
+      "from": 309,
+      "to": 306,
+      "style": "curve"
+    },
+    {
+      "id": 685,
+      "from": 306,
+      "to": 309,
+      "style": "curve"
+    },
+    {
+      "id": 686,
+      "from": 306,
+      "to": 307,
+      "style": "curve"
+    },
+    {
+      "id": 687,
+      "from": 307,
+      "to": 306,
+      "style": "curve"
+    },
+    {
+      "id": 688,
+      "from": 307,
+      "to": 308,
+      "style": "curve"
+    },
+    {
+      "id": 689,
+      "from": 308,
+      "to": 307,
+      "style": "curve"
+    },
+    {
+      "id": 690,
+      "from": 317,
+      "to": 318,
+      "style": "curve"
+    },
+    {
+      "id": 691,
+      "from": 318,
+      "to": 317,
+      "style": "curve"
+    },
+    {
+      "id": 692,
+      "from": 318,
+      "to": 319,
+      "style": "curve"
+    },
+    {
+      "id": 693,
+      "from": 319,
+      "to": 318,
+      "style": "curve"
+    },
+    {
+      "id": 694,
+      "from": 319,
+      "to": 320,
+      "style": "curve"
+    },
+    {
+      "id": 695,
+      "from": 320,
+      "to": 319,
+      "style": "curve"
+    },
+    {
+      "id": 696,
+      "from": 321,
+      "to": 316,
+      "style": "curve"
+    },
+    {
+      "id": 697,
+      "from": 316,
+      "to": 321,
+      "style": "curve"
+    },
+    {
+      "id": 698,
+      "from": 316,
+      "to": 317,
+      "style": "curve"
+    },
+    {
+      "id": 699,
+      "from": 317,
+      "to": 316,
+      "style": "curve"
+    },
+    {
+      "id": 700,
+      "from": 313,
+      "to": 314,
+      "style": "curve"
+    },
+    {
+      "id": 701,
+      "from": 314,
+      "to": 313,
+      "style": "curve"
+    },
+    {
+      "id": 702,
+      "from": 314,
+      "to": 315,
+      "style": "curve"
+    },
+    {
+      "id": 703,
+      "from": 315,
+      "to": 314,
+      "style": "curve"
+    },
+    {
+      "id": 704,
+      "from": 315,
+      "to": 310,
+      "style": "curve"
+    },
+    {
+      "id": 705,
+      "from": 310,
+      "to": 315,
+      "style": "curve"
+    },
+    {
+      "id": 706,
+      "from": 310,
+      "to": 311,
+      "style": "curve"
+    },
+    {
+      "id": 707,
+      "from": 311,
+      "to": 310,
+      "style": "curve"
+    },
+    {
+      "id": 708,
+      "from": 313,
+      "to": 312,
+      "style": "curve"
+    },
+    {
+      "id": 709,
+      "from": 312,
+      "to": 313,
+      "style": "curve"
+    },
+    {
+      "id": 710,
+      "from": 311,
+      "to": 269,
+      "style": "curve"
+    },
+    {
+      "id": 711,
+      "from": 269,
+      "to": 311,
+      "style": "curve"
+    },
+    {
+      "id": 712,
+      "from": 268,
+      "to": 321,
+      "style": "curve"
+    },
+    {
+      "id": 713,
+      "from": 321,
+      "to": 268,
+      "style": "curve"
+    },
+    {
+      "id": 714,
+      "from": 320,
+      "to": 322,
+      "style": "curve"
+    },
+    {
+      "id": 715,
+      "from": 322,
+      "to": 320,
+      "style": "curve"
+    },
+    {
+      "id": 716,
+      "from": 312,
+      "to": 323,
+      "style": "curve"
+    },
+    {
+      "id": 717,
+      "from": 323,
+      "to": 312,
+      "style": "curve"
+    },
+    {
+      "id": 718,
+      "from": 327,
+      "to": 267,
+      "style": "curve"
+    },
+    {
+      "id": 719,
+      "from": 267,
+      "to": 327,
+      "style": "curve"
+    },
+    {
+      "id": 720,
+      "from": 243,
+      "to": 331,
+      "style": "curve"
+    },
+    {
+      "id": 721,
+      "from": 331,
+      "to": 243,
+      "style": "curve"
+    },
+    {
+      "id": 722,
+      "from": 331,
+      "to": 330,
+      "style": "curve"
+    },
+    {
+      "id": 723,
+      "from": 330,
+      "to": 331,
+      "style": "curve"
+    },
+    {
+      "id": 724,
+      "from": 330,
+      "to": 329,
+      "style": "curve"
+    },
+    {
+      "id": 725,
+      "from": 329,
+      "to": 330,
+      "style": "curve"
+    },
+    {
+      "id": 726,
+      "from": 329,
+      "to": 328,
+      "style": "curve"
+    },
+    {
+      "id": 727,
+      "from": 328,
+      "to": 329,
+      "style": "curve"
+    },
+    {
+      "id": 728,
+      "from": 328,
+      "to": 327,
+      "style": "curve"
+    },
+    {
+      "id": 729,
+      "from": 327,
+      "to": 328,
+      "style": "curve"
+    },
+    {
+      "id": 730,
+      "from": 326,
+      "to": 325,
+      "style": "curve"
+    },
+    {
+      "id": 731,
+      "from": 325,
+      "to": 326,
+      "style": "curve"
+    },
+    {
+      "id": 732,
+      "from": 325,
+      "to": 324,
+      "style": "curve"
+    },
+    {
+      "id": 733,
+      "from": 324,
+      "to": 325,
+      "style": "curve"
+    },
+    {
+      "id": 734,
+      "from": 324,
+      "to": 331,
+      "style": "curve"
+    },
+    {
+      "id": 735,
+      "from": 331,
+      "to": 324,
+      "style": "curve"
+    },
+    {
+      "id": 736,
+      "from": 266,
+      "to": 338,
+      "style": "curve"
+    },
+    {
+      "id": 737,
+      "from": 338,
+      "to": 266,
+      "style": "curve"
+    },
+    {
+      "id": 738,
+      "from": 338,
+      "to": 337,
+      "style": "curve"
+    },
+    {
+      "id": 739,
+      "from": 337,
+      "to": 338,
+      "style": "curve"
+    },
+    {
+      "id": 740,
+      "from": 337,
+      "to": 336,
+      "style": "curve"
+    },
+    {
+      "id": 741,
+      "from": 336,
+      "to": 337,
+      "style": "curve"
+    },
+    {
+      "id": 742,
+      "from": 336,
+      "to": 335,
+      "style": "curve"
+    },
+    {
+      "id": 743,
+      "from": 335,
+      "to": 336,
+      "style": "curve"
+    },
+    {
+      "id": 744,
+      "from": 338,
+      "to": 339,
+      "style": "curve"
+    },
+    {
+      "id": 745,
+      "from": 339,
+      "to": 338,
+      "style": "curve"
+    },
+    {
+      "id": 746,
+      "from": 339,
+      "to": 332,
+      "style": "curve"
+    },
+    {
+      "id": 747,
+      "from": 332,
+      "to": 339,
+      "style": "curve"
+    },
+    {
+      "id": 748,
+      "from": 241,
+      "to": 334,
+      "style": "curve"
+    },
+    {
+      "id": 749,
+      "from": 334,
+      "to": 241,
+      "style": "curve"
+    },
+    {
+      "id": 750,
+      "from": 335,
+      "to": 333,
+      "style": "curve"
+    },
+    {
+      "id": 751,
+      "from": 333,
+      "to": 335,
+      "style": "curve"
+    },
+    {
+      "id": 752,
+      "from": 341,
+      "to": 60,
+      "style": "curve"
+    },
+    {
+      "id": 753,
+      "from": 60,
+      "to": 341,
+      "style": "curve"
+    },
+    {
+      "id": 754,
+      "from": 342,
+      "to": 61,
+      "style": "curve"
+    },
+    {
+      "id": 755,
+      "from": 61,
+      "to": 342,
+      "style": "curve"
+    },
+    {
+      "id": 756,
+      "from": 326,
+      "to": 340,
+      "style": "curve"
+    },
+    {
+      "id": 757,
+      "from": 340,
+      "to": 326,
+      "style": "curve"
+    }
+  ]
+}

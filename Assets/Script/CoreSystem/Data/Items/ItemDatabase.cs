@@ -263,6 +263,19 @@ namespace CoreSystem.Data.Items
                         };
                         targetList.Add(condBonus);
                         break;
+                    case "RefineBonus":
+                    case "RefineBonusEffect":
+                        var refineCond = new CoreSystem.Data.Items.Effects.RefineBonusEffect
+                        {
+                            RequiredRefine = (int)e.ConditionThreshold, // We reuse ConditionThreshold from JSON
+                            BonusEffect = new AttributeBonusEffect
+                            {
+                                Attribute = (AttributeType)e.AttributeID,
+                                Value = e.Value
+                            }
+                        };
+                        targetList.Add(refineCond);
+                        break;
                 }
             }
         }

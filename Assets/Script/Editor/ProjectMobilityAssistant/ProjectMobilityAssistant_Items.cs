@@ -93,16 +93,29 @@ public partial class ProjectMobilityAssistant : EditorWindow
                 
                 // ── Costume Sprite Layers (Addressable Keys) ──────────────────────
                 DrawSectionHeader("\uD83C\uD0AD Costume Sprite Layers  \u00B7  Addressables");
-                EditorGUILayout.HelpBox("ใส่ Addressable Key ของ Sprite (เช่น: \"Costume/Head_A_Sprite\")\nSet Label ใน Addressables Groups ด้วยนะ", MessageType.Info);
+                EditorGUILayout.HelpBox("ลาก Sprite ที่ต้องการ (ต้องอยู่ใน Assets/Addressable/Sprite/Model) มาวางในช่องด้านล่าง ระบบจะสร้าง Key ให้ถูกต้องอัตโนมัติ", MessageType.Info);
                 if (entry.VisualSpritePaths == null) entry.VisualSpritePaths = new List<string>();
                 for (int i = 0; i < entry.VisualSpritePaths.Count; i++)
                 {
                     EditorGUILayout.BeginVertical(SectionStyle);
+                    
                     EditorGUILayout.BeginHorizontal();
-                    GUILayout.Label($"Layer {i}", GUILayout.Width(60));
-                    entry.VisualSpritePaths[i] = EditorGUILayout.TextField(entry.VisualSpritePaths[i]);
-                    if (GUILayout.Button("X", GUILayout.Width(20))) { entry.VisualSpritePaths.RemoveAt(i); break; }
+                    Sprite currentSpr = ResolveCostumeEditorSprite(entry.VisualSpritePaths[i]);
+                    Sprite newSpr = (Sprite)EditorGUILayout.ObjectField($"Layer {i} Sprite", currentSpr, typeof(Sprite), false);
+                    if (newSpr != currentSpr)
+                    {
+                        string newKey = GetCostumeSpriteKey(newSpr);
+                        if (!string.IsNullOrEmpty(newKey)) 
+                            entry.VisualSpritePaths[i] = newKey;
+                    }
+                    if (GUILayout.Button("X", GUILayout.Width(25), GUILayout.Height(20))) { entry.VisualSpritePaths.RemoveAt(i); break; }
                     EditorGUILayout.EndHorizontal();
+
+                    EditorGUILayout.BeginHorizontal();
+                    GUILayout.Label("Raw Key", GUILayout.Width(60));
+                    entry.VisualSpritePaths[i] = EditorGUILayout.TextField(entry.VisualSpritePaths[i]);
+                    EditorGUILayout.EndHorizontal();
+
                     EditorGUILayout.EndVertical();
                 }
                 if (GUILayout.Button("\uFF0B Add Sprite Layer")) entry.VisualSpritePaths.Add("");
@@ -243,7 +256,8 @@ public partial class ProjectMobilityAssistant : EditorWindow
                     "ScalingBonusEffect",
                     "SkillUnlockEffect",
                     "AutoCastEffect",
-                    "BonusCondition"
+                    "BonusCondition",
+                    "RefineBonusEffect"
                 };
             }
 
@@ -355,6 +369,25 @@ public partial class ProjectMobilityAssistant : EditorWindow
 
             effect.Value = EditorGUILayout.FloatField("Bonus Value", effect.Value);
         }
+        else if (effect.EffectType == "RefineBonusEffect")
+        {
+            DrawSectionHeader("Refinement Condition");
+            effect.ConditionThreshold = EditorGUILayout.FloatField("Require Refine \u2265", effect.ConditionThreshold);
+            
+            EditorGUILayout.Space(5);
+            DrawSectionHeader("Bonus Award");
+            
+            // The Attribute to grant
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Label("Bonus Attr", GUILayout.Width(80));
+            if (_useManualAttributeInput)
+                effect.AttributeID = EditorGUILayout.IntField(effect.AttributeID);
+            else
+                DrawAttributeSelector(effect.AttributeID, (id) => effect.AttributeID = id);
+            EditorGUILayout.EndHorizontal();
+
+            effect.Value = EditorGUILayout.FloatField("Bonus Value", effect.Value);
+        }
     }
 
     private void DrawSkillSelector(int currentId, System.Action<int> onSelected)
@@ -405,5 +438,76 @@ public partial class ProjectMobilityAssistant : EditorWindow
             case "Costume":    return 8;
             default:           return 9;
         }
+    }
+
+    private Sprite ResolveCostumeEditorSprite(string costumeKey)
+    {
+        if (string.IsNullOrEmpty(costumeKey)) return null;
+
+        string baseKey = costumeKey;
+        string subSpriteName = null;
+
+        if (costumeKey.Contains(":"))
+        {
+            var parts = costumeKey.Split(':');
+            baseKey = parts[0];
+            if (parts.Length > 1) subSpriteName = parts[1];
+        }
+        else if (costumeKey.Contains("["))
+        {
+            int bracketStart = costumeKey.IndexOf('[');
+            if (bracketStart > 0)
+            {
+                baseKey = costumeKey.Substring(0, bracketStart);
+                subSpriteName = costumeKey.Substring(bracketStart + 1).TrimEnd(']');
+            }
+        }
+
+        string[] possiblePaths = new string[] 
+        {
+            $"Assets/Addressable/{baseKey}.psb",
+            $"Assets/Addressable/{baseKey}.png",
+            $"Assets/Addressable/{baseKey}",
+            baseKey
+        };
+
+        foreach (var path in possiblePaths)
+        {
+            if (string.IsNullOrEmpty(subSpriteName))
+            {
+                var sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                if (sprite != null) return sprite;
+            }
+            else
+            {
+                var allAssets = AssetDatabase.LoadAllAssetRepresentationsAtPath(path);
+                foreach (var obj in allAssets)
+                {
+                    if (obj is Sprite spr && spr.name == subSpriteName)
+                        return spr;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private string GetCostumeSpriteKey(Sprite sprite)
+    {
+        if (sprite == null) return "";
+        string path = AssetDatabase.GetAssetPath(sprite);
+        
+        if (!path.StartsWith("Assets/Addressable/Sprite/Model"))
+        {
+            Debug.LogWarning("[Costume Manager] กรุณาเลือก Sprite จากโฟลเดอร์ Assets/Addressable/Sprite/Model/... เท่านั้น");
+            return "";
+        }
+        
+        string address = path.Replace("Assets/Addressable/", ""); 
+        
+        if (address.EndsWith(".psb")) address = address.Substring(0, address.Length - 4);
+        else if (address.EndsWith(".png")) address = address.Substring(0, address.Length - 4);
+        
+        return $"{address}:{sprite.name}";
     }
 }

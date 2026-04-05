@@ -23,7 +23,7 @@ namespace CoreSystem.Skills.Logic.Effects
         public float Distance = 5f;
 
         [Tooltip("If true, this effect only runs once per skill cast (useful for Caster dashes to avoid dashing 5 times if hitting 5 enemies).")]
-        public bool ApplyOncePerCast = true;
+        public override bool ApplyOncePerCast { get; set; } = true;
 
         [Header("Stun Settings")]
         public float StunDuration = 1.0f;
