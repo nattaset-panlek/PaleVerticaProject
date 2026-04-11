@@ -148,12 +148,15 @@ namespace CoreSystem.SkillTree
             EnsureInitialized();
             var stats = new SkillTreeStats();
 
+            int activeCount = 0;
             foreach (var node in _data.nodes)
             {
                 if (!node.isActive || !node.HasStats) continue;
                 AccumulateStats(stats, node.extras);
+                activeCount++;
             }
 
+            Debug.Log($"[SkillTreeDatabase] Accumulated stats from {activeCount} active nodes. STR in stats: {stats.STR}");
             return stats;
         }
 
@@ -236,21 +239,22 @@ namespace CoreSystem.SkillTree
             }
         }
 
-        private static void AccumulateStats(SkillTreeStats stats, Dictionary<string, float> extras)
+        private static void AccumulateStats(SkillTreeStats stats, List<AttributeBonus> extras)
         {
-            foreach (var kvp in extras)
+            foreach (var bonus in extras)
             {
-                stats.RawStats.TryGetValue(kvp.Key, out float current);
-                stats.RawStats[kvp.Key] = current + kvp.Value;
+                stats.RawStats.TryGetValue(bonus.id, out float current);
+                stats.RawStats[bonus.id] = current + bonus.value;
 
-                switch (kvp.Key)
+                AttributeType type = (AttributeType)bonus.id;
+                switch (type)
                 {
-                    case "STR": stats.STR += kvp.Value; break;
-                    case "AGI": stats.AGI += kvp.Value; break;
-                    case "INT": stats.INT += kvp.Value; break;
-                    case "VIT": stats.VIT += kvp.Value; break;
-                    case "DEX": stats.DEX += kvp.Value; break;
-                    case "LUK": stats.LUK += kvp.Value; break;
+                    case AttributeType.STR: stats.STR += bonus.value; break;
+                    case AttributeType.AGI: stats.AGI += bonus.value; break;
+                    case AttributeType.INT: stats.INT += bonus.value; break;
+                    case AttributeType.VIT: stats.VIT += bonus.value; break;
+                    case AttributeType.DEX: stats.DEX += bonus.value; break;
+                    case AttributeType.LUK: stats.LUK += bonus.value; break;
                 }
             }
         }

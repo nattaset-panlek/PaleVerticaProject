@@ -24,8 +24,16 @@ namespace CoreSystem.Entity
 
 
         [ContextMenu("RecalculateStats")]
-        public void RecalculateStats()
+        public virtual void RecalculateStats()
         {
+            // If this is a PlayerCharacter, apply Skill Tree bonuses
+            // We use global SkillTreeManager for now
+            var passiveStats = SkillTree.SkillTreeManager.Instance?.GetCurrentStats();
+            if (passiveStats != null)
+            {
+                _attributeSystem.ApplyPassiveStats(passiveStats);
+            }
+
             _attributeSystem.UpdateDerivedAttributes();
         }
 

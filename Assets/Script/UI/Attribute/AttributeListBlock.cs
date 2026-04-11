@@ -10,7 +10,7 @@ public class AttributeListBlock : MonoBehaviour
     public TMP_Text AttributeNameText;
     public TMP_Text AttributeValueText;
 
-    public void Setup(CoreSystem.Attributes.AttributeTemplate template, float value)
+    public void Setup(CoreSystem.Attributes.AttributeTemplate template, float baseValue, float refineBonus)
     {
         if (template == null) return;
 
@@ -19,9 +19,17 @@ public class AttributeListBlock : MonoBehaviour
 
         if (AttributeValueText != null)
         {
-            string sign = value >= 0 ? "+" : "";
+            string sign = baseValue >= 0 ? "+" : "";
             string percent = template.IsPercent ? "%" : "";
-            AttributeValueText.text = $"{sign}{value}{percent}";
+            
+            string bonusText = "";
+            if (refineBonus != 0)
+            {
+                string bSign = refineBonus > 0 ? "+" : "";
+                bonusText = $" <color=#A0A0A0>({bSign}{refineBonus}{percent})</color>";
+            }
+
+            AttributeValueText.text = $"{sign}{baseValue}{percent}{bonusText}";
         }
 
         if (AttributeIcon != null)
@@ -29,6 +37,11 @@ public class AttributeListBlock : MonoBehaviour
             // Assuming icons are in Resources
             // AttributeIcon.sprite = Resources.Load<Sprite>($"Icons/Attributes/{template.Icon}");
         }
+    }
+
+    public void Setup(CoreSystem.Attributes.AttributeTemplate template, float value)
+    {
+        Setup(template, value, 0);
     }
 
     public void Setup(CoreSystem.Attributes.AttributeTemplate template, CoreSystem.Attributes.Attribute attr)

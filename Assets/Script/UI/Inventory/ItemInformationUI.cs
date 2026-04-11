@@ -363,6 +363,13 @@ namespace CoreSystem.UI.Inventory
         private void PopulateAttributeList(Transform container, List<AttributeBonusEffect> effects)
         {
             ClearContainer(container);
+            
+            int currentRefine = 0;
+            if (_currentItem is EquipmentInstance equipInst)
+            {
+                currentRefine = equipInst.Refine;
+            }
+
             foreach (var effect in effects)
             {
                 var obj = Instantiate(attributeBlockPrefab, container);
@@ -370,7 +377,23 @@ namespace CoreSystem.UI.Inventory
                 if (block != null)
                 {
                     var template = CoreSystem.Attributes.AttributeDatabase.GetAttribute(effect.Attribute);
-                    block.Setup(template, effect.Value);
+                    
+                    float bonus = 0f;
+                    if (template != null)
+                    {
+                        if (template.IsPercent)
+                        {
+                            // Rule: 1% of the base value per level
+                            bonus = currentRefine * (effect.Value * 0.01f);
+                        }
+                        else
+                        {
+                            // Rule: 1.0 flat per level
+                            bonus = currentRefine * 1.0f;
+                        }
+                    }
+
+                    block.Setup(template, effect.Value, bonus);
                 }
             }
         }

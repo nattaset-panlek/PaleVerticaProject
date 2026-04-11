@@ -129,6 +129,10 @@ namespace CoreSystem.SkillTree
             SkillTreeDatabase.SetNodeActive(nodeId, true);
             _skillPoints--;
             OnNodeUnlocked?.Invoke(nodeId);
+
+            // Notify Player Character to refresh attributes
+            FindObjectOfType<CoreSystem.Entity.PlayerCharacter>()?.RecalculateStats();
+
             return true;
         }
 
@@ -141,6 +145,10 @@ namespace CoreSystem.SkillTree
             SkillTreeDatabase.SetNodeActive(nodeId, false);
             _skillPoints++;
             OnNodeReset?.Invoke(nodeId);
+
+            // Notify Player Character to refresh attributes
+            FindObjectOfType<CoreSystem.Entity.PlayerCharacter>()?.RecalculateStats();
+
             return true;
         }
 
@@ -151,6 +159,9 @@ namespace CoreSystem.SkillTree
             SkillTreeDatabase.ResetAllNodes();
             _skillPoints += refund;
             OnAllReset?.Invoke();
+
+            // Notify Player Character to refresh attributes
+            FindObjectOfType<CoreSystem.Entity.PlayerCharacter>()?.RecalculateStats();
         }
 
         #endregion

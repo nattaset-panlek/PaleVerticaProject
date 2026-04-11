@@ -155,6 +155,8 @@ public class PassiveSkillLoader : MonoBehaviour
         }
 
         _selectedNodeIds.Clear();
+        _currentPlayer.RecalculateStats();
+        
         RefreshUI();
         Debug.Log("[PassiveSkill] Changes saved!");
     }

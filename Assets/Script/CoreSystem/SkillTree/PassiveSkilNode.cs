@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using System.Text;
 using CoreSystem.SkillTree.Models;
 using CoreSystem.UI.Utile;
+using CoreSystem;
 
 #region Enums
 
@@ -124,9 +125,18 @@ public class PassiveSkilNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
         if (Node.HasStats)
         {
             context.AppendLine("<b>Bonus Stats</b>");
-            foreach (var kvp in Node.extras)
+            foreach (var bonus in Node.extras)
             {
-                context.AppendLine($"+{kvp.Value} {kvp.Key.ToUpper()}");
+                AttributeType type = (AttributeType)bonus.id;
+                string label = type.ToString();
+                
+                // Formatting improvements for Percentage attributes
+                if (label.EndsWith("Percent"))
+                {
+                    label = label.Replace("Percent", " (%)");
+                }
+                
+                context.AppendLine($"+{bonus.value} {label}");
             }
         }
         

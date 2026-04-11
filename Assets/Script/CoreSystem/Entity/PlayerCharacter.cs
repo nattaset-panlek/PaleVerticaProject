@@ -507,6 +507,7 @@ namespace CoreSystem.Entity
                         if (GUILayout.Button("+", GUILayout.Width(35)))
                         {
                             attr.BaseValue += 1;
+                            Debug.Log($"[PlayerCharacter] Increased {type} to {attr.BaseValue}");
                             attributeSystem.UpdateDerivedAttributes();
                         }
                         if (GUILayout.Button("+10", GUILayout.Width(45)))
@@ -596,6 +597,19 @@ namespace CoreSystem.Entity
             }
         }
 
+
+        [ContextMenu("RecalculateStats")]
+        public override void RecalculateStats()
+        {
+            // Sync database status with Player's unlocked nodes before calculation
+            Debug.Log($"[PlayerCharacter] Syncing {UnlockedPassiveNodeIds.Count} passive nodes.");
+            SkillTree.SkillTreeDatabase.ApplySaveData(UnlockedPassiveNodeIds);
+
+            // Call base to apply stats to AttributeSystem
+            base.RecalculateStats();
+            
+            Debug.Log($"[PlayerCharacter] RecalculateStats Complete. STR: {attributeSystem.GetAttribute(AttributeType.STR).CurrentValue}");
+        }
 
         [ContextMenu("Call LoadData")]
         public void LoadData()

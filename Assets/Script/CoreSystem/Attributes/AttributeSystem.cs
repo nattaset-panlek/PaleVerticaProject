@@ -22,7 +22,6 @@ namespace CoreSystem.Attributes
             OnAttributesChanged?.Invoke();
         }
 
-
         public void Initialize(Entity.Character owner)
         {
             foreach (AttributeType type in System.Enum.GetValues(typeof(AttributeType)))
@@ -66,8 +65,6 @@ namespace CoreSystem.Attributes
                 if (attributes.TryGetValue(attr.Type, out var existing))
                 {
                     existing.BaseValue = attr.BaseValue;
-                    // Note: modifiers might also be in the initialAttributes if they were serialized, 
-                    // but usually it's just BaseValue that we care about from the inspector.
                 }
             }
 
@@ -80,6 +77,7 @@ namespace CoreSystem.Attributes
             attributes[AttributeType.MP].BaseValue = attributes[AttributeType.MaxMP].CurrentValue;
             attributes[AttributeType.MP].Recalculate();
         }
+
         public void UpdateDerivedAttributes()
         {
             if (_isUpdating) return;
@@ -99,7 +97,7 @@ namespace CoreSystem.Attributes
 
         private void InnerUpdateDerivedAttributes()
         {
-            // Fetch core stats (using CurrentValue to include equipment/buff modifiers)
+            // Fetch core stats
             float str = attributes[AttributeType.STR].CurrentValue;
             float agi = attributes[AttributeType.AGI].CurrentValue;
             float vit = attributes[AttributeType.VIT].CurrentValue;
@@ -107,24 +105,22 @@ namespace CoreSystem.Attributes
             float dex = attributes[AttributeType.DEX].CurrentValue;
             float luk = attributes[AttributeType.LUK].CurrentValue;
 
-            // --- STR (Strength) ---
-            // Physical ATK Influence
+            // --- STR ---
             attributes[AttributeType.ATK].StatFlatBonus = str + (dex / 5f) + (luk / 3f);
             attributes[AttributeType.WeightLimit].StatFlatBonus = str * 30f; 
 
-            // --- AGI (Agility) ---
+            // --- AGI ---
             attributes[AttributeType.Flee].StatFlatBonus = agi + (luk / 5f);
             attributes[AttributeType.StatusDEF].StatFlatBonus = (vit / 2f) + (agi / 5f) + (luk / 5f); 
             attributes[AttributeType.ASPD].StatFlatBonus = (agi * 0.5f) + (dex * 0.15f);
 
-            // --- VIT (Vitality) ---
+            // --- VIT ---
             attributes[AttributeType.MaxHP].StatPercentBonus = vit * 0.01f;
             attributes[AttributeType.HealingItems].StatPercentBonus = vit * 0.02f;
             attributes[AttributeType.HPRecovery].StatFlatBonus = vit / 5f;
-            attributes[AttributeType.StatusDEF].StatFlatBonus = (vit / 5f) + (dex / 5f); 
+            attributes[AttributeType.StatusDEF].StatFlatBonus += (vit / 5f) + (dex / 5f); 
 
-            // --- INT (Intelligence) ---
-            // MATK Influence
+            // --- INT ---
             attributes[AttributeType.MATK].StatFlatBonus = (@int * 1.5f) + (dex / 5f) + (luk / 3f);
             attributes[AttributeType.MaxMP].StatPercentBonus = @int * 0.01f;
             attributes[AttributeType.StatusDEF].StatFlatBonus += @int; 
@@ -133,27 +129,18 @@ namespace CoreSystem.Attributes
             if (@int >= 120) spRec += (@int - 120) / 2f; 
             attributes[AttributeType.MPRecovery].StatFlatBonus = spRec;
 
-            // --- DEX (Dexterity) ---
+            // --- DEX ---
             attributes[AttributeType.Hit].StatFlatBonus = dex + (luk / 3f);
 
-            // --- LUK (Luck) ---
-            // Status ATK (Poison, Burn Damage) Influence - Adding LUK to StatusATK
+            // --- LUK ---
             attributes[AttributeType.StatusDMG].StatFlatBonus = (luk * 0.5f) + (@int / 4f); 
-            
             attributes[AttributeType.CriticalRate].StatFlatBonus = luk * 0.3f;
             attributes[AttributeType.CritResistance].StatFlatBonus = luk / 5f;
             attributes[AttributeType.PerfectDodge].StatFlatBonus = luk / 10f;
 
-            // Recalculate all to apply any modifiers
+            // Recalculate all
             foreach (var kvp in attributes)
             {
-                // Skip Special Hidden Attributes or Handle them separately
-                if (kvp.Key == AttributeType.TrueDamage) 
-                {
-                    kvp.Value.Recalculate();
-                    continue;
-                }
-                
                 kvp.Value.Recalculate();
             }
         }
@@ -178,11 +165,52 @@ namespace CoreSystem.Attributes
 
         public void RemoveModifier(AttributeType type, AttributeModifier modifier)
         {
-            if (attributes.TryGetValue(type, out Attribute attr))
+            if (attributes.TryGetValue(type, out var attr))
             {
                 attr.RemoveModifier(modifier);
                 UpdateDerivedAttributes();
             }
+        }
+
+        public void ApplyPassiveStats(CoreSystem.SkillTree.Models.SkillTreeStats stats)
+        {
+            if (stats == null) return;
+
+            // 1. Reset all passive bonuses
+            foreach (var attr in attributes.Values)
+            {
+                attr.PassiveFlatBonus = 0;
+                attr.PassivePercentBonus = 0;
+            }
+
+            // 2. Accumulate bonuses
+            foreach (var kvp in stats.RawStats)
+            {
+                AttributeType type = (AttributeType)kvp.Key;
+                float value = kvp.Value;
+
+                if (attributes.TryGetValue(type, out var attr))
+                {
+                    string typeName = type.ToString();
+                    
+                    if (typeName.EndsWith("Percent"))
+                    {
+                        string baseName = typeName.Substring(0, typeName.Length - 7);
+                        if (System.Enum.TryParse(baseName, out AttributeType baseType) && attributes.TryGetValue(baseType, out var baseAttr))
+                        {
+                            baseAttr.PassivePercentBonus += value / 100f;
+                            Debug.Log($"[AttributeSystem] Applied Passive: {typeName} to {baseType} ({value}%)");
+                            continue; 
+                        }
+                    }
+
+                    attr.PassiveFlatBonus += value;
+                    Debug.Log($"[AttributeSystem] Applied Passive: {typeName} += {value}");
+                }
+            }
+
+            // 3. Refresh
+            UpdateDerivedAttributes();
         }
     }
 }

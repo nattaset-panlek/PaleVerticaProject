@@ -15,6 +15,10 @@ namespace CoreSystem.Attributes
         public float StatFlatBonus { get; set; }
         public float StatPercentBonus { get; set; }
 
+        // Bonuses from Passive Skill Tree
+        public float PassiveFlatBonus { get; set; }
+        public float PassivePercentBonus { get; set; }
+
         public float FlatBonusSum { get; private set; }
         public float PercentBonusSum { get; private set; }
 
@@ -44,8 +48,8 @@ namespace CoreSystem.Attributes
         public void Recalculate()
         {
             float finalValue = BaseValue;
-            float flatSum = StatFlatBonus;
-            float percentAddSum = StatPercentBonus;
+            float flatSum = StatFlatBonus + PassiveFlatBonus;
+            float percentAddSum = StatPercentBonus + PassivePercentBonus;
 
             for (int i = 0; i < modifiers.Count; i++)
             {
@@ -64,7 +68,7 @@ namespace CoreSystem.Attributes
             PercentBonusSum = percentAddSum;
 
             finalValue += flatSum;
-            finalValue *= 1f + percentAddSum;
+            finalValue = finalValue * (1f + percentAddSum);
 
             for (int i = 0; i < modifiers.Count; i++)
             {
@@ -73,6 +77,11 @@ namespace CoreSystem.Attributes
                 {
                     finalValue *= mod.Value;
                 }
+            }
+
+            if (PassiveFlatBonus != 0 || PassivePercentBonus != 0)
+            {
+                UnityEngine.Debug.Log($"[Attribute] {Type} Recalculated: Base={BaseValue}, StatFlat={StatFlatBonus}, PassiveFlat={PassiveFlatBonus}, Passive%={PassivePercentBonus}, Final={finalValue}");
             }
 
             CurrentValue = finalValue;

@@ -19,7 +19,7 @@ namespace CoreSystem.SkillTree.Models
         public string shape;
         public int    polySides;
         public string iconPath;
-        public Dictionary<string, float> extras;
+        public List<AttributeBonus> extras;
 
         public Vector2 Position    => new Vector2(x, y);
         public bool    IsBaseClass => role == "base";
@@ -53,10 +53,17 @@ namespace CoreSystem.SkillTree.Models
         public float DEX;
         public float LUK;
 
-        public Dictionary<string, float> RawStats = new Dictionary<string, float>();
+        public Dictionary<int, float> RawStats = new Dictionary<int, float>();
 
         public override string ToString()
             => $"STR:{STR} AGI:{AGI} INT:{INT} VIT:{VIT} DEX:{DEX} LUK:{LUK}";
+    }
+
+    [System.Serializable]
+    public class AttributeBonus
+    {
+        public int   id;
+        public float value;
     }
 
     #endregion

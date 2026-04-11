@@ -32,7 +32,7 @@ namespace CoreSystem.SkillTree
             public string shape;
             public int    polySides;
             public string iconPath;
-            public Dictionary<string, float> extras;
+            public List<AttributeBonus> extras;
         }
 
         #endregion
@@ -92,7 +92,7 @@ namespace CoreSystem.SkillTree
                     shape     = r.shape,
                     polySides = r.polySides,
                     iconPath  = r.iconPath,
-                    extras    = r.extras ?? new Dictionary<string, float>()
+                    extras    = r.extras ?? new List<AttributeBonus>()
                 });
             }
 
