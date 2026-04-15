@@ -172,8 +172,7 @@ namespace CoreSystem.SkillTree
         /// คืน SkillTreeStats จากโหนดที่ active ทั้งหมด
         /// นำไป apply บน PlayerData / CharacterStats ได้เลย
         /// </summary>
-        public SkillTreeStats GetCurrentStats()
-            => SkillTreeDatabase.GetActiveStats();
+        public SkillTreeStats GetCurrentStats() => SkillTreeDatabase.GetActiveStats();
 
         #endregion
 

@@ -41,7 +41,7 @@ namespace CoreSystem.Entity
         private EquipmentInstance _selectedUpgradeItem;
 
         [Header("Passive Skill Tree")]
-        public List<int> UnlockedPassiveNodeIds = new List<int>();
+        public List<PassiveNodeRecord> PassiveNodes = new List<PassiveNodeRecord>();
         public int PassivePoints = 0;
 
         private void OnGUI()
@@ -89,27 +89,72 @@ namespace CoreSystem.Entity
             GUI.DragWindow();
         }
 
+        private PassiveNodeRecord _pendingPassive = new PassiveNodeRecord();
+
         private void DrawPassiveTab()
         {
             GUILayout.Label("--- Passive Point Settings ---", GUI.skin.box);
             GUILayout.Label($"Current Passive Points: <color=yellow><b>{PassivePoints}</b></color>", new GUIStyle(GUI.skin.label) { richText = true });
-            
+
             GUILayout.BeginHorizontal();
             if (GUILayout.Button("+1 PT")) PassivePoints++;
             if (GUILayout.Button("+10 PT")) PassivePoints += 10;
-            if (GUILayout.Button("RESET ALL PT", GUILayout.Width(100))) {
-                PassivePoints += UnlockedPassiveNodeIds.Count;
-                UnlockedPassiveNodeIds.Clear();
-                // รีโหลด UI ถ้ามี Loader อยู่ในฉาก
+            if (GUILayout.Button("RESET ALL", GUILayout.Width(90)))
+            {
+                PassivePoints += PassiveNodes.Count;
+                PassiveNodes.Clear();
+                RecalculateStats();
                 FindObjectOfType<PassiveSkillLoader>()?.LoadFromPlayer(this);
             }
             GUILayout.EndHorizontal();
 
-            GUILayout.Space(10);
-            GUILayout.Label($"Unlocked Nodes: {UnlockedPassiveNodeIds.Count}");
-            foreach (var nid in UnlockedPassiveNodeIds)
+            GUILayout.Space(8);
+            GUILayout.Label("--- Add Passive Record ---", GUI.skin.box);
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("NodeId", GUILayout.Width(55));
+            string nidStr = GUILayout.TextField(_pendingPassive.NodeId.ToString(), GUILayout.Width(50));
+            if (int.TryParse(nidStr, out int pnid)) _pendingPassive.NodeId = pnid;
+
+            GUILayout.Label("AttrId", GUILayout.Width(50));
+            string aidStr = GUILayout.TextField(_pendingPassive.AttributeId.ToString(), GUILayout.Width(50));
+            if (int.TryParse(aidStr, out int paid)) _pendingPassive.AttributeId = paid;
+
+            GUILayout.Label("Val", GUILayout.Width(30));
+            string valStr = GUILayout.TextField(_pendingPassive.Value.ToString("F1"), GUILayout.Width(55));
+            if (float.TryParse(valStr, out float pval)) _pendingPassive.Value = pval;
+            GUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Unlock & Apply", GUILayout.Height(28)))
             {
-                GUILayout.Label($"- ID: {nid}");
+                if (PassivePoints > 0)
+                {
+                    PassiveNodes.Add(new PassiveNodeRecord(_pendingPassive.NodeId, _pendingPassive.AttributeId, _pendingPassive.Value));
+                    PassivePoints--;
+                    RecalculateStats();
+                }
+                else
+                {
+                    Debug.LogWarning("[PassiveTab] No passive points remaining.");
+                }
+            }
+
+            GUILayout.Space(10);
+            GUILayout.Label($"Unlocked Records: {PassiveNodes.Count}", GUI.skin.box);
+
+            PassiveNodeRecord toRemove = null;
+            foreach (var rec in PassiveNodes)
+            {
+                GUILayout.BeginHorizontal();
+                GUILayout.Label($"Node:{rec.NodeId}  Attr:{(AttributeType)rec.AttributeId} ({rec.AttributeId})  Val:{rec.Value:+0.##;-0.##;0}", GUILayout.ExpandWidth(true));
+                if (GUILayout.Button("X", GUILayout.Width(25))) toRemove = rec;
+                GUILayout.EndHorizontal();
+            }
+            if (toRemove != null)
+            {
+                PassiveNodes.Remove(toRemove);
+                PassivePoints++;
+                RecalculateStats();
             }
         }
 
@@ -601,14 +646,21 @@ namespace CoreSystem.Entity
         [ContextMenu("RecalculateStats")]
         public override void RecalculateStats()
         {
-            // Sync database status with Player's unlocked nodes before calculation
-            Debug.Log($"[PlayerCharacter] Syncing {UnlockedPassiveNodeIds.Count} passive nodes.");
-            SkillTree.SkillTreeDatabase.ApplySaveData(UnlockedPassiveNodeIds);
-
-            // Call base to apply stats to AttributeSystem
             base.RecalculateStats();
-            
-            Debug.Log($"[PlayerCharacter] RecalculateStats Complete. STR: {attributeSystem.GetAttribute(AttributeType.STR).CurrentValue}");
+            ApplyPassiveRecords();
+        }
+
+        private void ApplyPassiveRecords()
+        {
+            foreach (var attr in attributeSystem.ActiveAttributes.Values)
+                attr.Additional.RemoveByTag("Passive");
+
+            foreach (var rec in PassiveNodes)
+            {
+                if (!System.Enum.IsDefined(typeof(AttributeType), rec.AttributeId)) continue;
+                var type = (AttributeType)rec.AttributeId;
+                attributeSystem.AddAdditional(type, 2, Attributes.AdditionalOp.Add, rec.Value, "Passive");
+            }
         }
 
         [ContextMenu("Call LoadData")]

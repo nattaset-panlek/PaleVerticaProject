@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using CoreSystem;
+using CoreSystem.SkillTree.Models;
 
 namespace CoreSystem.Attributes
 {
@@ -172,44 +173,88 @@ namespace CoreSystem.Attributes
             }
         }
 
-        public void ApplyPassiveStats(CoreSystem.SkillTree.Models.SkillTreeStats stats)
+        public void AddAdditional(AttributeType type, AdditionalEntry entry)
         {
-            if (stats == null) return;
-
-            // 1. Reset all passive bonuses
-            foreach (var attr in attributes.Values)
+            if (attributes.TryGetValue(type, out var attr))
             {
-                attr.PassiveFlatBonus = 0;
-                attr.PassivePercentBonus = 0;
+                attr.Additional.Add(entry);
+                UpdateDerivedAttributes();
+            }
+        }
+
+        public AdditionalEntry AddAdditional(AttributeType type, int order, AdditionalOp op, float value, string tag = "")
+        {
+            var entry = new AdditionalEntry(order, op, value, tag);
+            AddAdditional(type, entry);
+            return entry;
+        }
+
+        public void RemoveAdditional(AttributeType type, AdditionalEntry entry)
+        {
+            if (attributes.TryGetValue(type, out var attr))
+            {
+                attr.Additional.Remove(entry);
+                UpdateDerivedAttributes();
+            }
+        }
+
+        public void RemoveAdditionalByTag(AttributeType type, string tag)
+        {
+            if (attributes.TryGetValue(type, out var attr))
+            {
+                attr.Additional.RemoveByTag(tag);
+                UpdateDerivedAttributes();
+            }
+        }
+
+        public void ClearAdditional(AttributeType type)
+        {
+            if (attributes.TryGetValue(type, out var attr))
+            {
+                attr.Additional.Clear();
+                UpdateDerivedAttributes();
+            }
+        }
+
+        public void ClearAllAdditional()
+        {
+            foreach (var attr in attributes.Values)
+                attr.Additional.Clear();
+            UpdateDerivedAttributes();
+        }
+
+        public void ApplyPassiveStats(SkillTreeStats stats)
+        {
+            foreach (var attr in attributes.Values)
+                attr.Additional.RemoveByTag("Passive");
+
+            if (stats == null)
+            {
+                UpdateDerivedAttributes();
+                return;
             }
 
-            // 2. Accumulate bonuses
             foreach (var kvp in stats.RawStats)
             {
                 AttributeType type = (AttributeType)kvp.Key;
                 float value = kvp.Value;
 
-                if (attributes.TryGetValue(type, out var attr))
-                {
-                    string typeName = type.ToString();
-                    
-                    if (typeName.EndsWith("Percent"))
-                    {
-                        string baseName = typeName.Substring(0, typeName.Length - 7);
-                        if (System.Enum.TryParse(baseName, out AttributeType baseType) && attributes.TryGetValue(baseType, out var baseAttr))
-                        {
-                            baseAttr.PassivePercentBonus += value / 100f;
-                            Debug.Log($"[AttributeSystem] Applied Passive: {typeName} to {baseType} ({value}%)");
-                            continue; 
-                        }
-                    }
+                string typeName = type.ToString();
 
-                    attr.PassiveFlatBonus += value;
-                    Debug.Log($"[AttributeSystem] Applied Passive: {typeName} += {value}");
+                if (typeName.EndsWith("Percent"))
+                {
+                    string baseName = typeName.Substring(0, typeName.Length - 7);
+                    if (System.Enum.TryParse(baseName, out AttributeType baseType) && attributes.TryGetValue(baseType, out var baseAttr))
+                    {
+                        baseAttr.Additional.Add(new AdditionalEntry(2, AdditionalOp.Multiply, 1f + (value / 100f), "Passive"));
+                        continue;
+                    }
                 }
+
+                if (attributes.TryGetValue(type, out var attr))
+                    attr.Additional.Add(new AdditionalEntry(2, AdditionalOp.Add, value, "Passive"));
             }
 
-            // 3. Refresh
             UpdateDerivedAttributes();
         }
     }

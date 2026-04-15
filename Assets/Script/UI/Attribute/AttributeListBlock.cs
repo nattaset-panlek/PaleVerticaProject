@@ -48,30 +48,33 @@ public class AttributeListBlock : MonoBehaviour
     {
         if (template == null || attr == null) return;
 
-        if (AttributeNameText != null) 
+        if (AttributeNameText != null)
             AttributeNameText.text = template.Name;
 
         if (AttributeValueText != null)
         {
             string percent = template.IsPercent ? "%" : "";
-            float finalValue = attr.CurrentValue;
-            float baseValue = attr.BaseValue;
-            float flatBonus = attr.FlatBonusSum;
+            float finalValue  = attr.CurrentValue;
+            float baseValue   = attr.BaseValue;
+            float flatBonus   = attr.FlatBonusSum;
             float percentBonus = attr.PercentBonusSum;
 
-            // 1. Final Value (Bold and primary)
-            string finalText = $"<b>{finalValue:F0}{percent}</b>";
+            float preFinal    = (baseValue + flatBonus) * (1f + percentBonus);
+            float addBonus    = finalValue - preFinal;
 
-            // 2. Breakdown (Base + Bonuses)
-            // Show only if base differs from final
+            string finalText  = $"<b>{finalValue:F0}{percent}</b>";
+
             string breakdownText = "";
             if (finalValue != baseValue)
             {
-                string basePart = $"{baseValue:F0}{percent}";
-                string flatPart = flatBonus != 0 ? $" {(flatBonus > 0 ? "+" : "")}{flatBonus:F0}{percent}" : "";
+                string basePart    = $"{baseValue:F0}{percent}";
+                string flatPart    = flatBonus    != 0 ? $" {(flatBonus    > 0 ? "+" : "")}{flatBonus:F0}{percent}"    : "";
                 string percentPart = percentBonus != 0 ? $" {(percentBonus > 0 ? "+" : "")}{percentBonus * 100:F0}%" : "";
+                string addPart     = Mathf.Abs(addBonus) > 0.01f
+                    ? $" <color=#FFD700>{(addBonus > 0 ? "+" : "")}{addBonus:F0}{percent}</color>"
+                    : "";
 
-                breakdownText = $" <size=85%><color=#A0A0A0>({basePart}<color=#25E3B7>{flatPart}{percentPart}</color>)</color></size>";
+                breakdownText = $" <size=85%><color=#A0A0A0>({basePart}<color=#25E3B7>{flatPart}{percentPart}</color>{addPart})</color></size>";
             }
 
             AttributeValueText.text = $"{finalText}{breakdownText}";

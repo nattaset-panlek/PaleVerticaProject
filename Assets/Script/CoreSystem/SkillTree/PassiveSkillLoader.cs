@@ -37,7 +37,7 @@ public class PassiveSkillLoader : MonoBehaviour
 
     private Dictionary<int, Vector2>          _nodePositions = new Dictionary<int, Vector2>();
     private Dictionary<int, PassiveSkilNode>  _nodeObjects   = new Dictionary<int, PassiveSkilNode>();
-    private Dictionary<long, UILineRenderer> _lineObjects   = new Dictionary<long, UILineRenderer>();
+    private Dictionary<long, UILineRenderer>  _lineObjects   = new Dictionary<long, UILineRenderer>();
     private HashSet<int>                      _selectedNodeIds = new HashSet<int>();
 
     private Transform _linesRoot;
@@ -49,6 +49,18 @@ public class PassiveSkillLoader : MonoBehaviour
     #region Properties
 
     public int SelectedCount => _selectedNodeIds.Count;
+
+    private HashSet<int> UnlockedIds
+    {
+        get
+        {
+            var set = new HashSet<int>();
+            if (_currentPlayer == null) return set;
+            foreach (var rec in _currentPlayer.PassiveNodes)
+                set.Add(rec.NodeId);
+            return set;
+        }
+    }
 
     #endregion
 
@@ -63,10 +75,9 @@ public class PassiveSkillLoader : MonoBehaviour
 
     #region Public Methods
 
-    /// <summary>สร้าง Node Tree ทั้งหมด (สร้างเพียงครั้งเดียวเพื่อประหยัด Memory)</summary>
     public void Initialize()
     {
-        if (_nodeObjects.Count > 0) return; // ถ้าสร้างแล้วข้ามเลย
+        if (_nodeObjects.Count > 0) return;
 
         SkillTreeData data = SkillTreeLoader.Load();
         if (data == null) return;
@@ -88,12 +99,10 @@ public class PassiveSkillLoader : MonoBehaviour
         Initialize();
     }
 
-    /// <summary>โหลดข้อมูลสถานะการอัปสกิลจาก PlayerCharacter</summary>
     public void LoadFromPlayer(PlayerCharacter player)
     {
         _currentPlayer = player;
         Initialize();
-
         RefreshUI();
     }
 
@@ -112,11 +121,12 @@ public class PassiveSkillLoader : MonoBehaviour
         _nodesRoot = null;
     }
 
-    /// <summary>เมื่อคลิกที่ Node</summary>
     public void OnNodeClick(int nodeId)
     {
         if (_currentPlayer == null) return;
-        if (_currentPlayer.UnlockedPassiveNodeIds.Contains(nodeId)) return;
+
+        var unlocked = UnlockedIds;
+        if (unlocked.Contains(nodeId)) return;
 
         if (_selectedNodeIds.Contains(nodeId))
         {
@@ -125,18 +135,13 @@ public class PassiveSkillLoader : MonoBehaviour
         }
         else
         {
-            // ตรวจสอบว่าอัปได้หรือไม่ (รวม selection ปัจจุบัน)
             if (IsNodeUnlockable(nodeId, _selectedNodeIds))
             {
                 int totalCost = _selectedNodeIds.Count + 1;
                 if (totalCost <= _currentPlayer.PassivePoints)
-                {
                     _selectedNodeIds.Add(nodeId);
-                }
                 else
-                {
                     Debug.Log("[PassiveSkill] Not enough points for selection!");
-                }
             }
         }
 
@@ -147,16 +152,31 @@ public class PassiveSkillLoader : MonoBehaviour
     {
         if (_currentPlayer == null || _selectedNodeIds.Count == 0) return;
 
-        // ดับเบิ้ลเช็คอีกรอบ
         _currentPlayer.PassivePoints -= _selectedNodeIds.Count;
-        foreach (int id in _selectedNodeIds)
+
+        foreach (int nodeId in _selectedNodeIds)
         {
-            _currentPlayer.UnlockedPassiveNodeIds.Add(id);
+            var node = SkillTreeDatabase.GetNode(nodeId);
+            if (node == null) continue;
+
+            if (node.HasStats)
+            {
+                foreach (var bonus in node.extras)
+                {
+                    _currentPlayer.PassiveNodes.Add(
+                        new PassiveNodeRecord(nodeId, bonus.id, bonus.value)
+                    );
+                }
+            }
+            else
+            {
+                _currentPlayer.PassiveNodes.Add(new PassiveNodeRecord(nodeId, 0, 0f));
+            }
         }
 
         _selectedNodeIds.Clear();
         _currentPlayer.RecalculateStats();
-        
+
         RefreshUI();
         Debug.Log("[PassiveSkill] Changes saved!");
     }
@@ -166,6 +186,12 @@ public class PassiveSkillLoader : MonoBehaviour
         _selectedNodeIds.Clear();
         RefreshUI();
     }
+
+    public void TryUnlockNode(int nodeId) => OnNodeClick(nodeId);
+
+    #endregion
+
+    #region Private Methods
 
     private void ValidateSelection()
     {
@@ -178,110 +204,91 @@ public class PassiveSkillLoader : MonoBehaviour
 
             foreach (int id in currentSelection)
             {
-                // ถ้า Node นี้ไม่ใช่ Base และไม่มีทางเชื่อมที่สมบูรณ์แล้ว ให้ลบออก
                 var otherSelected = new HashSet<int>(currentSelection);
                 otherSelected.Remove(id);
-                if (!IsNodeUnlockable(id, otherSelected)) 
-                {
+                if (!IsNodeUnlockable(id, otherSelected))
                     toRemove.Add(id);
-                }
             }
 
             foreach (int id in toRemove)
-            {
                 if (_selectedNodeIds.Remove(id)) changed = true;
-            }
         }
     }
-
-    public void TryUnlockNode(int nodeId)
-    {
-        // ย้าย logic selection ไปที่ OnNodeClick แล้ว
-        OnNodeClick(nodeId);
-    }
-
-    #endregion
-
-    #region Private Methods
 
     private void RefreshUI()
     {
         if (_currentPlayer == null) return;
 
-        // อัปเดตการแสดงผล Container ปุ่มกด (แสดงเมื่อมีการเลือก)
         if (ActionButtonContainer != null)
-        {
             ActionButtonContainer.SetActive(_selectedNodeIds.Count > 0);
-        }
 
-        // อัปเดตสถานะ Node
+        var unlocked = UnlockedIds;
+
         foreach (var kvp in _nodeObjects)
         {
-            int nodeId = kvp.Key;
+            int nodeId  = kvp.Key;
             var nodeObj = kvp.Value;
-            
-            bool isUnlocked = _currentPlayer.UnlockedPassiveNodeIds.Contains(nodeId);
+
+            bool isUnlocked = unlocked.Contains(nodeId);
             bool isSelected = _selectedNodeIds.Contains(nodeId);
             bool canUnlock  = IsNodeUnlockable(nodeId, _selectedNodeIds);
-            
-            PassiveSkillState state = isUnlocked ? PassiveSkillState.Upgraded : 
+
+            PassiveSkillState state = isUnlocked ? PassiveSkillState.Upgraded :
                                      (isSelected ? PassiveSkillState.Selected :
                                      (canUnlock  ? PassiveSkillState.CanUpgrade : PassiveSkillState.CannotUpgrade));
-            
+
             nodeObj.SetUp(nodeObj.Node, _nodePositions[nodeId], state);
         }
 
-        // อัปเดตสีเส้น
         foreach (var kvp in _lineObjects)
         {
-            long key = kvp.Key;
-            var line = kvp.Value;
-            
+            long key  = kvp.Key;
+            var  line = kvp.Value;
+
             int idA = (int)(key >> 32);
             int idB = (int)(key & 0xFFFFFFFF);
 
-            // เส้นจะเปลี่ยนสีถ้า Node ทั้งสองฝั่งถูกอัปแล้ว
-            bool active = _currentPlayer.UnlockedPassiveNodeIds.Contains(idA) && 
-                          _currentPlayer.UnlockedPassiveNodeIds.Contains(idB);
-            
-            bool selected = (_currentPlayer.UnlockedPassiveNodeIds.Contains(idA) || _selectedNodeIds.Contains(idA)) &&
-                           (_currentPlayer.UnlockedPassiveNodeIds.Contains(idB) || _selectedNodeIds.Contains(idB)) &&
-                           !active;
+            bool active   = unlocked.Contains(idA) && unlocked.Contains(idB);
+            bool selected = (unlocked.Contains(idA) || _selectedNodeIds.Contains(idA)) &&
+                            (unlocked.Contains(idB) || _selectedNodeIds.Contains(idB)) &&
+                            !active;
 
-            if (active) line.color = UnlockedLineColor;
+            if (active)        line.color = UnlockedLineColor;
             else if (selected) line.color = SelectedLineColor;
-            else line.color = NormalLineColor;
+            else               line.color = NormalLineColor;
         }
     }
 
     private bool IsNodeUnlockable(int nodeId, HashSet<int> selection = null)
     {
-        if (_currentPlayer.UnlockedPassiveNodeIds.Contains(nodeId)) return false;
-        
+        var unlocked = UnlockedIds;
+        if (unlocked.Contains(nodeId)) return false;
+
         var nodeData = SkillTreeDatabase.GetNode(nodeId);
-        if (nodeData.IsBaseClass) {
-             bool hasBase = _currentPlayer.UnlockedPassiveNodeIds
+        if (nodeData.IsBaseClass)
+        {
+            bool hasBase = unlocked
                 .Select(id => SkillTreeDatabase.GetNode(id))
                 .Any(n => n != null && n.IsBaseClass);
-             
-             if (hasBase) return false;
 
-             if (selection != null) {
-                 bool hasSelectedBase = selection
+            if (hasBase) return false;
+
+            if (selection != null)
+            {
+                bool hasSelectedBase = selection
                     .Select(id => SkillTreeDatabase.GetNode(id))
                     .Any(n => n != null && n.IsBaseClass);
-                 if (hasSelectedBase) return false;
-             }
+                if (hasSelectedBase) return false;
+            }
 
-             return true;
+            return true;
         }
 
         bool hasNeighborUnlocked = SkillTreeDatabase.GetNeighborIds(nodeId)
-            .Any(neighborId => _currentPlayer.UnlockedPassiveNodeIds.Contains(neighborId));
+            .Any(neighborId => unlocked.Contains(neighborId));
 
         if (hasNeighborUnlocked) return true;
 
-        // ถ้าไม่มีเพื่อนที่ปลดแล้ว ให้เช็คเพื่อนที่กำลังเลือกอยู่ (Chain)
         if (selection != null)
         {
             return SkillTreeDatabase.GetNeighborIds(nodeId)
@@ -322,8 +329,7 @@ public class PassiveSkillLoader : MonoBehaviour
             var go = Instantiate(prefab, _nodesRoot);
             var skillNode = go.GetComponent<PassiveSkilNode>();
             _nodeObjects[node.id] = skillNode;
-            
-            // เซ็ตเบื้องต้น (แบบไม่มี Player)
+
             skillNode.SetUp(node, pos, PassiveSkillState.CannotUpgrade);
         }
     }
@@ -333,8 +339,8 @@ public class PassiveSkillLoader : MonoBehaviour
         var drawn = new HashSet<long>();
         foreach (var edge in edges)
         {
-            int lo = Mathf.Min(edge.from, edge.to);
-            int hi = Mathf.Max(edge.from, edge.to);
+            int  lo  = Mathf.Min(edge.from, edge.to);
+            int  hi  = Mathf.Max(edge.from, edge.to);
             long key = ((long)lo << 32) | (uint)hi;
             if (!drawn.Add(key)) continue;
 
@@ -352,7 +358,7 @@ public class PassiveSkillLoader : MonoBehaviour
 
         var rt = go.GetComponent<RectTransform>();
         Vector2 center = (from + to) * 0.5f;
-        Vector2 size = new Vector2(Mathf.Abs(to.x - from.x), Mathf.Abs(to.y - from.y));
+        Vector2 size   = new Vector2(Mathf.Abs(to.x - from.x), Mathf.Abs(to.y - from.y));
         size.x = Mathf.Max(size.x, 10f); size.y = Mathf.Max(size.y, 10f);
         rt.anchoredPosition = center; rt.sizeDelta = size;
 

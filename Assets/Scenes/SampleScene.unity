@@ -7828,7 +7828,7 @@ MonoBehaviour:
   race: 7
   faction: 0
   ShowDebugUI: 1
-  UnlockedPassiveNodeIds: 
+  PassiveNodes: []
   PassivePoints: 0
 --- !u!50 &935870573
 Rigidbody2D:
