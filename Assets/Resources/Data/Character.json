@@ -1,16 +1,12 @@
 {
     "Characters": [
         {
-            "Id": 1000,
-            "Name": "Swordsman",
-            "BaseHP": 150,
-            "BaseMP": 50
-        },
-        {
             "Id": 1001,
-            "Name": "Magician",
-            "BaseHP": 80,
-            "BaseMP": 200
+            "Name": "Skeletom",
+            "Faction": 1,
+            "BaseHP": 500,
+            "BaseMP": 300,
+            "PrefabPath": "Assets/Addressable/Prefab/Entity/Enemy/Skeletom.prefab"
         }
     ]
 }

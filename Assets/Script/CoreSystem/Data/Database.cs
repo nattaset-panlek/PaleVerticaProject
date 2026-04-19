@@ -388,8 +388,10 @@ namespace CoreSystem.Data
     {
         public int Id;
         public string Name;
+        public CoreSystem.Entity.FactionType Faction;
         public int BaseHP;
         public int BaseMP;
+        public string PrefabPath;
     }
 
     [System.Serializable]

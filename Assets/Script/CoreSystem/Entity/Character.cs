@@ -10,6 +10,15 @@ namespace CoreSystem.Entity
 {
     public abstract class Character : MonoBehaviour, IEntity
     {
+        [Header("Character Identity")]
+        [SerializeField] private int characterId;
+        public int CharacterId => characterId;
+
+        public CoreSystem.Data.CharacterModel GetCharacterData()
+        {
+            return CoreSystem.Data.Database.GetCharacter(characterId);
+        }
+
         [SerializeField] private AttributeSystem _attributeSystem = new AttributeSystem();
         public AttributeSystem attributeSystem => _attributeSystem;
 

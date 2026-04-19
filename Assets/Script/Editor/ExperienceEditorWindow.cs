@@ -433,7 +433,7 @@ namespace CoreSystem.Editor
             Debug.Log($"[ExpEditor] Duplicated to {copy}");
         }
 
-        private void SetDirty()
+        private new void SetDirty()
         {
             if (_table != null) EditorUtility.SetDirty(_table);
             Repaint();

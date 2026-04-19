@@ -18,8 +18,21 @@ public partial class ProjectMobilityAssistant : EditorWindow
         DrawEditor(_characterData.Characters, _characterSelectedIndex, (idx) => _characterSelectedIndex = idx, (entry) => {
             entry.Id = EditorGUILayout.IntField("ID", entry.Id);
             entry.Name = EditorGUILayout.TextField("Name", entry.Name);
+            entry.Faction = (CoreSystem.Entity.FactionType)EditorGUILayout.EnumPopup("Faction", entry.Faction);
             entry.BaseHP = EditorGUILayout.IntField("Base HP", entry.BaseHP);
             entry.BaseMP = EditorGUILayout.IntField("Base MP", entry.BaseMP);
+            
+            GUILayout.Space(10);
+            GUILayout.Label("Prefab Settings", EditorStyles.boldLabel);
+            entry.PrefabPath = EditorGUILayout.TextField("Prefab Path (Addressable)", entry.PrefabPath);
+            
+            GameObject dropPrefab = (GameObject)EditorGUILayout.ObjectField("Drag Prefab Here", null, typeof(GameObject), false);
+            if (dropPrefab != null)
+            {
+                entry.PrefabPath = GetAddressableKey(dropPrefab);
+                // Clear focus to refresh text field
+                GUI.FocusControl(null);
+            }
         }, (entry) => $"[{entry.Id}] {entry.Name}", 
         () => new CharacterModel { Id = _characterData.Characters.Count > 0 ? _characterData.Characters.Max(x => x.Id) + 1 : 1 },
         null);

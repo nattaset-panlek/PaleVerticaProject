@@ -16,7 +16,9 @@ namespace CoreSystem.Controllers
         Chase,
         Attack,
         Flee,
-        Dead
+        Dead,
+        CommandMove,
+        CommandFollow
     }
 
     [RequireComponent(typeof(Character))]
@@ -99,6 +101,11 @@ namespace CoreSystem.Controllers
         private float _stateTimer;
         private float _orbitAngle;
         private float _orbitFlipTimer;
+
+        // ─── Command State Targets ────────────────────────────────
+        private Vector3 _commandMoveDestination;
+        private Transform _commandFollowTarget;
+        
         
         private Dictionary<int, float> _aiSkillIndividualTimers = new Dictionary<int, float>();
         public float GlobalAICooldownTimer => _aiSkillCooldownTimer;
@@ -216,6 +223,12 @@ namespace CoreSystem.Controllers
                 case AIState.Flee:
                     UpdateFlee();
                     break;
+                case AIState.CommandMove:
+                    UpdateCommandMove();
+                    break;
+                case AIState.CommandFollow:
+                    UpdateCommandFollow();
+                    break;
             }
 
             if (Time.time >= _nextDecisionTime)
@@ -248,7 +261,7 @@ namespace CoreSystem.Controllers
 
         private void Think()
         {
-            if (_currentState == AIState.Dead || _currentState == AIState.Flee || (_character != null && _character.IsStunned)) return;
+            if (_currentState == AIState.Dead || _currentState == AIState.Flee || _currentState == AIState.CommandMove || _currentState == AIState.CommandFollow || (_character != null && _character.IsStunned)) return;
 
             if (_target == null)
             {
@@ -370,6 +383,60 @@ namespace CoreSystem.Controllers
             if (Vector3.Distance(transform.position, _target.position) > LoseSightRadius)
             { _target = null; SetState(AIState.Idle); }
         }
+
+        private void UpdateCommandMove()
+        {
+            NavigateTo(_commandMoveDestination, Vector3.zero);
+
+            if (Vector3.Distance(transform.position, _commandMoveDestination) < 0.5f)
+            {
+                SetState(AIState.Idle);
+            }
+        }
+
+        private void UpdateCommandFollow()
+        {
+            if (_commandFollowTarget == null)
+            {
+                SetState(AIState.Idle);
+                return;
+            }
+
+            float dist = Vector3.Distance(transform.position, _commandFollowTarget.position);
+            if (dist > 1.5f)
+            {
+                NavigateTo(_commandFollowTarget.position, Vector3.zero);
+            }
+            else
+            {
+                StopMovement();
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════
+        //   External Command API
+        // ═══════════════════════════════════════════════════════════
+
+        public void SetCommandMove(Vector3 destination)
+        {
+            _commandMoveDestination = destination;
+            SetState(AIState.CommandMove);
+        }
+
+        public void SetCommandFollow(Transform target)
+        {
+            _commandFollowTarget = target;
+            SetState(AIState.CommandFollow);
+        }
+
+        public void ClearCommand()
+        {
+            if (_currentState == AIState.CommandMove || _currentState == AIState.CommandFollow)
+            {
+                SetState(AIState.Idle);
+            }
+        }
+
 
         // ═══════════════════════════════════════════════════════════
         //   Combat Positioning
