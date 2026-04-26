@@ -74,6 +74,22 @@ namespace CoreSystem.Skills.Visuals
             }
         }
 
+        public void SetProgress(float progress)
+        {
+            if (_currentActive != null)
+            {
+                _currentActive.SetProgress(progress);
+            }
+        }
+
+        public void StartExecution(SkillPayload payload)
+        {
+            if (_currentActive != null)
+            {
+                _currentActive.StartExecution(payload);
+            }
+        }
+
         public void HideCurrent()
         {
             if (_currentActive != null)

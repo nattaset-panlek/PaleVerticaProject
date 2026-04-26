@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CircleIndicator Range
+  m_Name: CircleIndicatorFill
   m_Shader: {fileID: 4800000, guid: 2efef0664c875d84ca10f4e25094c7ae, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -23,12 +23,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BodyTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeadTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _IndicatorPattern:
-        m_Texture: {fileID: 2800000, guid: c8b25c4a0f4c17d44a191a32b76cbd71, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9a7caf0d357f91447b103157e12c132d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: e36237e720d14f044aa3b82dbc5d36c4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TailTex:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -36,12 +48,16 @@ Material:
     - _AngleOffset: 0
     - _ConeAngle: 60
     - _FillAmount: 1
+    - _HeadSize: 1
     - _InnerFade: 0.3
+    - _NaturalWidth: 1
     - _RotationSpeed: 0
     - _Softness: 0.0025
+    - _TailSize: 0.5
     - _Thickness: 0.015
     - _WorldThickness: 0.0025
     m_Colors:
     - _BorderColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FillColor: {r: 1, g: 1, b: 1, a: 1}
     - _MainColor: {r: 1, g: 1, b: 1, a: 0.2509804}
   m_BuildTextureStacks: []

@@ -11,6 +11,8 @@ namespace CoreSystem.Skills
         public int SkillLevel;
         public ElementType SkillElement;
         public DamageType DamageType;
+        public Logic.TargetingLogic SkillTargeting;
+        public List<Logic.EffectLogic> SkillEffects = new List<Logic.EffectLogic>();
         
         public Vector3 OriginPosition;
         public Vector3 TargetPosition; // For ground-targeted skills
@@ -29,6 +31,7 @@ namespace CoreSystem.Skills
         public float CastDelay;
         public float Cooldown;
         public float ManaCost;
+        public float TotalCastTime;
 
         public SkillPayload Clone()
         {
@@ -38,12 +41,15 @@ namespace CoreSystem.Skills
                 SkillID = this.SkillID,
                 SkillLevel = this.SkillLevel,
                 SkillElement = this.SkillElement,
+                DamageType = this.DamageType,
+                SkillTargeting = this.SkillTargeting,
+                SkillEffects = new List<Logic.EffectLogic>(this.SkillEffects),
                 OriginPosition = this.OriginPosition,
                 TargetPosition = this.TargetPosition,
                 IsTargetPositionSet = this.IsTargetPositionSet,
+                IsPositionLocked = this.IsPositionLocked,
                 Targets = new List<IEntity>(this.Targets),
                 BaseDamage = this.BaseDamage,
-                DamageType = this.DamageType,
                 Heal = this.Heal,
                 AOERadius = this.AOERadius,
                 CastRange = this.CastRange,
@@ -52,7 +58,8 @@ namespace CoreSystem.Skills
                 FCT = this.FCT,
                 CastDelay = this.CastDelay,
                 Cooldown = this.Cooldown,
-                ManaCost = this.ManaCost
+                ManaCost = this.ManaCost,
+                TotalCastTime = this.TotalCastTime
             };
         }
     }

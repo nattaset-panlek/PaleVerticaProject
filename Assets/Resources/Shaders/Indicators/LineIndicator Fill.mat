@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LineIndicator Fill
+  m_Shader: {fileID: 4800000, guid: 32b6189da7e53ca4db233ee06dc63e34, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BodyPattern:
+        m_Texture: {fileID: 2800000, guid: 9f60e6fb3f07a5d4394f6f7ab76b0a46, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BodyTex:
+        m_Texture: {fileID: 2800000, guid: 2bf4daa6f1771dc48b6c0f45c08a6db5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CapPattern:
+        m_Texture: {fileID: 2800000, guid: a19eaad3f7a1e1144858d0ef5b71871c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeadTex:
+        m_Texture: {fileID: 2800000, guid: 2bf4daa6f1771dc48b6c0f45c08a6db5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _IndicatorPattern:
+        m_Texture: {fileID: 2800000, guid: ed9610cab0d226449897e0d99c5b8e09, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TailTex:
+        m_Texture: {fileID: 2800000, guid: 2bf4daa6f1771dc48b6c0f45c08a6db5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BaseSize: 0.5
+    - _BodyBorderB: 5
+    - _BodyBorderL: 60
+    - _BodyBorderR: 60
+    - _BodyBorderT: 5
+    - _EndCapSize: 0.86
+    - _FillAmount: 1
+    - _HeadSize: 0.6
+    - _NaturalWidth: 1
+    - _ScrollSpeed: 0
+    - _StartCapSize: 0.5
+    - _StripeCount: 7.2
+    - _StripeIntensity: 0.15
+    - _StripeSpeed: 1
+    - _TailSize: 0.3
+    - _TextureBodyEnd: 0.662
+    - _TextureBodyStart: 0.2
+    - _Thickness: 0.05
+    - _WorldThickness: 0.254
+    m_Colors:
+    - _BorderColor: {r: 1, g: 1, b: 1, a: 0}
+    - _FillColor: {r: 1, g: 1, b: 1, a: 0.08627451}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0.2}
+    - _WorldSize: {r: 1, g: 1, b: 0, a: 0}
+  m_BuildTextureStacks: []

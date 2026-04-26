@@ -55,23 +55,45 @@ namespace CoreSystem.Controllers
             HandleLookDirection(); // Renamed from HandleMouseRotation in the instruction, keeping original name
             HandleSkillInput();
 
-            // Update Skill Indicator if aiming
-            if (_selectedSkillSlot != -1)
+            // Update Skill Indicator if aiming or casting
+            if (_selectedSkillSlot != -1 || player.skillCaster.CurrentState == SkillCasterState.Casting)
             {
                 Vector3 mousePos = GetMouseWorldPosition();
                 Vector3 origin = transform.position;
                 Vector3 direction = (mousePos - origin).normalized;
-
-                // Get final targeting point with range clamping for the visual
-                var skill = player.skillCaster.EquippedSkills[_selectedSkillSlot];
-                Vector3 clampedPos = mousePos;
-                if (skill.SkillData.BaseTargeting is TargetLocationTargeting targetLoc)
+                
+                SkillInstance skill = null;
+                if (_selectedSkillSlot != -1)
                 {
-                    float scaledRange = skill.CalculateAOERadiusModified(player.attributeSystem, targetLoc.CastRange);
-                    clampedPos = targetLoc.ClampTargetPosition(origin, mousePos, scaledRange);
+                    skill = player.skillCaster.EquippedSkills[_selectedSkillSlot];
+                }
+                else
+                {
+                    skill = player.skillCaster.ActiveSkillInstance;
                 }
 
-                SkillIndicatorManager.Instance?.UpdateIndicator(origin, clampedPos, direction);
+                if (skill != null && skill.SkillData != null)
+                {
+                    Vector3 indicatorPos = mousePos;
+                    if (skill.SkillData.BaseTargeting is TargetLocationTargeting targetLoc)
+                    {
+                        float scaledRange = skill.CalculateAOERadiusModified(player.attributeSystem, targetLoc.CastRange);
+                        indicatorPos = targetLoc.ClampTargetPosition(origin, mousePos, scaledRange);
+                    }
+                    
+                    SkillIndicatorManager.Instance?.UpdateIndicator(origin, indicatorPos, direction);
+                    
+                    if (player.skillCaster.CurrentState == SkillCasterState.Casting && skill == player.skillCaster.ActiveSkillInstance)
+                    {
+                        float progress = player.skillCaster.CurrentCastTimer / player.skillCaster.CurrentCastTimeTotal;
+                        SkillIndicatorManager.Instance?.SetProgress(progress);
+                    }
+                }
+            }
+            else if (_selectedSkillSlot == -1 && player.skillCaster.CurrentState != SkillCasterState.Casting)
+            {
+                // Ensure hidden if not aiming or casting
+                SkillIndicatorManager.Instance?.HideIndicator();
             }
             UpdateUI();
         }
@@ -88,6 +110,7 @@ namespace CoreSystem.Controllers
                     _isDead = true;
                     if (Anim != null) Anim.SetBool(MovingBoolParam, false);
                     PlayDeathAnimation();
+                    SkillIndicatorManager.Instance?.HideIndicator();
                     return true;
                 }
             }
@@ -245,10 +268,23 @@ namespace CoreSystem.Controllers
                 {
                     if (_selectedSkillSlot != -1)
                     {
+                        var instance = player.skillCaster.EquippedSkills[_selectedSkillSlot];
+                        var payload = player.skillCaster.BuildPayload(instance, mousePos, true);
+                        
                         player.skillCaster.CastSkill(_selectedSkillSlot, mousePos);
+                        SkillIndicatorManager.Instance?.StartExecution(payload);
+                        
+                        bool shouldKeepIndicator = instance.SkillData.BaseTargeting is ConeTargeting || 
+                                                 instance.SkillData.BaseTargeting is BoxTargeting || 
+                                                 instance.SkillData.BaseTargeting is LinePierceTargeting;
+
                         _selectedSkillSlot = -1;
                         player.skillCaster.AimedSkillSlot = -1;
-                        SkillIndicatorManager.Instance?.HideCurrent();
+
+                        if (!shouldKeepIndicator)
+                        {
+                            SkillIndicatorManager.Instance?.HideCurrent();
+                        }
                     }
                 }
 
@@ -265,6 +301,10 @@ namespace CoreSystem.Controllers
         private void TryEnterAimingMode(int slot, Vector3 mousePos)
         {
             if (player.skillCaster == null) return;
+            
+            // Block aiming if currently casting or in cast delay
+            if (player.skillCaster.CurrentState != SkillCasterState.Idle) return;
+
             if (slot < 0 || slot >= player.skillCaster.EquippedSkills.Count) return;
 
             var instance = player.skillCaster.EquippedSkills[slot];

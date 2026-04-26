@@ -8,8 +8,11 @@ namespace CoreSystem.Skills.Visuals
     {
         void Show(SkillPayload payload, TargetingLogic logic);
         void UpdateState(Vector3 origin, Vector3 target, Vector2 direction);
+        void SetProgress(float progress);
+        void StartExecution(SkillPayload payload);
         void Hide();
     }
+
 
     public enum IndicatorType
     {

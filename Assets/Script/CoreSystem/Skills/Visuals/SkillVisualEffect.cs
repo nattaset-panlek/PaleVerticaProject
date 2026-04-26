@@ -1,3 +1,4 @@
+﻿using CoreSystem.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ namespace CoreSystem.Skills.Visuals
         public float scaleMultiplier = 2f; // e.g., if AOE is 3, localScale becomes (6,6,1) for a diameter of 6.
         public bool destroyAfterDuration = true;
         public float defaultDuration = 2f;
+        public SpriteRenderer SpriteRendererFillSkill;
         
         [Header("Optional Particle System Feedback")]
         public ParticleSystem[] linkedParticles;
@@ -35,19 +37,19 @@ namespace CoreSystem.Skills.Visuals
         public void Initialize(SkillPayload payload)
         {
             this.currentPayload = payload;
-
-            // 1. Scale automatically based on the skill's AOE Radius
             if (autoScaleToAOE && payload.AOERadius > 0)
             {
                 float diameter = payload.AOERadius * scaleMultiplier;
-                // Preserve the Z scale for 2D setups if needed, or scale uniformly depending on visuals.
+                castTime = payload.TotalCastTime;
                 transform.localScale = new Vector3(diameter, diameter, transform.localScale.z);
+                if (SpriteRendererFillSkill != null)
+                {
+                    SpriteRendererFillSkill.transform.localScale = Vector3.zero;
+                    StartCoroutine(ScaleRoutine());
+                }
             }
-
-            // 2. Schedule destruction
             if (destroyAfterDuration)
             {
-                // If it has particles, we could use the longest particle duration
                 float maxDuration = defaultDuration;
                 if (linkedParticles != null && linkedParticles.Length > 0)
                 {
@@ -59,12 +61,23 @@ namespace CoreSystem.Skills.Visuals
                         }
                     }
                 }
-                
                 Destroy(gameObject, maxDuration);
             }
-            
-            // Note: You can expand this to read payload.DamageType or payload.BaseDamage 
-            // to change colours (e.g. Red for Fire, Blue for Ice).
+        }
+
+        private float castTime;
+        private System.Collections.IEnumerator ScaleRoutine()
+        {
+            float elapsed = 0f;
+            while (elapsed < castTime)
+            {
+                elapsed += Time.deltaTime;
+                SpriteRendererFillSkill.transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(1,1,1), elapsed / castTime);
+                yield return null;
+            }
+            SpriteRendererFillSkill.transform.localScale = new Vector3(1, 1, 1);
+            yield return new WaitForSeconds(0.25f);
+            Destroy(SpriteRendererFillSkill.gameObject);
         }
     }
 }

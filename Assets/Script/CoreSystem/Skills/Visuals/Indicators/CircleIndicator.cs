@@ -6,30 +6,32 @@ namespace CoreSystem.Skills.Visuals
 {
     public class CircleIndicator : MonoBehaviour, ISkillIndicator
     {
+        #region [Variables/Fields]
         [SerializeField] private SpriteRenderer _mainDisc;
         [SerializeField] private SpriteRenderer _rangeDisc;
+        [SerializeField] private SpriteRenderer _fillDisc;
         
-        private Material _mainMat;
-        private Material _rangeMat;
+        private float _maxAOERadius;
+        #endregion
 
-        private void Awake()
-        {
-            if (_mainDisc != null) _mainMat = _mainDisc.material;
-            if (_rangeDisc != null) _rangeMat = _rangeDisc.material;
-        }
-
+        #region [Public Methods]
         public void Show(SkillPayload payload, TargetingLogic logic)
         {
             gameObject.SetActive(true);
+            _maxAOERadius = payload.AOERadius;
             
-            // Set scale for target AOE circle
             if (_mainDisc != null)
             {
-                float diameter = payload.AOERadius * 2f;
+                float diameter = _maxAOERadius * 2f;
                 _mainDisc.transform.localScale = new Vector3(diameter, diameter, 1f);
             }
 
-            // Set scale for caster range circle (Usually fixed)
+            if (_fillDisc != null)
+            {
+                _fillDisc.gameObject.SetActive(true);
+                _fillDisc.transform.localScale = Vector3.zero;
+            }
+
             if (_rangeDisc != null && logic is TargetLocationTargeting targetLoc)
             {
                 float rangeDiameter = payload.CastRange * 2f;
@@ -42,18 +44,30 @@ namespace CoreSystem.Skills.Visuals
             }
         }
 
+        public void SetProgress(float progress)
+        {
+            //if (_fillDisc == null) return;
+            //float diameter = _maxAOERadius * 2f * Mathf.Clamp01(progress);
+            //_fillDisc.transform.localScale = new Vector3(diameter, diameter, 1f);
+        }
+
+        public void StartExecution(SkillPayload payload)
+        {
+            // Handled externally or via routine
+        }
+
         public void UpdateState(Vector3 origin, Vector3 target, Vector2 direction)
         {
-            // Position the range circle at origin (caster)
             if (_rangeDisc != null) _rangeDisc.transform.position = origin;
-
-            // Position the main AOE circle at the target (clamped)
             if (_mainDisc != null) _mainDisc.transform.position = target;
+            //if (_fillDisc != null) _fillDisc.transform.position = target;
         }
 
         public void Hide()
         {
             gameObject.SetActive(false);
         }
+        #endregion
     }
+
 }

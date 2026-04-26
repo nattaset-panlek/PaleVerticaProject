@@ -451,7 +451,7 @@
             "BaseProjectileCount": 0,
             "BaseManaCost": 10.0,
             "IsToggle": false,
-            "BaseVCT": 0.0,
+            "BaseVCT": 0.3499999940395355,
             "BaseFCT": 0.0,
             "BaseCastDelay": 0.25,
             "BaseCooldown": 0.0,
@@ -546,7 +546,7 @@
             "BaseProjectileCount": 1,
             "BaseManaCost": 15.0,
             "IsToggle": false,
-            "BaseVCT": 0.20000000298023225,
+            "BaseVCT": 1.5,
             "BaseFCT": 0.0,
             "BaseCastDelay": 0.10000000149011612,
             "BaseCooldown": 2.5,
@@ -999,7 +999,28 @@
             "VisualSpawnPoint": "",
             "CastVisualPrefabName": "",
             "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "UniqueFields": [
+                {
+                    "FieldName": "MinionPrefab",
+                    "FieldType": "UnityEngine.GameObject",
+                    "StringValue": ""
+                },
+                {
+                    "FieldName": "IsPermanent",
+                    "FieldType": "System.Boolean",
+                    "StringValue": "False"
+                },
+                {
+                    "FieldName": "Lifetime",
+                    "FieldType": "System.Single",
+                    "StringValue": "0"
+                },
+                {
+                    "FieldName": "MaxMinions",
+                    "FieldType": "System.Int32",
+                    "StringValue": "0"
+                }
+            ]
         },
         {
             "SkillID": 1011,

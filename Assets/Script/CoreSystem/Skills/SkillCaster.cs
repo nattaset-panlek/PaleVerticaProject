@@ -237,6 +237,8 @@ namespace CoreSystem.Skills
                 SkillLevel = instance.CurrentLevel,
                 SkillElement = instance.SkillData != null ? instance.SkillData.SkillElement : ElementType.Neutral,
                 DamageType = instance.SkillData != null ? instance.SkillData.SkillDamageType : DamageType.Physical,
+                SkillTargeting = instance.SkillData != null ? instance.SkillData.BaseTargeting : null,
+                SkillEffects = instance.SkillData != null ? new List<Logic.EffectLogic>(instance.SkillData.Effects) : new List<Logic.EffectLogic>(),
                 OriginPosition = character.transform.position,
                 TargetPosition = targetPos,
                 IsTargetPositionSet = isTargetSet,
@@ -272,6 +274,9 @@ namespace CoreSystem.Skills
                     instance.LinkedModifiers[i].ModifyPayload(ref payload);
                 }
             }
+            
+            // Final calculation after all modifiers have potentially touched VCT/FCT
+            payload.TotalCastTime = instance.CalculateCastTimeModified(this.character?.attributeSystem, payload.VCT, payload.FCT);
 
             return payload;
         }
@@ -306,7 +311,7 @@ namespace CoreSystem.Skills
 
             activeSkillInstance = instance;
             currentCastTimer = 0f;
-            currentCastTimeTotal = instance.CalculateCastTimeModified(character?.attributeSystem, payload.VCT, payload.FCT);
+            currentCastTimeTotal = payload.TotalCastTime;
 
             Debug.Log($"<color=cyan>Cast Skill:</color> {instance.SkillData.Name} <color=yellow>Time: {currentCastTimeTotal:F2}s</color>");
 
