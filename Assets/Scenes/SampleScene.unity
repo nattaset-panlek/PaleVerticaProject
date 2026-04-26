@@ -2817,7 +2817,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - Name: PassiveTree
-    Keys: 3201000070000000
+    Keys: 3401000070000000
     WindowObject: {fileID: 1703949059}
     OnOpen:
       m_PersistentCalls:
@@ -7814,6 +7814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16183209e215dd149bb26a420d818d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterId: 0
   _attributeSystem:
     initialAttributes:
     - Type: 130
@@ -8403,7 +8404,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

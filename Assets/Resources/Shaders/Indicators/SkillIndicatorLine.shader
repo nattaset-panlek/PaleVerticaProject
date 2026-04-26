@@ -2,14 +2,18 @@ Shader "Custom/SkillIndicatorLine"
 {
     Properties
     {
-        [NoScaleOffset] _IndicatorPattern ("Indicator Pattern", 2D) = "white" {}
-        _MainColor ("Main Color", Color) = (0, 0.5, 1, 0.3)
-        _BorderColor ("Border Color", Color) = (0, 0.8, 1, 1)
-        _WorldThickness ("Border Width (World)", Range(0, 1)) = 0.1
-        _StripeCount ("Stripe Count", Range(1, 20)) = 5.0
-        _StripeSpeed ("Stripe Speed", Range(-10, 10)) = 2.0
-        _StripeIntensity ("Stripe Intensity", Range(0, 1)) = 0.2
-        _ScrollSpeed ("Texture Scroll Speed", Range(-10, 10)) = -1.0
+        [Header(Textures)]
+        [NoScaleOffset] _TailTex ("Tail Texture (Start)", 2D) = "white" {}
+        [NoScaleOffset] _BodyTex ("Body Texture (Tiling)", 2D) = "white" {}
+        [NoScaleOffset] _HeadTex ("Head Texture (End)", 2D) = "white" {}
+        
+        [Header(Colors)]
+        _MainColor ("Main Color", Color) = (1, 1, 1, 1)
+        
+        [Header(Slicing)]
+        _TailSize ("Tail Size (at Natural Width)", float) = 0.5
+        _HeadSize ("Head Size (at Natural Width)", float) = 1.0
+        _NaturalWidth ("Natural Width (Reference)", float) = 1.0
     }
     SubShader
     {
@@ -38,17 +42,17 @@ Shader "Custom/SkillIndicatorLine"
                 float4 vertex : SV_POSITION;
                 float4 color : COLOR;
                 float2 uv : TEXCOORD0;
-                float2 worldScale : TEXCOORD1;
+                float2 worldDims : TEXCOORD1;
             };
 
-            sampler2D _IndicatorPattern;
+            sampler2D _TailTex;
+            sampler2D _BodyTex;
+            sampler2D _HeadTex;
             fixed4 _MainColor;
-            fixed4 _BorderColor;
-            float _WorldThickness;
-            float _StripeCount;
-            float _StripeSpeed;
-            float _StripeIntensity;
-            float _ScrollSpeed;
+
+            float _TailSize;
+            float _HeadSize;
+            float _NaturalWidth;
 
             v2f vert (appdata v)
             {
@@ -57,10 +61,9 @@ Shader "Custom/SkillIndicatorLine"
                 o.color = v.color;
                 o.uv = v.uv;
 
-                float3 scale;
-                scale.x = length(unity_ObjectToWorld._m00_m01_m02);
-                scale.y = length(unity_ObjectToWorld._m10_m11_m12);
-                o.worldScale = scale.xy;
+                float sx = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10, unity_ObjectToWorld._m20));
+                float sy = length(float3(unity_ObjectToWorld._m01, unity_ObjectToWorld._m11, unity_ObjectToWorld._m21));
+                o.worldDims = float2(abs(v.vertex.x) * 2.0 * sx, abs(v.vertex.y) * 2.0 * sy);
 
                 return o;
             }
@@ -68,37 +71,50 @@ Shader "Custom/SkillIndicatorLine"
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 uv = i.uv;
-                
-                // UV thickness adjustment
-                float uvThicknessX = _WorldThickness / (i.worldScale.x + 0.0001);
-                float uvThicknessY = _WorldThickness / (i.worldScale.y + 0.0001);
+                float totalWidth = i.worldDims.x;
+                float totalHeight = i.worldDims.y;
 
-                // Texture Scrolling
-                float2 scrolledUV = uv;
-                scrolledUV.y += _Time.y * _ScrollSpeed;
-                fixed4 patternColor = tex2D(_IndicatorPattern, scrolledUV);
+                // Width ratio: how much wider than the reference
+                float wRatio = totalWidth / max(_NaturalWidth, 0.0001);
 
-                // Scrolling stripes logic
-                float stripe = frac(uv.y * _StripeCount - _Time.y * _StripeSpeed);
-                float stripeMask = smoothstep(0.4, 0.5, stripe) * smoothstep(0.6, 0.5, stripe);
-                
-                // Border masking logic (Left/Right edges)
-                float borderX = smoothstep(0.0, uvThicknessX, uv.x) * smoothstep(1.0, 1.0 - uvThicknessX, uv.x);
-                float borderY = smoothstep(0.0, uvThicknessY * 0.2, uv.y) * smoothstep(1.0, 1.0 - (uvThicknessY * 0.2), uv.y);
-                float innerMask = borderX * borderY;
-                
-                // Base color with stripes and texture
-                fixed4 baseColor = _MainColor * patternColor;
-                fixed4 colorWithStripes = lerp(baseColor, baseColor * (1.0 + _StripeIntensity), stripeMask);
-                
-                // Final blend with border
-                fixed4 finalCol = lerp(_BorderColor, colorWithStripes, innerMask);
-                
-                finalCol *= i.color;
-                // Fade edges
-                finalCol.a *= smoothstep(0.0, 0.1, uv.y) * smoothstep(1.0, 0.9, uv.y);
-                
-                return finalCol;
+                // Head/Tail scale proportionally with width
+                // When wider -> Head/Tail get taller by the same ratio
+                // This keeps their aspect ratio identical (no stretching)
+                float tailH = _TailSize * wRatio;
+                float headH = _HeadSize * wRatio;
+
+                float worldY = uv.y * totalHeight;
+                fixed4 col = fixed4(0,0,0,0);
+
+                if (worldY < tailH)
+                {
+                    // Tail: Full width, height proportional to width
+                    float v = worldY / max(tailH, 0.0001);
+                    col = tex2D(_TailTex, float2(uv.x, v));
+                }
+                else if (worldY > (totalHeight - headH))
+                {
+                    // Head: Full width, height proportional to width
+                    float v = (worldY - (totalHeight - headH)) / max(headH, 0.0001);
+                    col = tex2D(_HeadTex, float2(uv.x, v));
+                }
+                else
+                {
+                    // Body: Full width (to match Head/Tail edges)
+                    // Tile along Y based on Width to keep the pattern square/proportional
+                    float bodyY = worldY - tailH;
+                    
+                    // This tiles the texture every time the length equals the current width
+                    // making the pattern "square" in world space regardless of scaling
+                    float2 bodyUV = float2(uv.x, bodyY / max(totalWidth, 0.0001));
+                    col = tex2D(_BodyTex, bodyUV);
+                }
+
+
+                col *= _MainColor;
+                col *= i.color;
+
+                return col;
             }
             ENDCG
         }

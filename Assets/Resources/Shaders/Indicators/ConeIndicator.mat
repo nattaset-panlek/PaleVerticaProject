@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _IndicatorPattern:
-        m_Texture: {fileID: 2800000, guid: a08349526fed987408b80d347fa5a6c8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 99905bc2d4d408440b083b20c7c97286, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -35,16 +35,16 @@ Material:
     m_Floats:
     - _AngleOffset: 0
     - _BorderWidth: 0.1
-    - _ConeAngle: 184
+    - _ConeAngle: 48
     - _EdgeSoftness: 0.5
     - _FillAmount: 1
     - _GlowIntensity: 3.48
     - _ScrollSpeed: 0
     - _Softness: 5.21
     - _Thickness: 0.025
-    - _WorldThickness: 0.15
+    - _WorldThickness: 0.025
     m_Colors:
     - _BorderColor: {r: 1, g: 1, b: 1, a: 1}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 0.2}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     - _Tiling: {r: 1, g: 0.75, b: 0, a: 0}
   m_BuildTextureStacks: []

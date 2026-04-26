@@ -75,32 +75,36 @@ Shader "Custom/SkillIndicatorCone"
                 float angle = degrees(atan2(pos.x, pos.y));
                 if (angle < 0) angle += 360;
 
-                // Polar Coordinates for Texture
-                float2 polarUV = float2(angle / 360.0, dist);
-                polarUV.x *= _Tiling.x;
-                polarUV.y = polarUV.y * _Tiling.y - _Time.y * _ScrollSpeed;
-                
-                fixed4 texColor = tex2D(_IndicatorPattern, polarUV);
+                // Use Standard UV for Pattern (Centered and Rotated)
+                float2 patternUV = i.uv;
+                fixed4 texColor = tex2D(_IndicatorPattern, patternUV);
 
                 float halfAngle = _ConeAngle * 0.5;
                 float sectorMask = (angle <= halfAngle || angle >= (360 - halfAngle)) ? 1.0 : 0.0;
                 
                 float circleMask = smoothstep(1.0, 0.98, dist);
                 
+                // Border masking logic
                 float borderAlpha = smoothstep(1.0 - uvThickness, 1.0 - uvThickness + 0.02, dist);
                 
-                float edgeMask = (abs(angle - halfAngle) < 1.0 || abs(angle - (360 - halfAngle)) < 1.0) ? 1.0 : 0.0;
+                // Edge lines logic for the cone sides
+                float edge1 = abs(angle - halfAngle);
+                float edge2 = abs(angle - (360 - halfAngle));
+                float edgeMask = (min(edge1, edge2) < 1.0) ? 1.0 : 0.0;
                 
                 // Base Fill
                 fixed4 fillColor = _MainColor * texColor;
                 
-                fixed4 col = lerp(fillColor, _BorderColor, borderAlpha * (1.0 - edgeMask));
+                fixed4 col = lerp(fillColor, _BorderColor, borderAlpha);
+                // Add side borders
+                col = lerp(col, _BorderColor, edgeMask * circleMask);
                 
                 col *= i.color;
                 col.a *= circleMask * sectorMask;
                 
                 return col;
             }
+
             ENDCG
         }
     }
