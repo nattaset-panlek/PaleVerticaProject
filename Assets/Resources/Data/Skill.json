@@ -1187,7 +1187,7 @@
             "SkillElement": "Neutral",
             "DamageType": "Magic",
             "BaseDamage": 1.0,
-            "BaseAOERadius": 6.0,
+            "BaseAOERadius": 3.0,
             "BaseProjectileCount": 0,
             "BaseManaCost": 20.0,
             "IsToggle": false,
@@ -1197,9 +1197,9 @@
             "BaseCooldown": 1.0,
             "Heal": 0.0,
             "BaseTargeting": {
-                "Type": "Self",
-                "Radius": 6.0,
-                "CastRange": 5.0,
+                "Type": "TargetLocation",
+                "Radius": 3.0,
+                "CastRange": 10.0,
                 "Angle": 60.0,
                 "BoxSize": {
                     "x": 2.0,
@@ -1248,6 +1248,11 @@
                     "FieldName": "GhostMaterial",
                     "FieldType": "UnityEngine.Material",
                     "StringValue": ""
+                },
+                {
+                    "FieldName": "CanResurrect",
+                    "FieldType": "System.Boolean",
+                    "StringValue": "True"
                 }
             ]
         },

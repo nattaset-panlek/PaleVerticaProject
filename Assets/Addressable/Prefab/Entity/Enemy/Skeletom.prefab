@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 1077654028377627567}
   - component: {fileID: 7936790367248913855}
   - component: {fileID: 7639983611516594321}
+  - component: {fileID: 2630608399788674367}
   m_Layer: 6
   m_Name: Skeletom
   m_TagString: Untagged
@@ -179,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46496cbb47a683a48acd8450c6613263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterId: 0
   _attributeSystem:
     initialAttributes:
     - Type: 7
@@ -189,7 +191,7 @@ MonoBehaviour:
       BaseValue: 20
   skillCaster:
     EquippedSkills:
-    - SkillData: {fileID: 11400000, guid: 96c6a8482beeef847a55252a9fdeebbc, type: 2}
+    - SkillData: {fileID: 11400000, guid: 40d0bef9973f22b44b1606c94d8b21eb, type: 2}
       LinkedModifiers: []
       CurrentLevel: 1
     GrantedSkills: []
@@ -258,6 +260,7 @@ MonoBehaviour:
   DetectionRadius: 10
   AttackRange: 1.5
   LoseSightRadius: 15
+  RotationSpeed: 1
   PreferredRangeMin: 5
   PreferredRangeMax: 7
   OrbitSpeed: 90
@@ -269,9 +272,12 @@ MonoBehaviour:
   GroupID: 0
   AlertRadius: 12
   SkillPool:
-  - Skill: {fileID: 11400000, guid: 96c6a8482beeef847a55252a9fdeebbc, type: 2}
+  - Skill: {fileID: 11400000, guid: 40d0bef9973f22b44b1606c94d8b21eb, type: 2}
     IsEquipped: 1
     AIDelay: 2
+    ExtraCastTime: 2
+    ExtraCastDelay: 0
+    ExtraCooldown: 0
   AISkillCooldown: 1.5
   Anim: {fileID: 1349630177222271429}
   MovingBoolParam: IsMoving
@@ -294,6 +300,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b6b42f32f9ce4419d6ea7a39b9168d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2630608399788674367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593199419734919740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc394ca5d7baaf43ac81664774977e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _circleTemplate: {fileID: 384336845891530293, guid: a31fa0212107e9740b522b11a61cb973, type: 3}
+  _lineTemplate: {fileID: 261498683354992525, guid: 2dd13e3ebd5744a47b8ad6f2f2007f42, type: 3}
+  _coneTemplate: {fileID: 4002355336748361883, guid: c7e8f3183ea0ddc4eaef8200b4cc57b2, type: 3}
+  _indicatorTint: {r: 1, g: 0.3, b: 0.3, a: 1}
+  _telegraphDuration: 0.6
 --- !u!1 &684525210026802960
 GameObject:
   m_ObjectHideFlags: 0

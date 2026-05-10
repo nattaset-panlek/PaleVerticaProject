@@ -17,7 +17,7 @@ MonoBehaviour:
   SkillElement: 0
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261453324353668
+    rid: 4934067842803564544
   Effects: []
   VisualData: {fileID: 0}
   VisualPrefab: {fileID: 1356538419875941380, guid: 2fe19e400888f7c46ae848350997be5b, type: 3}
@@ -25,7 +25,7 @@ MonoBehaviour:
   CastVisualPrefab: {fileID: 0}
   CastSpawnPoint: 0
   BaseDamage: 1
-  BaseAOERadius: 6
+  BaseAOERadius: 3
   BaseProjectileCount: 0
   BaseManaCost: 20
   IsToggle: 0
@@ -41,13 +41,15 @@ MonoBehaviour:
   RecordInterval: 0.5
   AffectCaster: 0
   RewindLerpDuration: 1
+  CanResurrect: 1
   ShowGhostTrail: 1
   GhostMaterial: {fileID: 2100000, guid: bd7fdd0df491c694e8ed8e61855e5041, type: 2}
   references:
     version: 2
     RefIds:
-    - rid: 5700261453324353668
-      type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+    - rid: 4934067842803564544
+      type: {class: TargetLocationTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 2
-        IncludeSelf: 1
+        IncludeSelf: 0
+        CastRange: 10

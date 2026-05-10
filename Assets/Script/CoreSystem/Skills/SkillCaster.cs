@@ -34,6 +34,7 @@ namespace CoreSystem.Skills
         
         public SkillInstance ActiveSkillInstance => activeSkillInstance;
         private SkillInstance activeSkillInstance;
+        private SkillPayload activePayload;
 
         public float CurrentCastTimeTotal => currentCastTimeTotal;
         private float currentCastTimeTotal;
@@ -191,6 +192,13 @@ namespace CoreSystem.Skills
             InitiateCastSequence(instance, targetPos, isTargetSet);
         }
 
+        public void CastSkill(SkillInstance instance, SkillPayload payload)
+        {
+            if (CurrentState != SkillCasterState.Idle) return;
+            if (instance == null || payload == null) return;
+            InitiateCastSequence(instance, payload);
+        }
+
         public void CastSkillDirectly(ActiveSkill skillData, Vector3 targetPos = default, bool isTargetSet = false)
         {
             if (skillData == null) return;
@@ -298,7 +306,11 @@ namespace CoreSystem.Skills
             }
 
             SkillPayload payload = BuildPayload(instance, activeTargetPosition, activeIsTargetSet, activeIsPositionLocked);
+            InitiateCastSequence(instance, payload);
+        }
 
+        private void InitiateCastSequence(SkillInstance instance, SkillPayload payload)
+        {
             if (character != null && character.attributeSystem != null)
             {
                 float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
@@ -310,6 +322,11 @@ namespace CoreSystem.Skills
             }
 
             activeSkillInstance = instance;
+            activePayload = payload;
+            activeTargetPosition = payload.TargetPosition;
+            activeIsTargetSet = payload.IsTargetPositionSet;
+            activeIsPositionLocked = payload.IsPositionLocked;
+            
             currentCastTimer = 0f;
             currentCastTimeTotal = payload.TotalCastTime;
 
@@ -367,7 +384,7 @@ namespace CoreSystem.Skills
 
         private void ExecuteSkill(SkillInstance instance)
         {
-            SkillPayload payload = BuildPayload(instance, activeTargetPosition, activeIsTargetSet, activeIsPositionLocked);
+            SkillPayload payload = activePayload ?? BuildPayload(instance, activeTargetPosition, activeIsTargetSet, activeIsPositionLocked);
             instance.StartCooldown(payload.Cooldown);
 
             if (payload.CastDelay > 0f)
@@ -383,6 +400,7 @@ namespace CoreSystem.Skills
             OnCastExecuted?.Invoke(instance.SkillData.Name);
             ExecutePipeline(instance, payload);
             activeSkillInstance = null;
+            activePayload = null;
         }
 
         private void ExecutePipeline(SkillInstance instance, SkillPayload payload = null)

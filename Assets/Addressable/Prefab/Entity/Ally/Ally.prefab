@@ -71,6 +71,7 @@ GameObject:
   - component: {fileID: 8112978803220484139}
   - component: {fileID: 7936790367248913855}
   - component: {fileID: 7639983611516594321}
+  - component: {fileID: 2692141178796248871}
   m_Layer: 6
   m_Name: Ally
   m_TagString: Untagged
@@ -179,6 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 262c3fd49e90ecb498add0db2ccbbd77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterId: 0
   _attributeSystem:
     initialAttributes: []
   skillCaster:
@@ -236,6 +238,7 @@ MonoBehaviour:
   faction: 0
   npcId: 001
   interactable: 1
+  _npcInventory: {fileID: 0}
 --- !u!114 &7936790367248913855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,6 +257,7 @@ MonoBehaviour:
   DetectionRadius: 10
   AttackRange: 1.5
   LoseSightRadius: 15
+  RotationSpeed: 10
   PreferredRangeMin: 5
   PreferredRangeMax: 7
   OrbitSpeed: 90
@@ -268,6 +272,9 @@ MonoBehaviour:
   - Skill: {fileID: 11400000, guid: 96c6a8482beeef847a55252a9fdeebbc, type: 2}
     IsEquipped: 1
     AIDelay: 2
+    ExtraCastTime: 0
+    ExtraCastDelay: 0
+    ExtraCooldown: 0
   AISkillCooldown: 1.5
   Anim: {fileID: 1349630177222271429}
   MovingBoolParam: IsMoving
@@ -290,6 +297,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b6b42f32f9ce4419d6ea7a39b9168d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2692141178796248871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593199419734919740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc394ca5d7baaf43ac81664774977e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _circleTemplate: {fileID: 384336845891530293, guid: a31fa0212107e9740b522b11a61cb973, type: 3}
+  _lineTemplate: {fileID: 261498683354992525, guid: 2dd13e3ebd5744a47b8ad6f2f2007f42, type: 3}
+  _coneTemplate: {fileID: 4002355336748361883, guid: c7e8f3183ea0ddc4eaef8200b4cc57b2, type: 3}
+  _indicatorTint: {r: 1, g: 0.3, b: 0.3, a: 1}
+  _telegraphDuration: 0.6
 --- !u!1 &684525210026802960
 GameObject:
   m_ObjectHideFlags: 0

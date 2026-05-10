@@ -36,6 +36,9 @@ namespace CoreSystem.Controllers
         public float AttackRange = 3f;
         public float LoseSightRadius = 15f;
 
+        [Tooltip("Rotation smoothness speed. Higher = faster. (Try 5-20)")]
+        public float RotationSpeed = 10f;
+
         // ─── Ranged/Circler Combat Settings ───────────────────────
         [Header("Combat Style Settings")]
         [Tooltip("Ranged: min preferred distance from target.")]
@@ -67,6 +70,11 @@ namespace CoreSystem.Controllers
             public bool IsEquipped = true;
             [Tooltip("AI-specific delay (seconds) before this skill can be used again by THIS agent.")]
             public float AIDelay = 2.0f;
+
+            [Header("Skill Modifiers (Add to base)")]
+            public float ExtraCastTime = 0f;
+            public float ExtraCastDelay = 0f;
+            public float ExtraCooldown = 0f;
         }
 
         [Header("Skill Pool")]
@@ -101,6 +109,7 @@ namespace CoreSystem.Controllers
         private float _stateTimer;
         private float _orbitAngle;
         private float _orbitFlipTimer;
+        private Coroutine _deathCoroutine;
 
         // ─── Command State Targets ────────────────────────────────
         private Vector3 _commandMoveDestination;
@@ -352,7 +361,7 @@ namespace CoreSystem.Controllers
             if (_target == null) { SetState(AIState.Idle); return; }
 
             Vector3 dir = (_target.position - transform.position).normalized;
-            transform.up = dir;
+            SmoothLookAt(dir);
             UpdateVisualFlip(dir);
 
             // Determine desired position based on CombatStyle
@@ -542,7 +551,25 @@ namespace CoreSystem.Controllers
             // Flip visuals based on INTENDED direction, not avoidance, to prevent sprite twitching
             UpdateVisualFlip(dir);
             UpdateAnimation(true);
-            transform.up = dir; // Aim toward destination not separation
+            SmoothLookAt(dir); // Aim toward destination not separation
+        }
+
+        private void SmoothLookAt(Vector3 direction)
+        {
+            if (direction.sqrMagnitude < 0.001f) return;
+
+            // In 2D top-down, "Forward" for the sprite is usually the Transform.Up axis
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
+            
+            if (RotationSpeed > 0)
+            {
+                // Slerp provides a smoother acceleration/deceleration feel
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.rotation = targetRotation;
+            }
         }
 
         private void StopMovement()
@@ -626,10 +653,23 @@ namespace CoreSystem.Controllers
             var selected = readyPool[index];
             
             Vector3 targetPos = _target != null ? _target.position : transform.position;
-            _character.skillCaster.CastSkill(selected, targetPos, _target != null);
+            
+            // Find entry to apply modifiers
+            var entry = SkillPool.Find(e => e.Skill != null && e.Skill.Id == selected.SkillData.Id);
+            
+            // Build and modify payload before casting
+            var payload = _character.skillCaster.BuildPayload(selected, targetPos, _target != null);
+            if (entry != null)
+            {
+                payload.TotalCastTime += entry.ExtraCastTime;
+                payload.CastDelay += entry.ExtraCastDelay;
+                payload.Cooldown += entry.ExtraCooldown;
+            }
+
+            // Start the cast sequence with the modified payload
+            _character.skillCaster.CastSkill(selected, payload);
 
             // Set Individual AI Delay
-            var entry = SkillPool.Find(e => e.Skill != null && e.Skill.Id == selected.SkillData.Id);
             if (entry != null)
             {
                 _aiSkillIndividualTimers[selected.SkillData.Id] = entry.AIDelay;
@@ -782,9 +822,47 @@ namespace CoreSystem.Controllers
                     Destroy(_spawnedStatusBar.gameObject);
                 }
 
+                _deathCoroutine = StartCoroutine(DeathSequenceRoutine());
                 return true;
             }
             return false;
+        }
+
+        private System.Collections.IEnumerator DeathSequenceRoutine()
+        {
+            yield return new WaitForSeconds(5f);
+            Destroy(gameObject);
+        }
+
+        public void Revive(float hp)
+        {
+            if (_currentState != AIState.Dead) return;
+
+            if (_deathCoroutine != null)
+            {
+                StopCoroutine(_deathCoroutine);
+                _deathCoroutine = null;
+            }
+
+            _currentState = AIState.Idle;
+            _stateTimer = 0f;
+            _target = null;
+
+            if (_character != null && _character.attributeSystem != null)
+            {
+                var hpAttr = _character.attributeSystem.GetAttribute(AttributeType.HP);
+                hpAttr.BaseValue = hp;
+                hpAttr.Recalculate();
+            }
+
+            if (Anim != null)
+            {
+                Anim.Rebind();
+                Anim.Update(0f);
+            }
+
+            AgentGroup.Register(this);
+            _nextDecisionTime = Time.time + 0.5f;
         }
 
         // ═══════════════════════════════════════════════════════════

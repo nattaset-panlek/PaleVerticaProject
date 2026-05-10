@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CoreSystem.Entity;
 using CoreSystem.Attributes;
 using CoreSystem.Skills.Visuals;
+using CoreSystem.Controllers;
 
 namespace CoreSystem.Skills.UniqueSkill
 {
@@ -22,6 +23,9 @@ namespace CoreSystem.Skills.UniqueSkill
 
         [Tooltip("How fast the entities rewind back. Lerp duration in seconds.")]
         public float RewindLerpDuration = 0.5f;
+
+        [Tooltip("If true, dead entities will be resurrected if they have health records from the rewind period.")]
+        public bool CanResurrect = true;
 
         [Header("Ghost Trail")]
         [Tooltip("If true, spawns a ghost clone of the target's model at each record interval to show the path.")]
@@ -77,7 +81,7 @@ namespace CoreSystem.Skills.UniqueSkill
                 Debug.Log($"<color=orange>[TimeDilationSkill]</color> Tracking {targetsToTrack.Count} entities. Spawning tracker...");
                 GameObject trackerObj = new GameObject("TimeDilationTracker_" + Time.time);
                 var tracker = trackerObj.AddComponent<TimeDilationTracker>();
-                tracker.Initialize(targetsToTrack, RecordDuration, RecordInterval, RewindLerpDuration, VisualPrefab, _activeAffectedEntities, ShowGhostTrail, GhostMaterial);
+                tracker.Initialize(targetsToTrack, RecordDuration, RecordInterval, RewindLerpDuration, VisualPrefab, _activeAffectedEntities, ShowGhostTrail, GhostMaterial, CanResurrect);
             }
             else
             {
@@ -85,10 +89,16 @@ namespace CoreSystem.Skills.UniqueSkill
             }
         }
 
+        public static bool IsEntityDestroyed(IEntity target)
+        {
+            return target == null || (target is Object obj && obj == null);
+        }
+
         // Helper method to resolve lack of IsDead on IEntity
         public static bool IsEntityDead(IEntity target)
         {
-            if (target == null || target.transform == null || !target.transform.gameObject.activeInHierarchy) return true;
+            if (IsEntityDestroyed(target)) return true;
+            if (target.transform == null || !target.transform.gameObject.activeInHierarchy) return true;
             if (target.attributeSystem != null)
             {
                 var hpAttr = target.attributeSystem.GetAttribute(AttributeType.HP);
@@ -103,7 +113,7 @@ namespace CoreSystem.Skills.UniqueSkill
         /// </summary>
         public static GameObject CreateGhostClone(IEntity target, Material ghostMaterial)
         {
-            if (target == null || target.transform == null) return null;
+            if (target == null || (target is Object obj && obj == null) || target.transform == null) return null;
 
             // Find the "Model" child - this is the visual root with Animator
             Transform modelTransform = target.transform.Find("Model");
@@ -178,9 +188,10 @@ namespace CoreSystem.Skills.UniqueSkill
         private float _rewindLerpDuration;
         private bool _showGhostTrail;
         private Material _ghostMaterial;
+        private bool _canResurrect;
 
         public void Initialize(List<IEntity> targets, float duration, float interval, float lerpDuration,
-            GameObject visualPrefab, HashSet<IEntity> registry, bool showGhostTrail, Material ghostMaterial)
+            GameObject visualPrefab, HashSet<IEntity> registry, bool showGhostTrail, Material ghostMaterial, bool canResurrect)
         {
             _targets = targets;
             _duration = duration;
@@ -189,6 +200,7 @@ namespace CoreSystem.Skills.UniqueSkill
             _globalRegistry = registry;
             _showGhostTrail = showGhostTrail;
             _ghostMaterial = ghostMaterial;
+            _canResurrect = canResurrect;
 
             // Record initial state
             foreach (var target in _targets)
@@ -287,7 +299,7 @@ namespace CoreSystem.Skills.UniqueSkill
 
                 if (record.RecordedPositions.Count > maxPathLength) maxPathLength = record.RecordedPositions.Count;
 
-                if (!TimeDilationSkill.IsEntityDead(target) && target.transform != null)
+                if (!TimeDilationSkill.IsEntityDestroyed(target) && target.transform != null)
                 {
                     if (target.attributeSystem != null)
                     {
@@ -305,6 +317,13 @@ namespace CoreSystem.Skills.UniqueSkill
 
                             hpAttr.BaseValue = newValue;
                             hpAttr.Recalculate();
+
+                            // Resurrection logic: if they were dead, bring them back!
+                            if (_canResurrect && currentHp <= 0 && newValue > 0)
+                            {
+                                var agent = (target as MonoBehaviour)?.GetComponent<AgentCore>();
+                                if (agent != null) agent.Revive(newValue);
+                            }
                         }
                     }
                 }
@@ -339,7 +358,7 @@ namespace CoreSystem.Skills.UniqueSkill
                         foreach (var kvp in _records)
                         {
                             IEntity target = kvp.Key;
-                            if (TimeDilationSkill.IsEntityDead(target) || target.transform == null) continue;
+                            if (TimeDilationSkill.IsEntityDestroyed(target) || target.transform == null) continue;
 
                             var positions = kvp.Value.RecordedPositions;
                             if (i < positions.Count && (i - 1) >= 0)
