@@ -10,6 +10,7 @@ namespace CoreSystem.Skills
     [CreateAssetMenu(fileName = "NewActiveSkill", menuName = "Skill System/Active Skill")]
     public class ActiveSkill : ScriptableObject
     {
+        #region [Variables/Fields]
         public int Id;
         public string Name;
         public ElementType SkillElement = ElementType.Neutral;
@@ -20,43 +21,59 @@ namespace CoreSystem.Skills
         
         [SerializeReference, SubclassSelector]
         public List<EffectLogic> Effects = new List<EffectLogic>();
-        public VisualPayload VisualData;
-        public GameObject VisualPrefab;
-        public VisualAppearance VisualSpawnPoint = VisualAppearance.TargetPosition;
-        public GameObject CastVisualPrefab;
-        public VisualAppearance CastSpawnPoint = VisualAppearance.TargetPosition;
+
+        [Header("Cast Phase Visuals")]
+        public GameObject CastVfxPrefab;
+        public VisualAppearance CastVfxSpawnPoint = VisualAppearance.FollowCaster;
+
+        [Header("Skill Visual Category")]
+        public VisualCategory VisualType = VisualCategory.InstantHit;
+
+        [Header("Visual Prefabs")]
+        public GameObject SkillIndicatorPrefab;
+        public GameObject EruptionVfxPrefab;
+        public GameObject ProjectilePrefab;
+        public GameObject ImpactVfxPrefab;
+        public GameObject AuraVfxPrefab;
+        public GameObject BeamVfxPrefab;
         
         public float BaseDamage;
         public float BaseAOERadius;
         public int BaseProjectileCount;
         public float BaseManaCost;
+        public List<SkillTag> Tags = new List<SkillTag>();
         
         [Header("Skill Type")]
         public bool IsToggle;
         
         [Header("Continuous Area Setup")]
-        [Tooltip("If checked, the targeting shape stays on the ground and repeatedly deals damage.")]
         public bool IsContinuousArea = false;
         public float AreaDuration = 5f;
         public float AreaTickRate = 0.5f;
         
         [Header("Cast & Delays")]
-        public float BaseVCT; // Variable Cast Time
-        public float BaseFCT; // Fixed Cast Time
-        public float BaseCastDelay; // Global delay applied to ALL skills after casting
-        public float BaseCooldown; // Skill-specific cooldown
+        public float BaseVCT; 
+        public float BaseFCT; 
+        public float BaseCastDelay; 
+        public float BaseCooldown; 
         
-        [Header("Dynamic Scaling (Stat x AttrMult + Flat + LevelMult x Lv) x Global")]
-        [Tooltip("Formula: (Stat x AttrMult + FlatBonus + LevelMult x Level) x GlobalMult")]
         public List<OutputScaling> Scalings = new List<OutputScaling>();
+        #endregion
+
+        #region [Properties]
+        #endregion
+
+        #region [Unity Methods]
+        #endregion
+
+        #region [Public Methods]
         public virtual void Execute(SkillPayload payload, SkillInstance instance, SkillCaster caster)
         {
             if (this.IsContinuousArea && this.BaseTargeting != null)
             {
                 GameObject areaGo = new GameObject("ContinuousArea_" + this.Name);
                 
-                // If it follows the caster, parent it
-                if (this.VisualSpawnPoint == VisualAppearance.FollowCaster)
+                if (this.CastVfxSpawnPoint == VisualAppearance.FollowCaster)
                 {
                     areaGo.transform.SetParent(caster.CharacterRef.transform);
                     areaGo.transform.localPosition = Vector3.zero;
@@ -67,7 +84,7 @@ namespace CoreSystem.Skills
                 }
                 
                 var areaBehaviour = areaGo.AddComponent<ContinuousAreaBehaviour>();
-                areaBehaviour.Initialize(payload, this.BaseTargeting, this.Effects, this.VisualData, this.AreaDuration, this.AreaTickRate);
+                areaBehaviour.Initialize(this, payload, this.BaseTargeting, this.Effects, this.AreaDuration, this.AreaTickRate);
                 return;
             }
 
@@ -103,71 +120,84 @@ namespace CoreSystem.Skills
                 }
             }
 
-            if (this.VisualData != null)
+            if (this.IsToggle)
             {
-                Visuals.VisualManager.Instance?.PlayVisual(this.VisualData, payload);
-            }
-
-            // Spawn main VisualPrefab
-            if (this.VisualPrefab != null)
-            {
-                // For toggle skills, only spawn the visual once
-                if (this.IsToggle && instance.ActiveVisual != null)
+                if (instance.ActiveVisual == null && this.AuraVfxPrefab != null)
                 {
-                    // Existing visual, follows automatically if parented
-                }
-                else
-                {
-                    Vector3 spawnPos = payload.IsTargetPositionSet ? payload.TargetPosition : payload.OriginPosition;
-                    Transform parent = null;
-
-                    if (this.VisualSpawnPoint == VisualAppearance.CasterPosition)
-                    {
-                        spawnPos = caster.CharacterRef.transform.position;
-                    }
-                    else if (this.VisualSpawnPoint == VisualAppearance.FollowCaster)
-                    {
-                        spawnPos = caster.CharacterRef.transform.position;
-                        parent = caster.CharacterRef.transform;
-                    }
-
-                    GameObject vfxInstance = GameObject.Instantiate(this.VisualPrefab, spawnPos, Quaternion.identity, parent);
+                    Vector3 spawnPos = caster.CharacterRef.transform.position;
+                    Transform parent = caster.CharacterRef.transform;
+                    GameObject vfxInstance = GameObject.Instantiate(this.AuraVfxPrefab, spawnPos, Quaternion.identity, parent);
+                    instance.ActiveVisual = vfxInstance;
                     
-                    if (this.IsToggle)
+                    var visual = vfxInstance.GetComponent<ISkillVisual>();
+                    if (visual != null)
                     {
-                        instance.ActiveVisual = vfxInstance;
+                        visual.Initialize(payload);
                     }
-
-                    SkillVisualEffect sve = vfxInstance.GetComponent<SkillVisualEffect>();
+                    else
+                    {
+                        foreach (var v in vfxInstance.GetComponentsInChildren<ISkillVisual>())
+                        {
+                            v.Initialize(payload);
+                        }
+                    }
+                    
+                    var sve = vfxInstance.GetComponent<SkillVisualEffect>();
                     if (sve != null)
                     {
-                        if (this.IsToggle) sve.destroyAfterDuration = false;
-                        sve.Initialize(payload);
+                        sve.destroyAfterDuration = false;
                     }
                 }
             }
+            else
+            {
+                if (Visuals.VisualManager.Instance != null)
+                {
+                    Visuals.VisualManager.Instance.PlayVisual(this, payload);
+                }
+            }
 
-            // For toggle skills, also handle CastVisualPrefab if it should follow and hasn't been spawned yet
-            if (this.IsToggle && this.CastVisualPrefab != null && instance.ActiveVisual == null)
+            if (this.IsToggle && this.CastVfxPrefab != null && instance.ActiveVisual == null)
             {
                 Vector3 spawnPos = caster.CharacterRef.transform.position;
                 Transform parent = null;
 
-                if (this.CastSpawnPoint == VisualAppearance.FollowCaster)
+                if (this.CastVfxSpawnPoint == VisualAppearance.FollowCaster)
                 {
                     parent = caster.CharacterRef.transform;
                 }
 
-                GameObject castVfx = GameObject.Instantiate(this.CastVisualPrefab, spawnPos, Quaternion.identity, parent);
+                GameObject castVfx = GameObject.Instantiate(this.CastVfxPrefab, spawnPos, Quaternion.identity, parent);
                 instance.ActiveVisual = castVfx;
 
-                SkillVisualEffect sve = castVfx.GetComponent<SkillVisualEffect>();
+                var visual = castVfx.GetComponent<ISkillVisual>();
+                if (visual != null)
+                {
+                    visual.Initialize(payload);
+                }
+                else
+                {
+                    foreach (var v in castVfx.GetComponentsInChildren<ISkillVisual>())
+                    {
+                        v.Initialize(payload);
+                    }
+                }
+
+                var sve = castVfx.GetComponent<SkillVisualEffect>();
                 if (sve != null)
                 {
                     sve.destroyAfterDuration = false;
-                    sve.Initialize(payload);
                 }
             }
+
+            if (caster != null && caster.CharacterRef != null && caster.CharacterRef.UniquePassives != null)
+            {
+                caster.CharacterRef.UniquePassives.TriggerOnSkillExecuted(this, payload);
+            }
         }
+        #endregion
+
+        #region [Private Methods]
+        #endregion
     }
 }

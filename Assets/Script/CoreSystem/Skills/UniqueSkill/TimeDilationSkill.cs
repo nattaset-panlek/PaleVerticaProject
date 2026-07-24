@@ -81,7 +81,7 @@ namespace CoreSystem.Skills.UniqueSkill
                 Debug.Log($"<color=orange>[TimeDilationSkill]</color> Tracking {targetsToTrack.Count} entities. Spawning tracker...");
                 GameObject trackerObj = new GameObject("TimeDilationTracker_" + Time.time);
                 var tracker = trackerObj.AddComponent<TimeDilationTracker>();
-                tracker.Initialize(targetsToTrack, RecordDuration, RecordInterval, RewindLerpDuration, VisualPrefab, _activeAffectedEntities, ShowGhostTrail, GhostMaterial, CanResurrect);
+                tracker.Initialize(targetsToTrack, RecordDuration, RecordInterval, RewindLerpDuration, AuraVfxPrefab, _activeAffectedEntities, ShowGhostTrail, GhostMaterial, CanResurrect);
             }
             else
             {

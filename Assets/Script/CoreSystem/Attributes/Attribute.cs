@@ -9,6 +9,7 @@ namespace CoreSystem.Attributes
         #region Variables/Fields
         public AttributeType Type;
         public float BaseValue;
+        public float InitialValue;
         public float CurrentValue { get; private set; }
         public System.Action OnValueUpdated;
 
@@ -47,8 +48,8 @@ namespace CoreSystem.Attributes
 
         public void Recalculate()
         {
-            float flatSum = StatFlatBonus;
-            float percentAddSum = StatPercentBonus;
+            float flatSum = 0f;
+            float percentAddSum = 0f;
 
             for (int i = 0; i < modifiers.Count; i++)
             {
@@ -59,10 +60,11 @@ namespace CoreSystem.Attributes
                     percentAddSum += mod.Value;
             }
 
-            FlatBonusSum = flatSum;
-            PercentBonusSum = percentAddSum;
+            FlatBonusSum = StatFlatBonus + flatSum;
+            PercentBonusSum = StatPercentBonus + percentAddSum;
 
-            float finalValue = BaseValue;
+            float baseWithPrimary = BaseValue * (1f + StatPercentBonus) + StatFlatBonus;
+            float finalValue = baseWithPrimary + InitialValue;
             finalValue += flatSum;
             finalValue = finalValue * (1f + percentAddSum);
 

@@ -17,27 +17,32 @@ MonoBehaviour:
   SkillElement: 0
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261453324353638
+    rid: 6497451414284402802
   Effects:
-  - rid: 5700261453324353639
-  - rid: 5700261453324353640
-  VisualData: {fileID: 0}
-  VisualPrefab: {fileID: 0}
-  VisualSpawnPoint: 0
-  CastVisualPrefab: {fileID: 0}
-  CastSpawnPoint: 0
+  - rid: 6497451414284402803
+  - rid: 6497451414284402804
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 0
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
   BaseDamage: 1
   BaseAOERadius: 0
   BaseProjectileCount: 0
   BaseManaCost: 0
+  Tags: 000000000700000008000000
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
   AreaTickRate: 0.5
   BaseVCT: 0
-  BaseFCT: 0
+  BaseFCT: 0.35
   BaseCastDelay: 0.5
-  BaseCooldown: 0
+  BaseCooldown: 1
   Scalings:
   - TargetField: 0
     ScalingAttribute: 20
@@ -48,23 +53,22 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261453324353638
+    - rid: 6497451414284402802
       type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         BoxSize: {x: 2, y: 2.5}
         Offset: {x: 0, y: 1.5}
-    - rid: 5700261453324353639
+    - rid: 6497451414284402803
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1
-    - rid: 5700261453324353640
+    - rid: 6497451414284402804
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
         Type: 5
         Distance: 0
-        ApplyOncePerCast: 0
         StunDuration: 0.15
         UseLerp: 0
         LerpDuration: 0

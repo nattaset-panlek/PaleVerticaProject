@@ -1,4 +1,4 @@
-﻿using CoreSystem.Data;
+using CoreSystem.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace CoreSystem.Skills.Visuals
     /// Component attached to visual effect prefabs that get spawned on skill execution.
     /// It can automatically scale based on the skill's AOE radius and destroy itself after playing.
     /// </summary>
-    public class SkillVisualEffect : MonoBehaviour
+    public class SkillVisualEffect : MonoBehaviour, ISkillVisual
     {
         [Header("Setup")]
         public bool autoScaleToAOE = true;

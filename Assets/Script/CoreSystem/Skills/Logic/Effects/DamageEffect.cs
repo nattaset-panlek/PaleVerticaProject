@@ -12,6 +12,10 @@ namespace CoreSystem.Skills.Logic
 
         public override void Apply(SkillPayload payload, IEntity target)
         {
+            if (payload.Caster != null && !payload.Caster.Faction.IsHostileTo(target.Faction))
+            {
+                return;
+            }
             if (target.attributeSystem != null)
             {
                 float calculatedDamage = payload.BaseDamage;
@@ -76,11 +80,29 @@ namespace CoreSystem.Skills.Logic
                 float targetDefense = target.attributeSystem.GetAttribute(defenseType);
                 float finalDamage = Mathf.Max(1f, calculatedDamage - targetDefense);
 
+                var charCaster = payload.Caster as Character;
+                var charTarget = target as Character;
+
+                if (charCaster != null && charCaster.UniquePassives != null)
+                {
+                    charCaster.UniquePassives.TriggerOnHit(target, ref finalDamage, payload);
+                }
+
+                if (charTarget != null && charTarget.UniquePassives != null)
+                {
+                    charTarget.UniquePassives.TriggerOnTakeDamage(payload.Caster, ref finalDamage, payload);
+                }
+
                 var attrTarget = target.attributeSystem.GetAttribute(TargetAttribute);
                 if (attrTarget != null)
                 {
                     attrTarget.BaseValue = Mathf.Max(0f, attrTarget.CurrentValue - finalDamage);
                     attrTarget.Recalculate();
+                }
+
+                if (charCaster != null && charCaster.UniquePassives != null)
+                {
+                    charCaster.UniquePassives.TriggerOnPostHit(target, finalDamage, payload);
                 }
 
                 if (payload.Caster != null)

@@ -19,6 +19,8 @@ namespace CoreSystem.Skills.Visuals
         private ConeIndicator _activeCone;
         
         private ISkillIndicator _currentActive;
+        private GameObject _customIndicatorInstance;
+        private GameObject _activeCastIndicatorInstance;
 
         private void Awake()
         {
@@ -97,8 +99,112 @@ namespace CoreSystem.Skills.Visuals
                 _currentActive.Hide();
                 _currentActive = null;
             }
+            if (_customIndicatorInstance != null)
+            {
+                Destroy(_customIndicatorInstance);
+                _customIndicatorInstance = null;
+            }
         }
 
         public void HideIndicator() => HideCurrent();
+
+        public void StartCastIndicator(SkillPayload payload)
+        {
+            StopCastIndicator();
+
+            if (payload == null || payload.SkillIndicatorPrefab == null || payload.TotalCastTime <= 0f) return;
+
+            Vector3 spawnPos = payload.TargetPosition;
+            _activeCastIndicatorInstance = Instantiate(payload.SkillIndicatorPrefab, spawnPos, Quaternion.identity);
+
+            var visual = _activeCastIndicatorInstance.GetComponent<ISkillVisual>();
+            if (visual != null)
+            {
+                visual.Initialize(payload);
+            }
+            else
+            {
+                var visuals = _activeCastIndicatorInstance.GetComponentsInChildren<ISkillVisual>();
+                foreach (var v in visuals)
+                {
+                    v.Initialize(payload);
+                }
+            }
+
+            var indicator = _activeCastIndicatorInstance.GetComponent<ISkillIndicator>();
+            if (indicator != null)
+            {
+                indicator.Show(payload, payload.SkillTargeting);
+            }
+        }
+
+        public void UpdateCastIndicatorProgress(float progress)
+        {
+            if (_activeCastIndicatorInstance != null)
+            {
+                var indicator = _activeCastIndicatorInstance.GetComponent<ISkillIndicator>();
+                if (indicator != null)
+                {
+                    indicator.SetProgress(progress);
+                }
+            }
+        }
+
+        public void StopCastIndicator()
+        {
+            if (_activeCastIndicatorInstance != null)
+            {
+                var indicator = _activeCastIndicatorInstance.GetComponent<ISkillIndicator>();
+                if (indicator != null)
+                {
+                    indicator.Hide();
+                }
+                Destroy(_activeCastIndicatorInstance);
+                _activeCastIndicatorInstance = null;
+            }
+        }
+
+        private class CustomIndicatorWrapper : ISkillIndicator
+        {
+            private GameObject targetGo;
+            
+            public CustomIndicatorWrapper(GameObject go)
+            {
+                targetGo = go;
+            }
+
+            public void Show(SkillPayload payload, TargetingLogic logic)
+            {
+                if (targetGo != null)
+                {
+                    targetGo.SetActive(true);
+                    UpdateState(payload.OriginPosition, payload.TargetPosition, Vector2.up);
+                }
+            }
+
+            public void UpdateState(Vector3 origin, Vector3 target, Vector2 direction)
+            {
+                if (targetGo != null)
+                {
+                    targetGo.transform.position = target;
+                }
+            }
+
+            public void SetProgress(float progress)
+            {
+            }
+
+            public void StartExecution(SkillPayload payload)
+            {
+            }
+
+            public void Hide()
+            {
+                if (targetGo != null)
+                {
+                    Destroy(targetGo);
+                }
+            }
+        }
     }
 }

@@ -1,0 +1,31 @@
+namespace CoreSystem
+{
+    public enum SkillTag
+    {
+        Melee,
+        Ranged,
+        AreaOfEffect,
+        Debuff,
+        Buff,
+        Ray,
+        Magic,
+        Physical,
+        Instant,
+        Self,
+        Status,
+        Elemental,
+        Movement,
+        Projectile,
+        Aura,
+        Minion,
+        Spirit,
+        Summon,
+        Custom,
+        Craft,
+        Origin,
+        Heal,
+        Passive,
+        Channeled,
+        BasicAttack
+    }
+}

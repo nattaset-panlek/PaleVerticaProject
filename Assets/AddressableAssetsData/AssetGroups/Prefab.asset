@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Prefab
   m_EditorClassIdentifier: 
   m_GroupName: Prefab
-  m_Data:
-    m_SerializedData: []
   m_GUID: 823e46de4794f6949a48bfc31de7a9d5
   m_SerializeEntries:
   - m_GUID: d9772423cab38304d9e5e29889160ba3

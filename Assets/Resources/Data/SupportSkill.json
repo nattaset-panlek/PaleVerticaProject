@@ -3,251 +3,112 @@
         {
             "SkillID": 1001,
             "ModifierName": "Multi-Shot",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "ProjectileCount",
-                    "Operation": "Add",
-                    "FlatValue": 1.0,
-                    "PercentValue": 0.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "BaseDamage",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": false,
-                    "ReferenceAttribute": "",
-                    "AttributeMultiplier": 1.0
-                }
-            ]
+            "Description": "Adds {0} projectile(s)."
         },
         {
             "SkillID": 1002,
             "ModifierName": "Echo",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "BaseDamage",
-                    "Operation": "Multiply",
-                    "FlatValue": 0.800000011920929,
-                    "PercentValue": 0.0,
-                    "UsePayloadReference": true,
-                    "ReferencePayloadField": "Cooldown",
-                    "PayloadMultiplier": 1.25,
-                    "UseAttributeReference": false,
-                    "ReferenceAttribute": "",
-                    "AttributeMultiplier": 1.0
-                }
-            ]
+            "Description": "Converts damage to {0}% and adds {1}x cooldown as extra damage."
         },
         {
             "SkillID": 1003,
             "ModifierName": "Pierce",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Allows projectiles to pierce targets."
         },
         {
             "SkillID": 1004,
             "ModifierName": "Chain",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Allows projectiles to chain between targets."
         },
         {
             "SkillID": 1005,
             "ModifierName": "Area Increase",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "AOERadius",
-                    "Operation": "Add",
-                    "FlatValue": 0.0,
-                    "PercentValue": 4.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": false,
-                    "ReferenceAttribute": "",
-                    "AttributeMultiplier": 1.0
-                },
-                {
-                    "TargetField": "VCT",
-                    "Operation": "Add",
-                    "FlatValue": 0.0,
-                    "PercentValue": 2.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": false,
-                    "ReferenceAttribute": "",
-                    "AttributeMultiplier": 1.0
-                }
-            ]
+            "Description": "Increases area of effect radius by {0}% but increases cast time by {1}%."
         },
         {
             "SkillID": 1006,
             "ModifierName": "Damage Up",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "BaseDamage",
-                    "Operation": "Multiply",
-                    "FlatValue": 1.2000000476837159,
-                    "PercentValue": 0.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": false,
-                    "ReferenceAttribute": "",
-                    "AttributeMultiplier": 1.0
-                }
-            ]
+            "Description": "Increases base damage by {0}%."
         },
         {
             "SkillID": 1007,
             "ModifierName": "Cooldown Reduction",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Reduces cooldown by {0}%."
         },
         {
             "SkillID": 1008,
             "ModifierName": "Cost Reduction",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "ManaCost",
-                    "Operation": "Override",
-                    "FlatValue": 50.0,
-                    "PercentValue": 0.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": false,
-                    "ReferenceAttribute": "",
-                    "AttributeMultiplier": 1.0
-                }
-            ]
+            "Description": "Reduces mana cost by {0}%."
         },
         {
             "SkillID": 1009,
             "ModifierName": "Duration Up",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Increases skill duration by {0}%."
         },
         {
             "SkillID": 1010,
             "ModifierName": "Status Chance Up",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Increases chance to apply status effects by {0}%."
         },
         {
             "SkillID": 1011,
             "ModifierName": "Burn Chance",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Adds a {0}% chance to ignite/burn targets."
         },
         {
             "SkillID": 1012,
             "ModifierName": "Freeze Chance",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Adds a {0}% chance to freeze targets."
         },
         {
             "SkillID": 1013,
             "ModifierName": "Knockback",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Knocks targets back by {0} meters."
         },
         {
             "SkillID": 1014,
             "ModifierName": "Critical Power",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "BaseDamage",
-                    "Operation": "Multiply",
-                    "FlatValue": 1.5,
-                    "PercentValue": 0.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": true,
-                    "ReferenceAttribute": "LUK",
-                    "AttributeMultiplier": 0.05000000074505806
-                }
-            ]
+            "Description": "Multiplies base damage by {0}% plus {1}% of character LUK attribute value."
         },
         {
             "SkillID": 1015,
             "ModifierName": "Mana Leech",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "ManaCost",
-                    "Operation": "Override",
-                    "FlatValue": 10.0,
-                    "PercentValue": 0.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "ManaCost",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": false,
-                    "ReferenceAttribute": "STR",
-                    "AttributeMultiplier": 1.0
-                }
-            ]
+            "Description": "Leeches {0}% damage dealt as mana."
         },
         {
             "SkillID": 1016,
             "ModifierName": "Life Leech",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Leeches {0}% physical damage dealt as life."
         },
         {
             "SkillID": 1017,
             "ModifierName": "Projectile Speed",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Increases projectile speed by {0}%."
         },
         {
             "SkillID": 1018,
             "ModifierName": "Split Projectile",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "ProjectileCount",
-                    "Operation": "Add",
-                    "FlatValue": 2.0,
-                    "PercentValue": 0.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": false,
-                    "ReferenceAttribute": "",
-                    "AttributeMultiplier": 1.0
-                }
-            ]
+            "Description": "Fires {0} additional projectiles."
         },
         {
             "SkillID": 1019,
             "ModifierName": "Homing",
-            "Conditions": [],
-            "Effects": []
+            "Description": "Projectiles track and homing towards targets."
         },
         {
             "SkillID": 1020,
             "ModifierName": "Empowered Cast",
-            "Conditions": [],
-            "Effects": [
-                {
-                    "TargetField": "BaseDamage",
-                    "Operation": "Add",
-                    "FlatValue": 50.0,
-                    "PercentValue": 0.0,
-                    "UsePayloadReference": false,
-                    "ReferencePayloadField": "",
-                    "PayloadMultiplier": 1.0,
-                    "UseAttributeReference": true,
-                    "ReferenceAttribute": "INT",
-                    "AttributeMultiplier": 1.0
-                }
-            ]
+            "Description": "Adds {0} flat damage, plus {1}% of character INT attribute value."
+        },
+        {
+            "SkillID": 1021,
+            "ModifierName": "Echo Spell",
+            "Description": "Repeats the skill 0.15s after casting. Repeated cast has {0}% increased area but {1}% less damage."
+        },
+        {
+            "SkillID": 1022,
+            "ModifierName": "Spell Cascade",
+            "Description": "Creates 3 cascading AOE circles. Left/right circles deal {0}% damage, main circle deals {1}% damage."
         }
     ]
 }

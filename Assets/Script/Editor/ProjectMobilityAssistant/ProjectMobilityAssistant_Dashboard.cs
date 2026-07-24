@@ -12,67 +12,83 @@ using CoreSystem.Skills.Logic.Effects;
 
 public partial class ProjectMobilityAssistant : EditorWindow
 {
+    private static bool _showOverview = true;
+    private static bool _showRarityDistribution = true;
+    private static bool _showElementDistribution = true;
+    private static bool _showDataIntegrity = true;
+
     private void DrawDashboard()
     {
         EditorGUILayout.BeginVertical(PaddingStyle);
-        GUILayout.Label("Project Overview", EditorStyles.boldLabel);
-        EditorGUILayout.Space(10);
-
-        // --- Summary Cards ---
-        EditorGUILayout.BeginHorizontal();
-        DrawSummaryCard("\uD83E\uDDE9  Attributes", _attributeData.Attributes.Count.ToString(), new Color(0.3f, 0.8f, 0.9f));
-        DrawSummaryCard("\uD83D\uDCE6  Items",      _itemData.Items.Count.ToString(),             new Color(1f, 0.6f, 0.1f));
-        DrawSummaryCard("\u2694\uFE0F  Active Skills", _skillData.ActiveSkills.Count.ToString(),  new Color(0.9f, 0.3f, 0.3f));
-        DrawSummaryCard("\uD83C\uDF00  Support Mods", _supportSkillData.SupportModifiers.Count.ToString(), new Color(0.3f, 0.85f, 0.5f));
-        DrawSummaryCard("\uD83D\uDC8E  Item Sets",     _itemSetData.Sets.Count.ToString(),             new Color(0.8f, 0.5f, 1f));
-        EditorGUILayout.EndHorizontal();
+        
+        _showOverview = EditorGUILayout.BeginFoldoutHeaderGroup(_showOverview, "Project Overview");
+        if (_showOverview)
+        {
+            EditorGUILayout.Space(10);
+            EditorGUILayout.BeginHorizontal();
+            DrawSummaryCard("Attributes", _attributeData.Attributes.Count.ToString(), new Color(0.3f, 0.8f, 0.9f));
+            DrawSummaryCard("Items",      _itemData.Items.Count.ToString(),             new Color(1f, 0.6f, 0.1f));
+            DrawSummaryCard("Active Skills", _skillData.ActiveSkills.Count.ToString(),  new Color(0.9f, 0.3f, 0.3f));
+            DrawSummaryCard("Support Mods", _supportSkillData.SupportModifiers.Count.ToString(), new Color(0.3f, 0.85f, 0.5f));
+            DrawSummaryCard("Item Sets",     _itemSetData.Sets.Count.ToString(),             new Color(0.8f, 0.5f, 1f));
+            EditorGUILayout.EndHorizontal();
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
         EditorGUILayout.Space(20);
 
         _contentScroll = EditorGUILayout.BeginScrollView(_contentScroll);
 
-        // --- Rarity Distribution chart ---
-        GUILayout.Label("Item Rarity Distribution", EditorStyles.boldLabel);
-        DrawRarityChart();
+        _showRarityDistribution = EditorGUILayout.BeginFoldoutHeaderGroup(_showRarityDistribution, "Item Rarity Distribution");
+        if (_showRarityDistribution)
+        {
+            DrawRarityChart();
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
         EditorGUILayout.Space(20);
 
-        // --- Element Distribution chart ---
-        GUILayout.Label("Active Skill Element Distribution", EditorStyles.boldLabel);
-        DrawElementChart();
+        _showElementDistribution = EditorGUILayout.BeginFoldoutHeaderGroup(_showElementDistribution, "Active Skill Element Distribution");
+        if (_showElementDistribution)
+        {
+            DrawElementChart();
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
         EditorGUILayout.Space(30);
 
-        // --- Action Area ---
         EditorGUILayout.BeginHorizontal();
         GUI.backgroundColor = new Color(0.35f, 0.85f, 0.45f);
-        if (GUILayout.Button("\u2714  Run Full Validation", GUILayout.Height(36))) RunValidation();
+        if (GUILayout.Button("Run Full Validation", GUILayout.Height(36))) RunValidation();
         GUI.backgroundColor = new Color(0.35f, 0.6f, 0.95f);
-        if (GUILayout.Button("\u21BA  Reload Everything", GUILayout.Height(36))) { LoadAllData(); Repaint(); }
+        if (GUILayout.Button("Reload Everything", GUILayout.Height(36))) { LoadAllData(); Repaint(); }
         GUI.backgroundColor = Color.white;
         EditorGUILayout.EndHorizontal();
 
         if (_isValidated)
         {
             EditorGUILayout.Space(20);
-            GUILayout.Label("Data Integrity Health", EditorStyles.boldLabel);
-            
-            var itemErrors = _validationErrors.Where(e => e.Contains("[Item")).ToList();
-            var skillErrors = _validationErrors.Where(e => e.Contains("[Skill")).ToList();
-            var attrErrors = _validationErrors.Where(e => e.Contains("[Attribute")).ToList();
-            var setErrors = _validationErrors.Where(e => e.Contains("[Set")).ToList();
+            _showDataIntegrity = EditorGUILayout.BeginFoldoutHeaderGroup(_showDataIntegrity, "Data Integrity Health");
+            if (_showDataIntegrity)
+            {
+                var itemErrors = _validationErrors.Where(e => e.Contains("[Item")).ToList();
+                var skillErrors = _validationErrors.Where(e => e.Contains("[Skill")).ToList();
+                var attrErrors = _validationErrors.Where(e => e.Contains("[Attribute")).ToList();
+                var setErrors = _validationErrors.Where(e => e.Contains("[Set")).ToList();
 
-            if (_validationErrors.Count == 0)
-            {
-                EditorGUILayout.HelpBox("All data checks passed! \uD83D\uDE80", MessageType.Info);
+                if (_validationErrors.Count == 0)
+                {
+                    EditorGUILayout.HelpBox("All data checks passed!", MessageType.Info);
+                }
+                else
+                {
+                    if (itemErrors.Count > 0) DrawValidationErrorGroup("Items", itemErrors);
+                    if (skillErrors.Count > 0) DrawValidationErrorGroup("Skills", skillErrors);
+                    if (attrErrors.Count > 0) DrawValidationErrorGroup("Attributes", attrErrors);
+                    if (setErrors.Count > 0) DrawValidationErrorGroup("Item Sets", setErrors);
+                }
             }
-            else
-            {
-                if (itemErrors.Count > 0) DrawValidationErrorGroup("\uD83D\uDCE6 Items", itemErrors);
-                if (skillErrors.Count > 0) DrawValidationErrorGroup("\u2694\uFE0F Skills", skillErrors);
-                if (attrErrors.Count > 0) DrawValidationErrorGroup("\uD83E\uDDE9 Attributes", attrErrors);
-                if (setErrors.Count > 0) DrawValidationErrorGroup("\uD83D\uDC8E Item Sets", setErrors);
-            }
+            EditorGUILayout.EndFoldoutHeaderGroup();
         }
 
         EditorGUILayout.EndScrollView();

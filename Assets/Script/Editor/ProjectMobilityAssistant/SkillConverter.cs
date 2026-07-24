@@ -62,22 +62,53 @@ public static class SkillConverter
         asset.IsToggle = data.IsToggle;
         asset.BaseAOERadius = data.BaseAOERadius;
         
-        if (!string.IsNullOrEmpty(data.VisualPrefabName))
+        if (System.Enum.TryParse(data.VisualType, out VisualCategory vType))
+            asset.VisualType = vType;
+
+        if (!string.IsNullOrEmpty(data.CastVfxPrefabName))
         {
-            if (data.VisualPrefabName.StartsWith("Assets/")) asset.VisualPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.VisualPrefabName);
-            else asset.VisualPrefab = Resources.Load<GameObject>(data.VisualPrefabName);
-        }
-        if (!string.IsNullOrEmpty(data.CastVisualPrefabName))
-        {
-            if (data.CastVisualPrefabName.StartsWith("Assets/")) asset.CastVisualPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.CastVisualPrefabName);
-            else asset.CastVisualPrefab = Resources.Load<GameObject>(data.CastVisualPrefabName);
+            if (data.CastVfxPrefabName.StartsWith("Assets/")) asset.CastVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.CastVfxPrefabName);
+            else asset.CastVfxPrefab = Resources.Load<GameObject>(data.CastVfxPrefabName);
         }
             
-        if (System.Enum.TryParse(data.CastVisualSpawnPoint, out VisualAppearance castSpawn))
-            asset.CastSpawnPoint = castSpawn;
+        if (System.Enum.TryParse(data.CastVfxSpawnPoint, out VisualAppearance castSpawn))
+            asset.CastVfxSpawnPoint = castSpawn;
 
-        if (System.Enum.TryParse(data.VisualSpawnPoint, out VisualAppearance visualSpawn))
-            asset.VisualSpawnPoint = visualSpawn;
+        if (!string.IsNullOrEmpty(data.SkillIndicatorPrefabName))
+        {
+            if (data.SkillIndicatorPrefabName.StartsWith("Assets/")) asset.SkillIndicatorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.SkillIndicatorPrefabName);
+            else asset.SkillIndicatorPrefab = Resources.Load<GameObject>(data.SkillIndicatorPrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.EruptionVfxPrefabName))
+        {
+            if (data.EruptionVfxPrefabName.StartsWith("Assets/")) asset.EruptionVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.EruptionVfxPrefabName);
+            else asset.EruptionVfxPrefab = Resources.Load<GameObject>(data.EruptionVfxPrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.ProjectilePrefabName))
+        {
+            if (data.ProjectilePrefabName.StartsWith("Assets/")) asset.ProjectilePrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.ProjectilePrefabName);
+            else asset.ProjectilePrefab = Resources.Load<GameObject>(data.ProjectilePrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.ImpactVfxPrefabName))
+        {
+            if (data.ImpactVfxPrefabName.StartsWith("Assets/")) asset.ImpactVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.ImpactVfxPrefabName);
+            else asset.ImpactVfxPrefab = Resources.Load<GameObject>(data.ImpactVfxPrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.AuraVfxPrefabName))
+        {
+            if (data.AuraVfxPrefabName.StartsWith("Assets/")) asset.AuraVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.AuraVfxPrefabName);
+            else asset.AuraVfxPrefab = Resources.Load<GameObject>(data.AuraVfxPrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.BeamVfxPrefabName))
+        {
+            if (data.BeamVfxPrefabName.StartsWith("Assets/")) asset.BeamVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.BeamVfxPrefabName);
+            else asset.BeamVfxPrefab = Resources.Load<GameObject>(data.BeamVfxPrefabName);
+        }
             
         if (data.BaseTargeting != null)
         {
@@ -105,6 +136,18 @@ public static class SkillConverter
 
         if (data.Scalings != null)
             asset.Scalings = new List<OutputScaling>(data.Scalings);
+
+        asset.Tags = new List<SkillTag>();
+        if (data.Tags != null)
+        {
+            foreach (var tagStr in data.Tags)
+            {
+                if (System.Enum.TryParse(tagStr, out SkillTag tag))
+                {
+                    asset.Tags.Add(tag);
+                }
+            }
+        }
 
         if (data.Effects != null)
         {
@@ -254,13 +297,53 @@ public static class SkillConverter
         asset.IsToggle = data.IsToggle;
         asset.BaseAOERadius = data.BaseAOERadius;
         
-        if (!string.IsNullOrEmpty(data.VisualPrefabName))
-            asset.VisualPrefab = Resources.Load<GameObject>(data.VisualPrefabName);
-        if (!string.IsNullOrEmpty(data.CastVisualPrefabName))
-            asset.CastVisualPrefab = Resources.Load<GameObject>(data.CastVisualPrefabName);
+        if (System.Enum.TryParse(data.VisualType, out VisualCategory vType))
+            asset.VisualType = vType;
+
+        if (!string.IsNullOrEmpty(data.CastVfxPrefabName))
+        {
+            if (data.CastVfxPrefabName.StartsWith("Assets/")) asset.CastVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.CastVfxPrefabName);
+            else asset.CastVfxPrefab = Resources.Load<GameObject>(data.CastVfxPrefabName);
+        }
             
-        if (System.Enum.TryParse(data.CastVisualSpawnPoint, out VisualAppearance castSpawn))
-            asset.CastSpawnPoint = castSpawn;
+        if (System.Enum.TryParse(data.CastVfxSpawnPoint, out VisualAppearance castSpawn))
+            asset.CastVfxSpawnPoint = castSpawn;
+
+        if (!string.IsNullOrEmpty(data.SkillIndicatorPrefabName))
+        {
+            if (data.SkillIndicatorPrefabName.StartsWith("Assets/")) asset.SkillIndicatorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.SkillIndicatorPrefabName);
+            else asset.SkillIndicatorPrefab = Resources.Load<GameObject>(data.SkillIndicatorPrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.EruptionVfxPrefabName))
+        {
+            if (data.EruptionVfxPrefabName.StartsWith("Assets/")) asset.EruptionVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.EruptionVfxPrefabName);
+            else asset.EruptionVfxPrefab = Resources.Load<GameObject>(data.EruptionVfxPrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.ProjectilePrefabName))
+        {
+            if (data.ProjectilePrefabName.StartsWith("Assets/")) asset.ProjectilePrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.ProjectilePrefabName);
+            else asset.ProjectilePrefab = Resources.Load<GameObject>(data.ProjectilePrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.ImpactVfxPrefabName))
+        {
+            if (data.ImpactVfxPrefabName.StartsWith("Assets/")) asset.ImpactVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.ImpactVfxPrefabName);
+            else asset.ImpactVfxPrefab = Resources.Load<GameObject>(data.ImpactVfxPrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.AuraVfxPrefabName))
+        {
+            if (data.AuraVfxPrefabName.StartsWith("Assets/")) asset.AuraVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.AuraVfxPrefabName);
+            else asset.AuraVfxPrefab = Resources.Load<GameObject>(data.AuraVfxPrefabName);
+        }
+
+        if (!string.IsNullOrEmpty(data.BeamVfxPrefabName))
+        {
+            if (data.BeamVfxPrefabName.StartsWith("Assets/")) asset.BeamVfxPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(data.BeamVfxPrefabName);
+            else asset.BeamVfxPrefab = Resources.Load<GameObject>(data.BeamVfxPrefabName);
+        }
             
         if (data.BaseTargeting != null)
         {
@@ -288,6 +371,18 @@ public static class SkillConverter
 
         if (data.Scalings != null)
             asset.Scalings = new List<OutputScaling>(data.Scalings);
+
+        asset.Tags = new List<SkillTag>();
+        if (data.Tags != null)
+        {
+            foreach (var tagStr in data.Tags)
+            {
+                if (System.Enum.TryParse(tagStr, out SkillTag tag))
+                {
+                    asset.Tags.Add(tag);
+                }
+            }
+        }
 
         if (data.Effects != null)
         {

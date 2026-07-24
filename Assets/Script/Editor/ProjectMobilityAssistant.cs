@@ -27,11 +27,12 @@ public partial class ProjectMobilityAssistant : EditorWindow
         SupportSkills,
         Characters,
         IdManager,
-        Sets
+        Sets,
+        UniquePassives
     }
 
     private ToolTab _currentTab = ToolTab.Dashboard;
-    private string[] _tabNames = { "Dashboard", "Attributes", "Items", "Skills", "Support Skills", "Characters", "ID Manager", "Sets" };
+    private string[] _tabNames = { "Dashboard", "Attributes", "Items", "Skills", "Support Skills", "Characters", "ID Manager", "Sets", "Unique Passives" };
 
     // JSON Paths
     private string _itemJsonPath = "Assets/Resources/Data/Item.json";
@@ -40,6 +41,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
     private string _supportSkillJsonPath = "Assets/Resources/Data/SupportSkill.json";
     private string _characterJsonPath = "Assets/Resources/Data/Character.json";
     private string _setJsonPath = "Assets/Resources/Data/ItemSet.json";
+    private string _uniquePassiveJsonPath = "Assets/Resources/Data/UniquePassive.json";
 
     // Data Lists
     private AttributeDataList _attributeData;
@@ -48,6 +50,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
     private SupportModifierDataList _supportSkillData;
     private CharacterDataList _characterData;
     private ItemSetList _itemSetData;
+    private UniquePassiveDataList _uniquePassiveData;
 
     // --- Selection State (Per-Tab) ---
     private int _itemSelectedIndex = -1;
@@ -56,6 +59,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
     private int _attributeSelectedIndex = -1;
     private int _itemSetSelectedIndex = -1;
     private int _characterSelectedIndex = -1;
+    private int _uniquePassiveSelectedIndex = -1;
 
     // --- Common UI State ---
     private string _searchQuery = "";
@@ -139,6 +143,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
         _supportSkillData = LoadData<SupportModifierDataList>(_supportSkillJsonPath) ?? new SupportModifierDataList { SupportModifiers = new List<SupportSkillJsonData>() };
         _characterData = LoadData<CharacterDataList>(_characterJsonPath) ?? new CharacterDataList { Characters = new List<CharacterModel>() };
         _itemSetData = LoadData<ItemSetList>(_setJsonPath) ?? new ItemSetList { Sets = new List<ItemSetEntry>() };
+        _uniquePassiveData = LoadData<UniquePassiveDataList>(_uniquePassiveJsonPath) ?? new UniquePassiveDataList { UniquePassives = new List<UniquePassiveEntry>() };
     }
 
     private void SaveAllData()
@@ -160,6 +165,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
         SaveData(_supportSkillJsonPath, _supportSkillData);
         SaveData(_characterJsonPath, _characterData);
         SaveData(_setJsonPath, _itemSetData);
+        SaveData(_uniquePassiveJsonPath, _uniquePassiveData);
         AssetDatabase.Refresh();
     }
 
@@ -190,8 +196,8 @@ public partial class ProjectMobilityAssistant : EditorWindow
         _currentTab = (ToolTab)GUI.Toolbar(tabsRect, (int)_currentTab, _tabNames, EditorStyles.toolbarButton);
 
         float btnX = toolbarRect.xMax - 155;
-        if (GUI.Button(new Rect(btnX, toolbarRect.y, 74, toolbarRect.height), "↺ Reload", EditorStyles.toolbarButton)) LoadAllData();
-        if (GUI.Button(new Rect(btnX + 76, toolbarRect.y, 74, toolbarRect.height), "💾 Save", EditorStyles.toolbarButton)) SaveAllData();
+        if (GUI.Button(new Rect(btnX, toolbarRect.y, 74, toolbarRect.height), "Reload", EditorStyles.toolbarButton)) LoadAllData();
+        if (GUI.Button(new Rect(btnX + 76, toolbarRect.y, 74, toolbarRect.height), "Save", EditorStyles.toolbarButton)) SaveAllData();
 
         switch (_currentTab)
         {
@@ -203,6 +209,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
             case ToolTab.Characters:    DrawCharacterEditor(); break;
             case ToolTab.IdManager:     DrawIdManager(); break;
             case ToolTab.Sets: DrawItemSetEditor(); break;
+            case ToolTab.UniquePassives:  DrawUniquePassiveEditor(); break;
         }
     }
 

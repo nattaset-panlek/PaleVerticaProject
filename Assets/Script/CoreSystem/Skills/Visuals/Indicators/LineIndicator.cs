@@ -17,6 +17,7 @@ namespace CoreSystem.Skills.Visuals
         private MaterialPropertyBlock _fillProps;
         private static readonly int FillAmountId = Shader.PropertyToID("_FillAmount");
         private static readonly int HeadTextrueID = Shader.PropertyToID("_HeadTex");
+        private static readonly int WorldSizeId = Shader.PropertyToID("_WorldSize");
         #endregion
 
         #region [Unity Methods]
@@ -63,6 +64,7 @@ namespace CoreSystem.Skills.Visuals
 
                 _lineBox.GetPropertyBlock(_fillProps);
                 _fillProps.SetTexture(HeadTextrueID, headTex);
+                _fillProps.SetVector(WorldSizeId, new Vector4(width, length, 0f, 0f));
                 _lineBox.SetPropertyBlock(_fillProps);
 
                 if (_fillBox != null)
@@ -73,6 +75,7 @@ namespace CoreSystem.Skills.Visuals
 
                     _fillBox.GetPropertyBlock(_fillProps);
                     _fillProps.SetFloat(FillAmountId, 0f);
+                    _fillProps.SetVector(WorldSizeId, new Vector4(width, length, 0f, 0f));
                     _fillBox.SetPropertyBlock(_fillProps);
                 }
             }

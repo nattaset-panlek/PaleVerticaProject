@@ -34,7 +34,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AngleOffset: 0
-    - _BorderThickness: 0.0075
+    - _BorderThickness: 0.015
     - _BorderWidth: 0.1
     - _ConeAngle: 90
     - _EdgeSoftness: 0.5

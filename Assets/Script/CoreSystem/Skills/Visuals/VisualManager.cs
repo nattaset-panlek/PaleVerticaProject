@@ -29,18 +29,41 @@ namespace CoreSystem.Skills.Visuals
                 { VisualCategory.InstantHit, new InstantHitVisual() },
                 { VisualCategory.Projectile, new ProjectileVisual() },
                 { VisualCategory.RayBeam, new RayBeamVisual() },
-                { VisualCategory.AOE, new AOEVisual() },
+                { VisualCategory.GroundEruption, new GroundEruptionVisual() },
                 { VisualCategory.AuraBuff, new AuraBuffVisual() }
             };
         }
 
-        public void PlayVisual(VisualPayload data, SkillPayload context)
+        public void PlayVisual(ActiveSkill skill, SkillPayload context)
         {
-            if (data == null || context == null) return;
+            if (skill == null || context == null) return;
 
-            if (handlers.TryGetValue(data.Category, out IVisualHandler handler))
+            if (handlers.TryGetValue(skill.VisualType, out IVisualHandler handler))
             {
-                handler.Execute(data, context);
+                GameObject prefab = null;
+                switch (skill.VisualType)
+                {
+                    case VisualCategory.InstantHit:
+                        prefab = skill.ImpactVfxPrefab;
+                        break;
+                    case VisualCategory.Projectile:
+                        prefab = skill.ProjectilePrefab;
+                        break;
+                    case VisualCategory.RayBeam:
+                        prefab = skill.BeamVfxPrefab;
+                        break;
+                    case VisualCategory.GroundEruption:
+                        prefab = skill.EruptionVfxPrefab;
+                        break;
+                    case VisualCategory.AuraBuff:
+                        prefab = skill.AuraVfxPrefab;
+                        break;
+                }
+
+                if (prefab != null)
+                {
+                    handler.Execute(prefab, context);
+                }
             }
         }
     }

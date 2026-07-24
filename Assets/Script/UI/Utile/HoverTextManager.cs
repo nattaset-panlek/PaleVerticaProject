@@ -31,7 +31,7 @@ namespace CoreSystem.UI.Utile
         {
             if (TooltipWindow.activeSelf)
             {
-                Vector2 position = Input.mousePosition;
+                Vector2 position = UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero;
                 //position.x += 15f; // Offset to not be directly under the cursor
                 //position.y += 15f;
                 TooltipRectTransform.position = position;

@@ -17,18 +17,23 @@ MonoBehaviour:
   SkillElement: 6
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261453324353663
+    rid: 6497451414284402828
   Effects:
-  - rid: 5700261453324353664
-  VisualData: {fileID: 0}
-  VisualPrefab: {fileID: 0}
-  VisualSpawnPoint: 0
-  CastVisualPrefab: {fileID: 0}
-  CastSpawnPoint: 0
+  - rid: 6497451414284402829
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 0
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
   BaseDamage: 0
   BaseAOERadius: 0
   BaseProjectileCount: 0
   BaseManaCost: 25
+  Tags: 09000000040000000600000015000000
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
@@ -59,12 +64,12 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261453324353663
+    - rid: 6497451414284402828
       type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
-    - rid: 5700261453324353664
+    - rid: 6497451414284402829
       type: {class: HealEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1

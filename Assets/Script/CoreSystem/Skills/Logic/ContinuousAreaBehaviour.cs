@@ -12,21 +12,20 @@ namespace CoreSystem.Skills.Logic
     /// </summary>
     public class ContinuousAreaBehaviour : MonoBehaviour
     {
+        private ActiveSkill _skillData;
         private SkillPayload _payload;
         private TargetingLogic _targeting;
         private List<EffectLogic> _effects;
         private float _tickRate;
-        
-        private VisualPayload _visualsToPlay;
         private bool _isInitialized = false;
 
-        public void Initialize(SkillPayload payload, TargetingLogic targeting, List<EffectLogic> effects, VisualPayload visualData, float duration, float tickRate)
+        public void Initialize(ActiveSkill skillData, SkillPayload payload, TargetingLogic targeting, List<EffectLogic> effects, float duration, float tickRate)
         {
+            _skillData = skillData;
             _payload = payload;
             _targeting = targeting;
             _effects = effects;
             _tickRate = tickRate;
-            _visualsToPlay = visualData;
             _isInitialized = true;
 
             // Start tick routine
@@ -44,6 +43,12 @@ namespace CoreSystem.Skills.Logic
                 if (transform.parent != null && _payload.Caster != null && transform.parent == _payload.Caster.transform)
                 {
                     _payload.OriginPosition = _payload.Caster.transform.position;
+                }
+
+                if (_payload.Caster == null || _payload.Caster.IsDead)
+                {
+                    Destroy(gameObject);
+                    yield break;
                 }
 
                 // Evaluate targets at the current origin
@@ -66,9 +71,9 @@ namespace CoreSystem.Skills.Logic
                         }
 
                         // Play visual on hit (optional: maybe only play at origin once? or repeat every tick?)
-                        if (_visualsToPlay != null && VisualManager.Instance != null)
+                        if (_skillData != null && VisualManager.Instance != null)
                         {
-                            VisualManager.Instance.PlayVisual(_visualsToPlay, _payload);
+                            VisualManager.Instance.PlayVisual(_skillData, _payload);
                         }
                     }
                 }

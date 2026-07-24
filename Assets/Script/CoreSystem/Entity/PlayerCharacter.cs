@@ -35,10 +35,12 @@ namespace CoreSystem.Entity
         private Rect _debugWindowRect = new Rect(20, 45, 450, 600);
         private int _selectedTab = 0;
         private Vector2 _scrollPos;
-        private string[] _tabLabels = { "DB", "Inv", "Equip", "Socket", "Attr", "Skill", "Upgrade", "Passive" };
+        private string[] _tabLabels = { "DB", "Inv", "Equip", "Socket", "Attr", "Skill", "Upgrade", "Passive", "U-Passive" };
         private bool _showFullMenu = true;
         private string _searchQuery = "";
         private EquipmentInstance _selectedUpgradeItem;
+        private SkillInstance _selectedSkillForSupports;
+        private const int MaxLinkedSupportsLimit = -1;
 
         [Header("Passive Skill Tree")]
         public List<PassiveNodeRecord> PassiveNodes = new List<PassiveNodeRecord>();
@@ -83,6 +85,7 @@ namespace CoreSystem.Entity
                 case 5: DrawSkillsTab(); break;
                 case 6: DrawUpgradeTab(); break;
                 case 7: DrawPassiveTab(); break;
+                case 8: DrawUniquePassivesTab(); break;
             }
 
             GUILayout.EndScrollView();
@@ -155,6 +158,52 @@ namespace CoreSystem.Entity
                 PassiveNodes.Remove(toRemove);
                 PassivePoints++;
                 RecalculateStats();
+            }
+        }
+
+        private void DrawUniquePassivesTab()
+        {
+            GUILayout.Label("Unique Passive Settings", GUI.skin.box);
+            var passives = Database.UniquePassives;
+            if (passives == null || passives.Count == 0)
+            {
+                GUILayout.Label("No unique passives in database.");
+                return;
+            }
+            foreach (var passive in passives)
+            {
+                if (!string.IsNullOrEmpty(_searchQuery) && 
+                    !passive.Name.ToLower().Contains(_searchQuery.ToLower()) && 
+                    !passive.Id.ToLower().Contains(_searchQuery.ToLower()))
+                {
+                    continue;
+                }
+                GUILayout.BeginHorizontal(GUI.skin.box);
+                GUILayout.BeginVertical();
+                GUILayout.Label($"<b>{passive.Name}</b> ({passive.Id})", new GUIStyle(GUI.skin.label) { richText = true });
+                GUILayout.Label(passive.Description, new GUIStyle(GUI.skin.label) { wordWrap = true });
+                GUILayout.EndVertical();
+                bool isActive = UniquePassives.HasPassive(passive.Id);
+                if (isActive)
+                {
+                    GUI.backgroundColor = Color.red;
+                    if (GUILayout.Button("Remove", GUILayout.Width(80), GUILayout.Height(30)))
+                    {
+                        UniquePassives.RemovePassive(passive.Id);
+                        RecalculateStats();
+                    }
+                }
+                else
+                {
+                    GUI.backgroundColor = Color.green;
+                    if (GUILayout.Button("Add", GUILayout.Width(80), GUILayout.Height(30)))
+                    {
+                        UniquePassives.AddPassive(passive.Id);
+                        RecalculateStats();
+                    }
+                }
+                GUI.backgroundColor = Color.white;
+                GUILayout.EndHorizontal();
             }
         }
 
@@ -433,7 +482,7 @@ namespace CoreSystem.Entity
                     {
                         if (GUILayout.Button("X", GUILayout.Width(30)))
                         {
-                            skillCaster.EquipSkill(null, i);
+                            skillCaster.EquipSkill((SkillInstance)null, i);
                         }
                     }
                     GUILayout.EndHorizontal();
@@ -568,7 +617,7 @@ namespace CoreSystem.Entity
                 GUILayout.Label("--- All Active Attributes ---", GUI.skin.box);
                 foreach (var kvp in attributeSystem.ActiveAttributes)
                 {
-                    GUILayout.Label($"{kvp.Key}: {kvp.Value.CurrentValue:F2} (Base: {kvp.Value.BaseValue:F2})");
+                    GUILayout.Label($"{kvp.Key}: {kvp.Value.CurrentValue:F2} (Base: {kvp.Value.BaseValue:F2} + Init: {kvp.Value.InitialValue:F2})");
                 }
 
                 GUILayout.Space(20);
@@ -623,15 +672,27 @@ namespace CoreSystem.Entity
             {
                 GUILayout.BeginHorizontal();
                 GUILayout.Space(15);
-                GUILayout.Label($"[{granted.SkillData.Id}] {granted.SkillData.Name}", GUILayout.ExpandWidth(true));
                 
-                if (GUILayout.Button("Eq 1", GUILayout.Width(40))) skillCaster.EquipSkill(granted.SkillData, 0);
-                if (GUILayout.Button("Eq 2", GUILayout.Width(40))) skillCaster.EquipSkill(granted.SkillData, 1);
-                if (GUILayout.Button("Eq 3", GUILayout.Width(40))) skillCaster.EquipSkill(granted.SkillData, 2);
+                bool isSelected = (_selectedSkillForSupports == granted);
+                string labelPrefix = isSelected ? "<color=yellow>▶ </color>" : "";
+                GUILayout.Label($"{labelPrefix}[{granted.SkillData.Id}] {granted.SkillData.Name}", new GUIStyle(GUI.skin.label) { richText = true }, GUILayout.ExpandWidth(true));
+                
+                if (GUILayout.Button("Eq 1", GUILayout.Width(40))) skillCaster.EquipSkill(granted, 0);
+                if (GUILayout.Button("Eq 2", GUILayout.Width(40))) skillCaster.EquipSkill(granted, 1);
+                if (GUILayout.Button("Eq 3", GUILayout.Width(40))) skillCaster.EquipSkill(granted, 2);
+                
+                if (GUILayout.Button("Select", GUILayout.Width(50)))
+                {
+                    _selectedSkillForSupports = isSelected ? null : granted;
+                }
                 
                 if (GUILayout.Button("Revoke", GUILayout.Width(60)))
                 {
                     skillToRevoke = granted;
+                    if (_selectedSkillForSupports == granted)
+                    {
+                        _selectedSkillForSupports = null;
+                    }
                 }
                 GUILayout.EndHorizontal();
             }
@@ -639,6 +700,89 @@ namespace CoreSystem.Entity
             if (skillToRevoke != null)
             {
                 skillCaster.RevokeSkill(skillToRevoke.SkillData);
+            }
+
+            if (_selectedSkillForSupports != null)
+            {
+                GUILayout.Space(10);
+                GUILayout.BeginVertical(GUI.skin.box);
+                GUILayout.Label($"<b>Support Skills for: {_selectedSkillForSupports.SkillData.Name}</b>", new GUIStyle(GUI.skin.label) { richText = true });
+                
+                string limitStr = MaxLinkedSupportsLimit > 0 ? MaxLinkedSupportsLimit.ToString() : "Unlimited";
+                GUILayout.Label($"Linked Support Skills ({_selectedSkillForSupports.LinkedModifiers.Count} / {limitStr})");
+
+                if (_selectedSkillForSupports.LinkedModifiers.Count == 0)
+                {
+                    GUILayout.Label("No support skills linked.");
+                }
+                else
+                {
+                    SupportModifier toRemove = null;
+                    foreach (var mod in _selectedSkillForSupports.LinkedModifiers)
+                    {
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Label($"  - [{mod.ID}] {mod.Name} ({mod.Chroma} - {mod.Mineral})");
+                        if (GUILayout.Button("Remove", GUILayout.Width(70)))
+                        {
+                            toRemove = mod;
+                        }
+                        GUILayout.EndHorizontal();
+                    }
+                    if (toRemove != null)
+                    {
+                        _selectedSkillForSupports.LinkedModifiers.Remove(toRemove);
+                    }
+                }
+
+                GUILayout.Space(5);
+                GUILayout.Label("<b>Add Support Skill:</b>", new GUIStyle(GUI.skin.label) { richText = true });
+                
+                bool reachedLimit = MaxLinkedSupportsLimit > 0 && _selectedSkillForSupports.LinkedModifiers.Count >= MaxLinkedSupportsLimit;
+                if (reachedLimit)
+                {
+                    GUILayout.Label("<color=orange>Limit reached. Cannot add more support skills.</color>", new GUIStyle(GUI.skin.label) { richText = true });
+                }
+                else
+                {
+                    var allSupportJson = Database.SupportSkills;
+                    if (allSupportJson != null && allSupportJson.Count > 0)
+                    {
+                        foreach (var supportJson in allSupportJson)
+                        {
+                            if (_selectedSkillForSupports.LinkedModifiers.Any(m => m.ID == supportJson.SkillID))
+                            {
+                                continue;
+                            }
+
+                            GUILayout.BeginHorizontal();
+                            GUILayout.Label($"  [{supportJson.SkillID}] {supportJson.ModifierName}");
+                            
+                            SupportModifier tempMod = Database.GetSynchronizedSupport(supportJson.SkillID);
+                            bool isCompatible = tempMod != null && tempMod.IsCompatible(_selectedSkillForSupports.SkillData);
+                            
+                            if (!isCompatible)
+                            {
+                                GUI.enabled = false;
+                                GUILayout.Button("Incompatible", GUILayout.Width(100));
+                                GUI.enabled = true;
+                            }
+                            else
+                            {
+                                if (GUILayout.Button("Add", GUILayout.Width(60)))
+                                {
+                                    _selectedSkillForSupports.LinkModifier(tempMod);
+                                }
+                            }
+                            GUILayout.EndHorizontal();
+                        }
+                    }
+                    else
+                    {
+                        GUILayout.Label("No support skills available in database.");
+                    }
+                }
+
+                GUILayout.EndVertical();
             }
         }
 

@@ -5,7 +5,7 @@ namespace CoreSystem.Skills.Visuals
         InstantHit,
         Projectile,
         RayBeam,
-        AOE,
+        GroundEruption,
         AuraBuff
     }
 }

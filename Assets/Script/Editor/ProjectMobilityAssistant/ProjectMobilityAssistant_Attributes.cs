@@ -89,8 +89,9 @@ public partial class ProjectMobilityAssistant : EditorWindow
             var root = new AdvancedDropdownItem("Attributes");
             foreach (var attr in _attributes)
             {
-                var item = new AdvancedDropdownItem($"{attr.FullName} ({attr.Id})") { id = attr.Id };
+                var item = new AdvancedDropdownItem($"{attr.FullName} ({attr.Id})");
                 root.AddChild(item);
+                item.id = attr.Id;
             }
             return root;
         }

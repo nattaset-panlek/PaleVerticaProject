@@ -76,7 +76,7 @@ namespace CoreSystem.Data
         private Dictionary<int, ActiveSkillJsonData> _activeSkillJsonData = new Dictionary<int, ActiveSkillJsonData>();
         private Dictionary<int, SupportSkillJsonData> _supportSkillJsonData = new Dictionary<int, SupportSkillJsonData>();
         private Dictionary<int, ActiveSkill> _activeSkillAssets = new Dictionary<int, ActiveSkill>();
-        private Dictionary<int, SupportModifier> _supportSkillAssets = new Dictionary<int, SupportModifier>();
+        private Dictionary<string, UniquePassiveEntry> _uniquePassiveJsonData = new Dictionary<string, UniquePassiveEntry>();
 
         private bool _isInitialized = false;
 
@@ -104,6 +104,9 @@ namespace CoreSystem.Data
             // 5. Initialize Characters (Placeholder loading)
             Debug.Log("Database: Loading Characters...");
             LoadCharacters();
+
+            Debug.Log("Database: Loading Passive Buffs...");
+            LoadUniquePassives();
 
             _isInitialized = true;
             Debug.Log("Global Database Initialized.");
@@ -137,12 +140,28 @@ namespace CoreSystem.Data
             }
         }
 
+        private void LoadUniquePassives()
+        {
+            _uniquePassiveJsonData.Clear();
+            TextAsset jsonFile = Resources.Load<TextAsset>("Data/UniquePassive");
+            if (jsonFile != null)
+            {
+                UniquePassiveDataList dataList = JsonUtility.FromJson<UniquePassiveDataList>(jsonFile.text);
+                if (dataList != null && dataList.UniquePassives != null)
+                {
+                    foreach (var entry in dataList.UniquePassives)
+                    {
+                        _uniquePassiveJsonData[entry.Id] = entry;
+                    }
+                }
+            }
+        }
+
         private void InitializeSkills()
         {
             _activeSkillJsonData.Clear();
             _supportSkillJsonData.Clear();
             _activeSkillAssets.Clear();
-            _supportSkillAssets.Clear();
 
             // Load JSON Data
             TextAsset skillJsonFile = Resources.Load<TextAsset>("Data/Skill");
@@ -183,12 +202,6 @@ namespace CoreSystem.Data
                 _activeSkillAssets[asset.Id] = asset;
             }
 
-            // Load SupportSkill Assets
-            SupportModifier[] supportAssets = Resources.LoadAll<SupportModifier>("Skill/SupportSkill");
-            foreach (var asset in supportAssets)
-            {
-                _supportSkillAssets[asset.ID] = asset;
-            }
         }
 
         public ActiveSkill GetSynchronizedActiveSkill(int id)
@@ -234,6 +247,18 @@ namespace CoreSystem.Data
                 {
                     clonedSkill.Scalings = new List<OutputScaling>(jsonData.Scalings);
                 }
+
+                clonedSkill.Tags.Clear();
+                if (jsonData.Tags != null)
+                {
+                    foreach (var tagStr in jsonData.Tags)
+                    {
+                        if (System.Enum.TryParse(tagStr, out SkillTag tag))
+                        {
+                            clonedSkill.Tags.Add(tag);
+                        }
+                    }
+                }
                 
                 // Inject Heal value into inner HealEffect without breaking structure
                 if (jsonData.Heal > 0 && clonedSkill.Effects != null)
@@ -253,63 +278,19 @@ namespace CoreSystem.Data
 
         public SupportModifier GetSynchronizedSupportModifier(int id)
         {
-            if (!_supportSkillAssets.TryGetValue(id, out SupportModifier templateAsset))
+            SupportModifier modifier = SupportModifier.Create(id);
+            if (modifier == null)
             {
                 return null;
             }
 
-            // Clone the asset safely
-            SupportModifier clonedModifier = ScriptableObject.Instantiate(templateAsset);
-            clonedModifier.name = templateAsset.name;
-
-            // Merge JSON Data if exists
             if (_supportSkillJsonData.TryGetValue(id, out SupportSkillJsonData jsonData))
             {
-                if (clonedModifier is GenericSupportModifier genericMod)
-                {
-                    genericMod.ModifierName = jsonData.ModifierName;
-                    
-                    if (jsonData.Effects != null)
-                    {
-                        genericMod.Effects.Clear();
-                        foreach (var eData in jsonData.Effects)
-                        {
-                            var effect = new SupportEffect
-                            {
-                                FlatValue = eData.FlatValue,
-                                PercentValue = eData.PercentValue,
-                                UsePayloadReference = eData.UsePayloadReference,
-                                PayloadMultiplier = eData.PayloadMultiplier,
-                                UseAttributeReference = eData.UseAttributeReference,
-                                AttributeMultiplier = eData.AttributeMultiplier
-                            };
-                            
-                            if (System.Enum.TryParse(eData.TargetField, out PayloadTarget target)) effect.TargetField = target;
-                            if (System.Enum.TryParse(eData.Operation, out ModifierOperation op)) effect.Operation = op;
-                            if (System.Enum.TryParse(eData.ReferencePayloadField, out PayloadTarget refP)) effect.ReferencePayloadField = refP;
-                            if (System.Enum.TryParse(eData.ReferenceAttribute, out AttributeType attr)) effect.ReferenceAttribute = attr;
-                            
-                            genericMod.Effects.Add(effect);
-                        }
-                    }
-
-                    if (jsonData.Conditions != null)
-                    {
-                        genericMod.Conditions.Clear();
-                        foreach (var cData in jsonData.Conditions)
-                        {
-                            var cond = new SupportCondition();
-                            if (System.Enum.TryParse(cData.Type, out SupportConditionType cType)) cond.Type = cType;
-                            if (System.Enum.TryParse(cData.RequiredElement, out ElementType el)) cond.RequiredElement = el;
-                            cond.RequiredSkillID = cData.RequiredSkillID;
-                            cond.MinSkillLevel = cData.MinSkillLevel;
-                            genericMod.Conditions.Add(cond);
-                        }
-                    }
-                }
+                modifier.Name = jsonData.ModifierName;
+                modifier.Description = modifier.GetDescription(jsonData.Description);
             }
 
-            return clonedModifier;
+            return modifier;
         }
 
         // --- API METHODS ---
@@ -331,6 +312,7 @@ namespace CoreSystem.Data
 
         public List<Item> GetItemsInternal() => ItemDatabase.GetAllItems();
         public List<CharacterModel> GetCharactersInternal() => new List<CharacterModel>(_characterDatabase.Values);
+        public List<UniquePassiveEntry> GetUniquePassivesInternal() => new List<UniquePassiveEntry>(_uniquePassiveJsonData.Values);
 
 
         public List<ActiveSkill> GetAllSynchronizedSkillsInternal()
@@ -344,6 +326,20 @@ namespace CoreSystem.Data
             return allSkills;
         }
 
+        public List<SupportSkillJsonData> GetAllSupportSkillsInternal()
+        {
+            return new List<SupportSkillJsonData>(_supportSkillJsonData.Values);
+        }
+
+        public List<int> GetLinkedSupportIDsInternal(int skillId)
+        {
+            if (_activeSkillJsonData.TryGetValue(skillId, out var jsonData))
+            {
+                return jsonData.SupportSkillIDs;
+            }
+            return null;
+        }
+
         // --- STATIC WRAPPERS ---
         public static Item GetItem(int id) => Instance.GetItemInternal(id);
         public static CharacterModel GetCharacter(int id) => Instance.GetCharacterInternal(id);
@@ -354,8 +350,11 @@ namespace CoreSystem.Data
 
         public static List<Item> GetItems => Instance.GetItemsInternal();
         public static List<CharacterModel> Characters => Instance.GetCharactersInternal();
+        public static List<UniquePassiveEntry> UniquePassives => Instance.GetUniquePassivesInternal();
         public static List<AttributeTemplate> Attributes => AttributeDatabase.GetAllAttributes();
         public static List<ActiveSkill> Skills => Instance.GetAllSynchronizedSkillsInternal();
+        public static List<SupportSkillJsonData> SupportSkills => Instance.GetAllSupportSkillsInternal();
+        public static List<int> GetLinkedSupportIDs(int skillId) => Instance.GetLinkedSupportIDsInternal(skillId);
 
         // --- SkillTree Static API ---
         public static SkillTree.Models.SkillTreeNode GetSkillTreeNode(int id) => SkillTreeDatabase.GetNode(id);

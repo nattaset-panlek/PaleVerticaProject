@@ -25,27 +25,64 @@ namespace CoreSystem.UI.Utile
             [Tooltip("Event ที่จะเรียกเมื่อ Window ถูกเปิด")]
             public UnityEvent OnOpen;
 
-            /// <summary>
-            /// ตรวจสอบว่ามีการกดปุ่มใดๆ ใน List หรือไม่
-            /// </summary>
             public bool IsKeyPressed()
             {
                 if (Keys == null || Keys.Count == 0) return false;
+                var keyboard = UnityEngine.InputSystem.Keyboard.current;
+                if (keyboard == null) return false;
                 
-                // ทุกปุ่มใน List ต้องถูกกดค้างอยู่ (Held)
-                foreach (var key in Keys)
+                foreach (var legacyKey in Keys)
                 {
-                    if (!Input.GetKey(key)) return false;
+                    var key = ToInputSystemKey(legacyKey);
+                    if (key == UnityEngine.InputSystem.Key.None || !keyboard[key].isPressed) return false;
                 }
 
-                // และต้องมีอย่างน้อยหนึ่งปุ่มที่เพิ่งถูกกดใน Frame นี้ (Pressed)
-                // เพื่อป้องกันการ Toggle รัวๆ เมื่อกดค้าง
-                foreach (var key in Keys)
+                foreach (var legacyKey in Keys)
                 {
-                    if (Input.GetKeyDown(key)) return true;
+                    var key = ToInputSystemKey(legacyKey);
+                    if (key != UnityEngine.InputSystem.Key.None && keyboard[key].wasPressedThisFrame) return true;
                 }
 
                 return false;
+            }
+
+            private static UnityEngine.InputSystem.Key ToInputSystemKey(KeyCode keyCode)
+            {
+                if (keyCode >= KeyCode.A && keyCode <= KeyCode.Z)
+                    return (UnityEngine.InputSystem.Key)((int)UnityEngine.InputSystem.Key.A + (keyCode - KeyCode.A));
+                if (keyCode >= KeyCode.Alpha0 && keyCode <= KeyCode.Alpha9)
+                    return (UnityEngine.InputSystem.Key)((int)UnityEngine.InputSystem.Key.Digit0 + (keyCode - KeyCode.Alpha0));
+                if (keyCode >= KeyCode.Keypad0 && keyCode <= KeyCode.Keypad9)
+                    return (UnityEngine.InputSystem.Key)((int)UnityEngine.InputSystem.Key.Numpad0 + (keyCode - KeyCode.Keypad0));
+                if (keyCode >= KeyCode.F1 && keyCode <= KeyCode.F12)
+                    return (UnityEngine.InputSystem.Key)((int)UnityEngine.InputSystem.Key.F1 + (keyCode - KeyCode.F1));
+
+                switch (keyCode)
+                {
+                    case KeyCode.Escape: return UnityEngine.InputSystem.Key.Escape;
+                    case KeyCode.Space: return UnityEngine.InputSystem.Key.Space;
+                    case KeyCode.Return: return UnityEngine.InputSystem.Key.Enter;
+                    case KeyCode.Tab: return UnityEngine.InputSystem.Key.Tab;
+                    case KeyCode.LeftShift: return UnityEngine.InputSystem.Key.LeftShift;
+                    case KeyCode.RightShift: return UnityEngine.InputSystem.Key.RightShift;
+                    case KeyCode.LeftControl: return UnityEngine.InputSystem.Key.LeftCtrl;
+                    case KeyCode.RightControl: return UnityEngine.InputSystem.Key.RightCtrl;
+                    case KeyCode.LeftAlt: return UnityEngine.InputSystem.Key.LeftAlt;
+                    case KeyCode.RightAlt: return UnityEngine.InputSystem.Key.RightAlt;
+                    case KeyCode.CapsLock: return UnityEngine.InputSystem.Key.CapsLock;
+                    case KeyCode.Backspace: return UnityEngine.InputSystem.Key.Backspace;
+                    case KeyCode.Delete: return UnityEngine.InputSystem.Key.Delete;
+                    case KeyCode.Insert: return UnityEngine.InputSystem.Key.Insert;
+                    case KeyCode.Home: return UnityEngine.InputSystem.Key.Home;
+                    case KeyCode.End: return UnityEngine.InputSystem.Key.End;
+                    case KeyCode.PageUp: return UnityEngine.InputSystem.Key.PageUp;
+                    case KeyCode.PageDown: return UnityEngine.InputSystem.Key.PageDown;
+                    case KeyCode.UpArrow: return UnityEngine.InputSystem.Key.UpArrow;
+                    case KeyCode.DownArrow: return UnityEngine.InputSystem.Key.DownArrow;
+                    case KeyCode.LeftArrow: return UnityEngine.InputSystem.Key.LeftArrow;
+                    case KeyCode.RightArrow: return UnityEngine.InputSystem.Key.RightArrow;
+                    default: return UnityEngine.InputSystem.Key.None;
+                }
             }
 
             [Tooltip("Event ที่จะเรียกเมื่อ Window ถูกปิด (เรียกเฉพาะตอนกดปุ่มและ Window กำลังแสดงอยู่)")]

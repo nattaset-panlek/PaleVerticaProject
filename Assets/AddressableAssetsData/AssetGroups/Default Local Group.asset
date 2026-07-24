@@ -13,10 +13,18 @@ MonoBehaviour:
   m_Name: Default Local Group
   m_EditorClassIdentifier: 
   m_GroupName: Default Local Group
-  m_Data:
-    m_SerializedData: []
   m_GUID: 2732205d243a2874798c847d41878dc9
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 6012d8e3b32ebaa43a68590a62f2b852
+    m_Address: Assets/Addressable/Prefab/Effect/PhysicalProjectile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c55aa0f8a92a0049919f18c11f60958
+    m_Address: Assets/Addressable/Prefab/Effect/MagicProjectile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 3c1e760b70b29d24a9ff07dc48afffba, type: 2}
   m_SchemaSet:

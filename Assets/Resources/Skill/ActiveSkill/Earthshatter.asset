@@ -17,47 +17,51 @@ MonoBehaviour:
   SkillElement: 2
   SkillDamageType: 0
   BaseTargeting:
-    rid: 5700261453324353641
+    rid: 6497451414284402805
   Effects:
-  - rid: 5700261453324353642
-  - rid: 5700261453324353643
-  VisualData: {fileID: 0}
-  VisualPrefab: {fileID: 0}
-  VisualSpawnPoint: 0
-  CastVisualPrefab: {fileID: 0}
-  CastSpawnPoint: 0
+  - rid: 6497451414284402806
+  - rid: 6497451414284402807
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 3
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
   BaseDamage: 50
   BaseAOERadius: 0
   BaseProjectileCount: 0
   BaseManaCost: 10
+  Tags: 00000000070000000b0000000c000000
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
   AreaTickRate: 0.5
-  BaseVCT: 0
+  BaseVCT: 0.35
   BaseFCT: 0
   BaseCastDelay: 0.25
-  BaseCooldown: 0
+  BaseCooldown: 2
   Scalings: []
   references:
     version: 2
     RefIds:
-    - rid: 5700261453324353641
+    - rid: 6497451414284402805
       type: {class: ConeTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         ConeAngle: 60
-    - rid: 5700261453324353642
+    - rid: 6497451414284402806
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1
-    - rid: 5700261453324353643
+    - rid: 6497451414284402807
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
         Type: 3
         Distance: 5
-        ApplyOncePerCast: 1
         StunDuration: 0
         UseLerp: 1
         LerpDuration: 0.35

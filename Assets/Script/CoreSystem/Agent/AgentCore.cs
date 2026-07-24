@@ -33,7 +33,19 @@ namespace CoreSystem.Controllers
         public AIBehaviorType Behavior = AIBehaviorType.Aggressive;
         public CombatStyle Combat = CombatStyle.Melee;
         public float DetectionRadius = 10f;
-        public float AttackRange = 3f;
+        public float AttackRange
+        {
+            get => _character != null ? _character.AutoAttackRange : _attackRange;
+            set
+            {
+                _attackRange = value;
+                if (_character != null)
+                {
+                    _character.OnResolveAutoAttackRange = (baseVal) => value;
+                }
+            }
+        }
+        [SerializeField] private float _attackRange = 3f;
         public float LoseSightRadius = 15f;
 
         [Tooltip("Rotation smoothness speed. Higher = faster. (Try 5-20)")]
@@ -169,10 +181,24 @@ namespace CoreSystem.Controllers
             if (_character == null || _character.skillCaster == null) return;
             
             _character.skillCaster.EquippedSkills.Clear();
+
+            if (_character.DefaultSkillIds != null)
+            {
+                foreach (int id in _character.DefaultSkillIds)
+                {
+                    var skillData = CoreSystem.Data.Database.GetSynchronizedSkill(id);
+                    if (skillData != null)
+                    {
+                        _character.skillCaster.EquippedSkills.Add(new SkillInstance(skillData));
+                    }
+                }
+            }
+
             foreach (var entry in SkillPool)
             {
                 if (entry != null && entry.Skill != null && entry.IsEquipped)
                 {
+                    if (_character.DefaultSkillIds != null && _character.DefaultSkillIds.Contains(entry.Skill.Id)) continue;
                     _character.skillCaster.EquippedSkills.Add(new SkillInstance(entry.Skill));
                 }
             }
@@ -379,6 +405,17 @@ namespace CoreSystem.Controllers
 
             // Attempt skill cast
             TryCastSkill();
+
+            float dist = Vector3.Distance(transform.position, _target.position);
+            if (_character.skillCaster.CurrentState == SkillCasterState.Idle && dist <= AttackRange && _character.BasicAttackCooldownTimer <= 0)
+            {
+                var targetEntity = _target.GetComponent<IEntity>();
+                if (targetEntity != null)
+                {
+                    _character.BasicAttack(targetEntity);
+                    if (Anim != null) Anim.SetTrigger("Attack");
+                }
+            }
         }
 
         private void UpdateFlee()
@@ -730,9 +767,7 @@ namespace CoreSystem.Controllers
 
         private bool IsHostile(FactionType a, FactionType b)
         {
-            if (a == FactionType.Player && b == FactionType.Enemy) return true;
-            if (a == FactionType.Enemy  && b == FactionType.Player) return true;
-            return false;
+            return a.IsHostileTo(b);
         }
 
         private bool IsTargetAliveAndValid(Transform t)

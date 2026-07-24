@@ -129,6 +129,12 @@ public class AttributeListManager : MonoBehaviour
                 continue;
             }
 
+            if (attribute == AttributeType.ASPD)
+            {
+                CreateASPDBlock();
+                continue;
+            }
+
             var template = Database.GetAttribute(attribute);
             var attrData = GameData.Player.CharacterManager.GetAttribute(attribute);
 
@@ -169,6 +175,62 @@ public class AttributeListManager : MonoBehaviour
         go.AddComponent<HoverableUI>().Setup(tooltipTitle, tooltipDesc);
         blockScript.Setup(label, valueStr);
         _activeBlocks.Add(blockScript);
+    }
+
+    private void CreateASPDBlock()
+    {
+        var go = Instantiate(AttributeListBlockPrefab, transform);
+        var blockScript = go.GetComponent<AttributeListBlock>();
+        string label = "";
+        string valueStr = "";
+        string tooltipTitle = "";
+        string tooltipDesc = "";
+        CalculateASPDValue(out label, out valueStr, out tooltipTitle, out tooltipDesc);
+        go.AddComponent<HoverableUI>().Setup(tooltipTitle, tooltipDesc);
+        blockScript.Setup(label, valueStr);
+        _activeBlocks.Add(blockScript);
+    }
+
+    private void CalculateASPDValue(out string label, out string valueStr, out string tooltipTitle, out string tooltipDesc)
+    {
+        var manager = GameData.Player.CharacterManager;
+        var template = Database.GetAttribute(AttributeType.ASPD);
+        label = template != null ? template.Name : "ASPD";
+        tooltipTitle = template != null ? $"<color=#25E3B7>{template.FullName}</color>" : "Attack Speed";
+        tooltipDesc = template != null ? template.Description : "";
+        var attr = manager.GetAttribute(AttributeType.ASPD);
+        if (attr == null)
+        {
+            valueStr = "0.0 Hit/s";
+            return;
+        }
+        int AttactSpeedMinPreHit = 1;
+        int AttactSpeedMaxPreHit = 100;
+        float finalValue = attr.CurrentValue;
+        float baseValue = attr.BaseValue;
+        float flatBonus = attr.FlatBonusSum;
+        float percentBonus = attr.PercentBonusSum;
+        float preFinal = (baseValue + flatBonus) * (1f + percentBonus);
+        float addBonus = finalValue - preFinal;
+        float finalDelay = (200f - finalValue) / 50f;
+        float minDelay = 1f / AttactSpeedMaxPreHit;
+        float maxDelay = 1f / AttactSpeedMinPreHit;
+        finalDelay = Mathf.Clamp(finalDelay, minDelay, maxDelay);
+        float finalHitsPerSecond = 1f / finalDelay;
+        float baseDelay = (200f - baseValue) / 50f;
+        baseDelay = Mathf.Clamp(baseDelay, minDelay, maxDelay);
+        float baseHitsPerSecond = 1f / baseDelay;
+        string finalText = $"<b>{finalHitsPerSecond:F1} Hit/s</b>";
+        string breakdownText = "";
+        if (finalValue != baseValue)
+        {
+            string basePart = $"{baseHitsPerSecond:F1}";
+            float diff = finalHitsPerSecond - baseHitsPerSecond;
+            string diffSign = diff >= 0 ? "+" : "";
+            breakdownText = $" <size=85%><color=#A0A0A0>({basePart}<color=#25E3B7>{diffSign}{diff:F1}</color> Hit/s)</color></size>";
+        }
+        valueStr = $"{finalText}{breakdownText}";
+        tooltipDesc += $"\n\nRaw ASPD Breakdown:\nBase: {baseValue:F0}\nFlat Bonus: {flatBonus:F0}\nPercent Bonus: {percentBonus * 100f:F0}%\nTotal Raw ASPD: {finalValue:F0}";
     }
 
     private void CalculateConsolidatedValue(AttributeType type, out string label, out string valueStr, out string tooltipTitle, out string tooltipDesc)
@@ -250,6 +312,17 @@ public class AttributeListManager : MonoBehaviour
                 
                 // Update tooltip if possible (HoverableUI doesn't have an update method easily visible, 
                 // but we can re-add or ignore if description doesn't change much)
+                var hover = block.GetComponent<HoverableUI>();
+                if (hover != null) hover.Setup(tooltipTitle, tooltipDesc);
+            }
+            else if (attribute == AttributeType.ASPD)
+            {
+                string label, valueStr, tooltipTitle, tooltipDesc;
+                CalculateASPDValue(out label, out valueStr, out tooltipTitle, out tooltipDesc);
+                
+                var block = _activeBlocks[blockIndex];
+                block.Setup(label, valueStr);
+                
                 var hover = block.GetComponent<HoverableUI>();
                 if (hover != null) hover.Setup(tooltipTitle, tooltipDesc);
             }

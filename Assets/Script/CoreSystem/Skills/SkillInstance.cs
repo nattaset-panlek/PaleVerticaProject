@@ -27,15 +27,28 @@ namespace CoreSystem.Skills
             {
                 if (Application.isPlaying)
                 {
-                    // Try to get a synchronized clone from the Database
                     ActiveSkill syncedSkill = Database.GetSynchronizedSkill(skillTemplate.Id);
-                    
-                    // If database isn't ready or doesn't have it, fallback to the template itself
                     SkillData = syncedSkill != null ? syncedSkill : skillTemplate;
                 }
                 else
                 {
                     SkillData = skillTemplate;
+                }
+
+                if (Application.isPlaying && SkillData != null)
+                {
+                    List<int> supportIDs = Database.GetLinkedSupportIDs(SkillData.Id);
+                    if (supportIDs != null)
+                    {
+                        for (int i = 0; i < supportIDs.Count; i++)
+                        {
+                            SupportModifier mod = Database.GetSynchronizedSupport(supportIDs[i]);
+                            if (mod != null)
+                            {
+                                LinkModifier(mod);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -64,6 +77,11 @@ namespace CoreSystem.Skills
             {
                 CurrentCooldown -= deltaTime;
             }
+        }
+
+        public void ReduceCooldown(float amount)
+        {
+            CurrentCooldown = Mathf.Max(0f, CurrentCooldown - amount);
         }
 
         public float CalculateCastTime(AttributeSystem stats)
@@ -140,6 +158,24 @@ namespace CoreSystem.Skills
             // Formula: Base * (1 + Bonus%)
             float finalAOE = baseAOE * (1f + (aoeBonusPercent / 100f));
             return Mathf.Max(0f, finalAOE);
+        }
+
+        public bool LinkModifier(SupportModifier modifier)
+        {
+            if (modifier == null || SkillData == null) return false;
+
+            if (!modifier.IsCompatible(SkillData))
+            {
+                return false;
+            }
+
+            if (LinkedModifiers.Contains(modifier))
+            {
+                return false;
+            }
+
+            LinkedModifiers.Add(modifier);
+            return true;
         }
     }
 }

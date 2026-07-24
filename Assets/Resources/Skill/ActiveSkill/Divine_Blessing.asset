@@ -17,21 +17,26 @@ MonoBehaviour:
   SkillElement: 6
   SkillDamageType: 1
   BaseTargeting:
-    rid: 5700261453324353653
+    rid: 6497451414284402817
   Effects:
-  - rid: 5700261453324353654
-  - rid: 5700261453324353655
-  - rid: 5700261453324353656
-  - rid: 5700261453324353657
-  VisualData: {fileID: 0}
-  VisualPrefab: {fileID: 0}
-  VisualSpawnPoint: 0
-  CastVisualPrefab: {fileID: 0}
-  CastSpawnPoint: 0
+  - rid: 6497451414284402818
+  - rid: 6497451414284402819
+  - rid: 6497451414284402820
+  - rid: 6497451414284402821
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 4
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
   BaseDamage: 0
   BaseAOERadius: 5
   BaseProjectileCount: 0
   BaseManaCost: 20
+  Tags: 04000000020000001000000006000000
   IsToggle: 1
   IsContinuousArea: 0
   AreaDuration: 5
@@ -50,17 +55,17 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5700261453324353653
+    - rid: 6497451414284402817
       type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 1
         IncludeSelf: 1
-    - rid: 5700261453324353654
+    - rid: 6497451414284402818
       type: {class: HealEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 1
         BaseHealAmount: 200
-    - rid: 5700261453324353655
+    - rid: 6497451414284402819
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 11
@@ -72,7 +77,7 @@ MonoBehaviour:
         Category: 1
         Icon: {fileID: 0}
         BuffIconPath: 
-    - rid: 5700261453324353656
+    - rid: 6497451414284402820
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 17
@@ -84,7 +89,7 @@ MonoBehaviour:
         Category: 1
         Icon: {fileID: 0}
         BuffIconPath: 
-    - rid: 5700261453324353657
+    - rid: 6497451414284402821
       type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         TargetAttribute: 15

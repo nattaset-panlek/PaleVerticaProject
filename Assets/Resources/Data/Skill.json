@@ -12,9 +12,9 @@
             "BaseManaCost": 0.0,
             "IsToggle": false,
             "BaseVCT": 0.0,
-            "BaseFCT": 0.0,
+            "BaseFCT": 0.3499999940395355,
             "BaseCastDelay": 0.5,
-            "BaseCooldown": 0.0,
+            "BaseCooldown": 1.0,
             "Heal": 0.0,
             "BaseTargeting": {
                 "Type": "Box",
@@ -98,11 +98,22 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Melee",
+                "Physical",
+                "Instant"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1002,
@@ -191,11 +202,23 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Self",
+                "Buff",
+                "Magic",
+                "Heal"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1003,
@@ -276,11 +299,23 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "GroundEruption",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "AreaOfEffect",
+                "Melee",
+                "Elemental",
+                "Status"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1004,
@@ -434,11 +469,23 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "FollowCaster",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "AuraBuff",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Buff",
+                "AreaOfEffect",
+                "Spirit",
+                "Magic"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1005,
@@ -454,7 +501,7 @@
             "BaseVCT": 0.3499999940395355,
             "BaseFCT": 0.0,
             "BaseCastDelay": 0.25,
-            "BaseCooldown": 0.0,
+            "BaseCooldown": 2.0,
             "Heal": 0.0,
             "BaseTargeting": {
                 "Type": "Cone",
@@ -529,11 +576,23 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "GroundEruption",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Melee",
+                "Physical",
+                "Elemental",
+                "Movement"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1006,
@@ -614,11 +673,24 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "RayBeam",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Ranged",
+                "Ray",
+                "Magic",
+                "Elemental",
+                "AreaOfEffect"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1007,
@@ -682,11 +754,22 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Movement",
+                "Self",
+                "Instant"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1008,
@@ -783,11 +866,24 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "FollowCaster",
-            "CastVisualPrefabName": "Skill/VisualEffectSkill/Aura",
-            "CastVisualSpawnPoint": "FollowCaster",
-            "UniqueFields": []
+            "VisualType": "AuraBuff",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Aura",
+                "Self",
+                "AreaOfEffect",
+                "Elemental",
+                "Magic"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1009,
@@ -878,11 +974,24 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Elemental",
+                "Buff",
+                "AreaOfEffect",
+                "Self",
+                "Magic"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1010,
@@ -893,7 +1002,7 @@
             "BaseDamage": 20.0,
             "BaseAOERadius": 2.0,
             "BaseProjectileCount": 0,
-            "BaseManaCost": 0.0,
+            "BaseManaCost": 20.0,
             "IsToggle": false,
             "BaseVCT": 1.0,
             "BaseFCT": 0.15000000596046449,
@@ -955,11 +1064,22 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "Skill/VisualEffectSkill/Danger",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "GroundEruption",
+            "CastVfxPrefabName": "Assets/Resources/Skill/VisualEffectSkill/Aura.prefab",
+            "CastVfxSpawnPoint": "TargetPosition",
+            "SkillIndicatorPrefabName": "Assets/Resources/Skill/VisualEffectSkill/MagicCircle.prefab",
+            "EruptionVfxPrefabName": "Assets/Resources/Skill/VisualEffectSkill/MagicCircle.prefab",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "AreaOfEffect",
+                "Elemental",
+                "Magic"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 0,
@@ -995,10 +1115,16 @@
             },
             "Scalings": [],
             "Effects": [],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [],
             "UniqueFields": [
                 {
                     "FieldName": "MinionPrefab",
@@ -1020,7 +1146,8 @@
                     "FieldType": "System.Int32",
                     "StringValue": "0"
                 }
-            ]
+            ],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1011,
@@ -1056,10 +1183,16 @@
             },
             "Scalings": [],
             "Effects": [],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [],
             "UniqueFields": [
                 {
                     "FieldName": "ParryWindow",
@@ -1076,7 +1209,8 @@
                     "FieldType": "UnityEngine.GameObject",
                     "StringValue": ""
                 }
-            ]
+            ],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1012,
@@ -1112,10 +1246,16 @@
             },
             "Scalings": [],
             "Effects": [],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [],
             "UniqueFields": [
                 {
                     "FieldName": "MaxJumps",
@@ -1132,7 +1272,8 @@
                     "FieldType": "System.Single",
                     "StringValue": "0"
                 }
-            ]
+            ],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1013,
@@ -1168,17 +1309,24 @@
             },
             "Scalings": [],
             "Effects": [],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "",
-            "CastVisualSpawnPoint": "TargetPosition",
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "Assets/Resources/Skill/VisualEffectSkill/MagicCircle.prefab",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [],
             "UniqueFields": [
                 {
                     "FieldName": "StrikeDamageMult",
                     "FieldType": "System.Single",
                     "StringValue": "0"
                 }
-            ]
+            ],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1014,
@@ -1214,10 +1362,16 @@
             },
             "Scalings": [],
             "Effects": [],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "Assets/Prefab/SkillS/Visual/TimeRift.prefab",
-            "CastVisualSpawnPoint": "TargetPosition",
+            "VisualType": "GroundEruption",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "Assets/Resources/Skill/VisualEffectSkill/MagicCircle.prefab",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [],
             "UniqueFields": [
                 {
                     "FieldName": "RecordDuration",
@@ -1254,7 +1408,8 @@
                     "FieldType": "System.Boolean",
                     "StringValue": "True"
                 }
-            ]
+            ],
+            "SupportSkillIDs": []
         },
         {
             "SkillID": 1015,
@@ -1318,11 +1473,149 @@
                     "BuffIconPath": ""
                 }
             ],
-            "VisualPrefabName": "",
-            "VisualSpawnPoint": "",
-            "CastVisualPrefabName": "Skill/VisualEffectSkill/Danger",
-            "CastVisualSpawnPoint": "TargetPosition",
-            "UniqueFields": []
+            "VisualType": "GroundEruption",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "Assets/Resources/Skill/VisualEffectSkill/MagicCircle.prefab",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "AreaOfEffect",
+                "Movement",
+                "Origin",
+                "Magic"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
+        },
+        {
+            "SkillID": 1016,
+            "CustomClassName": "",
+            "SkillName": "Blink",
+            "SkillElement": "Electric",
+            "DamageType": "Magic",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 1.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 10.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.15000000596046449,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 0.25,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "TargetLocation",
+                "Radius": 1.0,
+                "CastRange": 20.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Alignment": "",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "MovementEffectLogic",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "TeleportToTarget",
+                    "MovementDistance": 50.0,
+                    "ApplyOnce": true,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                }
+            ],
+            "VisualType": "GroundEruption",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "Assets/Resources/Skill/VisualEffectSkill/MagicCircle.prefab",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Movement",
+                "Self",
+                "Instant"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
+        },
+        {
+            "SkillID": 1017,
+            "CustomClassName": "",
+            "SkillName": "Chornos Field",
+            "SkillElement": "Neutral",
+            "DamageType": "Physical",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 20.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 0.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.0,
+            "BaseCooldown": 0.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Sphere",
+                "Radius": 2.0,
+                "CastRange": 5.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 5.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Alignment": "",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [],
+            "VisualType": "AuraBuff",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "Assets/Resources/Skill/VisualEffectSkill/MagicCircle.prefab",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [],
+            "UniqueFields": [],
+            "SupportSkillIDs": []
         }
     ],
     "SupportSkills": []

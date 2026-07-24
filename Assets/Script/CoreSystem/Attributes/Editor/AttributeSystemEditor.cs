@@ -115,7 +115,7 @@ namespace CoreSystem.Attributes.Editor
                     if (system.ActiveAttributes.TryGetValue(type, out var attr))
                     {
                         string label = type.ToString();
-                        string val = $"{attr.BaseValue:F1} \u2192 {attr.CurrentValue:F1}";
+                        string val = $"{attr.BaseValue:F1} + {attr.InitialValue:F1} \u2192 {attr.CurrentValue:F1}";
 
                         EditorGUILayout.BeginHorizontal();
                         EditorGUILayout.LabelField(label, GUILayout.Width(180));

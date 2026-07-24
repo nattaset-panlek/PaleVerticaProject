@@ -1,0 +1,69 @@
+{
+    "UniquePassives": [
+        {
+            "Id": "Vampire",
+            "Name": "Vampire",
+            "Description": "Leeches 30% physical damage as HP."
+        },
+        {
+            "Id": "TimeCollector",
+            "Name": "Time Collector",
+            "Description": "Reduces cooldowns by 0.1s on basic attack."
+        },
+        {
+            "Id": "DepressionChaos",
+            "Name": "Depression Chaos",
+            "Description": "Deals 200% INT magic damage on casting a non-damaging AOE skill."
+        },
+        {
+            "Id": "Thorn",
+            "Name": "Thorn",
+            "Description": "Reflects 10% of damage taken scaling with STR back to the attacker."
+        },
+        {
+            "Id": "ManaLeech",
+            "Name": "Mana Leech",
+            "Description": "30% chance to leech mana on hit."
+        },
+        {
+            "Id": "Execution",
+            "Name": "Execution",
+            "Description": "Instantly execute targets whose HP <= 5%."
+        },
+        {
+            "Id": "BloodBleeding",
+            "Name": "Blood Bleeding",
+            "Description": "20% chance to apply a Bleeding DOT dealing 1% Max HP + 1% (INT + DEX) damage."
+        },
+        {
+            "Id": "Bleeding",
+            "Name": "Bleeding",
+            "Description": "Ticking DOT dealing 1% Max HP per second."
+        },
+        {
+            "Id": "CurseOfKanix",
+            "Name": "Curse of Kanix",
+            "Description": "Swaps core stats: INT <-> STR, DEX <-> VIT, LUK <-> AGI."
+        },
+        {
+            "Id": "BlessingOfMagearna",
+            "Name": "Blessing of Magearna",
+            "Description": "40% damage absorbed by Mana."
+        },
+        {
+            "Id": "BloodMage",
+            "Name": "Blood Mage",
+            "Description": "Use HP instead of Mana, skills deal 30% more final damage."
+        },
+        {
+            "Id": "EldritchFaith",
+            "Name": "Eldritch Faith",
+            "Description": "INT -50%, adds flat damage equal to lost INT."
+        },
+        {
+            "Id": "Rock",
+            "Name": "Rock",
+            "Description": "Immune to pushes and impulses."
+        }
+    ]
+}

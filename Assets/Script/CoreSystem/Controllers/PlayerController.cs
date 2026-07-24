@@ -16,6 +16,8 @@ namespace CoreSystem.Controllers
         private Camera mainCamera;
         private bool _isDead;
         private int _selectedSkillSlot = -1;
+        private IEntity _autoAttackTarget;
+        private InputSystem_Actions _inputActions;
 
         [Header("UI Reference")]
         public Image HealthBar;
@@ -45,15 +47,31 @@ namespace CoreSystem.Controllers
         {
             player = GetComponent<PlayerCharacter>();
             mainCamera = Camera.main;
+            _inputActions = new InputSystem_Actions();
+        }
+
+        private void OnEnable()
+        {
+            _inputActions?.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _inputActions?.Disable();
         }
 
         private void Update()
         {
-            if (_isDead) return;
+            if (CheckDeath())
+            {
+                _autoAttackTarget = null;
+                return;
+            }
 
             HandleMovement();
             HandleLookDirection(); // Renamed from HandleMouseRotation in the instruction, keeping original name
             HandleSkillInput();
+            HandleAutoAttack();
 
             // Update Skill Indicator if aiming or casting
             if (_selectedSkillSlot != -1 || player.skillCaster.CurrentState == SkillCasterState.Casting)
@@ -100,21 +118,49 @@ namespace CoreSystem.Controllers
 
         private bool CheckDeath()
         {
-            if (_isDead) return true;
-
             if (player != null && player.attributeSystem != null)
             {
                 float hp = player.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
                 if (hp <= 0)
                 {
-                    _isDead = true;
-                    if (Anim != null) Anim.SetBool(MovingBoolParam, false);
-                    PlayDeathAnimation();
-                    SkillIndicatorManager.Instance?.HideIndicator();
+                    if (!_isDead)
+                    {
+                        _isDead = true;
+                        if (Anim != null) Anim.SetBool(MovingBoolParam, false);
+                        PlayDeathAnimation();
+                        SkillIndicatorManager.Instance?.HideIndicator();
+                        player.skillCaster?.InterruptCast();
+                    }
                     return true;
                 }
+                else
+                {
+                    _isDead = false;
+                }
             }
-            return false;
+            return _isDead;
+        }
+
+        private void RevivePlayer()
+        {
+            _isDead = false;
+
+            if (player != null && player.attributeSystem != null)
+            {
+                var hpAttr = player.attributeSystem.GetAttribute(AttributeType.HP);
+                var maxHpAttr = player.attributeSystem.GetAttribute(AttributeType.MaxHP);
+                if (hpAttr != null && maxHpAttr != null)
+                {
+                    hpAttr.BaseValue = maxHpAttr.CurrentValue;
+                    hpAttr.Recalculate();
+                }
+            }
+
+            if (Anim != null)
+            {
+                Anim.Rebind();
+                Anim.Update(0f);
+            }
         }
 
         private void LateUpdate()
@@ -196,14 +242,22 @@ namespace CoreSystem.Controllers
         {
             if (player.movementSystem != null)
             {
-                float horizontal = Input.GetAxisRaw("Horizontal");
-                float vertical = Input.GetAxisRaw("Vertical");
+                float horizontal = 0f;
+                float vertical = 0f;
+
+                if (_inputActions != null)
+                {
+                    Vector2 moveInput = _inputActions.Player.Move.ReadValue<Vector2>();
+                    horizontal = moveInput.x;
+                    vertical = moveInput.y;
+                }
 
                 Vector3 direction = new Vector3(horizontal, vertical, 0f).normalized;
                 bool isMoving = direction.magnitude > 0.1f;
 
                 if (isMoving)
                 {
+                    _autoAttackTarget = null;
                     player.movementSystem.Move(direction);
 
                     if (ModelTransform != null)
@@ -233,6 +287,13 @@ namespace CoreSystem.Controllers
 
         private void HandleLookDirection()
         {
+            if (_autoAttackTarget != null)
+            {
+                Vector3 directionToTarget = (_autoAttackTarget.transform.position - transform.position).normalized;
+                transform.up = directionToTarget;
+                return;
+            }
+
             if (mainCamera != null)
             {
                 Vector3 mousePos = GetMouseWorldPosition();
@@ -244,7 +305,8 @@ namespace CoreSystem.Controllers
         private Vector3 GetMouseWorldPosition()
         {
             if (mainCamera == null) return transform.position;
-            Vector3 mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 screenPos = UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero;
+            Vector3 mousePos = mainCamera.ScreenToWorldPoint(screenPos);
             mousePos.z = 0f;
             return mousePos;
         }
@@ -255,51 +317,72 @@ namespace CoreSystem.Controllers
             {
                 Vector3 mousePos = GetMouseWorldPosition();
 
-                // Selection Logic (Alpha Keys)
-                if (Input.GetKeyDown(KeyCode.Alpha1)) TryEnterAimingMode(0, mousePos);
-                if (Input.GetKeyDown(KeyCode.Alpha2)) TryEnterAimingMode(1, mousePos);
-                if (Input.GetKeyDown(KeyCode.Alpha3)) TryEnterAimingMode(2, mousePos);
-                if (Input.GetKeyDown(KeyCode.Alpha4)) TryEnterAimingMode(3, mousePos);
-                if (Input.GetKeyDown(KeyCode.Alpha5)) TryEnterAimingMode(4, mousePos);
-                if (Input.GetKeyDown(KeyCode.Alpha6)) TryEnterAimingMode(5, mousePos);
-
-                // Execution Logic (Left Click)
-                if (Input.GetMouseButtonDown(0))
+                var keyboard = UnityEngine.InputSystem.Keyboard.current;
+                if (keyboard != null)
                 {
-                    if (_selectedSkillSlot != -1)
-                    {
-                        var instance = player.skillCaster.EquippedSkills[_selectedSkillSlot];
-                        var payload = player.skillCaster.BuildPayload(instance, mousePos, true);
-                        
-                        player.skillCaster.CastSkill(_selectedSkillSlot, mousePos);
-                        SkillIndicatorManager.Instance?.StartExecution(payload);
-                        
-                        bool shouldKeepIndicator = instance.SkillData.BaseTargeting is ConeTargeting || 
-                                                 instance.SkillData.BaseTargeting is BoxTargeting || 
-                                                 instance.SkillData.BaseTargeting is LinePierceTargeting;
-
-                        _selectedSkillSlot = -1;
-                        player.skillCaster.AimedSkillSlot = -1;
-
-                        if (!shouldKeepIndicator)
-                        {
-                            SkillIndicatorManager.Instance?.HideCurrent();
-                        }
-                    }
+                    if (keyboard.digit1Key.wasPressedThisFrame) TryEnterAimingMode(0, mousePos);
+                    if (keyboard.digit2Key.wasPressedThisFrame) TryEnterAimingMode(1, mousePos);
+                    if (keyboard.digit3Key.wasPressedThisFrame) TryEnterAimingMode(2, mousePos);
+                    if (keyboard.digit4Key.wasPressedThisFrame) TryEnterAimingMode(3, mousePos);
+                    if (keyboard.digit5Key.wasPressedThisFrame) TryEnterAimingMode(4, mousePos);
+                    if (keyboard.digit6Key.wasPressedThisFrame) TryEnterAimingMode(5, mousePos);
                 }
 
-                // Cancellation Logic (Right Click)
-                if (Input.GetMouseButtonDown(1))
+                if (_inputActions != null)
                 {
-                    _selectedSkillSlot = -1;
-                    player.skillCaster.AimedSkillSlot = -1;
-                    SkillIndicatorManager.Instance?.HideCurrent();
+                    if (_inputActions.Player.Attack.triggered)
+                    {
+                        if (_selectedSkillSlot != -1)
+                        {
+                            var instance = player.skillCaster.EquippedSkills[_selectedSkillSlot];
+                            var payload = player.skillCaster.BuildPayload(instance, mousePos, true);
+                            
+                            player.skillCaster.CastSkill(_selectedSkillSlot, mousePos);
+                            SkillIndicatorManager.Instance?.StartExecution(payload);
+                            
+                            bool shouldKeepIndicator = instance.SkillData.BaseTargeting is ConeTargeting || 
+                                                     instance.SkillData.BaseTargeting is BoxTargeting || 
+                                                     instance.SkillData.BaseTargeting is LinePierceTargeting;
+
+                            _selectedSkillSlot = -1;
+                            player.skillCaster.AimedSkillSlot = -1;
+
+                            if (!shouldKeepIndicator)
+                            {
+                                SkillIndicatorManager.Instance?.HideCurrent();
+                            }
+                        }
+                        else
+                        {
+                            Collider2D col = Physics2D.OverlapPoint(mousePos);
+                            if (col != null)
+                            {
+                                IEntity target = col.GetComponentInParent<IEntity>();
+                                if (target != null && target != player && player.Faction != target.Faction)
+                                {
+                                    _autoAttackTarget = target;
+                                }
+                            }
+                            else
+                            {
+                                _autoAttackTarget = null;
+                            }
+                        }
+                    }
+
+                    if (_inputActions.UI.RightClick.triggered)
+                    {
+                        _selectedSkillSlot = -1;
+                        player.skillCaster.AimedSkillSlot = -1;
+                        SkillIndicatorManager.Instance?.HideCurrent();
+                    }
                 }
             }
         }
 
         private void TryEnterAimingMode(int slot, Vector3 mousePos)
         {
+            _autoAttackTarget = null;
             if (player.skillCaster == null) return;
             
             // Block aiming if currently casting or in cast delay
@@ -332,6 +415,27 @@ namespace CoreSystem.Controllers
         private void OnGUI()
         {
             if (player == null || player.skillCaster == null) return;
+
+            if (_isDead)
+            {
+                float width = 300f;
+                float height = 150f;
+                float x = (Screen.width - width) / 2f;
+                float y = (Screen.height - height) / 2f;
+
+                GUILayout.BeginArea(new Rect(x, y, width, height), GUI.skin.box);
+                GUILayout.Space(20);
+                GUILayout.Label("<color=red><b>YOU ARE DEAD</b></color>", new GUIStyle(GUI.skin.label) { richText = true, alignment = TextAnchor.MiddleCenter, fontSize = 20 });
+                GUILayout.Space(20);
+
+                if (GUILayout.Button("Respawn", GUILayout.Height(40)))
+                {
+                    RevivePlayer();
+                }
+
+                GUILayout.EndArea();
+                return;
+            }
 
             var caster = player.skillCaster;
 
@@ -370,6 +474,55 @@ namespace CoreSystem.Controllers
             }
 
             GUILayout.EndArea();
+        }
+
+        private void HandleAutoAttack()
+        {
+            if (_autoAttackTarget == null) return;
+
+            if (_autoAttackTarget.attributeSystem != null)
+            {
+                var hpAttr = _autoAttackTarget.attributeSystem.GetAttribute(AttributeType.HP);
+                if (hpAttr == null || hpAttr.CurrentValue <= 0)
+                {
+                    _autoAttackTarget = null;
+                    if (Anim != null) Anim.SetBool(MovingBoolParam, false);
+                    return;
+                }
+            }
+
+            float dist = Vector3.Distance(transform.position, _autoAttackTarget.transform.position);
+            float attackRange = player.AutoAttackRange;
+
+            if (dist > attackRange)
+            {
+                Vector3 direction = (_autoAttackTarget.transform.position - transform.position).normalized;
+                if (player.movementSystem != null)
+                {
+                    player.movementSystem.Move(direction);
+                }
+
+                if (ModelTransform != null)
+                {
+                    if (direction.x > 0.1f) ModelTransform.localScale = new Vector3(-1, 1, 1);
+                    else if (direction.x < -0.1f) ModelTransform.localScale = new Vector3(1, 1, 1);
+                }
+
+                if (Anim != null) Anim.SetBool(MovingBoolParam, true);
+            }
+            else
+            {
+                if (Anim != null) Anim.SetBool(MovingBoolParam, false);
+
+                Vector3 direction = (_autoAttackTarget.transform.position - transform.position).normalized;
+                transform.up = direction;
+
+                if (player.BasicAttackCooldownTimer <= 0 && player.skillCaster.CurrentState == SkillCasterState.Idle)
+                {
+                    player.BasicAttack(_autoAttackTarget);
+                    if (Anim != null) Anim.SetTrigger("Attack");
+                }
+            }
         }
     }
 }

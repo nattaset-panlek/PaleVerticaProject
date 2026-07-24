@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CoreSystem.Entity;
+using CoreSystem.Skills.Visuals;
 using UnityEngine;
 
 namespace CoreSystem.Skills.Logic
@@ -9,7 +10,7 @@ namespace CoreSystem.Skills.Logic
     /// </summary>
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class ProjectileBehaviour : MonoBehaviour
+    public class ProjectileBehaviour : MonoBehaviour, ISkillVisual
     {
         private SkillPayload payload;
         private EffectLogic damageEffect;
@@ -28,6 +29,16 @@ namespace CoreSystem.Skills.Logic
 
         private HashSet<IEntity> _alreadyHitEntities = new HashSet<IEntity>();
         private Dictionary<IEntity, float> _continuousHitTimers = new Dictionary<IEntity, float>();
+
+        public void Initialize(SkillPayload payloadData)
+        {
+            EffectLogic dmgEffect = null;
+            if (payloadData != null && payloadData.SkillEffects != null && payloadData.SkillEffects.Count > 0)
+            {
+                dmgEffect = payloadData.SkillEffects[0];
+            }
+            Initialize(payloadData, dmgEffect);
+        }
 
         public void Initialize(SkillPayload payloadData, EffectLogic effectToApply)
         {
@@ -57,7 +68,6 @@ namespace CoreSystem.Skills.Logic
             if (!isInitialized || payload == null || payload.Caster == null)
                 return;
 
-            // Ignore collision with the caster themselves
             if (other.gameObject == payload.Caster.gameObject)
                 return;
 
@@ -65,15 +75,17 @@ namespace CoreSystem.Skills.Logic
 
             if (targetEntity != null)
             {
+                if (!payload.Caster.Faction.IsHostileTo(targetEntity.Faction))
+                {
+                    return;
+                }
+
                 if (IsContinuousDamage)
                 {
-                    // For continuous damage, we start tracking them in OnTriggerStay2D instead.
-                    // But we can apply the first hit immediately.
                     TryApplyDamage(targetEntity, true);
                 }
                 else
                 {
-                    // Single-hit logic
                     if (!_alreadyHitEntities.Contains(targetEntity))
                     {
                         TryApplyDamage(targetEntity, false);
@@ -100,6 +112,10 @@ namespace CoreSystem.Skills.Logic
 
             if (targetEntity != null)
             {
+                if (!payload.Caster.Faction.IsHostileTo(targetEntity.Faction))
+                {
+                    return;
+                }
                 TryApplyDamage(targetEntity, true);
             }
         }
@@ -115,13 +131,12 @@ namespace CoreSystem.Skills.Logic
                 {
                     if (Time.time - lastHitTime < DamageTickRate)
                     {
-                        return; // Not ready for next tick yet
+                        return;
                     }
                 }
                 _continuousHitTimers[targetEntity] = Time.time;
             }
 
-            // Apply damage/effect
             if (payload.AOERadius > 0f)
             {
                 Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, payload.AOERadius);
@@ -135,7 +150,10 @@ namespace CoreSystem.Skills.Logic
                     IEntity hitEntity = col.GetComponentInParent<IEntity>();
                     if (hitEntity != null && hitEntities.Add(hitEntity))
                     {
-                        damageEffect.Apply(payload, hitEntity);
+                        if (payload.Caster.Faction.IsHostileTo(hitEntity.Faction))
+                        {
+                            damageEffect.Apply(payload, hitEntity);
+                        }
                     }
                 }
             }

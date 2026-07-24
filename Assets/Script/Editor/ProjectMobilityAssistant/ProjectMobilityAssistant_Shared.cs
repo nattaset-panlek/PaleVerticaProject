@@ -145,7 +145,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
             
             EditorGUILayout.Space(20);
             GUI.backgroundColor = new Color(1f, 0.3f, 0.3f, 0.8f);
-            if (GUILayout.Button("🗑️  Delete Entry", GUILayout.Height(28)))
+            if (GUILayout.Button("Delete Entry", GUILayout.Height(28)))
             {
                 if (EditorUtility.DisplayDialog("Delete Confirmation", "Are you sure you want to delete this entry?", "Yes", "No"))
                 {

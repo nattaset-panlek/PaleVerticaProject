@@ -31,6 +31,7 @@ namespace CoreSystem.Controllers
 
         private Camera _cam;
         private float _targetZoom;
+        private InputSystem_Actions _inputActions;
         
         // Shake States
         private float _shakeTimer;
@@ -44,6 +45,17 @@ namespace CoreSystem.Controllers
             _cam = GetComponent<Camera>();
             _targetZoom = DefaultZoom;
             if (_cam != null) _cam.orthographicSize = DefaultZoom;
+            _inputActions = new InputSystem_Actions();
+        }
+
+        private void OnEnable()
+        {
+            _inputActions?.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _inputActions?.Disable();
         }
 
         private void Start()
@@ -74,7 +86,16 @@ namespace CoreSystem.Controllers
 
         private void HandleZoomInput()
         {
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            float scroll = 0f;
+            if (_inputActions != null)
+            {
+                float rawScroll = _inputActions.UI.ScrollWheel.ReadValue<Vector2>().y;
+                if (Mathf.Abs(rawScroll) > 0.01f)
+                {
+                    scroll = Mathf.Sign(rawScroll) * 0.1f;
+                }
+            }
+
             if (Mathf.Abs(scroll) > 0.01f)
             {
                 _targetZoom = Mathf.Clamp(_targetZoom - scroll * ZoomSensitivity, MinZoom, MaxZoom);

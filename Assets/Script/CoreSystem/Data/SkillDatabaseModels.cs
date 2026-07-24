@@ -46,12 +46,20 @@ namespace CoreSystem.Data.Skills
         public List<OutputScaling> Scalings;
         public List<EffectEntry> Effects;
         
-        public string VisualPrefabName;
-        public string VisualSpawnPoint;
-        public string CastVisualPrefabName;
-        public string CastVisualSpawnPoint; // "Target" or "Caster"
+        public string VisualType;
+        public string CastVfxPrefabName;
+        public string CastVfxSpawnPoint;
+        
+        public string SkillIndicatorPrefabName;
+        public string EruptionVfxPrefabName;
+        public string ProjectilePrefabName;
+        public string ImpactVfxPrefabName;
+        public string AuraVfxPrefabName;
+        public string BeamVfxPrefabName;
 
+        public List<string> Tags;
         public List<UniqueSkillFieldData> UniqueFields;
+        public List<int> SupportSkillIDs;
     }
 
     [System.Serializable]
@@ -94,9 +102,8 @@ namespace CoreSystem.Data.Skills
         public List<int> ScalingSourceIDs;
         public float ScalingThreshold;
 
-        // Condition-based bonuses
         public int ConditionAttributeID;
-        public string ConditionComparison; // ">=", "<", etc.
+        public string ConditionComparison;
         public float ConditionThreshold;
         public string BuffIconPath;
     }
@@ -112,7 +119,7 @@ namespace CoreSystem.Data.Skills
         public UnityEngine.Vector2 BoxSize = new UnityEngine.Vector2(2f, 5f);
         public UnityEngine.Vector2 Offset = UnityEngine.Vector2.zero;
 
-        public string Alignment; // "Enemy", "Ally", "All"
+        public string Alignment;
         public bool IncludeSelf;
     }
 
@@ -121,33 +128,6 @@ namespace CoreSystem.Data.Skills
     {
         public int SkillID;
         public string ModifierName;
-        public List<ModifierConditionData> Conditions;
-        public List<ModifierEffectData> Effects;
-    }
-
-    [System.Serializable]
-    public class ModifierConditionData
-    {
-        public string Type;
-        public string RequiredElement;
-        public int RequiredSkillID;
-        public int MinSkillLevel;
-    }
-
-    [System.Serializable]
-    public class ModifierEffectData
-    {
-        public string TargetField;
-        public string Operation;
-        public float FlatValue;
-        public float PercentValue;
-        
-        public bool UsePayloadReference;
-        public string ReferencePayloadField;
-        public float PayloadMultiplier = 1f;
- 
-        public bool UseAttributeReference;
-        public string ReferenceAttribute;
-        public float AttributeMultiplier = 1f;
+        public string Description;
     }
 }

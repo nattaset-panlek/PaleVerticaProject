@@ -14,6 +14,7 @@ Shader "Custom/SkillIndicatorLine"
         _TailSize ("Tail Size (at Natural Width)", float) = 0.5
         _HeadSize ("Head Size (at Natural Width)", float) = 1.0
         _NaturalWidth ("Natural Width (Reference)", float) = 1.0
+        _WorldSize ("World Size (Internal)", Vector) = (1, 1, 0, 0)
     }
     SubShader
     {
@@ -53,6 +54,7 @@ Shader "Custom/SkillIndicatorLine"
             float _TailSize;
             float _HeadSize;
             float _NaturalWidth;
+            float4 _WorldSize;
 
             v2f vert (appdata v)
             {
@@ -60,11 +62,7 @@ Shader "Custom/SkillIndicatorLine"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.color = v.color;
                 o.uv = v.uv;
-
-                float sx = length(float3(unity_ObjectToWorld._m00, unity_ObjectToWorld._m10, unity_ObjectToWorld._m20));
-                float sy = length(float3(unity_ObjectToWorld._m01, unity_ObjectToWorld._m11, unity_ObjectToWorld._m21));
-                o.worldDims = float2(abs(v.vertex.x) * 2.0 * sx, abs(v.vertex.y) * 2.0 * sy);
-
+                o.worldDims = _WorldSize.xy;
                 return o;
             }
 

@@ -25,6 +25,7 @@ namespace CoreSystem.Skills
         public float AOERadius;
         public float CastRange;
         public int ProjectileCount;
+        public GameObject SkillIndicatorPrefab;
         
         public float VCT;
         public float FCT;
@@ -54,6 +55,7 @@ namespace CoreSystem.Skills
                 AOERadius = this.AOERadius,
                 CastRange = this.CastRange,
                 ProjectileCount = this.ProjectileCount,
+                SkillIndicatorPrefab = this.SkillIndicatorPrefab,
                 VCT = this.VCT,
                 FCT = this.FCT,
                 CastDelay = this.CastDelay,

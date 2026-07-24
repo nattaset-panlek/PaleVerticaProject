@@ -14,183 +14,206 @@ using CoreSystem.Data.Items.Model;
 
 public partial class ProjectMobilityAssistant : EditorWindow
 {
+    private static bool _showItemBasicInfo = true;
+    private static bool _showItemAttributes = true;
+    private static bool _showItemSet = true;
+    private static bool _showCostumeSprites = true;
+    private static bool _showCostumePrefabs = true;
+    private static bool _showItemVisuals = true;
+    private static bool _showItemEffects = true;
+
     private void DrawItemEditor()
     {
         DrawEditor(_itemData.Items, _itemSelectedIndex, (idx) => _itemSelectedIndex = idx, (entry) => {
-            EditorGUILayout.BeginVertical(SectionStyle);
-            GUILayout.Label("Basic Item Info", EditorStyles.boldLabel);
-            entry.ItemId = EditorGUILayout.IntField("Item ID", entry.ItemId);
-            entry.Name = EditorGUILayout.TextField("Name", entry.Name);
-            entry.Description.TH = EditorGUILayout.TextField("Description (TH)", entry.Description.TH);
-            entry.Description.EN = EditorGUILayout.TextField("Description (EN)", entry.Description.EN);
-            
-            EditorGUILayout.EndVertical();
-
-            EditorGUILayout.BeginVertical(SectionStyle);
-            GUILayout.Label("Item Attributes", EditorStyles.boldLabel);
-            
-            // Robust Enum parsing with ignoreCase
-            if (!System.Enum.TryParse(entry.ItemType, true, out ItemType type)) type = ItemType.Consumable;
-            entry.ItemType = ((ItemType)EditorGUILayout.EnumPopup("Item Type", type)).ToString();
-            
-            if (!System.Enum.TryParse(entry.Rarity, true, out ItemRarity rarity)) rarity = ItemRarity.Common;
-            entry.Rarity = ((ItemRarity)EditorGUILayout.EnumPopup("Rarity", rarity)).ToString();
-
-            // Item Set ID
-            EditorGUILayout.Space();
-            DrawSectionHeader("\uD83D\uDC8E Item Set");
-            
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Item Set");
-            string setID = string.IsNullOrEmpty(entry.SetID) ? "None" : entry.SetID;
-            if (GUILayout.Button(setID, EditorStyles.popup))
+            _showItemBasicInfo = EditorGUILayout.BeginFoldoutHeaderGroup(_showItemBasicInfo, "Basic Item Info");
+            if (_showItemBasicInfo)
             {
-                GenericMenu menu = new GenericMenu();
-                menu.AddItem(new GUIContent("None"), string.IsNullOrEmpty(entry.SetID), () => entry.SetID = "");
-                foreach (var s in _itemSetData.Sets)
-                    menu.AddItem(new GUIContent(s.SetName), entry.SetID == s.SetID, () => entry.SetID = s.SetID);
-                menu.ShowAsContext();
+                EditorGUILayout.BeginVertical(SectionStyle);
+                entry.ItemId = EditorGUILayout.IntField("Item ID", entry.ItemId);
+                entry.Name = EditorGUILayout.TextField("Name", entry.Name);
+                entry.Description.TH = EditorGUILayout.TextField("Description (TH)", entry.Description.TH);
+                entry.Description.EN = EditorGUILayout.TextField("Description (EN)", entry.Description.EN);
+                EditorGUILayout.EndVertical();
             }
-            EditorGUILayout.EndHorizontal();
+            EditorGUILayout.EndFoldoutHeaderGroup();
 
-            if (!string.IsNullOrEmpty(entry.SetID))
+            _showItemAttributes = EditorGUILayout.BeginFoldoutHeaderGroup(_showItemAttributes, "Item Attributes");
+            if (_showItemAttributes)
             {
-                var set = _itemSetData.Sets.FirstOrDefault(s => s.SetID == entry.SetID);
-                if (set == null)
+                EditorGUILayout.BeginVertical(SectionStyle);
+                
+                if (!System.Enum.TryParse(entry.ItemType, true, out ItemType type)) type = ItemType.Consumable;
+                entry.ItemType = ((ItemType)EditorGUILayout.EnumPopup("Item Type", type)).ToString();
+                
+                if (!System.Enum.TryParse(entry.Rarity, true, out ItemRarity rarity)) rarity = ItemRarity.Common;
+                entry.Rarity = ((ItemRarity)EditorGUILayout.EnumPopup("Rarity", rarity)).ToString();
+
+                EditorGUILayout.Space();
+                _showItemSet = EditorGUILayout.BeginFoldoutHeaderGroup(_showItemSet, "Item Set");
+                if (_showItemSet)
                 {
-                    EditorGUILayout.HelpBox($"Set ID '{entry.SetID}' not found in Item Sets.", MessageType.Warning);
-                }
-                else
-                {
-                    EditorGUILayout.LabelField("Set Name:", set.SetName);
-                    if (GUILayout.Button("Go to Item Set Editor")) 
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.PrefixLabel("Item Set");
+                    string setID = string.IsNullOrEmpty(entry.SetID) ? "None" : entry.SetID;
+                    if (GUILayout.Button(setID, EditorStyles.popup))
                     {
-                        _currentTab = ToolTab.Sets;
-                        _itemSetSelectedIndex = _itemSetData.Sets.IndexOf(set);
+                        GenericMenu menu = new GenericMenu();
+                        menu.AddItem(new GUIContent("None"), string.IsNullOrEmpty(entry.SetID), () => entry.SetID = "");
+                        foreach (var s in _itemSetData.Sets)
+                            menu.AddItem(new GUIContent(s.SetName), entry.SetID == s.SetID, () => entry.SetID = s.SetID);
+                        menu.ShowAsContext();
+                    }
+                    EditorGUILayout.EndHorizontal();
+
+                    if (!string.IsNullOrEmpty(entry.SetID))
+                    {
+                        var set = _itemSetData.Sets.FirstOrDefault(s => s.SetID == entry.SetID);
+                        if (set == null)
+                        {
+                            EditorGUILayout.HelpBox($"Set ID '{entry.SetID}' not found in Item Sets.", MessageType.Warning);
+                        }
+                        else
+                        {
+                            EditorGUILayout.LabelField("Set Name:", set.SetName);
+                            if (GUILayout.Button("Go to Item Set Editor")) 
+                            {
+                                _currentTab = ToolTab.Sets;
+                                _itemSetSelectedIndex = _itemSetData.Sets.IndexOf(set);
+                            }
+                        }
                     }
                 }
-            }
+                EditorGUILayout.EndFoldoutHeaderGroup();
 
-            if (entry.ItemType == "Equipment")
-            {
-                // Slot Dropdown
-                if (!System.Enum.TryParse(entry.EquipmentSlot, true, out EquipmentSlot slot)) slot = EquipmentSlot.Armor;
-                entry.EquipmentSlot = ((EquipmentSlot)EditorGUILayout.EnumPopup("Equipment Slot", slot)).ToString();
-                
-                entry.MaxStack = EditorGUILayout.IntField("Max Stack", entry.MaxStack);
-                entry.BasePhysical = EditorGUILayout.FloatField("Base Phys", entry.BasePhysical);
-                entry.BaseMagic    = EditorGUILayout.FloatField("Base Magic", entry.BaseMagic);
-                entry.MaxSockets   = EditorGUILayout.IntField("Max Sockets", entry.MaxSockets);
-            }
-            else if (entry.ItemType == "Costume")
-            {
-                if (System.Enum.TryParse(entry.CostumeSlot, out CoreSystem.CostumeSlot cSlot))
-                     entry.CostumeSlot = ((CoreSystem.CostumeSlot)EditorGUILayout.EnumPopup("Costume Slot", cSlot)).ToString();
-                else
-                     entry.CostumeSlot = EditorGUILayout.TextField("Costume Slot (Raw)", entry.CostumeSlot);
-
-                entry.LayerPriority = EditorGUILayout.IntField("Layer Priority", entry.LayerPriority);
-                
-                // ── Costume Sprite Layers (Addressable Keys) ──────────────────────
-                DrawSectionHeader("\uD83C\uD0AD Costume Sprite Layers  \u00B7  Addressables");
-                EditorGUILayout.HelpBox("ลาก Sprite ที่ต้องการ (ต้องอยู่ใน Assets/Addressable/Sprite/Model) มาวางในช่องด้านล่าง ระบบจะสร้าง Key ให้ถูกต้องอัตโนมัติ", MessageType.Info);
-                if (entry.VisualSpritePaths == null) entry.VisualSpritePaths = new List<string>();
-                for (int i = 0; i < entry.VisualSpritePaths.Count; i++)
+                if (entry.ItemType == "Equipment")
                 {
-                    EditorGUILayout.BeginVertical(SectionStyle);
+                    if (!System.Enum.TryParse(entry.EquipmentSlot, true, out EquipmentSlot slot)) slot = EquipmentSlot.Armor;
+                    entry.EquipmentSlot = ((EquipmentSlot)EditorGUILayout.EnumPopup("Equipment Slot", slot)).ToString();
                     
-                    EditorGUILayout.BeginHorizontal();
-                    Sprite currentSpr = ResolveCostumeEditorSprite(entry.VisualSpritePaths[i]);
-                    Sprite newSpr = (Sprite)EditorGUILayout.ObjectField($"Layer {i} Sprite", currentSpr, typeof(Sprite), false);
-                    if (newSpr != currentSpr)
-                    {
-                        string newKey = GetCostumeSpriteKey(newSpr);
-                        if (!string.IsNullOrEmpty(newKey)) 
-                            entry.VisualSpritePaths[i] = newKey;
-                    }
-                    if (GUILayout.Button("X", GUILayout.Width(25), GUILayout.Height(20))) { entry.VisualSpritePaths.RemoveAt(i); break; }
-                    EditorGUILayout.EndHorizontal();
-
-                    EditorGUILayout.BeginHorizontal();
-                    GUILayout.Label("Raw Key", GUILayout.Width(60));
-                    entry.VisualSpritePaths[i] = EditorGUILayout.TextField(entry.VisualSpritePaths[i]);
-                    EditorGUILayout.EndHorizontal();
-
-                    EditorGUILayout.EndVertical();
+                    entry.MaxStack = EditorGUILayout.IntField("Max Stack", entry.MaxStack);
+                    entry.BasePhysical = EditorGUILayout.FloatField("Base Phys", entry.BasePhysical);
+                    entry.BaseMagic    = EditorGUILayout.FloatField("Base Magic", entry.BaseMagic);
+                    entry.MaxSockets   = EditorGUILayout.IntField("Max Sockets", entry.MaxSockets);
                 }
-                if (GUILayout.Button("\uFF0B Add Sprite Layer")) entry.VisualSpritePaths.Add("");
-
-                // ── Costume Visual Prefabs (Addressable Keys) ──────────────────────
-                DrawSectionHeader("\u2728 Costume Visual Prefabs  \u00B7  Addressables");
-                EditorGUILayout.HelpBox("ใส่ Addressable Key ของ Prefab (เช่น: \"Costume/Wing_A_Prefab\")", MessageType.Info);
-                if (entry.VisualPrefabEntries == null) entry.VisualPrefabEntries = new List<CostumePrefabEntry>();
-                for (int i = 0; i < entry.VisualPrefabEntries.Count; i++)
+                else if (entry.ItemType == "Costume")
                 {
-                    var pEntry = entry.VisualPrefabEntries[i];
-                    EditorGUILayout.BeginVertical(SectionStyle);
-                    
-                    EditorGUILayout.BeginHorizontal();
-                    GUILayout.Label($"Prefab {i}", GUILayout.Width(60));
-                    pEntry.PrefabKey = EditorGUILayout.TextField(pEntry.PrefabKey ?? "");
-                    if (GUILayout.Button("X", GUILayout.Width(20))) { entry.VisualPrefabEntries.RemoveAt(i); break; }
-                    EditorGUILayout.EndHorizontal();
-
-                    if (System.Enum.TryParse(pEntry.TargetNode, out CoreSystem.CostumeSlot node))
-                         pEntry.TargetNode = ((CoreSystem.CostumeSlot)EditorGUILayout.EnumPopup("Target Node", node)).ToString();
+                    if (System.Enum.TryParse(entry.CostumeSlot, out CoreSystem.CostumeSlot cSlot))
+                         entry.CostumeSlot = ((CoreSystem.CostumeSlot)EditorGUILayout.EnumPopup("Costume Slot", cSlot)).ToString();
                     else
-                         pEntry.TargetNode = EditorGUILayout.TextField("Node (Raw)", pEntry.TargetNode);
+                         entry.CostumeSlot = EditorGUILayout.TextField("Costume Slot (Raw)", entry.CostumeSlot);
 
-                    pEntry.Offset   = EditorGUILayout.Vector3Field("Offset",   pEntry.Offset);
-                    pEntry.Rotation = EditorGUILayout.Vector3Field("Rotation", pEntry.Rotation);
-                    pEntry.Scale    = EditorGUILayout.Vector3Field("Scale",    pEntry.Scale == Vector3.zero ? Vector3.one : pEntry.Scale);
+                    entry.LayerPriority = EditorGUILayout.IntField("Layer Priority", entry.LayerPriority);
+                    
+                    _showCostumeSprites = EditorGUILayout.BeginFoldoutHeaderGroup(_showCostumeSprites, "Costume Sprite Layers");
+                    if (_showCostumeSprites)
+                    {
+                        EditorGUILayout.HelpBox("ลาก Sprite ที่ต้องการ (ต้องอยู่ใน Assets/Addressable/Sprite/Model) มาวางในช่องด้านล่าง ระบบจะสร้าง Key ให้ถูกต้องอัตโนมัติ", MessageType.Info);
+                        if (entry.VisualSpritePaths == null) entry.VisualSpritePaths = new List<string>();
+                        for (int i = 0; i < entry.VisualSpritePaths.Count; i++)
+                        {
+                            EditorGUILayout.BeginVertical(SectionStyle);
+                            
+                            EditorGUILayout.BeginHorizontal();
+                            Sprite currentSpr = ResolveCostumeEditorSprite(entry.VisualSpritePaths[i]);
+                            Sprite newSpr = (Sprite)EditorGUILayout.ObjectField(new GUIContent($"Layer {i} Sprite", "Sprite asset used for costume model layers, must be located inside the Addressables path."), currentSpr, typeof(Sprite), false);
+                            if (newSpr != currentSpr)
+                            {
+                                string newKey = GetCostumeSpriteKey(newSpr);
+                                if (!string.IsNullOrEmpty(newKey)) 
+                                    entry.VisualSpritePaths[i] = newKey;
+                            }
+                            if (GUILayout.Button("X", GUILayout.Width(25), GUILayout.Height(20))) { entry.VisualSpritePaths.RemoveAt(i); break; }
+                            EditorGUILayout.EndHorizontal();
 
-                    EditorGUILayout.EndVertical();
+                            EditorGUILayout.BeginHorizontal();
+                            GUILayout.Label("Raw Key", GUILayout.Width(60));
+                            entry.VisualSpritePaths[i] = EditorGUILayout.TextField(entry.VisualSpritePaths[i]);
+                            EditorGUILayout.EndHorizontal();
+
+                            EditorGUILayout.EndVertical();
+                        }
+                        if (GUILayout.Button("Add Sprite Layer")) entry.VisualSpritePaths.Add("");
+                    }
+                    EditorGUILayout.EndFoldoutHeaderGroup();
+
+                    _showCostumePrefabs = EditorGUILayout.BeginFoldoutHeaderGroup(_showCostumePrefabs, "Costume Visual Prefabs");
+                    if (_showCostumePrefabs)
+                    {
+                        EditorGUILayout.HelpBox("ใส่ Addressable Key ของ Prefab (เช่น: \"Costume/Wing_A_Prefab\")", MessageType.Info);
+                        if (entry.VisualPrefabEntries == null) entry.VisualPrefabEntries = new List<CostumePrefabEntry>();
+                        for (int i = 0; i < entry.VisualPrefabEntries.Count; i++)
+                        {
+                            var pEntry = entry.VisualPrefabEntries[i];
+                            EditorGUILayout.BeginVertical(SectionStyle);
+                            
+                            EditorGUILayout.BeginHorizontal();
+                            GUILayout.Label($"Prefab {i}", GUILayout.Width(60));
+                            pEntry.PrefabKey = EditorGUILayout.TextField(pEntry.PrefabKey ?? "");
+                            if (GUILayout.Button("X", GUILayout.Width(20))) { entry.VisualPrefabEntries.RemoveAt(i); break; }
+                            EditorGUILayout.EndHorizontal();
+
+                            if (System.Enum.TryParse(pEntry.TargetNode, out CoreSystem.CostumeSlot node))
+                                 pEntry.TargetNode = ((CoreSystem.CostumeSlot)EditorGUILayout.EnumPopup("Target Node", node)).ToString();
+                            else
+                                 pEntry.TargetNode = EditorGUILayout.TextField("Node (Raw)", pEntry.TargetNode);
+
+                            pEntry.Offset   = EditorGUILayout.Vector3Field("Offset",   pEntry.Offset);
+                            pEntry.Rotation = EditorGUILayout.Vector3Field("Rotation", pEntry.Rotation);
+                            pEntry.Scale    = EditorGUILayout.Vector3Field("Scale",    pEntry.Scale == Vector3.zero ? Vector3.one : pEntry.Scale);
+
+                            EditorGUILayout.EndVertical();
+                        }
+                        if (GUILayout.Button("Add Visual Prefab")) entry.VisualPrefabEntries.Add(new CostumePrefabEntry { TargetNode = "Head", Scale = Vector3.one });
+                    }
+                    EditorGUILayout.EndFoldoutHeaderGroup();
                 }
-                if (GUILayout.Button("\uFF0B Add Visual Prefab")) entry.VisualPrefabEntries.Add(new CostumePrefabEntry { TargetNode = "Head", Scale = Vector3.one });
+                
+                EditorGUILayout.EndVertical();
             }
-            
-            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndFoldoutHeaderGroup();
 
-            EditorGUILayout.BeginVertical(SectionStyle);
-            GUILayout.Label("Visuals", EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox("ลาก Sprite จากโฟลเดอร์ Assets/Addressable/Sprite/Item แล้วระบบจะดึง Addressable Key อัตโนมัติ", MessageType.Info);
-
-            EditorGUILayout.BeginHorizontal();
-            Sprite currentIcon = ResolveEditorSprite(entry.IconPath);
-            Sprite newIcon = (Sprite)EditorGUILayout.ObjectField("Item Icon", currentIcon, typeof(Sprite), false);
-            
-            if (newIcon != currentIcon)
+            _showItemVisuals = EditorGUILayout.BeginFoldoutHeaderGroup(_showItemVisuals, "Visuals");
+            if (_showItemVisuals)
             {
-                entry.IconPath = GetAddressableKey(newIcon);
-            }
-            EditorGUILayout.EndHorizontal();
+                EditorGUILayout.BeginVertical(SectionStyle);
+                EditorGUILayout.HelpBox("ลาก Sprite จากโฟลเดอร์ Assets/Addressable/Sprite/Item แล้วระบบจะดึง Addressable Key อัตโนมัติ", MessageType.Info);
 
-            entry.IconPath = EditorGUILayout.TextField("Addressable Key", entry.IconPath ?? "");
-
-            // Preview
-            Sprite previewSprite = ResolveEditorSprite(entry.IconPath);
-            if (previewSprite != null)
-            {
-                Texture2D preview = AssetPreview.GetAssetPreview(previewSprite) ?? previewSprite.texture;
-                if (preview != null)
+                EditorGUILayout.BeginHorizontal();
+                Sprite currentIcon = ResolveEditorSprite(entry.IconPath);
+                Sprite newIcon = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Item Icon", "Sprite representing the item in the UI/Inventory, loaded from Addressables."), currentIcon, typeof(Sprite), false);
+                
+                if (newIcon != currentIcon)
                 {
-                    EditorGUILayout.Space(5);
-                    Rect r = EditorGUILayout.GetControlRect(false, 64);
-                    r.width = 64;
-                    GUI.DrawTexture(r, preview, ScaleMode.ScaleToFit);
+                    entry.IconPath = GetAddressableKey(newIcon);
                 }
-            }
-            else if (!string.IsNullOrEmpty(entry.IconPath))
-            {
-                EditorGUILayout.HelpBox($"Key '{entry.IconPath}' ไม่พบใน Addressables\nกรุณา Register Asset ใน Addressables Groups ก่อน", MessageType.Warning);
-            }
-            EditorGUILayout.EndVertical();
+                EditorGUILayout.EndHorizontal();
 
-            // ── Effects ─────────────────────────────────────────────────────────
+                entry.IconPath = EditorGUILayout.TextField("Addressable Key", entry.IconPath ?? "");
+
+                Sprite previewSprite = ResolveEditorSprite(entry.IconPath);
+                if (previewSprite != null)
+                {
+                    Texture2D preview = AssetPreview.GetAssetPreview(previewSprite) ?? previewSprite.texture;
+                    if (preview != null)
+                    {
+                        EditorGUILayout.Space(5);
+                        Rect r = EditorGUILayout.GetControlRect(false, 64);
+                        r.width = 64;
+                        GUI.DrawTexture(r, preview, ScaleMode.ScaleToFit);
+                    }
+                }
+                else if (!string.IsNullOrEmpty(entry.IconPath))
+                {
+                    EditorGUILayout.HelpBox($"Key '{entry.IconPath}' ไม่พบใน Addressables\nกรุณา Register Asset ใน Addressables Groups ก่อน", MessageType.Warning);
+                }
+                EditorGUILayout.EndVertical();
+            }
+            EditorGUILayout.EndFoldoutHeaderGroup();
+
             DrawEffectSection(entry.Effects ?? (entry.Effects = new List<EffectEntry>()), false);
         }, 
         (entry) => {
-            string effectLabel = (entry.Effects != null && entry.Effects.Count > 0) ? " ⚡" : "";
+            string effectLabel = (entry.Effects != null && entry.Effects.Count > 0) ? " (has effects)" : "";
             return $"[{entry.ItemId}] {entry.Name}{effectLabel}";
         }, 
         () => {
@@ -212,7 +235,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
         () => {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Filter by Type:", GUILayout.Width(100));
-            _showOnlyWithEffects = EditorGUILayout.ToggleLeft("Show Only with Effects (⚡)", _showOnlyWithEffects);
+            _showOnlyWithEffects = EditorGUILayout.ToggleLeft("Show Only with Effects", _showOnlyWithEffects);
             EditorGUILayout.EndHorizontal();
             
             _itemTypeFilterIndex = GUILayout.SelectionGrid(_itemTypeFilterIndex, _tabNamesForItems, 4, EditorStyles.miniButton); 
@@ -222,68 +245,74 @@ public partial class ProjectMobilityAssistant : EditorWindow
 
     private void DrawEffectSection(List<EffectEntry> effects, bool isSkill)
     {
-        DrawSectionHeader("\u26A1  Effects");
-        EditorGUILayout.BeginHorizontal();
-        GUILayout.FlexibleSpace();
-        _useManualAttributeInput = EditorGUILayout.ToggleLeft("Manual ID Input", _useManualAttributeInput, GUILayout.Width(120));
-        EditorGUILayout.EndHorizontal();
-
-        if (effects == null) return;
-
-        for (int i = 0; i < effects.Count; i++)
+        _showItemEffects = EditorGUILayout.BeginFoldoutHeaderGroup(_showItemEffects, "Effects");
+        if (_showItemEffects)
         {
-            EditorGUILayout.BeginVertical(SectionStyle);
-            var effect = effects[i];
-            
             EditorGUILayout.BeginHorizontal();
-            
-            string[] effectTypes;
-            if (isSkill)
-            {
-                effectTypes = new string[] { 
-                    "DamageEffect",
-                    "HealEffect",
-                    "ApplyBuffEffect", 
-                    "ApplyTemporaryBuffEffect", 
-                    "MovementEffectLogic",
-                    "SummonObjectEffect"
-                };
-            }
-            else
-            {
-                effectTypes = new string[] { 
-                    "AttributeBonusEffect",
-                    "ScalingBonusEffect",
-                    "SkillUnlockEffect",
-                    "AutoCastEffect",
-                    "BonusCondition",
-                    "RefineBonusEffect"
-                };
-            }
-
-            int typeIdx = System.Array.IndexOf(effectTypes, effect.EffectType);
-            if (typeIdx == -1) typeIdx = effectTypes.Length - 1; 
-            effect.EffectType = effectTypes[EditorGUILayout.Popup(typeIdx, effectTypes, GUILayout.Width(180))];
-            
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button("X", GUILayout.Width(20))) { effects.RemoveAt(i); break; }
+            _useManualAttributeInput = EditorGUILayout.ToggleLeft("Manual ID Input", _useManualAttributeInput, GUILayout.Width(120));
             EditorGUILayout.EndHorizontal();
 
-            // ─── Context Sensitive Fields ───
-            if (isSkill)
+            if (effects != null)
             {
-                DrawSkillEffectFields(effect);
-            }
-            else
-            {
-                DrawItemEffectFields(effect);
-            }
+                for (int i = 0; i < effects.Count; i++)
+                {
+                    EditorGUILayout.BeginVertical(SectionStyle);
+                    var effect = effects[i];
+                    
+                    EditorGUILayout.BeginHorizontal();
+                    
+                    string[] effectTypes;
+                    if (isSkill)
+                    {
+                        effectTypes = new string[] { 
+                            "DamageEffect",
+                            "HealEffect",
+                            "ApplyBuffEffect", 
+                            "ApplyTemporaryBuffEffect", 
+                            "MovementEffectLogic",
+                            "SummonObjectEffect"
+                        };
+                    }
+                    else
+                    {
+                        effectTypes = new string[] { 
+                            "AttributeBonusEffect",
+                            "ScalingBonusEffect",
+                            "SkillUnlockEffect",
+                            "AutoCastEffect",
+                            "BonusCondition",
+                            "RefineBonusEffect",
+                            "UniquePassiveEffect"
+                        };
+                    }
 
-            EditorGUILayout.EndVertical();
+                    int typeIdx = System.Array.IndexOf(effectTypes, effect.EffectType);
+                    if (typeIdx == -1) typeIdx = effectTypes.Length - 1; 
+                    effect.EffectType = effectTypes[EditorGUILayout.Popup(typeIdx, effectTypes, GUILayout.Width(180))];
+                    
+                    GUILayout.FlexibleSpace();
+                    if (GUILayout.Button("X", GUILayout.Width(20))) { effects.RemoveAt(i); break; }
+                    EditorGUILayout.EndHorizontal();
+
+                    // ─── Context Sensitive Fields ───
+                    if (isSkill)
+                    {
+                        DrawSkillEffectFields(effect);
+                    }
+                    else
+                    {
+                        DrawItemEffectFields(effect);
+                    }
+
+                    EditorGUILayout.EndVertical();
+                }
+            }
+            
+            string defaultType = isSkill ? "DamageEffect" : "AttributeBonusEffect";
+            if (GUILayout.Button("Add Effect")) effects.Add(new EffectEntry { EffectType = defaultType });
         }
-        
-        string defaultType = isSkill ? "DamageEffect" : "AttributeBonusEffect";
-        if (GUILayout.Button("\uFF0B Add Effect")) effects.Add(new EffectEntry { EffectType = defaultType });
+        EditorGUILayout.EndFoldoutHeaderGroup();
     }
 
     private void DrawItemEffectFields(EffectEntry effect)
@@ -387,6 +416,25 @@ public partial class ProjectMobilityAssistant : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             effect.Value = EditorGUILayout.FloatField("Bonus Value", effect.Value);
+        }
+        else if (effect.EffectType == "UniquePassiveEffect")
+        {
+            DrawSectionHeader("Unique Passive");
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.PrefixLabel("Unique Passive ID");
+            string currentPassive = string.IsNullOrEmpty(effect.Category) ? "None" : effect.Category;
+            if (GUILayout.Button(currentPassive, EditorStyles.popup))
+            {
+                GenericMenu menu = new GenericMenu();
+                menu.AddItem(new GUIContent("None"), string.IsNullOrEmpty(effect.Category), () => effect.Category = "");
+                foreach (var b in _uniquePassiveData.UniquePassives)
+                {
+                    string bid = b.Id;
+                    menu.AddItem(new GUIContent(b.Name), effect.Category == bid, () => effect.Category = bid);
+                }
+                menu.ShowAsContext();
+            }
+            EditorGUILayout.EndHorizontal();
         }
     }
 

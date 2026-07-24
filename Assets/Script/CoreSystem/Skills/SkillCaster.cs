@@ -22,7 +22,21 @@ namespace CoreSystem.Skills
                 return;
             }
 
-            EquippedSkills[slotIndex] = new SkillInstance(skillData);
+            var grantedInstance = GrantedSkills.Find(s => s.SkillData != null && s.SkillData.Id == skillData.Id);
+            if (grantedInstance != null)
+            {
+                EquippedSkills[slotIndex] = grantedInstance;
+            }
+            else
+            {
+                EquippedSkills[slotIndex] = new SkillInstance(skillData);
+            }
+        }
+
+        public void EquipSkill(SkillInstance skillInstance, int slotIndex)
+        {
+            if (slotIndex < 0 || slotIndex >= EquippedSkills.Count) return;
+            EquippedSkills[slotIndex] = skillInstance;
         }
 
         public List<SkillInstance> GrantedSkills = new List<SkillInstance>();
@@ -62,10 +76,69 @@ namespace CoreSystem.Skills
         public void Initialize(Character owner)
         {
             this.character = owner;
+
+            if (EquippedSkills == null)
+            {
+                EquippedSkills = new List<SkillInstance>();
+            }
+            while (EquippedSkills.Count < 6)
+            {
+                EquippedSkills.Add(null);
+            }
+
+            if (character != null && character.DefaultSkillIds != null)
+            {
+                for (int i = 0; i < character.DefaultSkillIds.Count; i++)
+                {
+                    int skillId = character.DefaultSkillIds[i];
+                    GrantSkill(skillId);
+
+                    if (i < EquippedSkills.Count && EquippedSkills[i] == null)
+                    {
+                        var grantedInstance = GrantedSkills.Find(s => s.SkillData != null && s.SkillData.Id == skillId);
+                        if (grantedInstance != null)
+                        {
+                            EquippedSkills[i] = grantedInstance;
+                        }
+                    }
+                }
+            }
         }
 
         public void Tick(float dt)
         {
+            if (character != null && character.IsDead)
+            {
+                InterruptCast();
+                for (int i = 0; i < EquippedSkills.Count; i++)
+                {
+                    var instance = EquippedSkills[i];
+                    if (instance != null && instance.IsToggledOn)
+                    {
+                        instance.IsToggledOn = false;
+                        if (instance.ActiveVisual != null)
+                        {
+                            GameObject.Destroy(instance.ActiveVisual);
+                            instance.ActiveVisual = null;
+                        }
+                    }
+                }
+                for (int i = 0; i < GrantedSkills.Count; i++)
+                {
+                    var instance = GrantedSkills[i];
+                    if (instance != null && instance.IsToggledOn)
+                    {
+                        instance.IsToggledOn = false;
+                        if (instance.ActiveVisual != null)
+                        {
+                            GameObject.Destroy(instance.ActiveVisual);
+                            instance.ActiveVisual = null;
+                        }
+                    }
+                }
+                return;
+            }
+
             for (int i = 0; i < EquippedSkills.Count; i++)
             {
                 if (EquippedSkills[i] != null)
@@ -109,12 +182,33 @@ namespace CoreSystem.Skills
 
                         if (character != null && character.attributeSystem != null)
                         {
-                            float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                            if (currentMp < payload.ManaCost)
+                            float manaCost = payload.ManaCost;
+                            float hpCost = 0f;
+                            bool isHpCost = false;
+                            if (character.UniquePassives != null)
                             {
-                                instance.IsToggledOn = false;
-                                OnCastInterrupted?.Invoke();
-                                continue;
+                                character.UniquePassives.ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
+                            }
+
+                            if (isHpCost)
+                            {
+                                float currentHp = character.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
+                                if (currentHp < hpCost)
+                                {
+                                    instance.IsToggledOn = false;
+                                    OnCastInterrupted?.Invoke();
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
+                                if (currentMp < manaCost)
+                                {
+                                    instance.IsToggledOn = false;
+                                    OnCastInterrupted?.Invoke();
+                                    continue;
+                                }
                             }
                         }
 
@@ -137,6 +231,11 @@ namespace CoreSystem.Skills
             currentCastTimer += dt;
             OnCastProgress?.Invoke(currentCastTimer, currentCastTimeTotal);
 
+            if (currentCastTimeTotal > 0f)
+            {
+                SkillIndicatorManager.Instance?.UpdateCastIndicatorProgress(currentCastTimer / currentCastTimeTotal);
+            }
+
             if (currentCastTimer >= currentCastTimeTotal)
             {
                 ExecuteSkill(activeSkillInstance);
@@ -145,6 +244,7 @@ namespace CoreSystem.Skills
 
         public void CastSkill(int slotIndex, Vector3 targetPos = default)
         {
+            if (character != null && character.IsDead) return;
             if (CurrentState != SkillCasterState.Idle) return;
             if (slotIndex < 0 || slotIndex >= EquippedSkills.Count) return;
 
@@ -158,8 +258,24 @@ namespace CoreSystem.Skills
                     SkillPayload payload = BuildPayload(instance, targetPos, targetPos != default);
                     if (character != null && character.attributeSystem != null)
                     {
-                        float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                        if (currentMp < payload.ManaCost) return;
+                        float manaCost = payload.ManaCost;
+                        float hpCost = 0f;
+                        bool isHpCost = false;
+                        if (character.UniquePassives != null)
+                        {
+                            character.UniquePassives.ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
+                        }
+
+                        if (isHpCost)
+                        {
+                            float currentHp = character.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
+                            if (currentHp < hpCost) return;
+                        }
+                        else
+                        {
+                            float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
+                            if (currentMp < manaCost) return;
+                        }
                     }
 
                     instance.IsToggledOn = true;
@@ -187,6 +303,7 @@ namespace CoreSystem.Skills
 
         public void CastSkill(SkillInstance instance, Vector3 targetPos = default, bool isTargetSet = false)
         {
+            if (character != null && character.IsDead) return;
             if (CurrentState != SkillCasterState.Idle) return;
             if (instance == null || instance.SkillData == null) return;
             InitiateCastSequence(instance, targetPos, isTargetSet);
@@ -194,6 +311,7 @@ namespace CoreSystem.Skills
 
         public void CastSkill(SkillInstance instance, SkillPayload payload)
         {
+            if (character != null && character.IsDead) return;
             if (CurrentState != SkillCasterState.Idle) return;
             if (instance == null || payload == null) return;
             InitiateCastSequence(instance, payload);
@@ -201,6 +319,7 @@ namespace CoreSystem.Skills
 
         public void CastSkillDirectly(ActiveSkill skillData, Vector3 targetPos = default, bool isTargetSet = false)
         {
+            if (character != null && character.IsDead) return;
             if (skillData == null) return;
             SkillInstance instance = GrantedSkills.Find(s => s.SkillData == skillData) ?? new SkillInstance(skillData);
             if (CurrentState != SkillCasterState.Idle) return;
@@ -258,6 +377,7 @@ namespace CoreSystem.Skills
                     ? instance.CalculateAOERadiusModified(this.character?.attributeSystem, tlt.CastRange) 
                     : 0,
                 ProjectileCount = instance.SkillData != null ? instance.SkillData.BaseProjectileCount : 0,
+                SkillIndicatorPrefab = instance.SkillData != null ? instance.SkillData.SkillIndicatorPrefab : null,
                 
                 VCT = instance.SkillData != null ? instance.SkillData.BaseVCT : 0,
                 FCT = instance.SkillData != null ? instance.SkillData.BaseFCT : 0,
@@ -313,11 +433,31 @@ namespace CoreSystem.Skills
         {
             if (character != null && character.attributeSystem != null)
             {
-                float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                if (currentMp < payload.ManaCost) 
+                float manaCost = payload.ManaCost;
+                float hpCost = 0f;
+                bool isHpCost = false;
+                if (character.UniquePassives != null)
                 {
-                    Debug.LogWarning($"<color=red>Cast Failed:</color> Not enough MP for {instance.SkillData.Name}! (Need {payload.ManaCost}, Have {currentMp})");
-                    return;
+                    character.UniquePassives.ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
+                }
+
+                if (isHpCost)
+                {
+                    float currentHp = character.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
+                    if (currentHp < hpCost)
+                    {
+                        Debug.LogWarning($"Cast Failed: Not enough HP for {instance.SkillData.Name}! (Need {hpCost}, Have {currentHp})");
+                        return;
+                    }
+                }
+                else
+                {
+                    float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
+                    if (currentMp < manaCost) 
+                    {
+                        Debug.LogWarning($"Cast Failed: Not enough MP for {instance.SkillData.Name}! (Need {manaCost}, Have {currentMp})");
+                        return;
+                    }
                 }
             }
 
@@ -334,17 +474,18 @@ namespace CoreSystem.Skills
 
             OnCastInitiated?.Invoke(instance.SkillData.Name, currentCastTimeTotal);
 
-            // Spawn Cast Visuals immediately if provided
-            if (instance.SkillData.CastVisualPrefab != null)
+            SkillIndicatorManager.Instance?.StartCastIndicator(payload);
+
+            if (instance.SkillData.CastVfxPrefab != null)
             {
                 Vector3 spawnPos = payload.TargetPosition;
                 Transform parent = null;
 
-                if (instance.SkillData.CastSpawnPoint == VisualAppearance.CasterPosition)
+                if (instance.SkillData.CastVfxSpawnPoint == VisualAppearance.CasterPosition)
                 {
                     spawnPos = character.transform.position;
                 }
-                else if (instance.SkillData.CastSpawnPoint == VisualAppearance.FollowCaster)
+                else if (instance.SkillData.CastVfxSpawnPoint == VisualAppearance.FollowCaster)
                 {
                     spawnPos = character.transform.position;
                     parent = character.transform;
@@ -354,11 +495,20 @@ namespace CoreSystem.Skills
                     spawnPos = payload.OriginPosition;
                 }
 
-                GameObject castVfx = GameObject.Instantiate(instance.SkillData.CastVisualPrefab, spawnPos, Quaternion.identity, parent);
-                SkillVisualEffect sve = castVfx.GetComponent<SkillVisualEffect>();
-                if (sve != null)
+                GameObject castVfx = GameObject.Instantiate(instance.SkillData.CastVfxPrefab, spawnPos, Quaternion.identity, parent);
+                
+                var visual = castVfx.GetComponent<ISkillVisual>();
+                if (visual != null)
                 {
-                    sve.Initialize(payload);
+                    visual.Initialize(payload);
+                }
+                else
+                {
+                    var visuals = castVfx.GetComponentsInChildren<ISkillVisual>();
+                    foreach (var v in visuals)
+                    {
+                        v.Initialize(payload);
+                    }
                 }
             }
 
@@ -378,6 +528,7 @@ namespace CoreSystem.Skills
             {
                 CurrentState = SkillCasterState.Idle;
                 activeSkillInstance = null;
+                SkillIndicatorManager.Instance?.StopCastIndicator();
                 OnCastInterrupted?.Invoke();
             }
         }
@@ -385,6 +536,12 @@ namespace CoreSystem.Skills
         private void ExecuteSkill(SkillInstance instance)
         {
             SkillPayload payload = activePayload ?? BuildPayload(instance, activeTargetPosition, activeIsTargetSet, activeIsPositionLocked);
+            
+            if (payload != null && character != null)
+            {
+                payload.OriginPosition = character.transform.position;
+            }
+
             instance.StartCooldown(payload.Cooldown);
 
             if (payload.CastDelay > 0f)
@@ -398,6 +555,7 @@ namespace CoreSystem.Skills
             }
 
             OnCastExecuted?.Invoke(instance.SkillData.Name);
+            SkillIndicatorManager.Instance?.StopCastIndicator();
             ExecutePipeline(instance, payload);
             activeSkillInstance = null;
             activePayload = null;
@@ -407,19 +565,124 @@ namespace CoreSystem.Skills
         {
             if (payload == null) payload = BuildPayload(instance);
 
-            // Universal mana consumption
-            if (this.character != null && this.character.attributeSystem != null && payload.ManaCost > 0f)
+            if (this.character != null && this.character.attributeSystem != null)
             {
-                var mpAttr = this.character.attributeSystem.GetAttribute(AttributeType.MP);
-                float newMp = Mathf.Max(0, mpAttr.CurrentValue - payload.ManaCost);
-                mpAttr.BaseValue = newMp;
-                mpAttr.Recalculate();
+                float manaCost = payload.ManaCost;
+                float hpCost = 0f;
+                bool isHpCost = false;
+                if (this.character.UniquePassives != null)
+                {
+                    this.character.UniquePassives.ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
+                }
+
+                if (isHpCost)
+                {
+                    if (hpCost > 0f)
+                    {
+                        var hpAttr = this.character.attributeSystem.GetAttribute(AttributeType.HP);
+                        float newHp = Mathf.Max(1f, hpAttr.CurrentValue - hpCost);
+                        hpAttr.BaseValue = newHp;
+                        hpAttr.Recalculate();
+                    }
+                }
+                else
+                {
+                    if (manaCost > 0f)
+                    {
+                        var mpAttr = this.character.attributeSystem.GetAttribute(AttributeType.MP);
+                        float newMp = Mathf.Max(0f, mpAttr.CurrentValue - manaCost);
+                        mpAttr.BaseValue = newMp;
+                        mpAttr.Recalculate();
+                    }
+                }
             }
 
             // Delegate core logic to the skill asset (Polymorphism)
             if (instance.SkillData != null)
             {
-                instance.SkillData.Execute(payload, instance, this);
+                var cascadeMod = instance.LinkedModifiers.Find(m => m.ID == 1022);
+                if (cascadeMod != null && instance.SkillData.BaseTargeting is TargetLocationTargeting)
+                {
+                    Vector3 casterPos = character.transform.position;
+                    Vector3 targetPos = payload.TargetPosition;
+                    
+                    Vector3 direction = (targetPos - casterPos).normalized;
+                    if (direction == Vector3.zero) direction = Vector3.up;
+                    
+                    Vector3 leftDir = new Vector3(-direction.y, direction.x, 0f);
+                    Vector3 rightDir = new Vector3(direction.y, -direction.x, 0f);
+                    
+                    var mainPayload = payload.Clone();
+                    mainPayload.BaseDamage *= 0.75f;
+                    
+                    var leftPayload = payload.Clone();
+                    leftPayload.TargetPosition = targetPos + leftDir * 5f;
+                    leftPayload.BaseDamage *= 0.50f;
+                    
+                    var rightPayload = payload.Clone();
+                    rightPayload.TargetPosition = targetPos + rightDir * 5f;
+                    rightPayload.BaseDamage *= 0.50f;
+                    
+                    instance.SkillData.Execute(leftPayload, instance, this);
+                    instance.SkillData.Execute(mainPayload, instance, this);
+                    instance.SkillData.Execute(rightPayload, instance, this);
+                }
+                else
+                {
+                    instance.SkillData.Execute(payload, instance, this);
+                }
+
+                var echoMod = instance.LinkedModifiers.Find(m => m.ID == 1021);
+                if (echoMod != null)
+                {
+                    if (this.character != null && this.character.gameObject.activeInHierarchy)
+                    {
+                        this.character.StartCoroutine(ExecuteEchoCoroutine(instance, payload));
+                    }
+                }
+            }
+        }
+
+        private System.Collections.IEnumerator ExecuteEchoCoroutine(SkillInstance instance, SkillPayload originalPayload)
+        {
+            yield return new WaitForSeconds(0.15f);
+            if (instance != null && instance.SkillData != null && this.character != null && !this.character.IsDead)
+            {
+                var echoPayload = originalPayload.Clone();
+                echoPayload.AOERadius *= 1.3f;
+                echoPayload.BaseDamage *= 0.6f;
+
+                var cascadeMod = instance.LinkedModifiers.Find(m => m.ID == 1022);
+                if (cascadeMod != null && instance.SkillData.BaseTargeting is TargetLocationTargeting)
+                {
+                    Vector3 casterPos = character.transform.position;
+                    Vector3 targetPos = echoPayload.TargetPosition;
+                    
+                    Vector3 direction = (targetPos - casterPos).normalized;
+                    if (direction == Vector3.zero) direction = Vector3.up;
+                    
+                    Vector3 leftDir = new Vector3(-direction.y, direction.x, 0f);
+                    Vector3 rightDir = new Vector3(direction.y, -direction.x, 0f);
+                    
+                    var mainPayload = echoPayload.Clone();
+                    mainPayload.BaseDamage *= 0.75f;
+                    
+                    var leftPayload = echoPayload.Clone();
+                    leftPayload.TargetPosition = targetPos + leftDir * 5f;
+                    leftPayload.BaseDamage *= 0.50f;
+                    
+                    var rightPayload = echoPayload.Clone();
+                    rightPayload.TargetPosition = targetPos + rightDir * 5f;
+                    rightPayload.BaseDamage *= 0.50f;
+                    
+                    instance.SkillData.Execute(leftPayload, instance, this);
+                    instance.SkillData.Execute(mainPayload, instance, this);
+                    instance.SkillData.Execute(rightPayload, instance, this);
+                }
+                else
+                {
+                    instance.SkillData.Execute(echoPayload, instance, this);
+                }
             }
         }
 
@@ -438,7 +701,8 @@ namespace CoreSystem.Skills
                     Vector3 mousePos = Vector3.zero;
                     if (Camera.main != null)
                     {
-                        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        Vector2 screenPos = UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero;
+                        mousePos = Camera.main.ScreenToWorldPoint(screenPos);
                         mousePos.z = 0f;
                     }
 

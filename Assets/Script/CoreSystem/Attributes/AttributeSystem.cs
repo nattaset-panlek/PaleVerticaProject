@@ -25,6 +25,7 @@ namespace CoreSystem.Attributes
 
         public void Initialize(Entity.Character owner)
         {
+            this.owner = owner;
             foreach (AttributeType type in System.Enum.GetValues(typeof(AttributeType)))
             {
                 var attr = new Attribute { Type = type, BaseValue = 0f };
@@ -61,11 +62,13 @@ namespace CoreSystem.Attributes
             attributes[AttributeType.StatusDMG].BaseValue = 10f;
 
             // Apply specific overrides from InitialAttributes List if any (set in Inspector)
+            Debug.Log("[AttributeSystem] Initializing owner: " + (owner != null ? owner.name : "null") + ". initialAttributes count: " + initialAttributes.Count);
             foreach (var attr in initialAttributes)
             {
+                Debug.Log("[AttributeSystem] Override item: " + attr.Type + " = " + attr.BaseValue);
                 if (attributes.TryGetValue(attr.Type, out var existing))
                 {
-                    existing.BaseValue = attr.BaseValue;
+                    existing.InitialValue = attr.BaseValue;
                 }
             }
 
@@ -105,6 +108,11 @@ namespace CoreSystem.Attributes
             float @int = attributes[AttributeType.INT].CurrentValue;
             float dex = attributes[AttributeType.DEX].CurrentValue;
             float luk = attributes[AttributeType.LUK].CurrentValue;
+
+            if (owner != null && owner.UniquePassives != null)
+            {
+                owner.UniquePassives.ModifyCoreAttributes(ref str, ref agi, ref vit, ref @int, ref dex, ref luk);
+            }
 
             // --- STR ---
             attributes[AttributeType.ATK].StatFlatBonus = str + (dex / 5f) + (luk / 3f);

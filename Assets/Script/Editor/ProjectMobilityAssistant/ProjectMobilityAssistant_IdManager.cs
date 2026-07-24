@@ -13,63 +13,83 @@ using CoreSystem.Skills.Logic.Effects;
 public partial class ProjectMobilityAssistant : EditorWindow
 {
     private Vector2 _idMgrScroll;
+    private static bool _showIdItems = true;
+    private static bool _showIdAttributes = true;
+    private static bool _showIdActiveSkills = true;
+    private static bool _showIdSupportMods = true;
+    private static bool _showIdCharacters = true;
 
     private void DrawIdManager()
     {
         _idMgrScroll = EditorGUILayout.BeginScrollView(_idMgrScroll);
         EditorGUILayout.BeginVertical(PaddingStyle);
-        GUILayout.Label("\uD83D\uDD11  ID Manager", new GUIStyle(EditorStyles.boldLabel) { fontSize = 14 });
+        GUILayout.Label("ID Manager", new GUIStyle(EditorStyles.boldLabel) { fontSize = 14 });
         EditorGUILayout.Space(4);
 
-        // \u2500\u2500 Items \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-        DrawSectionHeader("\uD83D\uDCE6  Items");
-        EditorGUILayout.BeginVertical(SectionStyle);
-        DrawItemIdSection();
-        EditorGUILayout.EndVertical();
+        _showIdItems = EditorGUILayout.BeginFoldoutHeaderGroup(_showIdItems, "Items");
+        if (_showIdItems)
+        {
+            EditorGUILayout.BeginVertical(SectionStyle);
+            DrawItemIdSection();
+            EditorGUILayout.EndVertical();
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
-        // \u2500\u2500 Attributes \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-        DrawSectionHeader("\uD83E\uDDE9  Attributes");
-        EditorGUILayout.BeginVertical(SectionStyle);
-        DrawGenericIdSection(
-            "Attributes",
-            _attributeData.Attributes.Select(a => a.Id).ToList(),
-            "Attributes",
-            (start) => { RenumberGeneric(_attributeData.Attributes, (e, id) => e.Id = id, start); SaveAllData(); }
-        );
-        EditorGUILayout.EndVertical();
+        _showIdAttributes = EditorGUILayout.BeginFoldoutHeaderGroup(_showIdAttributes, "Attributes");
+        if (_showIdAttributes)
+        {
+            EditorGUILayout.BeginVertical(SectionStyle);
+            DrawGenericIdSection(
+                "Attributes",
+                _attributeData.Attributes.Select(a => a.Id).ToList(),
+                "Attributes",
+                (start) => { RenumberGeneric(_attributeData.Attributes, (e, id) => e.Id = id, start); SaveAllData(); }
+            );
+            EditorGUILayout.EndVertical();
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
-        // \u2500\u2500 Active Skills \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-        DrawSectionHeader("\u2694\uFE0F  Active Skills");
-        EditorGUILayout.BeginVertical(SectionStyle);
-        DrawGenericIdSection(
-            "Active Skills",
-            _skillData.ActiveSkills.Select(s => s.SkillID).ToList(),
-            "Active Skills",
-            (start) => { RenumberGeneric(_skillData.ActiveSkills, (e, id) => e.SkillID = id, start); SaveAllData(); }
-        );
-        EditorGUILayout.EndVertical();
+        _showIdActiveSkills = EditorGUILayout.BeginFoldoutHeaderGroup(_showIdActiveSkills, "Active Skills");
+        if (_showIdActiveSkills)
+        {
+            EditorGUILayout.BeginVertical(SectionStyle);
+            DrawGenericIdSection(
+                "Active Skills",
+                _skillData.ActiveSkills.Select(s => s.SkillID).ToList(),
+                "Active Skills",
+                (start) => { RenumberGeneric(_skillData.ActiveSkills, (e, id) => e.SkillID = id, start); SaveAllData(); }
+            );
+            EditorGUILayout.EndVertical();
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
-        // \u2500\u2500 Support Mods \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-        DrawSectionHeader("\uD83C\uDF00  Support Mods");
-        EditorGUILayout.BeginVertical(SectionStyle);
-        DrawGenericIdSection(
-            "Support Mods",
-            _supportSkillData.SupportModifiers.Select(s => s.SkillID).ToList(),
-            "Support Mods",
-            (start) => { RenumberGeneric(_supportSkillData.SupportModifiers, (e, id) => e.SkillID = id, start); SaveAllData(); }
-        );
-        EditorGUILayout.EndVertical();
+        _showIdSupportMods = EditorGUILayout.BeginFoldoutHeaderGroup(_showIdSupportMods, "Support Mods");
+        if (_showIdSupportMods)
+        {
+            EditorGUILayout.BeginVertical(SectionStyle);
+            DrawGenericIdSection(
+                "Support Mods",
+                _supportSkillData.SupportModifiers.Select(s => s.SkillID).ToList(),
+                "Support Mods",
+                (start) => { RenumberGeneric(_supportSkillData.SupportModifiers, (e, id) => e.SkillID = id, start); SaveAllData(); }
+            );
+            EditorGUILayout.EndVertical();
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
-        // \u2500\u2500 Characters \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
-        DrawSectionHeader("\uD83D\uDC64  Characters");
-        EditorGUILayout.BeginVertical(SectionStyle);
-        DrawGenericIdSection(
-            "Characters",
-            _characterData.Characters.Select(c => c.Id).ToList(),
-            "Characters",
-            (start) => { RenumberGeneric(_characterData.Characters, (e, id) => e.Id = id, start); SaveAllData(); }
-        );
-        EditorGUILayout.EndVertical();
+        _showIdCharacters = EditorGUILayout.BeginFoldoutHeaderGroup(_showIdCharacters, "Characters");
+        if (_showIdCharacters)
+        {
+            EditorGUILayout.BeginVertical(SectionStyle);
+            DrawGenericIdSection(
+                "Characters",
+                _characterData.Characters.Select(c => c.Id).ToList(),
+                "Characters",
+                (start) => { RenumberGeneric(_characterData.Characters, (e, id) => e.Id = id, start); SaveAllData(); }
+            );
+            EditorGUILayout.EndVertical();
+        }
+        EditorGUILayout.EndFoldoutHeaderGroup();
 
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndScrollView();
@@ -111,13 +131,13 @@ public partial class ProjectMobilityAssistant : EditorWindow
         if (duplicates.Count > 0)
         {
             GUI.color = Color.red;
-            GUILayout.Label("\u26A0\uFE0F Duplicate IDs: " + string.Join(", ", duplicates));
+            GUILayout.Label("Duplicate IDs: " + string.Join(", ", duplicates));
             GUI.color = Color.white;
         }
 
         EditorGUILayout.Space(4);
         GUI.backgroundColor = new Color(1f, 0.7f, 0.2f);
-        if (GUILayout.Button("\uD83D\uDD27  Auto-renumber Items (by type prefix)", GUILayout.Height(28)))
+        if (GUILayout.Button("Auto-renumber Items (by type prefix)", GUILayout.Height(28)))
         {
             if (EditorUtility.DisplayDialog("Auto-renumber Items",
                 "\u0E0C\u0E30 reassign ItemId \u0E43\u0E2B\u0E21\u0E48\u0E17\u0E31\u0E49\u0E07\u0E21\u0E14\u0E15\u0E32\u0E21 type prefix (1xxx, 2xxx...)\n\u0E14\u0E33\u0E40\u0E19\u0E34\u0E19\u0E01\u0E32\u0E23\u0E15\u0E48\u0E2D?", "\u0E43\u0E0A\u0E48", "\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01"))
@@ -160,19 +180,19 @@ public partial class ProjectMobilityAssistant : EditorWindow
         if (duplicates.Count > 0)
         {
             GUI.color = Color.red;
-            GUILayout.Label("\u26A0\uFE0F Duplicates: " + string.Join(", ", duplicates));
+            GUILayout.Label("Duplicates: " + string.Join(", ", duplicates));
             GUI.color = Color.white;
         }
         if (gaps.Count > 0 && gaps.Count <= 20)
         {
             GUI.color = new Color(1f, 0.65f, 0f);
-            GUILayout.Label("\u26A0\uFE0F Gaps: " + string.Join(", ", gaps));
+            GUILayout.Label("Gaps: " + string.Join(", ", gaps));
             GUI.color = Color.white;
         }
 
         EditorGUILayout.Space(4);
         GUI.backgroundColor = new Color(1f, 0.7f, 0.2f);
-        if (GUILayout.Button($"\uD83D\uDD27  Auto-renumber {label}", GUILayout.Height(26)))
+        if (GUILayout.Button($"Auto-renumber {label}", GUILayout.Height(26)))
         {
             if (EditorUtility.DisplayDialog($"Auto-renumber {label}",
                 $"\u0E0C\u0E30 reassign ID \u0E43\u0E2B\u0E21\u0E48\u0E14\u0E48\u0E2D\u0E40\u0E19\u0E37\u0E48\u0E2D\u0E07\u0E15\u0E31\u0E49\u0E07\u0E41\u0E15\u0E48 {startId}\n\u0E14\u0E33\u0E40\u0E19\u0E34\u0E19\u0E01\u0E32\u0E23\u0E15\u0E48\u0E2D?", "\u0E43\u0E0A\u0E48", "\u0E22\u0E01\u0E40\u0E25\u0E34\u0E01"))

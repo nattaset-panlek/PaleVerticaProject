@@ -22,8 +22,16 @@ namespace CoreSystem.Skills.Logic.Effects
         [Tooltip("How far to dash or push. Ignored for TeleportToTarget.")]
         public float Distance = 5f;
 
-        [Tooltip("If true, this effect only runs once per skill cast (useful for Caster dashes to avoid dashing 5 times if hitting 5 enemies).")]
-        public override bool ApplyOncePerCast { get; set; } = true;
+        public override bool ApplyOncePerCast
+        {
+            get
+            {
+                return Type == MovementType.TeleportToTarget ||
+                       Type == MovementType.DashForward ||
+                       Type == MovementType.DashToTarget;
+            }
+            set { }
+        }
 
         [Header("Stun Settings")]
         public float StunDuration = 1.0f;

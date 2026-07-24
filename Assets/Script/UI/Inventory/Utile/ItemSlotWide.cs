@@ -40,7 +40,7 @@ public class ItemSlotWide : ItemSlotGlobal
                         var items = GetDefaultContextMenuItems();
                         if (items != null && items.Count > 0)
                         {
-                            ContextMenuManager.Instance.Show(items, Input.mousePosition);
+                            ContextMenuManager.Instance.Show(items, UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero);
                         }
                     }
                 });

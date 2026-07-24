@@ -18,21 +18,29 @@ namespace CoreSystem.Attributes.Editor
 
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
 
-            string currentName = property.enumValueIndex >= 0 && property.enumValueIndex < property.enumDisplayNames.Length
-                ? property.enumDisplayNames[property.enumValueIndex]
+            var values = (AttributeType[])System.Enum.GetValues(typeof(AttributeType));
+            int currentIndex = System.Array.IndexOf(values, (AttributeType)property.intValue);
+            string currentName = currentIndex >= 0 && currentIndex < property.enumDisplayNames.Length
+                ? property.enumDisplayNames[currentIndex]
                 : "None";
 
             if (GUI.Button(position, new GUIContent(currentName), EditorStyles.popup))
             {
+                var serializedObject = property.serializedObject;
+                string propertyPath = property.propertyPath;
                 var dropdown = new AttributeTypeDropdown(
                     property.enumNames, 
                     property.enumDisplayNames, 
-                    property.enumValueIndex, 
+                    currentIndex, 
                     (index) =>
                     {
-                        property.serializedObject.Update();
-                        property.enumValueIndex = index;
-                        property.serializedObject.ApplyModifiedProperties();
+                        serializedObject.Update();
+                        var targetProperty = serializedObject.FindProperty(propertyPath);
+                        if (targetProperty != null && index >= 0 && index < values.Length)
+                        {
+                            targetProperty.intValue = (int)values[index];
+                        }
+                        serializedObject.ApplyModifiedProperties();
                     });
                 dropdown.Show(position);
             }
@@ -61,11 +69,9 @@ namespace CoreSystem.Attributes.Editor
 
             for (int i = 0; i < enumNames.Length; i++)
             {
-                var item = new AdvancedDropdownItem(displayNames[i])
-                {
-                    id = i // Store the index corresponding to enumNames array
-                };
+                var item = new AdvancedDropdownItem(displayNames[i]);
                 root.AddChild(item);
+                item.id = i;
             }
 
             return root;

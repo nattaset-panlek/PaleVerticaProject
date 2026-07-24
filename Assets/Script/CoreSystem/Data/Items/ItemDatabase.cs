@@ -276,6 +276,10 @@ namespace CoreSystem.Data.Items
                         };
                         targetList.Add(refineCond);
                         break;
+                    case "UniquePassive":
+                    case "UniquePassiveEffect":
+                        targetList.Add(new UniquePassiveEffect { PassiveId = e.Category });
+                        break;
                 }
             }
         }
