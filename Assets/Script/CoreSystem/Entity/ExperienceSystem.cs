@@ -39,6 +39,12 @@ namespace CoreSystem.Entity
         }
 
 
+        public void SetExp(long baseExp, long jobExp)
+        {
+            CurrentBaseExp = baseExp;
+            CurrentJobExp = jobExp;
+        }
+
         public void AddBaseExp(long amount)
         {
             CurrentBaseExp += amount;

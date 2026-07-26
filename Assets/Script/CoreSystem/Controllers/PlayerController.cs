@@ -16,22 +16,13 @@ namespace CoreSystem.Controllers
         private Camera mainCamera;
         private bool _isDead;
         private int _selectedSkillSlot = -1;
+        private SkillInstance _selectedSkillInstance = null;
         private IEntity _autoAttackTarget;
         private InputSystem_Actions _inputActions;
 
+        public static PlayerController Instance { get; private set; }
+
         [Header("UI Reference")]
-        public Image HealthBar;
-        public Image ManaBar;
-
-        public TMP_Text HealthText;
-        public TMP_Text ManaText;
-
-        public TMP_Text BaseLevel;
-        public TMP_Text JobLevel;
-
-        public TMP_Text ExpText;
-        public Image ExpBar;
-
         public TMP_Text PassivePointText;
 
         [Header("Animation")]
@@ -45,6 +36,7 @@ namespace CoreSystem.Controllers
 
         private void Awake()
         {
+            Instance = this;
             player = GetComponent<PlayerCharacter>();
             mainCamera = Camera.main;
             _inputActions = new InputSystem_Actions();
@@ -74,14 +66,18 @@ namespace CoreSystem.Controllers
             HandleAutoAttack();
 
             // Update Skill Indicator if aiming or casting
-            if (_selectedSkillSlot != -1 || player.skillCaster.CurrentState == SkillCasterState.Casting)
+            if (_selectedSkillInstance != null || _selectedSkillSlot != -1 || player.skillCaster.CurrentState == SkillCasterState.Casting)
             {
                 Vector3 mousePos = GetMouseWorldPosition();
                 Vector3 origin = transform.position;
                 Vector3 direction = (mousePos - origin).normalized;
                 
                 SkillInstance skill = null;
-                if (_selectedSkillSlot != -1)
+                if (_selectedSkillInstance != null)
+                {
+                    skill = _selectedSkillInstance;
+                }
+                else if (_selectedSkillSlot != -1 && _selectedSkillSlot < player.skillCaster.EquippedSkills.Count)
                 {
                     skill = player.skillCaster.EquippedSkills[_selectedSkillSlot];
                 }
@@ -108,7 +104,7 @@ namespace CoreSystem.Controllers
                     }
                 }
             }
-            else if (_selectedSkillSlot == -1 && player.skillCaster.CurrentState != SkillCasterState.Casting)
+            else if (_selectedSkillInstance == null && _selectedSkillSlot == -1 && player.skillCaster.CurrentState != SkillCasterState.Casting)
             {
                 // Ensure hidden if not aiming or casting
                 SkillIndicatorManager.Instance?.HideIndicator();
@@ -175,65 +171,11 @@ namespace CoreSystem.Controllers
         {
             if (player != null && player.attributeSystem != null)
             {
-                if (HealthBar != null)
-                {
-                    float hp = player.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
-                    float maxHp = player.attributeSystem.GetAttribute(AttributeType.MaxHP).CurrentValue;
-                    HealthBar.fillAmount = maxHp > 0 ? (hp / maxHp) : 0f;
-                }
-
-                if (ManaBar != null)
-                {
-                    float mp = player.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                    float maxMp = player.attributeSystem.GetAttribute(AttributeType.MaxMP).CurrentValue;
-                    ManaBar.fillAmount = maxMp > 0 ? (mp / maxMp) : 0f;
-                }
-
-                if (HealthText != null)
-                {
-                    float hp = player.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
-                    float maxHp = player.attributeSystem.GetAttribute(AttributeType.MaxHP).CurrentValue;
-                    HealthText.text = $"{hp:F0}/{maxHp:F0}";
-                }
-
-                if (ManaText != null)
-                {
-                    float mp = player.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                    float maxMp = player.attributeSystem.GetAttribute(AttributeType.MaxMP).CurrentValue;
-                    ManaText.text = $"{mp:F0}/{maxMp:F0}";
-                }
-
-                if (BaseLevel != null)
-                {
-                    int baseLevel = (int)(player.attributeSystem.GetAttribute(AttributeType.BaseLevel)?.CurrentValue ?? 1);
-                    BaseLevel.text = $"{baseLevel.ToString("000")}";
-                }
-
-                if (JobLevel != null)
-                {
-                    int jobLevel = (int)(player.attributeSystem.GetAttribute(AttributeType.JobLevel)?.CurrentValue ?? 1);
-                    JobLevel.text = $"{jobLevel.ToString("000")}";
-                }
-
                 if (PassivePointText != null)
                 {
                     int selected = (PassiveSkillLoader.Instance != null && PassiveSkillLoader.Instance.gameObject.activeInHierarchy) ? PassiveSkillLoader.Instance.SelectedCount : 0;
                     int displayPoints = player.PassivePoints - selected;
                     PassivePointText.text = $"{NumberFormatter.FormatWithCommas(displayPoints)}";
-                }
-
-                if (ExpText != null)
-                {
-                    float exp = player.expSystem.CurrentBaseExp;
-                    float nextLevelExp = player.expSystem.GetNextBaseExp((int)player.attributeSystem.GetAttribute(AttributeType.BaseLevel));
-                    ExpText.text = $"{NumberFormatter.FormatWithCommas((long)exp)} / {NumberFormatter.FormatWithCommas((long)nextLevelExp)}";
-                }
-
-                if (ExpBar != null)
-                {
-                    float exp = player.expSystem.CurrentBaseExp;
-                    float nextLevelExp = player.expSystem.GetNextBaseExp((int)player.attributeSystem.GetAttribute(AttributeType.BaseLevel));
-                    ExpBar.fillAmount = nextLevelExp > 0 ? (exp / nextLevelExp) : 0f;
                 }
             }
         }
@@ -302,7 +244,7 @@ namespace CoreSystem.Controllers
             }
         }
 
-        private Vector3 GetMouseWorldPosition()
+        public Vector3 GetMouseWorldPosition()
         {
             if (mainCamera == null) return transform.position;
             Vector2 screenPos = UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero;
@@ -317,34 +259,30 @@ namespace CoreSystem.Controllers
             {
                 Vector3 mousePos = GetMouseWorldPosition();
 
-                var keyboard = UnityEngine.InputSystem.Keyboard.current;
-                if (keyboard != null)
-                {
-                    if (keyboard.digit1Key.wasPressedThisFrame) TryEnterAimingMode(0, mousePos);
-                    if (keyboard.digit2Key.wasPressedThisFrame) TryEnterAimingMode(1, mousePos);
-                    if (keyboard.digit3Key.wasPressedThisFrame) TryEnterAimingMode(2, mousePos);
-                    if (keyboard.digit4Key.wasPressedThisFrame) TryEnterAimingMode(3, mousePos);
-                    if (keyboard.digit5Key.wasPressedThisFrame) TryEnterAimingMode(4, mousePos);
-                    if (keyboard.digit6Key.wasPressedThisFrame) TryEnterAimingMode(5, mousePos);
-                }
-
                 if (_inputActions != null)
                 {
                     if (_inputActions.Player.Attack.triggered)
                     {
-                        if (_selectedSkillSlot != -1)
+                        SkillInstance instance = _selectedSkillInstance;
+                        if (instance == null && _selectedSkillSlot >= 0 && _selectedSkillSlot < player.skillCaster.EquippedSkills.Count)
                         {
-                            var instance = player.skillCaster.EquippedSkills[_selectedSkillSlot];
+                            instance = player.skillCaster.EquippedSkills[_selectedSkillSlot];
+                        }
+
+                        if (instance != null)
+                        {
                             var payload = player.skillCaster.BuildPayload(instance, mousePos, true);
                             
-                            player.skillCaster.CastSkill(_selectedSkillSlot, mousePos);
+                            player.skillCaster.CastSkill(instance, mousePos, true);
                             SkillIndicatorManager.Instance?.StartExecution(payload);
                             
                             bool shouldKeepIndicator = instance.SkillData.BaseTargeting is ConeTargeting || 
                                                      instance.SkillData.BaseTargeting is BoxTargeting || 
                                                      instance.SkillData.BaseTargeting is LinePierceTargeting;
 
+                            _selectedSkillInstance = null;
                             _selectedSkillSlot = -1;
+                            player.skillCaster.AimedSkillInstance = null;
                             player.skillCaster.AimedSkillSlot = -1;
 
                             if (!shouldKeepIndicator)
@@ -372,7 +310,9 @@ namespace CoreSystem.Controllers
 
                     if (_inputActions.UI.RightClick.triggered)
                     {
+                        _selectedSkillInstance = null;
                         _selectedSkillSlot = -1;
+                        player.skillCaster.AimedSkillInstance = null;
                         player.skillCaster.AimedSkillSlot = -1;
                         SkillIndicatorManager.Instance?.HideCurrent();
                     }
@@ -380,36 +320,38 @@ namespace CoreSystem.Controllers
             }
         }
 
-        private void TryEnterAimingMode(int slot, Vector3 mousePos)
+        public void TryEnterAimingMode(SkillInstance instance, Vector3 mousePos)
         {
             _autoAttackTarget = null;
-            if (player.skillCaster == null) return;
-            
-            // Block aiming if currently casting or in cast delay
+            if (player.skillCaster == null || instance == null || instance.SkillData == null || instance.SkillData.BaseTargeting == null) return;
             if (player.skillCaster.CurrentState != SkillCasterState.Idle) return;
-
-            if (slot < 0 || slot >= player.skillCaster.EquippedSkills.Count) return;
-
-            var instance = player.skillCaster.EquippedSkills[slot];
-            if (instance == null || instance.SkillData == null || instance.SkillData.BaseTargeting == null) return;
 
             if (instance.SkillData.BaseTargeting.RequiresSelection)
             {
-                _selectedSkillSlot = slot;
-                player.skillCaster.AimedSkillSlot = slot;
+                _selectedSkillInstance = instance;
+                _selectedSkillSlot = player.skillCaster.EquippedSkills.IndexOf(instance);
+                player.skillCaster.AimedSkillInstance = instance;
+                player.skillCaster.AimedSkillSlot = _selectedSkillSlot;
 
-                // Show Visual Indicator
                 var payload = player.skillCaster.BuildPayload(instance, mousePos, true);
                 SkillIndicatorManager.Instance?.ShowIndicator(payload, instance.SkillData.BaseTargeting);
             }
             else
             {
-                // Instant Skill - Fire immediately
-                player.skillCaster.CastSkill(slot, mousePos);
+                player.skillCaster.CastSkill(instance, mousePos, true);
+                _selectedSkillInstance = null;
                 _selectedSkillSlot = -1;
+                player.skillCaster.AimedSkillInstance = null;
                 player.skillCaster.AimedSkillSlot = -1;
-                SkillIndicatorManager.Instance?.HideIndicator(); // Hide indicator for instant skills
+                SkillIndicatorManager.Instance?.HideIndicator();
             }
+        }
+
+        public void TryEnterAimingMode(int slot, Vector3 mousePos)
+        {
+            if (player == null || player.skillCaster == null) return;
+            if (slot < 0 || slot >= player.skillCaster.EquippedSkills.Count) return;
+            TryEnterAimingMode(player.skillCaster.EquippedSkills[slot], mousePos);
         }
 
         private void OnGUI()

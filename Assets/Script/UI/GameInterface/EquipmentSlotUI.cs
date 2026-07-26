@@ -31,8 +31,15 @@ public class EquipmentSlotUI : MonoBehaviour, IItemProvider, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        var draggedItem = ItemDragHandler.DraggedItem;
-        if (draggedItem == null) return;
+        var draggedItem = GlobalDragManager.Payload as ItemInstance ?? ItemDragHandler.DraggedItem;
+        if (draggedItem == null)
+        {
+            if (GlobalDragManager.Payload != null)
+            {
+                Debug.Log($"[EquipmentSlotUI] Incompatible drop payload type: {GlobalDragManager.Payload.GetType().Name}");
+            }
+            return;
+        }
 
         if (draggedItem is EquipmentInstance equipInst && equipInst.Item is Equipment equipment)
         {

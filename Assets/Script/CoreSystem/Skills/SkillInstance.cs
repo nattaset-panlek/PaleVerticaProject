@@ -17,6 +17,7 @@ namespace CoreSystem.Skills
         public GameObject ActiveVisual { get; set; }
 
         public float CurrentCooldown { get; private set; }
+        public float MaxCooldown { get; private set; }
 
         public SkillInstance() { } // Default constructor for Unity serialization
 
@@ -68,6 +69,7 @@ namespace CoreSystem.Skills
 
         public void StartCooldown(float customCooldown)
         {
+            MaxCooldown = customCooldown > 0f ? customCooldown : 1f;
             CurrentCooldown = customCooldown;
         }
 

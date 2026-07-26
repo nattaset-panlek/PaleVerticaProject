@@ -116,6 +116,19 @@ namespace CoreSystem.Data
             }
         }
 
+        public void AddDirectInstance(ItemInstance instance)
+        {
+            if (instance == null) return;
+            _itemsByInstanceId[instance.Id] = instance;
+            OnInventoryChanged?.Invoke();
+        }
+
+        public void Clear()
+        {
+            _itemsByInstanceId.Clear();
+            OnInventoryChanged?.Invoke();
+        }
+
         private long GenerateInstanceId()
         {
             // Simple unique ID logic

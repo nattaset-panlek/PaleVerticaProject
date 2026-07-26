@@ -9,8 +9,8 @@ namespace CoreSystem.UI.Utile
     /// ใช้งานคล้าย HoverableUI แต่จะ Setup ด้วย List ของ ContextMenuItem
     ///
     /// ตัวอย่าง:
-    ///   var ctx = GetComponent&lt;ContextMenuUI&gt;() ?? gameObject.AddComponent&lt;ContextMenuUI&gt;();
-    ///   ctx.SetupMenu(new List&lt;ContextMenuItem&gt; {
+    ///   var ctx = GetComponent<ContextMenuUI>() ?? gameObject.AddComponent<ContextMenuUI>();
+    ///   ctx.SetupMenu(new List<ContextMenuItem> {
     ///       new ContextMenuItem("Info",    () => ShowInfo()),
     ///       new ContextMenuItem("Use",     () => UseItem()),
     ///       new ContextMenuItem("Discard", () => DiscardItem()),
@@ -18,12 +18,25 @@ namespace CoreSystem.UI.Utile
     /// </summary>
     public class ContextMenuUI : MonoBehaviour, IPointerClickHandler
     {
-        [Header("Menu Items (set via Inspector or SetupMenu())")]
-        [SerializeField]
-        private List<ContextMenuItemData> _inspectorItems = new List<ContextMenuItemData>();
+        #region [Variables/Fields]
+        [Header("Menu Settings")]
+        [SerializeField] private bool _requireDoubleClick = true;
+        [SerializeField] private List<ContextMenuItemData> _inspectorItems = new List<ContextMenuItemData>();
 
         private List<ContextMenuItem> _menuItems = new List<ContextMenuItem>();
+        #endregion
 
+        #region [Properties]
+        public bool RequireDoubleClick
+        {
+            get => _requireDoubleClick;
+            set => _requireDoubleClick = value;
+        }
+
+        public List<ContextMenuItem> MenuItems => _menuItems;
+        #endregion
+
+        #region [Unity Methods]
         private void Start()
         {
             // ถ้าไม่ได้ SetupMenu จาก Code ให้ใช้ Items จาก Inspector แทน
@@ -34,7 +47,9 @@ namespace CoreSystem.UI.Utile
                     _menuItems.Add(new ContextMenuItem(item.Label, null));
             }
         }
+        #endregion
 
+        #region [Public Methods]
         /// <summary>
         /// กำหนด ContextMenu items จาก Code
         /// เรียกเมื่อ GameObject ได้รับข้อมูลแล้ว เช่น ใน UpdateUI()
@@ -66,6 +81,9 @@ namespace CoreSystem.UI.Utile
             if (eventData.button != PointerEventData.InputButton.Left)
                 return;
 
+            if (_requireDoubleClick && eventData.clickCount < 2)
+                return;
+
             if (_menuItems == null || _menuItems.Count == 0)
                 return;
 
@@ -77,6 +95,10 @@ namespace CoreSystem.UI.Utile
 
             ContextMenuManager.Instance.Show(_menuItems, eventData.position);
         }
+        #endregion
+
+        #region [Private Methods]
+        #endregion
     }
 
     /// <summary>

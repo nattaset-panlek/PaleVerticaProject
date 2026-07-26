@@ -56,6 +56,17 @@ namespace CoreSystem.Entity.UniquePassives
             return _activePassives.ContainsKey(id);
         }
 
+        public List<string> ActivePassiveIds => new List<string>(_activePassives.Keys);
+
+        public void Clear()
+        {
+            foreach (var key in new List<string>(_activePassives.Keys))
+            {
+                RemovePassive(key);
+            }
+            _activePassives.Clear();
+        }
+
         public void TriggerOnHit(IEntity target, ref float damage, SkillPayload payload)
         {
             _tempPassiveList.Clear();

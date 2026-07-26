@@ -45,6 +45,8 @@ public static class SkillConverter
 
         asset.Id = data.SkillID;
         asset.Name = data.SkillName;
+        string iconPathToLoad = string.IsNullOrEmpty(data.IconPath) ? "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png" : data.IconPath;
+        asset.Icon = ProjectMobilityAssistant.ResolveEditorSprite(iconPathToLoad);
         
         if (System.Enum.TryParse(data.SkillElement, out ElementType element))
             asset.SkillElement = element;
@@ -280,6 +282,8 @@ public static class SkillConverter
 
         asset.Id = data.SkillID;
         asset.Name = data.SkillName;
+        string iconPathToLoad = string.IsNullOrEmpty(data.IconPath) ? "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png" : data.IconPath;
+        asset.Icon = ProjectMobilityAssistant.ResolveEditorSprite(iconPathToLoad);
         
         if (System.Enum.TryParse(data.SkillElement, out ElementType element))
             asset.SkillElement = element;

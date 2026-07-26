@@ -19,6 +19,7 @@ namespace CoreSystem.Skills
             if (skillData == null)
             {
                 EquippedSkills[slotIndex] = null;
+                SyncHotbarSlot(slotIndex, null);
                 return;
             }
 
@@ -31,12 +32,50 @@ namespace CoreSystem.Skills
             {
                 EquippedSkills[slotIndex] = new SkillInstance(skillData);
             }
+
+            SyncHotbarSlot(slotIndex, EquippedSkills[slotIndex]);
         }
 
         public void EquipSkill(SkillInstance skillInstance, int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= EquippedSkills.Count) return;
             EquippedSkills[slotIndex] = skillInstance;
+            SyncHotbarSlot(slotIndex, skillInstance);
+        }
+
+        private bool _isSyncingHotbar = false;
+
+        private void SyncHotbarSlot(int slotIndex, SkillInstance instance)
+        {
+            if (_isSyncingHotbar) return;
+            _isSyncingHotbar = true;
+
+            try
+            {
+                if (CoreSystem.UI.Hotbar.HotbarManager.Instance != null && CoreSystem.UI.Hotbar.HotbarManager.Instance.ActiveRows.Count > 0)
+                {
+                    var row0 = CoreSystem.UI.Hotbar.HotbarManager.Instance.ActiveRows[0];
+                    var slot = row0.GetSlot(slotIndex);
+                    if (slot != null)
+                    {
+                        if (instance != null && instance.SkillData != null)
+                        {
+                            slot.AssignSkill(instance.SkillData.Id);
+                        }
+                        else
+                        {
+                            if (slot.SlotData != null && slot.SlotData.ActionType == CoreSystem.UI.Hotbar.HotbarActionType.Skill)
+                            {
+                                slot.ClearSlot();
+                            }
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                _isSyncingHotbar = false;
+            }
         }
 
         public List<SkillInstance> GrantedSkills = new List<SkillInstance>();
@@ -68,6 +107,7 @@ namespace CoreSystem.Skills
         public System.Action OnCastInterrupted;
         
         public int AimedSkillSlot = -1;
+        public SkillInstance AimedSkillInstance = null;
 
 
         public Character CharacterRef => character;
@@ -81,7 +121,7 @@ namespace CoreSystem.Skills
             {
                 EquippedSkills = new List<SkillInstance>();
             }
-            while (EquippedSkills.Count < 6)
+            while (EquippedSkills.Count < 10)
             {
                 EquippedSkills.Add(null);
             }
@@ -326,22 +366,30 @@ namespace CoreSystem.Skills
             InitiateCastSequence(instance, targetPos, isTargetSet);
         }
 
-        public void GrantSkill(ActiveSkill skillData)
+        public SkillInstance GrantSkill(ActiveSkill skillData)
         {
-            if (skillData == null) return;
-            if (GrantedSkills.Exists(s => s.SkillData != null && s.SkillData.Id == skillData.Id)) return;
-            GrantedSkills.Add(new SkillInstance(skillData));
+            if (skillData == null) return null;
+            var existing = GrantedSkills.Find(s => s.SkillData != null && s.SkillData.Id == skillData.Id);
+            if (existing != null) return existing;
+
+            var newInstance = new SkillInstance(skillData);
+            GrantedSkills.Add(newInstance);
+            return newInstance;
         }
 
-        public void GrantSkill(int skillId)
+        public SkillInstance GrantSkill(int skillId)
         {
-            if (GrantedSkills.Exists(s => s.SkillData != null && s.SkillData.Id == skillId)) return;
+            var existing = GrantedSkills.Find(s => s.SkillData != null && s.SkillData.Id == skillId);
+            if (existing != null) return existing;
             
             var skillData = CoreSystem.Data.Database.GetSynchronizedSkill(skillId);
             if (skillData != null)
             {
-                GrantedSkills.Add(new SkillInstance(skillData));
+                var newInstance = new SkillInstance(skillData);
+                GrantedSkills.Add(newInstance);
+                return newInstance;
             }
+            return null;
         }
 
         public void RevokeSkill(ActiveSkill skillData)
@@ -353,6 +401,15 @@ namespace CoreSystem.Skills
         public void RevokeSkill(int skillId)
         {
             GrantedSkills.RemoveAll(s => s.SkillData != null && s.SkillData.Id == skillId);
+        }
+
+        public void RevokeAllSkills()
+        {
+            GrantedSkills.Clear();
+            for (int i = 0; i < EquippedSkills.Count; i++)
+            {
+                EquippedSkills[i] = null;
+            }
         }
 
         public SkillPayload BuildPayload(SkillInstance instance, Vector3 targetPos = default, bool isTargetSet = false, bool isLocked = false)
@@ -691,27 +748,25 @@ namespace CoreSystem.Skills
         {
             if (character == null) return;
 
-            for (int i = 0; i < EquippedSkills.Count; i++)
+            SkillInstance instance = AimedSkillInstance;
+            if (instance == null && AimedSkillSlot >= 0 && AimedSkillSlot < EquippedSkills.Count)
             {
-                if (i != AimedSkillSlot) continue;
-                SkillInstance instance = EquippedSkills[i];
-                if (instance != null && instance.SkillData != null && instance.SkillData.BaseTargeting != null)
-                {
-                    // Calculate mouse position
-                    Vector3 mousePos = Vector3.zero;
-                    if (Camera.main != null)
-                    {
-                        Vector2 screenPos = UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero;
-                        mousePos = Camera.main.ScreenToWorldPoint(screenPos);
-                        mousePos.z = 0f;
-                    }
+                instance = EquippedSkills[AimedSkillSlot];
+            }
 
-                    // Use BuildPayload to ensure scalings (e.g. AOE Increase) are reflected in the gizmo
-                    SkillPayload payload = BuildPayload(instance, mousePos, true);
-                    
-                    Vector2 direction = character.transform.up;
-                    instance.SkillData.BaseTargeting.DrawGizmos(character.transform.position, direction, payload);
+            if (instance != null && instance.SkillData != null && instance.SkillData.BaseTargeting != null)
+            {
+                Vector3 mousePos = Vector3.zero;
+                if (Camera.main != null)
+                {
+                    Vector2 screenPos = UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero;
+                    mousePos = Camera.main.ScreenToWorldPoint(screenPos);
+                    mousePos.z = 0f;
                 }
+
+                SkillPayload payload = BuildPayload(instance, mousePos, true);
+                Vector2 direction = character.transform.up;
+                instance.SkillData.BaseTargeting.DrawGizmos(character.transform.position, direction, payload);
             }
         }
 #endif

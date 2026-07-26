@@ -20,13 +20,22 @@ public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider
 
     public void OnDrop(PointerEventData eventData)
     {
-        var draggedItem = ItemDragHandler.DraggedItem;
-        if (draggedItem == null) return;
+        var draggedItem = GlobalDragManager.Payload as ItemInstance ?? ItemDragHandler.DraggedItem;
+        var activeSource = GlobalDragManager.Source as IItemProvider ?? ItemDragHandler.ActiveSource;
+
+        if (draggedItem == null)
+        {
+            if (GlobalDragManager.Payload != null)
+            {
+                Debug.Log($"[ItemSlotGlobal] Incompatible drop payload type: {GlobalDragManager.Payload.GetType().Name}");
+            }
+            return;
+        }
 
         // If we drop an EQUIPPED item into the inventory, unequip it
         if (draggedItem is EquipmentInstance equipInst && equipInst.IsEquipped)
         {
-            if (ItemDragHandler.ActiveSource is EquipmentSlotUI sourceSlot)
+            if (activeSource is EquipmentSlotUI sourceSlot)
             {
                 int slotIdx = Database.GetDefaultSlotForType(sourceSlot.TargetSlot);
                 GameData.Player.EquipmentManager.Equip(slotIdx, null);

@@ -31,6 +31,25 @@ namespace CoreSystem.UI.Utile
                 var keyboard = UnityEngine.InputSystem.Keyboard.current;
                 if (keyboard == null) return false;
                 
+                bool requiresAlt = false;
+                bool requiresCtrl = false;
+                bool requiresShift = false;
+
+                foreach (var k in Keys)
+                {
+                    if (k == KeyCode.LeftAlt || k == KeyCode.RightAlt) requiresAlt = true;
+                    if (k == KeyCode.LeftControl || k == KeyCode.RightControl) requiresCtrl = true;
+                    if (k == KeyCode.LeftShift || k == KeyCode.RightShift) requiresShift = true;
+                }
+
+                bool isAltPressed = keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed;
+                bool isCtrlPressed = keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed;
+                bool isShiftPressed = keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed;
+
+                if (requiresAlt != isAltPressed) return false;
+                if (requiresCtrl != isCtrlPressed) return false;
+                if (requiresShift != isShiftPressed) return false;
+
                 foreach (var legacyKey in Keys)
                 {
                     var key = ToInputSystemKey(legacyKey);

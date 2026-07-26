@@ -1,6 +1,7 @@
 using UnityEngine;
 using CoreSystem.Entity;
 using System.Linq;
+using CoreSystem.Data;
 
 namespace CoreSystem.UI
 {
@@ -51,7 +52,7 @@ namespace CoreSystem.UI
         private void CommandFollowPlayer()
         {
             var npc = FindTargetNPC();
-            var player = FindObjectOfType<PlayerCharacter>();
+            var player = GameData.Player.PlayerCharacterModel;
 
             if (npc != null && player != null)
             {
@@ -68,7 +69,7 @@ namespace CoreSystem.UI
         private void CommandMoveToPlayer()
         {
             var npc = FindTargetNPC();
-            var player = FindObjectOfType<PlayerCharacter>();
+            var player = GameData.Player.PlayerCharacterModel;
 
             if (npc != null && player != null)
             {

@@ -1,16 +1,18 @@
 using CoreSystem.SkillTree;
 using CoreSystem.SkillTree.Models;
 using CoreSystem.Entity;
+using CoreSystem.UI;
 using System.Collections.Generic;
 using System.Linq;
 using UI.Components;
 using UnityEngine;
+using CoreSystem.Data;
 
-public class PassiveSkillLoader : MonoBehaviour
+public class PassiveSkillLoader : UIWindow
 {
     public static PassiveSkillLoader Instance { get; private set; }
 
-    #region Variables/Fields
+    #region [Variables/Fields]
 
     [Header("Parents")]
     public Transform SkillPageParent;
@@ -46,7 +48,7 @@ public class PassiveSkillLoader : MonoBehaviour
 
     #endregion
 
-    #region Properties
+    #region [Properties]
 
     public int SelectedCount => _selectedNodeIds.Count;
 
@@ -64,16 +66,34 @@ public class PassiveSkillLoader : MonoBehaviour
 
     #endregion
 
-    #region Unity Methods
+    #region [Unity Methods]
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Instance = this;
     }
 
     #endregion
 
-    #region Public Methods
+    #region [Public Methods]
+
+    public override void OnOpen(object data)
+    {
+        base.OnOpen(data);
+
+        LoadFromPlayer(GameData.Player.PlayerCharacter);
+
+        if (_currentPlayer != null)
+        {
+            LoadFromPlayer(_currentPlayer);
+        }
+    }
+
+    public override void OnClose()
+    {
+        base.OnClose();
+    }
 
     public void Initialize()
     {

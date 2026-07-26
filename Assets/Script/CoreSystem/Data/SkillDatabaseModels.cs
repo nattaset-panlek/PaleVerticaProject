@@ -24,6 +24,7 @@ namespace CoreSystem.Data.Skills
         public int SkillID;
         public string CustomClassName;
         public string SkillName;
+        public string IconPath;
         public string SkillElement;
         public string DamageType;
         

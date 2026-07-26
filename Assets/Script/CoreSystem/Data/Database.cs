@@ -21,8 +21,8 @@ namespace CoreSystem.Data
             {
                 if (_instance == null)
                 {
-                    _instance = FindObjectOfType<Database>();
-                    
+                    _instance = Object.FindObjectOfType<Database>();
+
                     if (_instance == null)
                     {
                         var prefab = Resources.Load<GameObject>("Prefab/Database");
@@ -51,6 +51,15 @@ namespace CoreSystem.Data
                 }
 
                 return _instance;
+            }
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void AutoInitializeDatabase()
+        {
+            if (Application.isPlaying)
+            {
+                var db = Instance;
             }
         }
 
@@ -271,6 +280,16 @@ namespace CoreSystem.Data
                         }
                     }
                 }
+
+                if (!string.IsNullOrEmpty(jsonData.IconPath))
+                {
+                    clonedSkill.Icon = SkillIconLoader.Load(jsonData.IconPath);
+                }
+            }
+
+            if (clonedSkill.Icon == null)
+            {
+                clonedSkill.Icon = SkillIconLoader.GetFallback();
             }
 
             return clonedSkill;

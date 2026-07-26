@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2ee257f74f2594ba8fcce298d7e6e5, type: 3}
+  m_Name: UIWindowRegistry
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.UI.UIWindowRegistrySO
+  _entries:
+  - WindowName: CharacterSkillManage
+    Type: 0
+    Prefab: {fileID: 1741534136314104042, guid: 566d23da79c3c7d45a51f07fa12b7fd6, type: 3}
+    DestroyOnClose: 0
+    Keys: 70000000
+  - WindowName: Inventory
+    Type: 0
+    Prefab: {fileID: 4705783443878367924, guid: e0ee9d6a2702c7045b15cd8fca0055fe, type: 3}
+    DestroyOnClose: 0
+    Keys: 3201000065000000
+  - WindowName: CharacterStatus
+    Type: 0
+    Prefab: {fileID: 5796950925605752723, guid: 85f2581989d1a764ba9f7c0bdd4d890e, type: 3}
+    DestroyOnClose: 0
+    Keys: 3201000061000000
+  - WindowName: CharacterEquipment
+    Type: 0
+    Prefab: {fileID: 7547035113793444875, guid: 2b2a21adcec1a4647a578e7c18abdc05, type: 3}
+    DestroyOnClose: 0
+    Keys: 3201000071000000
+  - WindowName: CharacterSkillTree
+    Type: 0
+    Prefab: {fileID: 8246287039172812537, guid: 9d610894a859d684da26e16772c8d40e, type: 3}
+    DestroyOnClose: 0
+    Keys: 3401000070000000

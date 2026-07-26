@@ -201,6 +201,64 @@ public partial class ProjectMobilityAssistant : EditorWindow
             _showVisualsContext = EditorGUILayout.BeginFoldoutHeaderGroup(_showVisualsContext, "Visuals & Context Configuration");
             if (_showVisualsContext)
             {
+                // --- Skill Icon ---
+                EditorGUILayout.BeginVertical(SectionStyle);
+                EditorGUILayout.HelpBox("ลาก Sprite จากโฟลเดอร์ Assets/Addressable/Sprite/Skill/Icon แล้วระบบจะดึง Addressable Key อัตโนมัติ", MessageType.Info);
+
+                EditorGUILayout.BeginHorizontal();
+                string iconPathToResolve = string.IsNullOrEmpty(entry.IconPath) ? "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png" : entry.IconPath;
+                Sprite currentIcon = ResolveEditorSprite(iconPathToResolve);
+                Sprite newIcon = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Skill Icon", "Sprite loaded from Assets/Addressable/Sprite/Skill/Icon."), currentIcon, typeof(Sprite), false);
+
+                if (newIcon != currentIcon)
+                {
+                    if (newIcon != null)
+                    {
+                        string path = AssetDatabase.GetAssetPath(newIcon);
+                        if (!path.StartsWith("Assets/Addressable/Sprite/Skill/Icon"))
+                        {
+                            Debug.LogWarning("[Skill Editor] กรุณาเลือก Sprite จากโฟลเดอร์ Assets/Addressable/Sprite/Skill/Icon/... เท่านั้น");
+                            EditorUtility.DisplayDialog("Invalid Folder", "กรุณาเลือก Sprite จากโฟลเดอร์ Assets/Addressable/Sprite/Skill/Icon เท่านั้น", "OK");
+                        }
+                        else
+                        {
+                            entry.IconPath = GetAddressableKey(newIcon);
+                        }
+                    }
+                    else
+                    {
+                        entry.IconPath = "";
+                    }
+                }
+                EditorGUILayout.EndHorizontal();
+
+                EditorGUILayout.BeginHorizontal();
+                entry.IconPath = EditorGUILayout.TextField("Addressable Key", entry.IconPath ?? "");
+                if (GUILayout.Button("Default", GUILayout.Width(60)))
+                {
+                    entry.IconPath = "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png";
+                }
+                EditorGUILayout.EndHorizontal();
+
+                Sprite previewSprite = ResolveEditorSprite(string.IsNullOrEmpty(entry.IconPath) ? "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png" : entry.IconPath);
+                if (previewSprite != null)
+                {
+                    Texture2D preview = AssetPreview.GetAssetPreview(previewSprite) ?? previewSprite.texture;
+                    if (preview != null)
+                    {
+                        EditorGUILayout.Space(5);
+                        Rect r = EditorGUILayout.GetControlRect(false, 64);
+                        r.width = 64;
+                        GUI.DrawTexture(r, preview, ScaleMode.ScaleToFit);
+                    }
+                }
+                else if (!string.IsNullOrEmpty(entry.IconPath))
+                {
+                    EditorGUILayout.HelpBox($"Key '{entry.IconPath}' ไม่พบใน Addressables หรือ Path\nกรุณาตรวจสอบไฟล์", MessageType.Warning);
+                }
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.Space(5);
+
                 if (!System.Enum.TryParse(entry.VisualType, out VisualCategory vCategory)) vCategory = VisualCategory.InstantHit;
                 entry.VisualType = ((VisualCategory)EditorGUILayout.EnumPopup("Visual Type", vCategory)).ToString();
 
@@ -433,7 +491,8 @@ public partial class ProjectMobilityAssistant : EditorWindow
                 SkillElement = ElementType.Neutral.ToString(), 
                 DamageType = DamageType.Physical.ToString(),
                 VisualType = VisualCategory.InstantHit.ToString(),
-                CastVfxSpawnPoint = VisualAppearance.FollowCaster.ToString()
+                CastVfxSpawnPoint = VisualAppearance.FollowCaster.ToString(),
+                IconPath = "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png"
             };
             s.SkillID = _skillData.ActiveSkills.Count > 0 ? _skillData.ActiveSkills.Max(x => x.SkillID) + 1 : 101;
             s.BaseTargeting = new BaseTargetingData { Type = "Single", Radius = 2 };

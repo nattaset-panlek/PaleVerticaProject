@@ -13,6 +13,7 @@ namespace CoreSystem.Skills
         #region [Variables/Fields]
         public int Id;
         public string Name;
+        public Sprite Icon;
         public ElementType SkillElement = ElementType.Neutral;
         public DamageType SkillDamageType = DamageType.Physical;
         

@@ -1,0 +1,949 @@
+{
+    "icon_attribute_buff": {
+        "file": "Icon_Attribute_Buff.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Attribute_Buff.png",
+        "tokens": [
+            "icon",
+            "attribute",
+            "buff"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            2,
+            7,
+            62,
+            57
+        ],
+        "aspect_ratio": 1.2,
+        "coverage": 0.335,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "icon_aura_buff": {
+        "file": "Icon_Aura_Buff.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Aura_Buff.png",
+        "tokens": [
+            "icon",
+            "aura",
+            "buff"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            5,
+            11,
+            60,
+            52
+        ],
+        "aspect_ratio": 1.341,
+        "coverage": 0.264,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "icon_default_buff": {
+        "file": "Icon_Default_Buff.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Default_Buff.png",
+        "tokens": [
+            "icon",
+            "default",
+            "buff"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            4,
+            4,
+            60,
+            60
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.329,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "icon_effect_buff": {
+        "file": "Icon_Effect_Buff.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Effect_Buff.png",
+        "tokens": [
+            "icon",
+            "effect",
+            "buff"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            2,
+            2,
+            62,
+            62
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.292,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "icon_skill_buff": {
+        "file": "Icon_Skill_Buff.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Skill_Buff.png",
+        "tokens": [
+            "icon",
+            "skill",
+            "buff"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            1,
+            1,
+            62,
+            61
+        ],
+        "aspect_ratio": 1.017,
+        "coverage": 0.316,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_accessoryring_icon": {
+        "file": "UI_AccessoryRing_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_AccessoryRing_Icon.png",
+        "tokens": [
+            "ui",
+            "accessoryring",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            5,
+            3,
+            59,
+            61
+        ],
+        "aspect_ratio": 0.931,
+        "coverage": 0.284,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_accessory_icon": {
+        "file": "UI_Accessory_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Accessory_Icon.png",
+        "tokens": [
+            "ui",
+            "accessory",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            3,
+            8,
+            61,
+            56
+        ],
+        "aspect_ratio": 1.208,
+        "coverage": 0.202,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_armor_icon": {
+        "file": "UI_Armor_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Armor_Icon.png",
+        "tokens": [
+            "ui",
+            "armor",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            0,
+            4,
+            64,
+            60
+        ],
+        "aspect_ratio": 1.143,
+        "coverage": 0.506,
+        "style": "flat",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_armor_light_icon": {
+        "file": "UI_Armor_Light_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Armor_Light_Icon.png",
+        "tokens": [
+            "ui",
+            "armor",
+            "light",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            1,
+            8,
+            63,
+            56
+        ],
+        "aspect_ratio": 1.292,
+        "coverage": 0.32,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_dagger_icon": {
+        "file": "UI_Dagger_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Dagger_Icon.png",
+        "tokens": [
+            "ui",
+            "dagger",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            6,
+            6,
+            58,
+            58
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.242,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_dagger_light_icon": {
+        "file": "UI_Dagger_Light_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Dagger_Light_Icon.png",
+        "tokens": [
+            "ui",
+            "dagger",
+            "light",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            6,
+            6,
+            58,
+            58
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.164,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_essence_icon": {
+        "file": "UI_Essence_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Essence_Icon.png",
+        "tokens": [
+            "ui",
+            "essence",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            5,
+            5,
+            59,
+            59
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.344,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_fragment_icon": {
+        "file": "UI_Fragment_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Fragment_Icon.png",
+        "tokens": [
+            "ui",
+            "fragment",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            6,
+            9,
+            58,
+            55
+        ],
+        "aspect_ratio": 1.13,
+        "coverage": 0.244,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_glove_icon": {
+        "file": "UI_Glove_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Glove_Icon.png",
+        "tokens": [
+            "ui",
+            "glove",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            12,
+            5,
+            52,
+            59
+        ],
+        "aspect_ratio": 0.741,
+        "coverage": 0.342,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_helmet_icon": {
+        "file": "UI_Helmet_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Helmet_Icon.png",
+        "tokens": [
+            "ui",
+            "helmet",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            10,
+            7,
+            54,
+            56
+        ],
+        "aspect_ratio": 0.898,
+        "coverage": 0.348,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_longsword_icon": {
+        "file": "UI_LongSword_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_LongSword_Icon.png",
+        "tokens": [
+            "ui",
+            "longsword",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            4,
+            4,
+            60,
+            60
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.219,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_longsword_light_icon": {
+        "file": "UI_LongSword_Light_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_LongSword_Light_Icon.png",
+        "tokens": [
+            "ui",
+            "longsword",
+            "light",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            4,
+            4,
+            60,
+            60
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.122,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_null_icon": {
+        "file": "UI_Null_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Null_Icon.png",
+        "tokens": [
+            "ui",
+            "null",
+            "icon"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            30,
+            23,
+            226,
+            231
+        ],
+        "aspect_ratio": 0.942,
+        "coverage": 0.34,
+        "style": "flat",
+        "dominant_colors": [
+            "#FFFFFF"
+        ]
+    },
+    "ui_shield_icon": {
+        "file": "UI_Shield_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Shield_Icon.png",
+        "tokens": [
+            "ui",
+            "shield",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            2,
+            3,
+            62,
+            61
+        ],
+        "aspect_ratio": 1.034,
+        "coverage": 0.483,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_talisman_icon": {
+        "file": "UI_Talisman_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Talisman_Icon.png",
+        "tokens": [
+            "ui",
+            "talisman",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            10,
+            3,
+            54,
+            61
+        ],
+        "aspect_ratio": 0.759,
+        "coverage": 0.261,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_weaponaxe_icon": {
+        "file": "UI_WeaponAxe_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_WeaponAxe_Icon.png",
+        "tokens": [
+            "ui",
+            "weaponaxe",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            2,
+            12,
+            62,
+            53
+        ],
+        "aspect_ratio": 1.463,
+        "coverage": 0.265,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_weaponleft_icon": {
+        "file": "UI_WeaponLeft_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_WeaponLeft_Icon.png",
+        "tokens": [
+            "ui",
+            "weaponleft",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            2,
+            2,
+            62,
+            62
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.148,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_weaponright_icon": {
+        "file": "UI_WeaponRight_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_WeaponRight_Icon.png",
+        "tokens": [
+            "ui",
+            "weaponright",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            3,
+            3,
+            61,
+            61
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.217,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "ui_weaponstaff_icon": {
+        "file": "UI_WeaponStaff_Icon.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_WeaponStaff_Icon.png",
+        "tokens": [
+            "ui",
+            "weaponstaff",
+            "icon"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            4,
+            1,
+            59,
+            63
+        ],
+        "aspect_ratio": 0.887,
+        "coverage": 0.176,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "icon_divineblessing": {
+        "file": "Icon_DivineBlessing.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_DivineBlessing.png",
+        "tokens": [
+            "icon",
+            "divineblessing"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            8,
+            8,
+            249,
+            249
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.696,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFD2",
+            "#FFEB93",
+            "#D5D365",
+            "#2E84B0",
+            "#010406"
+        ]
+    },
+    "icon_earthshatter": {
+        "file": "Icon_Earthshatter.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_Earthshatter.png",
+        "tokens": [
+            "icon",
+            "earthshatter"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            24,
+            8,
+            233,
+            249
+        ],
+        "aspect_ratio": 0.867,
+        "coverage": 0.769,
+        "style": "smooth",
+        "dominant_colors": [
+            "#BC9157",
+            "#452C1B",
+            "#311E15",
+            "#2C1C14",
+            "#2B1B13"
+        ]
+    },
+    "icon_hellfireblast": {
+        "file": "Icon_HellfireBlast.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_HellfireBlast.png",
+        "tokens": [
+            "icon",
+            "hellfireblast"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            8,
+            8,
+            249,
+            249
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.696,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFCA3E",
+            "#FF6300",
+            "#9E1D00",
+            "#6A1304",
+            "#000000"
+        ]
+    },
+    "icon_lightningstrike": {
+        "file": "Icon_LightningStrike.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_LightningStrike.png",
+        "tokens": [
+            "icon",
+            "lightningstrike"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            8,
+            8,
+            249,
+            249
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.696,
+        "style": "smooth",
+        "dominant_colors": [
+            "#9FFAFF",
+            "#34E8FF",
+            "#3A63C7",
+            "#281570",
+            "#010002"
+        ]
+    },
+    "icon_shadowdash": {
+        "file": "Icon_ShadowDash.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_ShadowDash.png",
+        "tokens": [
+            "icon",
+            "shadowdash"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            14,
+            11,
+            243,
+            243
+        ],
+        "aspect_ratio": 0.987,
+        "coverage": 0.789,
+        "style": "smooth",
+        "dominant_colors": [
+            "#CD96EB",
+            "#2D0850",
+            "#16002B",
+            "#110022",
+            "#0A0013"
+        ]
+    },
+    "projectlie_null": {
+        "file": "Projectlie_Null.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Projectlie_Null.png",
+        "tokens": [
+            "projectlie",
+            "null"
+        ],
+        "dimensions": [
+            158,
+            155
+        ],
+        "bbox": [
+            0,
+            0,
+            158,
+            155
+        ],
+        "aspect_ratio": 1.019,
+        "coverage": 0.216,
+        "style": "flat",
+        "dominant_colors": [
+            "#FFFFFF"
+        ]
+    },
+    "symbol_divineblessing": {
+        "file": "Symbol_DivineBlessing.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_DivineBlessing.png",
+        "tokens": [
+            "symbol",
+            "divineblessing"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            8,
+            8,
+            249,
+            249
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.696,
+        "style": "flat",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "symbol_earthshatter": {
+        "file": "Symbol_Earthshatter.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_Earthshatter.png",
+        "tokens": [
+            "symbol",
+            "earthshatter"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            24,
+            8,
+            233,
+            249
+        ],
+        "aspect_ratio": 0.867,
+        "coverage": 0.575,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#FAFAFA",
+            "#DFDFDF",
+            "#C7C7C7",
+            "#000000"
+        ]
+    },
+    "symbol_hellfireblast": {
+        "file": "Symbol_HellfireBlast.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_HellfireBlast.png",
+        "tokens": [
+            "symbol",
+            "hellfireblast"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            8,
+            8,
+            249,
+            249
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.696,
+        "style": "flat",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    },
+    "symbol_lightningstrike": {
+        "file": "Symbol_LightningStrike.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_LightningStrike.png",
+        "tokens": [
+            "symbol",
+            "lightningstrike"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            8,
+            8,
+            249,
+            249
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.696,
+        "style": "flat",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#010101",
+            "#000000"
+        ]
+    },
+    "symbol_shadowdash": {
+        "file": "Symbol_ShadowDash.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_ShadowDash.png",
+        "tokens": [
+            "symbol",
+            "shadowdash"
+        ],
+        "dimensions": [
+            256,
+            256
+        ],
+        "bbox": [
+            14,
+            11,
+            243,
+            243
+        ],
+        "aspect_ratio": 0.987,
+        "coverage": 0.78,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#FAFAFA",
+            "#EEEEEE",
+            "#BFBFBF",
+            "#000000"
+        ]
+    },
+    "icon_default": {
+        "file": "Icon_Default.png",
+        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png",
+        "tokens": [
+            "icon",
+            "default"
+        ],
+        "dimensions": [
+            64,
+            64
+        ],
+        "bbox": [
+            4,
+            4,
+            60,
+            60
+        ],
+        "aspect_ratio": 1.0,
+        "coverage": 0.329,
+        "style": "smooth",
+        "dominant_colors": [
+            "#FFFFFF",
+            "#000000"
+        ]
+    }
+}

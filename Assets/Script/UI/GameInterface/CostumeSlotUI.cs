@@ -73,8 +73,15 @@ public class CostumeSlotUI : MonoBehaviour, IItemProvider, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        var draggedItem = ItemDragHandler.DraggedItem;
-        if (draggedItem == null) return;
+        var draggedItem = GlobalDragManager.Payload as ItemInstance ?? ItemDragHandler.DraggedItem;
+        if (draggedItem == null)
+        {
+            if (GlobalDragManager.Payload != null)
+            {
+                Debug.Log($"[CostumeSlotUI] Incompatible drop payload type: {GlobalDragManager.Payload.GetType().Name}");
+            }
+            return;
+        }
 
         if (draggedItem is CostumeInstance costumeInst && costumeInst.Item is Costume costume)
         {

@@ -216,7 +216,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
     /// <summary>
     /// Load a Sprite for editor preview using AssetDatabase — works with any folder, not just Resources.
     /// </summary>
-    private Sprite ResolveEditorSprite(string addressableKeyOrPath)
+    public static Sprite ResolveEditorSprite(string addressableKeyOrPath)
     {
         if (string.IsNullOrEmpty(addressableKeyOrPath)) return null;
 
@@ -248,7 +248,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
     /// Returns the Addressable address for a given asset.
     /// Falls back to the asset filename if not registered.
     /// </summary>
-    private string GetAddressableKey(UnityEngine.Object obj)
+    public static string GetAddressableKey(UnityEngine.Object obj)
     {
         if (obj == null) return "";
         string assetPath = AssetDatabase.GetAssetPath(obj);

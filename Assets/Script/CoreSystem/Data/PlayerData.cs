@@ -10,6 +10,10 @@ namespace CoreSystem.Data
 {
     public class PlayerData
     {
+        public Entity.PlayerCharacter PlayerCharacterModel { get; set; }
+        public Entity.PlayerCharacter PlayerCharacter => PlayerCharacterModel;
+        public Save.PlayerDataModel Data { get; set; } = new Save.PlayerDataModel();
+
         public PlayerInventory Inventory { get; } = new PlayerInventory();
         public CharacterManager CharacterManager { get; } = new CharacterManager();
         public EquipmentManager EquipmentManager { get; } = new EquipmentManager();

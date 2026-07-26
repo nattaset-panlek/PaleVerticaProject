@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: Sprites
   m_EditorClassIdentifier: 
   m_GroupName: Sprites
-  m_Data:
-    m_SerializedData: []
   m_GUID: f42428b106533594eb6c9b36f3e3a43f
   m_SerializeEntries:
   - m_GUID: 12f11f16fb60a1a48a15a25a8fca1476
