@@ -29,7 +29,7 @@ namespace CoreSystem.UI
             {
                 if (_instance == null)
                 {
-                    _instance = Object.FindObjectOfType<UIManager>();
+                    _instance = Object.FindAnyObjectByType<UIManager>();
                 }
                 return _instance;
             }

@@ -27,7 +27,7 @@ namespace CoreSystem.SkillTree
             get
             {
                 if (_instance == null)
-                    _instance = FindObjectOfType<SkillTreeManager>();
+                    _instance = FindAnyObjectByType<SkillTreeManager>();
                 return _instance;
             }
         }

@@ -95,6 +95,20 @@ public partial class ProjectMobilityAssistant : EditorWindow
                     entry.BaseMagic    = EditorGUILayout.FloatField("Base Magic", entry.BaseMagic);
                     entry.MaxSockets   = EditorGUILayout.IntField("Max Sockets", entry.MaxSockets);
                 }
+                else if (entry.ItemType == "SkillRune")
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.PrefixLabel("Linked Active Skill");
+                    DrawSkillSelector(entry.SkillID, (id) => entry.SkillID = id);
+                    EditorGUILayout.EndHorizontal();
+                }
+                else if (entry.ItemType == "SupportRune")
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.PrefixLabel("Linked Support Skill");
+                    DrawSupportSkillSelector(entry.SkillID, (id) => entry.SkillID = id);
+                    EditorGUILayout.EndHorizontal();
+                }
                 else if (entry.ItemType == "Costume")
                 {
                     if (System.Enum.TryParse(entry.CostumeSlot, out CoreSystem.CostumeSlot cSlot))
@@ -217,7 +231,8 @@ public partial class ProjectMobilityAssistant : EditorWindow
             return $"[{entry.ItemId}] {entry.Name}{effectLabel}";
         }, 
         () => {
-            var e = new ItemEntry { Description = new LocalizedString(), ItemType = ItemType.Consumable.ToString(), Rarity = ItemRarity.Common.ToString() };
+            string defaultType = (_itemTypeFilterIndex > 0 && _itemTypeFilterIndex < _itemTypeNames.Length) ? _itemTypeNames[_itemTypeFilterIndex] : ItemType.Consumable.ToString();
+            var e = new ItemEntry { Description = new LocalizedString(), ItemType = defaultType, Rarity = ItemRarity.Common.ToString() };
             e.ItemId = GetNextItemId(e.ItemType);
             return e;
         },
@@ -238,8 +253,26 @@ public partial class ProjectMobilityAssistant : EditorWindow
             _showOnlyWithEffects = EditorGUILayout.ToggleLeft("Show Only with Effects", _showOnlyWithEffects);
             EditorGUILayout.EndHorizontal();
             
-            _itemTypeFilterIndex = GUILayout.SelectionGrid(_itemTypeFilterIndex, _tabNamesForItems, 4, EditorStyles.miniButton); 
+            _itemTypeFilterIndex = GUILayout.SelectionGrid(_itemTypeFilterIndex, _tabNamesForItems, 5, EditorStyles.miniButton); 
             EditorGUILayout.Space(5);
+
+            if (_itemTypeFilterIndex > 0 && _itemTypeFilterIndex < _itemTypeNames.Length && _itemTypeNames[_itemTypeFilterIndex] == "SkillRune")
+            {
+                if (GUILayout.Button("Sync Skill Runes from Skill.json", EditorStyles.miniButton))
+                {
+                    SyncSkillRunes();
+                }
+                EditorGUILayout.Space(5);
+            }
+
+            if (_itemTypeFilterIndex > 0 && _itemTypeFilterIndex < _itemTypeNames.Length && _itemTypeNames[_itemTypeFilterIndex] == "SupportRune")
+            {
+                if (GUILayout.Button("Sync Support Runes from SupportSkill.json", EditorStyles.miniButton))
+                {
+                    SyncSupportRunes();
+                }
+                EditorGUILayout.Space(5);
+            }
         });
     }
 
@@ -460,6 +493,100 @@ public partial class ProjectMobilityAssistant : EditorWindow
         }
     }
 
+    private void DrawSupportSkillSelector(int currentId, System.Action<int> onSelected)
+    {
+        string currentName = "None (0)";
+        if (currentId > 0)
+        {
+            var skill = _supportSkillData.SupportModifiers.FirstOrDefault(s => s.SkillID == currentId);
+            currentName = skill != null ? $"[{skill.SkillID}] {skill.ModifierName}" : $"Unknown ({currentId})";
+        }
+
+        if (GUILayout.Button(currentName, EditorStyles.popup))
+        {
+            GenericMenu menu = new GenericMenu();
+            menu.AddItem(new GUIContent("None"), currentId == 0, () => onSelected(0));
+            foreach (var s in _supportSkillData.SupportModifiers.OrderBy(s => s.SkillID))
+            {
+                int id = s.SkillID;
+                menu.AddItem(new GUIContent($"[{id}] {s.ModifierName}"), currentId == id, () => onSelected(id));
+            }
+            menu.ShowAsContext();
+        }
+    }
+
+    private void SyncSkillRunes()
+    {
+        if (_skillData == null || _skillData.ActiveSkills == null)
+        {
+            Debug.LogWarning("SyncSkillRunes: SkillData is null or empty.");
+            return;
+        }
+
+        _itemData.Items.RemoveAll(i => i.ItemType == "SkillRune");
+
+        foreach (var skill in _skillData.ActiveSkills)
+        {
+            if (skill.SkillID <= 0) continue;
+            int targetId = 6000 + (skill.SkillID % 1000);
+            string desc = $"Grants the active skill: {skill.SkillName}";
+            var existing = new ItemEntry
+            {
+                ItemId = targetId,
+                ItemType = "SkillRune",
+                Name = $"{skill.SkillName} Rune",
+                Description = new LocalizedString { EN = desc, TH = desc },
+                MaxStack = 1,
+                IconPath = skill.IconPath,
+                Rarity = "Rare",
+                SkillID = skill.SkillID,
+                Effects = new List<EffectEntry>(),
+                VisualSpritePaths = new List<string>(),
+                VisualPrefabEntries = new List<CostumePrefabEntry>()
+            };
+            _itemData.Items.Add(existing);
+        }
+
+        _itemData.Items = _itemData.Items.OrderBy(i => i.ItemId).ToList();
+        SaveAllData();
+        Debug.Log("SyncSkillRunes: Successfully synchronized all Skill Runes and saved to Item.json.");
+    }
+
+    private void SyncSupportRunes()
+    {
+        if (_supportSkillData == null || _supportSkillData.SupportModifiers == null)
+        {
+            Debug.LogWarning("SyncSupportRunes: SupportSkillData is null or empty.");
+            return;
+        }
+
+        _itemData.Items.RemoveAll(i => i.ItemType == "SupportRune");
+
+        foreach (var mod in _supportSkillData.SupportModifiers)
+        {
+            if (mod.SkillID <= 0) continue;
+            int targetId = 7000 + (mod.SkillID % 1000);
+            var existing = new ItemEntry
+            {
+                ItemId = targetId,
+                ItemType = "SupportRune",
+                Name = $"{mod.ModifierName} Rune",
+                Description = new LocalizedString { EN = mod.Description, TH = mod.Description },
+                MaxStack = 1,
+                Rarity = "Rare",
+                SkillID = mod.SkillID,
+                Effects = new List<EffectEntry>(),
+                VisualSpritePaths = new List<string>(),
+                VisualPrefabEntries = new List<CostumePrefabEntry>()
+            };
+            _itemData.Items.Add(existing);
+        }
+
+        _itemData.Items = _itemData.Items.OrderBy(i => i.ItemId).ToList();
+        SaveAllData();
+        Debug.Log("SyncSupportRunes: Successfully synchronized all Support Runes and saved to Item.json.");
+    }
+
     private int GetNextItemId(string itemType)
     {
         int prefix = GetItemTypePrefix(itemType);
@@ -483,6 +610,7 @@ public partial class ProjectMobilityAssistant : EditorWindow
             case "Fragment":   return 4;
             case "Resource":   return 5;
             case "SkillRune":  return 6;
+            case "SupportRune":return 7;
             case "Costume":    return 8;
             default:           return 9;
         }

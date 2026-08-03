@@ -95,7 +95,7 @@ namespace CoreSystem.UI
 
         private NonPlayerCharacter FindTargetNPC()
         {
-            var allNPCs = FindObjectsOfType<NonPlayerCharacter>();
+            var allNPCs = FindObjectsByType<NonPlayerCharacter>(FindObjectsSortMode.None);
             var target = allNPCs.FirstOrDefault(n => n.NpcId == _targetNpcId);
             return target;
         }

@@ -13,6 +13,8 @@ namespace CoreSystem.Skills
         public List<SupportModifier> LinkedModifiers = new List<SupportModifier>();
         public int CurrentLevel = 1;
 
+        public event System.Action OnSupportSkillsChanged;
+
         public bool IsToggledOn { get; set; }
         public GameObject ActiveVisual { get; set; }
 
@@ -165,18 +167,72 @@ namespace CoreSystem.Skills
         public bool LinkModifier(SupportModifier modifier)
         {
             if (modifier == null || SkillData == null) return false;
+            if (!modifier.IsCompatible(SkillData)) return false;
+            if (LinkedModifiers.Contains(modifier)) return false;
 
-            if (!modifier.IsCompatible(SkillData))
+            int maxSlots = SkillData.MaxSupportSlots > 0 ? SkillData.MaxSupportSlots : 5;
+            for (int i = 0; i < LinkedModifiers.Count; i++)
             {
-                return false;
+                if (LinkedModifiers[i] == null)
+                {
+                    LinkedModifiers[i] = modifier;
+                    OnSupportSkillsChanged?.Invoke();
+                    return true;
+                }
             }
 
-            if (LinkedModifiers.Contains(modifier))
+            if (LinkedModifiers.Count < maxSlots)
             {
-                return false;
+                LinkedModifiers.Add(modifier);
+                OnSupportSkillsChanged?.Invoke();
+                return true;
             }
 
-            LinkedModifiers.Add(modifier);
+            return false;
+        }
+
+        public void UnlinkModifier(SupportModifier modifier)
+        {
+            if (modifier == null) return;
+            if (LinkedModifiers.Remove(modifier))
+            {
+                OnSupportSkillsChanged?.Invoke();
+            }
+        }
+
+        public void UnlinkModifierAt(int index)
+        {
+            if (index >= 0 && index < LinkedModifiers.Count)
+            {
+                LinkedModifiers[index] = null;
+                OnSupportSkillsChanged?.Invoke();
+            }
+        }
+
+        public SupportModifier GetModifierAt(int index)
+        {
+            if (index >= 0 && index < LinkedModifiers.Count)
+            {
+                return LinkedModifiers[index];
+            }
+            return null;
+        }
+
+        public bool SetModifierAt(int index, SupportModifier modifier)
+        {
+            if (SkillData == null || index < 0) return false;
+            int maxSlots = SkillData.MaxSupportSlots > 0 ? SkillData.MaxSupportSlots : 5;
+            if (index >= maxSlots) return false;
+
+            if (modifier != null && !modifier.IsCompatible(SkillData)) return false;
+
+            while (LinkedModifiers.Count <= index)
+            {
+                LinkedModifiers.Add(null);
+            }
+
+            LinkedModifiers[index] = modifier;
+            OnSupportSkillsChanged?.Invoke();
             return true;
         }
     }

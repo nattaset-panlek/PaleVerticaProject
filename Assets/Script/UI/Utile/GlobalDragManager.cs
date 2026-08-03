@@ -20,7 +20,7 @@ namespace CoreSystem.UI.Utile
             {
                 if (_instance == null)
                 {
-                    _instance = Object.FindObjectOfType<GlobalDragManager>();
+                    _instance = Object.FindAnyObjectByType<GlobalDragManager>();
                     if (_instance == null)
                     {
                         GameObject go = new GameObject("GlobalDragManager");
@@ -119,12 +119,12 @@ namespace CoreSystem.UI.Utile
             }
             if (_canvas == null)
             {
-                _canvas = Object.FindObjectOfType<Canvas>();
+                _canvas = Object.FindAnyObjectByType<Canvas>();
             }
 
             if (_dragObjectInstance == null || _dragObjectInstance.gameObject == null)
             {
-                _dragObjectInstance = Object.FindObjectOfType<GlobalDragObject>(true);
+                _dragObjectInstance = Object.FindAnyObjectByType<GlobalDragObject>(FindObjectsInactive.Include);
             }
             else if (_canvas != null && _dragObjectInstance.transform.parent != _canvas.transform)
             {

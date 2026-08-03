@@ -105,6 +105,7 @@ namespace CoreSystem.Skills
         public System.Action<float, float> OnCastProgress;
         public System.Action<string> OnCastExecuted;
         public System.Action OnCastInterrupted;
+        public System.Action OnGrantedSkillsChanged;
         
         public int AimedSkillSlot = -1;
         public SkillInstance AimedSkillInstance = null;
@@ -374,6 +375,7 @@ namespace CoreSystem.Skills
 
             var newInstance = new SkillInstance(skillData);
             GrantedSkills.Add(newInstance);
+            OnGrantedSkillsChanged?.Invoke();
             return newInstance;
         }
 
@@ -387,6 +389,7 @@ namespace CoreSystem.Skills
             {
                 var newInstance = new SkillInstance(skillData);
                 GrantedSkills.Add(newInstance);
+                OnGrantedSkillsChanged?.Invoke();
                 return newInstance;
             }
             return null;
@@ -400,7 +403,11 @@ namespace CoreSystem.Skills
 
         public void RevokeSkill(int skillId)
         {
-            GrantedSkills.RemoveAll(s => s.SkillData != null && s.SkillData.Id == skillId);
+            int removed = GrantedSkills.RemoveAll(s => s.SkillData != null && s.SkillData.Id == skillId);
+            if (removed > 0)
+            {
+                OnGrantedSkillsChanged?.Invoke();
+            }
         }
 
         public void RevokeAllSkills()
@@ -410,6 +417,7 @@ namespace CoreSystem.Skills
             {
                 EquippedSkills[i] = null;
             }
+            OnGrantedSkillsChanged?.Invoke();
         }
 
         public SkillPayload BuildPayload(SkillInstance instance, Vector3 targetPos = default, bool isTargetSet = false, bool isLocked = false)
@@ -657,7 +665,7 @@ namespace CoreSystem.Skills
             // Delegate core logic to the skill asset (Polymorphism)
             if (instance.SkillData != null)
             {
-                var cascadeMod = instance.LinkedModifiers.Find(m => m.ID == 1022);
+                var cascadeMod = instance.LinkedModifiers.Find(m => m != null && m.ID == 1022);
                 if (cascadeMod != null && instance.SkillData.BaseTargeting is TargetLocationTargeting)
                 {
                     Vector3 casterPos = character.transform.position;
@@ -689,7 +697,7 @@ namespace CoreSystem.Skills
                     instance.SkillData.Execute(payload, instance, this);
                 }
 
-                var echoMod = instance.LinkedModifiers.Find(m => m.ID == 1021);
+                var echoMod = instance.LinkedModifiers.Find(m => m != null && m.ID == 1021);
                 if (echoMod != null)
                 {
                     if (this.character != null && this.character.gameObject.activeInHierarchy)
@@ -709,7 +717,7 @@ namespace CoreSystem.Skills
                 echoPayload.AOERadius *= 1.3f;
                 echoPayload.BaseDamage *= 0.6f;
 
-                var cascadeMod = instance.LinkedModifiers.Find(m => m.ID == 1022);
+                var cascadeMod = instance.LinkedModifiers.Find(m => m != null && m.ID == 1022);
                 if (cascadeMod != null && instance.SkillData.BaseTargeting is TargetLocationTargeting)
                 {
                     Vector3 casterPos = character.transform.position;

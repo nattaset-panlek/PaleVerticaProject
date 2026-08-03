@@ -68,7 +68,7 @@ public class PassiveSkilNode : MonoBehaviour, IPointerEnterHandler, IPointerExit
             _button.interactable = (state != PassiveSkillState.CannotUpgrade);
             _button.onClick.RemoveAllListeners();
             _button.onClick.AddListener(() => {
-                FindObjectOfType<PassiveSkillLoader>()?.OnNodeClick(node.id);
+                PassiveSkillLoader.Instance?.OnNodeClick(node.id);
             });
         }
 

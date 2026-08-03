@@ -10,7 +10,7 @@ using CoreSystem.UI.Utile;
 
 namespace CoreSystem.UI.SkillManagePage
 {
-    public class SkillItemListUI : MonoBehaviour, IPointerClickHandler
+    public class SkillItemListUI : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerDownHandler
     {
         #region [Variables/Fields]
         [SerializeField] private Image _iconImage;
@@ -19,10 +19,21 @@ namespace CoreSystem.UI.SkillManagePage
         [SerializeField] private TMP_Text _dpsText;
         [SerializeField] private GameObject _selectedObject;
 
+        [Header("Drag Settings")]
+        [SerializeField] private float _dragThresholdDistance = 10f;
+        [SerializeField] private float _horizontalAngleThreshold = 45f;
+
         private SkillInstance _skillInstance;
         private PlayerCharacter _player;
         private SkillManageWindow _ownerWindow;
         private System.Action _onRefreshCallback;
+
+        private bool _isDragging = false;
+        private bool _isScrollingParent = false;
+        private bool _dragDirectionDetermined = false;
+        
+        private ScrollRect _parentScrollRect;
+        private Vector2 _pressPosition;
         #endregion
 
         #region [Properties]
@@ -30,6 +41,10 @@ namespace CoreSystem.UI.SkillManagePage
         #endregion
 
         #region [Unity Methods]
+        private void Awake()
+        {
+            _parentScrollRect = GetComponentInParent<ScrollRect>();
+        }
         #endregion
 
         #region [Public Methods]
@@ -85,9 +100,128 @@ namespace CoreSystem.UI.SkillManagePage
                 ContextMenuManager.Instance.Show(items, eventData.position);
             }
         }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            _pressPosition = eventData.position;
+            _dragDirectionDetermined = false;
+            _isDragging = false;
+            _isScrollingParent = false;
+        }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            if (_dragDirectionDetermined) return;
+
+            Vector2 delta = eventData.position - _pressPosition;
+            if (delta.magnitude < _dragThresholdDistance)
+            {
+                return;
+            }
+
+            EvaluateDragDirection(eventData, delta);
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (!_dragDirectionDetermined)
+            {
+                Vector2 delta = eventData.position - _pressPosition;
+                if (delta.magnitude >= _dragThresholdDistance)
+                {
+                    EvaluateDragDirection(eventData, delta);
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            if (_isDragging)
+            {
+                GlobalDragManager.Instance.UpdatePosition(eventData.position);
+            }
+            else if (_isScrollingParent && _parentScrollRect != null)
+            {
+                ExecuteEvents.Execute(_parentScrollRect.gameObject, eventData, ExecuteEvents.dragHandler);
+            }
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            if (_isDragging)
+            {
+                GlobalDragManager.Instance.FinishDrag();
+            }
+
+            if (_isScrollingParent && _parentScrollRect != null)
+            {
+                ExecuteEvents.Execute(_parentScrollRect.gameObject, eventData, ExecuteEvents.endDragHandler);
+            }
+
+            _isDragging = false;
+            _isScrollingParent = false;
+            _dragDirectionDetermined = false;
+        }
         #endregion
 
         #region [Private Methods]
+        private void EvaluateDragDirection(PointerEventData eventData, Vector2 delta)
+        {
+            _dragDirectionDetermined = true;
+
+            float angle = Vector2.Angle(Vector2.right, new Vector2(Mathf.Abs(delta.x), Mathf.Abs(delta.y)));
+
+            if (angle <= _horizontalAngleThreshold)
+            {
+                StartSkillDrag(eventData);
+            }
+            else
+            {
+                StartScrollParentDrag(eventData);
+            }
+        }
+
+        private void StartSkillDrag(PointerEventData eventData)
+        {
+            if (_skillInstance == null || _skillInstance.SkillData == null)
+            {
+                _isDragging = false;
+                return;
+            }
+
+            _isDragging = true;
+            _isScrollingParent = false;
+
+            GlobalDragManager.Instance.StartDrag(
+                source: this,
+                payload: _skillInstance,
+                icon: _skillInstance.SkillData.Icon,
+                screenPos: eventData.position,
+                customSize: new Vector2(50, 50)
+            );
+        }
+
+        private void StartScrollParentDrag(PointerEventData eventData)
+        {
+            _isDragging = false;
+
+            if (_parentScrollRect == null)
+            {
+                _parentScrollRect = GetComponentInParent<ScrollRect>();
+            }
+
+            if (_parentScrollRect != null)
+            {
+                _isScrollingParent = true;
+                ExecuteEvents.Execute(_parentScrollRect.gameObject, eventData, ExecuteEvents.beginDragHandler);
+            }
+            else
+            {
+                _isScrollingParent = false;
+            }
+        }
+
         private void UpdateUI()
         {
             if (_skillInstance == null || _skillInstance.SkillData == null) return;

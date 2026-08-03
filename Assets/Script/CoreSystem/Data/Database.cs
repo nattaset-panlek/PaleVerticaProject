@@ -21,7 +21,7 @@ namespace CoreSystem.Data
             {
                 if (_instance == null)
                 {
-                    _instance = Object.FindObjectOfType<Database>();
+                    _instance = Object.FindAnyObjectByType<Database>();
 
                     if (_instance == null)
                     {
@@ -285,6 +285,7 @@ namespace CoreSystem.Data
                 {
                     clonedSkill.Icon = SkillIconLoader.Load(jsonData.IconPath);
                 }
+                clonedSkill.MaxSupportSlots = jsonData.MaxSupportSlots > 0 ? jsonData.MaxSupportSlots : 5;
             }
 
             if (clonedSkill.Icon == null)
@@ -307,6 +308,16 @@ namespace CoreSystem.Data
             {
                 modifier.Name = jsonData.ModifierName;
                 modifier.Description = modifier.GetDescription(jsonData.Description);
+                modifier.IconPath = jsonData.IconPath;
+                if (!string.IsNullOrEmpty(jsonData.IconPath))
+                {
+                    modifier.Icon = SkillIconLoader.Load(jsonData.IconPath);
+                }
+            }
+
+            if (modifier.Icon == null)
+            {
+                modifier.Icon = SkillIconLoader.GetFallback();
             }
 
             return modifier;

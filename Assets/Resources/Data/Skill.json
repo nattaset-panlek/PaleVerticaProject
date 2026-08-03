@@ -4,6 +4,7 @@
             "SkillID": 1001,
             "CustomClassName": "",
             "SkillName": "Tackle",
+            "IconPath": "",
             "SkillElement": "Neutral",
             "DamageType": "Physical",
             "BaseDamage": 1.0,
@@ -113,12 +114,14 @@
                 "Instant"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1002,
             "CustomClassName": "",
             "SkillName": "Healing",
+            "IconPath": "",
             "SkillElement": "Holy",
             "DamageType": "Magic",
             "BaseDamage": 0.0,
@@ -218,12 +221,14 @@
                 "Heal"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1003,
             "CustomClassName": "",
             "SkillName": "Hellfire Blast",
+            "IconPath": "",
             "SkillElement": "Fire",
             "DamageType": "Physical",
             "BaseDamage": 180.0,
@@ -315,12 +320,14 @@
                 "Status"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1004,
             "CustomClassName": "",
             "SkillName": "Divine Blessing",
+            "IconPath": "",
             "SkillElement": "Holy",
             "DamageType": "Magic",
             "BaseDamage": 0.0,
@@ -485,12 +492,14 @@
                 "Magic"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1005,
             "CustomClassName": "",
             "SkillName": "Earthshatter",
+            "IconPath": "",
             "SkillElement": "Earth",
             "DamageType": "Physical",
             "BaseDamage": 50.0,
@@ -592,12 +601,14 @@
                 "Movement"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1006,
             "CustomClassName": "",
             "SkillName": "Lightning Strike",
+            "IconPath": "",
             "SkillElement": "Electric",
             "DamageType": "Physical",
             "BaseDamage": 220.0,
@@ -690,12 +701,14 @@
                 "AreaOfEffect"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1007,
             "CustomClassName": "",
             "SkillName": "Shadow Dash",
+            "IconPath": "",
             "SkillElement": "Ghost",
             "DamageType": "Physical",
             "BaseDamage": 0.0,
@@ -769,12 +782,14 @@
                 "Instant"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1008,
             "CustomClassName": "",
             "SkillName": "Aura of Flames",
+            "IconPath": "",
             "SkillElement": "Fire",
             "DamageType": "Magic",
             "BaseDamage": 5.0,
@@ -883,12 +898,14 @@
                 "Magic"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1009,
             "CustomClassName": "",
             "SkillName": "Lightning Blessing",
+            "IconPath": "",
             "SkillElement": "Electric",
             "DamageType": "Magic",
             "BaseDamage": 0.0,
@@ -991,12 +1008,14 @@
                 "Magic"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1010,
             "CustomClassName": "",
             "SkillName": "Fire Pila",
+            "IconPath": "",
             "SkillElement": "Fire",
             "DamageType": "Magic",
             "BaseDamage": 20.0,
@@ -1079,12 +1098,14 @@
                 "Magic"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 0,
             "CustomClassName": "CoreSystem.Skills.UniqueSkill.SummonSkill",
             "SkillName": "Summon Valkyrie",
+            "IconPath": "",
             "SkillElement": "Neutral",
             "DamageType": "Physical",
             "BaseDamage": 0.0,
@@ -1147,12 +1168,14 @@
                     "StringValue": "0"
                 }
             ],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1011,
             "CustomClassName": "CoreSystem.Skills.UniqueSkill.ParrySkill",
             "SkillName": "Perfect Parry",
+            "IconPath": "",
             "SkillElement": "Neutral",
             "DamageType": "Physical",
             "BaseDamage": 0.0,
@@ -1210,12 +1233,14 @@
                     "StringValue": ""
                 }
             ],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1012,
             "CustomClassName": "CoreSystem.Skills.UniqueSkill.ChainLightningSkill",
             "SkillName": "Chain Lightning",
+            "IconPath": "",
             "SkillElement": "Electric",
             "DamageType": "Magic",
             "BaseDamage": 100.0,
@@ -1273,12 +1298,14 @@
                     "StringValue": "0"
                 }
             ],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1013,
             "CustomClassName": "CoreSystem.Skills.UniqueSkill.BlinkStrikeSkill",
             "SkillName": "Blink Strike",
+            "IconPath": "",
             "SkillElement": "Neutral",
             "DamageType": "Physical",
             "BaseDamage": 150.0,
@@ -1326,12 +1353,14 @@
                     "StringValue": "0"
                 }
             ],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1014,
             "CustomClassName": "CoreSystem.Skills.UniqueSkill.TimeDilationSkill",
             "SkillName": "Time Dilation",
+            "IconPath": "",
             "SkillElement": "Neutral",
             "DamageType": "Magic",
             "BaseDamage": 1.0,
@@ -1409,12 +1438,14 @@
                     "StringValue": "True"
                 }
             ],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1015,
             "CustomClassName": "",
             "SkillName": "Force Nova",
+            "IconPath": "",
             "SkillElement": "Neutral",
             "DamageType": "Magic",
             "BaseDamage": 0.0,
@@ -1489,12 +1520,14 @@
                 "Magic"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1016,
             "CustomClassName": "",
             "SkillName": "Blink",
+            "IconPath": "",
             "SkillElement": "Electric",
             "DamageType": "Magic",
             "BaseDamage": 0.0,
@@ -1568,12 +1601,14 @@
                 "Instant"
             ],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         },
         {
             "SkillID": 1017,
             "CustomClassName": "",
             "SkillName": "Chornos Field",
+            "IconPath": "",
             "SkillElement": "Neutral",
             "DamageType": "Physical",
             "BaseDamage": 0.0,
@@ -1615,7 +1650,8 @@
             "BeamVfxPrefabName": "",
             "Tags": [],
             "UniqueFields": [],
-            "SupportSkillIDs": []
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5
         }
     ],
     "SupportSkills": []

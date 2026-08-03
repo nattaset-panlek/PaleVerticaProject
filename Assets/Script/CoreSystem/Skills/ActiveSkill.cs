@@ -59,6 +59,7 @@ namespace CoreSystem.Skills
         public float BaseCooldown; 
         
         public List<OutputScaling> Scalings = new List<OutputScaling>();
+        public int MaxSupportSlots = 5;
         #endregion
 
         #region [Properties]

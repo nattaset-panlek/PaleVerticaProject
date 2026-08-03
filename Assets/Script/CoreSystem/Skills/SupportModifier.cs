@@ -37,6 +37,8 @@ namespace CoreSystem.Skills
 
         public string Name;
         public string Description;
+        public Sprite Icon;
+        public string IconPath;
 
         public abstract void ModifyPayload(ref SkillPayload payload);
 

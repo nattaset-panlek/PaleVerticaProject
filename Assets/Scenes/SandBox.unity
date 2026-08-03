@@ -1049,6 +1049,7 @@ GameObject:
   - component: {fileID: 310702323}
   - component: {fileID: 310702324}
   - component: {fileID: 310702325}
+  - component: {fileID: 310702326}
   m_Layer: 0
   m_Name: Window Manage
   m_TagString: Untagged
@@ -1243,6 +1244,55 @@ MonoBehaviour:
   _windowContainer: {fileID: 1274396575}
   _modalContainer: {fileID: 731397634}
   _modalOverlay: {fileID: 0}
+--- !u!114 &310702326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310702322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7804808efde590f4193265b776c51ca0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorManager
+  cursorStates:
+  - type: -1
+    cursorSprite: {fileID: 4911496541407695448, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 32, y: 32}
+  - type: 0
+    cursorSprite: {fileID: 8788321149091161163, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 20, y: 10}
+  - type: 1
+    cursorSprite: {fileID: 8452872004976019984, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 7, y: 9}
+  - type: 2
+    cursorSprite: {fileID: -8161174458054690323, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 25, y: 10}
+  - type: 3
+    cursorSprite: {fileID: 9201856470226460821, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 32, y: 32}
+  - type: 4
+    cursorSprite: {fileID: 958912460561586284, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 32, y: 32}
+  - type: 5
+    cursorSprite: {fileID: 685067885554935805, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 32, y: 32}
+  - type: 6
+    cursorSprite: {fileID: -9053080645205001218, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 5, y: 6}
+  - type: 7
+    cursorSprite: {fileID: 4911496541407695448, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 32, y: 32}
+  - type: 8
+    cursorSprite: {fileID: -503575378220192381, guid: f75469d6028f69c4db51b05c6a1cad16, type: 3}
+    hotSpot: {x: 32, y: 32}
+  attackableLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1001 &457932965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3444,6 +3494,7 @@ MonoBehaviour:
     GlobalMultiplier: 1
     FlatBonus: 0
     LevelMultiplier: 0
+  MaxSupportSlots: 5
   references:
     version: 2
     RefIds:
@@ -3564,6 +3615,7 @@ MonoBehaviour:
     GlobalMultiplier: 1
     FlatBonus: 0
     LevelMultiplier: 0
+  MaxSupportSlots: 5
   references:
     version: 2
     RefIds:

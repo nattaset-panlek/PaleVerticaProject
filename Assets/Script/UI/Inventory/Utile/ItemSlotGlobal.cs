@@ -146,11 +146,15 @@ public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider
             }
         }
 
-        if (captured.Item is Consumable consumableInstance)
+        if (captured.Item is Consumable || captured.Item is SkillRune)
         {
             items.Add(new ContextMenuItem("Use", () =>
             {
-                //GameData.Player.PlayerCharacter.Consume(consumableInstance);
+                captured.Item.OnUse();
+                if (GameData.Player != null && GameData.Player.Inventory != null)
+                {
+                    GameData.Player.Inventory.RemoveItemByInstance(captured.Id, 1);
+                }
             }));
         }
 

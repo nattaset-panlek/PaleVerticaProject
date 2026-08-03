@@ -1,0 +1,1028 @@
+{
+    "Tackle": {
+        "name": "Tackle",
+        "element": "Neutral",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 256,
+                "y": 256,
+                "r": 210,
+                "fill": "transparent",
+                "outline": "#A6ACAF",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        160,
+                        150
+                    ],
+                    [
+                        360,
+                        256
+                    ],
+                    [
+                        160,
+                        362
+                    ],
+                    [
+                        220,
+                        256
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#FFFFFF",
+                "width": 24
+            }
+        ]
+    },
+    "Healing": {
+        "name": "Healing",
+        "element": "Holy",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 256,
+                "y": 256,
+                "r": 210,
+                "fill": "transparent",
+                "outline": "#52BE80",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        120
+                    ],
+                    [
+                        256,
+                        392
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#A9DFBF",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        120,
+                        256
+                    ],
+                    [
+                        392,
+                        256
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#A9DFBF",
+                "width": 32
+            }
+        ]
+    },
+    "HellfireBlast": {
+        "name": "Hellfire Blast",
+        "element": "Fire",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        440,
+                        148
+                    ],
+                    [
+                        440,
+                        364
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        72,
+                        364
+                    ],
+                    [
+                        72,
+                        148
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#FF6300",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "star",
+                "x": 256,
+                "y": 256,
+                "outer_r": 140,
+                "inner_r": 60,
+                "points": 8,
+                "rotation": 22.5,
+                "fill": "transparent",
+                "outline": "#FFCA3E",
+                "width": 24
+            }
+        ]
+    },
+    "DivineBlessing": {
+        "name": "Divine Blessing",
+        "element": "Holy",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        472,
+                        256
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        40,
+                        256
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#D5D365",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "star",
+                "x": 256,
+                "y": 256,
+                "outer_r": 120,
+                "inner_r": 40,
+                "points": 4,
+                "rotation": 0,
+                "fill": "transparent",
+                "outline": "#FFFFD2",
+                "width": 24
+            }
+        ]
+    },
+    "Earthshatter": {
+        "name": "Earthshatter",
+        "element": "Earth",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        60,
+                        120
+                    ],
+                    [
+                        452,
+                        120
+                    ],
+                    [
+                        256,
+                        452
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#8B4513",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        120
+                    ],
+                    [
+                        180,
+                        250
+                    ],
+                    [
+                        330,
+                        320
+                    ],
+                    [
+                        256,
+                        452
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#BC9157",
+                "width": 24
+            }
+        ]
+    },
+    "LightningStrike": {
+        "name": "Lightning Strike",
+        "element": "Electric",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 256,
+                "y": 256,
+                "r": 210,
+                "fill": "transparent",
+                "outline": "#3A63C7",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        310,
+                        80
+                    ],
+                    [
+                        170,
+                        260
+                    ],
+                    [
+                        260,
+                        260
+                    ],
+                    [
+                        180,
+                        440
+                    ],
+                    [
+                        350,
+                        220
+                    ],
+                    [
+                        240,
+                        220
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#9FFAFF",
+                "width": 24
+            }
+        ]
+    },
+    "ShadowDash": {
+        "name": "Shadow Dash",
+        "element": "Ghost",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        472,
+                        256
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        40,
+                        256
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#551A8B",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        180,
+                        150
+                    ],
+                    [
+                        330,
+                        256
+                    ],
+                    [
+                        180,
+                        362
+                    ],
+                    [
+                        230,
+                        256
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#CD96EB",
+                "width": 24
+            }
+        ]
+    },
+    "AuraOfFlames": {
+        "name": "Aura of Flames",
+        "element": "Fire",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 256,
+                "y": 256,
+                "r": 210,
+                "fill": "transparent",
+                "outline": "#E74C3C",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "star",
+                "x": 256,
+                "y": 256,
+                "outer_r": 150,
+                "inner_r": 70,
+                "points": 6,
+                "rotation": 30,
+                "fill": "transparent",
+                "outline": "#F1C40F",
+                "width": 24
+            }
+        ]
+    },
+    "LightningBlessing": {
+        "name": "Lightning Blessing",
+        "element": "Electric",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        420,
+                        120
+                    ],
+                    [
+                        420,
+                        300
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        92,
+                        300
+                    ],
+                    [
+                        92,
+                        120
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#3498DB",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "star",
+                "x": 256,
+                "y": 256,
+                "outer_r": 120,
+                "inner_r": 40,
+                "points": 4,
+                "rotation": 0,
+                "fill": "transparent",
+                "outline": "#AED6F1",
+                "width": 24
+            }
+        ]
+    },
+    "FirePila": {
+        "name": "Fire Pila",
+        "element": "Fire",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        452,
+                        412
+                    ],
+                    [
+                        60,
+                        412
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#C0392B",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        256,
+                        220
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#E67E22",
+                "width": 24
+            },
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 256,
+                "y": 290,
+                "r": 60,
+                "fill": "transparent",
+                "outline": "#F1C40F",
+                "width": 24
+            }
+        ]
+    },
+    "SummonValkyrie": {
+        "name": "Summon Valkyrie",
+        "element": "Neutral",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        472,
+                        256
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        40,
+                        256
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#D4AC0D",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        120,
+                        160
+                    ],
+                    [
+                        256,
+                        362
+                    ],
+                    [
+                        392,
+                        160
+                    ],
+                    [
+                        256,
+                        260
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#F9E79F",
+                "width": 24
+            }
+        ]
+    },
+    "PerfectParry": {
+        "name": "Perfect Parry",
+        "element": "Neutral",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        440,
+                        120
+                    ],
+                    [
+                        440,
+                        320
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        72,
+                        320
+                    ],
+                    [
+                        72,
+                        120
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#7F8C8D",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        120
+                    ],
+                    [
+                        256,
+                        380
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#ECF0F1",
+                "width": 24
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        130,
+                        250
+                    ],
+                    [
+                        382,
+                        250
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#ECF0F1",
+                "width": 24
+            }
+        ]
+    },
+    "ChainLightning": {
+        "name": "Chain Lightning",
+        "element": "Electric",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        440,
+                        148
+                    ],
+                    [
+                        440,
+                        364
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        72,
+                        364
+                    ],
+                    [
+                        72,
+                        148
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#5DADE2",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        290,
+                        100
+                    ],
+                    [
+                        170,
+                        260
+                    ],
+                    [
+                        250,
+                        260
+                    ],
+                    [
+                        170,
+                        420
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#AED6F1",
+                "width": 24
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        210,
+                        260
+                    ],
+                    [
+                        370,
+                        260
+                    ],
+                    [
+                        290,
+                        400
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#AED6F1",
+                "width": 20
+            }
+        ]
+    },
+    "BlinkStrike": {
+        "name": "Blink Strike",
+        "element": "Neutral",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        472,
+                        256
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        40,
+                        256
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#B2BABB",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        120,
+                        392
+                    ],
+                    [
+                        392,
+                        120
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#FFFFFF",
+                "width": 24
+            },
+            {
+                "role": "symbol",
+                "type": "star",
+                "x": 392,
+                "y": 120,
+                "outer_r": 70,
+                "inner_r": 20,
+                "points": 4,
+                "rotation": 0,
+                "fill": "transparent",
+                "outline": "#FFFFFF",
+                "width": 24
+            }
+        ]
+    },
+    "TimeDilation": {
+        "name": "Time Dilation",
+        "element": "Neutral",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 256,
+                "y": 256,
+                "r": 210,
+                "fill": "transparent",
+                "outline": "#5D6D7E",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        160,
+                        150
+                    ],
+                    [
+                        352,
+                        150
+                    ],
+                    [
+                        160,
+                        362
+                    ],
+                    [
+                        352,
+                        362
+                    ],
+                    [
+                        160,
+                        150
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#85C1E9",
+                "width": 24
+            }
+        ]
+    },
+    "ForceNova": {
+        "name": "Force Nova",
+        "element": "Neutral",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 256,
+                "y": 256,
+                "r": 210,
+                "fill": "transparent",
+                "outline": "#8E44AD",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "star",
+                "x": 256,
+                "y": 256,
+                "outer_r": 256,
+                "inner_r": 120,
+                "points": 4,
+                "rotation": 45,
+                "fill": "transparent",
+                "outline": "#D2B4DE",
+                "width": 24
+            }
+        ]
+    },
+    "Blink": {
+        "name": "Blink",
+        "element": "Electric",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 256,
+                "y": 256,
+                "r": 210,
+                "fill": "transparent",
+                "outline": "#5499C7",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "circle",
+                "x": 150,
+                "y": 362,
+                "r": 30,
+                "fill": "transparent",
+                "outline": "#A9CCE3",
+                "width": 16
+            },
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        171,
+                        341
+                    ],
+                    [
+                        341,
+                        171
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#EAF2F8",
+                "width": 16
+            },
+            {
+                "role": "symbol",
+                "type": "star",
+                "x": 362,
+                "y": 150,
+                "outer_r": 60,
+                "inner_r": 15,
+                "points": 4,
+                "rotation": 0,
+                "fill": "transparent",
+                "outline": "#FFFFFF",
+                "width": 24
+            }
+        ]
+    },
+    "ChornosField": {
+        "name": "Chronos Field",
+        "element": "Neutral",
+        "canvas": {
+            "width": 512,
+            "height": 512,
+            "background": "#00000000"
+        },
+        "layers": [
+            {
+                "role": "symbol",
+                "type": "polygon",
+                "points": [
+                    [
+                        256,
+                        40
+                    ],
+                    [
+                        440,
+                        148
+                    ],
+                    [
+                        440,
+                        364
+                    ],
+                    [
+                        256,
+                        472
+                    ],
+                    [
+                        72,
+                        364
+                    ],
+                    [
+                        72,
+                        148
+                    ]
+                ],
+                "fill": "transparent",
+                "outline": "#F39C12",
+                "width": 32
+            },
+            {
+                "role": "symbol",
+                "type": "star",
+                "x": 256,
+                "y": 256,
+                "outer_r": 150,
+                "inner_r": 90,
+                "points": 12,
+                "rotation": 0,
+                "fill": "transparent",
+                "outline": "#F5B041",
+                "width": 24
+            }
+        ]
+    }
+}

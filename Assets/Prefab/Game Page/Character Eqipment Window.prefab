@@ -8904,7 +8904,7 @@ MonoBehaviour:
   _destroyOnClose: 0
   _isDraggable: 1
   _headerRect: {fileID: 4481392119064320869}
-  _clampToCanvas: 1
+  _clampToCanvas: 0
   _onLoad:
     m_PersistentCalls:
       m_Calls: []

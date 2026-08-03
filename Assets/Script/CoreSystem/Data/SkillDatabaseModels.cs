@@ -61,6 +61,7 @@ namespace CoreSystem.Data.Skills
         public List<string> Tags;
         public List<UniqueSkillFieldData> UniqueFields;
         public List<int> SupportSkillIDs;
+        public int MaxSupportSlots = 5;
     }
 
     [System.Serializable]
@@ -130,5 +131,6 @@ namespace CoreSystem.Data.Skills
         public int SkillID;
         public string ModifierName;
         public string Description;
+        public string IconPath;
     }
 }

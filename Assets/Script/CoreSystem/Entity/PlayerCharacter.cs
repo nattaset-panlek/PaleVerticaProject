@@ -110,7 +110,7 @@ namespace CoreSystem.Entity
                 PassivePoints += PassiveNodes.Count;
                 PassiveNodes.Clear();
                 RecalculateStats();
-                FindObjectOfType<PassiveSkillLoader>()?.LoadFromPlayer(this);
+                PassiveSkillLoader.Instance?.LoadFromPlayer(this);
             }
             GUILayout.EndHorizontal();
 

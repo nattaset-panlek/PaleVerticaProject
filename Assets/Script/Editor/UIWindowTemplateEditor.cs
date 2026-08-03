@@ -119,7 +119,7 @@ namespace CoreSystem.EditorTools
 
         private static Canvas GetOrCreateCanvas()
         {
-            Canvas canvas = Object.FindObjectOfType<Canvas>();
+            Canvas canvas = Object.FindFirstObjectByType<Canvas>();
             if (canvas == null)
             {
                 GameObject canvasObj = new GameObject("Canvas", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -133,7 +133,7 @@ namespace CoreSystem.EditorTools
                 Undo.RegisterCreatedObjectUndo(canvasObj, "Create Canvas");
             }
 
-            if (Object.FindObjectOfType<EventSystem>() == null)
+            if (Object.FindFirstObjectByType<EventSystem>() == null)
             {
                 GameObject eventSystem = new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
                 Undo.RegisterCreatedObjectUndo(eventSystem, "Create EventSystem");

@@ -182,13 +182,13 @@ namespace UI.Editor
 
         private static GameObject FindOrCreateCanvas()
         {
-            Canvas canvas = Object.FindObjectOfType<Canvas>();
+            Canvas canvas = Object.FindFirstObjectByType<Canvas>();
             if (canvas != null) return canvas.gameObject;
 
             GameObject canvasObj = new GameObject("Canvas", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             canvasObj.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
 
-            if (Object.FindObjectOfType<EventSystem>() == null)
+            if (Object.FindFirstObjectByType<EventSystem>() == null)
                 new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
 
             return canvasObj;

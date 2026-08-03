@@ -160,7 +160,7 @@ namespace CoreSystem.UI.Utile
             }
             if (_canvas == null)
             {
-                _canvas = Object.FindObjectOfType<Canvas>();
+                _canvas = Object.FindAnyObjectByType<Canvas>();
             }
             if (_canvas == null)
             {

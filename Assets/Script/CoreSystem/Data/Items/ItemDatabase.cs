@@ -128,7 +128,9 @@ namespace CoreSystem.Data.Items
                 case "Resource":
                     return new Resource { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, IconPath = entry.IconPath };
                 case "SkillRune":
-                    return new SkillRune { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, IsSupportRune = entry.IsSupportRune, LinkedSkillID = entry.SkillID, IconPath = entry.IconPath };
+                    return new SkillRune { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, LinkedSkillID = entry.SkillID, IconPath = entry.IconPath };
+                case "SupportRune":
+                    return new SupportRune { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, SupportSkillID = entry.SkillID, IconPath = entry.IconPath };
                 case "Additional":
                     return new Additional { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, IconPath = entry.IconPath };
                 case "Costume":
@@ -321,7 +323,6 @@ namespace CoreSystem.Data.Items
 
         // Specific fields
         public string EquipmentSlot; // e.g., "Weapon", "Helm"
-        public bool IsSupportRune;
         public string Rarity;
         public int SkillID;
         public string FragmentKind;

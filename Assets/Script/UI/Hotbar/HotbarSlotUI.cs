@@ -168,6 +168,13 @@ namespace CoreSystem.UI.Hotbar
                 return;
             }
 
+            var draggedSkill = GlobalDragManager.Payload as SkillInstance;
+            if (draggedSkill != null && draggedSkill.SkillData != null)
+            {
+                AssignSkill(draggedSkill.SkillData.Id);
+                return;
+            }
+
             var draggedItem = GlobalDragManager.Payload as ItemInstance;
             if (draggedItem != null && draggedItem.Item != null)
             {

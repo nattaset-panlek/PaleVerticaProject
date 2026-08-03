@@ -72,12 +72,12 @@ public partial class ProjectMobilityAssistant : EditorWindow
     private string[] _itemTypeNames;
     private int _skillElementFilterIndex = 0;
     private string[] _skillElementFilterNames;
-    private string[] _tabNamesForItems = { "All", "Currency", "Consumable", "Equip", "Frag", "Res", "Rune", "Cos" };
+    private string[] _tabNamesForItems = { "All", "Currency", "Consumable", "Equip", "Frag", "Res", "SkillRune", "SupportRune", "Cos", "Add" };
     private bool _showOnlyWithEffects = false;
     
     private Dictionary<string, int> _itemPrefixes = new Dictionary<string, int> {
         { "Currency", 1 }, { "Consumable", 2 }, { "Equipment", 3 }, { "Fragment", 4 },
-        { "Resource", 5 }, { "SkillRune", 6 }, { "Costume", 8 }
+        { "Resource", 5 }, { "SkillRune", 6 }, { "SupportRune", 7 }, { "Costume", 8 }, { "Additional", 9 }
     };
 
     // --- ID Manager State ---

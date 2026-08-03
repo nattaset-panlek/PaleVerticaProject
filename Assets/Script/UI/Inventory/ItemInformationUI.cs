@@ -155,6 +155,9 @@ namespace CoreSystem.UI.Inventory
                 case ItemType.SkillRune:
                     ShowSkillRune(item as SkillRune);
                     break;
+                case ItemType.SupportRune:
+                    ShowSupportRune(item as SupportRune);
+                    break;
                 case ItemType.Consumable:
                     ShowConsumable(item as Consumable);
                     break;
@@ -328,9 +331,15 @@ namespace CoreSystem.UI.Inventory
         private void ShowSkillRune(SkillRune skillRune)
         {
             if (skillRune == null) return;
-            // Skill shows item effect
             itemEffectSection.SetActive(true);
             effectContentText.text = skillRune.Description;
+        }
+
+        private void ShowSupportRune(SupportRune supportRune)
+        {
+            if (supportRune == null) return;
+            itemEffectSection.SetActive(true);
+            effectContentText.text = supportRune.Description;
         }
 
         private void ShowConsumable(Consumable consumable)

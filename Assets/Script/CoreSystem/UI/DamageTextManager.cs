@@ -13,7 +13,7 @@ namespace CoreSystem.UI
             get
             {
                 if (_instance == null)
-                    _instance = FindObjectOfType<DamageTextManager>();
+                    _instance = FindAnyObjectByType<DamageTextManager>();
                 return _instance;
             }
         }
@@ -52,7 +52,7 @@ namespace CoreSystem.UI
             else if (_instance != this) Destroy(gameObject);
             
             if (UICanvas == null)
-                UICanvas = GameObject.FindObjectOfType<Canvas>();
+                UICanvas = GameObject.FindAnyObjectByType<Canvas>();
         }
 
         public void ShowDamage(Vector3 worldPos, float amount, DamageType type, ElementType element = ElementType.Neutral, bool isCritical = false)

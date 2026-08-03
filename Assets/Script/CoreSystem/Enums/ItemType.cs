@@ -8,6 +8,7 @@ namespace CoreSystem
         Fragment,
         Resource,
         SkillRune,
+        SupportRune,
         Costume,
         Additional
     }

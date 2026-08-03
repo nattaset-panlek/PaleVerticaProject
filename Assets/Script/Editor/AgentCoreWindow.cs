@@ -350,7 +350,7 @@ namespace CoreSystem.EditorScripts
 
         private List<AgentCore> FindAll()
         {
-            return new List<AgentCore>(FindObjectsOfType<AgentCore>());
+            return new List<AgentCore>(FindObjectsByType<AgentCore>(FindObjectsSortMode.None));
         }
 
         private List<AgentCore> Filter(List<AgentCore> agents)

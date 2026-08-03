@@ -3,112 +3,134 @@
         {
             "SkillID": 1001,
             "ModifierName": "Multi-Shot",
-            "Description": "Adds {0} projectile(s)."
+            "Description": "Adds {0} projectile(s).",
+            "IconPath": ""
         },
         {
             "SkillID": 1002,
             "ModifierName": "Echo",
-            "Description": "Converts damage to {0}% and adds {1}x cooldown as extra damage."
+            "Description": "Converts damage to {0}% and adds {1}x cooldown as extra damage.",
+            "IconPath": ""
         },
         {
             "SkillID": 1003,
             "ModifierName": "Pierce",
-            "Description": "Allows projectiles to pierce targets."
+            "Description": "Allows projectiles to pierce targets.",
+            "IconPath": ""
         },
         {
             "SkillID": 1004,
             "ModifierName": "Chain",
-            "Description": "Allows projectiles to chain between targets."
+            "Description": "Allows projectiles to chain between targets.",
+            "IconPath": ""
         },
         {
             "SkillID": 1005,
             "ModifierName": "Area Increase",
-            "Description": "Increases area of effect radius by {0}% but increases cast time by {1}%."
+            "Description": "Increases area of effect radius by {0}% but increases cast time by {1}%.",
+            "IconPath": ""
         },
         {
             "SkillID": 1006,
             "ModifierName": "Damage Up",
-            "Description": "Increases base damage by {0}%."
+            "Description": "Increases base damage by {0}%.",
+            "IconPath": ""
         },
         {
             "SkillID": 1007,
             "ModifierName": "Cooldown Reduction",
-            "Description": "Reduces cooldown by {0}%."
+            "Description": "Reduces cooldown by {0}%.",
+            "IconPath": ""
         },
         {
             "SkillID": 1008,
             "ModifierName": "Cost Reduction",
-            "Description": "Reduces mana cost by {0}%."
+            "Description": "Reduces mana cost by {0}%.",
+            "IconPath": ""
         },
         {
             "SkillID": 1009,
             "ModifierName": "Duration Up",
-            "Description": "Increases skill duration by {0}%."
+            "Description": "Increases skill duration by {0}%.",
+            "IconPath": ""
         },
         {
             "SkillID": 1010,
             "ModifierName": "Status Chance Up",
-            "Description": "Increases chance to apply status effects by {0}%."
+            "Description": "Increases chance to apply status effects by {0}%.",
+            "IconPath": ""
         },
         {
             "SkillID": 1011,
             "ModifierName": "Burn Chance",
-            "Description": "Adds a {0}% chance to ignite/burn targets."
+            "Description": "Adds a {0}% chance to ignite/burn targets.",
+            "IconPath": ""
         },
         {
             "SkillID": 1012,
             "ModifierName": "Freeze Chance",
-            "Description": "Adds a {0}% chance to freeze targets."
+            "Description": "Adds a {0}% chance to freeze targets.",
+            "IconPath": ""
         },
         {
             "SkillID": 1013,
             "ModifierName": "Knockback",
-            "Description": "Knocks targets back by {0} meters."
+            "Description": "Knocks targets back by {0} meters.",
+            "IconPath": ""
         },
         {
             "SkillID": 1014,
             "ModifierName": "Critical Power",
-            "Description": "Multiplies base damage by {0}% plus {1}% of character LUK attribute value."
+            "Description": "Multiplies base damage by {0}% plus {1}% of character LUK attribute value.",
+            "IconPath": ""
         },
         {
             "SkillID": 1015,
             "ModifierName": "Mana Leech",
-            "Description": "Leeches {0}% damage dealt as mana."
+            "Description": "Leeches {0}% damage dealt as mana.",
+            "IconPath": ""
         },
         {
             "SkillID": 1016,
             "ModifierName": "Life Leech",
-            "Description": "Leeches {0}% physical damage dealt as life."
+            "Description": "Leeches {0}% physical damage dealt as life.",
+            "IconPath": ""
         },
         {
             "SkillID": 1017,
             "ModifierName": "Projectile Speed",
-            "Description": "Increases projectile speed by {0}%."
+            "Description": "Increases projectile speed by {0}%.",
+            "IconPath": ""
         },
         {
             "SkillID": 1018,
             "ModifierName": "Split Projectile",
-            "Description": "Fires {0} additional projectiles."
+            "Description": "Fires {0} additional projectiles.",
+            "IconPath": ""
         },
         {
             "SkillID": 1019,
             "ModifierName": "Homing",
-            "Description": "Projectiles track and homing towards targets."
+            "Description": "Projectiles track and homing towards targets.",
+            "IconPath": ""
         },
         {
             "SkillID": 1020,
             "ModifierName": "Empowered Cast",
-            "Description": "Adds {0} flat damage, plus {1}% of character INT attribute value."
+            "Description": "Adds {0} flat damage, plus {1}% of character INT attribute value.",
+            "IconPath": ""
         },
         {
             "SkillID": 1021,
             "ModifierName": "Echo Spell",
-            "Description": "Repeats the skill 0.15s after casting. Repeated cast has {0}% increased area but {1}% less damage."
+            "Description": "Repeats the skill 0.15s after casting. Repeated cast has {0}% increased area but {1}% less damage.",
+            "IconPath": ""
         },
         {
             "SkillID": 1022,
             "ModifierName": "Spell Cascade",
-            "Description": "Creates 3 cascading AOE circles. Left/right circles deal {0}% damage, main circle deals {1}% damage."
+            "Description": "Creates 3 cascading AOE circles. Left/right circles deal {0}% damage, main circle deals {1}% damage.",
+            "IconPath": ""
         }
     ]
 }

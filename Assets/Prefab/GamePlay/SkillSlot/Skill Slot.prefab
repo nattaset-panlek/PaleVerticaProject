@@ -725,6 +725,7 @@ GameObject:
   - component: {fileID: 6265869021626109141}
   - component: {fileID: 2721942207677810389}
   - component: {fileID: 4897312468262278065}
+  - component: {fileID: 1556894315705019218}
   m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
@@ -789,6 +790,38 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1556894315705019218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5842841507475537268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52c162dc854d2f24fa639ba0623de5ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: LeTai.TrueShadow::LeTai.TrueShadow.TrueShadow
+  algorithm: 0
+  size: 10
+  spread: 0
+  useGlobalAngle: 0
+  offsetAngle: 45
+  offsetDistance: 0
+  offset: {x: 0, y: -0}
+  color: {r: 0, g: 0, b: 0, a: 0.6}
+  inset: 0
+  blendMode: 0
+  useCasterAlpha: 1
+  ignoreCasterColor: 0
+  skipTextHashing: 0
+  deallocateOnDisable: 0
+  disableFitCompensation: 0
+  shadowAsSibling: 0
+  cutout: 0
+  baked: 0
+  modifiedFromInspector: 0
+  bakedShadows: []
 --- !u!1 &5852206513018448878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,6 +1120,8 @@ MonoBehaviour:
   _numHotSlotText: {fileID: 8257094841865803147}
   _rowIndex: 0
   _slotIndex: 0
+  _holdThreshold: 0.15
+  _dragDistanceThreshold: 10
 --- !u!1 &8451296372858239119
 GameObject:
   m_ObjectHideFlags: 0
