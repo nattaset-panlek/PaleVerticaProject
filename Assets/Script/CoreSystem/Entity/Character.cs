@@ -32,6 +32,7 @@ namespace CoreSystem.Entity
 
         public MovementSystem movementSystem = new MovementSystem();
         public SkillCaster skillCaster = new SkillCaster();
+        public CommandDirector commandDirector = new CommandDirector();
         public ExperienceSystem expSystem = new ExperienceSystem();
         private CoreSystem.Entity.UniquePassives.UniquePassiveManager _uniquePassives = new CoreSystem.Entity.UniquePassives.UniquePassiveManager();
         public CoreSystem.Entity.UniquePassives.UniquePassiveManager UniquePassives => _uniquePassives;
@@ -364,6 +365,7 @@ namespace CoreSystem.Entity
             _attributeSystem.Initialize(this);
             movementSystem.Initialize(this);
             skillCaster.Initialize(this);
+            commandDirector.Initialize(this);
             expSystem.Initialize(this);
         }
 

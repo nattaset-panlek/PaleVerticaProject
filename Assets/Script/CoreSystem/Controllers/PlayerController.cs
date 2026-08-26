@@ -125,7 +125,7 @@ namespace CoreSystem.Controllers
                         if (Anim != null) Anim.SetBool(MovingBoolParam, false);
                         PlayDeathAnimation();
                         SkillIndicatorManager.Instance?.HideIndicator();
-                        player.skillCaster?.InterruptCast();
+                        player.commandDirector?.CommandInterruptCast(this);
                     }
                     return true;
                 }
@@ -200,7 +200,7 @@ namespace CoreSystem.Controllers
                 if (isMoving)
                 {
                     _autoAttackTarget = null;
-                    player.movementSystem.Move(direction);
+                    player.commandDirector.CommandMove(direction, this);
 
                     if (ModelTransform != null)
                     {
@@ -273,7 +273,7 @@ namespace CoreSystem.Controllers
                         {
                             var payload = player.skillCaster.BuildPayload(instance, mousePos, true);
                             
-                            player.skillCaster.CastSkill(instance, mousePos, true);
+                            player.commandDirector.CommandCastSkill(instance, mousePos, true, this);
                             SkillIndicatorManager.Instance?.StartExecution(payload);
                             
                             bool shouldKeepIndicator = instance.SkillData.BaseTargeting is ConeTargeting || 
@@ -338,7 +338,7 @@ namespace CoreSystem.Controllers
             }
             else
             {
-                player.skillCaster.CastSkill(instance, mousePos, true);
+                player.commandDirector.CommandCastSkill(instance, mousePos, true, this);
                 _selectedSkillInstance = null;
                 _selectedSkillSlot = -1;
                 player.skillCaster.AimedSkillInstance = null;
@@ -439,9 +439,9 @@ namespace CoreSystem.Controllers
             if (dist > attackRange)
             {
                 Vector3 direction = (_autoAttackTarget.transform.position - transform.position).normalized;
-                if (player.movementSystem != null)
+                if (player.commandDirector != null)
                 {
-                    player.movementSystem.Move(direction);
+                    player.commandDirector.CommandMove(direction, this);
                 }
 
                 if (ModelTransform != null)

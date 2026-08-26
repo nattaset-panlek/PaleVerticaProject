@@ -582,8 +582,8 @@ namespace CoreSystem.Controllers
             Vector3 dir = (dest - transform.position).normalized;
             Vector3 combined = dir + separationForce; // We will normalize later
 
-            if (_character.movementSystem != null)
-                _character.movementSystem.Move(combined.normalized);
+            if (_character.commandDirector != null)
+                _character.commandDirector.CommandMove(combined.normalized, this);
 
             // Flip visuals based on INTENDED direction, not avoidance, to prevent sprite twitching
             UpdateVisualFlip(dir);
@@ -704,7 +704,7 @@ namespace CoreSystem.Controllers
             }
 
             // Start the cast sequence with the modified payload
-            _character.skillCaster.CastSkill(selected, payload);
+            _character.commandDirector.CommandCastSkill(selected, payload, this);
 
             // Set Individual AI Delay
             if (entry != null)
