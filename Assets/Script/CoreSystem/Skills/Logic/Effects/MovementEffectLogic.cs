@@ -65,14 +65,14 @@ namespace CoreSystem.Skills.Logic.Effects
                     {
                         // Fallback: Teleport forward
                         if (UseLerp)
-                            payload.Caster.ApplyImpulse(payload.Caster.transform.up, Distance, LerpDuration);
+                            payload.Caster.ApplyImpulse(payload.GetAimDirection(), Distance, LerpDuration);
                         else
-                            payload.Caster.transform.position += payload.Caster.transform.up * Distance;
+                            payload.Caster.transform.position += payload.GetAimDirection() * Distance;
                     }
                     break;
 
                 case MovementType.DashForward:
-                    Vector3 forwardDir = payload.Caster.transform.up; // Assuming 2D Top-down default rotation
+                    Vector3 forwardDir = payload.GetAimDirection(); // Assuming 2D Top-down default rotation
                     if (UseLerp)
                         payload.Caster.ApplyImpulse(forwardDir, Distance, LerpDuration);
                     else
@@ -97,9 +97,9 @@ namespace CoreSystem.Skills.Logic.Effects
                     {
                         // Fallback: Dash forward
                         if (UseLerp)
-                            payload.Caster.ApplyImpulse(payload.Caster.transform.up, Distance, LerpDuration);
+                            payload.Caster.ApplyImpulse(payload.GetAimDirection(), Distance, LerpDuration);
                         else
-                            payload.Caster.transform.position += payload.Caster.transform.up * Distance;
+                            payload.Caster.transform.position += payload.GetAimDirection() * Distance;
                     }
                     break;
 
@@ -167,4 +167,5 @@ namespace CoreSystem.Skills.Logic.Effects
         }
     }
 }
+
 

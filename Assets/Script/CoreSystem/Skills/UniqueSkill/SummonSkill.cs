@@ -14,7 +14,7 @@ namespace CoreSystem.Skills.UniqueSkill
         public override void Execute(SkillPayload payload, SkillInstance instance, SkillCaster caster)
         {
             // Calculate spawn position (e.g., slightly in front of caster)
-            Vector3 spawnPos = caster.CharacterRef.transform.position + caster.CharacterRef.transform.up * 1.5f;
+            Vector3 spawnPos = caster.CharacterRef.transform.position + payload.GetAimDirection() * 1.5f;
             
             GameObject minion = GameObject.Instantiate(MinionPrefab, spawnPos, Quaternion.identity);
             
@@ -29,3 +29,4 @@ namespace CoreSystem.Skills.UniqueSkill
         }
     }
 }
+

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Hellfire_Blast_1003
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
+  Id: 1003
+  Name: Hellfire Blast
+  Icon: {fileID: 21300000, guid: bdd1a3af1ebf8e347baf21416aab4898, type: 3}
+  SkillElement: 3
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 1245210145478934761
+  Effects:
+  - rid: 1245210145478934762
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 3
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
+  BaseDamage: 180
+  BaseAOERadius: 3.5
+  BaseProjectileCount: 1
+  BaseManaCost: 10
+  Tags: 02000000000000000b0000000a000000
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 1.5
+  BaseFCT: 0.5
+  BaseCastDelay: 0.2
+  BaseCooldown: 5
+  ChainOverrides: []
+  Scalings:
+  - TargetField: 0
+    ScalingAttribute: 0
+    AttributeMultiplier: 2
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 50
+  - TargetField: 1
+    ScalingAttribute: 152
+    AttributeMultiplier: 0.035
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
+  MaxSupportSlots: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 1245210145478934761
+      type: {class: ConeTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        ConeAngle: 245
+    - rid: 1245210145478934762
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 1

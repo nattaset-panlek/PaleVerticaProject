@@ -62,6 +62,8 @@ namespace CoreSystem.Data.Skills
         public List<UniqueSkillFieldData> UniqueFields;
         public List<int> SupportSkillIDs;
         public int MaxSupportSlots = 5;
+        
+        public List<SkillChainOverrideJsonData> ChainOverrides;
     }
 
     [System.Serializable]
@@ -70,6 +72,15 @@ namespace CoreSystem.Data.Skills
         public string FieldName;
         public string FieldType;
         public string StringValue;
+    }
+
+    [System.Serializable]
+    public class SkillChainOverrideJsonData
+    {
+        public string RequiredBuffCode;
+        public int ReplacementSkillID;
+        public bool ConsumeBuffOnCast;
+        public string HintColorHex;
     }
 
     public enum VisualSpawnPoint
@@ -92,11 +103,13 @@ namespace CoreSystem.Data.Skills
         public float Duration;
         public int MaxStacks;
         public string BuffName;
+        public string BuffCode;
         public string PrefabPath;
         public string Category;
         public string MovementType;
         public float MovementDistance;
         public bool ApplyOnce;
+        public bool ApplyToCaster;
         public bool UseLerp;
         public float LerpDuration;
         public bool ParentToCaster;
@@ -120,6 +133,7 @@ namespace CoreSystem.Data.Skills
         public float Angle = 60f;
         public UnityEngine.Vector2 BoxSize = new UnityEngine.Vector2(2f, 5f);
         public UnityEngine.Vector2 Offset = UnityEngine.Vector2.zero;
+        public float LineWidth = 1f;
 
         public string Alignment;
         public bool IncludeSelf;

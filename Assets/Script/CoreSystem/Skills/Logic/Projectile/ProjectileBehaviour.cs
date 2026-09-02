@@ -75,7 +75,7 @@ namespace CoreSystem.Skills.Logic
 
             if (targetEntity != null)
             {
-                if (!payload.Caster.Faction.IsHostileTo(targetEntity.Faction))
+                if (!CoreSystem.Data.FactionDatabase.IsHostile(payload.Caster.Faction, targetEntity.Faction))
                 {
                     return;
                 }
@@ -112,7 +112,7 @@ namespace CoreSystem.Skills.Logic
 
             if (targetEntity != null)
             {
-                if (!payload.Caster.Faction.IsHostileTo(targetEntity.Faction))
+                if (!CoreSystem.Data.FactionDatabase.IsHostile(payload.Caster.Faction, targetEntity.Faction))
                 {
                     return;
                 }
@@ -150,7 +150,7 @@ namespace CoreSystem.Skills.Logic
                     IEntity hitEntity = col.GetComponentInParent<IEntity>();
                     if (hitEntity != null && hitEntities.Add(hitEntity))
                     {
-                        if (payload.Caster.Faction.IsHostileTo(hitEntity.Faction))
+                        if (CoreSystem.Data.FactionDatabase.IsHostile(payload.Caster.Faction, hitEntity.Faction))
                         {
                             damageEffect.Apply(payload, hitEntity);
                         }

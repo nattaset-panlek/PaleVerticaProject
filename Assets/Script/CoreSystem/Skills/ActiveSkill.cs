@@ -7,6 +7,22 @@ using UnityEngine;
 
 namespace CoreSystem.Skills
 {
+    [System.Serializable]
+    public class SkillChainOverride
+    {
+        [Tooltip("Name of the Buff required to trigger this combo/mutation")]
+        public string RequiredBuffCode;
+        
+        [Tooltip("The skill that replaces this one")]
+        public ActiveSkill ReplacementSkill;
+        
+        [Tooltip("If true, casting this skill consumes the combo buff immediately")]
+        public bool ConsumeBuffOnCast = true;
+        
+        [Tooltip("Color of the hint overlay shown on the UI (optional)")]
+        public Color HintColor = Color.white;
+    }
+
     [CreateAssetMenu(fileName = "NewActiveSkill", menuName = "Skill System/Active Skill")]
     public class ActiveSkill : ScriptableObject
     {
@@ -58,6 +74,9 @@ namespace CoreSystem.Skills
         public float BaseCastDelay; 
         public float BaseCooldown; 
         
+        [Header("Skill Chain & Combo")]
+        public List<SkillChainOverride> ChainOverrides = new List<SkillChainOverride>();
+
         public List<OutputScaling> Scalings = new List<OutputScaling>();
         public int MaxSupportSlots = 5;
         #endregion
@@ -69,6 +88,25 @@ namespace CoreSystem.Skills
         #endregion
 
         #region [Public Methods]
+        public static SkillChainOverride GetActiveChainOverride(CoreSystem.Entity.Character caster, ActiveSkill baseSkill)
+        {
+            if (baseSkill == null || baseSkill.ChainOverrides.Count == 0) return null;
+            if (caster == null) return null;
+            
+            var buffManager = caster.GetComponent<Logic.TemporaryBuffManager>();
+            if (buffManager == null) return null;
+
+            for (int i = 0; i < baseSkill.ChainOverrides.Count; i++)
+            {
+                var over = baseSkill.ChainOverrides[i];
+                if (buffManager.HasBuff(over.RequiredBuffCode))
+                {
+                    return over;
+                }
+            }
+            return null;
+        }
+
         public virtual void Execute(SkillPayload payload, SkillInstance instance, SkillCaster caster)
         {
             if (this.IsContinuousArea && this.BaseTargeting != null)
@@ -108,7 +146,11 @@ namespace CoreSystem.Skills
                 EffectLogic effect = this.Effects[i];
                 if (effect != null)
                 {
-                    if (effect.ApplyOncePerCast)
+                    if (effect.ApplyToCaster)
+                    {
+                        effect.Apply(payload, caster.CharacterRef);
+                    }
+                    else if (effect.ApplyOncePerCast)
                     {
                         effect.Apply(payload, payload.Targets.Count > 0 ? payload.Targets[0] : null);
                     }

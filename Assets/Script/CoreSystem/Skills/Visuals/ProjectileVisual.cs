@@ -17,7 +17,7 @@ namespace CoreSystem.Skills.Visuals
                 }
                 else if (context.Caster != null)
                 {
-                    rotation = context.Caster.transform.rotation;
+                    rotation = Quaternion.LookRotation(Vector3.forward, context.GetAimDirection());
                 }
 
                 int count = Mathf.Max(1, context.ProjectileCount);
@@ -62,3 +62,4 @@ namespace CoreSystem.Skills.Visuals
         }
     }
 }
+

@@ -14,7 +14,7 @@ namespace CoreSystem.Skills.UniqueSkill
 
             // 1. Teleport behind target position (facing direction)
             Vector3 targetPos = payload.TargetPosition;
-            Vector3 blinkPos = targetPos - (caster.CharacterRef.transform.up * 1f); 
+            Vector3 blinkPos = targetPos - (payload.GetAimDirection() * 1f); 
             
             caster.CharacterRef.transform.position = blinkPos;
             
@@ -26,3 +26,4 @@ namespace CoreSystem.Skills.UniqueSkill
         }
     }
 }
+

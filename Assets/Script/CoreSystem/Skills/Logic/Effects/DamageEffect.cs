@@ -12,7 +12,7 @@ namespace CoreSystem.Skills.Logic
 
         public override void Apply(SkillPayload payload, IEntity target)
         {
-            if (payload.Caster != null && !payload.Caster.Faction.IsHostileTo(target.Faction))
+            if (payload.Caster != null && !CoreSystem.Data.FactionDatabase.IsHostile(payload.Caster.Faction, target.Faction))
             {
                 return;
             }

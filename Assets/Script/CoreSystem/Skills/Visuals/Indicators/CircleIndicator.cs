@@ -22,8 +22,16 @@ namespace CoreSystem.Skills.Visuals
             
             if (_mainDisc != null)
             {
-                float diameter = _maxAOERadius * 2f;
-                _mainDisc.transform.localScale = new Vector3(diameter, diameter, 1f);
+                if (logic is SingleUnitTargeting)
+                {
+                    _mainDisc.gameObject.SetActive(false);
+                }
+                else
+                {
+                    float diameter = _maxAOERadius * 2f;
+                    _mainDisc.transform.localScale = new Vector3(diameter, diameter, 1f);
+                    _mainDisc.gameObject.SetActive(true);
+                }
             }
 
             if (_fillDisc != null)
@@ -32,9 +40,10 @@ namespace CoreSystem.Skills.Visuals
                 _fillDisc.transform.localScale = Vector3.zero;
             }
 
-            if (_rangeDisc != null && logic is TargetLocationTargeting targetLoc)
+            if (_rangeDisc != null && (logic is TargetLocationTargeting || logic is SingleUnitTargeting))
             {
-                float rangeDiameter = payload.CastRange * 2f;
+                float castRange = (logic is SingleUnitTargeting sut) ? sut.CastRange : payload.CastRange;
+                float rangeDiameter = castRange * 2f;
                 _rangeDisc.transform.localScale = new Vector3(rangeDiameter, rangeDiameter, 1f);
                 _rangeDisc.gameObject.SetActive(true);
             }

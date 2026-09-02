@@ -3,7 +3,7 @@
         {
             "Id": 1001,
             "Name": "Skeletom",
-            "Faction": 1,
+            "Faction": 2,
             "BaseHP": 500,
             "BaseMP": 300,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/Enemy/Skeletom.prefab"

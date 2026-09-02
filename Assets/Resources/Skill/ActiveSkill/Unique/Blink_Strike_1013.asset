@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e9ce7710c1bda4994860190b945bf7, type: 3}
+  m_Name: Blink_Strike_1013
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.UniqueSkill.BlinkStrikeSkill
+  Id: 1013
+  Name: Blink Strike
+  Icon: {fileID: 21300000, guid: bdd1a3af1ebf8e347baf21416aab4898, type: 3}
+  SkillElement: 0
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 1245210145478934785
+  Effects: []
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 0
+  SkillIndicatorPrefab: {fileID: 5586069453266129572, guid: 8e95953e86b2ea24aae1a04a0787e393, type: 3}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
+  BaseDamage: 150
+  BaseAOERadius: 1
+  BaseProjectileCount: 0
+  BaseManaCost: 30
+  Tags: 
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 0
+  BaseFCT: 0
+  BaseCastDelay: 0
+  BaseCooldown: 6
+  ChainOverrides: []
+  Scalings: []
+  MaxSupportSlots: 5
+  StrikeDamageMult: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1245210145478934785
+      type: {class: TargetLocationTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        CastRange: 8

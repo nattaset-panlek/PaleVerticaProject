@@ -33,8 +33,8 @@ namespace CoreSystem.Skills.Logic
                     
                     if (payload.Caster != null)
                     {
-                        // Aim based on caster's facing direction (up vector for 2D top-down)
-                        baseRotation = payload.Caster.transform.rotation;
+                        // Aim based on calculated target direction
+                        baseRotation = Quaternion.LookRotation(Vector3.forward, payload.GetAimDirection());
                     }
 
                     Quaternion rotation = baseRotation * Quaternion.Euler(0, 0, currentAngle);
@@ -51,3 +51,4 @@ namespace CoreSystem.Skills.Logic
         }
     }
 }
+

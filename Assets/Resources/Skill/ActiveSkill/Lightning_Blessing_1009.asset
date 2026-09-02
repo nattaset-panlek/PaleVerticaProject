@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Lightning_Blessing_1009
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
+  Id: 1009
+  Name: Lightning Blessing
+  Icon: {fileID: 21300000, guid: bdd1a3af1ebf8e347baf21416aab4898, type: 3}
+  SkillElement: 4
+  SkillDamageType: 1
+  BaseTargeting:
+    rid: 1245210145478934777
+  Effects:
+  - rid: 1245210145478934778
+  - rid: 1245210145478934779
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 0
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
+  BaseDamage: 0
+  BaseAOERadius: 0
+  BaseProjectileCount: 0
+  BaseManaCost: 10
+  Tags: 0b00000004000000020000000900000006000000
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 2
+  BaseFCT: 0.15
+  BaseCastDelay: 0.1
+  BaseCooldown: 0
+  ChainOverrides: []
+  Scalings: []
+  MaxSupportSlots: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 1245210145478934777
+      type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+    - rid: 1245210145478934778
+      type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 11
+        ModifierValue: 30
+        ModType: 0
+        Duration: 1
+        MaxStacks: 0
+        BuffName: Lightning Agility
+        Category: 1
+        Icon: {fileID: 0}
+        BuffIconPath: 
+    - rid: 1245210145478934779
+      type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 132
+        ModifierValue: 70
+        ModType: 0
+        Duration: 10
+        MaxStacks: 0
+        BuffName: Lightning Speed
+        Category: 1
+        Icon: {fileID: 0}
+        BuffIconPath: 

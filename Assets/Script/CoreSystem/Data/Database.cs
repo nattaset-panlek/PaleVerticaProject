@@ -15,10 +15,17 @@ namespace CoreSystem.Data
     {
         private static Database _instance;
 
+        private static bool _applicationIsQuitting = false;
+
         public static Database Instance
         {
             get
             {
+                if (_applicationIsQuitting)
+                {
+                    return _instance;
+                }
+
                 if (_instance == null)
                 {
                     _instance = Object.FindAnyObjectByType<Database>();
@@ -57,6 +64,7 @@ namespace CoreSystem.Data
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void AutoInitializeDatabase()
         {
+            _applicationIsQuitting = false;
             if (Application.isPlaying)
             {
                 var db = Instance;
@@ -80,6 +88,19 @@ namespace CoreSystem.Data
             }
         }
 
+        private void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                _applicationIsQuitting = true;
+            }
+        }
+
+        private void OnApplicationQuit()
+        {
+            _applicationIsQuitting = true;
+        }
+
         private Dictionary<int, CharacterModel> _characterDatabase = new Dictionary<int, CharacterModel>();
         
         private Dictionary<int, ActiveSkillJsonData> _activeSkillJsonData = new Dictionary<int, ActiveSkillJsonData>();
@@ -97,6 +118,9 @@ namespace CoreSystem.Data
             // 1. Initialize Items
             Debug.Log("Database: Initializing ItemDatabase...");
             ItemDatabase.Initialize();
+            
+            // Initialize Factions
+            FactionDatabase.Initialize();
 
             // 2. Initialize Attributes
             Debug.Log("Database: Initializing AttributeDatabase...");
@@ -417,7 +441,7 @@ namespace CoreSystem.Data
     {
         public int Id;
         public string Name;
-        public CoreSystem.Entity.FactionType Faction;
+        public int Faction;
         public int BaseHP;
         public int BaseMP;
         public string PrefabPath;

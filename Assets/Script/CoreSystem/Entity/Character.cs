@@ -37,6 +37,14 @@ namespace CoreSystem.Entity
         private CoreSystem.Entity.UniquePassives.UniquePassiveManager _uniquePassives = new CoreSystem.Entity.UniquePassives.UniquePassiveManager();
         public CoreSystem.Entity.UniquePassives.UniquePassiveManager UniquePassives => _uniquePassives;
 
+        [Header("Modules")]
+        public Controllers.FaceDirectionModule FaceDirection = new Controllers.FaceDirectionModule();
+        public Vector3 FacingDirection => FaceDirection.CurrentFacingVector;
+
+        [Header("Passive Skill Tree")]
+        public List<PassiveNodeRecord> PassiveNodes = new List<PassiveNodeRecord>();
+        public int PassivePoints = 0;
+
         [Header("Default Skills")]
         public List<int> DefaultSkillIds = new List<int> { 1001 };
 
@@ -231,12 +239,13 @@ namespace CoreSystem.Entity
         [SerializeField] private ElementType element = ElementType.Neutral;
         [SerializeField] private SizeType size = SizeType.Medium;
         [SerializeField] private RaceType race = RaceType.Formless;
-        public FactionType faction = FactionType.Neutral;
+        [CoreSystem.Attributes.FactionDropdown]
+        public int faction = 0;
 
         public ElementType Element => element;
         public SizeType Size => size;
         public RaceType Race => race;
-        public FactionType Faction => faction;
+        public int Faction => faction;
 
         public float StunDuration { get; private set; }
         public bool IsStunned => StunDuration > 0;

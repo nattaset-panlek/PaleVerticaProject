@@ -42,7 +42,7 @@ namespace CoreSystem.Skills.Visuals
 
             if (logic == null) return;
 
-            if (logic is TargetLocationTargeting || logic is SphereAOETargeting || logic is SelfTargeting)
+            if (logic is TargetLocationTargeting || logic is SphereAOETargeting || logic is SelfTargeting || logic is SingleUnitTargeting || logic is SingleTargeting)
             {
                 if (_activeCircle != null)
                 {
@@ -113,6 +113,7 @@ namespace CoreSystem.Skills.Visuals
             StopCastIndicator();
 
             if (payload == null || payload.SkillIndicatorPrefab == null || payload.TotalCastTime <= 0f) return;
+            if (payload.SkillTargeting is SingleUnitTargeting) return;
 
             Vector3 spawnPos = payload.TargetPosition;
             _activeCastIndicatorInstance = Instantiate(payload.SkillIndicatorPrefab, spawnPos, Quaternion.identity);

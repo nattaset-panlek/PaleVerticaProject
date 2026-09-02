@@ -7,6 +7,7 @@ using System.Linq;
 using UI.Components;
 using UnityEngine;
 using CoreSystem.Data;
+using TMPro;
 
 public class PassiveSkillLoader : UIWindow
 {
@@ -24,6 +25,7 @@ public class PassiveSkillLoader : UIWindow
 
     [Header("UI Containers")]
     public GameObject ActionButtonContainer;
+    public TMP_Text PassivePointText;
 
     [Header("Position Offset")]
     public Vector2 PositionOffset = Vector2.zero;
@@ -44,7 +46,7 @@ public class PassiveSkillLoader : UIWindow
 
     private Transform _linesRoot;
     private Transform _nodesRoot;
-    private PlayerCharacter _currentPlayer;
+    private Character _currentCharacter;
 
     #endregion
 
@@ -57,8 +59,8 @@ public class PassiveSkillLoader : UIWindow
         get
         {
             var set = new HashSet<int>();
-            if (_currentPlayer == null) return set;
-            foreach (var rec in _currentPlayer.PassiveNodes)
+            if (_currentCharacter == null) return set;
+            foreach (var rec in _currentCharacter.PassiveNodes)
                 set.Add(rec.NodeId);
             return set;
         }
@@ -82,11 +84,11 @@ public class PassiveSkillLoader : UIWindow
     {
         base.OnOpen(data);
 
-        LoadFromPlayer(GameData.Player.PlayerCharacter);
+        LoadFromCharacter(GameData.Player.PlayerCharacter);
 
-        if (_currentPlayer != null)
+        if (_currentCharacter != null)
         {
-            LoadFromPlayer(_currentPlayer);
+            LoadFromCharacter(_currentCharacter);
         }
     }
 
@@ -119,9 +121,9 @@ public class PassiveSkillLoader : UIWindow
         Initialize();
     }
 
-    public void LoadFromPlayer(PlayerCharacter player)
+    public void LoadFromCharacter(Character character)
     {
-        _currentPlayer = player;
+        _currentCharacter = character;
         Initialize();
         RefreshUI();
     }
@@ -143,7 +145,7 @@ public class PassiveSkillLoader : UIWindow
 
     public void OnNodeClick(int nodeId)
     {
-        if (_currentPlayer == null) return;
+        if (_currentCharacter == null) return;
 
         var unlocked = UnlockedIds;
         if (unlocked.Contains(nodeId)) return;
@@ -158,7 +160,7 @@ public class PassiveSkillLoader : UIWindow
             if (IsNodeUnlockable(nodeId, _selectedNodeIds))
             {
                 int totalCost = _selectedNodeIds.Count + 1;
-                if (totalCost <= _currentPlayer.PassivePoints)
+                if (totalCost <= _currentCharacter.PassivePoints)
                     _selectedNodeIds.Add(nodeId);
                 else
                     Debug.Log("[PassiveSkill] Not enough points for selection!");
@@ -170,9 +172,9 @@ public class PassiveSkillLoader : UIWindow
 
     public void Save()
     {
-        if (_currentPlayer == null || _selectedNodeIds.Count == 0) return;
+        if (_currentCharacter == null || _selectedNodeIds.Count == 0) return;
 
-        _currentPlayer.PassivePoints -= _selectedNodeIds.Count;
+        _currentCharacter.PassivePoints -= _selectedNodeIds.Count;
 
         foreach (int nodeId in _selectedNodeIds)
         {
@@ -183,19 +185,20 @@ public class PassiveSkillLoader : UIWindow
             {
                 foreach (var bonus in node.extras)
                 {
-                    _currentPlayer.PassiveNodes.Add(
+                    _currentCharacter.PassiveNodes.Add(
                         new PassiveNodeRecord(nodeId, bonus.id, bonus.value)
                     );
                 }
             }
             else
             {
-                _currentPlayer.PassiveNodes.Add(new PassiveNodeRecord(nodeId, 0, 0f));
+                _currentCharacter.PassiveNodes.Add(new PassiveNodeRecord(nodeId, 0, 0f));
             }
         }
 
         _selectedNodeIds.Clear();
-        _currentPlayer.RecalculateStats();
+        // Since RecalculateStats is specific to PlayerCharacter in current design or Character might have it?
+        if (_currentCharacter is PlayerCharacter pc) pc.RecalculateStats();
 
         RefreshUI();
         Debug.Log("[PassiveSkill] Changes saved!");
@@ -215,29 +218,67 @@ public class PassiveSkillLoader : UIWindow
 
     private void ValidateSelection()
     {
-        bool changed = true;
-        while (changed)
-        {
-            changed = false;
-            var currentSelection = new HashSet<int>(_selectedNodeIds);
-            var toRemove = new List<int>();
+        var unlocked = UnlockedIds;
+        var validSelection = new HashSet<int>();
+        var queue = new Queue<int>();
 
-            foreach (int id in currentSelection)
+        // Step 1: Find all valid roots in the current selection
+        foreach (int id in _selectedNodeIds)
+        {
+            var nodeData = SkillTreeDatabase.GetNode(id);
+            if (nodeData == null) continue;
+
+            if (nodeData.IsBaseClass)
             {
-                var otherSelected = new HashSet<int>(currentSelection);
-                otherSelected.Remove(id);
-                if (!IsNodeUnlockable(id, otherSelected))
-                    toRemove.Add(id);
+                validSelection.Add(id);
+                queue.Enqueue(id);
+                continue;
             }
 
-            foreach (int id in toRemove)
-                if (_selectedNodeIds.Remove(id)) changed = true;
+            bool hasUnlockedNeighbor = SkillTreeDatabase.GetNeighborIds(id).Any(n => unlocked.Contains(n));
+            if (hasUnlockedNeighbor)
+            {
+                validSelection.Add(id);
+                queue.Enqueue(id);
+            }
         }
+
+        // Step 2: Flood fill to find all connected selected nodes
+        while (queue.Count > 0)
+        {
+            int curr = queue.Dequeue();
+            var neighbors = SkillTreeDatabase.GetNeighborIds(curr);
+            foreach (int neighborId in neighbors)
+            {
+                if (_selectedNodeIds.Contains(neighborId) && !validSelection.Contains(neighborId))
+                {
+                    validSelection.Add(neighborId);
+                    queue.Enqueue(neighborId);
+                }
+            }
+        }
+
+        // Step 3: Remove any disconnected islands
+        _selectedNodeIds.IntersectWith(validSelection);
     }
 
     private void RefreshUI()
     {
-        if (_currentPlayer == null) return;
+        if (_currentCharacter == null) return;
+
+        if (PassivePointText != null)
+        {
+            int usedPoints = _selectedNodeIds.Count;
+            if (usedPoints > 0)
+            {
+                int remaining = _currentCharacter.PassivePoints - usedPoints;
+                PassivePointText.text = $"{remaining} (-{usedPoints})";
+            }
+            else
+            {
+                PassivePointText.text = _currentCharacter.PassivePoints.ToString();
+            }
+        }
 
         if (ActionButtonContainer != null)
             ActionButtonContainer.SetActive(_selectedNodeIds.Count > 0);

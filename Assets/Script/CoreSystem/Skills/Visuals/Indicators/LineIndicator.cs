@@ -9,7 +9,9 @@ namespace CoreSystem.Skills.Visuals
     {
         #region [Variables/Fields]
         [SerializeField] private Texture CuttingHead;
+        [SerializeField] private Texture CuttingHeadFill;
         [SerializeField] private Texture ArrowHead;
+        [SerializeField] private Texture ArrowHeadFill;
 
         [SerializeField] private SpriteRenderer _lineBox;
         [SerializeField] private SpriteRenderer _fillBox;
@@ -36,6 +38,7 @@ namespace CoreSystem.Skills.Visuals
             float length = 1f;
             Vector3 offset = Vector3.zero;
             Texture headTex = CuttingHead;
+            Texture headTexFill = CuttingHeadFill;
 
             if (logic is BoxTargeting box)
             {
@@ -43,6 +46,7 @@ namespace CoreSystem.Skills.Visuals
                 length = box.BoxSize.y;
                 offset = box.Offset;
                 headTex = CuttingHead;
+                headTexFill = CuttingHeadFill;
             }
             else if (logic is LinePierceTargeting linePierce)
             {
@@ -50,11 +54,13 @@ namespace CoreSystem.Skills.Visuals
                 width = linePierce.LineWidth * 2f;
                 offset = new Vector3(0f, length / 2f, 0f);
                 headTex = ArrowHead;
+                headTexFill = ArrowHeadFill;
             }
 
             if (payload.SkillEffects.Exists(e => e is MovementEffectLogic m && (m.Type == MovementType.DashForward || m.Type == MovementType.DashToTarget)))
             {
                 headTex = ArrowHead;
+                headTexFill = ArrowHeadFill;
             }
 
             if (_lineBox != null)
@@ -63,7 +69,7 @@ namespace CoreSystem.Skills.Visuals
                 _lineBox.transform.localPosition = offset;
 
                 _lineBox.GetPropertyBlock(_fillProps);
-                _fillProps.SetTexture(HeadTextrueID, headTex);
+                if (headTex != null) _fillProps.SetTexture(HeadTextrueID, headTex);
                 _fillProps.SetVector(WorldSizeId, new Vector4(width, length, 0f, 0f));
                 _lineBox.SetPropertyBlock(_fillProps);
 
@@ -75,6 +81,7 @@ namespace CoreSystem.Skills.Visuals
 
                     _fillBox.GetPropertyBlock(_fillProps);
                     _fillProps.SetFloat(FillAmountId, 0f);
+                    if (headTexFill != null) _fillProps.SetTexture(HeadTextrueID, headTexFill);
                     _fillProps.SetVector(WorldSizeId, new Vector4(width, length, 0f, 0f));
                     _fillBox.SetPropertyBlock(_fillProps);
                 }

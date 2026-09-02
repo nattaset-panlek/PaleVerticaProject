@@ -15,7 +15,7 @@ namespace CoreSystem.Skills.Logic
             List<IEntity> targets = new List<IEntity>();
 
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(payload.OriginPosition, payload.AOERadius);
-            Vector2 forward = payload.Caster.transform.up;
+            Vector2 forward = payload.GetAimDirection();
 
             for (int i = 0; i < hitColliders.Length; i++)
             {
@@ -70,3 +70,4 @@ namespace CoreSystem.Skills.Logic
 #endif
     }
 }
+

@@ -29,7 +29,7 @@ public class BuffIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         if (_buff == null || HoverTextManager.Instance == null) return;
 
-        string title = _buff.SourceName;
+        string title = _buff.BuffName;
         if (_buff.MaxStacks > 1)
         {
             title += $" ({_buff.Stacks}/{_buff.MaxStacks})";

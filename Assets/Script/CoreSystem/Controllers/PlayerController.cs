@@ -15,6 +15,7 @@ namespace CoreSystem.Controllers
         private PlayerCharacter player;
         private Camera mainCamera;
         private bool _isDead;
+        private CoreSystem.UI.UIGlobalModal _deathModal;
         private int _selectedSkillSlot = -1;
         private SkillInstance _selectedSkillInstance = null;
         private IEntity _autoAttackTarget;
@@ -57,6 +58,16 @@ namespace CoreSystem.Controllers
             if (CheckDeath())
             {
                 _autoAttackTarget = null;
+                SkillIndicatorManager.Instance?.HideIndicator();
+                return;
+            }
+
+            if (player.commandDirector != null && player.commandDirector.IsOverridden)
+            {
+                _autoAttackTarget = null;
+                if (Anim != null) Anim.SetBool(MovingBoolParam, false);
+                SkillIndicatorManager.Instance?.HideIndicator();
+                UpdateUI();
                 return;
             }
 
@@ -126,6 +137,7 @@ namespace CoreSystem.Controllers
                         PlayDeathAnimation();
                         SkillIndicatorManager.Instance?.HideIndicator();
                         player.commandDirector?.CommandInterruptCast(this);
+                        ShowDeathModal();
                     }
                     return true;
                 }
@@ -137,9 +149,52 @@ namespace CoreSystem.Controllers
             return _isDead;
         }
 
+        private void ShowDeathModal()
+        {
+            if (_deathModal != null) return;
+
+            _deathModal = CoreSystem.UI.UIBuilder.BuildGlobalModal("Death Screen", ctx => 
+            {
+                ctx.Vertical("Div", content => 
+                {
+                    content.Text("Text", "YOU ARE DEAD")
+                           .SetFontSize(48)
+                           .SetTextColor(UnityEngine.Color.red)
+                           .SetFontStyle(TMPro.FontStyles.Bold)
+                           .SetTextAlignment(TMPro.TextAlignmentOptions.Center)
+                           .SetPreferredSize(-1, 80);
+
+                    content.Text("Text", "The pale throne whispers your name...")
+                           .SetFontSize(20)
+                           .SetTextColor(UnityEngine.Color.gray)
+                           .SetTextAlignment(TMPro.TextAlignmentOptions.Center)
+                           .SetPreferredSize(-1, 40);
+
+                    content.Button("Button", "Revive", () => 
+                    {
+                        RevivePlayer();
+                    }).SetPreferredSize(200, 60).SetColor(new UnityEngine.Color(0.6f, 0.1f, 0.1f));
+
+                }).SetChildAlignment(UnityEngine.TextAnchor.MiddleCenter)
+                  .SetFitParent();
+                  
+            }, new UnityEngine.Vector2(600, 200));
+            
+            if (_deathModal != null)
+            {
+                _deathModal.SetScrollMovementType(UnityEngine.UI.ScrollRect.MovementType.Clamped);
+            }
+        }
+
         private void RevivePlayer()
         {
             _isDead = false;
+
+            if (_deathModal != null)
+            {
+                CoreSystem.UI.UIManager.Instance.Close(_deathModal.WindowName);
+                _deathModal = null;
+            }
 
             if (player != null && player.attributeSystem != null)
             {
@@ -232,7 +287,7 @@ namespace CoreSystem.Controllers
             if (_autoAttackTarget != null)
             {
                 Vector3 directionToTarget = (_autoAttackTarget.transform.position - transform.position).normalized;
-                transform.up = directionToTarget;
+                player.FaceDirection.UpdateDirection(directionToTarget);
                 return;
             }
 
@@ -240,7 +295,7 @@ namespace CoreSystem.Controllers
             {
                 Vector3 mousePos = GetMouseWorldPosition();
                 Vector3 directionToMouse = (mousePos - transform.position).normalized;
-                transform.up = directionToMouse;
+                player.FaceDirection.UpdateDirection(directionToMouse);
             }
         }
 
@@ -273,7 +328,36 @@ namespace CoreSystem.Controllers
                         {
                             var payload = player.skillCaster.BuildPayload(instance, mousePos, true);
                             
-                            player.commandDirector.CommandCastSkill(instance, mousePos, true, this);
+                            if (instance.SkillData.BaseTargeting is SingleUnitTargeting sut)
+                            {
+                                Collider2D col = Physics2D.OverlapPoint(mousePos);
+                                IEntity target = null;
+                                if (col != null)
+                                {
+                                    target = col.GetComponentInParent<IEntity>();
+                                }
+
+                                if (target != null && sut.IsValidTarget(player, target))
+                                {
+                                    float dist = Vector2.Distance(player.transform.position, target.transform.position);
+                                    float maxRange = instance.CalculateAOERadiusModified(player.attributeSystem, sut.CastRange);
+                                    if (dist > maxRange)
+                                    {
+                                        Debug.LogWarning("Target is out of range!");
+                                        return;
+                                    }
+                                    
+                                    payload.Targets = new System.Collections.Generic.List<IEntity>() { target };
+                                    payload.IsPositionLocked = true;
+                                }
+                                else
+                                {
+                                    Debug.LogWarning("Invalid Target for Lock-On Skill!");
+                                    return;
+                                }
+                            }
+
+                            player.commandDirector.CommandCastSkill(instance, payload, this);
                             SkillIndicatorManager.Instance?.StartExecution(payload);
                             
                             bool shouldKeepIndicator = instance.SkillData.BaseTargeting is ConeTargeting || 
@@ -296,7 +380,7 @@ namespace CoreSystem.Controllers
                             if (col != null)
                             {
                                 IEntity target = col.GetComponentInParent<IEntity>();
-                                if (target != null && target != player && player.Faction != target.Faction)
+                                if (target != null && target != player && CoreSystem.Data.FactionDatabase.IsHostile(player.Faction, target.Faction))
                                 {
                                     _autoAttackTarget = target;
                                 }
@@ -358,26 +442,7 @@ namespace CoreSystem.Controllers
         {
             if (player == null || player.skillCaster == null) return;
 
-            if (_isDead)
-            {
-                float width = 300f;
-                float height = 150f;
-                float x = (Screen.width - width) / 2f;
-                float y = (Screen.height - height) / 2f;
-
-                GUILayout.BeginArea(new Rect(x, y, width, height), GUI.skin.box);
-                GUILayout.Space(20);
-                GUILayout.Label("<color=red><b>YOU ARE DEAD</b></color>", new GUIStyle(GUI.skin.label) { richText = true, alignment = TextAnchor.MiddleCenter, fontSize = 20 });
-                GUILayout.Space(20);
-
-                if (GUILayout.Button("Respawn", GUILayout.Height(40)))
-                {
-                    RevivePlayer();
-                }
-
-                GUILayout.EndArea();
-                return;
-            }
+            if (_isDead) return;
 
             var caster = player.skillCaster;
 

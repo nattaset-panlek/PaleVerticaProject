@@ -20,6 +20,24 @@ namespace CoreSystem.Skills
         public bool IsPositionLocked; // If true, range-clamping should be skipped or anchored to the lock-in point
         public List<IEntity> Targets = new List<IEntity>();
         
+        public Vector3 GetAimDirection()
+        {
+            if (IsTargetPositionSet)
+            {
+                Vector3 dir = TargetPosition - OriginPosition;
+                dir.z = 0f;
+                if (dir.sqrMagnitude > 0.001f)
+                {
+                    return dir.normalized;
+                }
+            }
+            if (Caster != null)
+            {
+                return Caster.FacingDirection;
+            }
+            return Vector3.right;
+        }
+        
         public float BaseDamage;
         public float Heal;
         public float AOERadius;

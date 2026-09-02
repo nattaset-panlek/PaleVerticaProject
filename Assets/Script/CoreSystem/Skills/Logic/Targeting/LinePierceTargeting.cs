@@ -13,7 +13,7 @@ namespace CoreSystem.Skills.Logic
         {
             List<IEntity> targets = new List<IEntity>();
 
-            Vector2 direction = payload.Caster.transform.up;
+            Vector2 direction = payload.GetAimDirection();
             RaycastHit2D[] hits = Physics2D.CircleCastAll(payload.OriginPosition, LineWidth, direction, payload.AOERadius);
 
             for (int i = 0; i < hits.Length; i++)
@@ -62,3 +62,4 @@ namespace CoreSystem.Skills.Logic
 #endif
     }
 }
+

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Fire_Pila_1010
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
+  Id: 1010
+  Name: Fire Pila
+  Icon: {fileID: 21300000, guid: bdd1a3af1ebf8e347baf21416aab4898, type: 3}
+  SkillElement: 3
+  SkillDamageType: 1
+  BaseTargeting:
+    rid: 1245210145478934780
+  Effects:
+  - rid: 1245210145478934781
+  CastVfxPrefab: {fileID: 5586069453266129572, guid: a6e0641cf9b8a94498d37d3cbd932286, type: 3}
+  CastVfxSpawnPoint: 0
+  VisualType: 3
+  SkillIndicatorPrefab: {fileID: 5586069453266129572, guid: 8e95953e86b2ea24aae1a04a0787e393, type: 3}
+  EruptionVfxPrefab: {fileID: 5586069453266129572, guid: 8e95953e86b2ea24aae1a04a0787e393, type: 3}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
+  BaseDamage: 20
+  BaseAOERadius: 2
+  BaseProjectileCount: 0
+  BaseManaCost: 20
+  Tags: 020000000b00000006000000
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 1
+  BaseFCT: 0.15
+  BaseCastDelay: 0
+  BaseCooldown: 0.15
+  ChainOverrides: []
+  Scalings:
+  - TargetField: 1
+    ScalingAttribute: 152
+    AttributeMultiplier: 0.02
+    GlobalMultiplier: 1
+    FlatBonus: 0
+    LevelMultiplier: 0
+  MaxSupportSlots: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 1245210145478934780
+      type: {class: TargetLocationTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        CastRange: 5
+    - rid: 1245210145478934781
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 1

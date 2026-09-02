@@ -13,6 +13,7 @@ namespace CoreSystem.Skills.Logic
         public float Duration = 5f;
         public int MaxStacks = 1;
         public string BuffName = "";
+        public string BuffCode = "";
         public BuffCategory Category = BuffCategory.Attribute;
         public Sprite Icon;
         public string BuffIconPath = "";
@@ -33,6 +34,7 @@ namespace CoreSystem.Skills.Logic
                     AttributeModifier buffModifier = new AttributeModifier(ModifierValue, ModType);
                     
                     string finalBuffName = string.IsNullOrEmpty(BuffName) ? payload.SkillElement.ToString() + " Buff" : BuffName;
+                    string finalBuffCode = string.IsNullOrEmpty(BuffCode) ? finalBuffName : BuffCode;
                     
                     Sprite finalIcon = Icon;
                     if (finalIcon == null && !string.IsNullOrEmpty(BuffIconPath))
@@ -40,7 +42,7 @@ namespace CoreSystem.Skills.Logic
                         finalIcon = BuffIconLoader.Load(BuffIconPath);
                     }
 
-                    buffManager.ApplyTemporaryBuff(finalBuffName, TargetAttribute, buffModifier, Duration, finalIcon, Category, MaxStacks);
+                    buffManager.ApplyTemporaryBuff(finalBuffName, finalBuffCode, TargetAttribute, buffModifier, Duration, finalIcon, Category, MaxStacks);
                 }
             }
         }

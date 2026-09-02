@@ -14,8 +14,8 @@ namespace CoreSystem.Skills.Logic
         {
             List<IEntity> targets = new List<IEntity>();
 
-            // Calculate rotation angle
-            Vector2 forward = payload.Caster.transform.up;
+            // Calculate rotation angle based on calculated aim direction
+            Vector2 forward = payload.GetAimDirection();
             float angle = Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg - 90f;
 
             // Apply rotation to offset
@@ -75,3 +75,4 @@ namespace CoreSystem.Skills.Logic
 #endif
     }
 }
+

@@ -77,7 +77,22 @@ namespace CoreSystem.Entity
             if (owner == null || owner.skillCaster == null) return;
             if (IsOverridden && sender != currentOverrider) return;
 
-            owner.skillCaster.CastSkill(skill, targetPos, isPlayer);
+            SkillInstance skillToCast = skill;
+            if (skill != null && skill.SkillData != null)
+            {
+                var overrideData = ActiveSkill.GetActiveChainOverride(owner, skill.SkillData);
+                if (overrideData != null && overrideData.ReplacementSkill != null)
+                {
+                    skillToCast = owner.skillCaster.GrantSkill(overrideData.ReplacementSkill);
+                    if (overrideData.ConsumeBuffOnCast)
+                    {
+                        var buffMgr = owner.GetComponent<CoreSystem.Skills.Logic.TemporaryBuffManager>();
+                        if (buffMgr != null) buffMgr.RemoveBuff(overrideData.RequiredBuffCode);
+                    }
+                }
+            }
+
+            owner.skillCaster.CastSkill(skillToCast, targetPos, isPlayer);
         }
 
         public void CommandCastSkill(SkillInstance skill, SkillPayload payload, object sender = null)
@@ -85,7 +100,23 @@ namespace CoreSystem.Entity
             if (owner == null || owner.skillCaster == null) return;
             if (IsOverridden && sender != currentOverrider) return;
 
-            owner.skillCaster.CastSkill(skill, payload);
+            SkillInstance skillToCast = skill;
+            if (skill != null && skill.SkillData != null)
+            {
+                var overrideData = ActiveSkill.GetActiveChainOverride(owner, skill.SkillData);
+                if (overrideData != null && overrideData.ReplacementSkill != null)
+                {
+                    skillToCast = owner.skillCaster.GrantSkill(overrideData.ReplacementSkill);
+                    if (overrideData.ConsumeBuffOnCast)
+                    {
+                        var buffMgr = owner.GetComponent<CoreSystem.Skills.Logic.TemporaryBuffManager>();
+                        if (buffMgr != null) buffMgr.RemoveBuff(overrideData.RequiredBuffCode);
+                    }
+                    if (payload != null) payload.SkillID = skillToCast.SkillData.Id;
+                }
+            }
+
+            owner.skillCaster.CastSkill(skillToCast, payload);
         }
 
         public void CommandInterruptCast(object sender = null)

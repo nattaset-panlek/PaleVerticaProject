@@ -1,0 +1,127 @@
+{
+    "Factions": [
+        {
+            "Id": 1,
+            "Name": "Unaffiliated",
+            "Positive": [],
+            "Negative": []
+        },
+        {
+            "Id": 2,
+            "Name": "Hostile To All",
+            "Positive": [],
+            "Negative": []
+        },
+        {
+            "Id": 3,
+            "Name": "Neutral",
+            "Positive": [],
+            "Negative": []
+        },
+        {
+            "Id": 4,
+            "Name": "Pale Order",
+            "Positive": [
+                4
+            ],
+            "Negative": [
+                5,
+                8
+            ]
+        },
+        {
+            "Id": 5,
+            "Name": "Abyssal Kin",
+            "Positive": [
+                5
+            ],
+            "Negative": [
+                4,
+                10
+            ]
+        },
+        {
+            "Id": 6,
+            "Name": "Verdant Circle",
+            "Positive": [
+                6,
+                7
+            ],
+            "Negative": [
+                8,
+                11
+            ]
+        },
+        {
+            "Id": 7,
+            "Name": "Ironclad Syndicate",
+            "Positive": [
+                7,
+                6
+            ],
+            "Negative": []
+        },
+        {
+            "Id": 8,
+            "Name": "Crimson Cult",
+            "Positive": [
+                8
+            ],
+            "Negative": [
+                4,
+                6,
+                10
+            ]
+        },
+        {
+            "Id": 9,
+            "Name": "Ashen Nomads",
+            "Positive": [
+                9
+            ],
+            "Negative": [
+                12
+            ]
+        },
+        {
+            "Id": 10,
+            "Name": "Skywarden",
+            "Positive": [
+                10,
+                4
+            ],
+            "Negative": [
+                5,
+                8
+            ]
+        },
+        {
+            "Id": 11,
+            "Name": "Lunar Scholars",
+            "Positive": [
+                11
+            ],
+            "Negative": [
+                6
+            ]
+        },
+        {
+            "Id": 12,
+            "Name": "Deepforge Dwarves",
+            "Positive": [
+                12
+            ],
+            "Negative": [
+                9
+            ]
+        },
+        {
+            "Id": 13,
+            "Name": "Shadow Broker",
+            "Positive": [
+                13
+            ],
+            "Negative": []
+        }
+    ]
+}

@@ -16,7 +16,8 @@ namespace CoreSystem.Skills.Logic
 
     public class ActiveBuff
     {
-        public string SourceName;
+        public string BuffName;
+        public string BuffCode;
         public List<AttributeModifier> Modifiers = new List<AttributeModifier>();
         public AttributeType TargetAttribute;
         public float RemainingDuration;
@@ -36,6 +37,8 @@ namespace CoreSystem.Skills.Logic
         private List<ActiveBuff> activeBuffs = new List<ActiveBuff>();
 
         public IReadOnlyList<ActiveBuff> ActiveBuffs => activeBuffs;
+        
+        public event System.Action OnBuffsChanged;
 
         private void Awake()
         {
@@ -45,11 +48,46 @@ namespace CoreSystem.Skills.Logic
                 attributeSystem = entity.attributeSystem;
             }
         }
-        public void ApplyTemporaryBuff(string sourceName, AttributeType type, AttributeModifier modifier, float duration, Sprite manualIcon = null, BuffCategory category = BuffCategory.Default, int maxStacks = 1)
+        
+        public bool HasBuff(string buffCode)
+        {
+            for (int i = 0; i < activeBuffs.Count; i++)
+            {
+                if (activeBuffs[i].BuffCode == buffCode) return true;
+            }
+            return false;
+        }
+
+        public void RemoveBuff(string buffCode)
+        {
+            bool removed = false;
+            for (int i = activeBuffs.Count - 1; i >= 0; i--)
+            {
+                if (activeBuffs[i].BuffCode == buffCode)
+                {
+                    if (attributeSystem != null)
+                    {
+                        foreach (var mod in activeBuffs[i].Modifiers)
+                        {
+                            attributeSystem.RemoveModifier(activeBuffs[i].TargetAttribute, mod);
+                        }
+                    }
+                    activeBuffs.RemoveAt(i);
+                    removed = true;
+                }
+            }
+            
+            if (removed)
+            {
+                OnBuffsChanged?.Invoke();
+            }
+        }
+
+        public void ApplyTemporaryBuff(string buffName, string buffCode, AttributeType type, AttributeModifier modifier, float duration, Sprite manualIcon = null, BuffCategory category = BuffCategory.Default, int maxStacks = 1)
         {
             if (attributeSystem == null) return;
 
-            ActiveBuff existingBuff = activeBuffs.Find(b => b.SourceName == sourceName && b.TargetAttribute == type);
+            ActiveBuff existingBuff = activeBuffs.Find(b => b.BuffCode == buffCode && b.TargetAttribute == type);
             if (existingBuff != null)
             {
                 existingBuff.RemainingDuration = duration;
@@ -88,7 +126,8 @@ namespace CoreSystem.Skills.Logic
 
             ActiveBuff buff = new ActiveBuff
             {
-                SourceName = sourceName,
+                BuffName = buffName,
+                BuffCode = buffCode,
                 TargetAttribute = type,
                 RemainingDuration = duration,
                 TotalDuration = duration,
@@ -100,13 +139,14 @@ namespace CoreSystem.Skills.Logic
 
             activeBuffs.Add(buff);
             attributeSystem.AddModifier(type, modifier);
+            OnBuffsChanged?.Invoke();
         }
 
-        public void ApplyTemporaryBuffWithTick(string sourceName, AttributeType type, AttributeModifier modifier, float duration, float tickInterval, System.Action onTick, Sprite manualIcon = null, BuffCategory category = BuffCategory.Default, int maxStacks = 1)
+        public void ApplyTemporaryBuffWithTick(string buffName, string buffCode, AttributeType type, AttributeModifier modifier, float duration, float tickInterval, System.Action onTick, Sprite manualIcon = null, BuffCategory category = BuffCategory.Default, int maxStacks = 1)
         {
             if (attributeSystem == null) return;
 
-            ActiveBuff existingBuff = activeBuffs.Find(b => b.SourceName == sourceName && b.TargetAttribute == type);
+            ActiveBuff existingBuff = activeBuffs.Find(b => b.BuffCode == buffCode && b.TargetAttribute == type);
             if (existingBuff != null)
             {
                 existingBuff.RemainingDuration = duration;
@@ -147,7 +187,8 @@ namespace CoreSystem.Skills.Logic
 
             ActiveBuff buff = new ActiveBuff
             {
-                SourceName = sourceName,
+                BuffName = buffName,
+                BuffCode = buffCode,
                 TargetAttribute = type,
                 RemainingDuration = duration,
                 TotalDuration = duration,
@@ -162,11 +203,13 @@ namespace CoreSystem.Skills.Logic
 
             activeBuffs.Add(buff);
             attributeSystem.AddModifier(type, modifier);
+            OnBuffsChanged?.Invoke();
         }
 
         private void Update()
         {
             float dt = Time.deltaTime;
+            bool anyRemoved = false;
             for (int i = activeBuffs.Count - 1; i >= 0; i--)
             {
                 ActiveBuff buff = activeBuffs[i];
@@ -192,7 +235,12 @@ namespace CoreSystem.Skills.Logic
                         }
                     }
                     activeBuffs.RemoveAt(i);
+                    anyRemoved = true;
                 }
+            }
+            if (anyRemoved)
+            {
+                OnBuffsChanged?.Invoke();
             }
         }
     }

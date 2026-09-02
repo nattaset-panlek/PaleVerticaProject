@@ -20,6 +20,12 @@ namespace CoreSystem.UI
         private readonly Dictionary<string, UIBaseView> _instantiatedViews = new Dictionary<string, UIBaseView>();
         private readonly Dictionary<string, UISignal> _signals = new Dictionary<string, UISignal>();
         private readonly Stack<UIModal> _modalStack = new Stack<UIModal>();
+
+        [Header("Global Modal System")]
+        [SerializeField] private UIElementRegistrySO _elementRegistry;
+        [SerializeField] private UIGlobalModal _globalModalTemplate;
+        
+        private UIGlobalModal _instantiatedGlobalModal;
         #endregion
 
         #region [Properties]
@@ -38,6 +44,7 @@ namespace CoreSystem.UI
         public RectTransform WindowContainer => _windowContainer;
         public RectTransform ModalContainer => _modalContainer;
         public UIWindowRegistrySO Registry => _registry;
+        public UIElementRegistrySO ElementRegistry => _elementRegistry;
         #endregion
 
         #region [Unity Methods]
@@ -79,6 +86,29 @@ namespace CoreSystem.UI
         #endregion
 
         #region [Public Methods]
+        public UIGlobalModal OpenGlobalModal()
+        {
+            if (_globalModalTemplate == null)
+            {
+                Debug.LogError("[UIManager] Global Modal Template is not assigned!");
+                return null;
+            }
+
+            if (_instantiatedGlobalModal == null)
+            {
+                GameObject obj = Instantiate(_globalModalTemplate.gameObject, _modalContainer != null ? _modalContainer : transform);
+                _instantiatedGlobalModal = obj.GetComponent<UIGlobalModal>();
+                
+                if (_instantiatedGlobalModal != null)
+                {
+                    _instantiatedGlobalModal.WindowName = "GLOBAL_MODAL_PAGE";
+                    _instantiatedViews["GLOBAL_MODAL_PAGE"] = _instantiatedGlobalModal;
+                }
+            }
+
+            return Open("GLOBAL_MODAL_PAGE") as UIGlobalModal;
+        }
+
         public UIBaseView Open(string windowName, object data = null)
         {
             if (string.IsNullOrEmpty(windowName)) return null;

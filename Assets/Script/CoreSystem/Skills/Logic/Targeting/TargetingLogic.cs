@@ -20,13 +20,13 @@ namespace CoreSystem.Skills.Logic
 
         public abstract List<IEntity> GetTargets(SkillPayload payload);
 
-        protected bool IsValidTarget(IEntity caster, IEntity target)
+        public bool IsValidTarget(IEntity caster, IEntity target)
         {
             if (caster == null || target == null) return false;
 
             if (AlignmentAction == TargetAlignment.All) return true;
-            if (AlignmentAction == TargetAlignment.Ally && caster.Faction == target.Faction) return true;
-            if (AlignmentAction == TargetAlignment.Enemy && caster.Faction != target.Faction) return true;
+            if (AlignmentAction == TargetAlignment.Ally && CoreSystem.Data.FactionDatabase.IsAlly(caster.Faction, target.Faction)) return true;
+            if (AlignmentAction == TargetAlignment.Enemy && CoreSystem.Data.FactionDatabase.IsHostile(caster.Faction, target.Faction)) return true;
 
             return false;
         }

@@ -6,6 +6,9 @@ using CoreSystem.Enums;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using CoreSystem.Data;
 
 namespace CoreSystem.Agent
 {
@@ -13,8 +16,8 @@ namespace CoreSystem.Agent
     [System.Serializable]
     public class SpawnEntry
     {
-        [Tooltip("Prefab to spawn. Must have a Character or AgentCore component.")]
-        public GameObject Prefab;
+        [Tooltip("Character ID from Database (Character.json).")]
+        public int CharacterId;
 
         [Tooltip("Display name in Inspector.")]
         public string Label = "Entity";
@@ -132,7 +135,7 @@ namespace CoreSystem.Agent
             var result = new List<SpawnEntry>();
             foreach (var entry in SpawnTable)
             {
-                if (entry.Prefab == null) continue;
+                if (entry.CharacterId <= 0) continue;
                 float roll = Random.Range(0f, 100f);
                 if (roll <= entry.Weight)
                     result.Add(entry);
@@ -142,7 +145,7 @@ namespace CoreSystem.Agent
             {
                 SpawnEntry best = null;
                 foreach (var e in SpawnTable)
-                    if (e.Prefab != null && (best == null || e.Weight > best.Weight)) best = e;
+                    if (e.CharacterId > 0 && (best == null || e.Weight > best.Weight)) best = e;
                 if (best != null) result.Add(best);
             }
             return result;
@@ -150,13 +153,40 @@ namespace CoreSystem.Agent
 
         private void SpawnOne(SpawnEntry entry)
         {
+            if (entry.CharacterId <= 0) return;
+            var characterData = Database.GetCharacter(entry.CharacterId);
+            if (characterData == null || string.IsNullOrEmpty(characterData.PrefabPath))
+            {
+                Debug.LogWarning($"[EntitySpawner] Character {entry.CharacterId} has no valid PrefabPath.");
+                return;
+            }
+
             Vector3 pos = GetRandomPositionInZone();
-            GameObject go = Instantiate(entry.Prefab, pos, Quaternion.identity, transform);
+            
+            // Because InstantiateAsync can take a frame or more, we pre-increment _aliveCount 
+            // to prevent exceeding MaxAlive if multiple spawns are requested in the same frame.
+            _aliveCount++; 
 
-            ApplyOverrides(go, entry);
+            Addressables.InstantiateAsync(characterData.PrefabPath, pos, Quaternion.identity, transform).Completed += (handle) =>
+            {
+                if (handle.Status == AsyncOperationStatus.Succeeded)
+                {
+                    GameObject go = handle.Result;
+                    if (go == null) 
+                    {
+                        _aliveCount--;
+                        return;
+                    }
 
-            _aliveEntities.Add(go);
-            _aliveCount++;
+                    ApplyOverrides(go, entry);
+                    _aliveEntities.Add(go);
+                }
+                else
+                {
+                    Debug.LogError($"[EntitySpawner] Failed to load Addressable {characterData.PrefabPath}");
+                    _aliveCount--;
+                }
+            };
         }
 
         private void ApplyOverrides(GameObject go, SpawnEntry entry)
@@ -171,10 +201,16 @@ namespace CoreSystem.Agent
                 if (entry.OverrideAttackRange)     agent.AttackRange     = entry.AttackRange;
             }
 
-            if (entry.OverrideLevel)
+            var character = go.GetComponent<CoreSystem.Entity.Character>();
+            if (character != null)
             {
-                var character = go.GetComponent<CoreSystem.Entity.Character>();
-                if (character?.attributeSystem != null)
+                var characterData = Database.GetCharacter(entry.CharacterId);
+                if (characterData != null)
+                {
+                    character.faction = characterData.Faction;
+                }
+
+                if (entry.OverrideLevel && character.attributeSystem != null)
                 {
                     var lvl = character.attributeSystem.GetAttribute(AttributeType.BaseLevel);
                     if (lvl != null)

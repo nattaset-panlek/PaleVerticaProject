@@ -28,6 +28,7 @@ namespace CoreSystem.UI.Hotbar
         [SerializeField] private TMP_Text _costText;
         [SerializeField] private TMP_Text _overlayValueText;
         [SerializeField] private TMP_Text _numHotSlotText;
+        [SerializeField] private GameObject _comboHintObj;
 
         [Header("Slot Configuration")]
         [SerializeField] private int _rowIndex;
@@ -380,13 +381,22 @@ namespace CoreSystem.UI.Hotbar
                     ActiveSkill skillData = Database.GetSynchronizedSkill(_slotData.SkillId);
                     if (skillData != null)
                     {
-                        if (_skillIcon != null && skillData.Icon != null)
+                        var player = GameData.Player?.PlayerCharacterModel;
+                        var overrideData = ActiveSkill.GetActiveChainOverride(player, skillData);
+                        var effectiveSkill = (overrideData != null && overrideData.ReplacementSkill != null) ? overrideData.ReplacementSkill : skillData;
+
+                        if (_skillIcon != null && effectiveSkill.Icon != null)
                         {
-                            _skillIcon.sprite = skillData.Icon;
+                            _skillIcon.sprite = effectiveSkill.Icon;
                         }
                         if (_costText != null)
                         {
-                            _costText.text = $"{skillData.BaseManaCost:F0} MP";
+                            _costText.text = $"{effectiveSkill.BaseManaCost:F0} MP";
+                        }
+
+                        if (_comboHintObj != null)
+                        {
+                            _comboHintObj.SetActive(overrideData != null);
                         }
                     }
                     break;
@@ -578,6 +588,43 @@ namespace CoreSystem.UI.Hotbar
                 if (_skillSelected != null)
                 {
                     _skillSelected.SetActive(isSelected);
+                }
+
+                // Skill Chain / Combo Override Dynamic Update
+                ActiveSkill baseSkill = Database.GetSynchronizedSkill(_slotData.SkillId);
+                if (baseSkill != null)
+                {
+                    var overrideData = ActiveSkill.GetActiveChainOverride(player, baseSkill);
+                    if (overrideData != null && overrideData.ReplacementSkill != null)
+                    {
+                        if (_skillIcon != null && overrideData.ReplacementSkill.Icon != null)
+                        {
+                            _skillIcon.sprite = overrideData.ReplacementSkill.Icon;
+                        }
+                        if (_costText != null)
+                        {
+                            _costText.text = $"{overrideData.ReplacementSkill.BaseManaCost:F0} MP";
+                        }
+                        if (_comboHintObj != null && !_comboHintObj.activeSelf)
+                        {
+                            _comboHintObj.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        if (_skillIcon != null && baseSkill.Icon != null)
+                        {
+                            _skillIcon.sprite = baseSkill.Icon;
+                        }
+                        if (_costText != null)
+                        {
+                            _costText.text = $"{baseSkill.BaseManaCost:F0} MP";
+                        }
+                        if (_comboHintObj != null && _comboHintObj.activeSelf)
+                        {
+                            _comboHintObj.SetActive(false);
+                        }
+                    }
                 }
 
                 // 2. Cooldown / VCT / Delay Timer Overlay

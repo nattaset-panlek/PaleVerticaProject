@@ -387,7 +387,7 @@ namespace CoreSystem.Controllers
             if (_target == null) { SetState(AIState.Idle); return; }
 
             Vector3 dir = (_target.position - transform.position).normalized;
-            SmoothLookAt(dir);
+            UpdateFacingDirection(dir);
             UpdateVisualFlip(dir);
 
             // Determine desired position based on CombatStyle
@@ -585,28 +585,21 @@ namespace CoreSystem.Controllers
             if (_character.commandDirector != null)
                 _character.commandDirector.CommandMove(combined.normalized, this);
 
-            // Flip visuals based on INTENDED direction, not avoidance, to prevent sprite twitching
-            UpdateVisualFlip(dir);
+            // Flip visuals and facing based on intended movement direction, 
+            // EXCEPT during attack where we want to keep facing the target.
+            if (_currentState != AIState.Attack)
+            {
+                UpdateVisualFlip(dir);
+                UpdateFacingDirection(dir); // Update module instead of Z-rotation
+            }
             UpdateAnimation(true);
-            SmoothLookAt(dir); // Aim toward destination not separation
         }
 
-        private void SmoothLookAt(Vector3 direction)
+        private void UpdateFacingDirection(Vector3 direction)
         {
             if (direction.sqrMagnitude < 0.001f) return;
 
-            // In 2D top-down, "Forward" for the sprite is usually the Transform.Up axis
-            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, direction);
-            
-            if (RotationSpeed > 0)
-            {
-                // Slerp provides a smoother acceleration/deceleration feel
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, RotationSpeed * Time.deltaTime);
-            }
-            else
-            {
-                transform.rotation = targetRotation;
-            }
+            _character.FaceDirection.UpdateDirection(direction);
         }
 
         private void StopMovement()
@@ -765,9 +758,9 @@ namespace CoreSystem.Controllers
             _nextPathTime = 0f;
         }
 
-        private bool IsHostile(FactionType a, FactionType b)
+        private bool IsHostile(int a, int b)
         {
-            return a.IsHostileTo(b);
+            return CoreSystem.Data.FactionDatabase.IsHostile(a, b);
         }
 
         private bool IsTargetAliveAndValid(Transform t)
@@ -923,7 +916,7 @@ namespace CoreSystem.Controllers
         // ═══════════════════════════════════════════════════════════
 
 #if UNITY_EDITOR
-        private void OnDrawGizmos()
+        private void OnDrawGizmosSelected()
         {
             // Home Zone (green)
             if (UseHomeZone)
@@ -933,10 +926,7 @@ namespace CoreSystem.Controllers
                 Gizmos.color = new Color(0, 1, 0, 0.7f);
                 Gizmos.DrawWireSphere(Application.isPlaying ? _homePosition : transform.position, HomeZoneRadius);
             }
-        }
 
-        private void OnDrawGizmosSelected()
-        {
             // Detection (yellow)
             Gizmos.color = new Color(1, 1, 0, 0.5f);
             Gizmos.DrawWireSphere(transform.position, DetectionRadius);
@@ -944,10 +934,6 @@ namespace CoreSystem.Controllers
             // Attack Range (red)
             Gizmos.color = new Color(1, 0.2f, 0.2f, 0.5f);
             Gizmos.DrawWireSphere(transform.position, AttackRange);
-
-            // Lose Sight (gray)
-            Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 0.35f);
-            Gizmos.DrawWireSphere(transform.position, LoseSightRadius);
 
             // Lose Sight (gray)
             Gizmos.color = new Color(0.5f, 0.5f, 0.5f, 0.35f);

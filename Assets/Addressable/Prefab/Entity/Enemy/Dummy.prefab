@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 7639983611516594321}
   - component: {fileID: 2630608399788674367}
   - component: {fileID: 6283124277807907103}
+  - component: {fileID: 4269732920431769452}
   m_Layer: 6
   m_Name: Dummy
   m_TagString: Untagged
@@ -91,7 +92,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8512121553711143681}
   - {fileID: 3195742315108065547}
@@ -149,15 +150,21 @@ MonoBehaviour:
       BaseValue: -1000
       InitialValue: 0
   skillCaster:
-    EquippedSkills:
-    - SkillData: {fileID: 0}
-      CurrentLevel: 1
+    EquippedSkills: []
     GrantedSkills: []
     LastHitTargets: []
     AimedSkillSlot: -1
+    AimedSkillInstance:
+      SkillData: {fileID: 0}
+      CurrentLevel: 1
   expSystem:
     CurrentBaseExp: 0
     CurrentJobExp: 0
+  FaceDirection:
+    currentFacingVector: {x: 1, y: 0}
+    currentDirection: 0
+  PassiveNodes: []
+  PassivePoints: 0
   DefaultSkillIds: e9030000
   _autoAttackType: 0
   _autoAttackDamageType: 0
@@ -204,7 +211,7 @@ MonoBehaviour:
   element: 0
   size: 1
   race: 0
-  faction: 1
+  faction: 2
 --- !u!114 &7936790367248913855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -310,6 +317,23 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.25
+--- !u!114 &4269732920431769452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593199419734919740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0554f0cef684748b2e1171eddad7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Visuals.EntityVisualFeedback
+  _character: {fileID: 1077654028377627567}
+  _modelRoot: {fileID: 8512121553711143681}
+  _shadowRenderer: {fileID: 3184561879160891701}
+  _settingsOverride: {fileID: 0}
+  _ignoredRenderers: []
 --- !u!1 &684525210026802960
 GameObject:
   m_ObjectHideFlags: 0

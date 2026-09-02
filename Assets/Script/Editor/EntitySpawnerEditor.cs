@@ -9,10 +9,21 @@ namespace CoreSystem.EditorScripts
     {
         private EntitySpawner _spawner;
         private bool _tableFoldout = true;
+        private CoreSystem.Data.CharacterDataList _characterDataList;
 
         private void OnEnable()
         {
             _spawner = (EntitySpawner)target;
+            LoadCharacters();
+        }
+
+        private void LoadCharacters()
+        {
+            TextAsset json = AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/Data/Character.json");
+            if (json != null)
+            {
+                _characterDataList = JsonUtility.FromJson<CoreSystem.Data.CharacterDataList>(json.text);
+            }
         }
 
         public override void OnInspectorGUI()
@@ -106,15 +117,15 @@ namespace CoreSystem.EditorScripts
         {
             SerializedProperty entry = table.GetArrayElementAtIndex(idx);
 
-            // Read the Prefab to detect what components it has
-            var prefabProp = entry.FindPropertyRelative("Prefab");
-            GameObject prefab = prefabProp.objectReferenceValue as GameObject;
+            var charIdProp = entry.FindPropertyRelative("CharacterId");
+            int charId = charIdProp.intValue;
 
-            bool hasAgentCore  = prefab != null && prefab.GetComponent<Controllers.AgentCore>() != null;
-            bool hasCharacter  = prefab != null && prefab.GetComponent<Entity.Character>() != null;
+            // In Editor, we assume characters have AgentCore and Character components.
+            bool hasAgentCore = charId > 0;
+            bool hasCharacter = charId > 0;
 
             string lbl = entry.FindPropertyRelative("Label").stringValue;
-            if (string.IsNullOrEmpty(lbl)) lbl = prefab != null ? prefab.name : $"Entry {idx}";
+            if (string.IsNullOrEmpty(lbl)) lbl = charId > 0 ? $"Character {charId}" : $"Entry {idx}";
             float weight = entry.FindPropertyRelative("Weight").floatValue;
 
             EditorGUILayout.BeginVertical(EditorStyles.helpBox);
@@ -132,7 +143,40 @@ namespace CoreSystem.EditorScripts
             {
                 EditorGUI.indentLevel++;
 
-                EditorGUILayout.PropertyField(prefabProp);
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel(new GUIContent("Character", "Character ID from Database"));
+                string charName = "None";
+                if (_characterDataList != null && _characterDataList.Characters != null)
+                {
+                    var c = _characterDataList.Characters.Find(x => x.Id == charId);
+                    if (c != null) charName = $"[{c.Id}] {c.Name}";
+                    else if (charId > 0) charName = $"Unknown ({charId})";
+                }
+                
+                if (GUILayout.Button(charName, EditorStyles.popup))
+                {
+                    GenericMenu menu = new GenericMenu();
+                    menu.AddItem(new GUIContent("None"), charId == 0, () => 
+                    {
+                        charIdProp.intValue = 0;
+                        charIdProp.serializedObject.ApplyModifiedProperties();
+                    });
+                    
+                    if (_characterDataList != null && _characterDataList.Characters != null)
+                    {
+                        foreach (var c in _characterDataList.Characters)
+                        {
+                            int id = c.Id;
+                            menu.AddItem(new GUIContent($"[{id}] {c.Name}"), charId == id, () => 
+                            {
+                                charIdProp.intValue = id;
+                                charIdProp.serializedObject.ApplyModifiedProperties();
+                            });
+                        }
+                    }
+                    menu.ShowAsContext();
+                }
+                EditorGUILayout.EndHorizontal();
                 EditorGUILayout.PropertyField(entry.FindPropertyRelative("Label"));
                 EditorGUILayout.PropertyField(entry.FindPropertyRelative("Weight"), new GUIContent("Weight (%)"));
                 EditorGUILayout.PropertyField(entry.FindPropertyRelative("MinCount"));
@@ -141,8 +185,8 @@ namespace CoreSystem.EditorScripts
                 EditorGUILayout.Space(4);
 
                 // Overrides section title with component hint
-                if (prefab == null)
-                    EditorGUILayout.HelpBox("Assign a Prefab to enable overrides.", MessageType.Warning);
+                if (charId <= 0)
+                    EditorGUILayout.HelpBox("Assign a Character ID to enable overrides.", MessageType.Warning);
                 else
                     EditorGUILayout.LabelField("Overrides", EditorStyles.boldLabel);
 

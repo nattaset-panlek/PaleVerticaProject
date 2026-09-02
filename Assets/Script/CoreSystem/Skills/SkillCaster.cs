@@ -87,6 +87,7 @@ namespace CoreSystem.Skills
         
         public SkillInstance ActiveSkillInstance => activeSkillInstance;
         private SkillInstance activeSkillInstance;
+        public SkillPayload ActivePayload => activePayload;
         private SkillPayload activePayload;
 
         public float CurrentCastTimeTotal => currentCastTimeTotal;
@@ -773,10 +774,11 @@ namespace CoreSystem.Skills
                 }
 
                 SkillPayload payload = BuildPayload(instance, mousePos, true);
-                Vector2 direction = character.transform.up;
+                Vector2 direction = payload.GetAimDirection();
                 instance.SkillData.BaseTargeting.DrawGizmos(character.transform.position, direction, payload);
             }
         }
 #endif
     }
 }
+

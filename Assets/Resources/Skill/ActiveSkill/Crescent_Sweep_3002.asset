@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Crescent_Sweep_3002
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
+  Id: 3002
+  Name: Crescent Sweep
+  Icon: {fileID: 21300000, guid: bdd1a3af1ebf8e347baf21416aab4898, type: 3}
+  SkillElement: 0
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 1245210145478934797
+  Effects:
+  - rid: 1245210145478934798
+  - rid: 1245210145478934799
+  - rid: 1245210145478934800
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 0
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
+  BaseDamage: 15
+  BaseAOERadius: 0
+  BaseProjectileCount: 0
+  BaseManaCost: 5
+  Tags: 0000000007000000
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 0
+  BaseFCT: 0
+  BaseCastDelay: 0.5
+  BaseCooldown: 1
+  ChainOverrides:
+  - RequiredBuffName: Iai_Stance_2
+    ReplacementSkill: {fileID: 11400000, guid: 2e086bcd01ded294a88aab0ebcb75c77, type: 2}
+    ConsumeBuffOnCast: 1
+    HintColor: {r: 1, g: 0.13333334, b: 0.13333334, a: 1}
+  Scalings: []
+  MaxSupportSlots: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 1245210145478934797
+      type: {class: ConeTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        ConeAngle: 102
+    - rid: 1245210145478934798
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 1
+    - rid: 1245210145478934799
+      type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 1
+        <ApplyOncePerCast>k__BackingField: 0
+        Type: 1
+        Distance: 3
+        StunDuration: 0
+        UseLerp: 1
+        LerpDuration: 0.15
+    - rid: 1245210145478934800
+      type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 1
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 0
+        ModifierValue: 0
+        ModType: 0
+        Duration: 3
+        MaxStacks: 1
+        BuffName: Iai_Stance_2
+        Category: 5
+        Icon: {fileID: 0}
+        BuffIconPath: 

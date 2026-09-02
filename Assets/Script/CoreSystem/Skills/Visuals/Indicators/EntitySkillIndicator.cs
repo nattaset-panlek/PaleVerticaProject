@@ -90,9 +90,10 @@ namespace CoreSystem.Skills.Visuals
                 }
             }
 
+            var payload = _character.skillCaster.ActivePayload;
             Vector3 origin = transform.position;
-            Vector3 target = origin + transform.up;
-            Vector2 direction = transform.up;
+            Vector2 direction = payload != null ? payload.GetAimDirection() : (Vector2)transform.up;
+            Vector3 target = origin + (Vector3)direction;
 
             var targeting = _trackedInstance.SkillData?.BaseTargeting;
             if (targeting is TargetLocationTargeting || targeting is SphereAOETargeting || targeting is SelfTargeting)
@@ -113,7 +114,7 @@ namespace CoreSystem.Skills.Visuals
             _trackedInstance = instance;
             _isTelegraphing = false;
 
-            var payload = _character.skillCaster.BuildPayload(instance);
+            var payload = _character.skillCaster.ActivePayload;
             var logic = instance.SkillData.BaseTargeting;
 
             HideAll();

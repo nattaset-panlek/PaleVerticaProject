@@ -86,9 +86,10 @@ namespace CoreSystem.Skills.Logic
         private void OnDrawGizmos()
         {
             if (!_isInitialized || _targeting == null || _payload == null || _payload.Caster == null) return;
-            Vector2 forward = _payload.Caster.transform.up;
+            Vector2 forward = _payload.GetAimDirection();
             _targeting.DrawGizmos(_payload.OriginPosition, forward, _payload);
         }
 #endif
     }
 }
+

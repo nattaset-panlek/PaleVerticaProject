@@ -2,6 +2,7 @@ Shader "Custom/SkillIndicatorFill"
 {
     Properties
     {
+        [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         [Header(Textures)]
         [NoScaleOffset] _TailTex ("Tail Texture (Start)", 2D) = "white" {}
         [NoScaleOffset] _BodyTex ("Body Texture (Tiling)", 2D) = "white" {}
@@ -46,6 +47,7 @@ Shader "Custom/SkillIndicatorFill"
                 float4 vertex : SV_POSITION;
                 float4 color : COLOR;
                 float2 uv : TEXCOORD0;
+                float2 worldDims : TEXCOORD1;
             };
 
             sampler2D _TailTex;
@@ -65,6 +67,7 @@ Shader "Custom/SkillIndicatorFill"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.color = v.color;
                 o.uv = v.uv;
+                o.worldDims = _WorldSize.xy;
                 return o;
             }
 
@@ -74,36 +77,49 @@ Shader "Custom/SkillIndicatorFill"
                 if (i.uv.y > _FillAmount) discard;
 
                 float2 uv = i.uv;
-                float totalLength = _WorldSize.y;
-                float totalWidth = _WorldSize.x;
-                float currentWorldY = uv.y * totalLength;
-                
-                // Aspect Ratio Protection for X-axis (Same as main shader)
-                float xRatio = totalWidth / max(_NaturalWidth, 0.0001);
-                float uvX = (uv.x - 0.5) * xRatio + 0.5;
-                if (uvX < 0.0 || uvX > 1.0) discard;
-                
-                fixed4 finalCol = fixed4(0,0,0,0);
-                
-                // --- 3-PART ASSEMBLY ---
-                if (currentWorldY < _TailSize)
+                float totalWidth = i.worldDims.x;
+                float totalHeight = i.worldDims.y;
+
+                // Width ratio: how much wider than the reference
+                float wRatio = totalWidth / max(_NaturalWidth, 0.0001);
+
+                // Head/Tail scale proportionally with width
+                // When wider -> Head/Tail get taller by the same ratio
+                // This keeps their aspect ratio identical (no stretching)
+                float tailH = _TailSize * wRatio;
+                float headH = _HeadSize * wRatio;
+
+                float worldY = uv.y * totalHeight;
+                fixed4 col = fixed4(0,0,0,0);
+
+                if (worldY < tailH)
                 {
-                    float vTail = currentWorldY / max(_TailSize, 0.0001);
-                    finalCol = tex2D(_TailTex, float2(uvX, vTail));
+                    // Tail: Full width, height proportional to width
+                    float v = worldY / max(tailH, 0.0001);
+                    col = tex2D(_TailTex, float2(uv.x, v));
                 }
-                else if (currentWorldY > (totalLength - _HeadSize))
+                else if (worldY > (totalHeight - headH))
                 {
-                    float vHead = (currentWorldY - (totalLength - _HeadSize)) / max(_HeadSize, 0.0001);
-                    finalCol = tex2D(_HeadTex, float2(uvX, vHead));
+                    // Head: Full width, height proportional to width
+                    float v = (worldY - (totalHeight - headH)) / max(headH, 0.0001);
+                    col = tex2D(_HeadTex, float2(uv.x, v));
                 }
                 else
                 {
-                    float bodyWorldY = currentWorldY - _TailSize;
-                    float2 bodyUV = float2(uvX, bodyWorldY / max(totalWidth, 0.0001));
-                    finalCol = tex2D(_BodyTex, bodyUV);
+                    // Body: Full width (to match Head/Tail edges)
+                    // Tile along Y based on Width to keep the pattern square/proportional
+                    float bodyY = worldY - tailH;
+                    
+                    // This tiles the texture every time the length equals the current width
+                    // making the pattern "square" in world space regardless of scaling
+                    float2 bodyUV = float2(uv.x, bodyY / max(totalWidth, 0.0001));
+                    col = tex2D(_BodyTex, bodyUV);
                 }
 
-                return finalCol * _MainColor * i.color;
+                col *= _MainColor;
+                col *= i.color;
+
+                return col;
             }
             ENDCG
         }

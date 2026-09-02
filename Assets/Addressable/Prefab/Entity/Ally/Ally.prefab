@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 7936790367248913855}
   - component: {fileID: 7639983611516594321}
   - component: {fileID: 2692141178796248871}
+  - component: {fileID: 4526979296839145181}
   m_Layer: 6
   m_Name: Ally
   m_TagString: Untagged
@@ -176,15 +177,21 @@ MonoBehaviour:
   _attributeSystem:
     initialAttributes: []
   skillCaster:
-    EquippedSkills:
-    - SkillData: {fileID: 0}
-      CurrentLevel: 1
+    EquippedSkills: []
     GrantedSkills: []
     LastHitTargets: []
     AimedSkillSlot: -1
+    AimedSkillInstance:
+      SkillData: {fileID: 0}
+      CurrentLevel: 1
   expSystem:
     CurrentBaseExp: 0
     CurrentJobExp: 0
+  FaceDirection:
+    currentFacingVector: {x: 1, y: 0}
+    currentDirection: 0
+  PassiveNodes: []
+  PassivePoints: 0
   DefaultSkillIds: e9030000
   _autoAttackType: 0
   _autoAttackDamageType: 0
@@ -231,7 +238,7 @@ MonoBehaviour:
   element: 0
   size: 1
   race: 0
-  faction: 0
+  faction: 1
   npcId: 001
   interactable: 1
   _npcInventory: {fileID: 0}
@@ -310,6 +317,23 @@ MonoBehaviour:
   _coneTemplate: {fileID: 4002355336748361883, guid: c7e8f3183ea0ddc4eaef8200b4cc57b2, type: 3}
   _indicatorTint: {r: 1, g: 0.3, b: 0.3, a: 1}
   _telegraphDuration: 0.6
+--- !u!114 &4526979296839145181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593199419734919740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0554f0cef684748b2e1171eddad7d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Visuals.EntityVisualFeedback
+  _character: {fileID: 8112978803220484139}
+  _modelRoot: {fileID: 8512121553711143681}
+  _shadowRenderer: {fileID: 3184561879160891701}
+  _settingsOverride: {fileID: 0}
+  _ignoredRenderers: []
 --- !u!1 &684525210026802960
 GameObject:
   m_ObjectHideFlags: 0

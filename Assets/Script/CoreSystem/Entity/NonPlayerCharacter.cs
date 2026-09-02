@@ -40,7 +40,7 @@ namespace CoreSystem.Entity
         #endregion
 
         #region [Public Methods]
-        public void InitializeNPC(string newNpcId, FactionType newFaction = FactionType.Neutral)
+        public void InitializeNPC(string newNpcId, int newFaction = 0)
         {
             npcId = newNpcId;
             faction = newFaction;

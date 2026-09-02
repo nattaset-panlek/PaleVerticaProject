@@ -10,7 +10,8 @@ namespace CoreSystem.Entity
         ElementType Element { get; }
         SizeType Size { get; }
         RaceType Race { get; }
-        FactionType Faction { get; }
+        int Faction { get; }
+        Vector3 FacingDirection { get; }
         
         void ApplyImpulse(Vector3 direction, float distance, float duration);
         void ApplyStun(float duration);

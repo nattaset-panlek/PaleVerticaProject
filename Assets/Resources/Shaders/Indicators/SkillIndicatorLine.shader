@@ -2,6 +2,7 @@ Shader "Custom/SkillIndicatorLine"
 {
     Properties
     {
+        [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         [Header(Textures)]
         [NoScaleOffset] _TailTex ("Tail Texture (Start)", 2D) = "white" {}
         [NoScaleOffset] _BodyTex ("Body Texture (Tiling)", 2D) = "white" {}

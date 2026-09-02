@@ -30,15 +30,16 @@
                     "x": 0.0,
                     "y": 1.5
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
             "Scalings": [
                 {
                     "TargetField": 0,
-                    "ScalingAttribute": 20,
-                    "AttributeMultiplier": 10.0,
-                    "GlobalMultiplier": 1.0,
+                    "ScalingAttribute": 9,
+                    "AttributeMultiplier": 15.0,
+                    "GlobalMultiplier": 0.15000000596046449,
                     "FlatBonus": 0.0,
                     "LevelMultiplier": 0.0
                 }
@@ -47,7 +48,7 @@
                 {
                     "EffectType": "DamageEffect",
                     "AttributeID": 0,
-                    "Value": 0.0,
+                    "Value": 100.0,
                     "TriggerType": "",
                     "TriggerChance": 0.0,
                     "SkillName": "",
@@ -61,6 +62,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -88,6 +90,7 @@
                     "MovementType": "StunTarget",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -115,7 +118,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1002,
@@ -147,6 +151,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -194,6 +199,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -222,7 +228,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1003,
@@ -254,6 +261,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -293,6 +301,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -321,7 +330,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1004,
@@ -353,6 +363,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "Ally",
                 "IncludeSelf": true
             },
@@ -384,6 +395,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -411,6 +423,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -438,6 +451,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -465,6 +479,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -493,7 +508,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1005,
@@ -525,6 +541,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -547,6 +564,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -574,6 +592,7 @@
                     "MovementType": "PushTargetAway",
                     "MovementDistance": 5.0,
                     "ApplyOnce": true,
+                    "ApplyToCaster": false,
                     "UseLerp": true,
                     "LerpDuration": 0.3499999940395355,
                     "ParentToCaster": false,
@@ -602,7 +621,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1006,
@@ -634,6 +654,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 0.5,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -673,6 +694,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -702,7 +724,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1007,
@@ -734,6 +757,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -756,6 +780,7 @@
                     "MovementType": "DashForward",
                     "MovementDistance": 3.0,
                     "ApplyOnce": true,
+                    "ApplyToCaster": false,
                     "UseLerp": true,
                     "LerpDuration": 0.15000000596046449,
                     "ParentToCaster": false,
@@ -783,7 +808,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1008,
@@ -815,6 +841,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "Enemy",
                 "IncludeSelf": false
             },
@@ -870,6 +897,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -899,7 +927,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1009,
@@ -931,6 +960,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -953,6 +983,7 @@
                     "MovementType": "DashForward",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -980,6 +1011,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -1009,7 +1041,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1010,
@@ -1041,6 +1074,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1072,6 +1106,7 @@
                     "MovementType": "",
                     "MovementDistance": 0.0,
                     "ApplyOnce": false,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -1099,7 +1134,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 0,
@@ -1131,6 +1167,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1169,7 +1206,8 @@
                 }
             ],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1011,
@@ -1201,6 +1239,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1234,7 +1273,8 @@
                 }
             ],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1012,
@@ -1266,6 +1306,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1299,7 +1340,8 @@
                 }
             ],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1013,
@@ -1331,6 +1373,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1354,7 +1397,8 @@
                 }
             ],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1014,
@@ -1386,6 +1430,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1439,7 +1484,8 @@
                 }
             ],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1015,
@@ -1471,6 +1517,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1493,6 +1540,7 @@
                     "MovementType": "PullTargetIn",
                     "MovementDistance": 5.0,
                     "ApplyOnce": true,
+                    "ApplyToCaster": false,
                     "UseLerp": true,
                     "LerpDuration": 1.0,
                     "ParentToCaster": false,
@@ -1521,7 +1569,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1016,
@@ -1553,6 +1602,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1575,6 +1625,7 @@
                     "MovementType": "TeleportToTarget",
                     "MovementDistance": 50.0,
                     "ApplyOnce": true,
+                    "ApplyToCaster": false,
                     "UseLerp": false,
                     "LerpDuration": 0.0,
                     "ParentToCaster": false,
@@ -1602,7 +1653,8 @@
             ],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         },
         {
             "SkillID": 1017,
@@ -1634,6 +1686,7 @@
                     "x": 0.0,
                     "y": 0.0
                 },
+                "LineWidth": 1.0,
                 "Alignment": "",
                 "IncludeSelf": false
             },
@@ -1651,7 +1704,494 @@
             "Tags": [],
             "UniqueFields": [],
             "SupportSkillIDs": [],
-            "MaxSupportSlots": 5
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
+        },
+        {
+            "SkillID": 1019,
+            "CustomClassName": "CoreSystem.Skills.UniqueSkill.MindControlSkill",
+            "SkillName": "Mind Control",
+            "IconPath": "",
+            "SkillElement": "Neutral",
+            "DamageType": "Magic",
+            "BaseDamage": 0.0,
+            "BaseAOERadius": 1.5,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 30.0,
+            "IsToggle": false,
+            "BaseVCT": 1.5,
+            "BaseFCT": 0.5,
+            "BaseCastDelay": 0.5,
+            "BaseCooldown": 12.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "SingleUnit",
+                "Radius": 5.0,
+                "CastRange": 8.0,
+                "Angle": 0.0,
+                "BoxSize": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "LineWidth": 1.0,
+                "Alignment": "Enemy",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "SummonObjectEffect",
+                    "AttributeID": 0,
+                    "Value": 4.0,
+                    "TriggerType": "",
+                    "TriggerChance": 0.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 4.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": true,
+                    "ApplyToCaster": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                }
+            ],
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Control",
+                "Magic"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
+        },
+        {
+            "SkillID": 3001,
+            "CustomClassName": "",
+            "SkillName": "Wind Slash",
+            "IconPath": "",
+            "SkillElement": "Neutral",
+            "DamageType": "Physical",
+            "BaseDamage": 10.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 5.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.5,
+            "BaseCooldown": 1.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Cone",
+                "Radius": 2.0,
+                "CastRange": 3.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 2.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "LineWidth": 1.0,
+                "Alignment": "Enemy",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 100.0,
+                    "TriggerType": "",
+                    "TriggerChance": 1.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ApplyToCaster": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                },
+                {
+                    "EffectType": "MovementEffectLogic",
+                    "AttributeID": 0,
+                    "Value": 100.0,
+                    "TriggerType": "",
+                    "TriggerChance": 1.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "DashForward",
+                    "MovementDistance": 2.0,
+                    "ApplyOnce": false,
+                    "ApplyToCaster": true,
+                    "UseLerp": true,
+                    "LerpDuration": 0.10000000149011612,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                },
+                {
+                    "EffectType": "ApplyTemporaryBuffEffect",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 1.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "Flat",
+                    "Duration": 3.0,
+                    "MaxStacks": 1,
+                    "BuffName": "Iai_Stance_1",
+                    "PrefabPath": "",
+                    "Category": "Default",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ApplyToCaster": true,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                }
+            ],
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Melee",
+                "Physical"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5,
+            "ChainOverrides": [
+                {
+                    "RequiredBuffName": "Iai_Stance_1",
+                    "ReplacementSkillID": 3002,
+                    "ConsumeBuffOnCast": true,
+                    "HintColorHex": "#FF5555FF"
+                }
+            ]
+        },
+        {
+            "SkillID": 3002,
+            "CustomClassName": "",
+            "SkillName": "Crescent Sweep",
+            "IconPath": "",
+            "SkillElement": "Neutral",
+            "DamageType": "Physical",
+            "BaseDamage": 15.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 5.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.5,
+            "BaseCooldown": 1.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Cone",
+                "Radius": 4.0,
+                "CastRange": 0.0,
+                "Angle": 102.0,
+                "BoxSize": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "LineWidth": 1.0,
+                "Alignment": "Enemy",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 120.0,
+                    "TriggerType": "",
+                    "TriggerChance": 1.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ApplyToCaster": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                },
+                {
+                    "EffectType": "MovementEffectLogic",
+                    "AttributeID": 0,
+                    "Value": 120.0,
+                    "TriggerType": "",
+                    "TriggerChance": 1.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "DashForward",
+                    "MovementDistance": 3.0,
+                    "ApplyOnce": false,
+                    "ApplyToCaster": true,
+                    "UseLerp": true,
+                    "LerpDuration": 0.15000000596046449,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                },
+                {
+                    "EffectType": "ApplyTemporaryBuffEffect",
+                    "AttributeID": 0,
+                    "Value": 0.0,
+                    "TriggerType": "",
+                    "TriggerChance": 1.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 3.0,
+                    "MaxStacks": 1,
+                    "BuffName": "Iai_Stance_2",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ApplyToCaster": true,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                }
+            ],
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Melee",
+                "Physical"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5,
+            "ChainOverrides": [
+                {
+                    "RequiredBuffName": "Iai_Stance_2",
+                    "ReplacementSkillID": 3003,
+                    "ConsumeBuffOnCast": true,
+                    "HintColorHex": "#FF2222"
+                }
+            ]
+        },
+        {
+            "SkillID": 3003,
+            "CustomClassName": "",
+            "SkillName": "Cherry Blossom Execution",
+            "IconPath": "",
+            "SkillElement": "Neutral",
+            "DamageType": "Physical",
+            "BaseDamage": 30.0,
+            "BaseAOERadius": 0.0,
+            "BaseProjectileCount": 0,
+            "BaseManaCost": 5.0,
+            "IsToggle": false,
+            "BaseVCT": 0.0,
+            "BaseFCT": 0.0,
+            "BaseCastDelay": 0.5,
+            "BaseCooldown": 15.0,
+            "Heal": 0.0,
+            "BaseTargeting": {
+                "Type": "Sphere",
+                "Radius": 2.0,
+                "CastRange": 3.0,
+                "Angle": 60.0,
+                "BoxSize": {
+                    "x": 2.0,
+                    "y": 2.0
+                },
+                "Offset": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "LineWidth": 1.0,
+                "Alignment": "Enemy",
+                "IncludeSelf": false
+            },
+            "Scalings": [],
+            "Effects": [
+                {
+                    "EffectType": "DamageEffect",
+                    "AttributeID": 0,
+                    "Value": 250.0,
+                    "TriggerType": "",
+                    "TriggerChance": 1.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "",
+                    "MovementDistance": 0.0,
+                    "ApplyOnce": false,
+                    "ApplyToCaster": false,
+                    "UseLerp": false,
+                    "LerpDuration": 0.0,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                },
+                {
+                    "EffectType": "MovementEffectLogic",
+                    "AttributeID": 0,
+                    "Value": 250.0,
+                    "TriggerType": "",
+                    "TriggerChance": 1.0,
+                    "SkillName": "",
+                    "SkillID": 0,
+                    "ModType": "",
+                    "Duration": 0.0,
+                    "MaxStacks": 0,
+                    "BuffName": "",
+                    "PrefabPath": "",
+                    "Category": "",
+                    "MovementType": "DashForward",
+                    "MovementDistance": 6.0,
+                    "ApplyOnce": false,
+                    "ApplyToCaster": true,
+                    "UseLerp": true,
+                    "LerpDuration": 0.20000000298023225,
+                    "ParentToCaster": false,
+                    "ScalingSourceIDs": [],
+                    "ScalingThreshold": 0.0,
+                    "ConditionAttributeID": 0,
+                    "ConditionComparison": "",
+                    "ConditionThreshold": 0.0,
+                    "BuffIconPath": ""
+                }
+            ],
+            "VisualType": "InstantHit",
+            "CastVfxPrefabName": "",
+            "CastVfxSpawnPoint": "FollowCaster",
+            "SkillIndicatorPrefabName": "",
+            "EruptionVfxPrefabName": "",
+            "ProjectilePrefabName": "",
+            "ImpactVfxPrefabName": "",
+            "AuraVfxPrefabName": "",
+            "BeamVfxPrefabName": "",
+            "Tags": [
+                "Melee",
+                "Physical"
+            ],
+            "UniqueFields": [],
+            "SupportSkillIDs": [],
+            "MaxSupportSlots": 5,
+            "ChainOverrides": []
         }
     ],
     "SupportSkills": []
