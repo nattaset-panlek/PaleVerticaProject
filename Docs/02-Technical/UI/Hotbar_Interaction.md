@@ -104,7 +104,7 @@ When implementing a new interactive system (such as Mounts, Emotes, or Pet Comma
 
 ### A. Drag-and-Drop Assignment (via `GlobalDragManager`)
 
-*(For comprehensive architectural details and general system integration, see [GlobalDragDoc.md](file:///f:/GameProject/Realm%20of%20Hero/My%20project/Assets/Script/UI/Utile/GlobalDragDoc.md)).*
+*(For comprehensive architectural details and general system integration, see [GlobalDrag.md](./GlobalDrag.md)).*
 
 To enable dragging an icon from a custom UI window directly onto any Hotbar slot:
 

@@ -65,3 +65,7 @@ The `Assets/Script` directory is highly modular. Maintain and respect this organ
 - **UI Decoupling**: Do NOT tightly couple the UI to data sources. The UI must only *listen* to state changes (Event-driven) to prevent null reference cascades.
 - **Performance**: Do NOT use `Update()` for constant state checking if an Event callback can achieve the same result.
 - **Structure**: Do NOT bypass the established `#region` structure when creating or refactoring C# scripts.
+
+## 7. Documentation & Skills
+- **Single source for docs**: `Docs/` (index: `Docs/README.md`). Never create `.md` files inside `Assets/`.
+- **Project skill**: `.claude/skills/realm-of-hero-dev/SKILL.md` (architecture map + recipes in `references/`). Read it before working on scripts.
