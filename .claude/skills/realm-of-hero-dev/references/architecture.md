@@ -58,13 +58,13 @@ All scripts are in their folder namespace (`CoreSystem.<Folder>`, `CoreSystem.UI
 4. `Tick` -> `ExecuteSkill` (cooldown, cast delay) -> `ExecutePipeline` (pay cost, then `ExecuteWithSplitters`: the first linked `IPayloadSplitter` that `CanSplit` the skill turns one payload into several, otherwise `ActiveSkill.Execute` once; the first linked `ICastRepeater` schedules a delayed re-run through the same path).
 5. `ActiveSkill.Execute`: `BaseTargeting.GetTargets` -> effects (to caster / once per cast / per target) -> `VisualManager.PlayVisual` -> `UniquePassives.TriggerOnSkillExecuted`. `ChainOverrides` mutate the skill when a buff code is present.
 - Caster events: `OnCastInitiated`, `OnCastProgress`, `OnCastExecuted`, `OnCastInterrupted`, `OnGrantedSkillsChanged`.
-- Buffs: `BuffSystem` (MonoBehaviour on character) with `ActiveBuff` (modifiers, stacks, tick, category), `HasBuff(code)`, `OnBuffsChanged`.
+- Buffs: `BuffSystem` (plain class owned by `Character`, access `character.Buffs`, ticked from `Character.Update`) with `ActiveBuff` (modifiers, stacks, tick, category), `HasBuff(code)`, `OnBuffsChanged`. The HUD `UIBuffDisplay` sits on `TemporaryBuffCanvas` and follows the player via `PlayerCore.OnPlayerChanged` + `OnBuffsChanged`.
 - Supports: max 5 per `SkillInstance`, auto-linked from `Database.GetLinkedSupportIDs`. Created by `SupportModifier.Create(id)` through `AttributedTypeRegistry` (`[SupportModifierId]`); unique passives likewise via `[UniquePassiveId]`.
 - Visuals: `VisualManager`, `VisualPayload` SO, `ISkillVisual` (InstantHit, Projectile, RayBeam, AuraBuff, GroundEruption).
 - Skill tree: `SkillTreeLoader`/`SkillTreeDatabase` (static, `SkillTree.json`), `SkillTreeManager` (points, static events `OnNodeUnlocked/OnNodeReset/OnAllReset`), UI `PassiveTreeWindow`.
 
 ## Data and items
-- `Database` (auto-created before scene load from `Resources/Prefab/Database`, DontDestroyOnLoad). Init order: Items -> Factions -> Attributes -> Skills -> SkillTree -> Characters -> UniquePassives.
+- `Database` (plain C# singleton, not a MonoBehaviour: `Database.Create()` runs before scene load, `Database.Instance` creates it on demand, also in edit mode; no GameObject, prefab or Find; `IsReady`/`OnReady`). Init order: Items -> Factions -> Attributes -> Skills -> SkillTree -> Characters -> UniquePassives.
 - `Item` subclasses: Equipment, Consumable, Costume, Currency, Fragment, Resource, SkillRune, SupportRune, Additional. Runtime: `ItemInstance`, `EquipmentInstance` (Refine, Reforge, sockets), `CostumeInstance`.
 - `Equipment.OnEquip`: weapon/armor baseline x (1 + refine) + reforge, then `Effects`, then socketed fragment effects. Set bonuses in `EquipmentSetData`.
 - `GameData.Player` (`PlayerData`): `Inventory`, `PlayerStats`, `PlayerEquipment`, `PlayerCostumes`, `PlayerSkills`, `Data` (PlayerDataModel).

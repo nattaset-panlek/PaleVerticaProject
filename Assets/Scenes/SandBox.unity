@@ -2502,8 +2502,6 @@ GameObject:
   - component: {fileID: 935870568}
   - component: {fileID: 935870573}
   - component: {fileID: 935870572}
-  - component: {fileID: 935870570}
-  - component: {fileID: 935870569}
   - component: {fileID: 935870576}
   - component: {fileID: 935870577}
   - component: {fileID: 935870578}
@@ -2536,27 +2534,14 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935870567}
+  m_GameObject: {fileID: 1222232449}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e02bb7a5dac0214c8b9141cffc669a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuffManager: {fileID: 935870570}
   BuffIconDisplayParent: {fileID: 245859317}
   BuffIconTemplatePrefab: {fileID: 1507017668397425356, guid: e2ef79b9e0b8bb7498f28b2a3b63ae0d, type: 3}
---- !u!114 &935870570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935870567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b6b42f32f9ce4419d6ea7a39b9168d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &935870572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3465,6 +3450,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1222232450}
+  - component: {fileID: 935870569}
   m_Layer: 5
   m_Name: TemporaryBuffCanvas
   m_TagString: Untagged

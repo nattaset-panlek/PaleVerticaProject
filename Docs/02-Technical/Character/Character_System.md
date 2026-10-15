@@ -26,7 +26,7 @@ Supersedes `99-Archive/Command_Director_Manual.md` and `99-Archive/NPC_and_Agent
 
 | Type | Path | Role |
 |---|---|---|
-| `Character` | `CoreSystem/Entity/Character.cs` | The body: stats, movement, skills, equipment, passives, basic attack, regen. Identity: `CharacterId` (data id), `RuntimeId` (this instance), `Faction`, `Tags`, `DefaultController`. Holds `Presenter`, `AgentProfile`, `Control` |
+| `Character` | `CoreSystem/Entity/Character.cs` | The body: stats, movement, skills, equipment, passives, basic attack, regen. Identity: `CharacterId` (data id), `RuntimeId` (this instance), `Faction`, `Tags`, `DefaultController`. Holds `Presenter`, `AgentProfile`, `Control`, `Buffs` (`BuffSystem`, plain class ticked in `Update`) |
 | `CharacterTypes` | `CoreSystem/Entity/CharacterTypes.cs` | `CharacterControllerType` (None/Player/Agent), `ControlLane`, `CharacterTag` flags (Villager, Monster, Boss, Merchant, TrainingDummy, ImmuneToControl) |
 | `ControlSystem` / `ControlLease` | `CoreSystem/Entity/` | Core control logic. `Claim(holder, lane, duration, keepWhile, onEnded)`, `Release`, `TransferOwnership`, `CanCommand`, `Tick`. Commands: `CommandMove`, `CommandCastSkill`, `CommandBasicAttack`, `CommandInterruptCast`. Legacy `RequestOverride`/`ReleaseOverride` map to the Possession lane |
 | `CharacterPresenter` | `CoreSystem/Entity/CharacterPresenter.cs` | Serializable module inside `Character`: animator params, flip, model rotation lock, death/attack triggers, world status bar. Auto-finds the `Animator` and the `Model` child when not assigned |
@@ -82,7 +82,8 @@ PlayerCore.Instance.Possess(target);
 
 ## 6. Asset layout
 
-- Entity prefabs (`Addressable/Prefab/Entity/...`) and the scene player all carry the same `Character` component. AI settings live under its **Agent Profile** section, animation references under **Presentation**.
+- Entity prefabs (`Addressable/Prefab/Entity/...`) and the scene player all carry the same `Character` component. AI settings live under its **Agent Profile** section, animation references under **Presentation**. Buffs are inside `Character` (`character.Buffs`); there is no separate `BuffSystem` component.
+- UI never sits on a character. The buff bar (`UIBuffDisplay`) is on the HUD (`Canvas/SystemCanvas/TemporaryBuffCanvas`) and follows the player through `PlayerCore.OnPlayerChanged`.
 - The scene player has `Default Controller = Player`; entities use `Agent`.
 - The old `AgentCore`, `PlayerController`, `PlayerCharacter`, `EnemyCharacter` and `NonPlayerCharacter` components were migrated on 2026-10-16. Backups of the pre-migration scene and prefabs: `Backup/2026-10-16_character-refactor/assets/`.
 

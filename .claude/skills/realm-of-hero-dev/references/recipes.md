@@ -90,7 +90,7 @@ Add fields to `CoreSystem/Data/Save/PlayerDataModel.cs`, write them in `PlayerSa
 Use `character.Control`. Permanent change of owner: `PlayerCore.Instance.Possess(character)` or `AgentCore.Ensure().Register(character)`. Temporary control: `var lease = character.Control.Claim(holder, ControlLane.Possession, seconds, keepWhile, onEnded)`; the previous owner gets control back automatically when the lease ends. Bosses tagged `ImmuneToControl` refuse Possession; `ControlLane.Dev` always wins. Never disable `PlayerCore`/`AgentCore` or call `movementSystem`/`skillCaster`/`BasicAttack` directly. Guide: `Docs/02-Technical/Character/Character_System.md`.
 
 ## New character (monster, villager, NPC)
-1. Duplicate an entity prefab (or use the shared body prefab once it exists); keep only the `Character` component (plus `BuffSystem`/visual components). Never add controller components.
+1. Duplicate an entity prefab (or use the shared body prefab once it exists); keep only the `Character` component (plus visual components; buffs live inside `Character.Buffs`). Never add controller components.
 2. Set identity: `CharacterId`, `Faction`, `Tags` (Monster/Villager/Boss/Merchant/ImmuneToControl), `DefaultController = Agent`.
 3. Configure behaviour in the **Agent Profile** section (behaviour, combat style, ranges, home zone, group, skill pool).
 4. Spawn with `CharacterFactory.Spawn(characterId, position, parent, onSpawned)` or an `EntitySpawner`; set profile overrides inside `onSpawned` (before `Start`).

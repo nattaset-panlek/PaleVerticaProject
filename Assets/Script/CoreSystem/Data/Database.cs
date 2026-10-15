@@ -11,94 +11,36 @@ using CoreSystem.SkillTree;
 
 namespace CoreSystem.Data
 {
-    public class Database : MonoBehaviour
+    public sealed class Database
     {
         private static Database _instance;
 
-        private static bool _applicationIsQuitting = false;
+        public static event System.Action OnReady;
 
-        public static Database Instance
+        public static bool IsReady => _instance != null && _instance._isInitialized;
+
+        public static Database Instance => _instance ?? Create();
+
+        public static Database Create()
         {
-            get
-            {
-                if (_applicationIsQuitting)
-                {
-                    return _instance;
-                }
+            if (_instance != null) return _instance;
 
-                if (_instance == null)
-                {
-                    _instance = Object.FindAnyObjectByType<Database>();
+            _instance = new Database();
+            _instance.Initialize();
+            return _instance;
+        }
 
-                    if (_instance == null)
-                    {
-                        var prefab = Resources.Load<GameObject>("Prefab/Database");
-                        if (prefab != null)
-                        {
-                            var go = Instantiate(prefab);
-                            go.name = "Database";
-                            _instance = go.GetComponent<Database>();
-                        }
-                        else
-                        {
-                            var go = new GameObject("Database");
-                            _instance = go.AddComponent<Database>();
-                            Debug.LogWarning("Database prefab not found in Resources/Prefab/. A temporary GameObject was created.");
-                        }
-                        if (Application.isPlaying)
-                        {
-                            DontDestroyOnLoad(_instance.gameObject);
-                        }
-                    }
-                }
-
-                if (_instance != null && !_instance._isInitialized)
-                {
-                    _instance.Initialize();
-                }
-
-                return _instance;
-            }
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics()
+        {
+            _instance = null;
+            OnReady = null;
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void AutoInitializeDatabase()
         {
-            _applicationIsQuitting = false;
-            if (Application.isPlaying)
-            {
-                var db = Instance;
-            }
-        }
-
-        private void Awake()
-        {
-            if (_instance == null)
-            {
-                _instance = this;
-                if (Application.isPlaying)
-                {
-                    DontDestroyOnLoad(gameObject);
-                }
-                Initialize();
-            }
-            else if (_instance != this)
-            {
-                Destroy(gameObject);
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (_instance == this)
-            {
-                _applicationIsQuitting = true;
-            }
-        }
-
-        private void OnApplicationQuit()
-        {
-            _applicationIsQuitting = true;
+            Create();
         }
 
         private Dictionary<int, CharacterModel> _characterDatabase = new Dictionary<int, CharacterModel>();
@@ -110,7 +52,6 @@ namespace CoreSystem.Data
 
         private bool _isInitialized = false;
 
-        [ContextMenu("Initialize Load")]
         public void Initialize()
         {
             if (_isInitialized) return;
@@ -143,6 +84,7 @@ namespace CoreSystem.Data
 
             _isInitialized = true;
             Debug.Log("Global Database Initialized.");
+            OnReady?.Invoke();
         }
 
 

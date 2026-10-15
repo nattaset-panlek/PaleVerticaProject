@@ -4,24 +4,24 @@ using UnityEngine;
 
 namespace CoreSystem.Skills.Logic
 {
-    public class BuffSystem : MonoBehaviour
+    public class BuffSystem
     {
+        #region [Variables/Fields]
         private AttributeSystem attributeSystem;
-        private List<ActiveBuff> activeBuffs = new List<ActiveBuff>();
+        private readonly List<ActiveBuff> activeBuffs = new List<ActiveBuff>();
+        #endregion
 
+        #region [Properties]
         public IReadOnlyList<ActiveBuff> ActiveBuffs => activeBuffs;
-        
         public event System.Action OnBuffsChanged;
+        #endregion
 
-        private void Awake()
+        #region [Public Methods]
+        public void Initialize(AttributeSystem attributes)
         {
-            var entity = GetComponent<Entity.IEntity>();
-            if (entity != null)
-            {
-                attributeSystem = entity.attributeSystem;
-            }
+            attributeSystem = attributes;
         }
-        
+
         public bool HasBuff(string buffCode)
         {
             for (int i = 0; i < activeBuffs.Count; i++)
@@ -38,18 +38,12 @@ namespace CoreSystem.Skills.Logic
             {
                 if (activeBuffs[i].BuffCode == buffCode)
                 {
-                    if (attributeSystem != null)
-                    {
-                        foreach (var mod in activeBuffs[i].Modifiers)
-                        {
-                            attributeSystem.RemoveModifier(activeBuffs[i].TargetAttribute, mod);
-                        }
-                    }
+                    RemoveModifiers(activeBuffs[i]);
                     activeBuffs.RemoveAt(i);
                     removed = true;
                 }
             }
-            
+
             if (removed)
             {
                 OnBuffsChanged?.Invoke();
@@ -74,29 +68,6 @@ namespace CoreSystem.Skills.Logic
                 return;
             }
 
-            Sprite finalIcon = manualIcon;
-            if (finalIcon == null)
-            {
-                string categoryIconName = "";
-                switch (category)
-                {
-                    case BuffCategory.Aura: categoryIconName = "Icon_Aura_Buff"; break;
-                    case BuffCategory.Attribute: categoryIconName = "Icon_Attribute_Buff"; break;
-                    case BuffCategory.Skill: categoryIconName = "Icon_Skill_Buff"; break;
-                    case BuffCategory.Effect: categoryIconName = "Icon_Effect_Buff"; break;
-                }
-
-                if (!string.IsNullOrEmpty(categoryIconName))
-                {
-                    finalIcon = BuffIconLoader.Load(categoryIconName);
-                }
-
-                if (finalIcon == null)
-                {
-                    finalIcon = BuffIconLoader.GetFallback();
-                }
-            }
-
             ActiveBuff buff = new ActiveBuff
             {
                 BuffName = buffName,
@@ -104,7 +75,7 @@ namespace CoreSystem.Skills.Logic
                 TargetAttribute = type,
                 RemainingDuration = duration,
                 TotalDuration = duration,
-                Icon = finalIcon,
+                Icon = ResolveIcon(manualIcon, category),
                 Category = category,
                 MaxStacks = maxStacks
             };
@@ -135,29 +106,6 @@ namespace CoreSystem.Skills.Logic
                 return;
             }
 
-            Sprite finalIcon = manualIcon;
-            if (finalIcon == null)
-            {
-                string categoryIconName = "";
-                switch (category)
-                {
-                    case BuffCategory.Aura: categoryIconName = "Icon_Aura_Buff"; break;
-                    case BuffCategory.Attribute: categoryIconName = "Icon_Attribute_Buff"; break;
-                    case BuffCategory.Skill: categoryIconName = "Icon_Skill_Buff"; break;
-                    case BuffCategory.Effect: categoryIconName = "Icon_Effect_Buff"; break;
-                }
-
-                if (!string.IsNullOrEmpty(categoryIconName))
-                {
-                    finalIcon = BuffIconLoader.Load(categoryIconName);
-                }
-
-                if (finalIcon == null)
-                {
-                    finalIcon = BuffIconLoader.GetFallback();
-                }
-            }
-
             ActiveBuff buff = new ActiveBuff
             {
                 BuffName = buffName,
@@ -165,7 +113,7 @@ namespace CoreSystem.Skills.Logic
                 TargetAttribute = type,
                 RemainingDuration = duration,
                 TotalDuration = duration,
-                Icon = finalIcon,
+                Icon = ResolveIcon(manualIcon, category),
                 Category = category,
                 MaxStacks = maxStacks,
                 TickInterval = tickInterval,
@@ -179,9 +127,8 @@ namespace CoreSystem.Skills.Logic
             OnBuffsChanged?.Invoke();
         }
 
-        private void Update()
+        public void Tick(float dt)
         {
-            float dt = Time.deltaTime;
             bool anyRemoved = false;
             for (int i = activeBuffs.Count - 1; i >= 0; i--)
             {
@@ -200,21 +147,50 @@ namespace CoreSystem.Skills.Logic
 
                 if (buff.RemainingDuration <= 0f)
                 {
-                    if (attributeSystem != null)
-                    {
-                        foreach (var mod in buff.Modifiers)
-                        {
-                            attributeSystem.RemoveModifier(buff.TargetAttribute, mod);
-                        }
-                    }
+                    RemoveModifiers(buff);
                     activeBuffs.RemoveAt(i);
                     anyRemoved = true;
                 }
             }
+
             if (anyRemoved)
             {
                 OnBuffsChanged?.Invoke();
             }
         }
+        #endregion
+
+        #region [Private Methods]
+        private void RemoveModifiers(ActiveBuff buff)
+        {
+            if (attributeSystem == null) return;
+            foreach (var mod in buff.Modifiers)
+            {
+                attributeSystem.RemoveModifier(buff.TargetAttribute, mod);
+            }
+        }
+
+        private static Sprite ResolveIcon(Sprite manualIcon, BuffCategory category)
+        {
+            if (manualIcon != null) return manualIcon;
+
+            string categoryIconName = "";
+            switch (category)
+            {
+                case BuffCategory.Aura: categoryIconName = "Icon_Aura_Buff"; break;
+                case BuffCategory.Attribute: categoryIconName = "Icon_Attribute_Buff"; break;
+                case BuffCategory.Skill: categoryIconName = "Icon_Skill_Buff"; break;
+                case BuffCategory.Effect: categoryIconName = "Icon_Effect_Buff"; break;
+            }
+
+            Sprite icon = null;
+            if (!string.IsNullOrEmpty(categoryIconName))
+            {
+                icon = BuffIconLoader.Load(categoryIconName);
+            }
+
+            return icon != null ? icon : BuffIconLoader.GetFallback();
+        }
+        #endregion
     }
 }

@@ -20,31 +20,20 @@ namespace CoreSystem.Skills.Logic
 
         public override void Apply(SkillPayload payload, IEntity target)
         {
-            if (target.attributeSystem != null)
+            if (target.attributeSystem == null || !(target is Character character)) return;
+
+            AttributeModifier buffModifier = new AttributeModifier(ModifierValue, ModType);
+
+            string finalBuffName = string.IsNullOrEmpty(BuffName) ? payload.SkillElement.ToString() + " Buff" : BuffName;
+            string finalBuffCode = string.IsNullOrEmpty(BuffCode) ? finalBuffName : BuffCode;
+
+            Sprite finalIcon = Icon;
+            if (finalIcon == null && !string.IsNullOrEmpty(BuffIconPath))
             {
-                MonoBehaviour targetMono = target as MonoBehaviour;
-                if (targetMono != null)
-                {
-                    BuffSystem buffManager = targetMono.GetComponent<BuffSystem>();
-                    if (buffManager == null)
-                    {
-                        buffManager = targetMono.gameObject.AddComponent<BuffSystem>();
-                    }
-
-                    AttributeModifier buffModifier = new AttributeModifier(ModifierValue, ModType);
-                    
-                    string finalBuffName = string.IsNullOrEmpty(BuffName) ? payload.SkillElement.ToString() + " Buff" : BuffName;
-                    string finalBuffCode = string.IsNullOrEmpty(BuffCode) ? finalBuffName : BuffCode;
-                    
-                    Sprite finalIcon = Icon;
-                    if (finalIcon == null && !string.IsNullOrEmpty(BuffIconPath))
-                    {
-                        finalIcon = BuffIconLoader.Load(BuffIconPath);
-                    }
-
-                    buffManager.ApplyTemporaryBuff(finalBuffName, finalBuffCode, TargetAttribute, buffModifier, Duration, finalIcon, Category, MaxStacks);
-                }
+                finalIcon = BuffIconLoader.Load(BuffIconPath);
             }
+
+            character.Buffs.ApplyTemporaryBuff(finalBuffName, finalBuffCode, TargetAttribute, buffModifier, Duration, finalIcon, Category, MaxStacks);
         }
     }
 }

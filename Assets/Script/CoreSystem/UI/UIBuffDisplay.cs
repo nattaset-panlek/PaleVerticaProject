@@ -1,65 +1,91 @@
-using UnityEngine;
-using UnityEngine.UI;
-using CoreSystem.Skills.Logic;
-using System.Text;
 using System.Collections.Generic;
+using CoreSystem.Entity;
+using CoreSystem.Player;
+using CoreSystem.Skills.Logic;
 using CoreSystem.UI.GameInterface;
+using UnityEngine;
 
 namespace CoreSystem.UI
 {
     public class UIBuffDisplay : MonoBehaviour
     {
-        public BuffSystem BuffManager;
+        #region [Variables/Fields]
         public Transform BuffIconDisplayParent;
         public BuffIconUI BuffIconTemplatePrefab;
 
-        private Dictionary<ActiveBuff, BuffIconUI> _activeIcons = new Dictionary<ActiveBuff, BuffIconUI>();
+        private readonly Dictionary<ActiveBuff, BuffIconUI> _activeIcons = new Dictionary<ActiveBuff, BuffIconUI>();
+        private readonly List<ActiveBuff> _toRemove = new List<ActiveBuff>();
+        private BuffSystem _buffs;
+        #endregion
+
+        #region [Unity Methods]
+        private void OnEnable()
+        {
+            PlayerCore.OnPlayerChanged += HandlePlayerChanged;
+            HandlePlayerChanged(PlayerCore.GetPlayer());
+        }
+
+        private void OnDisable()
+        {
+            PlayerCore.OnPlayerChanged -= HandlePlayerChanged;
+            if (_buffs != null) _buffs.OnBuffsChanged -= Refresh;
+            _buffs = null;
+        }
 
         private void Update()
         {
-            if (BuffManager == null || BuffIconDisplayParent == null || BuffIconTemplatePrefab == null) return;
+            if (_activeIcons.Count == 0) return;
 
-            // 1. Remove icons for buffs that are no longer active
-            List<ActiveBuff> toRemove = new List<ActiveBuff>();
-            foreach (var kvp in _activeIcons)
+            foreach (var pair in _activeIcons)
             {
-                bool stillActive = false;
-                foreach (var activeBuff in BuffManager.ActiveBuffs)
-                {
-                    if (activeBuff == kvp.Key)
-                    {
-                        stillActive = true;
-                        break;
-                    }
-                }
+                if (pair.Value != null) pair.Value.SetBuffIcon(pair.Key);
+            }
+        }
+        #endregion
 
-                if (!stillActive)
-                {
-                    toRemove.Add(kvp.Key);
-                }
+        #region [Private Methods]
+        private void HandlePlayerChanged(Character player)
+        {
+            if (_buffs != null) _buffs.OnBuffsChanged -= Refresh;
+            _buffs = player != null ? player.Buffs : null;
+            if (_buffs != null) _buffs.OnBuffsChanged += Refresh;
+            Refresh();
+        }
+
+        private void Refresh()
+        {
+            _toRemove.Clear();
+            foreach (var pair in _activeIcons)
+            {
+                if (_buffs == null || !Contains(_buffs.ActiveBuffs, pair.Key)) _toRemove.Add(pair.Key);
             }
 
-            foreach (var buff in toRemove)
+            foreach (var buff in _toRemove)
             {
-                if (_activeIcons[buff] != null)
-                {
-                    Destroy(_activeIcons[buff].gameObject);
-                }
+                if (_activeIcons[buff] != null) Destroy(_activeIcons[buff].gameObject);
                 _activeIcons.Remove(buff);
             }
 
-            // 2. Add icons for new buffs and update all
-            foreach (var buff in BuffManager.ActiveBuffs)
-            {
-                if (!_activeIcons.ContainsKey(buff))
-                {
-                    BuffIconUI newIcon = Instantiate(BuffIconTemplatePrefab, BuffIconDisplayParent);
-                    _activeIcons.Add(buff, newIcon);
-                }
+            if (_buffs == null || BuffIconDisplayParent == null || BuffIconTemplatePrefab == null) return;
 
-                // Update values
-                _activeIcons[buff].SetBuffIcon(buff);
+            foreach (var buff in _buffs.ActiveBuffs)
+            {
+                if (_activeIcons.ContainsKey(buff)) continue;
+
+                BuffIconUI icon = Instantiate(BuffIconTemplatePrefab, BuffIconDisplayParent);
+                icon.SetBuffIcon(buff);
+                _activeIcons.Add(buff, icon);
             }
         }
+
+        private static bool Contains(IReadOnlyList<ActiveBuff> buffs, ActiveBuff buff)
+        {
+            for (int i = 0; i < buffs.Count; i++)
+            {
+                if (buffs[i] == buff) return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }

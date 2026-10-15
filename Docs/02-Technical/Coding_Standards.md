@@ -34,14 +34,14 @@ Rules:
 
 ## 2. Runtime-created objects (not in a prefab or scene)
 
-Anything code creates at runtime (for example `Database`, `SkillTreeManager` after player load, health bars, projectiles) follows all of these:
+Anything code creates at runtime as a GameObject (for example `SkillTreeManager` after player load, `PlayerCore`, `AgentCore`, health bars, projectiles) follows all of these:
 
 1. **One creation point.** Created only through `X.Create(...)` or `XFactory.Create(...)`. No scattered `AddComponent<X>()` or `new GameObject` for it elsewhere.
 2. **Documented owner.** The class summary in `Docs/` states who creates it and when, e.g. "created by the player load flow".
 3. **GameObject name** starts with `[Runtime]`, e.g. `[Runtime] SkillTreeManager`, and is parented under the single `[Runtime]` root, unless it is persistent.
 4. **Self-registration.** Sets its static instance in `Awake`, clears it in `OnDestroy`, and exposes `IsReady` / `OnReady` for systems that may run before it exists.
 5. **Not placeable by hand.** `[DisallowMultipleComponent]` and `[AddComponentMenu("")]`.
-6. **Persistence.** `DontDestroyOnLoad` only for the persistent group. Today that is `Database` only.
+6. **Persistence.** Prefer a plain C# class over a `DontDestroyOnLoad` GameObject for anything that must live for the whole session (see `Database`). No GameObject uses `DontDestroyOnLoad` today.
 
 ## 3. How objects find each other
 
@@ -51,7 +51,7 @@ Runtime `Object.FindAnyObjectByType`, `FindObjectsByType`, `GameObject.Find` and
 |---|---|---|
 | A. Local | Same prefab or scene, known in advance | `[SerializeField]`, `GetComponentInParent` / `GetComponentInChildren` |
 | B. Single instance | One per scene or session (`Manager`), including late-created ones like `SkillTreeManager` | Self-registering instance in `Awake` + `[DefaultExecutionOrder(-100)]` |
-| C. Persistent | Lives across scenes, created by code before the first scene | Only `Database` |
+| C. Persistent | Lives across scenes, created by code before the first scene | Only `Database`: a plain C# singleton (no GameObject, no prefab, no Find). `Database.Create()` runs from `BeforeSceneLoad`; `Database.Instance` creates it on demand (also in edit mode); `IsReady`/`OnReady` exist. **Done** |
 | D. Many instances | Spawned and destroyed during play | `Registry` (register in `OnEnable`, unregister in `OnDisable`); spatial queries use `Physics2D` |
 | E. Cross-system | Core must tell UI or presentation something | `Events`: core raises, UI listens. Core never calls UI directly |
 | F. Stateless | Math, lookup, loading | Static class (`Formula`, `Database`, `Loader`) |
@@ -85,7 +85,7 @@ Every rename phase compiles, runs the EditMode suite in Unity, and is committed 
 | N0 | This document, project skill, `AGENTS.md` | None. **Done** (`abc2e50`) |
 | N1 | Typos and file/type mismatches in scripts: `Utile` -> `Utility` (3 folders), `PassiveSkilNode` -> `PassiveSkillNode`, split `SupportModifierSubclasses.cs` one class per file, `*Types.cs` for grouped enums | Low. **Done** (`75ca355`): also split every multi-type file except files with uncommitted user edits |
 | N2 | Plain C# renames: `EquipmentManager` -> `PlayerEquipment`, `CostumeManager` -> `PlayerCostumes`, `SkillManager` -> `PlayerSkills`, `CharacterManager` -> `PlayerStats`, `UniquePassiveManager` -> `UniquePassiveSystem`, `SaveManager` -> `SaveStorage`, `AgentGroup` -> `AgentRegistry` | Low. **Done** (`e6d1fdc`); accessors are `GameData.Player.Equipment/.Costumes/.Skills/.Stats` |
-| N3 | MonoBehaviour renames with `.meta`: `AttributeListManager` -> `AttributeListView`, `TabsManager` -> `TabGroup`, `PassiveSkillLoader` -> `PassiveTreeWindow`, `HotbarSlotUI` -> `HotbarSlotView`, `TemporaryBuffManager` -> `BuffSystem` (component on characters) | Medium. **Done** (`85455e0` + character refactor commit) |
+| N3 | MonoBehaviour renames with `.meta`: `AttributeListManager` -> `AttributeListView`, `TabsManager` -> `TabGroup`, `PassiveSkillLoader` -> `PassiveTreeWindow`, `HotbarSlotUI` -> `HotbarSlotView`, `TemporaryBuffManager` -> `BuffSystem` (since folded into `Character` as a plain class, `character.Buffs`) | Medium. **Done** (`85455e0` + character refactor commit) |
 | N4 | Namespaces match folders (`AgentCore`, `AgentGroup`, `FaceDirectionModule` out of `Controllers`; `PassiveSkillLoader`, `CursorManager`, `UI/Attribute/*` into namespaces); `[MovedFrom]` where serialized | Medium. **Done** |
 | N5 | Asset folders: `Materail` -> `Materials`, `Rescearch System` -> `Research System`, `SoundTack` -> `Soundtrack`, `Prefab/Game Page/Golbal` -> `Global`, `Character Eqipment Window` -> `Character Equipment Window`, `Character  PassiveTree Page` -> `Character PassiveTree Page` | High. **Done** 2026-10-16 with Unity closed (folders moved with their .meta) |
 | Then | Remove runtime Find calls using groups A–H | Medium |

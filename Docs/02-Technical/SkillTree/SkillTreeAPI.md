@@ -131,7 +131,7 @@ List<string> toSave = SkillTreeDatabase.GetSaveData();
 
 ## 🕹 SkillTreeManager API (MonoBehaviour)
 
-> วาง `SkillTreeManager` บน GameObject ใน Scene หรือใน Database prefab
+> วาง `SkillTreeManager` บน GameObject ใน Scene (Database ไม่มี prefab แล้ว สร้างเองตอน runtime)
 
 ### Node
 ```csharp

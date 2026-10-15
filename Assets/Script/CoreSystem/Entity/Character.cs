@@ -4,6 +4,7 @@ using CoreSystem.Combat;
 using CoreSystem.Data.Items;
 using CoreSystem.Movement;
 using CoreSystem.Skills;
+using CoreSystem.Skills.Logic;
 using CoreSystem.Data.Items.Model;
 using UnityEngine;
 using System.Collections.Generic;
@@ -43,6 +44,9 @@ namespace CoreSystem.Entity
 
         private readonly ControlSystem _control = new ControlSystem();
         public ControlSystem Control => _control;
+
+        private readonly BuffSystem _buffs = new BuffSystem();
+        public BuffSystem Buffs => _buffs;
 
         public CoreSystem.Data.CharacterModel GetCharacterData()
         {
@@ -396,6 +400,7 @@ namespace CoreSystem.Entity
         {
             _uniquePassives.Initialize(this);
             _attributeSystem.Initialize(this);
+            _buffs.Initialize(_attributeSystem);
             movementSystem.Initialize(this);
             skillCaster.Initialize(this);
             _control.Initialize(this);
@@ -475,6 +480,7 @@ namespace CoreSystem.Entity
                 skillCaster.Tick(Time.deltaTime);
             }
 
+            _buffs.Tick(Time.deltaTime);
             _uniquePassives.Tick(Time.deltaTime);
             HandleRecovery(Time.deltaTime);
         }

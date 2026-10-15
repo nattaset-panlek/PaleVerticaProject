@@ -200,8 +200,7 @@ namespace CoreSystem.Entity
             var replacement = owner.skillCaster.GrantSkill(overrideData.ReplacementSkill);
             if (overrideData.ConsumeBuffOnCast)
             {
-                var buffs = owner.GetComponent<CoreSystem.Skills.Logic.BuffSystem>();
-                if (buffs != null) buffs.RemoveBuff(overrideData.RequiredBuffCode);
+                owner.Buffs.RemoveBuff(overrideData.RequiredBuffCode);
             }
             if (payload != null) payload.SkillID = replacement.SkillData.Id;
             return replacement;
