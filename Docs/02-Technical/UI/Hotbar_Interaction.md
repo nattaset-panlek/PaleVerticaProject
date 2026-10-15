@@ -14,7 +14,7 @@ Previously, both `PlayerController.HandleSkillInput()` and `HotbarManager.Handle
 
 - **`PlayerController` Decoupled**: Direct polling of digit keys (`digit1Key` to `digit0Key`) has been completely removed from `PlayerController.HandleSkillInput()`.
 - **`HotbarManager` as Central Input Gateway**: All keyboard hotkey checks (`1-0`, `Alt+1-0`, `Ctrl+1-0`, `Shift+1-0`) are now managed exclusively by `HotbarManager.HandleHotkeyInputs()`.
-- **Event Routing**: When a hotkey is pressed or a slot is clicked, `HotbarManager` calls `HotbarSlotUI.ExecuteAction()` on the target slot.
+- **Event Routing**: When a hotkey is pressed or a slot is clicked, `HotbarManager` calls `HotbarSlotView.ExecuteAction()` on the target slot.
 
 ---
 
@@ -37,12 +37,12 @@ Previously, aiming mode (`TryEnterAimingMode`) required an integer index into `p
 
 ---
 
-## 3. Unified Execution Gateway (`HotbarSlotUI.ExecuteAction`)
+## 3. Unified Execution Gateway (`HotbarSlotView.ExecuteAction`)
 
-All interactions now funnel through `HotbarSlotUI.ExecuteAction()`, making the Hotbar system the primary interactive bridge for all gameplay actions.
+All interactions now funnel through `HotbarSlotView.ExecuteAction()`, making the Hotbar system the primary interactive bridge for all gameplay actions.
 
 ```text
-[Keybinding Press / Left-Click] -> HotbarSlotUI.ExecuteAction()
+[Keybinding Press / Left-Click] -> HotbarSlotView.ExecuteAction()
                                          |
          +-------------------------------+-------------------------------+
          | (HotbarActionType.Skill)                                      | (HotbarActionType.Item)
@@ -61,8 +61,8 @@ Any consumable item in the player's inventory can be dragged directly onto a Hot
 
 ### Key Implementation Details
 
-- **Inventory Dragging (`OnDrop`)**: When an item is dragged from the inventory via `ItemDragHandler` and dropped onto `HotbarSlotUI`, the slot verifies if `draggedItem.Item is Consumable`.
-- **Future Subcategory Filtering**: A placeholder comment (`[FUTURE SUBCATEGORY]`) is maintained in `HotbarSlotUI.OnDrop` where specific consumable subcategories will be filtered or restricted in future development phases.
+- **Inventory Dragging (`OnDrop`)**: When an item is dragged from the inventory via `ItemDragHandler` and dropped onto `HotbarSlotView`, the slot verifies if `draggedItem.Item is Consumable`.
+- **Future Subcategory Filtering**: A placeholder comment (`[FUTURE SUBCATEGORY]`) is maintained in `HotbarSlotView.OnDrop` where specific consumable subcategories will be filtered or restricted in future development phases.
 - **Cost Display**: While skills display their resource requirement (e.g., `10 MP`), consumable items display the word **`Instant`** in their cost UI label (`_costText`). This signifies immediate execution without MP or HP resource expenditure.
 - **Automatic Exhaustion Cleanup**: When an item is used via `ExecuteAction()` or when `RefreshUI()` evaluates inventory state, if all instances of the item are exhausted (`Quantity <= 0` or missing from inventory), the slot calls `ClearSlot()`. This resets the slot to `Empty`, removing all icons and text.
 
@@ -86,7 +86,7 @@ To integrate new game mechanics (e.g., Mounts, Emotes, Pet Commands, or Gadgets)
    }
    ```
 
-2. **Handle in Gateway**: Add a switch case in `HotbarSlotUI.ExecuteAction()`:
+2. **Handle in Gateway**: Add a switch case in `HotbarSlotView.ExecuteAction()`:
 
    ```csharp
    case HotbarActionType.Mount:
@@ -94,7 +94,7 @@ To integrate new game mechanics (e.g., Mounts, Emotes, Pet Commands, or Gadgets)
        break;
    ```
 
-3. **UI Refresh**: Update `HotbarSlotUI.RefreshUI()` and `UpdateTimersAndSelection()` to bind icons, cooldown overlays, and active toggle highlights for the new action type.
+3. **UI Refresh**: Update `HotbarSlotView.RefreshUI()` and `UpdateTimersAndSelection()` to bind icons, cooldown overlays, and active toggle highlights for the new action type.
 
 ---
 
@@ -111,7 +111,7 @@ To enable dragging an icon from a custom UI window directly onto any Hotbar slot
 1. **Use `GlobalDragManager` on Source UI**: Implement `IBeginDragHandler`, `IDragHandler`, and `IEndDragHandler` on the source UI component, delegating visual creation and position tracking to `GlobalDragManager`:
 
    ```csharp
-   using CoreSystem.UI.Utile;
+   using CoreSystem.UI.Utility;
 
    public class MountSlotUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
    {
@@ -142,7 +142,7 @@ To enable dragging an icon from a custom UI window directly onto any Hotbar slot
    }
    ```
 
-2. **Intercept Drop in `HotbarSlotUI.OnDrop`**: Extend `HotbarSlotUI.OnDrop(PointerEventData eventData)` to inspect `GlobalDragManager.Payload`:
+2. **Intercept Drop in `HotbarSlotView.OnDrop`**: Extend `HotbarSlotView.OnDrop(PointerEventData eventData)` to inspect `GlobalDragManager.Payload`:
 
    ```csharp
    if (GlobalDragManager.Payload is MountData mountData)

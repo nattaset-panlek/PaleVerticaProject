@@ -60,7 +60,8 @@ Runtime `Object.FindAnyObjectByType`, `FindObjectsByType`, `GameObject.Find` and
 ## 4. Files, folders, namespaces
 
 - **One public type per file, file name equals type name.** Exception: a file of small related enums or structs is named `<Area>Types.cs`.
-- **Namespace equals folder path**: `CoreSystem.<Folder>[.<Sub>]` for `Assets/Script/CoreSystem`, `UI.<Folder>` for `Assets/Script/UI`. No global-namespace scripts.
+- **Namespace equals folder path**: `CoreSystem.<Folder>[.<Sub>]` for `Assets/Script/CoreSystem`, and `CoreSystem.UI.<Folder>[.<Sub>]` for `Assets/Script/UI` (e.g. `UI/Hotbar` -> `CoreSystem.UI.Hotbar`). No global-namespace scripts.
+- **Never name a folder after a common type** (`Attribute`, `Utility` types, etc.) if the namespace would shadow it: `UI/Attribute` became `UI/AttributePanel` because a `CoreSystem.UI.Attribute` namespace would hide the `Attribute` class.
 - **Folder names**: PascalCase English, no double spaces, no typos. Utility code goes in `Utility/` (not `Utile/`).
 - **Docs** live only in `Docs/`, never under `Assets/`.
 
@@ -80,11 +81,16 @@ Every rename phase compiles, runs the EditMode suite in Unity, and is committed 
 
 | Phase | Scope | Risk |
 |---|---|---|
-| N0 | This document, project skill, `AGENTS.md` | None (done) |
-| N1 | Typos and file/type mismatches in scripts: `Utile` -> `Utility` (3 folders), `PassiveSkilNode` -> `PassiveSkillNode`, split `SupportModifierSubclasses.cs` one class per file, `*Types.cs` for grouped enums | Low |
-| N2 | Plain C# renames: `EquipmentManager` -> `PlayerEquipment`, `CostumeManager` -> `PlayerCostumes`, `SkillManager` -> `PlayerSkills`, `CharacterManager` -> `PlayerStats`, `UniquePassiveManager` -> `UniquePassiveSystem`, `SaveManager` -> `SaveStorage`, `AgentGroup` -> `AgentRegistry` | Low |
-| N3 | MonoBehaviour renames with `.meta`: `AttributeListManager` -> `AttributeListView`, `TabsManager` -> `TabGroup`, `PassiveSkillLoader` -> `PassiveTreeWindow`, `HotbarSlotUI` -> `HotbarSlotView`, `TemporaryBuffManager` -> `BuffSystem` (component on characters) | Medium |
-| N4 | Namespaces match folders (`AgentCore`, `AgentGroup`, `FaceDirectionModule` out of `Controllers`; `PassiveSkillLoader`, `CursorManager`, `UI/Attribute/*` into namespaces); `[MovedFrom]` where serialized | Medium |
+| N0 | This document, project skill, `AGENTS.md` | None. **Done** (`abc2e50`) |
+| N1 | Typos and file/type mismatches in scripts: `Utile` -> `Utility` (3 folders), `PassiveSkilNode` -> `PassiveSkillNode`, split `SupportModifierSubclasses.cs` one class per file, `*Types.cs` for grouped enums | Low. **Done** (`75ca355`): also split every multi-type file except files with uncommitted user edits |
+| N2 | Plain C# renames: `EquipmentManager` -> `PlayerEquipment`, `CostumeManager` -> `PlayerCostumes`, `SkillManager` -> `PlayerSkills`, `CharacterManager` -> `PlayerStats`, `UniquePassiveManager` -> `UniquePassiveSystem`, `SaveManager` -> `SaveStorage`, `AgentGroup` -> `AgentRegistry` | Low. **Done** (`e6d1fdc`); accessors are `GameData.Player.Equipment/.Costumes/.Skills/.Stats` |
+| N3 | MonoBehaviour renames with `.meta`: `AttributeListManager` -> `AttributeListView`, `TabsManager` -> `TabGroup`, `PassiveSkillLoader` -> `PassiveTreeWindow`, `HotbarSlotUI` -> `HotbarSlotView`, `TemporaryBuffManager` -> `BuffSystem` (component on characters) | Medium. **Partly done** (`85455e0`): `TabGroup`, `HotbarSlotView`, `BuffSystem`. Pending with Unity closed: `AttributeListView`, `PassiveTreeWindow` (prefab UnityEvents store the type name) |
+| N4 | Namespaces match folders (`AgentCore`, `AgentGroup`, `FaceDirectionModule` out of `Controllers`; `PassiveSkillLoader`, `CursorManager`, `UI/Attribute/*` into namespaces); `[MovedFrom]` where serialized | Medium. **Partly done** (`8864371`). Pending: `AttributeListManager`, `PassiveSkillLoader` (with N3) |
 | N5 | Asset folders: `Materail` -> `Materials`, `Rescearch System` -> `Research System`, `SoundTack` -> `Soundtrack`, `Prefab/Game Page/Golbal` -> `Global`, `Character Eqipment Window` -> `Character Equipment Window`, `Character  PassiveTree Page` -> `Character PassiveTree Page` | High: do in the Unity Editor |
 | Then | Remove runtime Find calls using groups A–H | Medium |
 
+
+## Lessons from the migration
+- Prefab UnityEvents store `m_TargetAssemblyTypeName` (type name + namespace). Renaming or re-namespacing a class used as a UnityEvent target requires updating those strings in the prefabs, with Unity closed.
+- `m_EditorClassIdentifier` in scenes is cosmetic; Unity rewrites it on save.
+- Mechanical renames must be string-literal aware, including nested quotes inside interpolated strings (`$"{(x ? "a" : "b")}"`). Verify any tool with an identity pass (no-op rename must leave every file unchanged) before writing.

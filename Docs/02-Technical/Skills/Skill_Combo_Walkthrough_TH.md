@@ -20,9 +20,9 @@
 ## 2. โครงสร้างเบื้องหลัง (Behind the Scenes)
 
 ### การประเมินสกิลแบบ Real-time (`ActiveSkill.GetActiveChainOverride`)
-ระบบจะไม่เปลี่ยน Data ของสกิลดั้งเดิม แต่จะใช้การเช็คแบบ Real-time ผ่าน `TemporaryBuffManager` ของผู้ร่าย ถ้าระบบพบว่าผู้ร่ายมีบัฟตรงกับ `RequiredBuffName` ระบบจะแสดงผลและร่ายสกิลที่อยู่ใน `ReplacementSkill` แทนทันที
+ระบบจะไม่เปลี่ยน Data ของสกิลดั้งเดิม แต่จะใช้การเช็คแบบ Real-time ผ่าน `BuffSystem` ของผู้ร่าย ถ้าระบบพบว่าผู้ร่ายมีบัฟตรงกับ `RequiredBuffName` ระบบจะแสดงผลและร่ายสกิลที่อยู่ใน `ReplacementSkill` แทนทันที
 
-### การแสดงผลที่ Hotbar (`HotbarSlotUI.cs`)
+### การแสดงผลที่ Hotbar (`HotbarSlotView.cs`)
 เมื่อระบบประเมินว่าสกิลถูกเปลี่ยนรูปแล้ว Hotbar จะอัปเดตอัตโนมัติ:
 1. **เปลี่ยน Icon สกิล**: ใช้รูป Icon ของ `ReplacementSkill` แทน
 2. **เปลี่ยนกรอบแสดงผล**: เปิด GameObject `_comboHintObj` เพื่อสร้างกรอบแสงดึงดูดสายตาผู้เล่น

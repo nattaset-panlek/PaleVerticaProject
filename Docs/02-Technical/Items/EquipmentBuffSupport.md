@@ -32,13 +32,13 @@ public class PassiveBuffEffect : EquipmentEffect
     public override void Apply(Character player, ItemInstance instance = null)
     {
         // 1. แอด Modifier เข้าไปในระบบค่าสถานะ
-        // 2. ลงทะเบียนบัฟนี้กับ TemporaryBuffManager โดยระบุระยะเวลาเป็นอนันต์ (หรือจนกว่าจะโดน Remove)
+        // 2. ลงทะเบียนบัฟนี้กับ BuffSystem โดยระบุระยะเวลาเป็นอนันต์ (หรือจนกว่าจะโดน Remove)
     }
 
     public override void Remove(Character player, ItemInstance instance = null)
     {
         // 1. นำ Modifier ออกจากระบบค่าสถานะ
-        // 2. สั่งลบบัฟนี้ออกจาก TemporaryBuffManager
+        // 2. สั่งลบบัฟนี้ออกจาก BuffSystem
     }
 }
 ```

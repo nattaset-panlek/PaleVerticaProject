@@ -10,7 +10,7 @@ Paths are relative to `Assets/Script/`. Every new script uses the five `#region`
 5. Effects are adapters: build a `CombatAction` and call `CombatCore.Execute(action, user, target)` (see `DamageEffect`). Never compute damage/heal inside an effect. Add a case to `Assets/Script/Editor/Tests/CombatCoreTests.cs` or `DamageFormulaTests.cs`.
 
 ## New effect kind (Heal, Status, Control, Summon ...)
-1. Add a spec: `Combat/Handlers/<Kind>/<Kind>Spec.cs : EffectSpec` with its parameters and `Kind => EffectKind.<Kind>` (add the enum value in `Combat/CombatEnums.cs` if new).
+1. Add a spec: `Combat/Handlers/<Kind>/<Kind>Spec.cs : EffectSpec` with its parameters and `Kind => EffectKind.<Kind>` (add the enum value in `Combat/CombatTypes.cs` if new).
 2. Add a handler: `[EffectHandler(EffectKind.<Kind>)] public sealed class <Kind>Handler : EffectHandler<<Kind>Spec, TOutgoing>`. Implement `TargetRule` (Any/Hostile/Ally), `Offense` (user-side value), `Defense` (target-side mitigation, returns an `Outcome`), `Commit` (the only code that mutates state for this kind). Offense/Defense must not change game state.
 3. Put the math in `Combat/Formulas/<Kind>Formula.cs` (pure, numbers in/out) and test it.
 4. Expose it to skills through an `EffectLogic` adapter so it shows up in `ActiveSkill.Effects`.
@@ -26,7 +26,7 @@ Paths are relative to `Assets/Script/`. Every new script uses the five `#region`
 3. Override `RequiresSelection` and `DrawGizmos` as needed. If it needs an aim preview, add an indicator in `Skills/Visuals/Indicators/` and route it through `SkillIndicatorManager` from `PlayerController`.
 
 ## New support modifier
-1. Add a class to `CoreSystem/Skills/Modifiers/SupportModifierSubclasses.cs` deriving `SupportModifier`, tagged `[SupportModifierId(<id>)]` (current range 1001-1022; check `Docs/03-Project/Planning_Guide.md`). Set `Chroma`/`Mineral` in the constructor; do not set `ID` (the factory does).
+1. Create `CoreSystem/Skills/Modifiers/<Name>SupportModifier.cs` (one class per file) deriving `SupportModifier`, tagged `[SupportModifierId(<id>)]` (current range 1001-1022; check `Docs/03-Project/Planning_Guide.md`). Set `Chroma`/`Mineral` in the constructor; do not set `ID` (the factory does).
 2. Implement `ModifyPayload(ref SkillPayload payload)`, optionally `IsCompatible(ActiveSkill)` and `GetDescription(template)`. Keep tunable numbers as fields so tooltip and gameplay share them.
 3. If it changes how the skill executes rather than the payload numbers, also implement `IPayloadSplitter` (one cast becomes several payloads) or `ICastRepeater` (delayed re-cast). `SkillCaster` picks them up automatically.
 4. Add the id + type to `ExpectedSupportTypes` in `Assets/Script/Editor/Tests/RegistryTests.cs`.
@@ -79,7 +79,7 @@ private void BuildUI(UIBuilderContext ctx)
 - Full API: `Docs/02-Technical/UI/UIBuilder_Guide.md`. Largest real example: `CoreSystem/UI/DevTools/GameDevToolUI.cs`.
 
 ## Hotbar action / drop target
-- New action kind: extend `HotbarActionType` and `HotbarSlotUI.ExecuteAction()`; hotkeys stay in `HotbarManager`.
+- New action kind: extend `HotbarActionType` and `HotbarSlotView.ExecuteAction()`; hotkeys stay in `HotbarManager`.
 - New drop target: implement `IDropHandler`, read `GlobalDragManager.Payload`, type-check it, then act. Start drags with `GlobalDragManager.Instance.StartDrag(...)`.
 - Docs: `Docs/02-Technical/UI/Hotbar_Interaction.md`, `Docs/02-Technical/UI/GlobalDrag.md`.
 

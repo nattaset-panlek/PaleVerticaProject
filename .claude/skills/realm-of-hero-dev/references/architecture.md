@@ -4,11 +4,11 @@ Paths relative to `Assets/Script/`.
 
 ## Namespaces
 `CoreSystem` (enums), `CoreSystem.Attributes`, `.Data`, `.Data.Items`, `.Data.Items.Effects`, `.Data.Items.Model`, `.Data.Save`, `.Data.Skills`, `.Entity`, `.Entity.UniquePassives`, `.Movement`, `.Pathfinding`, `.Settings`, `.SkillTree(.Models)`, `.Skills`, `.Skills.Logic` (effects, targeting, buffs, projectile), `.Skills.Modifiers`, `.Skills.UniqueSkill`, `.Skills.Visuals`, `.Utile`, `.Visuals`, `CoreSystem.UI.*`, `UI.Components`.
-Exceptions: `Agent/AgentCore.cs`, `AgentGroup.cs`, `FaceDirectionModule.cs` use `CoreSystem.Controllers`; `SkillTree/PassiveSkillLoader.cs`, `UI/CursorManager.cs`, `UI/Attribute/*` have no namespace.
+Exceptions: `Agent/AgentCore.cs`, `AgentRegistry.cs`, `FaceDirectionModule.cs` use `CoreSystem.Controllers`; `SkillTree/PassiveSkillLoader.cs`, `UI/CursorManager.cs`, `UI/AttributePanel/*` have no namespace.
 
 ## Singletons and static access
 - `.Instance`: `PlayerController`, `CameraController`, `GlobalGameTime`, `PathfinderGrid`, `SkillIndicatorManager`, `VisualManager`, `CombatJuiceDirector`, `SkillTreeManager`, `Database`, `EntityVisualSettings`, `UIManager`, `HotbarManager`, `GlobalDragManager`, `CursorManager`.
-- Static: `GameData`, `SaveManager`, `ItemDatabase`, `AttributeDatabase`, `FactionDatabase`, `SkillTreeDatabase`, `AgentGroup`, `GameSetting`.
+- Static: `GameData`, `SaveStorage`, `ItemDatabase`, `AttributeDatabase`, `FactionDatabase`, `SkillTreeDatabase`, `AgentRegistry`, `GameSetting`.
 
 ## Stat pipeline
 - Each `Character` owns an `AttributeSystem` with one `Attribute` per `AttributeType`. Defaults: core stats 1, MaxHP 100, MaxMP 50, ASPD 150, MoveSpeed 100, ATK 10, StatusDMG 10.
@@ -44,7 +44,7 @@ Exceptions: `Agent/AgentCore.cs`, `AgentGroup.cs`, `FaceDirectionModule.cs` use 
 - **Combat pipeline** (`CombatCore.Execute(action, user, target)`): `Gate.CheckAction` (target exists, has stats) -> per effect: `EffectHandlers.For(kind)` + `Gate.CheckEffect(handler.TargetRule)` (Damage = Hostile; self-inflicted procs pass) -> handler `Offense` (`DamageFormula.BuildInput` + crit roll from `ICombatRandom`, only when the user has stats) -> `Defense` (`Mitigate`, min 1) -> `RiderStage` (OnHit/OnCrit/OnKill riders spawn proc sub-actions through `Resolve`) -> `OutcomeApplier` -> `DamageHandler.Commit`: passive OnHit/OnTakeDamage (ref) -> apply HP -> OnPostHit -> entity events -> `DamageTextManager`. Sub-results apply after the parent.
 
 ## Entities
-- `Character` (abstract, `IEntity`) owns `AttributeSystem`, `MovementSystem`, `SkillCaster`, `CommandDirector`, `ExperienceSystem`, `UniquePassiveManager`, `FaceDirectionModule`, 8 equipment slots, 4 costume slots. Events `OnHitTarget`, `OnTakeDamage`, `OnCostumeChanged`. Resolver `Func` hooks for auto-attack type/range/projectile address.
+- `Character` (abstract, `IEntity`) owns `AttributeSystem`, `MovementSystem`, `SkillCaster`, `CommandDirector`, `ExperienceSystem`, `UniquePassiveSystem`, `FaceDirectionModule`, 8 equipment slots, 4 costume slots. Events `OnHitTarget`, `OnTakeDamage`, `OnCostumeChanged`. Resolver `Func` hooks for auto-attack type/range/projectile address.
 - `PlayerCharacter`: binds `GameData.Player` managers, `SaveData()/LoadData()`, creates `GameDevToolUI`.
 - `EnemyCharacter`: minimal; training dummy (id 10 or name contains "Dummy") gets 9,999,999 HP.
 - `NonPlayerCharacter`: requires `AgentCore`; `NPCInventory`, `NPCRoutine` (driven by `GlobalGameTime`).
@@ -57,7 +57,7 @@ Exceptions: `Agent/AgentCore.cs`, `AgentGroup.cs`, `FaceDirectionModule.cs` use 
 4. `Tick` -> `ExecuteSkill` (cooldown, cast delay) -> `ExecutePipeline` (pay cost, then `ExecuteWithSplitters`: the first linked `IPayloadSplitter` that `CanSplit` the skill turns one payload into several, otherwise `ActiveSkill.Execute` once; the first linked `ICastRepeater` schedules a delayed re-run through the same path).
 5. `ActiveSkill.Execute`: `BaseTargeting.GetTargets` -> effects (to caster / once per cast / per target) -> `VisualManager.PlayVisual` -> `UniquePassives.TriggerOnSkillExecuted`. `ChainOverrides` mutate the skill when a buff code is present.
 - Caster events: `OnCastInitiated`, `OnCastProgress`, `OnCastExecuted`, `OnCastInterrupted`, `OnGrantedSkillsChanged`.
-- Buffs: `TemporaryBuffManager` (MonoBehaviour on character) with `ActiveBuff` (modifiers, stacks, tick, category), `HasBuff(code)`, `OnBuffsChanged`.
+- Buffs: `BuffSystem` (MonoBehaviour on character) with `ActiveBuff` (modifiers, stacks, tick, category), `HasBuff(code)`, `OnBuffsChanged`.
 - Supports: max 5 per `SkillInstance`, auto-linked from `Database.GetLinkedSupportIDs`. Created by `SupportModifier.Create(id)` through `AttributedTypeRegistry` (`[SupportModifierId]`); unique passives likewise via `[UniquePassiveId]`.
 - Visuals: `VisualManager`, `VisualPayload` SO, `ISkillVisual` (InstantHit, Projectile, RayBeam, AuraBuff, GroundEruption).
 - Skill tree: `SkillTreeLoader`/`SkillTreeDatabase` (static, `SkillTree.json`), `SkillTreeManager` (points, static events `OnNodeUnlocked/OnNodeReset/OnAllReset`), UI `PassiveSkillLoader`.
@@ -66,7 +66,7 @@ Exceptions: `Agent/AgentCore.cs`, `AgentGroup.cs`, `FaceDirectionModule.cs` use 
 - `Database` (auto-created before scene load from `Resources/Prefab/Database`, DontDestroyOnLoad). Init order: Items -> Factions -> Attributes -> Skills -> SkillTree -> Characters -> UniquePassives.
 - `Item` subclasses: Equipment, Consumable, Costume, Currency, Fragment, Resource, SkillRune, SupportRune, Additional. Runtime: `ItemInstance`, `EquipmentInstance` (Refine, Reforge, sockets), `CostumeInstance`.
 - `Equipment.OnEquip`: weapon/armor baseline x (1 + refine) + reforge, then `Effects`, then socketed fragment effects. Set bonuses in `EquipmentSetData`.
-- `GameData.Player` (`PlayerData`): `Inventory`, `CharacterManager`, `EquipmentManager`, `CostumeManager`, `SkillManager`, `Data` (PlayerDataModel).
+- `GameData.Player` (`PlayerData`): `Inventory`, `PlayerStats`, `PlayerEquipment`, `PlayerCostumes`, `PlayerSkills`, `Data` (PlayerDataModel).
 
 ## UI
 - `UIManager`: registry-driven windows/modals, modal stack + overlay, Esc closes top modal, registry hotkeys, `GetOrCreateGlobalModal`.

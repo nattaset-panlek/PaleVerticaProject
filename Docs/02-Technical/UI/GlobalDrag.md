@@ -17,7 +17,7 @@ The system separates the **state/manager** from the **visual representation**:
 
 1. **Manual Visual Assignment**: `GlobalDragManager` does **not** auto-instantiate prefabs at runtime. You must place a `GlobalDragObject` in your UI Canvas hierarchy and manually assign its reference to `_dragObjectInstance` in the Inspector.
 2. **No Background Manipulation**: The visual model never touches, hides, or modifies any base background objects. When dragging objects without rarity (such as Skills or Commands), only the Rarity frame is disabled (`SetActive(false)`), ensuring clean presentation.
-3. **Decoupled Payloads**: Any C# object (`ItemInstance`, `HotbarSlotUI`, custom `ScriptableObject`, or data struct) can be passed as a payload without modifying the drag manager.
+3. **Decoupled Payloads**: Any C# object (`ItemInstance`, `HotbarSlotView`, custom `ScriptableObject`, or data struct) can be passed as a payload without modifying the drag manager.
 
 ---
 
@@ -31,7 +31,7 @@ To make a UI component draggable and capable of sending data to other UI element
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 
 namespace CoreSystem.UI.CustomSystem
 {
@@ -117,7 +117,7 @@ To allow a UI component to receive dragged items, implement Unity's `IDropHandle
 ```csharp
 using UnityEngine;
 using UnityEngine.EventSystems;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 
 namespace CoreSystem.UI.CustomSystem
 {
@@ -164,7 +164,7 @@ namespace CoreSystem.UI.CustomSystem
 
 ### Properties
 
-- **`public static object Payload { get; }`**: The arbitrary data object currently being dragged (e.g., `ItemInstance`, `HotbarSlotUI`, or custom classes). Returns `null` when not dragging.
+- **`public static object Payload { get; }`**: The arbitrary data object currently being dragged (e.g., `ItemInstance`, `HotbarSlotView`, or custom classes). Returns `null` when not dragging.
 - **`public static MonoBehaviour Source { get; }`**: The UI component that initiated the drag. Can be cast to interfaces like `IItemProvider` to invoke source-specific callbacks.
 
 ### Methods

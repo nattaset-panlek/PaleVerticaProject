@@ -33,16 +33,18 @@ Apply
 | Path | Role |
 |---|---|
 | `CombatCore.cs` | `Resolve`, `Execute`, `MaxDepth` |
-| `CombatAction.cs` | `CombatAction` (payload + effects + riders + `IsProc`), `EffectSpec` base |
-| `ActionResult.cs` | `ActionResult` (outcomes, sub-results, `Total`, `HasHit`, `HasCritical`, `PredictsKill`), `Outcome` |
+| `CombatAction.cs` | `CombatAction` (payload + effects + riders + `IsProc`) |
+| `EffectSpec.cs` | Base class of every effect spec |
+| `ActionResult.cs` | `ActionResult` (outcomes, sub-results, `Total`, `HasHit`, `HasCritical`, `PredictsKill`) |
+| `Outcome.cs` | One resolved effect result |
 | `ResolveContext.cs` | Data passed through the layers; `Spawn` for riders |
-| `CombatEnums.cs` | `EffectKind`, `TargetRule`, `BlockReason`, `RiderTrigger` |
-| `CombatRandom.cs` | `ICombatRandom`, `UnityCombatRandom` (inject a fixed random in tests) |
+| `CombatTypes.cs` | `EffectKind`, `TargetRule`, `BlockReason`, `RiderTrigger` |
+| `ICombatRandom.cs`, `UnityCombatRandom.cs` | Random source (inject a fixed random in tests) |
 | `Gate/Gate.cs` | Layer 0 |
-| `Handlers/EffectHandler.cs` | `IEffectHandler`, `EffectHandler<TSpec, TOutgoing>` template (Offense, Defense, Commit), `[EffectHandler(kind)]` |
+| `Handlers/IEffectHandler.cs`, `EffectHandler.cs`, `EffectHandlerAttribute.cs` | Handler contract, `EffectHandler<TSpec, TOutgoing>` template (Offense, Defense, Commit), `[EffectHandler(kind)]` |
 | `Handlers/EffectHandlers.cs` | Registry, one cached handler per kind |
 | `Handlers/Damage/` | `DamageSpec`, `DamageHandler` |
-| `Formulas/` | Pure math, numbers in and out (table below) |
+| `Formulas/` | Pure math, numbers in and out (table below); input/output structs in `FormulaTypes.cs` |
 | `Riders/` | `ActionRider`, `RiderStage` |
 | `Apply/OutcomeApplier.cs` | Layer 5 |
 

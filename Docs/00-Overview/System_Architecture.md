@@ -38,7 +38,7 @@ How the player communicates with the core systems.
 
 ## 🏥 PART 2: The "Nervous System" (Data Flow)
 
-1. **UI Interaction**: `DragItem` → `InventoryManager` → `EquipmentManager` → `AttributeSystem`.
+1. **UI Interaction**: `DragItem` → `InventoryManager` → `PlayerEquipment` → `AttributeSystem`.
 2. **Stat Update**: `AttributeSystem` change → `OnStatusChanged` → `HPBarUI` refresh.
 3. **Skill Casting**: `Input` → `SkillCaster` (MP Check) → `Casting Coroutine` → `Execute`.
 4. **Damage Delivery**: `EffectLogic` → `Payload` → `ReceiveDamage` → `DamageTextManager`.
