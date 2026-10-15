@@ -72,6 +72,11 @@ Step-by-step recipes (new effect, targeting, support modifier, unique passive, u
 - EditMode tests live in `Assets/Script/Editor/Tests/` (compiled into Assembly-CSharp-Editor, namespace `CoreSystem.Tests`): stat pipeline, derived formulas, cast time/cooldown/AOE, `DamageFormula`, the `CombatCore` pipeline (`CombatCoreTests` with `FakeCombatant` + `FixedCombatRandom`), registries, support hooks. Run them in **Window > General > Test Runner > EditMode**, or headless with Unity closed: `"D:/Unity/6000.4.8f1/Editor/Unity.exe" -batchmode -nographics -projectPath "F:/GameProject/Pale Vertica" -runTests -testPlatform EditMode -testResults results.xml -logFile unity.log`. Add a test whenever you touch math. Any formula change must update the matching test deliberately.
 - `Data/Tests/DataSystemTest.cs` is a manual smoke test (Inspector context menu "TestSystem"). Gameplay feel still needs Play mode + the K dev tool.
 
+## 5b. Unity Editor access (Unity-MCP)
+- Use the Unity-MCP server `ai-game-developer` (`http://localhost:28971`, configured in `.mcp.json` and `UserSettings/AI-Game-Developer-Config.json`) for anything that touches the live Editor: `rql-query` / `rql-schema` to inspect scenes, prefabs, assets and console logs; `rql-mutate` for undoable scene/prefab edits; `tests-run` for EditMode/PlayMode tests; `screenshot-isolated`; `script-execute` for one-off editor C#. RQL syntax: the generated `unity-rql` skill.
+- Prefer it over hand-editing `.unity`/`.prefab` YAML or running batch-mode tests, which both need the Editor closed. `tests-run` aborts when an open scene is dirty.
+- If the server does not answer (Editor closed), fall back to closed-Editor YAML edits and the batch-mode test command in section 5.
+
 ## 6. Documentation workflow
 - Hub: `Docs/README.md`. Technical docs go to `Docs/02-Technical/<System>/`, design to `Docs/01-Design/`, superseded docs to `Docs/99-Archive/`.
 - Before working on a system, read its doc folder; after changing a system's behaviour, update that doc and the index.
