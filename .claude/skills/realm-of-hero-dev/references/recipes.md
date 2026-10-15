@@ -50,7 +50,7 @@ Subclass `ActiveSkill` in `CoreSystem/Skills/UniqueSkill/`, override `Execute`, 
 
 ## New attribute / stat
 1. Add it in Game Data Workbench (Attributes tab). It regenerates `CoreSystem/Enums/AttributeType.cs` (X and XPercent pairs, XPercent id = X + 1). Never hand-edit the enum.
-2. If it is derived from core stats, that is a formula change: get user approval, then edit `AttributeSystem.InnerUpdateDerivedAttributes` and `Docs/02-Technical/Attributes/All_Attribute_Formulas.md`.
+2. If it is derived from core stats, that is a formula change: get user approval, add the field to `DerivedStats` and the math to `Combat/Formulas/DerivedStatFormula.Compute`, assign it in `AttributeSystem.InnerUpdateDerivedAttributes`, and update `FormulaTests` and `Docs/02-Technical/Attributes/All_Attribute_Formulas.md`.
 3. Temporary/conditional changes: use `AddModifier` (Flat / PercentAdd / PercentMult) or `AddAdditional(type, order, op, value, tag)` + `RemoveAdditionalByTag`. Order: Base -> Flat -> Percent -> AdditionalChain.
 
 ## New prefab UI window or modal

@@ -9,6 +9,7 @@ Core math is covered by NUnit EditMode tests so balance and refactor work can be
 |---|---|
 | `AttributeMathTests.cs` | `Attribute.Recalculate` order (Base -> Flat -> PercentAdd -> PercentMult -> AdditionalChain), `AdditionalChain` ordering, derived stats from STR/AGI/VIT/INT/DEX/LUK |
 | `SkillTimingTests.cs` | Variable Cast Time curve and reaching 0, Fixed Cast Time unaffected by DEX/INT, cooldown, AOE |
+| `FormulaTests.cs` | Every file in `Combat/Formulas/`: stat value, derived stats, cast time split, cooldown/area/scaling, resource cost and regen, basic attack, refine/reforge/EXP |
 | `DamageFormulaTests.cs` | Damage formula order, crit, resist floors, minimum damage, proc ids |
 | `CombatCoreTests.cs` | `CombatCore` pipeline: Resolve is pure, Execute applies, Gate rules, dispatch, riders re-entering Resolve, depth guard, kill prediction |
 | `FakeCombatant.cs` | Test `IEntity` + `FixedCombatRandom` for scene-free pipeline tests |

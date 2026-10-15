@@ -1,5 +1,6 @@
 using UnityEngine;
 using CoreSystem.Attributes;
+using CoreSystem.Combat;
 
 namespace CoreSystem.Entity
 {
@@ -29,13 +30,13 @@ namespace CoreSystem.Entity
         public long GetNextBaseExp(int currentLevel)
         {
             if (_table != null) return _table.GetBaseExp(currentLevel);
-            return (long)(100f * Mathf.Pow(currentLevel, 1.5f));
+            return ProgressionFormula.FallbackBaseExp(currentLevel);
         }
 
         public long GetNextJobExp(int currentLevel)
         {
             if (_table != null) return _table.GetJobExp(currentLevel);
-            return (long)(50f * Mathf.Pow(currentLevel, 1.6f));
+            return ProgressionFormula.FallbackJobExp(currentLevel);
         }
 
 

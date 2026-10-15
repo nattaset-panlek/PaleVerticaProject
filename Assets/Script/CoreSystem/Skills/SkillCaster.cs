@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CoreSystem.Combat;
 using CoreSystem.Entity;
 using CoreSystem.Skills.Logic;
 using CoreSystem.Skills.Visuals;
@@ -222,36 +223,11 @@ namespace CoreSystem.Skills
                         // Use BuildPayload to get accurate modified mana cost
                         SkillPayload payload = BuildPayload(instance);
 
-                        if (character != null && character.attributeSystem != null)
+                        if (character != null && character.attributeSystem != null && !CanAfford(ResolveCost(payload)))
                         {
-                            float manaCost = payload.ManaCost;
-                            float hpCost = 0f;
-                            bool isHpCost = false;
-                            if (character.UniquePassives != null)
-                            {
-                                character.UniquePassives.ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
-                            }
-
-                            if (isHpCost)
-                            {
-                                float currentHp = character.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
-                                if (currentHp < hpCost)
-                                {
-                                    instance.IsToggledOn = false;
-                                    OnCastInterrupted?.Invoke();
-                                    continue;
-                                }
-                            }
-                            else
-                            {
-                                float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                                if (currentMp < manaCost)
-                                {
-                                    instance.IsToggledOn = false;
-                                    OnCastInterrupted?.Invoke();
-                                    continue;
-                                }
-                            }
+                            instance.IsToggledOn = false;
+                            OnCastInterrupted?.Invoke();
+                            continue;
                         }
 
                         ExecutePipeline(instance, payload);
@@ -298,27 +274,7 @@ namespace CoreSystem.Skills
                 if (!instance.IsToggledOn) // Turning ON
                 {
                     SkillPayload payload = BuildPayload(instance, targetPos, targetPos != default);
-                    if (character != null && character.attributeSystem != null)
-                    {
-                        float manaCost = payload.ManaCost;
-                        float hpCost = 0f;
-                        bool isHpCost = false;
-                        if (character.UniquePassives != null)
-                        {
-                            character.UniquePassives.ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
-                        }
-
-                        if (isHpCost)
-                        {
-                            float currentHp = character.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
-                            if (currentHp < hpCost) return;
-                        }
-                        else
-                        {
-                            float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                            if (currentMp < manaCost) return;
-                        }
-                    }
+                    if (character != null && character.attributeSystem != null && !CanAfford(ResolveCost(payload))) return;
 
                     instance.IsToggledOn = true;
                     if (instance.IsReady())
@@ -499,31 +455,14 @@ namespace CoreSystem.Skills
         {
             if (character != null && character.attributeSystem != null)
             {
-                float manaCost = payload.ManaCost;
-                float hpCost = 0f;
-                bool isHpCost = false;
-                if (character.UniquePassives != null)
+                ResourceCost cost = ResolveCost(payload);
+                if (!CanAfford(cost))
                 {
-                    character.UniquePassives.ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
-                }
-
-                if (isHpCost)
-                {
-                    float currentHp = character.attributeSystem.GetAttribute(AttributeType.HP).CurrentValue;
-                    if (currentHp < hpCost)
-                    {
-                        Debug.LogWarning($"Cast Failed: Not enough HP for {instance.SkillData.Name}! (Need {hpCost}, Have {currentHp})");
-                        return;
-                    }
-                }
-                else
-                {
-                    float currentMp = character.attributeSystem.GetAttribute(AttributeType.MP).CurrentValue;
-                    if (currentMp < manaCost) 
-                    {
-                        Debug.LogWarning($"Cast Failed: Not enough MP for {instance.SkillData.Name}! (Need {manaCost}, Have {currentMp})");
-                        return;
-                    }
+                    if (cost.IsHpCost)
+                        Debug.LogWarning($"Cast Failed: Not enough HP for {instance.SkillData.Name}! (Need {cost.Hp}, Have {CurrentResource(AttributeType.HP)})");
+                    else
+                        Debug.LogWarning($"Cast Failed: Not enough MP for {instance.SkillData.Name}! (Need {cost.Mana}, Have {CurrentResource(AttributeType.MP)})");
+                    return;
                 }
             }
 
@@ -633,34 +572,7 @@ namespace CoreSystem.Skills
 
             if (this.character != null && this.character.attributeSystem != null)
             {
-                float manaCost = payload.ManaCost;
-                float hpCost = 0f;
-                bool isHpCost = false;
-                if (this.character.UniquePassives != null)
-                {
-                    this.character.UniquePassives.ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
-                }
-
-                if (isHpCost)
-                {
-                    if (hpCost > 0f)
-                    {
-                        var hpAttr = this.character.attributeSystem.GetAttribute(AttributeType.HP);
-                        float newHp = Mathf.Max(1f, hpAttr.CurrentValue - hpCost);
-                        hpAttr.BaseValue = newHp;
-                        hpAttr.Recalculate();
-                    }
-                }
-                else
-                {
-                    if (manaCost > 0f)
-                    {
-                        var mpAttr = this.character.attributeSystem.GetAttribute(AttributeType.MP);
-                        float newMp = Mathf.Max(0f, mpAttr.CurrentValue - manaCost);
-                        mpAttr.BaseValue = newMp;
-                        mpAttr.Recalculate();
-                    }
-                }
+                PayCost(ResolveCost(payload));
             }
 
             if (instance.SkillData != null)
@@ -688,6 +600,45 @@ namespace CoreSystem.Skills
             }
 
             instance.SkillData.Execute(payload, instance, this);
+        }
+
+        private ResourceCost ResolveCost(SkillPayload payload)
+        {
+            var cost = new ResourceCost { Mana = payload.ManaCost };
+            if (character.UniquePassives != null)
+            {
+                character.UniquePassives.ModifyManaCost(ref cost.Mana, ref cost.Hp, ref cost.IsHpCost);
+            }
+            return cost;
+        }
+
+        private bool CanAfford(in ResourceCost cost)
+        {
+            return ResourceFormula.CanAfford(cost, CurrentResource(AttributeType.HP), CurrentResource(AttributeType.MP));
+        }
+
+        private void PayCost(in ResourceCost cost)
+        {
+            if (cost.IsHpCost)
+            {
+                if (cost.Hp > 0f) SetResource(AttributeType.HP, ResourceFormula.HpAfterCost(CurrentResource(AttributeType.HP), cost.Hp));
+            }
+            else if (cost.Mana > 0f)
+            {
+                SetResource(AttributeType.MP, ResourceFormula.MpAfterCost(CurrentResource(AttributeType.MP), cost.Mana));
+            }
+        }
+
+        private float CurrentResource(AttributeType type)
+        {
+            return character.attributeSystem.GetAttribute(type).CurrentValue;
+        }
+
+        private void SetResource(AttributeType type, float value)
+        {
+            var attribute = character.attributeSystem.GetAttribute(type);
+            attribute.BaseValue = value;
+            attribute.Recalculate();
         }
 
         private static T FindLinkedModifier<T>(SkillInstance instance) where T : class

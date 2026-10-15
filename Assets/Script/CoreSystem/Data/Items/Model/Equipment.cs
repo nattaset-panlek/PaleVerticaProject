@@ -4,6 +4,7 @@ using CoreSystem.Data.Items.Effects;
 using CoreSystem.Data.Items;
 using CoreSystem.Attributes;
 using UnityEngine;
+using CoreSystem.Combat;
 
 namespace CoreSystem.Data.Items.Model
 {
@@ -55,14 +56,11 @@ namespace CoreSystem.Data.Items.Model
                             Slot == EquipmentSlot.WeaponOneHandRight ||
                             Slot == EquipmentSlot.WeaponTwoHand;
 
-            float refineMultiplier = instance != null ? EquipmentDatabase.GetRefineMultiplier(instance.Refine) : 0f;
-            float reforgeBonus = instance != null ? instance.Reforge * EquipmentDatabase.ReforgeValuePerLevel : 0f;
+            int refine = instance != null ? instance.Refine : 0;
+            int reforge = instance != null ? instance.Reforge : 0;
 
-            float phyValue = Mathf.Max(1f, BasePhysical);
-            float magValue = Mathf.Max(1f, BaseMagic);
-
-            phyValue = (phyValue * (1f + refineMultiplier)) + reforgeBonus;
-            magValue = (magValue * (1f + refineMultiplier)) + reforgeBonus;
+            float phyValue = ProgressionFormula.EquipmentBaseline(BasePhysical, refine, reforge);
+            float magValue = ProgressionFormula.EquipmentBaseline(BaseMagic, refine, reforge);
 
             if (isWeapon)
             {

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using CoreSystem;
 using CoreSystem.SkillTree.Models;
+using CoreSystem.Combat;
 
 namespace CoreSystem.Attributes
 {
@@ -112,40 +113,25 @@ namespace CoreSystem.Attributes
                 owner.UniquePassives.ModifyCoreAttributes(ref str, ref agi, ref vit, ref @int, ref dex, ref luk);
             }
 
-            // --- STR ---
-            attributes[AttributeType.ATK].StatFlatBonus = str + (dex / 5f) + (luk / 3f);
-            attributes[AttributeType.WeightLimit].StatFlatBonus = str * 30f; 
+            DerivedStats derived = DerivedStatFormula.Compute(new CoreStats { Str = str, Agi = agi, Vit = vit, Int = @int, Dex = dex, Luk = luk });
 
-            // --- AGI ---
-            attributes[AttributeType.Flee].StatFlatBonus = agi + (luk / 5f);
-            attributes[AttributeType.StatusDEF].StatFlatBonus = (vit / 2f) + (agi / 5f) + (luk / 5f); 
-            attributes[AttributeType.ASPD].StatFlatBonus = (agi * 0.5f) + (dex * 0.15f);
+            attributes[AttributeType.ATK].StatFlatBonus = derived.AtkFlat;
+            attributes[AttributeType.MATK].StatFlatBonus = derived.MatkFlat;
+            attributes[AttributeType.WeightLimit].StatFlatBonus = derived.WeightLimitFlat;
+            attributes[AttributeType.Flee].StatFlatBonus = derived.FleeFlat;
+            attributes[AttributeType.Hit].StatFlatBonus = derived.HitFlat;
+            attributes[AttributeType.StatusDEF].StatFlatBonus = derived.StatusDefFlat;
+            attributes[AttributeType.ASPD].StatFlatBonus = derived.AspdFlat;
+            attributes[AttributeType.MaxHP].StatPercentBonus = derived.MaxHpPercent;
+            attributes[AttributeType.MaxMP].StatPercentBonus = derived.MaxMpPercent;
+            attributes[AttributeType.HealingItems].StatPercentBonus = derived.HealingItemsPercent;
+            attributes[AttributeType.HPRecovery].StatFlatBonus = derived.HpRecoveryFlat;
+            attributes[AttributeType.MPRecovery].StatFlatBonus = derived.MpRecoveryFlat;
+            attributes[AttributeType.StatusDMG].StatFlatBonus = derived.StatusDmgFlat;
+            attributes[AttributeType.CriticalRate].StatFlatBonus = derived.CriticalRateFlat;
+            attributes[AttributeType.CritResistance].StatFlatBonus = derived.CritResistanceFlat;
+            attributes[AttributeType.PerfectDodge].StatFlatBonus = derived.PerfectDodgeFlat;
 
-            // --- VIT ---
-            attributes[AttributeType.MaxHP].StatPercentBonus = vit * 0.01f;
-            attributes[AttributeType.HealingItems].StatPercentBonus = vit * 0.02f;
-            attributes[AttributeType.HPRecovery].StatFlatBonus = vit / 5f;
-            attributes[AttributeType.StatusDEF].StatFlatBonus += (vit / 5f) + (dex / 5f); 
-
-            // --- INT ---
-            attributes[AttributeType.MATK].StatFlatBonus = (@int * 1.5f) + (dex / 5f) + (luk / 3f);
-            attributes[AttributeType.MaxMP].StatPercentBonus = @int * 0.01f;
-            attributes[AttributeType.StatusDEF].StatFlatBonus += @int; 
-            
-            float spRec = @int / 6f;
-            if (@int >= 120) spRec += (@int - 120) / 2f; 
-            attributes[AttributeType.MPRecovery].StatFlatBonus = spRec;
-
-            // --- DEX ---
-            attributes[AttributeType.Hit].StatFlatBonus = dex + (luk / 3f);
-
-            // --- LUK ---
-            attributes[AttributeType.StatusDMG].StatFlatBonus = (luk * 0.5f) + (@int / 4f); 
-            attributes[AttributeType.CriticalRate].StatFlatBonus = luk * 0.3f;
-            attributes[AttributeType.CritResistance].StatFlatBonus = luk / 5f;
-            attributes[AttributeType.PerfectDodge].StatFlatBonus = luk / 10f;
-
-            // Recalculate all
             foreach (var kvp in attributes)
             {
                 kvp.Value.Recalculate();

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CoreSystem;
+using CoreSystem.Combat;
 
 namespace CoreSystem.Attributes
 {
@@ -48,36 +49,11 @@ namespace CoreSystem.Attributes
 
         public void Recalculate()
         {
-            float flatSum = 0f;
-            float percentAddSum = 0f;
+            StatResult result = StatFormula.Compute(BaseValue, InitialValue, StatFlatBonus, StatPercentBonus, modifiers, Additional);
 
-            for (int i = 0; i < modifiers.Count; i++)
-            {
-                AttributeModifier mod = modifiers[i];
-                if (mod.Type == ModifierType.Flat)
-                    flatSum += mod.Value;
-                else if (mod.Type == ModifierType.PercentAdd)
-                    percentAddSum += mod.Value;
-            }
-
-            FlatBonusSum = StatFlatBonus + flatSum;
-            PercentBonusSum = StatPercentBonus + percentAddSum;
-
-            float baseWithPrimary = BaseValue * (1f + StatPercentBonus) + StatFlatBonus;
-            float finalValue = baseWithPrimary + InitialValue;
-            finalValue += flatSum;
-            finalValue = finalValue * (1f + percentAddSum);
-
-            for (int i = 0; i < modifiers.Count; i++)
-            {
-                AttributeModifier mod = modifiers[i];
-                if (mod.Type == ModifierType.PercentMult)
-                    finalValue *= mod.Value;
-            }
-
-            finalValue = Additional.Apply(finalValue);
-
-            CurrentValue = finalValue;
+            FlatBonusSum = StatFlatBonus + result.FlatSum;
+            PercentBonusSum = StatPercentBonus + result.PercentAddSum;
+            CurrentValue = result.Value;
             OnValueUpdated?.Invoke();
         }
         #endregion

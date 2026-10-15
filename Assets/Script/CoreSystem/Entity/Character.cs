@@ -1,5 +1,6 @@
 using CoreSystem;
 using CoreSystem.Attributes;
+using CoreSystem.Combat;
 using CoreSystem.Data.Items;
 using CoreSystem.Movement;
 using CoreSystem.Skills;
@@ -290,21 +291,12 @@ namespace CoreSystem.Entity
             float bonusDamage = 0f;
             if (attributeSystem != null)
             {
-                if (_autoAttackDamageType == DamageType.Magic)
-                {
-                    bonusDamage = attributeSystem.GetAttribute(AttributeType.INT).CurrentValue;
-                }
-                else
-                {
-                    if (_autoAttackType == AutoAttackType.Melee)
-                    {
-                        bonusDamage = attributeSystem.GetAttribute(AttributeType.STR).CurrentValue;
-                    }
-                    else if (_autoAttackType == AutoAttackType.Range)
-                    {
-                        bonusDamage = attributeSystem.GetAttribute(AttributeType.DEX).CurrentValue;
-                    }
-                }
+                bonusDamage = BasicAttackFormula.BonusDamage(
+                    _autoAttackDamageType,
+                    _autoAttackType,
+                    attributeSystem.GetAttribute(AttributeType.STR).CurrentValue,
+                    attributeSystem.GetAttribute(AttributeType.DEX).CurrentValue,
+                    attributeSystem.GetAttribute(AttributeType.INT).CurrentValue);
             }
 
             var payload = new CoreSystem.Skills.SkillPayload
@@ -353,14 +345,8 @@ namespace CoreSystem.Entity
 
             _uniquePassives.TriggerOnBasicAttack(target);
 
-            int AttactSpeedMinPreHit = 1;
-            int AttactSpeedMaxPreHit = 100;
             float aspd = attributeSystem.GetAttribute(AttributeType.ASPD).CurrentValue;
-            float attackDelay = (200f - aspd) / 50f;
-            float minDelay = 1f / AttactSpeedMaxPreHit;
-            float maxDelay = 1f / AttactSpeedMinPreHit;
-            attackDelay = Mathf.Clamp(attackDelay, minDelay, maxDelay);
-            BasicAttackCooldownTimer = attackDelay;
+            BasicAttackCooldownTimer = BasicAttackFormula.AttackDelay(aspd);
         }
 
         public virtual void Awake()
@@ -379,7 +365,7 @@ namespace CoreSystem.Entity
         }
 
         private float _regenTimer = 0f;
-        private const float RegenInterval = 1f;
+        private const float RegenInterval = ResourceFormula.RegenTickInterval;
 
         protected virtual void Update()
         {
@@ -416,26 +402,22 @@ namespace CoreSystem.Entity
                     var maxHpAttr = _attributeSystem.GetAttribute(AttributeType.MaxHP);
                     var hpRegen = _attributeSystem.GetAttribute(AttributeType.HPRecovery);
 
-                    if (hpAttr != null && maxHpAttr != null && hpRegen != null)
+                    if (hpAttr != null && maxHpAttr != null && hpRegen != null
+                        && ResourceFormula.TryRegen(hpAttr.CurrentValue, maxHpAttr.CurrentValue, hpRegen.CurrentValue, hpAttr.CurrentValue > 0f, out float newHp))
                     {
-                        if (hpAttr.CurrentValue > 0 && hpAttr.CurrentValue < maxHpAttr.CurrentValue && hpRegen.CurrentValue > 0)
-                        {
-                            hpAttr.BaseValue = Mathf.Min(maxHpAttr.CurrentValue, hpAttr.CurrentValue + hpRegen.CurrentValue);
-                            hpAttr.Recalculate();
-                        }
+                        hpAttr.BaseValue = newHp;
+                        hpAttr.Recalculate();
                     }
 
                     var mpAttr = _attributeSystem.GetAttribute(AttributeType.MP);
                     var maxMpAttr = _attributeSystem.GetAttribute(AttributeType.MaxMP);
                     var mpRegen = _attributeSystem.GetAttribute(AttributeType.MPRecovery);
 
-                    if (mpAttr != null && maxMpAttr != null && mpRegen != null && hpAttr != null)
+                    if (mpAttr != null && maxMpAttr != null && mpRegen != null && hpAttr != null
+                        && ResourceFormula.TryRegen(mpAttr.CurrentValue, maxMpAttr.CurrentValue, mpRegen.CurrentValue, hpAttr.CurrentValue > 0f, out float newMp))
                     {
-                        if (hpAttr.CurrentValue > 0 && mpAttr.CurrentValue < maxMpAttr.CurrentValue && mpRegen.CurrentValue > 0)
-                        {
-                            mpAttr.BaseValue = Mathf.Min(maxMpAttr.CurrentValue, mpAttr.CurrentValue + mpRegen.CurrentValue);
-                            mpAttr.Recalculate();
-                        }
+                        mpAttr.BaseValue = newMp;
+                        mpAttr.Recalculate();
                     }
                 }
             }

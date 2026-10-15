@@ -1,5 +1,6 @@
 using CoreSystem;
 using CoreSystem.Attributes;
+using CoreSystem.Combat;
 
 namespace CoreSystem.Skills
 {
@@ -24,9 +25,7 @@ namespace CoreSystem.Skills
                 statValue = casterStats.GetAttribute(ScalingAttribute);
             }
 
-            // Calculate formula = (statValue * AttributeMultiplier + FlatBonus + LevelMultiplier * skillLevel) * GlobalMultiplier
-            float levelBonus = LevelMultiplier * skillLevel;
-            float calculatedBonus = (statValue * AttributeMultiplier + FlatBonus + levelBonus) * GlobalMultiplier;
+            float calculatedBonus = SkillValueFormula.Scaling(statValue, AttributeMultiplier, FlatBonus, LevelMultiplier, skillLevel, GlobalMultiplier);
             
             // Depending on the field, we may only want positive values, but we'll apply it directly
             switch (TargetField)

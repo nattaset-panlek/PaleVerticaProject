@@ -12,9 +12,9 @@ Exceptions: `Agent/AgentCore.cs`, `AgentGroup.cs`, `FaceDirectionModule.cs` use 
 
 ## Stat pipeline
 - Each `Character` owns an `AttributeSystem` with one `Attribute` per `AttributeType`. Defaults: core stats 1, MaxHP 100, MaxMP 50, ASPD 150, MoveSpeed 100, ATK 10, StatusDMG 10.
-- `Attribute.Recalculate()`:
+- `Attribute.Recalculate()` -> `Combat/Formulas/StatFormula.Compute`:
   `((Base * (1 + StatPercent) + StatFlat) + InitialValue + SUM Flat) * (1 + SUM PercentAdd) * PROD PercentMult`, then `AdditionalChain.Apply()` (entries sorted by Order, op Add or Multiply, tagged).
-- Derived formulas only in `AttributeSystem.InnerUpdateDerivedAttributes()` (after `UniquePassives.ModifyCoreAttributes`):
+- Derived formulas only in `Combat/Formulas/DerivedStatFormula.Compute` (called by `AttributeSystem.InnerUpdateDerivedAttributes()` after `UniquePassives.ModifyCoreAttributes`):
 
 | Derived | Formula |
 |---|---|
@@ -35,7 +35,7 @@ Exceptions: `Agent/AgentCore.cs`, `AgentGroup.cs`, `FaceDirectionModule.cs` use 
 - Current HP/MP = write `BaseValue` then `Recalculate()`.
 - Every change raises `AttributeSystem.OnAttributesChanged` (guarded by `_isUpdating`).
 
-## Combat formulas
+## Combat formulas (all in `CoreSystem/Combat/Formulas/`; see `Docs/02-Technical/Combat/Combat_Core_Pipeline.md` for the file map)
 - **VCT** = (base - flat) * (1 - sqrt(clamp01((DEX*2 + INT)/530))) * (1 - gear%) * (1 - skill%) * (1 - buff%). Can reach 0.
 - **FCT** = (base - FixedCastTimeReduc) * (1 - FCT%). Conflicts with the AGENTS.md "immutable" rule.
 - **Cooldown** = (base - flat) * (1 - %). **AOE** = base * (1 + AOE%).

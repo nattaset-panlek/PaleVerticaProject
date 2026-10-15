@@ -8,6 +8,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using CoreSystem.Combat;
 
 namespace CoreSystem.UI.Inventory
 {
@@ -195,11 +196,8 @@ namespace CoreSystem.UI.Inventory
 
             if (instance is EquipmentInstance equipInst)
             {
-                float refineMultiplier = EquipmentDatabase.GetRefineMultiplier(equipInst.Refine);
-                float reforgeBonus = equipInst.Reforge * EquipmentDatabase.ReforgeValuePerLevel;
-
-                phyBonus = (equip.BasePhysical * refineMultiplier) + reforgeBonus;
-                magBonus = (equip.BaseMagic * refineMultiplier) + reforgeBonus;
+                phyBonus = ProgressionFormula.EquipmentUpgradeBonus(equip.BasePhysical, equipInst.Refine, equipInst.Reforge);
+                magBonus = ProgressionFormula.EquipmentUpgradeBonus(equip.BaseMagic, equipInst.Refine, equipInst.Reforge);
 
                 if (equipInst.Refine > 0)
                 {

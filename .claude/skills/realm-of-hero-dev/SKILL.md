@@ -13,7 +13,7 @@ Unity **6000.4.8f1**, URP 2D, Input System, Addressables, TMP, Newtonsoft JSON, 
 - Every C# script uses the five regions in this order: `#region [Variables/Fields]`, `[Properties]`, `[Unity Methods]`, `[Public Methods]`, `[Private Methods]` (bracketed names). Keep them when editing older files that use unbracketed names.
 - No god classes. Data in ScriptableObjects/JSON, communication via C# `event Action`.
 - UI only **listens** to events. Never poll data in `Update()` when an event exists.
-- **Do not change core stat formulas** (`AttributeSystem.InnerUpdateDerivedAttributes`, `Attribute.Recalculate`, `DamageEffect`, `SkillInstance` cast-time math) without explicit user approval.
+- **Do not change core formulas** (anything in `CoreSystem/Combat/Formulas/`: stat value, derived stats, damage, cast time, cooldown, cost, regen, ASPD, refine, EXP) without explicit user approval. Callers such as `Attribute`, `AttributeSystem`, `SkillInstance`, `SkillCaster`, `Character`, `Equipment` only gather inputs and apply results; never put arithmetic back into them.
 - Docs go to `Docs/` only (see section 6). Never create `.md` under `Assets/`.
 
 ## 2. Where things live (`Assets/Script/`)
@@ -25,7 +25,7 @@ Unity **6000.4.8f1**, URP 2D, Input System, Addressables, TMP, Newtonsoft JSON, 
 | AI | `CoreSystem/Agent/` | `AgentCore` (state machine), `AgentGroup`, `EntitySpawner`, `FaceDirectionModule` |
 | Player/world | `CoreSystem/Controllers/` | `PlayerController`, `CameraController`, `GlobalGameTime` |
 | Skills | `CoreSystem/Skills/` | `SkillCaster`, `SkillInstance`, `ActiveSkill` (SO), `Logic/Targeting`, `Logic/Effects`, `Logic/Buffs/TemporaryBuffManager`, `Logic/Projectile`, `SupportModifier.cs` + `Modifiers/SupportModifierSubclasses.cs`, `SupportExecutionHooks.cs`, `ProcSkillIds.cs`, `UniqueSkill/`, `Visuals/` |
-| Combat core | `CoreSystem/Combat/` | `CombatCore.Resolve/Execute(action, user, target)`, `CombatAction` + `EffectSpec`, `Gate/`, `Handlers/` (one per `EffectKind`, e.g. `Damage/DamageHandler`), `Formulas/` (`DamageFormula`, `CombatStatLookup`), `Riders/` (`ActionRider`, `RiderStage`), `Apply/OutcomeApplier` |
+| Combat core | `CoreSystem/Combat/` | `CombatCore.Resolve/Execute(action, user, target)`, `CombatAction` + `EffectSpec`, `Gate/`, `Handlers/` (one per `EffectKind`, e.g. `Damage/DamageHandler`), `Formulas/` (every number: `StatFormula`, `DerivedStatFormula`, `DamageFormula`, `CastTimeFormula`, `SkillValueFormula`, `ResourceFormula`, `BasicAttackFormula`, `ProgressionFormula`), `Riders/` (`ActionRider`, `RiderStage`), `Apply/OutcomeApplier` |
 | Skill tree | `CoreSystem/SkillTree/` | `SkillTreeManager`, `SkillTreeDatabase`, `SkillTreeLoader` |
 | Data | `CoreSystem/Data/` | `Database` (singleton facade), `GameData.Player` (`PlayerData`), `Items/` (Item model + `Effects/`), `Save/` (`SaveManager`, `PlayerDataModel`) |
 | Visual feedback | `CoreSystem/Visuals/` | `EntityVisualController`, `EntityVisualSettings` (SO), `CombatJuiceDirector` |
