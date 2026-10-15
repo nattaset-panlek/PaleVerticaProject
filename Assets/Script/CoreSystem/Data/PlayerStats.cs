@@ -4,7 +4,7 @@ using CoreSystem.Attributes;
 
 namespace CoreSystem.Data
 {
-    public class CharacterManager
+    public class PlayerStats
     {
         private AttributeSystem _attributeSystem;
 

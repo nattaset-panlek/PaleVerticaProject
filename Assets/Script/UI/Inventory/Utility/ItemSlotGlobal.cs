@@ -38,7 +38,7 @@ public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider
             if (activeSource is EquipmentSlotUI sourceSlot)
             {
                 int slotIdx = Database.GetDefaultSlotForType(sourceSlot.TargetSlot);
-                GameData.Player.EquipmentManager.Equip(slotIdx, null);
+                GameData.Player.Equipment.Equip(slotIdx, null);
             }
         }
     }
@@ -115,7 +115,7 @@ public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider
                 items.Add(new ContextMenuItem("Unequip", () =>
                 {
                     int targetSlot = Database.GetDefaultSlotForType(equipment.Slot);
-                    GameData.Player.EquipmentManager.Equip(targetSlot, null);
+                    GameData.Player.Equipment.Equip(targetSlot, null);
                 }));
             }
             else
@@ -123,7 +123,7 @@ public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider
                 items.Add(new ContextMenuItem("Equip", () =>
                 {
                     // SmartEquip จะตัดสิน slot ที่ถูกต้องเองอัตโนมัติ
-                    GameData.Player.EquipmentManager.SmartEquip(captured);
+                    GameData.Player.Equipment.SmartEquip(captured);
                 }));
             }
         }
@@ -134,14 +134,14 @@ public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider
                 items.Add(new ContextMenuItem("Take Off", () =>
                 {
                     int slotIdx = (int)costume.Slot;
-                    GameData.Player.CostumeManager.Unequip(slotIdx);
+                    GameData.Player.Costumes.Unequip(slotIdx);
                 }));
             }
             else
             {
                 items.Add(new ContextMenuItem("Wear", () =>
                 {
-                    GameData.Player.CostumeManager.Equip(captured);
+                    GameData.Player.Costumes.Equip(captured);
                 }));
             }
         }
@@ -178,11 +178,11 @@ public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider
     {
         if (GameData.Player != null)
         {
-            if (GameData.Player.EquipmentManager != null)
-                GameData.Player.EquipmentManager.OnEquipmentChanged += OnEquipmentChanged;
+            if (GameData.Player.Equipment != null)
+                GameData.Player.Equipment.OnEquipmentChanged += OnEquipmentChanged;
                 
-            if (GameData.Player.CostumeManager != null)
-                GameData.Player.CostumeManager.OnCostumeChanged += OnCostumeChanged;
+            if (GameData.Player.Costumes != null)
+                GameData.Player.Costumes.OnCostumeChanged += OnCostumeChanged;
         }
     }
 
@@ -190,11 +190,11 @@ public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider
     {
         if (GameData.Player != null)
         {
-            if (GameData.Player.EquipmentManager != null)
-                GameData.Player.EquipmentManager.OnEquipmentChanged -= OnEquipmentChanged;
+            if (GameData.Player.Equipment != null)
+                GameData.Player.Equipment.OnEquipmentChanged -= OnEquipmentChanged;
                 
-            if (GameData.Player.CostumeManager != null)
-                GameData.Player.CostumeManager.OnCostumeChanged -= OnCostumeChanged;
+            if (GameData.Player.Costumes != null)
+                GameData.Player.Costumes.OnCostumeChanged -= OnCostumeChanged;
         }
     }
 

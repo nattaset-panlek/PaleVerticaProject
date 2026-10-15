@@ -15,9 +15,9 @@ namespace CoreSystem.Data
         public Save.PlayerDataModel Data { get; set; } = new Save.PlayerDataModel();
 
         public PlayerInventory Inventory { get; } = new PlayerInventory();
-        public CharacterManager CharacterManager { get; } = new CharacterManager();
-        public EquipmentManager EquipmentManager { get; } = new EquipmentManager();
-        public CostumeManager CostumeManager { get; } = new CostumeManager();
-        public SkillManager SkillManager { get; } = new SkillManager();
+        public PlayerStats Stats { get; } = new PlayerStats();
+        public PlayerEquipment Equipment { get; } = new PlayerEquipment();
+        public PlayerCostumes Costumes { get; } = new PlayerCostumes();
+        public PlayerSkills Skills { get; } = new PlayerSkills();
     }
 }

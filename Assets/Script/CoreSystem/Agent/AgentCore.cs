@@ -208,14 +208,14 @@ namespace CoreSystem.Controllers
 
         private void OnEnable()
         {
-            AgentGroup.Register(this);
+            AgentRegistry.Register(this);
             if (_character != null)
                 _character.OnTakeDamage += HandleTakeDamage;
         }
 
         private void OnDisable()
         {
-            AgentGroup.Unregister(this);
+            AgentRegistry.Unregister(this);
             if (_character != null)
                 _character.OnTakeDamage -= HandleTakeDamage;
         }
@@ -334,7 +334,7 @@ namespace CoreSystem.Controllers
             {
                 _target = closest;
                 SetState(AIState.Chase);
-                AgentGroup.AlertGroup(this, _target, AlertRadius);
+                AgentRegistry.AlertGroup(this, _target, AlertRadius);
             }
         }
 
@@ -803,20 +803,20 @@ namespace CoreSystem.Controllers
             {
                 _target = atk.transform;
                 SetState(AIState.Chase);
-                AgentGroup.AlertGroup(this, _target, AlertRadius);
+                AgentRegistry.AlertGroup(this, _target, AlertRadius);
                 _nextDecisionTime = Time.time;
             }
             else if (Behavior == AIBehaviorType.Coward)
             {
                 _target = atk.transform;
                 SetState(AIState.Flee);
-                AgentGroup.AlertGroup(this, _target, AlertRadius);
+                AgentRegistry.AlertGroup(this, _target, AlertRadius);
             }
             else if (Behavior == AIBehaviorType.Aggressive && _target == null)
             {
                 _target = atk.transform;
                 SetState(AIState.Chase);
-                AgentGroup.AlertGroup(this, _target, AlertRadius);
+                AgentRegistry.AlertGroup(this, _target, AlertRadius);
             }
         }
 
@@ -831,7 +831,7 @@ namespace CoreSystem.Controllers
                 SetState(AIState.Dead);
                 UpdateAnimation(false);
                 if (Anim != null) Anim.SetTrigger(DeadTriggerParam);
-                AgentGroup.Unregister(this);
+                AgentRegistry.Unregister(this);
 
                 if (_spawnedStatusBar != null)
                 {
@@ -877,7 +877,7 @@ namespace CoreSystem.Controllers
                 Anim.Update(0f);
             }
 
-            AgentGroup.Register(this);
+            AgentRegistry.Register(this);
             _nextDecisionTime = Time.time + 0.5f;
         }
 

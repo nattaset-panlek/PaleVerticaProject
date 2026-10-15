@@ -82,7 +82,7 @@ namespace CoreSystem.Tests
         [Test]
         public void UniquePassive_RegistryMatchesKnownIds()
         {
-            CollectionAssert.AreEquivalent(ExpectedPassiveTypes, UniquePassiveManager.RegisteredTypes);
+            CollectionAssert.AreEquivalent(ExpectedPassiveTypes, UniquePassiveSystem.RegisteredTypes);
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace CoreSystem.Tests
         {
             foreach (var pair in ExpectedPassiveTypes)
             {
-                var passive = UniquePassiveManager.CreatePassive(pair.Key);
+                var passive = UniquePassiveSystem.CreatePassive(pair.Key);
                 Assert.IsNotNull(passive, pair.Key);
                 Assert.AreEqual(pair.Value, passive.GetType(), pair.Key);
             }
@@ -99,9 +99,9 @@ namespace CoreSystem.Tests
         [Test]
         public void UniquePassive_InternalAndUnknownIdsReturnNull()
         {
-            Assert.IsNull(UniquePassiveManager.CreatePassive(BloodBleedingDOTUniquePassive.PassiveId));
-            Assert.IsNull(UniquePassiveManager.CreatePassive("DoesNotExist"));
-            Assert.IsNull(UniquePassiveManager.CreatePassive(null));
+            Assert.IsNull(UniquePassiveSystem.CreatePassive(BloodBleedingDOTUniquePassive.PassiveId));
+            Assert.IsNull(UniquePassiveSystem.CreatePassive("DoesNotExist"));
+            Assert.IsNull(UniquePassiveSystem.CreatePassive(null));
         }
         #endregion
     }

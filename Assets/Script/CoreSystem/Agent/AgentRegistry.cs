@@ -9,7 +9,7 @@ namespace CoreSystem.Controllers
     /// Allows agents to find team members and issue group alerts.
     /// GroupID = 0 means Solo (not in any group).
     /// </summary>
-    public static class AgentGroup
+    public static class AgentRegistry
     {
         private static readonly Dictionary<int, List<AgentCore>> _groups = new Dictionary<int, List<AgentCore>>();
 

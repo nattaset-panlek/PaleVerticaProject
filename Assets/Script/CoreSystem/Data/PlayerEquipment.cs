@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace CoreSystem.Data
 {
-    public class EquipmentManager 
+    public class PlayerEquipment 
     {
         private Entity.Character _character;
         

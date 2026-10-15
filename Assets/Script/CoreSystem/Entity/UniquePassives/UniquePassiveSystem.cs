@@ -5,7 +5,7 @@ using CoreSystem.Utility;
 
 namespace CoreSystem.Entity.UniquePassives
 {
-    public class UniquePassiveManager
+    public class UniquePassiveSystem
     {
         #region [Variables/Fields]
         private static readonly AttributedTypeRegistry<string, UniquePassive, UniquePassiveIdAttribute> Registry =

@@ -33,14 +33,14 @@ public class CostumeSlotUI : MonoBehaviour, IItemProvider, IDropHandler
 
     private void Awake()
     {
-        if (GameData.Player?.CostumeManager != null)
-            GameData.Player.CostumeManager.OnCostumeChanged += UpdateSlot;
+        if (GameData.Player?.Costumes != null)
+            GameData.Player.Costumes.OnCostumeChanged += UpdateSlot;
     }
 
     private void OnDestroy()
     {
-        if (GameData.Player?.CostumeManager != null)
-            GameData.Player.CostumeManager.OnCostumeChanged -= UpdateSlot;
+        if (GameData.Player?.Costumes != null)
+            GameData.Player.Costumes.OnCostumeChanged -= UpdateSlot;
     }
 
     private void OnEnable()
@@ -92,13 +92,13 @@ public class CostumeSlotUI : MonoBehaviour, IItemProvider, IDropHandler
                 return;
             }
 
-            GameData.Player.CostumeManager.Equip(costumeInst);
+            GameData.Player.Costumes.Equip(costumeInst);
         }
     }
 
     public void UpdateSlot(CostumeInstance changedInstance)
     {
-        CostumeInstance currentCostume = GameData.Player.CostumeManager.GetCostume(TargetSlot);
+        CostumeInstance currentCostume = GameData.Player.Costumes.GetCostume(TargetSlot);
         CostumeItem = currentCostume;
 
         var hoverableUI = GetComponent<HoverableUI>() ?? gameObject.AddComponent<HoverableUI>();
@@ -161,7 +161,7 @@ public class CostumeSlotUI : MonoBehaviour, IItemProvider, IDropHandler
         {
             items.Add(new ContextMenuItem("Unequip", () =>
             {
-                GameData.Player.CostumeManager.Unequip((int)TargetSlot);
+                GameData.Player.Costumes.Unequip((int)TargetSlot);
             }));
 
             items.Add(new ContextMenuItem("Info", () => 

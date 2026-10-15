@@ -22,10 +22,10 @@ namespace CoreSystem.Entity
             
             // Connect global Player Managers to this specific instance
             GameData.Player.PlayerCharacterModel = this;
-            GameData.Player.CharacterManager.Bind(this.attributeSystem);
-            GameData.Player.SkillManager.Bind(this.skillCaster);
-            GameData.Player.EquipmentManager.Bind(this);
-            GameData.Player.CostumeManager.Bind(this);
+            GameData.Player.Stats.Bind(this.attributeSystem);
+            GameData.Player.Skills.Bind(this.skillCaster);
+            GameData.Player.Equipment.Bind(this);
+            GameData.Player.Costumes.Bind(this);
 
             // Screen Shake on Take Damage
             OnTakeDamage += (attacker, damage) => {
@@ -241,7 +241,7 @@ namespace CoreSystem.Entity
                     {
                         row.Button("Button", "Equip", () => 
                         {
-                            GameData.Player.EquipmentManager.SmartEquip(instance);
+                            GameData.Player.Equipment.SmartEquip(instance);
                             RequestRebuild();
                         });
                     }
@@ -249,7 +249,7 @@ namespace CoreSystem.Entity
                     {
                         row.Button("Button", "Wear", () => 
                         {
-                            GameData.Player.CostumeManager.Equip(instance);
+                            GameData.Player.Costumes.Equip(instance);
                             RequestRebuild();
                         });
                     }
@@ -277,7 +277,7 @@ namespace CoreSystem.Entity
                     {
                         row.Button("Button", "X", () => 
                         {
-                            GameData.Player.EquipmentManager.Equip(slotIndex, null);
+                            GameData.Player.Equipment.Equip(slotIndex, null);
                             RequestRebuild();
                         });
                     }
@@ -296,7 +296,7 @@ namespace CoreSystem.Entity
                     {
                         row.Button("Button", "X", () => 
                         {
-                            GameData.Player.CostumeManager.Unequip(slotIndex);
+                            GameData.Player.Costumes.Unequip(slotIndex);
                             RequestRebuild();
                         });
                     }
@@ -389,7 +389,7 @@ namespace CoreSystem.Entity
                     {
                         actionCol.Button("Button", $"SOCKET {_selectedFragment.Name} into {_selectedSocketItem.Name}", () => 
                         {
-                            GameData.Player.EquipmentManager.SocketFragment(_selectedSocketItem, _selectedFragment);
+                            GameData.Player.Equipment.SocketFragment(_selectedSocketItem, _selectedFragment);
                             if (_selectedFragment.Quantity <= 0) _selectedFragment = null;
                             RequestRebuild();
                         });
@@ -930,11 +930,11 @@ namespace CoreSystem.Entity
 
                     if (rec.EquippedSlotIndex >= 0 && instance is EquipmentInstance eqInst)
                     {
-                        GameData.Player.EquipmentManager.Equip(rec.EquippedSlotIndex, eqInst);
+                        GameData.Player.Equipment.Equip(rec.EquippedSlotIndex, eqInst);
                     }
                     else if (rec.CostumeSlotIndex >= 0 && instance is CostumeInstance costumeInst)
                     {
-                        GameData.Player.CostumeManager.Equip(costumeInst);
+                        GameData.Player.Costumes.Equip(costumeInst);
                     }
                 }
             }

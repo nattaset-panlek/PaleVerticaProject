@@ -53,10 +53,10 @@ public class EquipmentSlotUI : MonoBehaviour, IItemProvider, IDropHandler
 
             // ResolveSmartSlot จะตัดสินว่า item ชิ้นนี้ควรลงที่ slot ไหน
             int requestedSlot = Database.GetDefaultSlotForType(TargetSlot);
-            int resolvedSlot  = GameData.Player.EquipmentManager.ResolveSmartSlot(equipment, requestedSlot);
+            int resolvedSlot  = GameData.Player.Equipment.ResolveSmartSlot(equipment, requestedSlot);
 
             if (resolvedSlot >= 0)
-                GameData.Player.EquipmentManager.Equip(resolvedSlot, equipInst);
+                GameData.Player.Equipment.Equip(resolvedSlot, equipInst);
         }
     }
 
@@ -116,14 +116,14 @@ public class EquipmentSlotUI : MonoBehaviour, IItemProvider, IDropHandler
 
     private void Awake()
     {
-        if (GameData.Player?.EquipmentManager != null)
-            GameData.Player.EquipmentManager.OnEquipmentChanged += UpdateSlot;
+        if (GameData.Player?.Equipment != null)
+            GameData.Player.Equipment.OnEquipmentChanged += UpdateSlot;
     }
 
     private void OnDestroy()
     {
-        if (GameData.Player?.EquipmentManager != null)
-            GameData.Player.EquipmentManager.OnEquipmentChanged -= UpdateSlot;
+        if (GameData.Player?.Equipment != null)
+            GameData.Player.Equipment.OnEquipmentChanged -= UpdateSlot;
     }
 
     private void OnEnable()
@@ -133,7 +133,7 @@ public class EquipmentSlotUI : MonoBehaviour, IItemProvider, IDropHandler
 
     public void UpdateSlot(EquipmentInstance changedInstance)
     {
-        EquipmentInstance currentEquip = GameData.Player.EquipmentManager.GetEquipment(TargetSlot);
+        EquipmentInstance currentEquip = GameData.Player.Equipment.GetEquipment(TargetSlot);
         EquipmentItem = currentEquip;
 
         var hoverableUI = GetComponent<HoverableUI>() ?? gameObject.AddComponent<HoverableUI>();
@@ -194,7 +194,7 @@ public class EquipmentSlotUI : MonoBehaviour, IItemProvider, IDropHandler
             items.Add(new ContextMenuItem("Unequip", () =>
             {
                 int targetSlotIdx = Database.GetDefaultSlotForType(TargetSlot);
-                GameData.Player.EquipmentManager.Equip(targetSlotIdx, null);
+                GameData.Player.Equipment.Equip(targetSlotIdx, null);
             }));
 
             items.Add(new ContextMenuItem("Info", () => 

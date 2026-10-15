@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace CoreSystem.Data
 {
-    public class SkillManager 
+    public class PlayerSkills 
     {
         private SkillCaster _skillCaster;
 

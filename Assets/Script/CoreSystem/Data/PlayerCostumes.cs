@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace CoreSystem.Data
 {
-    public class CostumeManager
+    public class PlayerCostumes
     {
         private Entity.Character _character;
         public Action<CostumeInstance> OnCostumeChanged;

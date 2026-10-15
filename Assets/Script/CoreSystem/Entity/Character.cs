@@ -29,8 +29,8 @@ namespace CoreSystem.Entity
         public SkillCaster skillCaster = new SkillCaster();
         public CommandDirector commandDirector = new CommandDirector();
         public ExperienceSystem expSystem = new ExperienceSystem();
-        private CoreSystem.Entity.UniquePassives.UniquePassiveManager _uniquePassives = new CoreSystem.Entity.UniquePassives.UniquePassiveManager();
-        public CoreSystem.Entity.UniquePassives.UniquePassiveManager UniquePassives => _uniquePassives;
+        private CoreSystem.Entity.UniquePassives.UniquePassiveSystem _uniquePassives = new CoreSystem.Entity.UniquePassives.UniquePassiveSystem();
+        public CoreSystem.Entity.UniquePassives.UniquePassiveSystem UniquePassives => _uniquePassives;
 
         [Header("Modules")]
         public Controllers.FaceDirectionModule FaceDirection = new Controllers.FaceDirectionModule();

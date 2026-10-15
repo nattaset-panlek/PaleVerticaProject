@@ -77,12 +77,12 @@ public class AttributeListManager : MonoBehaviour
 
     public void Awake()
     {
-        GameData.Player.CharacterManager.OnAttributesChanged += OnAttributesChanged;
+        GameData.Player.Stats.OnAttributesChanged += OnAttributesChanged;
     }
 
     public void OnDestroy()
     {
-        GameData.Player.CharacterManager.OnAttributesChanged -= OnAttributesChanged;
+        GameData.Player.Stats.OnAttributesChanged -= OnAttributesChanged;
     }
 
     private void OnAttributesChanged()
@@ -136,7 +136,7 @@ public class AttributeListManager : MonoBehaviour
             }
 
             var template = Database.GetAttribute(attribute);
-            var attrData = GameData.Player.CharacterManager.GetAttribute(attribute);
+            var attrData = GameData.Player.Stats.GetAttribute(attribute);
 
             var go = Instantiate(AttributeListBlockPrefab, transform);
             
@@ -193,7 +193,7 @@ public class AttributeListManager : MonoBehaviour
 
     private void CalculateASPDValue(out string label, out string valueStr, out string tooltipTitle, out string tooltipDesc)
     {
-        var manager = GameData.Player.CharacterManager;
+        var manager = GameData.Player.Stats;
         var template = Database.GetAttribute(AttributeType.ASPD);
         label = template != null ? template.Name : "ASPD";
         tooltipTitle = template != null ? $"<color=#25E3B7>{template.FullName}</color>" : "Attack Speed";
@@ -235,7 +235,7 @@ public class AttributeListManager : MonoBehaviour
 
     private void CalculateConsolidatedValue(AttributeType type, out string label, out string valueStr, out string tooltipTitle, out string tooltipDesc)
     {
-        var manager = GameData.Player.CharacterManager;
+        var manager = GameData.Player.Stats;
         label = "";
         valueStr = "";
         tooltipTitle = "";
@@ -329,7 +329,7 @@ public class AttributeListManager : MonoBehaviour
             else
             {
                 var template = Database.GetAttribute(attribute);
-                var attrData = GameData.Player.CharacterManager.GetAttribute(attribute);
+                var attrData = GameData.Player.Stats.GetAttribute(attribute);
                 _activeBlocks[blockIndex].Setup(template, attrData);
             }
 

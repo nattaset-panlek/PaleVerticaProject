@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CoreSystem.Data.Save
 {
-    public static class SaveManager
+    public static class SaveStorage
     {
         #region [Properties]
         public static string SaveFolderPath => Path.Combine(Application.persistentDataPath, "Saves");
@@ -35,12 +35,12 @@ namespace CoreSystem.Data.Save
                 string filePath = GetSlotFilePath(slotIndex);
                 File.WriteAllText(filePath, json);
 
-                Debug.Log($"[SaveManager] Saved slot {slotIndex} to: {filePath}");
+                Debug.Log($"[SaveStorage] Saved slot {slotIndex} to: {filePath}");
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[SaveManager] Failed to save slot {slotIndex}: {ex.Message}");
+                Debug.LogError($"[SaveStorage] Failed to save slot {slotIndex}: {ex.Message}");
                 return false;
             }
         }
@@ -50,7 +50,7 @@ namespace CoreSystem.Data.Save
             string filePath = GetSlotFilePath(slotIndex);
             if (!File.Exists(filePath))
             {
-                Debug.LogWarning($"[SaveManager] Save slot file not found: {filePath}");
+                Debug.LogWarning($"[SaveStorage] Save slot file not found: {filePath}");
                 return null;
             }
 
@@ -61,7 +61,7 @@ namespace CoreSystem.Data.Save
             }
             catch (Exception ex)
             {
-                Debug.LogError($"[SaveManager] Failed to load slot {slotIndex}: {ex.Message}");
+                Debug.LogError($"[SaveStorage] Failed to load slot {slotIndex}: {ex.Message}");
                 return null;
             }
         }
@@ -79,12 +79,12 @@ namespace CoreSystem.Data.Save
                 try
                 {
                     File.Delete(filePath);
-                    Debug.Log($"[SaveManager] Deleted save slot {slotIndex}");
+                    Debug.Log($"[SaveStorage] Deleted save slot {slotIndex}");
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogError($"[SaveManager] Failed to delete slot {slotIndex}: {ex.Message}");
+                    Debug.LogError($"[SaveStorage] Failed to delete slot {slotIndex}: {ex.Message}");
                     return false;
                 }
             }
@@ -115,7 +115,7 @@ namespace CoreSystem.Data.Save
                 }
                 catch (Exception ex)
                 {
-                    Debug.LogWarning($"[SaveManager] Failed to read slot info from {file}: {ex.Message}");
+                    Debug.LogWarning($"[SaveStorage] Failed to read slot info from {file}: {ex.Message}");
                 }
             }
 

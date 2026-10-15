@@ -19,8 +19,8 @@ namespace CoreSystem.Data.Tests
             // 2. Bind Attribute Data 
             if (playerAttributeSystem != null)
             {
-                GameData.Player.CharacterManager.Bind(playerAttributeSystem);
-                Debug.Log($"[Attribute] Player Base STR: {GameData.Player.CharacterManager.Str}");
+                GameData.Player.Stats.Bind(playerAttributeSystem);
+                Debug.Log($"[Attribute] Player Base STR: {GameData.Player.Stats.Str}");
             }
 
             // Test new Database routing
