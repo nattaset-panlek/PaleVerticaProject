@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using CoreSystem.Utile;
+using CoreSystem.Utility;
 using UnityEngine;
 
 namespace CoreSystem.Combat

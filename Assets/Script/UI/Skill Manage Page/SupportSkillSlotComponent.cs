@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using CoreSystem.Skills;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 using CoreSystem.UI.Inventory;
 using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Model;

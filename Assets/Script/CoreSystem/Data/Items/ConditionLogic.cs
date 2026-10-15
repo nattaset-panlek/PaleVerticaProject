@@ -4,22 +4,6 @@ using CoreSystem.Attributes;
 
 namespace CoreSystem.Data.Items
 {
-    public enum ConditionOperator
-    {
-        GreaterThan,
-        LessThan,
-        Equal,
-        GreaterOrEqual,
-        LessOrEqual
-    }
-
-    public enum ConditionOperatorJoin
-    {
-        None,
-        Add,
-        Subtract
-    }
-
     [System.Serializable]
     public class ConditionLogic
     {

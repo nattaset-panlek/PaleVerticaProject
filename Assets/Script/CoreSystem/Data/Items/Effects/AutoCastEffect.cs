@@ -5,12 +5,6 @@ using UnityEngine;
 
 namespace CoreSystem.Data.Items.Effects
 {
-    public enum AutoCastTrigger
-    {
-        OnHit,
-        OnTakeDamage
-    }
-
     [System.Serializable]
     public class AutoCastEffect : EquipmentEffect
     {

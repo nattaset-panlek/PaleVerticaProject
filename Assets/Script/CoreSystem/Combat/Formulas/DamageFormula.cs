@@ -5,43 +5,6 @@ using UnityEngine;
 
 namespace CoreSystem.Combat
 {
-    public struct DamageInput
-    {
-        #region [Variables/Fields]
-        public float BaseDamage;
-        public bool HasCasterStats;
-        public float CasterPower;
-        public float CasterWeaponPower;
-        public float ElementAdvantage;
-        public float ElementBonus;
-        public float ElementResist;
-        public float SizeBonus;
-        public float SizeResist;
-        public float RaceBonus;
-        public float RaceResist;
-        public float CritRate;
-        public float CritResist;
-        public float CritDamage;
-        public float TargetDefense;
-        #endregion
-    }
-
-    public struct DamageOffense
-    {
-        #region [Variables/Fields]
-        public float RawDamage;
-        public bool IsCritical;
-        #endregion
-    }
-
-    public struct DamageResult
-    {
-        #region [Variables/Fields]
-        public float Damage;
-        public bool IsCritical;
-        #endregion
-    }
-
     public static class DamageFormula
     {
         #region [Variables/Fields]

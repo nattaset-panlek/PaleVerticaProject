@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CoreSystem.Data.Save;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 
 namespace CoreSystem.UI.Hotbar
 {

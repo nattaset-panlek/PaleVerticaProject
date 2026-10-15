@@ -40,7 +40,7 @@ public class PassiveSkillLoader : UIWindow
     public Color SelectedLineColor = new Color(0.5f, 0.9f, 1f, 1f);
 
     private Dictionary<int, Vector2>          _nodePositions = new Dictionary<int, Vector2>();
-    private Dictionary<int, PassiveSkilNode>  _nodeObjects   = new Dictionary<int, PassiveSkilNode>();
+    private Dictionary<int, PassiveSkillNode>  _nodeObjects   = new Dictionary<int, PassiveSkillNode>();
     private Dictionary<long, UILineRenderer>  _lineObjects   = new Dictionary<long, UILineRenderer>();
     private HashSet<int>                      _selectedNodeIds = new HashSet<int>();
 
@@ -388,7 +388,7 @@ public class PassiveSkillLoader : UIWindow
             _nodePositions[node.id] = pos;
 
             var go = Instantiate(prefab, _nodesRoot);
-            var skillNode = go.GetComponent<PassiveSkilNode>();
+            var skillNode = go.GetComponent<PassiveSkillNode>();
             _nodeObjects[node.id] = skillNode;
 
             skillNode.SetUp(node, pos, PassiveSkillState.CannotUpgrade);

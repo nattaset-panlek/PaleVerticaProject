@@ -6,16 +6,6 @@ using UnityEngine.UI;
 
 namespace UI.Components
 {
-    [System.Serializable]
-    public class Tab
-    {
-        public Button ActionButtonTabs;
-        public GameObject Default;
-        public GameObject Active;
-        public GameObject Page;
-        public UnityEvent OnActive;
-    }
-
     [AddComponentMenu("UI/Components/Tabs Manager")]
     public class TabsManager : MonoBehaviour
     {

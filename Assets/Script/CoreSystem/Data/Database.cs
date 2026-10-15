@@ -434,22 +434,4 @@ namespace CoreSystem.Data
             }
         }
     }
-
-
-    [System.Serializable]
-    public class CharacterModel
-    {
-        public int Id;
-        public string Name;
-        public int Faction;
-        public int BaseHP;
-        public int BaseMP;
-        public string PrefabPath;
-    }
-
-    [System.Serializable]
-    public class CharacterDataList
-    {
-        public List<CharacterModel> Characters;
-    }
 }

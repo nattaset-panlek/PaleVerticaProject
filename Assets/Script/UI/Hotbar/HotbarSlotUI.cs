@@ -9,7 +9,7 @@ using CoreSystem.Skills;
 using CoreSystem.Data;
 using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Model;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 using CoreSystem.UI.Inventory;
 
 namespace CoreSystem.UI.Hotbar

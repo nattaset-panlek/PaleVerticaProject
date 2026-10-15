@@ -5,24 +5,6 @@ using System.Linq;
 
 namespace CoreSystem.Entity
 {
-    public enum RoutineActionType
-    {
-        Idle,           // AI stays still, clears command
-        Roam,           // AI goes back to AgentCore native roaming
-        MoveToPoint,    // AI forced to move to a specific Transform point and stays there
-        FollowTarget    // AI forced to follow a specific Transform
-    }
-
-    [System.Serializable]
-    public class NPCRoutineTask
-    {
-        public string TaskName;
-        [Range(0, 23)] public int Hour;
-        [Range(0, 59)] public int Minute;
-        public RoutineActionType ActionType;
-        public Transform TargetPoint;   // Used for MoveToPoint and FollowTarget
-    }
-
     [RequireComponent(typeof(NonPlayerCharacter))]
     public class NPCRoutine : MonoBehaviour
     {

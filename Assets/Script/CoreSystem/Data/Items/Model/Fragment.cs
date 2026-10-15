@@ -35,11 +35,4 @@ namespace CoreSystem.Data.Items.Model
             };
         }
     }
-
-    public enum FragmentType
-    {
-        BasicFragment, // Attribute bonuses
-        Rune,          // Skills or Auto-casts
-        Essence        // Complex conditional bonuses
-    }
 }

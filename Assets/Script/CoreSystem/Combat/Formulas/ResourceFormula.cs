@@ -2,15 +2,6 @@ using UnityEngine;
 
 namespace CoreSystem.Combat
 {
-    public struct ResourceCost
-    {
-        #region [Variables/Fields]
-        public float Mana;
-        public float Hp;
-        public bool IsHpCost;
-        #endregion
-    }
-
     public static class ResourceFormula
     {
         #region [Variables/Fields]

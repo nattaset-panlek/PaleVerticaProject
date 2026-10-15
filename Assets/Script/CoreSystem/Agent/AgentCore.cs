@@ -9,18 +9,6 @@ using UnityEngine;
 
 namespace CoreSystem.Controllers
 {
-    public enum AIState
-    {
-        Idle,
-        Roam,
-        Chase,
-        Attack,
-        Flee,
-        Dead,
-        CommandMove,
-        CommandFollow
-    }
-
     [RequireComponent(typeof(Character))]
     public class AgentCore : MonoBehaviour
     {

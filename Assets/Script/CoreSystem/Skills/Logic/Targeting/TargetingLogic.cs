@@ -4,13 +4,6 @@ using UnityEngine;
 
 namespace CoreSystem.Skills.Logic
 {
-    public enum TargetAlignment
-    {
-        Enemy,
-        Ally,
-        All
-    }
-
     [System.Serializable]
     public abstract class TargetingLogic
     {

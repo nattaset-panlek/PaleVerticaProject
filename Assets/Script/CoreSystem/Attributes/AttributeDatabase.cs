@@ -90,24 +90,4 @@ namespace CoreSystem.Attributes
         public static List<AttributeTemplate> GetAllAttributes()
             => new List<AttributeTemplate>(_byId.Values);
     }
-
-    // ─── Serialisation helpers (used by JsonUtility) ──────────────────────────
-
-    [System.Serializable]
-    public class AttributeDataList
-    {
-        public List<AttributeEntry> Attributes;
-    }
-
-    [System.Serializable]
-    public class AttributeEntry
-    {
-        public int    Id;
-        public string Icon;
-        public string Name;
-        public string FullName;
-        public string Description;
-        public bool   IsPercent;
-        public string Mapping;
-    }
 }

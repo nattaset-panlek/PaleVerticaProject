@@ -3,34 +3,6 @@ using UnityEngine;
 
 namespace CoreSystem.Combat
 {
-    public struct CastTimeInput
-    {
-        #region [Variables/Fields]
-        public float Dex;
-        public float Int;
-        public float VariableFlat;
-        public float GearVariableFlat;
-        public float SkillVariableFlat;
-        public float VariablePercent;
-        public float GearVariablePercent;
-        public float SkillVariablePercent;
-        public float FixedFlat;
-        public float FixedPercent;
-        #endregion
-    }
-
-    public struct CastTime
-    {
-        #region [Variables/Fields]
-        public float Variable;
-        public float Fixed;
-        #endregion
-
-        #region [Properties]
-        public float Total => Variable + Fixed;
-        #endregion
-    }
-
     public static class CastTimeFormula
     {
         #region [Variables/Fields]

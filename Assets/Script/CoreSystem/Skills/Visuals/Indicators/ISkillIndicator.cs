@@ -12,13 +12,4 @@ namespace CoreSystem.Skills.Visuals
         void StartExecution(SkillPayload payload);
         void Hide();
     }
-
-
-    public enum IndicatorType
-    {
-        Circle,
-        Line,
-        Cone,
-        Vector
-    }
 }

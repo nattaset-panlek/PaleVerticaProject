@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using CoreSystem.Skills.Logic;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 
 public class BuffIconUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {

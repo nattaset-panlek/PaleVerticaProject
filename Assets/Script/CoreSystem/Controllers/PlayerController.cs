@@ -2,7 +2,7 @@ using CoreSystem.Entity;
 using CoreSystem.Skills;
 using CoreSystem.Skills.Logic;
 using CoreSystem.Skills.Visuals;
-using CoreSystem.Utile;
+using CoreSystem.Utility;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

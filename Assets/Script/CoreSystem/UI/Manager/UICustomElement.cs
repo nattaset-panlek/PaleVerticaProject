@@ -3,13 +3,6 @@ using System.Collections.Generic;
 
 namespace CoreSystem.UI
 {
-    [System.Serializable]
-    public struct UICustomElementMapping
-    {
-        public string Key;
-        public GameObject Target;
-    }
-
     public class UICustomElement : MonoBehaviour
     {
         #region [Variables/Fields]

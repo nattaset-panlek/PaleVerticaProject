@@ -3,7 +3,7 @@ using CoreSystem.Data;
 using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Model;
 using CoreSystem.UI.Inventory;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;

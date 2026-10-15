@@ -3,17 +3,6 @@ using UnityEngine;
 
 namespace CoreSystem.Skills.Logic.Effects
 {
-    public enum MovementType
-    {
-        TeleportToTarget,
-        DashForward,
-        DashToTarget,
-        PushTargetAway,
-        PullTargetIn,
-        StunTarget,
-        PullToTargetPosition
-    }
-
     [CreateAssetMenu(fileName = "NewMovementEffect", menuName = "Skill System/Effects/Movement")]
     public class MovementEffectLogic : EffectLogic
     {
@@ -167,5 +156,3 @@ namespace CoreSystem.Skills.Logic.Effects
         }
     }
 }
-
-

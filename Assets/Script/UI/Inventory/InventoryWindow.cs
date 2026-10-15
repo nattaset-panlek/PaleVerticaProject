@@ -3,7 +3,7 @@ using UnityEngine;
 using CoreSystem.Data;
 using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Model;
-using CoreSystem.Utile;
+using CoreSystem.Utility;
 
 namespace CoreSystem.UI.Inventory
 {

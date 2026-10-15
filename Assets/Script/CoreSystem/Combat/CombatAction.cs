@@ -3,13 +3,6 @@ using CoreSystem.Skills;
 
 namespace CoreSystem.Combat
 {
-    public abstract class EffectSpec
-    {
-        #region [Properties]
-        public abstract EffectKind Kind { get; }
-        #endregion
-    }
-
     public sealed class CombatAction
     {
         #region [Variables/Fields]

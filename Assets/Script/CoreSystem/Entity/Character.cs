@@ -11,12 +11,6 @@ using UnityEngine.AddressableAssets;
 
 namespace CoreSystem.Entity
 {
-    public enum AutoAttackType
-    {
-        Melee,
-        Range
-    }
-
     public abstract class Character : MonoBehaviour, IEntity
     {
         [Header("Character Identity")]

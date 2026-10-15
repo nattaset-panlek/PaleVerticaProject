@@ -5,12 +5,6 @@ using UnityEngine;
 
 namespace CoreSystem.Skills.Visuals
 {
-    public enum VisualAppearance
-    {
-        TargetPosition,
-        CasterPosition,
-        FollowCaster
-    }
     
     /// <summary>
     /// Component attached to visual effect prefabs that get spawned on skill execution.

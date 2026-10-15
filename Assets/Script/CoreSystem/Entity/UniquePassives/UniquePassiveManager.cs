@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CoreSystem.Skills;
-using CoreSystem.Utile;
+using CoreSystem.Utility;
 
 namespace CoreSystem.Entity.UniquePassives
 {

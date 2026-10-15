@@ -4,14 +4,6 @@ using CoreSystem.Entity;
 
 namespace CoreSystem.Agent
 {
-    public enum NPCGoal
-    {
-        Idle,
-        Defend,
-        GatherResources,
-        RegainHealth
-    }
-
     [RequireComponent(typeof(AgentCore))]
     [RequireComponent(typeof(NonPlayerCharacter))]
     public class NPCBrain : MonoBehaviour

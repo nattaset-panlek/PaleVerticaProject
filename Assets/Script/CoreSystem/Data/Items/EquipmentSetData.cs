@@ -5,13 +5,6 @@ using UnityEngine;
 namespace CoreSystem.Data.Items
 {
     [System.Serializable]
-    public class SetBonusLevel
-    {
-        public int RequiredPieces;
-        public List<EquipmentEffect> BonusEffects = new List<EquipmentEffect>();
-    }
-
-    [System.Serializable]
     public class EquipmentSetData
     {
         public string SetID;

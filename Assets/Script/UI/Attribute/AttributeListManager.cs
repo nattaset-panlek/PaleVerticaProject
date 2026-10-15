@@ -1,6 +1,6 @@
 using CoreSystem;
 using CoreSystem.Data;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 using System.Collections.Generic;
 using UnityEngine;
 

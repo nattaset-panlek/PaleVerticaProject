@@ -3,15 +3,6 @@ using CoreSystem.Attributes;
 
 namespace CoreSystem.Combat
 {
-    public struct StatResult
-    {
-        #region [Variables/Fields]
-        public float FlatSum;
-        public float PercentAddSum;
-        public float Value;
-        #endregion
-    }
-
     public static class StatFormula
     {
         #region [Public Methods]

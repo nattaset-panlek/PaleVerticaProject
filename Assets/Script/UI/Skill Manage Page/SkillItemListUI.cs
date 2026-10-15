@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using CoreSystem.Skills;
 using CoreSystem.Entity;
 using CoreSystem.Attributes;
-using CoreSystem.UI.Utile;
+using CoreSystem.UI.Utility;
 
 namespace CoreSystem.UI.SkillManagePage
 {

@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using CoreSystem.Entity;
-using CoreSystem.Utile;
+using CoreSystem.Utility;
 using CoreSystem.Data;
 
 namespace CoreSystem.UI.GameInterface
