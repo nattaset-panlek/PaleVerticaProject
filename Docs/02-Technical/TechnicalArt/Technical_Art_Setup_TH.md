@@ -8,11 +8,11 @@
 
 ```text
 [1. ไฟล์ Shader]
-Assets/Materail/Shader/Character2DLitMaster.shader
+Assets/Materials/Shader/Character2DLitMaster.shader
        │
        ▼ (คลิกขวา Create -> Material)
 [2. ไฟล์ Material กลาง]
-Assets/Materail/Character2DLitMaster.mat
+Assets/Materials/Character2DLitMaster.mat
        │
        ▼ (ลากมาใส่ในช่อง Master Material ช่องเดียว)
 [3. คอมโพเนนต์บนตัวละคร: EntityVisualController.cs]
@@ -67,11 +67,11 @@ Master Shader วาดเส้นขอบเรืองแสงรอบต
 ## 4. ลำดับขั้นตอนการพัฒนา (Sprint Backlog & Action Plan)
 
 - [ ] **ขั้นตอนที่ 1: สร้าง Master 2D Character Shader**
-  - ตำแหน่งไฟล์: `Assets/Materail/Shader/Character2DLitMaster.shader`
+  - ตำแหน่งไฟล์: `Assets/Materials/Shader/Character2DLitMaster.shader`
   - รองรับ: URP 2D Lit, `_FlashAmount`, `_FlashColor`, `_OutlineColor`, `_OutlineWidth`, `_StatusColor`, `_DissolveAmount`
 
 - [ ] **ขั้นตอนที่ 2: สร้าง Master Material**
-  - ตำแหน่งไฟล์: `Assets/Materail/Character2DLitMaster.mat`
+  - ตำแหน่งไฟล์: `Assets/Materials/Character2DLitMaster.mat`
   - เลือกใช้ Shader `Character2DLitMaster`
 
 - [ ] **ขั้นตอนที่ 3: สร้าง `EntityVisualController.cs`**

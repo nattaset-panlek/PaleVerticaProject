@@ -48,7 +48,7 @@ public class FloatingStatusBar : MonoBehaviour
             UpdateUI();
 
             // Setup visibility based on character type
-            if (character is PlayerCharacter)
+            if (character.DefaultController == CoreSystem.Entity.CharacterControllerType.Player)
             {
                 if (healthBar != null) healthBar.SetActive(true);
                 if (manaBar != null) manaBar.SetActive(true);

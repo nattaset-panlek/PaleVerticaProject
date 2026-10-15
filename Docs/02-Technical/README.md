@@ -6,7 +6,7 @@ System-level implementation docs, one folder per system. Source code lives in `A
 |---|---|---|
 | `Combat/` | `CoreSystem/Combat` | `CombatCore` pipeline: Gate, Dispatch, Offense, Defense, Riders, Apply |
 | `Attributes/` | `CoreSystem/Attributes`, `CoreSystem/Enums/AttributeType.cs` | Stat pipeline, AdditionalChain, all formulas |
-| `Character/` | `CoreSystem/Entity`, `CoreSystem/Agent`, `CoreSystem/Visuals` | CommandDirector, NPC/AgentCore, EntityVisualController |
+| `Character/` | `CoreSystem/Entity`, `CoreSystem/Agent`, `CoreSystem/Player`, `CoreSystem/Visuals` | Character System (Character, ControlSystem, PlayerCore, AgentCore), architecture plan, visual architecture |
 | `Skills/` | `CoreSystem/Skills` | Unique skills, combo chains, passive V2 plan, skill VFX handover |
 | `SkillTree/` | `CoreSystem/SkillTree` | SkillTree API and JSON export usage |
 | `Items/` | `CoreSystem/Data/Items` | Equipment effect JSON templates, equipment buffs, costumes |

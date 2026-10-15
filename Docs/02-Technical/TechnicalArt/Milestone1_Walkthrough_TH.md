@@ -10,7 +10,7 @@
 | :--- | :--- | :--- |
 | **Settings Script** | `Assets/Script/CoreSystem/Visuals/EntityVisualSettings.cs` | คลาส ScriptableObject โครงสร้างการตั้งค่าภาพส่วนกลาง |
 | **Settings Asset** | `Assets/Resources/Settings/EntityVisualSettings.asset` | ไฟล์ Asset กลางที่ `EntityVisualController` โหลดจาก Path อัตโนมัติ |
-| **Shader** | `Assets/Materail/Shader/Character2DLitMaster.shader` | Master 2D Lit Shader รองรับ Hit Flash, Status Tint, Dissolve |
+| **Shader** | `Assets/Materials/Shader/Character2DLitMaster.shader` | Master 2D Lit Shader รองรับ Hit Flash, Status Tint, Dissolve |
 | **Material (Resources)** | `Assets/Resources/Materials/Character2DLitMaster.mat` | Master Material ใน Resources (โหลดอัตโนมัติ 100%) |
 | **Visual Hub** | `Assets/Script/CoreSystem/Visuals/EntityVisualController.cs` | คอมโพเนนต์ Visual สากลติดบน Entity ทุกตัว (อ่านค่าจาก Settings.asset) |
 | **Combat Juice** | `Assets/Script/CoreSystem/Visuals/CombatJuiceDirector.cs` | ระบบ Hit-Stop (หยุดเวลาชั่วขณะ) และสั่นหน้าจอเมื่อโจมตีโดน |

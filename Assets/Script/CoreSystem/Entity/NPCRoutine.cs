@@ -1,18 +1,19 @@
 using UnityEngine;
+using CoreSystem.Agent;
 using System.Collections.Generic;
 using CoreSystem.Controllers;
 using System.Linq;
 
 namespace CoreSystem.Entity
 {
-    [RequireComponent(typeof(NonPlayerCharacter))]
+    [RequireComponent(typeof(Character))]
     public class NPCRoutine : MonoBehaviour
     {
         #region [Variables/Fields]
         [Header("Routine Schedule")]
         public List<NPCRoutineTask> DailySchedule = new List<NPCRoutineTask>();
 
-        private NonPlayerCharacter _npc;
+        private Character _npc;
         private NPCRoutineTask _currentTask;
         private bool _isInitialized = false;
         #endregion
@@ -20,7 +21,7 @@ namespace CoreSystem.Entity
         #region [Unity Methods]
         private void Awake()
         {
-            _npc = GetComponent<NonPlayerCharacter>();
+            _npc = GetComponent<Character>();
         }
 
         private void Start()
@@ -101,28 +102,20 @@ namespace CoreSystem.Entity
             switch (task.ActionType)
             {
                 case RoutineActionType.Idle:
-                    _npc.ClearCommands();
-                    // Disable roam on AgentCore so they just stand in place
-                    if (_npc.Agent != null) _npc.Agent.CanRoam = false;
+                    AgentCore.Instance?.ClearCommand(_npc);
+                    _npc.AgentProfile.CanRoam = false;
                     break;
                 case RoutineActionType.Roam:
-                    _npc.ClearCommands();
-                    // Ensure roam is enabled
-                    if (_npc.Agent != null) _npc.Agent.CanRoam = true;
+                    AgentCore.Instance?.ClearCommand(_npc);
+                    _npc.AgentProfile.CanRoam = true;
                     break;
                 case RoutineActionType.MoveToPoint:
-                    if (_npc.Agent != null) _npc.Agent.CanRoam = false; // Override roam
-                    if (task.TargetPoint != null)
-                    {
-                        _npc.CommandMoveTo(task.TargetPoint.position);
-                    }
+                    _npc.AgentProfile.CanRoam = false;
+                    if (task.TargetPoint != null) AgentCore.Instance?.CommandMoveTo(_npc, task.TargetPoint.position);
                     break;
                 case RoutineActionType.FollowTarget:
-                    if (_npc.Agent != null) _npc.Agent.CanRoam = false; // Override roam
-                    if (task.TargetPoint != null)
-                    {
-                        _npc.CommandFollow(task.TargetPoint);
-                    }
+                    _npc.AgentProfile.CanRoam = false;
+                    if (task.TargetPoint != null) AgentCore.Instance?.CommandFollow(_npc, task.TargetPoint);
                     break;
             }
         }

@@ -24,7 +24,7 @@ namespace CoreSystem.UI.SkillManagePage
         [SerializeField] private float _horizontalAngleThreshold = 45f;
 
         private SkillInstance _skillInstance;
-        private PlayerCharacter _player;
+        private Character _player;
         private SkillManageWindow _ownerWindow;
         private System.Action _onRefreshCallback;
 
@@ -48,7 +48,7 @@ namespace CoreSystem.UI.SkillManagePage
         #endregion
 
         #region [Public Methods]
-        public void Setup(SkillInstance instance, PlayerCharacter player, SkillManageWindow window, System.Action onRefreshCallback)
+        public void Setup(SkillInstance instance, Character player, SkillManageWindow window, System.Action onRefreshCallback)
         {
             _skillInstance = instance;
             _player = player;

@@ -142,19 +142,16 @@ namespace CoreSystem.Agent
 
         private void ApplyOverrides(GameObject go, SpawnEntry entry)
         {
-            var agent = go.GetComponent<CoreSystem.Agent.AgentCore>();
-            if (agent != null)
-            {
-                if (entry.OverrideBehavior)        agent.Behavior        = entry.Behavior;
-                if (entry.OverrideCombatStyle)     agent.Combat          = entry.Combat;
-                if (entry.OverrideGroupID)         agent.GroupID         = entry.GroupID;
-                if (entry.OverrideDetectionRadius) agent.DetectionRadius = entry.DetectionRadius;
-                if (entry.OverrideAttackRange)     agent.AttackRange     = entry.AttackRange;
-            }
-
             var character = go.GetComponent<CoreSystem.Entity.Character>();
             if (character != null)
             {
+                var profile = character.AgentProfile;
+                if (entry.OverrideBehavior)        profile.Behavior        = entry.Behavior;
+                if (entry.OverrideCombatStyle)     profile.Combat          = entry.Combat;
+                if (entry.OverrideGroupID)         profile.GroupID         = entry.GroupID;
+                if (entry.OverrideDetectionRadius) profile.DetectionRadius = entry.DetectionRadius;
+                if (entry.OverrideAttackRange)     profile.OverrideAttackRange(character, entry.AttackRange);
+
                 var characterData = Database.GetCharacter(entry.CharacterId);
                 if (characterData != null)
                 {

@@ -51,7 +51,7 @@ namespace CoreSystem.SkillTree
                 _button.interactable = (state != PassiveSkillState.CannotUpgrade);
                 _button.onClick.RemoveAllListeners();
                 _button.onClick.AddListener(() => {
-                    PassiveSkillLoader.Instance?.OnNodeClick(node.id);
+                    PassiveTreeWindow.Instance?.OnNodeClick(node.id);
                 });
             }
 

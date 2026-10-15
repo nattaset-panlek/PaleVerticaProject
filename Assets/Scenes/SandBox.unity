@@ -1040,7 +1040,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: AttributeListManager, Assembly-CSharp
+          m_TargetAssemblyTypeName: CoreSystem.UI.AttributePanel.AttributeListView, Assembly-CSharp
           m_MethodName: LoadBasic
           m_Mode: 1
           m_Arguments:
@@ -1106,7 +1106,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PassiveSkillLoader, Assembly-CSharp
+          m_TargetAssemblyTypeName: CoreSystem.SkillTree.PassiveTreeWindow, Assembly-CSharp
           m_MethodName: Initialize
           m_Mode: 1
           m_Arguments:
@@ -1118,13 +1118,12 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
         - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PassiveSkillLoader, Assembly-CSharp
+          m_TargetAssemblyTypeName: CoreSystem.SkillTree.PassiveTreeWindow, Assembly-CSharp
           m_MethodName: LoadFromPlayer
           m_Mode: 2
           m_Arguments:
             m_ObjectArgument: {fileID: 935870572}
-            m_ObjectArgumentAssemblyTypeName: CoreSystem.Entity.PlayerCharacter,
-              Assembly-CSharp
+            m_ObjectArgumentAssemblyTypeName: CoreSystem.Entity.Character, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2176,8 +2175,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7936790367248913855, guid: 0e6921c0e6aee11409b225f6c334b5cb, type: 3}
-      propertyPath: AgentName
+    - target: {fileID: 1077654028377627567, guid: 0e6921c0e6aee11409b225f6c334b5cb, type: 3}
+      propertyPath: agentProfile.AgentName
       value: Dummy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2503,7 +2502,6 @@ GameObject:
   - component: {fileID: 935870568}
   - component: {fileID: 935870573}
   - component: {fileID: 935870572}
-  - component: {fileID: 935870571}
   - component: {fileID: 935870570}
   - component: {fileID: 935870569}
   - component: {fileID: 935870576}
@@ -2559,24 +2557,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b6b42f32f9ce4419d6ea7a39b9168d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &935870571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935870567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 648491eb2d8fbc5489abf5ace373977f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PassivePointText: {fileID: 0}
-  Anim: {fileID: 1819255834}
-  MovingBoolParam: IsMoving
-  DeadTriggerParam: IsDead
-  ModelTransform: {fileID: 1819255833}
-  LockModelRotation: 1
 --- !u!114 &935870572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2586,7 +2566,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 935870567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16183209e215dd149bb26a420d818d3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 29c2b676efdda2e4ba320f0997874c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterId: 0
@@ -2668,7 +2648,13 @@ MonoBehaviour:
   size: 1
   race: 7
   faction: 1
-  ShowDebugUI: 1
+  defaultController: 1
+  Presenter:
+    Anim: {fileID: 1819255834}
+    MovingBoolParam: IsMoving
+    DeadTriggerParam: IsDead
+    ModelTransform: {fileID: 1819255833}
+    LockModelRotation: 1
 --- !u!50 &935870573
 Rigidbody2D:
   serializedVersion: 5

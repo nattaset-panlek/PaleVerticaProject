@@ -165,8 +165,8 @@ namespace CoreSystem.Skills.UniqueSkill
                             // Resurrection logic: if they were dead, bring them back!
                             if (_canResurrect && currentHp <= 0 && newValue > 0)
                             {
-                                var agent = (target as MonoBehaviour)?.GetComponent<AgentCore>();
-                                if (agent != null) agent.Revive(newValue);
+                                var revived = target as Character;
+                                if (revived != null && AgentCore.Instance != null) AgentCore.Instance.Revive(revived, newValue);
                             }
                         }
                     }

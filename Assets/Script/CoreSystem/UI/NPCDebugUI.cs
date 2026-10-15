@@ -2,6 +2,7 @@ using UnityEngine;
 using CoreSystem.Entity;
 using System.Linq;
 using CoreSystem.Data;
+using CoreSystem.Agent;
 
 namespace CoreSystem.UI
 {
@@ -56,13 +57,13 @@ namespace CoreSystem.UI
 
             if (npc != null && player != null)
             {
-                npc.CommandFollow(player.transform);
+                AgentCore.Instance?.CommandFollow(npc, player.transform);
                 Debug.Log($"[NPCDebugUI] Commanded {npc.NpcId} to follow Player.");
             }
             else
             {
                 if (npc == null) Debug.LogWarning($"[NPCDebugUI] Could not find active NPC with ID: {_targetNpcId}");
-                if (player == null) Debug.LogWarning("[NPCDebugUI] Could not find active PlayerCharacter in the scene.");
+                if (player == null) Debug.LogWarning("[NPCDebugUI] No character is currently controlled by PlayerCore.");
             }
         }
 
@@ -73,13 +74,13 @@ namespace CoreSystem.UI
 
             if (npc != null && player != null)
             {
-                npc.CommandMoveTo(player.transform.position);
+                AgentCore.Instance?.CommandMoveTo(npc, player.transform.position);
                 Debug.Log($"[NPCDebugUI] Commanded {npc.NpcId} to move to Player pos {player.transform.position}.");
             }
             else
             {
                 if (npc == null) Debug.LogWarning($"[NPCDebugUI] Could not find active NPC with ID: {_targetNpcId}");
-                if (player == null) Debug.LogWarning("[NPCDebugUI] Could not find active PlayerCharacter in the scene.");
+                if (player == null) Debug.LogWarning("[NPCDebugUI] No character is currently controlled by PlayerCore.");
             }
         }
 
@@ -88,16 +89,14 @@ namespace CoreSystem.UI
             var npc = FindTargetNPC();
             if (npc != null)
             {
-                npc.ClearCommands();
+                AgentCore.Instance?.ClearCommand(npc);
                 Debug.Log($"[NPCDebugUI] Cleared commands for {npc.NpcId}.");
             }
         }
 
-        private NonPlayerCharacter FindTargetNPC()
+        private Character FindTargetNPC()
         {
-            var allNPCs = FindObjectsByType<NonPlayerCharacter>(FindObjectsSortMode.None);
-            var target = allNPCs.FirstOrDefault(n => n.NpcId == _targetNpcId);
-            return target;
+            return CharacterRegistry.All.FirstOrDefault(n => n != null && n.NpcId == _targetNpcId);
         }
         #endregion
     }

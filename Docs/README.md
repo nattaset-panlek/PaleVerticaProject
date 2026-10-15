@@ -24,7 +24,7 @@ System-level implementation docs, grouped by system. See [02-Technical/README.md
 |---|---|
 | Combat | [Combat Core Pipeline](./02-Technical/Combat/Combat_Core_Pipeline.md) |
 | Attributes | [AdditionalValue Standard](./02-Technical/Attributes/AdditionalValue_Standard.md), [All Attribute Formulas](./02-Technical/Attributes/All_Attribute_Formulas.md), [Attribute Mechanics & Classes](./02-Technical/Attributes/Attribute_Mechanics.md) |
-| Character / AI | [Command Director](./02-Technical/Character/Command_Director_Manual.md), [NPC & AgentCore](./02-Technical/Character/NPC_and_AgentCore_Walkthrough.md), [Character Visual Architecture (TH)](./02-Technical/Character/Character_Visual_Architecture_TH.md), [Extensible Visual Architecture (TH)](./02-Technical/Character/Extensible_Visual_Architecture_TH.md) |
+| Character / AI | [Character System](./02-Technical/Character/Character_System.md), [Character Architecture Plan (TH)](./02-Technical/Character/Character_Architecture_Plan_TH.md), [Character Visual Architecture (TH)](./02-Technical/Character/Character_Visual_Architecture_TH.md), [Extensible Visual Architecture (TH)](./02-Technical/Character/Extensible_Visual_Architecture_TH.md) |
 | Skills | [Unique Skills Guide](./02-Technical/Skills/UNIQUE_SKILLS_GUIDE.md), [Skill Combo / Chain (TH)](./02-Technical/Skills/Skill_Combo_Walkthrough_TH.md), [Passive System V2 Planning](./02-Technical/Skills/Passive_System_V2_Planning.md), [Skill Visuals EN](./02-Technical/Skills/Skill_Visuals_Guide_EN.md) / [TH](./02-Technical/Skills/Skill_Visuals_Guide_TH.md) |
 | Skill Tree | [SkillTree API](./02-Technical/SkillTree/SkillTreeAPI.md), [Using Exported Skill Tree JSON](./02-Technical/SkillTree/HowToUseExportedJSON.md) |
 | Items | [Effect Templates](./02-Technical/Items/EffectTemplates.md), [Equipment Buff Support](./02-Technical/Items/EquipmentBuffSupport.md), [Costume System](./02-Technical/Items/Costume_System_Walkthrough.md) |
@@ -49,6 +49,7 @@ System-level implementation docs, grouped by system. See [02-Technical/README.md
 Superseded or duplicate material kept for reference only. Do not treat as current.
 - `GAME_MAP_DESIGN_ANALYSIS_duplicate.md` (identical copy of the 01-Design map analysis, was in project root)
 - `REALM_OF_HERO_SYSTEM_MAP_2026-03-29.txt` (old AI-generated megadoc, was in project root)
+- `Command_Director_Manual.md`, `NPC_and_AgentCore_Walkthrough.md` (superseded by Character System, 2026-10-16)
 
 ## Conventions
 - File names: `Topic_Name.md`; add `_TH` / `_EN` suffix for language variants.

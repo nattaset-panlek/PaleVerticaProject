@@ -9,7 +9,7 @@ using CoreSystem.Skills;
 namespace CoreSystem.EditorScripts
 {
     /// <summary>
-    /// EditorWindow for monitoring all AgentCore instances in the scene.
+    /// EditorWindow for monitoring every agent driven by the central AgentCore.
     /// Open via: Window > Agent Monitor
     /// </summary>
     public class AgentCoreWindow : EditorWindow
@@ -73,11 +73,11 @@ namespace CoreSystem.EditorScripts
             {
                 if (GUILayout.Button("Reset All", EditorStyles.toolbarButton, GUILayout.Width(70)))
                 {
-                    foreach (var a in FindAll()) a.Editor_ForceReset();
+                    foreach (var a in FindAll()) a.ForceReset();
                 }
                 if (GUILayout.Button("Think All", EditorStyles.toolbarButton, GUILayout.Width(65)))
                 {
-                    foreach (var a in FindAll()) a.Editor_ForceThink();
+                    foreach (var a in FindAll()) a.ForceThink();
                 }
             }
 
@@ -117,15 +117,15 @@ namespace CoreSystem.EditorScripts
 
             if (filtered.Count == 0)
             {
-                EditorGUILayout.HelpBox("No AgentCore instances found in the scene.", MessageType.Info);
+                EditorGUILayout.HelpBox("No agents registered with AgentCore (enter Play mode).", MessageType.Info);
             }
 
             EditorGUILayout.EndScrollView();
         }
 
-        private void DrawRow(AgentCore agent, Color bgColor)
+        private void DrawRow(AgentHandle agent, Color bgColor)
         {
-            int id = agent.GetInstanceID();
+            int id = agent.RuntimeId;
             if (!_expandedState.ContainsKey(id)) _expandedState[id] = false;
             if (!_searchStrings.ContainsKey(id)) _searchStrings[id] = "";
 
@@ -166,18 +166,18 @@ namespace CoreSystem.EditorScripts
 
             if (GUILayout.Button("Select", GUILayout.Width(50)))
             {
-                Selection.activeGameObject = agent.gameObject;
+                Selection.activeGameObject = agent.Character.gameObject;
                 SceneView.lastActiveSceneView?.FrameSelected();
             }
 
             if (GUILayout.Button("Ping", GUILayout.Width(40)))
             {
-                EditorGUIUtility.PingObject(agent.gameObject);
+                EditorGUIUtility.PingObject(agent.Character.gameObject);
             }
 
             GUI.enabled = Application.isPlaying;
-            if (GUILayout.Button("↺", GUILayout.Width(24))) agent.Editor_ForceReset();
-            if (GUILayout.Button("⚡", GUILayout.Width(24))) agent.Editor_ForceThink();
+            if (GUILayout.Button("↺", GUILayout.Width(24))) agent.ForceReset();
+            if (GUILayout.Button("⚡", GUILayout.Width(24))) agent.ForceThink();
             GUI.enabled = true;
 
             EditorGUILayout.EndHorizontal();
@@ -239,7 +239,7 @@ namespace CoreSystem.EditorScripts
             EditorGUILayout.EndVertical();
         }
 
-        private void DrawSkillSection(AgentCore agent)
+        private void DrawSkillSection(AgentHandle agent)
         {
             if (agent.Character == null || agent.Character.skillCaster == null) return;
 
@@ -348,14 +348,14 @@ namespace CoreSystem.EditorScripts
 
         // ─── Helpers ─────────────────────────────────────────────
 
-        private List<AgentCore> FindAll()
+        private List<AgentHandle> FindAll()
         {
-            return new List<AgentCore>(FindObjectsByType<AgentCore>(FindObjectsSortMode.None));
+            return AgentCore.Instance != null ? new List<AgentHandle>(AgentCore.Instance.Handles) : new List<AgentHandle>();
         }
 
-        private List<AgentCore> Filter(List<AgentCore> agents)
+        private List<AgentHandle> Filter(List<AgentHandle> agents)
         {
-            var result = new List<AgentCore>();
+            var result = new List<AgentHandle>();
             foreach (var a in agents)
             {
                 if (!string.IsNullOrEmpty(_filterName) && !a.AgentName.ToLower().Contains(_filterName.ToLower())) continue;

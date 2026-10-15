@@ -8,11 +8,11 @@ This document details exactly **where the Shader and Master Material are created
 
 ```text
 [1. Shader File]
-Assets/Materail/Shader/Character2DLitMaster.shader
+Assets/Materials/Shader/Character2DLitMaster.shader
        │
        ▼ (Right click -> Create -> Material)
 [2. Master Material Asset]
-Assets/Materail/Character2DLitMaster.mat
+Assets/Materials/Character2DLitMaster.mat
        │
        ▼ (Assign once into the MasterMaterial field)
 [3. Entity Component: EntityVisualController.cs]
@@ -67,11 +67,11 @@ Master Shader draws a glowing outline around all body parts
 ## 4. Implementation Steps (Sprint Backlog)
 
 - [ ] **Step 1: Create Master 2D Character Shader**
-  - Path: `Assets/Materail/Shader/Character2DLitMaster.shader`
+  - Path: `Assets/Materials/Shader/Character2DLitMaster.shader`
   - Supports: URP 2D Lit, `_FlashAmount`, `_FlashColor`, `_OutlineColor`, `_OutlineWidth`, `_StatusColor`, `_DissolveAmount`.
 
 - [ ] **Step 2: Create Master Material Asset**
-  - Path: `Assets/Materail/Character2DLitMaster.mat`
+  - Path: `Assets/Materials/Character2DLitMaster.mat`
   - Uses `Character2DLitMaster` shader.
 
 - [ ] **Step 3: Create `EntityVisualController.cs`**

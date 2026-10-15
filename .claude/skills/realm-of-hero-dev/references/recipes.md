@@ -23,7 +23,7 @@ Paths are relative to `Assets/Script/`. Every new script uses the five `#region`
 ## New targeting shape
 1. `CoreSystem/Skills/Logic/Targeting/<Name>Targeting.cs : TargetingLogic`.
 2. Implement `List<IEntity> GetTargets(SkillPayload payload)`; filter with the base `TargetAlignment` helpers (faction checks via `FactionDatabase`).
-3. Override `RequiresSelection` and `DrawGizmos` as needed. If it needs an aim preview, add an indicator in `Skills/Visuals/Indicators/` and route it through `SkillIndicatorManager` from `PlayerController`.
+3. Override `RequiresSelection` and `DrawGizmos` as needed. If it needs an aim preview, add an indicator in `Skills/Visuals/Indicators/` and route it through `SkillIndicatorManager` from `PlayerCore`.
 
 ## New support modifier
 1. Create `CoreSystem/Skills/Modifiers/<Name>SupportModifier.cs` (one class per file) deriving `SupportModifier`, tagged `[SupportModifierId(<id>)]` (current range 1001-1022; check `Docs/03-Project/Planning_Guide.md`). Set `Chroma`/`Mineral` in the constructor; do not set `ID` (the factory does).
@@ -84,10 +84,16 @@ private void BuildUI(UIBuilderContext ctx)
 - Docs: `Docs/02-Technical/UI/Hotbar_Interaction.md`, `Docs/02-Technical/UI/GlobalDrag.md`.
 
 ## New persistent player data
-Add fields to `CoreSystem/Data/Save/PlayerDataModel.cs`, write them in `PlayerCharacter.SaveData()`, read them in `LoadData()`. Keep defaults safe for old save files (missing JSON fields).
+Add fields to `CoreSystem/Data/Save/PlayerDataModel.cs`, write them in `PlayerSaveStorage.Capture`, read them in `PlayerSaveStorage.Restore`. Keep defaults safe for old save files (missing JSON fields).
 
 ## External control of a character
-Use `character.commandDirector` (override/lock move and cast) instead of disabling `PlayerController` or `AgentCore`. Manual: `Docs/02-Technical/Character/Command_Director_Manual.md`.
+Use `character.Control`. Permanent change of owner: `PlayerCore.Instance.Possess(character)` or `AgentCore.Ensure().Register(character)`. Temporary control: `var lease = character.Control.Claim(holder, ControlLane.Possession, seconds, keepWhile, onEnded)`; the previous owner gets control back automatically when the lease ends. Bosses tagged `ImmuneToControl` refuse Possession; `ControlLane.Dev` always wins. Never disable `PlayerCore`/`AgentCore` or call `movementSystem`/`skillCaster`/`BasicAttack` directly. Guide: `Docs/02-Technical/Character/Character_System.md`.
+
+## New character (monster, villager, NPC)
+1. Duplicate an entity prefab (or use the shared body prefab once it exists); keep only the `Character` component (plus `BuffSystem`/visual components). Never add controller components.
+2. Set identity: `CharacterId`, `Faction`, `Tags` (Monster/Villager/Boss/Merchant/ImmuneToControl), `DefaultController = Agent`.
+3. Configure behaviour in the **Agent Profile** section (behaviour, combat style, ranges, home zone, group, skill pool).
+4. Spawn with `CharacterFactory.Spawn(characterId, position, parent, onSpawned)` or an `EntitySpawner`; set profile overrides inside `onSpawned` (before `Start`).
 
 ## Verifying a change
 1. Run the EditMode tests (`Assets/Script/Editor/Tests/`): Test Runner window, or headless with the editor closed (command in `SKILL.md`). All must pass.

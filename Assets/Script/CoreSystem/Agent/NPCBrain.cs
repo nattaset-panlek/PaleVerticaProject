@@ -4,8 +4,7 @@ using CoreSystem.Entity;
 
 namespace CoreSystem.Agent
 {
-    [RequireComponent(typeof(AgentCore))]
-    [RequireComponent(typeof(NonPlayerCharacter))]
+    [RequireComponent(typeof(Character))]
     public class NPCBrain : MonoBehaviour
     {
         #region [Variables/Fields]
@@ -13,8 +12,7 @@ namespace CoreSystem.Agent
         [SerializeField] private NPCGoal currentGoal = NPCGoal.Idle;
         [SerializeField] private Transform currentGoalTarget;
         
-        private AgentCore _agent;
-        private NonPlayerCharacter _npc;
+        private Character _npc;
         
         private float _thinkTimer;
         private float _thinkInterval = 1.0f;
@@ -27,8 +25,7 @@ namespace CoreSystem.Agent
         #region [Unity Methods]
         private void Awake()
         {
-            _agent = GetComponent<AgentCore>();
-            _npc = GetComponent<NonPlayerCharacter>();
+            _npc = GetComponent<Character>();
             
             // _inventory = GetComponent<NPCInventory>(); // (Optional hook if available)
         }
@@ -51,10 +48,7 @@ namespace CoreSystem.Agent
             currentGoalTarget = target;
             
             // Clear previous manual agent commands before starting new goal
-            if (_agent != null)
-            {
-                _agent.ClearCommand();
-            }
+            AgentCore.Instance?.ClearCommand(_npc);
         }
         #endregion
 

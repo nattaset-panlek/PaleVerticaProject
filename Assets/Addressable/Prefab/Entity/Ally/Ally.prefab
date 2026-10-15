@@ -70,7 +70,6 @@ GameObject:
   - component: {fileID: 659624367927108267}
   - component: {fileID: 8404096999502310040}
   - component: {fileID: 8112978803220484139}
-  - component: {fileID: 7936790367248913855}
   - component: {fileID: 7639983611516594321}
   - component: {fileID: 2692141178796248871}
   - component: {fileID: 4526979296839145181}
@@ -170,7 +169,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 593199419734919740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 262c3fd49e90ecb498add0db2ccbbd77, type: 3}
+  m_Script: {fileID: 11500000, guid: 29c2b676efdda2e4ba320f0997874c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterId: 0
@@ -242,52 +241,40 @@ MonoBehaviour:
   npcId: 001
   interactable: 1
   _npcInventory: {fileID: 0}
---- !u!114 &7936790367248913855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 593199419734919740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a27b4cb8f988084492d31b1a4e3f293, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AgentName: Ally
-  Behavior: 2
-  Combat: 0
-  DetectionRadius: 10
-  _attackRange: 3
-  LoseSightRadius: 15
-  RotationSpeed: 10
-  PreferredRangeMin: 5
-  PreferredRangeMax: 7
-  OrbitSpeed: 90
-  UseHomeZone: 1
-  HomeZoneRadius: 4
-  RoamRadius: 5
-  RoamWaitDuration: 3
-  CanRoam: 1
-  GroupID: 0
-  AlertRadius: 12
-  SkillPool:
-  - Skill: {fileID: 11400000, guid: 96c6a8482beeef847a55252a9fdeebbc, type: 2}
-    IsEquipped: 1
-    AIDelay: 2
-    ExtraCastTime: 0
-    ExtraCastDelay: 0
-    ExtraCooldown: 0
-  AISkillCooldown: 1.5
-  Anim: {fileID: 1349630177222271429}
-  MovingBoolParam: IsMoving
-  DeadTriggerParam: IsDead
-  ModelTransform: {fileID: 8512121553711143681}
-  LockModelRotation: 1
-  _currentState: 0
-  _target: {fileID: 0}
-  UsePathfinding: 1
-  PathRefreshRate: 0.5
+  Presenter:
+    Anim: {fileID: 1349630177222271429}
+    MovingBoolParam: IsMoving
+    DeadTriggerParam: IsDead
+    ModelTransform: {fileID: 8512121553711143681}
+    LockModelRotation: 1
+  agentProfile:
+    AgentName: Ally
+    Behavior: 2
+    Combat: 0
+    DetectionRadius: 10
+    _attackRange: 3
+    LoseSightRadius: 15
+    RotationSpeed: 10
+    PreferredRangeMin: 5
+    PreferredRangeMax: 7
+    OrbitSpeed: 90
+    UseHomeZone: 1
+    HomeZoneRadius: 4
+    RoamRadius: 5
+    RoamWaitDuration: 3
+    CanRoam: 1
+    GroupID: 0
+    AlertRadius: 12
+    SkillPool:
+    - Skill: {fileID: 11400000, guid: 96c6a8482beeef847a55252a9fdeebbc, type: 2}
+      IsEquipped: 1
+      AIDelay: 2
+      ExtraCastTime: 0
+      ExtraCastDelay: 0
+      ExtraCooldown: 0
+    AISkillCooldown: 1.5
+    UsePathfinding: 1
+    PathRefreshRate: 0.5
 --- !u!114 &7639983611516594321
 MonoBehaviour:
   m_ObjectHideFlags: 0

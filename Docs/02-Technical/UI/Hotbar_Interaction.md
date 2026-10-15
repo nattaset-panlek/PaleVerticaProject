@@ -2,17 +2,17 @@
 
 ## Overview
 
-This document outlines the architectural refactoring of the Hotbar Interaction, Combat Aiming, and Consumable Item Assignment systems in **Realm of Hero**. The refactor resolves overlapping keyboard handling between `PlayerController` and `HotbarManager` while unifying all action executions (Skills, Consumables, Items, and future interactive systems) under a centralized Hotbar gateway.
+This document outlines the architectural refactoring of the Hotbar Interaction, Combat Aiming, and Consumable Item Assignment systems in **Realm of Hero**. The refactor resolves overlapping keyboard handling between `PlayerCore` and `HotbarManager` while unifying all action executions (Skills, Consumables, Items, and future interactive systems) under a centralized Hotbar gateway.
 
 ---
 
 ## 1. Resolution of Redundant Keybinding Handling
 
-Previously, both `PlayerController.HandleSkillInput()` and `HotbarManager.HandleHotkeyInputs()` actively polled digit keys (`1` through `0`). This resulted in redundant executions and execution race conditions when casting skills or switching rows.
+Previously, both `PlayerCore.HandleSkillInput()` and `HotbarManager.HandleHotkeyInputs()` actively polled digit keys (`1` through `0`). This resulted in redundant executions and execution race conditions when casting skills or switching rows.
 
 ### Architecture Changes
 
-- **`PlayerController` Decoupled**: Direct polling of digit keys (`digit1Key` to `digit0Key`) has been completely removed from `PlayerController.HandleSkillInput()`.
+- **`PlayerCore` Decoupled**: Direct polling of digit keys (`digit1Key` to `digit0Key`) has been completely removed from `PlayerCore.HandleSkillInput()`.
 - **`HotbarManager` as Central Input Gateway**: All keyboard hotkey checks (`1-0`, `Alt+1-0`, `Ctrl+1-0`, `Shift+1-0`) are now managed exclusively by `HotbarManager.HandleHotkeyInputs()`.
 - **Event Routing**: When a hotkey is pressed or a slot is clicked, `HotbarManager` calls `HotbarSlotView.ExecuteAction()` on the target slot.
 
@@ -24,7 +24,7 @@ Previously, aiming mode (`TryEnterAimingMode`) required an integer index into `p
 
 ### The `SkillInstance` Aiming Pipeline
 
-1. **Direct Instance Targeting**: Added `public SkillInstance AimedSkillInstance` to `SkillCaster` and `PlayerController`.
+1. **Direct Instance Targeting**: Added `public SkillInstance AimedSkillInstance` to `SkillCaster` and `PlayerCore`.
 2. **Row-Agnostic Activation**: `TryEnterAimingMode` now accepts a `SkillInstance` directly:
 
    ```csharp
@@ -47,7 +47,7 @@ All interactions now funnel through `HotbarSlotView.ExecuteAction()`, making the
          +-------------------------------+-------------------------------+
          | (HotbarActionType.Skill)                                      | (HotbarActionType.Item)
          v                                                               v
-PlayerController.TryEnterAimingMode(SkillInstance)                Consumable.OnUse()
+PlayerCore.TryEnterAimingMode(SkillInstance)                Consumable.OnUse()
          |                                                               |
          v                                                               v
 [Aiming Indicator / Highlight] -> Left Click -> CastSkill()     [Inventory Decrement & Refresh]

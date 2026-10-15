@@ -4,10 +4,10 @@ Paths relative to `Assets/Script/`.
 
 ## Namespaces
 `CoreSystem` (enums), `CoreSystem.Attributes`, `.Data`, `.Data.Items`, `.Data.Items.Effects`, `.Data.Items.Model`, `.Data.Save`, `.Data.Skills`, `.Entity`, `.Entity.UniquePassives`, `.Movement`, `.Pathfinding`, `.Settings`, `.SkillTree(.Models)`, `.Skills`, `.Skills.Logic` (effects, targeting, buffs, projectile), `.Skills.Modifiers`, `.Skills.UniqueSkill`, `.Skills.Visuals`, `.Utile`, `.Visuals`, `CoreSystem.UI.*`, `UI.Components`.
-Exceptions: `Agent/AgentCore.cs`, `AgentRegistry.cs`, `FaceDirectionModule.cs` use `CoreSystem.Controllers`; `SkillTree/PassiveSkillLoader.cs`, `UI/CursorManager.cs`, `UI/AttributePanel/*` have no namespace.
+All scripts are in their folder namespace (`CoreSystem.<Folder>`, `CoreSystem.UI.<Folder>` for `Assets/Script/UI`).
 
 ## Singletons and static access
-- `.Instance`: `PlayerController`, `CameraController`, `GlobalGameTime`, `PathfinderGrid`, `SkillIndicatorManager`, `VisualManager`, `CombatJuiceDirector`, `SkillTreeManager`, `Database`, `EntityVisualSettings`, `UIManager`, `HotbarManager`, `GlobalDragManager`, `CursorManager`.
+- `.Instance`: `PlayerCore`, `AgentCore`, `CameraController`, `GlobalGameTime`, `PathfinderGrid`, `SkillIndicatorManager`, `VisualManager`, `CombatJuiceDirector`, `SkillTreeManager`, `Database`, `EntityVisualSettings`, `UIManager`, `HotbarManager`, `GlobalDragManager`, `CursorManager`.
 - Static: `GameData`, `SaveStorage`, `ItemDatabase`, `AttributeDatabase`, `FactionDatabase`, `SkillTreeDatabase`, `AgentRegistry`, `GameSetting`.
 
 ## Stat pipeline
@@ -44,14 +44,14 @@ Exceptions: `Agent/AgentCore.cs`, `AgentRegistry.cs`, `FaceDirectionModule.cs` u
 - **Combat pipeline** (`CombatCore.Execute(action, user, target)`): `Gate.CheckAction` (target exists, has stats) -> per effect: `EffectHandlers.For(kind)` + `Gate.CheckEffect(handler.TargetRule)` (Damage = Hostile; self-inflicted procs pass) -> handler `Offense` (`DamageFormula.BuildInput` + crit roll from `ICombatRandom`, only when the user has stats) -> `Defense` (`Mitigate`, min 1) -> `RiderStage` (OnHit/OnCrit/OnKill riders spawn proc sub-actions through `Resolve`) -> `OutcomeApplier` -> `DamageHandler.Commit`: passive OnHit/OnTakeDamage (ref) -> apply HP -> OnPostHit -> entity events -> `DamageTextManager`. Sub-results apply after the parent.
 
 ## Entities
-- `Character` (abstract, `IEntity`) owns `AttributeSystem`, `MovementSystem`, `SkillCaster`, `CommandDirector`, `ExperienceSystem`, `UniquePassiveSystem`, `FaceDirectionModule`, 8 equipment slots, 4 costume slots. Events `OnHitTarget`, `OnTakeDamage`, `OnCostumeChanged`. Resolver `Func` hooks for auto-attack type/range/projectile address.
-- `PlayerCharacter`: binds `GameData.Player` managers, `SaveData()/LoadData()`, creates `GameDevToolUI`.
-- `EnemyCharacter`: minimal; training dummy (id 10 or name contains "Dummy") gets 9,999,999 HP.
-- `NonPlayerCharacter`: requires `AgentCore`; `NPCInventory`, `NPCRoutine` (driven by `GlobalGameTime`).
-- `AgentCore`: AI states Idle/Roam/Chase/Attack/Flee/Dead/CommandMove/CommandFollow; `SkillPool` of `SkillEquipEntry`; pathfinding via `PathfinderGrid` + `Pathfinder2D`.
+- `Character` (single concrete class, `IEntity`) owns `AttributeSystem`, `MovementSystem`, `SkillCaster`, `ControlSystem` (`Control`), `ExperienceSystem`, `UniquePassiveSystem`, `FaceDirectionModule`, `CharacterPresenter` (`Presenter`), `AgentProfile`, 8 equipment slots, 4 costume slots. Identity: `CharacterId`, `RuntimeId`, `Faction`, `Tags`, `DefaultController`, `NpcId`. Events `OnHitTarget`, `OnTakeDamage`, `OnCostumeChanged`.
+- Lifecycle: Awake (RuntimeId, init, presenter, claim filter, training-dummy rule) -> OnEnable (`CharacterRegistry`) -> Start (`CharacterFactory.AssignController`) -> OnDestroy (`ReleaseController`).
+- `PlayerCore` possesses one character (Owner lane), binds `GameData.Player`, drives input/aim/auto-attack, death screen; save/load via `PlayerSaveStorage`. The K dev tool attaches through `PlayerCore.OnReady/OnPossessed/OnTick`.
+- `AgentCore` keeps one `AgentHandle` per AI body (Owner lane): states Idle/Roam/Chase/Attack/Flee/Dead/CommandMove/CommandFollow, pathfinding via `PathfinderGrid` + `Pathfinder2D`, skill pool from `AgentProfile.SkillPool`, death destroy after 5 s, revive via `AgentCore.Revive`. Handles pause while another lane holds control.
+- Training dummy rule: non-player with tag `TrainingDummy`, id 10 or name containing "Dummy" gets 9,999,999 HP.
 
 ## Skill flow
-1. `PlayerController.HandleSkillInput` (Input System `InputSystem_Actions`) or `AgentCore` -> aim via `SkillIndicatorManager` -> `commandDirector.CommandCastSkill`.
+1. `PlayerCore.HandleSkillInput` (Input System `InputSystem_Actions`) or `AgentHandle.TryCastSkill` -> aim via `SkillIndicatorManager` -> `character.Control.CommandCastSkill`.
 2. `SkillCaster.BuildPayload`: base values -> AOE/Cooldown modifiers -> `OutputScaling.ApplyScaling` per scaling entry `(stat*AttrMult + Flat + LevelMult*lvl)*GlobalMult` into a `PayloadTarget` -> each linked `SupportModifier.ModifyPayload` -> `CalculateCastTimeModified`.
 3. `InitiateCastSequence`: resource check (MP, or HP through passive), target clamp, cast indicator + VFX; 0 cast time executes immediately.
 4. `Tick` -> `ExecuteSkill` (cooldown, cast delay) -> `ExecutePipeline` (pay cost, then `ExecuteWithSplitters`: the first linked `IPayloadSplitter` that `CanSplit` the skill turns one payload into several, otherwise `ActiveSkill.Execute` once; the first linked `ICastRepeater` schedules a delayed re-run through the same path).
@@ -60,7 +60,7 @@ Exceptions: `Agent/AgentCore.cs`, `AgentRegistry.cs`, `FaceDirectionModule.cs` u
 - Buffs: `BuffSystem` (MonoBehaviour on character) with `ActiveBuff` (modifiers, stacks, tick, category), `HasBuff(code)`, `OnBuffsChanged`.
 - Supports: max 5 per `SkillInstance`, auto-linked from `Database.GetLinkedSupportIDs`. Created by `SupportModifier.Create(id)` through `AttributedTypeRegistry` (`[SupportModifierId]`); unique passives likewise via `[UniquePassiveId]`.
 - Visuals: `VisualManager`, `VisualPayload` SO, `ISkillVisual` (InstantHit, Projectile, RayBeam, AuraBuff, GroundEruption).
-- Skill tree: `SkillTreeLoader`/`SkillTreeDatabase` (static, `SkillTree.json`), `SkillTreeManager` (points, static events `OnNodeUnlocked/OnNodeReset/OnAllReset`), UI `PassiveSkillLoader`.
+- Skill tree: `SkillTreeLoader`/`SkillTreeDatabase` (static, `SkillTree.json`), `SkillTreeManager` (points, static events `OnNodeUnlocked/OnNodeReset/OnAllReset`), UI `PassiveTreeWindow`.
 
 ## Data and items
 - `Database` (auto-created before scene load from `Resources/Prefab/Database`, DontDestroyOnLoad). Init order: Items -> Factions -> Attributes -> Skills -> SkillTree -> Characters -> UniquePassives.

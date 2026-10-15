@@ -305,9 +305,9 @@ namespace CoreSystem.UI.Hotbar
                     if (player.skillCaster != null)
                     {
                         var grantedSkill = player.skillCaster.GrantedSkills.Find(s => s.SkillData != null && s.SkillData.Id == _slotData.SkillId);
-                        if (grantedSkill != null && CoreSystem.Controllers.PlayerController.Instance != null)
+                        if (grantedSkill != null && CoreSystem.Player.PlayerCore.Instance != null)
                         {
-                            var controller = CoreSystem.Controllers.PlayerController.Instance;
+                            var controller = CoreSystem.Player.PlayerCore.Instance;
                             controller.TryEnterAimingMode(grantedSkill, controller.GetMouseWorldPosition());
                         }
                         else if (grantedSkill != null)

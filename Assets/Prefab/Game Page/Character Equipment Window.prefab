@@ -3220,7 +3220,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1040323303772379138}
-        m_TargetAssemblyTypeName: AttributeListManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: CoreSystem.UI.AttributePanel.AttributeListView, Assembly-CSharp
         m_MethodName: LoadAdvance
         m_Mode: 1
         m_Arguments:
@@ -6512,7 +6512,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1040323303772379138}
-        m_TargetAssemblyTypeName: AttributeListManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: CoreSystem.UI.AttributePanel.AttributeListView, Assembly-CSharp
         m_MethodName: LoadBasic
         m_Mode: 1
         m_Arguments:
@@ -8718,7 +8718,7 @@ GameObject:
   - component: {fileID: 6700848138386231810}
   - component: {fileID: 7426441298184613244}
   m_Layer: 5
-  m_Name: Character Eqipment Window
+  m_Name: Character Equipment Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8912,7 +8912,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1040323303772379138}
-        m_TargetAssemblyTypeName: AttributeListManager, Assembly-CSharp
+        m_TargetAssemblyTypeName: CoreSystem.UI.AttributePanel.AttributeListView, Assembly-CSharp
         m_MethodName: LoadBasic
         m_Mode: 1
         m_Arguments:

@@ -35,8 +35,8 @@ namespace CoreSystem.UI.SkillManagePage
         #endregion
 
         #region [Properties]
-        private PlayerCharacter _playerCharacter;
-        public PlayerCharacter TargetPlayer => _playerCharacter;
+        private Character _playerCharacter;
+        public Character TargetPlayer => _playerCharacter;
         public SkillInstance SelectedSkillInstance => _selectedSkillInstance;
         public TMP_Text SelectedSkillNameText => _selectedSkillNameText;
         public Image SelectedSkillIconImage => _selectedSkillIconImage;
@@ -71,7 +71,7 @@ namespace CoreSystem.UI.SkillManagePage
         {
             base.OnOpen(data);
 
-            if (data is PlayerCharacter player)
+            if (data is Character player)
             {
                 _playerCharacter = player;
             }
@@ -87,7 +87,7 @@ namespace CoreSystem.UI.SkillManagePage
             base.OnClose();
         }
 
-        public void Initialize(PlayerCharacter player)
+        public void Initialize(Character player)
         {
             _playerCharacter = player;
             RefreshUI();

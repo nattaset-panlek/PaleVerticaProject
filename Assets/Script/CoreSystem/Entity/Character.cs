@@ -12,11 +12,37 @@ using CoreSystem.Agent;
 
 namespace CoreSystem.Entity
 {
-    public abstract class Character : MonoBehaviour, IEntity
+    [DisallowMultipleComponent]
+    public class Character : MonoBehaviour, IEntity
     {
         [Header("Character Identity")]
         [SerializeField] private int characterId;
+        [SerializeField] private CharacterControllerType defaultController = CharacterControllerType.Agent;
+        [SerializeField] private CharacterTag tags = CharacterTag.None;
         public int CharacterId => characterId;
+        public int RuntimeId { get; private set; }
+        public CharacterControllerType DefaultController => defaultController;
+        public CharacterTag Tags => tags;
+        public bool HasTag(CharacterTag tag) => tag != CharacterTag.None && (tags & tag) == tag;
+        public string Name => GetCharacterData()?.Name ?? (defaultController == CharacterControllerType.Player ? "Player Character" : gameObject.name);
+
+        [Header("NPC")]
+        [SerializeField] private string npcId;
+        [SerializeField] private bool interactable = true;
+        [SerializeField] private NPCInventory _npcInventory;
+        public string NpcId => npcId;
+        public bool IsInteractable => interactable;
+        public NPCInventory Inventory => _npcInventory;
+
+        [Header("Presentation")]
+        public CharacterPresenter Presenter = new CharacterPresenter();
+
+        [Header("Agent Profile (used when controlled by AgentCore)")]
+        [SerializeField] private AgentProfile agentProfile = new AgentProfile();
+        public AgentProfile AgentProfile => agentProfile;
+
+        private readonly ControlSystem _control = new ControlSystem();
+        public ControlSystem Control => _control;
 
         public CoreSystem.Data.CharacterModel GetCharacterData()
         {
@@ -28,7 +54,6 @@ namespace CoreSystem.Entity
 
         public MovementSystem movementSystem = new MovementSystem();
         public SkillCaster skillCaster = new SkillCaster();
-        public CommandDirector commandDirector = new CommandDirector();
         public ExperienceSystem expSystem = new ExperienceSystem();
         private CoreSystem.Entity.UniquePassives.UniquePassiveSystem _uniquePassives = new CoreSystem.Entity.UniquePassives.UniquePassiveSystem();
         public CoreSystem.Entity.UniquePassives.UniquePassiveSystem UniquePassives => _uniquePassives;
@@ -132,17 +157,34 @@ namespace CoreSystem.Entity
 
 
         [ContextMenu("RecalculateStats")]
-        public virtual void RecalculateStats()
+        public void RecalculateStats()
         {
-            // If this is a PlayerCharacter, apply Skill Tree bonuses
-            // We use global SkillTreeManager for now
-            var passiveStats = SkillTree.SkillTreeManager.Instance?.GetCurrentStats();
-            if (passiveStats != null)
-            {
-                _attributeSystem.ApplyPassiveStats(passiveStats);
-            }
-
             _attributeSystem.UpdateDerivedAttributes();
+            ApplyPassiveRecords();
+        }
+
+        private void ApplyPassiveRecords()
+        {
+            foreach (var attr in _attributeSystem.ActiveAttributes.Values)
+                attr.Additional.RemoveByTag("Passive");
+
+            foreach (var rec in PassiveNodes)
+            {
+                if (!System.Enum.IsDefined(typeof(AttributeType), rec.AttributeId)) continue;
+                var type = (AttributeType)rec.AttributeId;
+                _attributeSystem.AddAdditional(type, 2, AdditionalOp.Add, rec.Value, "Passive");
+            }
+        }
+
+        public void InitializeNPC(string newNpcId, int newFaction = 0)
+        {
+            npcId = newNpcId;
+            faction = newFaction;
+        }
+
+        public void SetInteractable(bool state)
+        {
+            interactable = state;
         }
 
         public void Equip(ItemInstance instance, int slotIndex)
@@ -344,19 +386,69 @@ namespace CoreSystem.Entity
             BasicAttackCooldownTimer = BasicAttackFormula.AttackDelay(aspd);
         }
 
-        public virtual void Awake()
+        protected virtual void Awake()
         {
+            RuntimeId = CharacterRegistry.NewId();
             Initialize();
         }
 
-        public virtual void Initialize()
+        public void Initialize()
         {
             _uniquePassives.Initialize(this);
             _attributeSystem.Initialize(this);
             movementSystem.Initialize(this);
             skillCaster.Initialize(this);
-            commandDirector.Initialize(this);
+            _control.Initialize(this);
+            _control.ClaimFilter = lane => lane == ControlLane.Dev || lane == ControlLane.Owner || !HasTag(CharacterTag.ImmuneToControl);
             expSystem.Initialize(this);
+            Presenter.Initialize(this);
+            if (_npcInventory == null) _npcInventory = GetComponent<NPCInventory>();
+            ApplyTrainingDummyRule();
+        }
+
+        protected virtual void OnEnable()
+        {
+            CharacterRegistry.Register(this);
+        }
+
+        protected virtual void Start()
+        {
+            CharacterFactory.AssignController(this);
+        }
+
+        protected virtual void OnDisable()
+        {
+            CharacterRegistry.Unregister(this);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            CharacterFactory.ReleaseController(this);
+        }
+
+        protected virtual void LateUpdate()
+        {
+            Presenter.LateTick();
+        }
+
+        private void ApplyTrainingDummyRule()
+        {
+            if (defaultController == CharacterControllerType.Player) return;
+            if (!HasTag(CharacterTag.TrainingDummy) && characterId != 10 && !gameObject.name.Contains("Dummy")) return;
+
+            var maxHpAttr = attributeSystem.GetAttribute(AttributeType.MaxHP);
+            if (maxHpAttr != null)
+            {
+                maxHpAttr.InitialValue = 9999999f;
+                maxHpAttr.Recalculate();
+            }
+
+            var hpAttr = attributeSystem.GetAttribute(AttributeType.HP);
+            if (hpAttr != null && maxHpAttr != null)
+            {
+                hpAttr.BaseValue = maxHpAttr.CurrentValue;
+                hpAttr.Recalculate();
+            }
         }
 
         private float _regenTimer = 0f;
@@ -374,6 +466,8 @@ namespace CoreSystem.Entity
             {
                 BasicAttackCooldownTimer -= Time.deltaTime;
             }
+
+            _control.Tick(Time.deltaTime);
 
             if (skillCaster != null)
             {
@@ -424,6 +518,19 @@ namespace CoreSystem.Entity
             if (skillCaster != null)
             {
                 skillCaster.DrawGizmosSelected();
+            }
+
+            if (defaultController == CharacterControllerType.Agent)
+            {
+                AgentGizmos.Draw(this, AgentCore.Instance != null ? AgentCore.Instance.GetHandle(this) : null);
+            }
+        }
+
+        private void OnValidate()
+        {
+            if (!Application.isPlaying && defaultController == CharacterControllerType.Agent && skillCaster != null)
+            {
+                AgentHandle.SyncEquippedSkills(this, agentProfile);
             }
         }
 #endif

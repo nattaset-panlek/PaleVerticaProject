@@ -23,7 +23,7 @@ namespace CoreSystem.UI.GameInterface
         [SerializeField] private TMP_Text _expText;
         [SerializeField] private Image _expBar;
 
-        [SerializeField] private PlayerCharacter _targetPlayer;
+        [SerializeField] private Character _targetPlayer;
         #endregion
 
         #region [Properties]
@@ -35,7 +35,7 @@ namespace CoreSystem.UI.GameInterface
         public TMP_Text JobLevel => _jobLevel;
         public TMP_Text ExpText => _expText;
         public Image ExpBar => _expBar;
-        public PlayerCharacter TargetPlayer => _targetPlayer;
+        public Character TargetPlayer => _targetPlayer;
         #endregion
 
         #region [Unity Methods]
@@ -58,14 +58,14 @@ namespace CoreSystem.UI.GameInterface
         public override void OnOpen(object data)
         {
             base.OnOpen(data);
-            if (data is PlayerCharacter player)
+            if (data is Character player)
             {
                 _targetPlayer = player;
             }
             UpdateUI();
         }
 
-        public void Initialize(PlayerCharacter player)
+        public void Initialize(Character player)
         {
             _targetPlayer = player;
             UpdateUI();

@@ -230,7 +230,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1427429870057312561}
-        m_TargetAssemblyTypeName: PassiveSkillLoader, Assembly-CSharp
+        m_TargetAssemblyTypeName: CoreSystem.SkillTree.PassiveTreeWindow, Assembly-CSharp
         m_MethodName: Cancel
         m_Mode: 1
         m_Arguments:
@@ -487,7 +487,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1427429870057312561}
-        m_TargetAssemblyTypeName: PassiveSkillLoader, Assembly-CSharp
+        m_TargetAssemblyTypeName: CoreSystem.SkillTree.PassiveTreeWindow, Assembly-CSharp
         m_MethodName: CloseSelf
         m_Mode: 1
         m_Arguments:
@@ -1384,7 +1384,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1427429870057312561}
-        m_TargetAssemblyTypeName: PassiveSkillLoader, Assembly-CSharp
+        m_TargetAssemblyTypeName: CoreSystem.SkillTree.PassiveTreeWindow, Assembly-CSharp
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:
@@ -2006,7 +2006,7 @@ GameObject:
   - component: {fileID: 3884878228214160249}
   - component: {fileID: 1427429870057312561}
   m_Layer: 5
-  m_Name: Character  PassiveTree Page
+  m_Name: Character PassiveTree Page
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
