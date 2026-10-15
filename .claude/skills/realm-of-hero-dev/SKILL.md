@@ -16,6 +16,14 @@ Unity **6000.4.8f1**, URP 2D, Input System, Addressables, TMP, Newtonsoft JSON, 
 - **Do not change core formulas** (anything in `CoreSystem/Combat/Formulas/`: stat value, derived stats, damage, cast time, cooldown, cost, regen, ASPD, refine, EXP) without explicit user approval. Callers such as `Attribute`, `AttributeSystem`, `SkillInstance`, `SkillCaster`, `Character`, `Equipment` only gather inputs and apply results; never put arithmetic back into them.
 - Docs go to `Docs/` only (see section 6). Never create `.md` under `Assets/`.
 
+## 1b. Naming and references (full standard: `Docs/02-Technical/Coding_Standards.md`)
+- **Suffix = script type.** `Manager` only for a single global instance per scene/session; `System` for a per-character subsystem; `Player*` for player state; `Controller`, `Director`, `View`/`Window`/`Modal`/`Slot` (UI that only listens), `Database`, `Loader`, `Storage`, `Formula`, `Registry`, `Events`, `Factory`; `Settings`/`Table`/`SO` for ScriptableObject data. No `Helper`/`Utils`. Do not invent new suffixes.
+- **Runtime-created objects** (not in a prefab or scene): one `Create()`/`Factory` entry point, GameObject named `[Runtime] X` under the `[Runtime]` root, self-register in `Awake`/clear in `OnDestroy`, expose `IsReady`/`OnReady`, `[DisallowMultipleComponent]` + `[AddComponentMenu("")]`. Only `Database` uses `DontDestroyOnLoad`.
+- **No runtime Find** (`FindAnyObjectByType`, `FindObjectsByType`, `GameObject.Find`, `FindGameObjectWithTag`) in new game code: use serialized/hierarchy refs, self-registering `Manager`s, `Registry`, or `Events` (core raises, UI listens). Find is fine in `Editor/` and `Reset()`/`OnValidate()`. Existing Find calls are scheduled for removal after the rename phases.
+- **Files and namespaces**: one public type per file, file name = type name (grouped enums/structs: `<Area>Types.cs`); namespace = folder path.
+- **Renaming**: keep the `.meta` with MonoBehaviour/SO files; add `[MovedFrom]` for `[SerializeReference]` types (`EffectLogic`, `TargetingLogic`, `ActionRider` subclasses); never rename names used as strings (Workbench `SkillConverter`, JSON `EffectType`) without updating them; check `Resources`/Addressables paths before moving folders.
+- Legacy names still in code until phases N1-N5 land (e.g. `EquipmentManager`, `TemporaryBuffManager`, `AttributeListManager`, `Utile/`): follow the standard for anything new, and do not copy the old names.
+
 ## 2. Where things live (`Assets/Script/`)
 | Area | Path | Key types |
 |---|---|---|

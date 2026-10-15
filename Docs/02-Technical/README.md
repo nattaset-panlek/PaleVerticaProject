@@ -12,4 +12,5 @@ System-level implementation docs, one folder per system. Source code lives in `A
 | `Items/` | `CoreSystem/Data/Items` | Equipment effect JSON templates, equipment buffs, costumes |
 | `UI/` | `CoreSystem/UI`, `Script/UI` | UIBuilder framework, Hotbar, Global Drag & Drop, custom components |
 | `TechnicalArt/` | `CoreSystem/Visuals`, shaders/materials | Shader + material setup, milestone walkthrough |
+| `Coding_Standards.md` | All of `Assets/Script` | Script-type suffixes, runtime-created objects, reference rules, rename safety, migration plan |
 | `Testing.md` | `Script/Editor/Tests` | EditMode test suite and how to run it |

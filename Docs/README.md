@@ -29,6 +29,7 @@ System-level implementation docs, grouped by system. See [02-Technical/README.md
 | Skill Tree | [SkillTree API](./02-Technical/SkillTree/SkillTreeAPI.md), [Using Exported Skill Tree JSON](./02-Technical/SkillTree/HowToUseExportedJSON.md) |
 | Items | [Effect Templates](./02-Technical/Items/EffectTemplates.md), [Equipment Buff Support](./02-Technical/Items/EquipmentBuffSupport.md), [Costume System](./02-Technical/Items/Costume_System_Walkthrough.md) |
 | UI | [UIBuilder Guide](./02-Technical/UI/UIBuilder_Guide.md), [Hotbar Interaction](./02-Technical/UI/Hotbar_Interaction.md), [Global Drag & Drop](./02-Technical/UI/GlobalDrag.md), [UI Components](./02-Technical/UI/UI_Components.md) |
+| Standards | [Coding Standards: naming, script types, references](./02-Technical/Coding_Standards.md) |
 | Testing | [EditMode Tests](./02-Technical/Testing.md) |
 | Technical Art | [Setup EN](./02-Technical/TechnicalArt/Technical_Art_Setup_EN.md) / [TH](./02-Technical/TechnicalArt/Technical_Art_Setup_TH.md), [Milestone 1 Walkthrough (TH)](./02-Technical/TechnicalArt/Milestone1_Walkthrough_TH.md) |
 

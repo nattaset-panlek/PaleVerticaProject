@@ -69,3 +69,9 @@ The `Assets/Script` directory is highly modular. Maintain and respect this organ
 ## 7. Documentation & Skills
 - **Single source for docs**: `Docs/` (index: `Docs/README.md`). Never create `.md` files inside `Assets/`.
 - **Project skill**: `.claude/skills/realm-of-hero-dev/SKILL.md` (architecture map + recipes in `references/`). Read it before working on scripts.
+
+## 8. Naming & Script Types
+- Follow `Docs/02-Technical/Coding_Standards.md` (approved 2026-10-16).
+- **Suffix defines the script type**: `Manager` is reserved for a single global instance; per-character subsystems are `System`; player state is `Player*`; UI is `View`/`Window`/`Modal`/`Slot`; static data/math is `Database`/`Loader`/`Formula`/`Registry`/`Events`.
+- **Runtime-created objects** (not in a prefab or scene) must have a single `Create()`/`Factory` entry point, a `[Runtime]` GameObject name, and self-register their instance.
+- **Do NOT use runtime Find** (`FindAnyObjectByType`, `GameObject.Find`, tag lookups) in game code. Use serialized references, self-registering managers, registries, or events.
