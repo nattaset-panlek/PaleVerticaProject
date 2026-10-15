@@ -4,6 +4,7 @@ using CoreSystem.Skills;
 using CoreSystem.Data.Items;
 using CoreSystem;
 using CoreSystem.Data;
+using CoreSystem.Player;
 
 namespace CoreSystem.Data.Items.Model
 {
@@ -27,9 +28,10 @@ namespace CoreSystem.Data.Items.Model
 
         public override void OnUse()
         {
-            if (GameData.Player != null && GameData.Player.PlayerCharacterModel != null && GameData.Player.PlayerCharacterModel.skillCaster != null)
+            var player = PlayerCore.GetPlayer();
+            if (player != null && player.skillCaster != null)
             {
-                GameData.Player.PlayerCharacterModel.skillCaster.GrantSkill(LinkedSkillID);
+                player.skillCaster.GrantSkill(LinkedSkillID);
                 Debug.Log($"[SkillRune] Granted Skill ID {LinkedSkillID} to Player.");
             }
         }

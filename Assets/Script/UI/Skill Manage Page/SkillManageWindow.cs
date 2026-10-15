@@ -6,6 +6,7 @@ using CoreSystem.Skills;
 using CoreSystem.Data;
 using CoreSystem.Data.Items;
 using TMPro;
+using CoreSystem.Player;
 
 namespace CoreSystem.UI.SkillManagePage
 {
@@ -50,7 +51,7 @@ namespace CoreSystem.UI.SkillManagePage
 
             if (_playerCharacter == null)
             {
-                _playerCharacter = GameData.Player.PlayerCharacterModel;
+                _playerCharacter = PlayerCore.GetPlayer();
             }
         }
 
@@ -116,7 +117,7 @@ namespace CoreSystem.UI.SkillManagePage
 
             if (_playerCharacter == null)
             {
-                _playerCharacter = GameData.Player.PlayerCharacterModel;
+                _playerCharacter = PlayerCore.GetPlayer();
             }
 
             SubscribeToSkillCaster();

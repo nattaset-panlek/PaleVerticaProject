@@ -3,6 +3,7 @@ using CoreSystem.Entity;
 using System.Linq;
 using CoreSystem.Data;
 using CoreSystem.Agent;
+using CoreSystem.Player;
 
 namespace CoreSystem.UI
 {
@@ -53,7 +54,7 @@ namespace CoreSystem.UI
         private void CommandFollowPlayer()
         {
             var npc = FindTargetNPC();
-            var player = GameData.Player.PlayerCharacterModel;
+            var player = PlayerCore.GetPlayer();
 
             if (npc != null && player != null)
             {
@@ -70,7 +71,7 @@ namespace CoreSystem.UI
         private void CommandMoveToPlayer()
         {
             var npc = FindTargetNPC();
-            var player = GameData.Player.PlayerCharacterModel;
+            var player = PlayerCore.GetPlayer();
 
             if (npc != null && player != null)
             {

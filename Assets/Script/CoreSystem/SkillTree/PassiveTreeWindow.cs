@@ -8,6 +8,7 @@ using CoreSystem.UI.Components;
 using UnityEngine;
 using CoreSystem.Data;
 using TMPro;
+using CoreSystem.Player;
 
 namespace CoreSystem.SkillTree
 {
@@ -86,7 +87,7 @@ namespace CoreSystem.SkillTree
         {
             base.OnOpen(data);
 
-            LoadFromCharacter(GameData.Player.PlayerCharacter);
+            LoadFromCharacter(PlayerCore.GetPlayer());
 
             if (_currentCharacter != null)
             {

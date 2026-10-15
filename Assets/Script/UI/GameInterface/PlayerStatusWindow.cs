@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using CoreSystem.Entity;
 using CoreSystem.Utility;
 using CoreSystem.Data;
+using CoreSystem.Player;
 
 namespace CoreSystem.UI.GameInterface
 {
@@ -44,7 +45,7 @@ namespace CoreSystem.UI.GameInterface
             base.Awake();
             if (_targetPlayer == null)
             {
-                _targetPlayer = GameData.Player.PlayerCharacterModel;
+                _targetPlayer = PlayerCore.GetPlayer();
             }
         }
 
@@ -75,7 +76,7 @@ namespace CoreSystem.UI.GameInterface
         {
             if (_targetPlayer == null)
             {
-                _targetPlayer = GameData.Player.PlayerCharacterModel;
+                _targetPlayer = PlayerCore.GetPlayer();
             }
 
             if (_targetPlayer == null || _targetPlayer.attributeSystem == null) return;

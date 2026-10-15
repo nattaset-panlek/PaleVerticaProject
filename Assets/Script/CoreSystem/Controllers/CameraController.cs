@@ -1,5 +1,7 @@
 using UnityEngine;
 using CoreSystem.Data;
+using CoreSystem.Entity;
+using CoreSystem.Player;
 
 namespace CoreSystem.Controllers
 {
@@ -51,21 +53,23 @@ namespace CoreSystem.Controllers
         private void OnEnable()
         {
             _inputActions?.Enable();
+            PlayerCore.OnPlayerChanged += HandlePlayerChanged;
         }
 
         private void OnDisable()
         {
             _inputActions?.Disable();
+            PlayerCore.OnPlayerChanged -= HandlePlayerChanged;
         }
 
         private void Start()
         {
-            // Auto-find player if target is null
-            if (Target == null)
-            {
-                var player = GameObject.FindGameObjectWithTag("Player");
-                if (player != null) Target = player.transform;
-            }
+            if (Target == null && PlayerCore.TryGetPlayer(out var player)) Target = player.transform;
+        }
+
+        private void HandlePlayerChanged(Character player)
+        {
+            if (player != null) Target = player.transform;
         }
 
         private void Update()

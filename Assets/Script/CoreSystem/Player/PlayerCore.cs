@@ -36,6 +36,7 @@ namespace CoreSystem.Player
         public static PlayerCore Instance => _instance;
         public static bool IsReady => _instance != null;
         public static event System.Action<PlayerCore> OnReady;
+        public static event System.Action<Character> OnPlayerChanged;
         public Character Controlled => _controlled;
         public bool HasControl => _controlled != null && _controlled.Control.CanCommand(this);
         public event System.Action<Character> OnPossessed;
@@ -116,6 +117,22 @@ namespace CoreSystem.Player
             return _instance != null ? _instance : Create();
         }
 
+        public static Character GetPlayer()
+        {
+            return _instance != null && _instance._controlled != null ? _instance._controlled : null;
+        }
+
+        public static bool TryGetPlayer(out Character player)
+        {
+            player = GetPlayer();
+            return player != null;
+        }
+
+        public static bool IsPlayer(Character character)
+        {
+            return character != null && character == GetPlayer();
+        }
+
         public void Possess(Character character)
         {
             if (character == null || character == _controlled) return;
@@ -131,16 +148,15 @@ namespace CoreSystem.Player
             _controlled = character;
             _isDead = false;
 
-            GameData.Player.PlayerCharacterModel = character;
             GameData.Player.Stats.Bind(character.attributeSystem);
             GameData.Player.Skills.Bind(character.skillCaster);
             GameData.Player.Equipment.Bind(character);
             GameData.Player.Costumes.Bind(character);
 
             character.OnTakeDamage += HandleControlledTakeDamage;
-            if (CameraController.Instance != null) CameraController.Instance.Target = character.transform;
 
             OnPossessed?.Invoke(character);
+            OnPlayerChanged?.Invoke(character);
         }
 
         public void Release()
@@ -157,6 +173,7 @@ namespace CoreSystem.Player
             _deathScreen.Close();
 
             OnReleased?.Invoke(previous);
+            OnPlayerChanged?.Invoke(null);
         }
 
         [ContextMenu("Save Data")]
@@ -464,6 +481,7 @@ namespace CoreSystem.Player
         {
             _instance = null;
             OnReady = null;
+            OnPlayerChanged = null;
         }
         #endregion
     }

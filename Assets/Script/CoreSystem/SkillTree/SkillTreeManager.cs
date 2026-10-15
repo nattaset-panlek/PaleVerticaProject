@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CoreSystem.SkillTree.Models;
 using CoreSystem.Data;
+using CoreSystem.Player;
 
 namespace CoreSystem.SkillTree
 {
@@ -141,7 +142,7 @@ namespace CoreSystem.SkillTree
             OnNodeUnlocked?.Invoke(nodeId);
 
             // Notify Player Character to refresh attributes
-            GameData.Player.PlayerCharacterModel?.RecalculateStats();
+            PlayerCore.GetPlayer()?.RecalculateStats();
 
             return true;
         }
@@ -157,7 +158,7 @@ namespace CoreSystem.SkillTree
             OnNodeReset?.Invoke(nodeId);
 
             // Notify Player Character to refresh attributes
-            GameData.Player.PlayerCharacterModel?.RecalculateStats();
+            PlayerCore.GetPlayer()?.RecalculateStats();
 
             return true;
         }
@@ -171,7 +172,7 @@ namespace CoreSystem.SkillTree
             OnAllReset?.Invoke();
 
             // Notify Player Character to refresh attributes
-            GameData.Player.PlayerCharacterModel?.RecalculateStats();
+            PlayerCore.GetPlayer()?.RecalculateStats();
         }
 
         #endregion

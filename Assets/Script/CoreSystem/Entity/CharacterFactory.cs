@@ -53,7 +53,7 @@ namespace CoreSystem.Entity
         {
             if (character == null) return;
             if (AgentCore.Instance != null) AgentCore.Instance.Unregister(character);
-            if (PlayerCore.Instance != null && PlayerCore.Instance.Controlled == character) PlayerCore.Instance.Release();
+            if (PlayerCore.IsPlayer(character)) PlayerCore.Instance.Release();
         }
         #endregion
     }

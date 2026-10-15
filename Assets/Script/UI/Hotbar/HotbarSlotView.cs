@@ -11,6 +11,7 @@ using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Model;
 using CoreSystem.UI.Utility;
 using CoreSystem.UI.Inventory;
+using CoreSystem.Player;
 
 namespace CoreSystem.UI.Hotbar
 {
@@ -270,7 +271,7 @@ namespace CoreSystem.UI.Hotbar
 
             try
             {
-                var player = GameData.Player.PlayerCharacterModel;
+                var player = PlayerCore.GetPlayer();
                 if (player == null || player.skillCaster == null) return;
 
                 if (_rowIndex == 0)
@@ -296,7 +297,7 @@ namespace CoreSystem.UI.Hotbar
         {
             if (_slotData == null || _slotData.IsEmpty) return;
 
-            var player = GameData.Player.PlayerCharacterModel;
+            var player = PlayerCore.GetPlayer();
             if (player == null) return;
 
             switch (_slotData.ActionType)
@@ -381,7 +382,7 @@ namespace CoreSystem.UI.Hotbar
                     ActiveSkill skillData = Database.GetSynchronizedSkill(_slotData.SkillId);
                     if (skillData != null)
                     {
-                        var player = GameData.Player?.PlayerCharacterModel;
+                        var player = PlayerCore.GetPlayer();
                         var overrideData = ActiveSkill.GetActiveChainOverride(player, skillData);
                         var effectiveSkill = (overrideData != null && overrideData.ReplacementSkill != null) ? overrideData.ReplacementSkill : skillData;
 
@@ -550,7 +551,7 @@ namespace CoreSystem.UI.Hotbar
         {
             if (_slotData == null || _slotData.IsEmpty) return;
 
-            var player = GameData.Player.PlayerCharacterModel;
+            var player = PlayerCore.GetPlayer();
             if (player == null) return;
 
             if (_slotData.ActionType == HotbarActionType.Skill)
