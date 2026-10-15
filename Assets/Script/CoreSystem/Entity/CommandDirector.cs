@@ -86,7 +86,7 @@ namespace CoreSystem.Entity
                     skillToCast = owner.skillCaster.GrantSkill(overrideData.ReplacementSkill);
                     if (overrideData.ConsumeBuffOnCast)
                     {
-                        var buffMgr = owner.GetComponent<CoreSystem.Skills.Logic.TemporaryBuffManager>();
+                        var buffMgr = owner.GetComponent<CoreSystem.Skills.Logic.BuffSystem>();
                         if (buffMgr != null) buffMgr.RemoveBuff(overrideData.RequiredBuffCode);
                     }
                 }
@@ -109,7 +109,7 @@ namespace CoreSystem.Entity
                     skillToCast = owner.skillCaster.GrantSkill(overrideData.ReplacementSkill);
                     if (overrideData.ConsumeBuffOnCast)
                     {
-                        var buffMgr = owner.GetComponent<CoreSystem.Skills.Logic.TemporaryBuffManager>();
+                        var buffMgr = owner.GetComponent<CoreSystem.Skills.Logic.BuffSystem>();
                         if (buffMgr != null) buffMgr.RemoveBuff(overrideData.RequiredBuffCode);
                     }
                     if (payload != null) payload.SkillID = skillToCast.SkillData.Id;

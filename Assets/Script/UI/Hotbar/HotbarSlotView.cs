@@ -14,7 +14,7 @@ using CoreSystem.UI.Inventory;
 
 namespace CoreSystem.UI.Hotbar
 {
-    public class HotbarSlotUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+    public class HotbarSlotView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
     {
         #region [Variables/Fields]
         [Header("UI References")]
@@ -163,7 +163,7 @@ namespace CoreSystem.UI.Hotbar
 
         public void OnDrop(PointerEventData eventData)
         {
-            if (GlobalDragManager.Payload is HotbarSlotUI draggedSlot && draggedSlot != this)
+            if (GlobalDragManager.Payload is HotbarSlotView draggedSlot && draggedSlot != this)
             {
                 SwapSlots(draggedSlot);
                 return;
@@ -187,14 +187,14 @@ namespace CoreSystem.UI.Hotbar
                 }
                 else
                 {
-                    Debug.Log($"[HotbarSlotUI] Cannot assign item '{draggedItem.Item.Name}' - Only Consumables can be assigned to Hotbar.");
+                    Debug.Log($"[HotbarSlotView] Cannot assign item '{draggedItem.Item.Name}' - Only Consumables can be assigned to Hotbar.");
                 }
                 return;
             }
 
             if (GlobalDragManager.Payload != null)
             {
-                Debug.Log($"[HotbarSlotUI] Unsupported drop payload type: {GlobalDragManager.Payload.GetType().Name}");
+                Debug.Log($"[HotbarSlotView] Unsupported drop payload type: {GlobalDragManager.Payload.GetType().Name}");
             }
         }
         #endregion
@@ -246,7 +246,7 @@ namespace CoreSystem.UI.Hotbar
             SyncWithSkillCaster();
         }
 
-        public void SwapSlots(HotbarSlotUI otherSlot)
+        public void SwapSlots(HotbarSlotView otherSlot)
         {
             if (otherSlot == null || otherSlot == this) return;
 

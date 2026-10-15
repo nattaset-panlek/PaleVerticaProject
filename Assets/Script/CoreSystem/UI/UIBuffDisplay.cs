@@ -8,7 +8,7 @@ namespace CoreSystem.UI
 {
     public class UIBuffDisplay : MonoBehaviour
     {
-        public TemporaryBuffManager BuffManager;
+        public BuffSystem BuffManager;
         public Transform BuffIconDisplayParent;
         public BuffIconUI BuffIconTemplatePrefab;
 

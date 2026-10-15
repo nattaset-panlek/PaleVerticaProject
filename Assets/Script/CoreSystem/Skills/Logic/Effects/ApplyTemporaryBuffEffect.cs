@@ -25,10 +25,10 @@ namespace CoreSystem.Skills.Logic
                 MonoBehaviour targetMono = target as MonoBehaviour;
                 if (targetMono != null)
                 {
-                    TemporaryBuffManager buffManager = targetMono.GetComponent<TemporaryBuffManager>();
+                    BuffSystem buffManager = targetMono.GetComponent<BuffSystem>();
                     if (buffManager == null)
                     {
-                        buffManager = targetMono.gameObject.AddComponent<TemporaryBuffManager>();
+                        buffManager = targetMono.gameObject.AddComponent<BuffSystem>();
                     }
 
                     AttributeModifier buffModifier = new AttributeModifier(ModifierValue, ModType);

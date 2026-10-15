@@ -77,7 +77,7 @@ namespace CoreSystem.Skills
             if (baseSkill == null || baseSkill.ChainOverrides.Count == 0) return null;
             if (caster == null) return null;
             
-            var buffManager = caster.GetComponent<Logic.TemporaryBuffManager>();
+            var buffManager = caster.GetComponent<Logic.BuffSystem>();
             if (buffManager == null) return null;
 
             for (int i = 0; i < baseSkill.ChainOverrides.Count; i++)

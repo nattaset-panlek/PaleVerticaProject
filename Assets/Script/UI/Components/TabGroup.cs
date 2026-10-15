@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace UI.Components
 {
     [AddComponentMenu("UI/Components/Tabs Manager")]
-    public class TabsManager : MonoBehaviour
+    public class TabGroup : MonoBehaviour
     {
         #region [Variables/Fields]
         [SerializeField] private List<Tab> tabs = new List<Tab>();

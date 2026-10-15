@@ -16,7 +16,7 @@ namespace CoreSystem.UI.Hotbar
         [Header("Row Configuration")]
         [SerializeField] private int _rowIndex;
         [SerializeField] private bool _isLocked = false;
-        private List<HotbarSlotUI> _slots = new List<HotbarSlotUI>();
+        private List<HotbarSlotView> _slots = new List<HotbarSlotView>();
 
         private RectTransform _rectTransform;
         private Vector2 _dragOffset;
@@ -26,7 +26,7 @@ namespace CoreSystem.UI.Hotbar
         #region [Properties]
         public int RowIndex => _rowIndex;
         public bool IsLocked => _isLocked;
-        public List<HotbarSlotUI> Slots => _slots;
+        public List<HotbarSlotView> Slots => _slots;
         public RectTransform RectTransform => _rectTransform;
         #endregion
 
@@ -123,7 +123,7 @@ namespace CoreSystem.UI.Hotbar
             _isLocked = locked;
         }
 
-        public HotbarSlotUI GetSlot(int slotIndex)
+        public HotbarSlotView GetSlot(int slotIndex)
         {
             if (slotIndex >= 0 && slotIndex < _slots.Count)
             {
@@ -150,10 +150,10 @@ namespace CoreSystem.UI.Hotbar
                 GameObject slotObj = Instantiate(_slotPrefab, _slotContainer);
                 slotObj.SetActive(true);
 
-                HotbarSlotUI slotUI = slotObj.GetComponent<HotbarSlotUI>();
+                HotbarSlotView slotUI = slotObj.GetComponent<HotbarSlotView>();
                 if (slotUI == null)
                 {
-                    slotUI = slotObj.AddComponent<HotbarSlotUI>();
+                    slotUI = slotObj.AddComponent<HotbarSlotView>();
                 }
 
                 string hotkeyText = GetDefaultHotkeyText(_rowIndex, i);

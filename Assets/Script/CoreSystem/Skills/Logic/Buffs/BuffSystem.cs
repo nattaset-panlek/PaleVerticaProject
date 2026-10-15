@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CoreSystem.Skills.Logic
 {
-    public class TemporaryBuffManager : MonoBehaviour
+    public class BuffSystem : MonoBehaviour
     {
         private AttributeSystem attributeSystem;
         private List<ActiveBuff> activeBuffs = new List<ActiveBuff>();
