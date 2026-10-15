@@ -6,7 +6,19 @@ Paths are relative to `Assets/Script/`. Every new script uses the five `#region`
 1. Create `CoreSystem/Skills/Logic/Effects/<Name>Effect.cs`, namespace `CoreSystem.Skills.Logic`, `[System.Serializable] public class <Name>Effect : EffectLogic`.
 2. Implement `public override void Apply(SkillPayload payload, IEntity target)`. Override `ApplyToCaster` / `ApplyOncePerCast` if needed.
 3. It appears automatically in the `ActiveSkill.Effects` list dropdown (`[SerializeReference, SubclassSelector]`).
-4. Damage/heal math belongs in `DamageEffect` / `HealEffect`; do not duplicate it. Route hit hooks through the target's `UniquePassiveManager` like `DamageEffect` does.
+4. Never rename or move an existing effect class: `[SerializeReference]` stores the class name + namespace in skill assets.
+5. Effects are adapters: build a `CombatAction` and call `CombatCore.Execute(action, user, target)` (see `DamageEffect`). Never compute damage/heal inside an effect. Add a case to `Assets/Script/Editor/Tests/CombatCoreTests.cs` or `DamageFormulaTests.cs`.
+
+## New effect kind (Heal, Status, Control, Summon ...)
+1. Add a spec: `Combat/Handlers/<Kind>/<Kind>Spec.cs : EffectSpec` with its parameters and `Kind => EffectKind.<Kind>` (add the enum value in `Combat/CombatEnums.cs` if new).
+2. Add a handler: `[EffectHandler(EffectKind.<Kind>)] public sealed class <Kind>Handler : EffectHandler<<Kind>Spec, TOutgoing>`. Implement `TargetRule` (Any/Hostile/Ally), `Offense` (user-side value), `Defense` (target-side mitigation, returns an `Outcome`), `Commit` (the only code that mutates state for this kind). Offense/Defense must not change game state.
+3. Put the math in `Combat/Formulas/<Kind>Formula.cs` (pure, numbers in/out) and test it.
+4. Expose it to skills through an `EffectLogic` adapter so it shows up in `ActiveSkill.Effects`.
+
+## New rider (special on-hit behaviour)
+1. `public class <Name>Rider : ActionRider` in `Combat/Riders/`, mark `[System.Serializable]`. Set `Trigger` (OnHit/OnCrit/OnKill) and `ChancePercent`.
+2. In `Execute(ResolveContext context)` read `context.Result` (outcomes, `Total(kind)`) and call `context.Spawn(subAction, user, target)`; the sub-action goes through Gate/Defense like any action, is marked `IsProc`, and stops at `CombatCore.MaxDepth`.
+3. Attach with `action.WithRider(...)`. Never mutate HP directly in a rider.
 
 ## New targeting shape
 1. `CoreSystem/Skills/Logic/Targeting/<Name>Targeting.cs : TargetingLogic`.
@@ -14,15 +26,19 @@ Paths are relative to `Assets/Script/`. Every new script uses the five `#region`
 3. Override `RequiresSelection` and `DrawGizmos` as needed. If it needs an aim preview, add an indicator in `Skills/Visuals/Indicators/` and route it through `SkillIndicatorManager` from `PlayerController`.
 
 ## New support modifier
-1. Add a class to `CoreSystem/Skills/Modifiers/SupportModifierSubclasses.cs` deriving `SupportModifier`; implement `ModifyPayload(ref SkillPayload payload)`, optionally `IsCompatible(ActiveSkill)`.
-2. Register its id in the switch in `CoreSystem/Skills/SupportModifier.cs` `Create(int id)` (current range 1001-1022; check `Docs/03-Project/Planning_Guide.md` for id ranges).
-3. Add the data row in `SupportSkill.json` via Game Data Workbench. Chroma/Mineral semantics: `Docs/01-Design/SupportChromaSystem.md`.
+1. Add a class to `CoreSystem/Skills/Modifiers/SupportModifierSubclasses.cs` deriving `SupportModifier`, tagged `[SupportModifierId(<id>)]` (current range 1001-1022; check `Docs/03-Project/Planning_Guide.md`). Set `Chroma`/`Mineral` in the constructor; do not set `ID` (the factory does).
+2. Implement `ModifyPayload(ref SkillPayload payload)`, optionally `IsCompatible(ActiveSkill)` and `GetDescription(template)`. Keep tunable numbers as fields so tooltip and gameplay share them.
+3. If it changes how the skill executes rather than the payload numbers, also implement `IPayloadSplitter` (one cast becomes several payloads) or `ICastRepeater` (delayed re-cast). `SkillCaster` picks them up automatically.
+4. Add the id + type to `ExpectedSupportTypes` in `Assets/Script/Editor/Tests/RegistryTests.cs`.
+5. Add the data row in `SupportSkill.json` via Game Data Workbench. Chroma/Mineral semantics: `Docs/01-Design/SupportChromaSystem.md`.
 
 ## New unique passive
-1. Add a subclass of `UniquePassive` (`CoreSystem/Entity/UniquePassives/UniquePassive.cs`). Override only the hooks needed: `TriggerOnHit`, `TriggerOnTakeDamage` (by `ref damage`), `TriggerOnPostHit`, `TriggerOnBasicAttack`, `TriggerOnSkillExecuted`, `ModifyCoreAttributes`, `ModifyManaCost`, `Tick`.
-2. Add a `case "<Id>"` in `UniquePassiveManager.CreatePassive(string)`.
-3. Add metadata to `UniquePassive.json` (Workbench "UniquePassives" tab). Grant through an item with `UniquePassiveEffect`.
-4. Ideas backlog: `Docs/01-Design/UniquePassiveIdeas.md`.
+1. Create `CoreSystem/Entity/UniquePassives/<Name>UniquePassive.cs` (one class per file) deriving `UniquePassive`, tagged `[UniquePassiveId("<Name>")]`. That attribute is the registration; there is no switch.
+2. Override only the hooks needed: `TriggerOnHit`, `TriggerOnTakeDamage` (by `ref damage`), `TriggerOnPostHit`, `TriggerOnBasicAttack`, `TriggerOnSkillExecuted`, `ModifyCoreAttributes`, `ModifyManaCost`, `Tick`.
+3. Use the base helpers: `DealProcDamage(target, amount, damageType, ProcSkillIds.X)` for passive-triggered damage and `RestoreResource(AttributeType.HP, AttributeType.MaxHP, amount)` for heals/leech. Add a new constant to `ProcSkillIds` if the proc must be distinguishable (e.g. to avoid Thorn reflecting it).
+4. Internal-only passives spawned by another passive (like `BloodBleedingDOT`) get no attribute.
+5. Add the id + type to `ExpectedPassiveTypes` in `RegistryTests.cs`, metadata to `UniquePassive.json` (Workbench "UniquePassives" tab), and grant it through an item with `UniquePassiveEffect`.
+6. Ideas backlog: `Docs/01-Design/UniquePassiveIdeas.md`.
 
 ## New unique (scripted) skill
 Subclass `ActiveSkill` in `CoreSystem/Skills/UniqueSkill/`, override `Execute`, add `[CreateAssetMenu(menuName = "Skill System/Unique/<Name>")]`. Start from `CoreSystem/Skills/UniqueSkillTemplate.cs`. Guide: `Docs/02-Technical/Skills/UNIQUE_SKILLS_GUIDE.md`.
@@ -74,4 +90,6 @@ Add fields to `CoreSystem/Data/Save/PlayerDataModel.cs`, write them in `PlayerCh
 Use `character.commandDirector` (override/lock move and cast) instead of disabling `PlayerController` or `AgentCore`. Manual: `Docs/02-Technical/Character/Command_Director_Manual.md`.
 
 ## Verifying a change
-No automated tests. Let Unity compile (Hot Reload is installed), open `Assets/Scenes/SandBox.unity`, enter Play, press **K** for the dev tool (spawn items, edit attributes, grant skills). `CoreSystem/Data/Tests/DataSystemTest.cs` has a "TestSystem" context-menu smoke test.
+1. Run the EditMode tests (`Assets/Script/Editor/Tests/`): Test Runner window, or headless with the editor closed (command in `SKILL.md`). All must pass.
+2. Then open `Assets/Scenes/SandBox.unity`, enter Play, press **K** for the dev tool (spawn items, edit attributes, grant skills) to check feel and UI.
+3. `CoreSystem/Data/Tests/DataSystemTest.cs` has a "TestSystem" context-menu smoke test for the data layer.

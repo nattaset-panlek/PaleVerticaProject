@@ -45,8 +45,9 @@ namespace CoreSystem.Attributes
 
         public void Add(AdditionalEntry entry)
         {
-            _entries.Add(entry);
-            _entries.Sort((a, b) => a.Order.CompareTo(b.Order));
+            int index = _entries.Count;
+            while (index > 0 && _entries[index - 1].Order > entry.Order) index--;
+            _entries.Insert(index, entry);
         }
 
         public void Add(int order, AdditionalOp op, float value, string tag = "")

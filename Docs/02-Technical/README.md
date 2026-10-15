@@ -4,6 +4,7 @@ System-level implementation docs, one folder per system. Source code lives in `A
 
 | Folder | Code area | Contents |
 |---|---|---|
+| `Combat/` | `CoreSystem/Combat` | `CombatCore` pipeline: Gate, Dispatch, Offense, Defense, Riders, Apply |
 | `Attributes/` | `CoreSystem/Attributes`, `CoreSystem/Enums/AttributeType.cs` | Stat pipeline, AdditionalChain, all formulas |
 | `Character/` | `CoreSystem/Entity`, `CoreSystem/Agent`, `CoreSystem/Visuals` | CommandDirector, NPC/AgentCore, EntityVisualController |
 | `Skills/` | `CoreSystem/Skills` | Unique skills, combo chains, passive V2 plan, skill VFX handover |
@@ -11,3 +12,4 @@ System-level implementation docs, one folder per system. Source code lives in `A
 | `Items/` | `CoreSystem/Data/Items` | Equipment effect JSON templates, equipment buffs, costumes |
 | `UI/` | `CoreSystem/UI`, `Script/UI` | UIBuilder framework, Hotbar, Global Drag & Drop, custom components |
 | `TechnicalArt/` | `CoreSystem/Visuals`, shaders/materials | Shader + material setup, milestone walkthrough |
+| `Testing.md` | `Script/Editor/Tests` | EditMode test suite and how to run it |

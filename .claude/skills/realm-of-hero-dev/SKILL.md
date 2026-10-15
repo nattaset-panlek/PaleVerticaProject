@@ -24,7 +24,8 @@ Unity **6000.4.8f1**, URP 2D, Input System, Addressables, TMP, Newtonsoft JSON, 
 | Entities | `CoreSystem/Entity/` | `Character` (abstract, `IEntity`), `PlayerCharacter`, `EnemyCharacter`, `NonPlayerCharacter`, `CommandDirector`, `ExperienceSystem`, `UniquePassives/` |
 | AI | `CoreSystem/Agent/` | `AgentCore` (state machine), `AgentGroup`, `EntitySpawner`, `FaceDirectionModule` |
 | Player/world | `CoreSystem/Controllers/` | `PlayerController`, `CameraController`, `GlobalGameTime` |
-| Skills | `CoreSystem/Skills/` | `SkillCaster`, `SkillInstance`, `ActiveSkill` (SO), `Logic/Targeting`, `Logic/Effects`, `Logic/Buffs/TemporaryBuffManager`, `Logic/Projectile`, `SupportModifier.cs` + `Modifiers/SupportModifierSubclasses.cs`, `UniqueSkill/`, `Visuals/` |
+| Skills | `CoreSystem/Skills/` | `SkillCaster`, `SkillInstance`, `ActiveSkill` (SO), `Logic/Targeting`, `Logic/Effects`, `Logic/Buffs/TemporaryBuffManager`, `Logic/Projectile`, `SupportModifier.cs` + `Modifiers/SupportModifierSubclasses.cs`, `SupportExecutionHooks.cs`, `ProcSkillIds.cs`, `UniqueSkill/`, `Visuals/` |
+| Combat core | `CoreSystem/Combat/` | `CombatCore.Resolve/Execute(action, user, target)`, `CombatAction` + `EffectSpec`, `Gate/`, `Handlers/` (one per `EffectKind`, e.g. `Damage/DamageHandler`), `Formulas/` (`DamageFormula`, `CombatStatLookup`), `Riders/` (`ActionRider`, `RiderStage`), `Apply/OutcomeApplier` |
 | Skill tree | `CoreSystem/SkillTree/` | `SkillTreeManager`, `SkillTreeDatabase`, `SkillTreeLoader` |
 | Data | `CoreSystem/Data/` | `Database` (singleton facade), `GameData.Player` (`PlayerData`), `Items/` (Item model + `Effects/`), `Save/` (`SaveManager`, `PlayerDataModel`) |
 | Visual feedback | `CoreSystem/Visuals/` | `EntityVisualController`, `EntityVisualSettings` (SO), `CombatJuiceDirector` |
@@ -47,15 +48,19 @@ Step-by-step recipes (new effect, targeting, support modifier, unique passive, u
 ## 5. Gotchas found in the code
 - No event bus: events are plain `event Action` fields on owners (`AttributeSystem.OnAttributesChanged`, `SkillCaster.OnCast*`, `TemporaryBuffManager.OnBuffsChanged`, `PlayerInventory.OnInventoryChanged`, static `SkillTreeManager.OnNodeUnlocked`...). Always unsubscribe in `OnDisable`/`OnDestroy`.
 - `Events/`, `Gameplay/`, `Script/DevToolModal/`, `Editor/ProjectMobilityAssistant/` are empty folders.
-- Factory switches must be updated when adding types: `UniquePassiveManager.CreatePassive(string)` and `SupportModifier.Create(id)` (ids 1001-1022). `BloodBleedingDOT` currently has no factory case.
-- Support ids 1021 (EchoSpell) and 1022 (SpellCascade) are special-cased inside `SkillCaster.ExecutePipeline`.
+- Support modifiers and unique passives are discovered by attribute, not switches: `[SupportModifierId(1023)]` / `[UniquePassiveId("Name")]` on the class is the whole registration (`CoreSystem/Utile/AttributedTypeRegistry.cs`). `SupportModifier.Create(id)` assigns `ID` from the attribute; never set `ID` in constructors. `BloodBleedingDOT` is intentionally unregistered (spawned by `BloodBleeding` with caster stats).
+- Supports that change *how* a skill executes implement `IPayloadSplitter` (e.g. SpellCascade) or `ICastRepeater` (e.g. EchoSpell) from `Skills/SupportExecutionHooks.cs`; `SkillCaster` calls them generically. Do not add id checks to `SkillCaster`.
+- **All damage goes through `CombatCore`** (`CoreSystem/Combat/`): Gate -> Dispatch by `EffectKind` -> handler Offense (user side) -> Defense (target side) -> Riders (re-enter `Resolve` as procs, max depth `CombatCore.MaxDepth`) -> `OutcomeApplier` (the only place HP changes). `Resolve` is side-effect free; `Execute` = Resolve + Apply. `DamageEffect.Apply` is a one-line adapter; never put math back into effects. Formula edits go in `Combat/Formulas/`, per-kind behaviour in `Combat/Handlers/<Kind>/`. Full design: `Docs/02-Technical/Combat/Combat_Core_Pipeline.md`.
+- Unique passive `ref` hooks (OnHit/OnTakeDamage/OnPostHit) still run inside `DamageHandler.Commit` to keep numbers identical; Phase 4 moves them into Offense/Defense modifiers and riders. Proc damage uses `ProcSkillIds` and `UniquePassive.DealProcDamage`; self-inflicted proc damage (bleeds) passes the Gate.
 - `AGENTS.md` says Fixed Cast Time is immutable, but `SkillInstance` currently reduces FCT via `FixedCastTimeReduc` and FCT%. Flag this to the user instead of silently "fixing" it.
-- `PlayerCharacter.RecalculateStats` removes "Passive"-tagged Additional entries added by `ApplyPassiveStats` and re-adds from `PassiveNodes` - two sources fight over the same tag.
+- `PlayerCharacter.RecalculateStats` deliberately replaces the "Passive"-tagged entries from the legacy global `SkillTreeManager` (not placed in any scene) with the per-character `PassiveNodes`. Do not make both apply - they describe the same tree and would double count.
+- `AdditionalChain` keeps insertion order for entries with equal `Order`.
 - `UIBuilderContext` element methods take a **style name** first (`"Div"`, `"Text"`, `"Button"`, `"Primary Button"`), resolved through `Assets/Prefab/UIElementRegistry.asset`; not an element id.
 - UIBuilder is imperative: rebuild with `modal.Build(BuildUI)` when state changes.
 - `HotbarManager` is the only place hotbar hotkeys are read; `HotbarSlotUI.ExecuteAction()` is the single execution entry.
 - `SkillStatusUI` exists but nothing instantiates it. `NPCBrain` is mostly commented out (V2).
-- No automated tests. `Data/Tests/DataSystemTest.cs` runs via Inspector context menu "TestSystem". Verify changes by compiling in Unity and using the K dev tool.
+- EditMode tests live in `Assets/Script/Editor/Tests/` (compiled into Assembly-CSharp-Editor, namespace `CoreSystem.Tests`): stat pipeline, derived formulas, cast time/cooldown/AOE, `DamageFormula`, the `CombatCore` pipeline (`CombatCoreTests` with `FakeCombatant` + `FixedCombatRandom`), registries, support hooks. Run them in **Window > General > Test Runner > EditMode**, or headless with Unity closed: `"D:/Unity/6000.4.8f1/Editor/Unity.exe" -batchmode -nographics -projectPath "F:/GameProject/Pale Vertica" -runTests -testPlatform EditMode -testResults results.xml -logFile unity.log`. Add a test whenever you touch math. Any formula change must update the matching test deliberately.
+- `Data/Tests/DataSystemTest.cs` is a manual smoke test (Inspector context menu "TestSystem"). Gameplay feel still needs Play mode + the K dev tool.
 
 ## 6. Documentation workflow
 - Hub: `Docs/README.md`. Technical docs go to `Docs/02-Technical/<System>/`, design to `Docs/01-Design/`, superseded docs to `Docs/99-Archive/`.

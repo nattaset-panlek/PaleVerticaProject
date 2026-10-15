@@ -663,92 +663,49 @@ namespace CoreSystem.Skills
                 }
             }
 
-            // Delegate core logic to the skill asset (Polymorphism)
             if (instance.SkillData != null)
             {
-                var cascadeMod = instance.LinkedModifiers.Find(m => m != null && m.ID == 1022);
-                if (cascadeMod != null && instance.SkillData.BaseTargeting is TargetLocationTargeting)
-                {
-                    Vector3 casterPos = character.transform.position;
-                    Vector3 targetPos = payload.TargetPosition;
-                    
-                    Vector3 direction = (targetPos - casterPos).normalized;
-                    if (direction == Vector3.zero) direction = Vector3.up;
-                    
-                    Vector3 leftDir = new Vector3(-direction.y, direction.x, 0f);
-                    Vector3 rightDir = new Vector3(direction.y, -direction.x, 0f);
-                    
-                    var mainPayload = payload.Clone();
-                    mainPayload.BaseDamage *= 0.75f;
-                    
-                    var leftPayload = payload.Clone();
-                    leftPayload.TargetPosition = targetPos + leftDir * 5f;
-                    leftPayload.BaseDamage *= 0.50f;
-                    
-                    var rightPayload = payload.Clone();
-                    rightPayload.TargetPosition = targetPos + rightDir * 5f;
-                    rightPayload.BaseDamage *= 0.50f;
-                    
-                    instance.SkillData.Execute(leftPayload, instance, this);
-                    instance.SkillData.Execute(mainPayload, instance, this);
-                    instance.SkillData.Execute(rightPayload, instance, this);
-                }
-                else
-                {
-                    instance.SkillData.Execute(payload, instance, this);
-                }
+                ExecuteWithSplitters(instance, payload);
 
-                var echoMod = instance.LinkedModifiers.Find(m => m != null && m.ID == 1021);
-                if (echoMod != null)
+                var repeater = FindLinkedModifier<ICastRepeater>(instance);
+                if (repeater != null && this.character != null && this.character.gameObject.activeInHierarchy)
                 {
-                    if (this.character != null && this.character.gameObject.activeInHierarchy)
-                    {
-                        this.character.StartCoroutine(ExecuteEchoCoroutine(instance, payload));
-                    }
+                    this.character.StartCoroutine(ExecuteRepeatCoroutine(instance, payload, repeater));
                 }
             }
         }
 
-        private System.Collections.IEnumerator ExecuteEchoCoroutine(SkillInstance instance, SkillPayload originalPayload)
+        private void ExecuteWithSplitters(SkillInstance instance, SkillPayload payload)
         {
-            yield return new WaitForSeconds(0.15f);
+            var splitter = FindLinkedModifier<IPayloadSplitter>(instance);
+            if (splitter != null && splitter.CanSplit(instance.SkillData))
+            {
+                foreach (var splitPayload in splitter.Split(payload, character.transform.position))
+                {
+                    instance.SkillData.Execute(splitPayload, instance, this);
+                }
+                return;
+            }
+
+            instance.SkillData.Execute(payload, instance, this);
+        }
+
+        private static T FindLinkedModifier<T>(SkillInstance instance) where T : class
+        {
+            if (instance.LinkedModifiers == null) return null;
+            for (int i = 0; i < instance.LinkedModifiers.Count; i++)
+            {
+                if (instance.LinkedModifiers[i] is T match) return match;
+            }
+            return null;
+        }
+
+        private System.Collections.IEnumerator ExecuteRepeatCoroutine(SkillInstance instance, SkillPayload originalPayload, ICastRepeater repeater)
+        {
+            yield return new WaitForSeconds(repeater.RepeatDelay);
             if (instance != null && instance.SkillData != null && this.character != null && !this.character.IsDead)
             {
-                var echoPayload = originalPayload.Clone();
-                echoPayload.AOERadius *= 1.3f;
-                echoPayload.BaseDamage *= 0.6f;
-
-                var cascadeMod = instance.LinkedModifiers.Find(m => m != null && m.ID == 1022);
-                if (cascadeMod != null && instance.SkillData.BaseTargeting is TargetLocationTargeting)
-                {
-                    Vector3 casterPos = character.transform.position;
-                    Vector3 targetPos = echoPayload.TargetPosition;
-                    
-                    Vector3 direction = (targetPos - casterPos).normalized;
-                    if (direction == Vector3.zero) direction = Vector3.up;
-                    
-                    Vector3 leftDir = new Vector3(-direction.y, direction.x, 0f);
-                    Vector3 rightDir = new Vector3(direction.y, -direction.x, 0f);
-                    
-                    var mainPayload = echoPayload.Clone();
-                    mainPayload.BaseDamage *= 0.75f;
-                    
-                    var leftPayload = echoPayload.Clone();
-                    leftPayload.TargetPosition = targetPos + leftDir * 5f;
-                    leftPayload.BaseDamage *= 0.50f;
-                    
-                    var rightPayload = echoPayload.Clone();
-                    rightPayload.TargetPosition = targetPos + rightDir * 5f;
-                    rightPayload.BaseDamage *= 0.50f;
-                    
-                    instance.SkillData.Execute(leftPayload, instance, this);
-                    instance.SkillData.Execute(mainPayload, instance, this);
-                    instance.SkillData.Execute(rightPayload, instance, this);
-                }
-                else
-                {
-                    instance.SkillData.Execute(echoPayload, instance, this);
-                }
+                ExecuteWithSplitters(instance, repeater.CreateRepeatPayload(originalPayload));
             }
         }
 

@@ -22,17 +22,20 @@ System-level implementation docs, grouped by system. See [02-Technical/README.md
 
 | System | Docs |
 |---|---|
+| Combat | [Combat Core Pipeline](./02-Technical/Combat/Combat_Core_Pipeline.md) |
 | Attributes | [AdditionalValue Standard](./02-Technical/Attributes/AdditionalValue_Standard.md), [All Attribute Formulas](./02-Technical/Attributes/All_Attribute_Formulas.md), [Attribute Mechanics & Classes](./02-Technical/Attributes/Attribute_Mechanics.md) |
 | Character / AI | [Command Director](./02-Technical/Character/Command_Director_Manual.md), [NPC & AgentCore](./02-Technical/Character/NPC_and_AgentCore_Walkthrough.md), [Character Visual Architecture (TH)](./02-Technical/Character/Character_Visual_Architecture_TH.md), [Extensible Visual Architecture (TH)](./02-Technical/Character/Extensible_Visual_Architecture_TH.md) |
 | Skills | [Unique Skills Guide](./02-Technical/Skills/UNIQUE_SKILLS_GUIDE.md), [Skill Combo / Chain (TH)](./02-Technical/Skills/Skill_Combo_Walkthrough_TH.md), [Passive System V2 Planning](./02-Technical/Skills/Passive_System_V2_Planning.md), [Skill Visuals EN](./02-Technical/Skills/Skill_Visuals_Guide_EN.md) / [TH](./02-Technical/Skills/Skill_Visuals_Guide_TH.md) |
 | Skill Tree | [SkillTree API](./02-Technical/SkillTree/SkillTreeAPI.md), [Using Exported Skill Tree JSON](./02-Technical/SkillTree/HowToUseExportedJSON.md) |
 | Items | [Effect Templates](./02-Technical/Items/EffectTemplates.md), [Equipment Buff Support](./02-Technical/Items/EquipmentBuffSupport.md), [Costume System](./02-Technical/Items/Costume_System_Walkthrough.md) |
 | UI | [UIBuilder Guide](./02-Technical/UI/UIBuilder_Guide.md), [Hotbar Interaction](./02-Technical/UI/Hotbar_Interaction.md), [Global Drag & Drop](./02-Technical/UI/GlobalDrag.md), [UI Components](./02-Technical/UI/UI_Components.md) |
+| Testing | [EditMode Tests](./02-Technical/Testing.md) |
 | Technical Art | [Setup EN](./02-Technical/TechnicalArt/Technical_Art_Setup_EN.md) / [TH](./02-Technical/TechnicalArt/Technical_Art_Setup_TH.md), [Milestone 1 Walkthrough (TH)](./02-Technical/TechnicalArt/Milestone1_Walkthrough_TH.md) |
 
 ## 03-Project
 - [Planning Guide (ID ranges, data mobility)](./03-Project/Planning_Guide.md)
 - [Project Status Snapshot (2026-03)](./03-Project/ProjectStatusSnapshot.md)
+- [Refactor Log 2026-10-15](./03-Project/Refactor_2026-10-15.md)
 
 ## 04-Resources
 - [Resources index](./04-Resources/README.md)

@@ -62,10 +62,8 @@ namespace CoreSystem.Attributes
             attributes[AttributeType.StatusDMG].BaseValue = 10f;
 
             // Apply specific overrides from InitialAttributes List if any (set in Inspector)
-            Debug.Log("[AttributeSystem] Initializing owner: " + (owner != null ? owner.name : "null") + ". initialAttributes count: " + initialAttributes.Count);
             foreach (var attr in initialAttributes)
             {
-                Debug.Log("[AttributeSystem] Override item: " + attr.Type + " = " + attr.BaseValue);
                 if (attributes.TryGetValue(attr.Type, out var existing))
                 {
                     existing.InitialValue = attr.BaseValue;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using CoreSystem.Entity;
 using CoreSystem.Attributes;
@@ -6,6 +7,7 @@ using CoreSystem.Skills.Logic;
 
 namespace CoreSystem.Skills.Modifiers
 {
+    [SupportModifierId(1001)]
     public class MultiShotSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -15,7 +17,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public MultiShotSupportModifier()
         {
-            ID = 1001;
             Chroma = ChromaType.Physical;
             Mineral = MineralType.Hematite;
         }
@@ -37,6 +38,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1002)]
     public class EchoSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -47,7 +49,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public EchoSupportModifier()
         {
-            ID = 1002;
             Chroma = ChromaType.Magic;
             Mineral = MineralType.Fluorite;
         }
@@ -64,12 +65,12 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1003)]
     public class PierceSupportModifier : SupportModifier
     {
         #region [Public Methods]
         public PierceSupportModifier()
         {
-            ID = 1003;
             Chroma = ChromaType.Physical;
             Mineral = MineralType.Obsidian;
         }
@@ -90,12 +91,12 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1004)]
     public class ChainSupportModifier : SupportModifier
     {
         #region [Public Methods]
         public ChainSupportModifier()
         {
-            ID = 1004;
             Chroma = ChromaType.Physical;
             Mineral = MineralType.Obsidian;
         }
@@ -116,6 +117,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1005)]
     public class AreaIncreaseSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -126,7 +128,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public AreaIncreaseSupportModifier()
         {
-            ID = 1005;
             Chroma = ChromaType.Cosmic;
             Mineral = MineralType.Pallasite;
         }
@@ -149,6 +150,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1006)]
     public class DamageUpSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -158,7 +160,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public DamageUpSupportModifier()
         {
-            ID = 1006;
             Chroma = ChromaType.Origin;
             Mineral = MineralType.Zircon;
         }
@@ -175,6 +176,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1007)]
     public class CooldownReductionSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -184,7 +186,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public CooldownReductionSupportModifier()
         {
-            ID = 1007;
             Chroma = ChromaType.Dimensional;
             Mineral = MineralType.Alexandrite;
         }
@@ -201,6 +202,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1008)]
     public class CostReductionSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -210,7 +212,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public CostReductionSupportModifier()
         {
-            ID = 1008;
             Chroma = ChromaType.Dimensional;
             Mineral = MineralType.Ulexite;
         }
@@ -227,6 +228,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1009)]
     public class DurationUpSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -236,7 +238,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public DurationUpSupportModifier()
         {
-            ID = 1009;
             Chroma = ChromaType.Cosmic;
             Mineral = MineralType.Tektite;
         }
@@ -252,6 +253,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1010)]
     public class StatusChanceUpSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -261,7 +263,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public StatusChanceUpSupportModifier()
         {
-            ID = 1010;
             Chroma = ChromaType.Soul;
             Mineral = MineralType.Celestite;
         }
@@ -277,6 +278,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1011)]
     public class BurnChanceSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -286,7 +288,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public BurnChanceSupportModifier()
         {
-            ID = 1011;
             Chroma = ChromaType.Origin;
             Mineral = MineralType.Amber;
         }
@@ -307,6 +308,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1012)]
     public class FreezeChanceSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -316,7 +318,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public FreezeChanceSupportModifier()
         {
-            ID = 1012;
             Chroma = ChromaType.Origin;
             Mineral = MineralType.Amber;
         }
@@ -337,6 +338,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1013)]
     public class KnockbackSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -346,7 +348,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public KnockbackSupportModifier()
         {
-            ID = 1013;
             Chroma = ChromaType.Physical;
             Mineral = MineralType.Hematite;
         }
@@ -362,6 +363,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1014)]
     public class CriticalPowerSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -372,7 +374,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public CriticalPowerSupportModifier()
         {
-            ID = 1014;
             Chroma = ChromaType.Soul;
             Mineral = MineralType.Moldavite;
         }
@@ -394,6 +395,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1015)]
     public class ManaLeechSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -403,7 +405,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public ManaLeechSupportModifier()
         {
-            ID = 1015;
             Chroma = ChromaType.Soul;
             Mineral = MineralType.Celestite;
         }
@@ -419,6 +420,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1016)]
     public class LifeLeechSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -428,7 +430,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public LifeLeechSupportModifier()
         {
-            ID = 1016;
             Chroma = ChromaType.Soul;
             Mineral = MineralType.Moldavite;
         }
@@ -449,6 +450,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1017)]
     public class ProjectileSpeedSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -458,7 +460,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public ProjectileSpeedSupportModifier()
         {
-            ID = 1017;
             Chroma = ChromaType.Cosmic;
             Mineral = MineralType.Tektite;
         }
@@ -479,6 +480,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1018)]
     public class SplitProjectileSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -488,7 +490,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public SplitProjectileSupportModifier()
         {
-            ID = 1018;
             Chroma = ChromaType.Cosmic;
             Mineral = MineralType.Pallasite;
         }
@@ -510,12 +511,12 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1019)]
     public class HomingSupportModifier : SupportModifier
     {
         #region [Public Methods]
         public HomingSupportModifier()
         {
-            ID = 1019;
             Chroma = ChromaType.Dimensional;
             Mineral = MineralType.Alexandrite;
         }
@@ -536,6 +537,7 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
+    [SupportModifierId(1020)]
     public class EmpoweredCastSupportModifier : SupportModifier
     {
         #region [Variables/Fields]
@@ -546,7 +548,6 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public EmpoweredCastSupportModifier()
         {
-            ID = 1020;
             Chroma = ChromaType.Magic;
             Mineral = MineralType.Labradorite;
         }
@@ -573,23 +574,36 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
-    public class EchoSpellSupportModifier : SupportModifier
+    [SupportModifierId(1021)]
+    public class EchoSpellSupportModifier : SupportModifier, ICastRepeater
     {
         #region [Variables/Fields]
         public float aoeMultiplier = 1.3f;
         public float damageMultiplier = 0.6f;
+        public float repeatDelay = 0.15f;
+        #endregion
+
+        #region [Properties]
+        public float RepeatDelay => repeatDelay;
         #endregion
 
         #region [Public Methods]
         public EchoSpellSupportModifier()
         {
-            ID = 1021;
             Chroma = ChromaType.Magic;
             Mineral = MineralType.Fluorite;
         }
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+        }
+
+        public SkillPayload CreateRepeatPayload(SkillPayload original)
+        {
+            var echoPayload = original.Clone();
+            echoPayload.AOERadius *= aoeMultiplier;
+            echoPayload.BaseDamage *= damageMultiplier;
+            return echoPayload;
         }
 
         public override string GetDescription(string template)
@@ -599,7 +613,8 @@ namespace CoreSystem.Skills.Modifiers
         #endregion
     }
 
-    public class SpellCascadeSupportModifier : SupportModifier
+    [SupportModifierId(1022)]
+    public class SpellCascadeSupportModifier : SupportModifier, IPayloadSplitter
     {
         #region [Variables/Fields]
         public float sideDamageMultiplier = 0.5f;
@@ -610,13 +625,41 @@ namespace CoreSystem.Skills.Modifiers
         #region [Public Methods]
         public SpellCascadeSupportModifier()
         {
-            ID = 1022;
             Chroma = ChromaType.Cosmic;
             Mineral = MineralType.Pallasite;
         }
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+        }
+
+        public bool CanSplit(ActiveSkill skill)
+        {
+            return skill != null && skill.BaseTargeting is TargetLocationTargeting;
+        }
+
+        public IReadOnlyList<SkillPayload> Split(SkillPayload payload, Vector3 casterPosition)
+        {
+            Vector3 targetPos = payload.TargetPosition;
+
+            Vector3 direction = (targetPos - casterPosition).normalized;
+            if (direction == Vector3.zero) direction = Vector3.up;
+
+            Vector3 leftDir = new Vector3(-direction.y, direction.x, 0f);
+            Vector3 rightDir = new Vector3(direction.y, -direction.x, 0f);
+
+            var mainPayload = payload.Clone();
+            mainPayload.BaseDamage *= mainDamageMultiplier;
+
+            var leftPayload = payload.Clone();
+            leftPayload.TargetPosition = targetPos + leftDir * offsetMargin;
+            leftPayload.BaseDamage *= sideDamageMultiplier;
+
+            var rightPayload = payload.Clone();
+            rightPayload.TargetPosition = targetPos + rightDir * offsetMargin;
+            rightPayload.BaseDamage *= sideDamageMultiplier;
+
+            return new[] { leftPayload, mainPayload, rightPayload };
         }
 
         public override bool IsCompatible(ActiveSkill activeSkill)

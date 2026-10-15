@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CoreSystem.Skills;
+using CoreSystem.Utile;
 
 namespace CoreSystem.Entity.UniquePassives
 {
     public class UniquePassiveManager
     {
         #region [Variables/Fields]
+        private static readonly AttributedTypeRegistry<string, UniquePassive, UniquePassiveIdAttribute> Registry =
+            new AttributedTypeRegistry<string, UniquePassive, UniquePassiveIdAttribute>(attribute => attribute.Id);
+
         private Character _owner;
         private Dictionary<string, UniquePassive> _activePassives = new Dictionary<string, UniquePassive>();
         private List<UniquePassive> _tempPassiveList = new List<UniquePassive>();
@@ -57,6 +61,8 @@ namespace CoreSystem.Entity.UniquePassives
         }
 
         public List<string> ActivePassiveIds => new List<string>(_activePassives.Keys);
+
+        public static IReadOnlyDictionary<string, System.Type> RegisteredTypes => Registry.Types;
 
         public void Clear()
         {
@@ -160,23 +166,7 @@ namespace CoreSystem.Entity.UniquePassives
 
         public static UniquePassive CreatePassive(string id)
         {
-            switch (id)
-            {
-                case "Vampire": return new VampireUniquePassive();
-                case "TimeCollector": return new TimeCollectorUniquePassive();
-                case "DepressionChaos": return new DepressionChaosUniquePassive();
-                case "Thorn": return new ThornUniquePassive();
-                case "ManaLeech": return new ManaLeechUniquePassive();
-                case "Execution": return new ExecutionUniquePassive();
-                case "BloodBleeding": return new BloodBleedingUniquePassive();
-                case "Bleeding": return new BleedingUniquePassive();
-                case "CurseOfKanix": return new CurseOfKanixUniquePassive();
-                case "BlessingOfMagearna": return new BlessingOfMagearnaUniquePassive();
-                case "BloodMage": return new BloodMageUniquePassive();
-                case "EldritchFaith": return new EldritchFaithUniquePassive();
-                case "Rock": return new RockUniquePassive();
-                default: return null;
-            }
+            return Registry.Create(id);
         }
         #endregion
     }

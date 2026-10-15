@@ -40,7 +40,8 @@ Exceptions: `Agent/AgentCore.cs`, `AgentGroup.cs`, `FaceDirectionModule.cs` use 
 - **FCT** = (base - FixedCastTimeReduc) * (1 - FCT%). Conflicts with the AGENTS.md "immutable" rule.
 - **Cooldown** = (base - flat) * (1 - %). **AOE** = base * (1 + AOE%).
 - **Basic attack delay** = clamp((200 - ASPD)/50, 0.01, 1).
-- **DamageEffect order**: hostility check -> base + ATK + WeaponATK (phys) / MATK + WeaponMATK (magic) -> element table -> (1 + element/size/race bonus - resist) -> crit (CritRate - CritRes)% for x(1.5 + CritDamage) -> minus Defense / StatusDEF (min 1) -> passive OnHit/OnTakeDamage (ref) -> apply HP -> OnPostHit -> `DamageTextManager`.
+- **Damage order** (`Combat/Formulas/DamageFormula`: `Offense` then `Mitigate`, pure): base + ATK + WeaponATK (phys) / MATK + WeaponMATK (magic) -> element table -> (1 + element/size/race bonus - resist, each floored at 0) -> crit (CritRate - CritRes)% for x(1.5 + CritDamage) -> minus Defense / StatusDEF (min 1).
+- **Combat pipeline** (`CombatCore.Execute(action, user, target)`): `Gate.CheckAction` (target exists, has stats) -> per effect: `EffectHandlers.For(kind)` + `Gate.CheckEffect(handler.TargetRule)` (Damage = Hostile; self-inflicted procs pass) -> handler `Offense` (`DamageFormula.BuildInput` + crit roll from `ICombatRandom`, only when the user has stats) -> `Defense` (`Mitigate`, min 1) -> `RiderStage` (OnHit/OnCrit/OnKill riders spawn proc sub-actions through `Resolve`) -> `OutcomeApplier` -> `DamageHandler.Commit`: passive OnHit/OnTakeDamage (ref) -> apply HP -> OnPostHit -> entity events -> `DamageTextManager`. Sub-results apply after the parent.
 
 ## Entities
 - `Character` (abstract, `IEntity`) owns `AttributeSystem`, `MovementSystem`, `SkillCaster`, `CommandDirector`, `ExperienceSystem`, `UniquePassiveManager`, `FaceDirectionModule`, 8 equipment slots, 4 costume slots. Events `OnHitTarget`, `OnTakeDamage`, `OnCostumeChanged`. Resolver `Func` hooks for auto-attack type/range/projectile address.
@@ -53,11 +54,11 @@ Exceptions: `Agent/AgentCore.cs`, `AgentGroup.cs`, `FaceDirectionModule.cs` use 
 1. `PlayerController.HandleSkillInput` (Input System `InputSystem_Actions`) or `AgentCore` -> aim via `SkillIndicatorManager` -> `commandDirector.CommandCastSkill`.
 2. `SkillCaster.BuildPayload`: base values -> AOE/Cooldown modifiers -> `OutputScaling.ApplyScaling` per scaling entry `(stat*AttrMult + Flat + LevelMult*lvl)*GlobalMult` into a `PayloadTarget` -> each linked `SupportModifier.ModifyPayload` -> `CalculateCastTimeModified`.
 3. `InitiateCastSequence`: resource check (MP, or HP through passive), target clamp, cast indicator + VFX; 0 cast time executes immediately.
-4. `Tick` -> `ExecuteSkill` (cooldown, cast delay) -> `ExecutePipeline` (pay cost, `ActiveSkill.Execute`; supports 1021/1022 special-cased).
+4. `Tick` -> `ExecuteSkill` (cooldown, cast delay) -> `ExecutePipeline` (pay cost, then `ExecuteWithSplitters`: the first linked `IPayloadSplitter` that `CanSplit` the skill turns one payload into several, otherwise `ActiveSkill.Execute` once; the first linked `ICastRepeater` schedules a delayed re-run through the same path).
 5. `ActiveSkill.Execute`: `BaseTargeting.GetTargets` -> effects (to caster / once per cast / per target) -> `VisualManager.PlayVisual` -> `UniquePassives.TriggerOnSkillExecuted`. `ChainOverrides` mutate the skill when a buff code is present.
 - Caster events: `OnCastInitiated`, `OnCastProgress`, `OnCastExecuted`, `OnCastInterrupted`, `OnGrantedSkillsChanged`.
 - Buffs: `TemporaryBuffManager` (MonoBehaviour on character) with `ActiveBuff` (modifiers, stacks, tick, category), `HasBuff(code)`, `OnBuffsChanged`.
-- Supports: max 5 per `SkillInstance`, auto-linked from `Database.GetLinkedSupportIDs`.
+- Supports: max 5 per `SkillInstance`, auto-linked from `Database.GetLinkedSupportIDs`. Created by `SupportModifier.Create(id)` through `AttributedTypeRegistry` (`[SupportModifierId]`); unique passives likewise via `[UniquePassiveId]`.
 - Visuals: `VisualManager`, `VisualPayload` SO, `ISkillVisual` (InstantHit, Projectile, RayBeam, AuraBuff, GroundEruption).
 - Skill tree: `SkillTreeLoader`/`SkillTreeDatabase` (static, `SkillTree.json`), `SkillTreeManager` (points, static events `OnNodeUnlocked/OnNodeReset/OnAllReset`), UI `PassiveSkillLoader`.
 

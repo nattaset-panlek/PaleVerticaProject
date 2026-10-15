@@ -55,6 +55,15 @@ namespace CoreSystem.SkillTree
 
         #region Unity Methods
 
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics()
+        {
+            _instance = null;
+            OnNodeUnlocked = null;
+            OnNodeReset = null;
+            OnAllReset = null;
+        }
+
         private void Awake()
         {
             if (_instance == null)
