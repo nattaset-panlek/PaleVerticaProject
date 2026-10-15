@@ -1,14 +1,17 @@
-public enum PassiveSkillType
+namespace CoreSystem.SkillTree
 {
-    Attribute,
-    Skill,
-    KeySkill
-}
+    public enum PassiveSkillType
+    {
+        Attribute,
+        Skill,
+        KeySkill
+    }
 
-public enum PassiveSkillState
-{
-    CanUpgrade,
-    Upgraded,
-    CannotUpgrade,
-    Selected
+    public enum PassiveSkillState
+    {
+        CanUpgrade,
+        Upgraded,
+        CannotUpgrade,
+        Selected
+    }
 }

@@ -8,6 +8,7 @@ using CoreSystem.Data.Items.Model;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
+using CoreSystem.Agent;
 
 namespace CoreSystem.Entity
 {
@@ -33,7 +34,7 @@ namespace CoreSystem.Entity
         public CoreSystem.Entity.UniquePassives.UniquePassiveSystem UniquePassives => _uniquePassives;
 
         [Header("Modules")]
-        public Controllers.FaceDirectionModule FaceDirection = new Controllers.FaceDirectionModule();
+        public Agent.FaceDirectionModule FaceDirection = new Agent.FaceDirectionModule();
         public Vector3 FacingDirection => FaceDirection.CurrentFacingVector;
 
         [Header("Passive Skill Tree")]

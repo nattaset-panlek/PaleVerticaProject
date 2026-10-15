@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CoreSystem.Controllers
+namespace CoreSystem.Agent
 {
     /// <summary>
     /// A lightweight module to track 2D facing direction without rotating the Transform.

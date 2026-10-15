@@ -4,6 +4,7 @@ using CoreSystem.Data;
 using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Model;
 using CoreSystem.Utility;
+using CoreSystem.UI.Inventory.Utility;
 
 namespace CoreSystem.UI.Inventory
 {

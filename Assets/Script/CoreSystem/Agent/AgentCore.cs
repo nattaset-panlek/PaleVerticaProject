@@ -7,7 +7,7 @@ using CoreSystem.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CoreSystem.Controllers
+namespace CoreSystem.Agent
 {
     [RequireComponent(typeof(Character))]
     public class AgentCore : MonoBehaviour

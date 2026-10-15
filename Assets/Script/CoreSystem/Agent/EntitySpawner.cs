@@ -142,7 +142,7 @@ namespace CoreSystem.Agent
 
         private void ApplyOverrides(GameObject go, SpawnEntry entry)
         {
-            var agent = go.GetComponent<CoreSystem.Controllers.AgentCore>();
+            var agent = go.GetComponent<CoreSystem.Agent.AgentCore>();
             if (agent != null)
             {
                 if (entry.OverrideBehavior)        agent.Behavior        = entry.Behavior;

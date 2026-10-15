@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace UI.Components
+namespace CoreSystem.UI.Components
 {
     /// <summary>
     /// A premium button component that provides smooth scaling animations on hover and click.

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CoreSystem.Controllers;
 
-namespace CoreSystem.Controllers
+namespace CoreSystem.Agent
 {
     /// <summary>
     /// Lightweight static registry that tracks AgentCore instances by GroupID.

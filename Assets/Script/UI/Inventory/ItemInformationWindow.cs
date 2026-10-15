@@ -9,6 +9,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using CoreSystem.Combat;
+using CoreSystem.UI.AttributePanel;
 
 namespace CoreSystem.UI.Inventory
 {

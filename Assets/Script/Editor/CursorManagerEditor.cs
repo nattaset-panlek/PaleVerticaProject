@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using CoreSystem.UI;
 
 [CustomEditor(typeof(CursorManager))]
 public class CursorManagerEditor : Editor

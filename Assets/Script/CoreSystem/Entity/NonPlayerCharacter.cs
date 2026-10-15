@@ -1,6 +1,7 @@
 using UnityEngine;
 using CoreSystem.Controllers;
 using CoreSystem.Data.Items.Model;
+using CoreSystem.Agent;
 
 namespace CoreSystem.Entity
 {

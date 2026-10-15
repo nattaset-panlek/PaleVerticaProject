@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using CoreSystem.Skills.Logic;
 using System.Text;
 using System.Collections.Generic;
+using CoreSystem.UI.GameInterface;
 
 namespace CoreSystem.UI
 {

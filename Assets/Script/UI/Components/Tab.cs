@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace UI.Components
+namespace CoreSystem.UI.Components
 {
     [System.Serializable]
     public class Tab

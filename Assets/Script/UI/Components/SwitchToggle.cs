@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace UI.Components
+namespace CoreSystem.UI.Components
 {
     /// <summary>
     /// A premium switch toggle component that provides smooth animations for visual states.

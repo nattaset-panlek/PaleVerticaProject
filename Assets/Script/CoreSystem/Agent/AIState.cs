@@ -7,7 +7,7 @@ using CoreSystem.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CoreSystem.Controllers
+namespace CoreSystem.Agent
 {
     public enum AIState
     {

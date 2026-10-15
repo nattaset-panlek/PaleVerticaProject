@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Components
+namespace CoreSystem.UI.Components
 {
     [AddComponentMenu("UI/Custom/UI Line Renderer")]
     [RequireComponent(typeof(CanvasRenderer))]

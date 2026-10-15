@@ -3,6 +3,7 @@ using CoreSystem.Data;
 using CoreSystem.UI.Utility;
 using System.Collections.Generic;
 using UnityEngine;
+using CoreSystem.UI.AttributePanel;
 
 
 public class AttributeListManager : MonoBehaviour

@@ -4,7 +4,7 @@ using CoreSystem.Entity;
 using CoreSystem.UI;
 using System.Collections.Generic;
 using System.Linq;
-using UI.Components;
+using CoreSystem.UI.Components;
 using UnityEngine;
 using CoreSystem.Data;
 using TMPro;

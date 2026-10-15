@@ -2,7 +2,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UI.Components;
+using CoreSystem.UI.Components;
+using CoreSystem.SkillTree;
 
 namespace UI.Editor
 {
@@ -167,7 +168,7 @@ namespace UI.Editor
             if (parent == null || parent.GetComponentInParent<Canvas>() == null)
                 parent = FindOrCreateCanvas();
 
-            GameObject go = new GameObject("UI Line Renderer", typeof(RectTransform), typeof(UI.Components.UILineRenderer));
+            GameObject go = new GameObject("UI Line Renderer", typeof(RectTransform), typeof(CoreSystem.UI.Components.UILineRenderer));
             GameObjectUtility.SetParentAndAlign(go, parent);
 
             RectTransform rt = go.GetComponent<RectTransform>();

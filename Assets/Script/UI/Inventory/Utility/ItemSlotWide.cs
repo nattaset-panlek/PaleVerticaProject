@@ -8,44 +8,47 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemSlotWide : ItemSlotGlobal
+namespace CoreSystem.UI.Inventory.Utility
 {
-    public TMP_Text ItemName;
-    public GameObject EquipIcon;
-    public Button OnClickSlotButton;
-
-    public override void UpdateUI(ItemInstance item)
+    public class ItemSlotWide : ItemSlotGlobal
     {
-        base.UpdateUI(item);
+        public TMP_Text ItemName;
+        public GameObject EquipIcon;
+        public Button OnClickSlotButton;
 
-        if (itemInstance != null && itemInstance.Item != null)
+        public override void UpdateUI(ItemInstance item)
         {
-            ItemName.text = itemInstance.Name;
+            base.UpdateUI(item);
 
-            if (EquipIcon != null)
+            if (itemInstance != null && itemInstance.Item != null)
             {
-                if (itemInstance is EquipmentInstance equipInst)
-                    EquipIcon.SetActive(equipInst.IsEquipped);
-                else
-                    EquipIcon.SetActive(false);
-            }
+                ItemName.text = itemInstance.Name;
 
-            if (OnClickSlotButton != null)
-            {
-                OnClickSlotButton.onClick.RemoveAllListeners();
-                OnClickSlotButton.onClick.AddListener(() =>
+                if (EquipIcon != null)
                 {
-                    if (itemInstance != null && itemInstance.Item != null && ContextMenuManager.Instance != null)
+                    if (itemInstance is EquipmentInstance equipInst)
+                        EquipIcon.SetActive(equipInst.IsEquipped);
+                    else
+                        EquipIcon.SetActive(false);
+                }
+
+                if (OnClickSlotButton != null)
+                {
+                    OnClickSlotButton.onClick.RemoveAllListeners();
+                    OnClickSlotButton.onClick.AddListener(() =>
                     {
-                        var items = GetDefaultContextMenuItems();
-                        if (items != null && items.Count > 0)
+                        if (itemInstance != null && itemInstance.Item != null && ContextMenuManager.Instance != null)
                         {
-                            ContextMenuManager.Instance.Show(items, UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero);
+                            var items = GetDefaultContextMenuItems();
+                            if (items != null && items.Count > 0)
+                            {
+                                ContextMenuManager.Instance.Show(items, UnityEngine.InputSystem.Mouse.current != null ? UnityEngine.InputSystem.Mouse.current.position.ReadValue() : Vector2.zero);
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
-    }
 
+    }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CoreSystem.Controllers
+namespace CoreSystem.Agent
 {
     public enum FacingDirection2D
     {
