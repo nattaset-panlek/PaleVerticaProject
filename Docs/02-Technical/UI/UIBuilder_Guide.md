@@ -82,6 +82,9 @@ private void BuildUI(UIBuilderContext ui)
 2. Only the window root sizes itself to content. Any element placed under a layout group has its `ContentSizeFitter` removed, so nested layouts never fight.
 3. A container always gets the layout group you asked for. `Row(...)` with a registry style whose prefab is vertical is converted to horizontal (padding and alignment are kept). Styles are visual; the method decides the layout.
 4. Default containers have no padding; use `.Padding(...)` or `Panel` for spacing.
+5. Controls size themselves from their label (`UIElementFactory.FitControl`): width = label + theme `ControlPaddingX`, height = max(theme `ControlHeight`, font line height + `ControlPaddingY`). Labels never wrap and never hide (overflow mode Overflow); in a grid cell they end with an ellipsis instead. `MinWidth` can raise but never lower a control below its label.
+6. Text always sizes itself (no fixed height), so multi-line text pushes what follows down. Only fixed-size element types (Image, RawImage, ProgressBar, Slider, Scrollbar, Dropdown, Custom, Mask) take their height from the registry prefab.
+7. The registry `Button` prefab ships with its layout group and fitter disabled; `FitControl` enables the group with theme padding and no force-expand, otherwise labels are never sized (invisible or one letter per line).
 
 ### Modifiers on `UIElementRef`
 | Modifier | Effect |
@@ -156,7 +159,29 @@ ui.Pages("settings", pages =>
 
 ---
 
-## 7. Real examples
+## 7. Debugging layout: snapshots and the inspector
+
+`CoreSystem/UI/Diagnostics/` shows what a screen really looks like and why. Every capture writes three files to `Logs/UIDebug/` (persistentDataPath/UIDebug in builds):
+
+| File | Content |
+|---|---|
+| `<name>.png` | The screen as rendered |
+| `<name>.issues.png` | Same, with a numbered red (error) or orange (warning) box on every problem element |
+| `<name>.txt` | Numbered issues with a fix hint each, then the full layout tree: every element's real size, min/preferred/flexible values, layout group settings and text settings |
+
+Ways to capture:
+- **Play mode**: press **F9** (all open Global Modals) or **Snapshot** in the dev tool header. `UIDebugCapture.Capture(modal)` from code. Only in the Editor and development builds.
+- **Editor, no Play mode**: menu **Realm of Hero > UI > Render UI Snapshots** renders the gallery, every dev tool page, an expanded database page and the death screen in an isolated preview scene.
+- **Unity closed (batch, used by AI agents)**: run without `-nographics`, then read the PNG and TXT files:
+  `"D:/Unity/6000.4.8f1/Editor/Unity.exe" -batchmode -projectPath "F:/GameProject/Pale Vertica" -executeMethod CoreSystem.Editor.UI.UISnapshotRenderer.RenderAllBatch -logFile render.log`
+
+Issue kinds (`UILayoutInspector`): `TextOverflow` (text needs more height than its box; hidden when the overflow mode is not Overflow), `LabelSquashed` (a word does not fit, so text breaks inside words), `LabelTruncated`, `BelowMinSize` (parent too small for its children), `OutsideParent`, `SiblingOverlap`, `NestedFitter`, `ZeroSize`, `OversizedControl` (usually a prefab size leaking into layout).
+
+`UILayoutRegressionTests` builds the same screens and fails on any error, so layout regressions show up in the EditMode test run. To cover a new builder screen, add a `Snapshot(...)` entry in `UISnapshotRenderer.Run` (and give the screen a public `Build(UIBuilderContext)` or `Setup(UIGlobalModal)` like `GameDevToolUI` and `PlayerDeathScreen`).
+
+---
+
+## 8. Real examples
 
 - `CoreSystem/UI/DevTools/GameDevToolUI.cs`: side-menu page app (9 pages), search header, foldouts, item grids with clickable cards, detail panels, variants, `RequestRebuild()` = `RefreshPage`.
 - `CoreSystem/Player/PlayerDeathScreen.cs`: small non-dismissable dialog, `FitContent`, `Center`, centred action row with spacers.
@@ -164,7 +189,7 @@ ui.Pages("settings", pages =>
 
 ---
 
-## 8. Migration from the old API
+## 9. Migration from the old API
 
 | Before | Now |
 |---|---|

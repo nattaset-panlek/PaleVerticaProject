@@ -17,7 +17,7 @@ namespace CoreSystem.UI.DevTools
     {
         #region [Variables/Fields]
         private const string WindowTitle = "Dev Tool - Debug Menu";
-        private const string PagesId = "devtool";
+        public const string PagesId = "devtool";
         private const float DetailWidth = 290f;
 
         private static readonly Vector2 WindowSize = new Vector2(1000f, 680f);
@@ -89,6 +89,11 @@ namespace CoreSystem.UI.DevTools
         {
             _modal?.RefreshPage(PagesId);
         }
+
+        public void Build(UIBuilderContext ui)
+        {
+            BuildUI(ui);
+        }
         #endregion
 
         #region [Private Methods]
@@ -156,7 +161,8 @@ namespace CoreSystem.UI.DevTools
                 {
                     _searchQuery = "";
                     ui.Document.Refresh();
-                }, UIVariant.Secondary).MinWidth(80f);
+                }, UIVariant.Secondary);
+                bar.Button("Snapshot", () => Diagnostics.UIDebugCapture.Capture(_modal), UIVariant.Ghost);
             }).Gap(8f);
             ui.Separator();
         }
@@ -196,7 +202,7 @@ namespace CoreSystem.UI.DevTools
                                         RequestRebuild();
                                     }, variant).FontSize(12f);
                                 }
-                            }).Cell(132f, 44f).Gap(6f);
+                            }).Cell(168f, 44f).Gap(6f);
                         }, searching);
                     }
                 }).Fill();

@@ -25,16 +25,22 @@ namespace CoreSystem.Player
             if (_modal != null) return;
 
             _onRevive = onRevive;
-            _modal = UIBuilder.BuildGlobalModal(ModalName, BuildUI);
+            _modal = UIBuilder.BuildGlobalModal(ModalName, null);
             if (_modal == null) return;
 
-            _modal.SetTitle(string.Empty)
-                  .SetDismissable(false)
-                  .SetResizable(false)
-                  .SetDraggable(false)
-                  .Center()
-                  .FitContent(true, MaxWindowSize);
+            Setup(_modal);
             _modal.OnClosed += HandleClosed;
+        }
+
+        public void Setup(UIGlobalModal modal)
+        {
+            modal.SetTitle(string.Empty)
+                 .SetDismissable(false)
+                 .SetResizable(false)
+                 .SetDraggable(false)
+                 .Center()
+                 .Build(BuildUI)
+                 .FitContent(true, MaxWindowSize);
         }
 
         public void Close()

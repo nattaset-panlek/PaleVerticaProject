@@ -140,6 +140,8 @@ namespace CoreSystem.UI
 
             var text = go.GetComponentInChildren<TMP_Text>(true);
             if (text != null) text.text = label;
+            Factory.FitControl(go, text);
+            if (text != null && UIElementFactory.GetLayoutKind(_parent) == UILayoutKind.Grid) text.overflowMode = TextOverflowModes.Ellipsis;
             ApplyFlow(go, false);
             return new UIElementRef(go, _document);
         }
@@ -188,6 +190,7 @@ namespace CoreSystem.UI
                 if (initialText != null) input.SetTextWithoutNotify(initialText);
                 if (onValueChanged != null) input.onValueChanged.AddListener(value => onValueChanged(value));
             }
+            Factory.FitInput(go);
             ApplyFlow(go, false);
             return new UIElementRef(go, _document);
         }

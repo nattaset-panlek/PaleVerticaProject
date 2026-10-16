@@ -78,6 +78,55 @@ namespace CoreSystem.UI
             return instance.GetComponentInChildren<T>(true);
         }
 
+        public void FitControl(GameObject go, TMP_Text label)
+        {
+            if (go == null) return;
+
+            var le = go.GetComponent<LayoutElement>();
+            if (le == null) le = go.AddComponent<LayoutElement>();
+
+            var group = go.GetComponent<HorizontalOrVerticalLayoutGroup>();
+            if (group != null)
+            {
+                group.enabled = true;
+                group.padding = new RectOffset(_theme.ControlPaddingX, _theme.ControlPaddingX, _theme.ControlPaddingY, _theme.ControlPaddingY);
+                group.childControlWidth = true;
+                group.childControlHeight = true;
+                group.childForceExpandWidth = false;
+                group.childForceExpandHeight = false;
+                group.childAlignment = TextAnchor.MiddleCenter;
+            }
+
+            float height = _theme.ControlHeight;
+            if (label != null)
+            {
+                label.fontSize = _theme.ControlFontSize;
+                label.textWrappingMode = TextWrappingModes.NoWrap;
+                label.overflowMode = TextOverflowModes.Overflow;
+
+                Vector2 size = label.GetPreferredValues(label.text, float.PositiveInfinity, float.PositiveInfinity);
+                float width = Mathf.Ceil(size.x) + _theme.ControlPaddingX * 2;
+                height = Mathf.Max(height, Mathf.Ceil(size.y) + _theme.ControlPaddingY * 2);
+                le.minWidth = Mathf.Max(le.minWidth, width);
+                if (le.preferredWidth < width) le.preferredWidth = width;
+            }
+
+            le.minHeight = height;
+            le.preferredHeight = height;
+        }
+
+        public void FitInput(GameObject go)
+        {
+            if (go == null) return;
+
+            var le = go.GetComponent<LayoutElement>();
+            if (le == null) le = go.AddComponent<LayoutElement>();
+            le.minHeight = _theme.ControlHeight;
+            le.preferredHeight = _theme.ControlHeight;
+            if (le.preferredWidth < 0f) le.preferredWidth = _theme.InputWidth;
+            if (le.minWidth < 0f) le.minWidth = 60f;
+        }
+
         public static UILayoutKind GetLayoutKind(Transform parent)
         {
             if (parent == null) return UILayoutKind.Column;
@@ -103,13 +152,29 @@ namespace CoreSystem.UI
             instance.name = entry.Prefab.name;
 
             var prefabRect = entry.Prefab.GetComponent<RectTransform>();
-            if (prefabRect != null && prefabRect.sizeDelta.y > 0 && type != UIElementType.Container)
+            if (prefabRect != null && prefabRect.sizeDelta.y > 0 && UsesPrefabHeight(type))
             {
                 var le = instance.GetComponent<LayoutElement>();
                 if (le == null) le = instance.AddComponent<LayoutElement>();
                 if (le.preferredHeight < 0) le.preferredHeight = prefabRect.sizeDelta.y;
             }
             return instance;
+        }
+
+        private static bool UsesPrefabHeight(UIElementType type)
+        {
+            switch (type)
+            {
+                case UIElementType.Container:
+                case UIElementType.Text:
+                case UIElementType.Button:
+                case UIElementType.InputField:
+                case UIElementType.Toggle:
+                case UIElementType.Divider:
+                    return false;
+                default:
+                    return true;
+            }
         }
 
         private static void RemoveFitterUnderLayout(GameObject go, Transform parent)

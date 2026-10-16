@@ -25,6 +25,7 @@ namespace CoreSystem.UI
         public event Action<Vector2> OnResized;
 
         private UIDocument _document;
+        private UIElementRegistrySO _registryOverride;
         private ScrollRect _scrollRect;
         private Action _closeAction;
         private bool _fitContent;
@@ -152,6 +153,17 @@ namespace CoreSystem.UI
         }
 
         public UIElementRef Find(string id) => Document.Find(id);
+
+        public UIGlobalModal SetRegistry(UIElementRegistrySO registry)
+        {
+            _registryOverride = registry;
+            if (_document != null)
+            {
+                _document.OnRebuilt -= HandleRebuilt;
+                _document = null;
+            }
+            return this;
+        }
 
         public UIGlobalModal SetTitle(string title)
         {
@@ -295,7 +307,7 @@ namespace CoreSystem.UI
         #region [Private Methods]
         private void CreateDocument()
         {
-            var registry = UIManager.Instance != null ? UIManager.Instance.ElementRegistry : null;
+            var registry = _registryOverride != null ? _registryOverride : UIManager.Instance != null ? UIManager.Instance.ElementRegistry : null;
             _document = new UIDocument(ContentContainer, registry);
             PrepareRoot(ContentContainer, _document.Theme);
             _document.OnRebuilt += HandleRebuilt;

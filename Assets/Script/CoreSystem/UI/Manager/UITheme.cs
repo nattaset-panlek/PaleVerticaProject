@@ -34,7 +34,13 @@ namespace CoreSystem.UI
         [Header("Spacing")]
         public float Gap = 8f;
         public int Padding = 12;
+
+        [Header("Controls")]
         public float ControlHeight = 34f;
+        public int ControlPaddingX = 14;
+        public int ControlPaddingY = 6;
+        public float ControlFontSize = 15f;
+        public float InputWidth = 160f;
         #endregion
 
         #region [Properties]

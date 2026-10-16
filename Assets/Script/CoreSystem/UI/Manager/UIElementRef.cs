@@ -81,13 +81,19 @@ namespace CoreSystem.UI
 
         public UIElementRef MinWidth(float width)
         {
-            if (GameObject != null) GetLayout().minWidth = width;
+            if (GameObject == null) return this;
+            var le = GetLayout();
+            le.minWidth = Mathf.Max(le.minWidth, width);
+            if (le.preferredWidth >= 0f && le.preferredWidth < le.minWidth) le.preferredWidth = le.minWidth;
             return this;
         }
 
         public UIElementRef MinHeight(float height)
         {
-            if (GameObject != null) GetLayout().minHeight = height;
+            if (GameObject == null) return this;
+            var le = GetLayout();
+            le.minHeight = Mathf.Max(le.minHeight, height);
+            if (le.preferredHeight >= 0f && le.preferredHeight < le.minHeight) le.preferredHeight = le.minHeight;
             return this;
         }
 
@@ -323,7 +329,14 @@ namespace CoreSystem.UI
         public UIElementRef SetTextAlignment(TextAlignmentOptions alignment)
         {
             var txt = TextComponent;
-            if (txt != null) txt.alignment = alignment;
+            if (txt == null) return this;
+            txt.alignment = alignment;
+
+            var group = GameObject.GetComponent<HorizontalOrVerticalLayoutGroup>();
+            if (group != null && txt.transform.parent == GameObject.transform)
+            {
+                group.childAlignment = ToAnchor(txt.horizontalAlignment);
+            }
             return this;
         }
 
@@ -376,6 +389,21 @@ namespace CoreSystem.UI
         {
             var le = GameObject.GetComponent<LayoutElement>();
             return le != null ? le : GameObject.AddComponent<LayoutElement>();
+        }
+
+        private static TextAnchor ToAnchor(HorizontalAlignmentOptions alignment)
+        {
+            switch (alignment)
+            {
+                case HorizontalAlignmentOptions.Left:
+                case HorizontalAlignmentOptions.Justified:
+                case HorizontalAlignmentOptions.Flush:
+                    return TextAnchor.MiddleLeft;
+                case HorizontalAlignmentOptions.Right:
+                    return TextAnchor.MiddleRight;
+                default:
+                    return TextAnchor.MiddleCenter;
+            }
         }
 
         private void UnfitAxis(bool horizontal, bool vertical)

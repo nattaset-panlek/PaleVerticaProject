@@ -129,6 +129,12 @@ namespace CoreSystem.UI
 
         public bool RefreshPage(string pagesId) => Refresh(ContentId(pagesId));
 
+        public bool TryGetPages(string pagesId, out UIPageSet pages)
+        {
+            pages = null;
+            return pagesId != null && _pageSets.TryGetValue(pagesId, out pages) && pages != null;
+        }
+
         public void RegisterElement(string id, GameObject go)
         {
             if (!string.IsNullOrEmpty(id) && go != null) _elements[id] = go;

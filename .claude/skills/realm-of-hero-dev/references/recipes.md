@@ -106,5 +106,6 @@ Use `character.Control`. Permanent change of owner: `PlayerCore.Instance.Possess
 
 ## Verifying a change
 1. Run the EditMode tests (`Assets/Script/Editor/Tests/`): Test Runner window, or headless with the editor closed (command in `SKILL.md`). All must pass.
-2. Then open `Assets/Scenes/SandBox.unity`, enter Play, press **K** for the dev tool (spawn items, edit attributes, grant skills) to check feel and UI.
-3. `CoreSystem/Data/Tests/DataSystemTest.cs` has a "TestSystem" context-menu smoke test for the data layer.
+2. For UI work, render snapshots (batch command in `SKILL.md` section 5) and read `Logs/UIDebug/*.png` / `.txt` before calling it done.
+3. Then open `Assets/Scenes/SandBox.unity`, enter Play, press **K** for the dev tool (spawn items, edit attributes, grant skills) to check feel and UI; **F9** captures the open windows with a layout report.
+4. `CoreSystem/Data/Tests/DataSystemTest.cs` has a "TestSystem" context-menu smoke test for the data layer.
