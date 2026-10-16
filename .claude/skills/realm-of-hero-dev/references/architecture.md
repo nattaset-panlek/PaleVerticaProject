@@ -70,10 +70,12 @@ All scripts are in their folder namespace (`CoreSystem.<Folder>`, `CoreSystem.UI
 - `GameData.Player` (`PlayerData`): `Inventory`, `PlayerStats`, `PlayerEquipment`, `PlayerCostumes`, `PlayerSkills`, `Data` (PlayerDataModel).
 
 ## UI
-- `UIManager`: registry-driven windows/modals, modal stack + overlay, Esc closes top modal, registry hotkeys, `GetOrCreateGlobalModal`.
+- `UIManager`: registry-driven windows/modals, modal stack + overlay, Esc closes the top modal when its `CloseOnEscape` is true, overlay click when `CloseOnOverlayClick` is true, registry hotkeys, `GetOrCreateGlobalModal`.
 - `UIBaseView` lifecycle: `OnLoad` once, `OnOpen` every open, `OnClose`; built-in drag with canvas clamp.
-- `UIGlobalModal`: name-keyed reusable modal from `_globalModalTemplate`; chainable `SetTitle`, `SetWindowSize`, `SetWindowPosition`, `SetWindowAnchors`, `AutoFitWindow`, `SetResizable`, `SetMinSize/SetMaxSize`, `SetCloseButtonVisible`, `OverrideCloseAction`; events `OnClosed`, `OnResized`.
-- `UIBuilderContext` elements: `Div`, `Vertical`, `Horizontal`, `Grid`, `ScrollView`, `HorizontalScrollView`, `ScrollRect`, `Text`, `Button`, `Image`, `RawImage`, `Toggle`, `InputField`, `ProgressBar`, `Divider`, `Custom` (-> `UICustomElement.Get<T>(key)`); others return chainable `UIElementRef`.
+- `UIGlobalModal` (window chrome only): name-keyed reusable modal from `_globalModalTemplate`; hosts a `UIDocument` (`Document`, `Build`, `Refresh()`, `Refresh(id)`, `RefreshPage`, `ShowPage`, `Find`); chainable `SetTitle`, `SetWindowSize`, `Center`, `FitContent(enabled, maxSize)`, `SetDismissable`, `SetDraggable`, `SetResizable`, `SetMinSize/SetMaxSize`, `OverrideCloseAction`; events `OnOpened`, `OnClosed`, `OnResized`. Resize math lives in `UIModalResizeHandle`.
+- `UIDocument`: root builder, regions (partial rebuild), ids, per-window state, page sets; keeps id'd scroll positions across refreshes.
+- `UIBuilderContext`: `Column`/`Row`/`Grid`/`Panel`/`Scroll`/`Spacer`/`Separator`, `Title`/`Heading`/`Label`/`Caption`/`KeyValue`/`Badge`, `Button(label, onClick, UIVariant)`, `Input`, `Toggle`, `Image`, `Progress`, `Region`, `Foldout`, `Pages(id, set, UIPageNav.Tabs|SideMenu)`, plus the style-name overloads (`Div`, `Vertical`, `Horizontal`, `ScrollView`, `Text`, `Button`, `InputField`, `ProgressBar`, `Divider`, `Custom` -> `UICustomElement.Get<T>(key)`). Layout rules: blocks stretch in columns, no nested `ContentSizeFitter`, container layout group always matches the method.
+- `UIElementFactory` (registry prefab or themed fallback) and `UITheme` (colours, sizes, spacing; stored on the registry asset).
 - Older `WindowToggleController` (KeyCode -> GameObject) still exists alongside registry hotkeys.
 
 ## Editor menus

@@ -22,7 +22,7 @@ Unity **6000.4.8f1**, URP 2D, Input System, Addressables, TMP, Newtonsoft JSON, 
 - **No runtime Find** (`FindAnyObjectByType`, `FindObjectsByType`, `GameObject.Find`, `FindGameObjectWithTag`) in new game code: use serialized/hierarchy refs, self-registering `Manager`s, `Registry`, or `Events` (core raises, UI listens). Find is fine in `Editor/` and `Reset()`/`OnValidate()`. Existing Find calls are scheduled for removal after the rename phases.
 - **Files and namespaces**: one public type per file, file name = type name (grouped enums/structs: `<Area>Types.cs`); namespace = folder path.
 - **Renaming**: keep the `.meta` with MonoBehaviour/SO files; add `[MovedFrom]` for `[SerializeReference]` types (`EffectLogic`, `TargetingLogic`, `ActionRider` subclasses); never rename names used as strings (Workbench `SkillConverter`, JSON `EffectType`) without updating them; check `Resources`/Addressables paths before moving folders.
-- Legacy names: none left from N1–N5. Multi-type files that had uncommitted user edits at migration time (`UIManager`, `UIBuilderContext`, `UIElementRegistrySO`, `CursorManager`) still hold several types; split them when next touched.
+- Legacy names: none left from N1–N5. Multi-type files that had uncommitted user edits at migration time (`UIManager`, `UIElementRegistrySO`, `CursorManager`) still hold several types; split them when next touched.
 
 ## 2. Where things live (`Assets/Script/`)
 | Area | Path | Key types |
@@ -38,7 +38,7 @@ Unity **6000.4.8f1**, URP 2D, Input System, Addressables, TMP, Newtonsoft JSON, 
 | Skill tree | `CoreSystem/SkillTree/` | `SkillTreeManager`, `SkillTreeDatabase`, `SkillTreeLoader` |
 | Data | `CoreSystem/Data/` | `Database` (plain C# singleton facade, created before the first scene; no GameObject), `GameData.Player` (`PlayerData`), `Items/` (Item model + `Effects/`), `Save/` (`SaveStorage`, `PlayerDataModel`) |
 | Visual feedback | `CoreSystem/Visuals/` | `EntityVisualController`, `EntityVisualSettings` (SO), `CombatJuiceDirector` |
-| UI framework | `CoreSystem/UI/Manager/` | `UIManager`, `UIBaseView`/`UIWindow`/`UIModal`, `UIBuilder`, `UIBuilderContext`, `UIGlobalModal`, `UIElementRegistrySO` |
+| UI framework | `CoreSystem/UI/Manager/` | `UIManager`, `UIBaseView`/`UIWindow`/`UIModal`; code-built pages: `UIBuilder` -> `UIGlobalModal` (window) -> `UIDocument` (DOM: regions, ids, state, pages) -> `UIBuilderContext` (builder) -> `UIElementRef` (CSS-like modifiers); `UIElementFactory`, `UITheme`, `UIPageSet`, `UIElementRegistrySO` |
 | Dev tools | `CoreSystem/UI/DevTools/` | `GameDevToolUI` (press **K** in play mode) |
 | Gameplay UI | `UI/` | `Hotbar/`, `Inventory/`, `Attribute/`, `GameInterface/`, `Skill Manage Page/`, `Utility/` (GlobalDragManager, ContextMenu, HoverText), `Components/`, `CursorManager.cs` |
 | Editor | `Editor/` | `GameDataWorkbench/` (JSON data editor), `UI/` generators, scene switcher, agent monitor |
@@ -65,17 +65,12 @@ Step-by-step recipes (new effect, targeting, support modifier, unique passive, u
 - **Characters**: never add a Player/Enemy/NPC subclass or put input/AI code on a character. A body is `Character` + data; who drives it is `DefaultController` (Player → `PlayerCore`, Agent → `AgentCore`). All commands go through `character.Control` (`CommandMove`, `CommandCastSkill`, `CommandBasicAttack`, `CommandInterruptCast`); temporary control uses `Control.Claim(holder, ControlLane, duration)`. Monster/villager/boss/merchant are `CharacterTag`s or `AgentProfile` data. Get the player with `PlayerCore.GetPlayer()` (never by tag, Find or `GameData`). Full guide: `Docs/02-Technical/Character/Character_System.md`.
 - `Character.RecalculateStats` = derived stats + `PassiveNodes` (tag "Passive"); the legacy global `SkillTreeManager` stats are no longer applied to characters.
 - `AdditionalChain` keeps insertion order for entries with equal `Order`.
-- `UIBuilderContext` element methods take a **style name** first (`"Div"`, `"Text"`, `"Button"`, `"Primary Button"`), resolved through `Assets/Prefab/UIElementRegistry.asset`; not an element id.
-- UIBuilder is imperative: rebuild with `modal.Build(BuildUI)` when state changes.
+- UIBuilder: prefer the semantic API (`Column`/`Row`/`Grid`/`Panel`, `Title`/`Heading`/`Label`/`Caption`, `Button(label, onClick, UIVariant)`, `Input`, `Pages`, `Region`, `Foldout`); overloads that take a **style name** first (`"Text"`, `"Button"`, `"Primary Button"`) resolve through `Assets/Prefab/UIElementRegistry.asset`. Colours come from `UITheme` via `UIVariant`, not hard-coded `Color`s.
+- After a state change refresh the smallest part: `modal.Refresh(regionId)` / `modal.RefreshPage(pagesId)`; `modal.Refresh()` / `Build` rebuild everything (loses input focus). Layout rules and full API: `Docs/02-Technical/UI/UIBuilder_Guide.md`.
 - `HotbarManager` is the only place hotbar hotkeys are read; `HotbarSlotView.ExecuteAction()` is the single execution entry.
 - `SkillStatusUI` exists but nothing instantiates it. `NPCBrain` is mostly commented out (V2).
 - EditMode tests live in `Assets/Script/Editor/Tests/` (compiled into Assembly-CSharp-Editor, namespace `CoreSystem.Tests`): stat pipeline, derived formulas, cast time/cooldown/AOE, `DamageFormula`, the `CombatCore` pipeline (`CombatCoreTests` with `FakeCombatant` + `FixedCombatRandom`), registries, support hooks. Run them in **Window > General > Test Runner > EditMode**, or headless with Unity closed: `"D:/Unity/6000.4.8f1/Editor/Unity.exe" -batchmode -nographics -projectPath "F:/GameProject/Pale Vertica" -runTests -testPlatform EditMode -testResults results.xml -logFile unity.log`. Add a test whenever you touch math. Any formula change must update the matching test deliberately.
 - `Data/Tests/DataSystemTest.cs` is a manual smoke test (Inspector context menu "TestSystem"). Gameplay feel still needs Play mode + the K dev tool.
-
-## 5b. Unity Editor access (Unity-MCP)
-- Use the Unity-MCP server `ai-game-developer` (`http://localhost:28971`, configured in `.mcp.json` and `UserSettings/AI-Game-Developer-Config.json`) for anything that touches the live Editor: `rql-query` / `rql-schema` to inspect scenes, prefabs, assets and console logs; `rql-mutate` for undoable scene/prefab edits; `tests-run` for EditMode/PlayMode tests; `screenshot-isolated`; `script-execute` for one-off editor C#. RQL syntax: the generated `unity-rql` skill.
-- Prefer it over hand-editing `.unity`/`.prefab` YAML or running batch-mode tests, which both need the Editor closed. `tests-run` aborts when an open scene is dirty.
-- If the server does not answer (Editor closed), fall back to closed-Editor YAML edits and the batch-mode test command in section 5.
 
 ## 6. Documentation workflow
 - Hub: `Docs/README.md`. Technical docs go to `Docs/02-Technical/<System>/`, design to `Docs/01-Design/`, superseded docs to `Docs/99-Archive/`.

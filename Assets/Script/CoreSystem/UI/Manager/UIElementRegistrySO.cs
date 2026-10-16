@@ -6,15 +6,21 @@ namespace CoreSystem.UI
 {
     public enum UIElementType
     {
-        Container, // For Layouts (Horizontal, Vertical, Grid, Div)
-        Text,
-        Button,
-        Image,
-        InputField,
-        Dropdown,
-        Toggle,
-        Slider,
-        Custom
+        Container = 0,
+        Text = 1,
+        Button = 2,
+        Image = 3,
+        InputField = 4,
+        Dropdown = 5,
+        Toggle = 6,
+        Slider = 7,
+        Custom = 8,
+        ScrollRect = 9,
+        Scrollbar = 10,
+        RawImage = 11,
+        ProgressBar = 12,
+        Divider = 13,
+        Mask = 14
     }
 
     [Serializable]
@@ -34,11 +40,13 @@ namespace CoreSystem.UI
         #region [Variables/Fields]
         [SerializeField] private TMPro.TMP_FontAsset _defaultFont;
         [SerializeField] private List<UIElementEntry> _entries = new List<UIElementEntry>();
+        [SerializeField] private UITheme _theme = new UITheme();
         #endregion
 
         #region [Properties]
         public TMPro.TMP_FontAsset DefaultFont => _defaultFont;
         public List<UIElementEntry> Entries => _entries;
+        public UITheme Theme => _theme ?? UITheme.Default;
         #endregion
 
         #region [Unity Methods]

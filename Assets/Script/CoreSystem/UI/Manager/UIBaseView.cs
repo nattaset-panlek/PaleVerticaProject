@@ -32,7 +32,11 @@ namespace CoreSystem.UI
         }
 
         public RectTransform WindowRect => transform as RectTransform;
-        public bool DestroyOnClose => _destroyOnClose;
+        public bool DestroyOnClose
+        {
+            get => _destroyOnClose;
+            set => _destroyOnClose = value;
+        }
         public bool IsOpen => gameObject.activeSelf;
         public bool IsInitialized => _isInitialized;
 

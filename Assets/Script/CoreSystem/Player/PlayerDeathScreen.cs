@@ -1,4 +1,6 @@
+using System;
 using CoreSystem.UI;
+using TMPro;
 using UnityEngine;
 
 namespace CoreSystem.Player
@@ -6,7 +8,11 @@ namespace CoreSystem.Player
     public sealed class PlayerDeathScreen
     {
         #region [Variables/Fields]
+        private const string ModalName = "Death Screen";
+        private static readonly Vector2 MaxWindowSize = new Vector2(520f, 420f);
+
         private UIGlobalModal _modal;
+        private Action _onRevive;
         #endregion
 
         #region [Properties]
@@ -14,40 +20,52 @@ namespace CoreSystem.Player
         #endregion
 
         #region [Public Methods]
-        public void Show(System.Action onRevive)
+        public void Show(Action onRevive)
         {
             if (_modal != null) return;
 
-            _modal = UIBuilder.BuildGlobalModal("Death Screen", ctx =>
-            {
-                ctx.Vertical("Div", content =>
-                {
-                    content.Text("Text", "YOU ARE DEAD")
-                           .SetFontSize(48)
-                           .SetTextColor(Color.red)
-                           .SetFontStyle(TMPro.FontStyles.Bold)
-                           .SetTextAlignment(TMPro.TextAlignmentOptions.Center)
-                           .SetPreferredSize(-1, 80);
-
-                    content.Text("Text", "The pale throne whispers your name...")
-                           .SetFontSize(20)
-                           .SetTextColor(Color.gray)
-                           .SetTextAlignment(TMPro.TextAlignmentOptions.Center)
-                           .SetPreferredSize(-1, 40);
-
-                    content.Button("Button", "Revive", () => onRevive?.Invoke()).SetPreferredSize(200, 60).SetColor(new Color(0.6f, 0.1f, 0.1f));
-                }).SetChildAlignment(TextAnchor.MiddleCenter)
-                  .SetFitParent();
-            }, new Vector2(600, 200));
-
+            _onRevive = onRevive;
+            _modal = UIBuilder.BuildGlobalModal(ModalName, BuildUI);
             if (_modal == null) return;
-            _modal.SetScrollMovementType(UnityEngine.UI.ScrollRect.MovementType.Clamped);
+
+            _modal.SetTitle(string.Empty)
+                  .SetDismissable(false)
+                  .SetResizable(false)
+                  .SetDraggable(false)
+                  .Center()
+                  .FitContent(true, MaxWindowSize);
+            _modal.OnClosed += HandleClosed;
         }
 
         public void Close()
         {
             if (_modal == null) return;
-            UIManager.Instance.Close(_modal.WindowName);
+            if (UIManager.Instance != null) UIManager.Instance.Close(_modal.WindowName);
+            HandleClosed();
+        }
+        #endregion
+
+        #region [Private Methods]
+        private void BuildUI(UIBuilderContext ui)
+        {
+            ui.Column(body =>
+            {
+                body.Title("YOU ARE DEAD").TextAlign(TextAlignmentOptions.Center).TextColor(body.Theme.Danger);
+                body.Caption("The pale throne whispers your name...").TextAlign(TextAlignmentOptions.Center);
+                body.Spacer(12f);
+                body.Row(actions =>
+                {
+                    actions.Spacer();
+                    actions.Button("Revive", () => _onRevive?.Invoke(), UIVariant.Primary).Size(200f, 44f);
+                    actions.Spacer();
+                });
+            }).Padding(24, 24, 16, 20).Gap(8f);
+        }
+
+        private void HandleClosed()
+        {
+            if (_modal == null) return;
+            _modal.OnClosed -= HandleClosed;
             _modal = null;
         }
         #endregion

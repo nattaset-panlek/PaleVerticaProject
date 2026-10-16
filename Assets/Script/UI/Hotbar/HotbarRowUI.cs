@@ -16,11 +16,14 @@ namespace CoreSystem.UI.Hotbar
         [Header("Row Configuration")]
         [SerializeField] private int _rowIndex;
         [SerializeField] private bool _isLocked = false;
+        [SerializeField] private bool _clampToCanvas = true;
         private List<HotbarSlotView> _slots = new List<HotbarSlotView>();
 
         private RectTransform _rectTransform;
         private Vector2 _dragOffset;
         private Canvas _parentCanvas;
+        private RectTransform _canvasRect;
+        private readonly Vector3[] _corners = new Vector3[4];
         #endregion
 
         #region [Properties]
@@ -28,6 +31,16 @@ namespace CoreSystem.UI.Hotbar
         public bool IsLocked => _isLocked;
         public List<HotbarSlotView> Slots => _slots;
         public RectTransform RectTransform => _rectTransform;
+
+        public bool ClampToCanvas
+        {
+            get => _clampToCanvas;
+            set
+            {
+                _clampToCanvas = value;
+                if (_clampToCanvas) ClampToCanvasBounds();
+            }
+        }
         #endregion
 
         #region [Unity Methods]
@@ -35,6 +48,7 @@ namespace CoreSystem.UI.Hotbar
         {
             _rectTransform = GetComponent<RectTransform>();
             _parentCanvas = GetComponentInParent<Canvas>();
+            if (_parentCanvas != null) _canvasRect = _parentCanvas.rootCanvas.transform as RectTransform;
         }
         #endregion
 
@@ -59,6 +73,7 @@ namespace CoreSystem.UI.Hotbar
                 if (parentRect != null && RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRect, eventData.position, eventData.pressEventCamera, out Vector2 localPoint))
                 {
                     _rectTransform.anchoredPosition = localPoint - _dragOffset;
+                    if (_clampToCanvas) ClampToCanvasBounds();
                 }
             }
         }
@@ -96,6 +111,12 @@ namespace CoreSystem.UI.Hotbar
             else
             {
                 ReindexRow(rowIndex);
+            }
+
+            if (_clampToCanvas && _rectTransform != null)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
+                ClampToCanvasBounds();
             }
         }
 
@@ -160,6 +181,25 @@ namespace CoreSystem.UI.Hotbar
                 slotUI.SetupSlot(_rowIndex, i, hotkeyText);
                 _slots.Add(slotUI);
             }
+        }
+
+        private void ClampToCanvasBounds()
+        {
+            if (_canvasRect == null || _rectTransform == null) return;
+
+            _rectTransform.GetWorldCorners(_corners);
+            Vector2 min = _canvasRect.InverseTransformPoint(_corners[0]);
+            Vector2 max = _canvasRect.InverseTransformPoint(_corners[2]);
+            Rect bounds = _canvasRect.rect;
+
+            Vector2 shift = Vector2.zero;
+            if (min.x < bounds.xMin) shift.x = bounds.xMin - min.x;
+            else if (max.x > bounds.xMax) shift.x = bounds.xMax - max.x;
+            if (min.y < bounds.yMin) shift.y = bounds.yMin - min.y;
+            else if (max.y > bounds.yMax) shift.y = bounds.yMax - max.y;
+
+            if (shift == Vector2.zero) return;
+            _rectTransform.position += _canvasRect.TransformVector(shift);
         }
 
         private bool IsPointerInHeader(Vector2 screenPos)

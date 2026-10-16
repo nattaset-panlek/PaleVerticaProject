@@ -66,7 +66,7 @@ namespace CoreSystem.UI.Editor
             GameObject prefab = prefabProp.objectReferenceValue as GameObject;
             if (prefab != null)
             {
-                UIElementType type = (UIElementType)typeProp.enumValueIndex;
+                UIElementType type = (UIElementType)typeProp.intValue;
                 DrawComponentDropdown(prefab, type, pathProp);
             }
             else
@@ -132,7 +132,14 @@ namespace CoreSystem.UI.Editor
                 case UIElementType.Dropdown: return typeof(TMP_Dropdown);
                 case UIElementType.Toggle: return typeof(Toggle);
                 case UIElementType.Slider: return typeof(Slider);
-                case UIElementType.Container: return null; // Containers don't strict target components
+                case UIElementType.ScrollRect: return typeof(UnityEngine.UI.ScrollRect);
+                case UIElementType.Scrollbar: return typeof(Scrollbar);
+                case UIElementType.RawImage: return typeof(RawImage);
+                case UIElementType.ProgressBar: return typeof(Slider);
+                case UIElementType.Divider: return typeof(Image);
+                case UIElementType.Custom: return typeof(UICustomElement);
+                case UIElementType.Mask: return typeof(RectMask2D);
+                case UIElementType.Container: return null;
                 default: return null;
             }
         }

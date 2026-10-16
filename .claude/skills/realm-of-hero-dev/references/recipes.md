@@ -60,23 +60,32 @@ Subclass `ActiveSkill` in `CoreSystem/Skills/UniqueSkill/`, override `Execute`, 
 4. Add a `UIWindowEntry` (WindowName, Type, Prefab, DestroyOnClose, hotkey Keys) to the `UIWindowRegistrySO` asset.
 5. Open with `UIManager.Instance.Open("<WindowName>", data)` / `Toggle` / `Close`.
 
-## Code-built modal (UIBuilder)
+## Code-built page, menu or dialog (UIBuilder)
 ```csharp
-_modal = UIBuilder.BuildGlobalModal("My Panel", BuildUI, new Vector2(600, 400));
+_modal = UIBuilder.BuildGlobalModal("My Panel", BuildUI, new Vector2(700, 480));
 _modal.OnClosed += () => _modal = null;
 
-private void BuildUI(UIBuilderContext ctx)
+private void BuildUI(UIBuilderContext ui)
 {
-    ctx.Vertical("Div", col =>
+    ui.Pages("panel", pages => pages
+        .WithHeader(h => h.Row(r => r.Input(_query, q => { _query = q; _modal.RefreshPage("panel"); }).Fill()))
+        .Add("Items", BuildItems)
+        .Add("Stats", BuildStats), UIPageNav.SideMenu);
+}
+
+private void BuildStats(UIBuilderContext ui)
+{
+    ui.Panel(p =>
     {
-        col.Text("Text", "Title").SetFontSize(32);
-        col.Button("Primary Button", "Apply", OnApply).SetPreferredSize(200, -1);
-    }).SetFitParent(stretchWidth: true, stretchHeight: false);
+        p.KeyValue("Level", _level.ToString());
+        p.Row(r => { r.Spacer(); r.Button("Apply", OnApply, UIVariant.Primary); });
+    });
 }
 ```
-- First arg is a style name looked up in `Assets/Prefab/UIElementRegistry.asset`; unknown names fall back to code defaults.
-- State change -> call `_modal.Build(BuildUI)` again.
-- Full API: `Docs/02-Technical/UI/UIBuilder_Guide.md`. Largest real example: `CoreSystem/UI/DevTools/GameDevToolUI.cs`.
+- Layout: `Column`/`Row`/`Grid`/`Panel`; size with `Width`/`Fill`; colours with `UIVariant` (theme on the `UIElementRegistry` asset). Do not hard-code colours or add `ContentSizeFitter`s.
+- After an action refresh the smallest part: `_modal.RefreshPage(id)`, `_modal.Refresh(regionId)`, or update one element via `.Id("x")` + `_modal.Find("x").Text(...)`.
+- Blocking dialog: `.SetDismissable(false).FitContent(true, maxSize).Center()` (see `PlayerDeathScreen`).
+- Full API and layout rules: `Docs/02-Technical/UI/UIBuilder_Guide.md`. Largest real example: `CoreSystem/UI/DevTools/GameDevToolUI.cs`.
 
 ## Hotbar action / drop target
 - New action kind: extend `HotbarActionType` and `HotbarSlotView.ExecuteAction()`; hotkeys stay in `HotbarManager`.

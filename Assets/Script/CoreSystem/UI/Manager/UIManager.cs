@@ -24,8 +24,6 @@ namespace CoreSystem.UI
         [Header("Global Modal System")]
         [SerializeField] private UIElementRegistrySO _elementRegistry;
         [SerializeField] private UIGlobalModal _globalModalTemplate;
-        
-        private UIGlobalModal _instantiatedGlobalModal;
         #endregion
 
         #region [Properties]
@@ -66,7 +64,8 @@ namespace CoreSystem.UI
             {
                 if (_modalStack.Count > 0)
                 {
-                    CloseTopModal();
+                    UIModal top = _modalStack.Peek();
+                    if (top == null || top.CloseOnEscape) CloseTopModal();
                     return;
                 }
             }
@@ -86,27 +85,67 @@ namespace CoreSystem.UI
         #endregion
 
         #region [Public Methods]
-        public UIGlobalModal OpenGlobalModal()
+        public UIGlobalModal GetOrCreateGlobalModal(string modalName)
         {
+            if (string.IsNullOrEmpty(modalName)) modalName = "Default_Global_Modal";
+
+            if (_instantiatedViews.TryGetValue(modalName, out UIBaseView existingView) && existingView != null)
+            {
+                if (existingView is UIGlobalModal existingModal)
+                {
+                    if (!existingModal.IsOpen)
+                    {
+                        Open(modalName);
+                    }
+                    else
+                    {
+                        existingModal.transform.SetAsLastSibling();
+                    }
+                    return existingModal;
+                }
+            }
+
             if (_globalModalTemplate == null)
             {
                 Debug.LogError("[UIManager] Global Modal Template is not assigned!");
                 return null;
             }
 
-            if (_instantiatedGlobalModal == null)
+            GameObject obj = Instantiate(_globalModalTemplate.gameObject, _modalContainer != null ? _modalContainer : transform);
+            obj.name = $"Global Modal [{modalName}]";
+            UIGlobalModal modal = obj.GetComponent<UIGlobalModal>();
+
+            if (modal != null)
             {
-                GameObject obj = Instantiate(_globalModalTemplate.gameObject, _modalContainer != null ? _modalContainer : transform);
-                _instantiatedGlobalModal = obj.GetComponent<UIGlobalModal>();
-                
-                if (_instantiatedGlobalModal != null)
-                {
-                    _instantiatedGlobalModal.WindowName = "GLOBAL_MODAL_PAGE";
-                    _instantiatedViews["GLOBAL_MODAL_PAGE"] = _instantiatedGlobalModal;
-                }
+                modal.WindowName = modalName;
+                modal.DestroyOnClose = false;
+                _instantiatedViews[modalName] = modal;
+
+                Open(modalName);
+                return modal;
             }
 
-            return Open("GLOBAL_MODAL_PAGE") as UIGlobalModal;
+            return null;
+        }
+
+        public UIGlobalModal OpenGlobalModal(string customWindowName = null)
+        {
+            return GetOrCreateGlobalModal(customWindowName);
+        }
+
+        public void DestroyModal(string modalName)
+        {
+            if (string.IsNullOrEmpty(modalName)) return;
+
+            if (_instantiatedViews.TryGetValue(modalName, out UIBaseView view))
+            {
+                Close(modalName);
+                _instantiatedViews.Remove(modalName);
+                if (view != null)
+                {
+                    Destroy(view.gameObject);
+                }
+            }
         }
 
         public UIBaseView Open(string windowName, object data = null)

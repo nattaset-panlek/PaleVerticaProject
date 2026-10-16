@@ -12,4 +12,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fce9fff801f934c40806c9fa010de2a6, type: 3}
   m_Name: UIElementRegistry
   m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.UI.UIElementRegistrySO
-  _entries: []
+  _defaultFont: {fileID: 0}
+  _entries:
+  - StyleName: Primary Button
+    Type: 2
+    Prefab: {fileID: 6866788893725034548, guid: f5bb1ae520d641b478e766b6dadf596c, type: 3}
+    TargetComponentPath: 
+  - StyleName: Button
+    Type: 2
+    Prefab: {fileID: 6866788893725034548, guid: 6ca0e649c8dc0c94386f1bc58e49a299, type: 3}
+    TargetComponentPath: 
+  - StyleName: Button Fitter
+    Type: 2
+    Prefab: {fileID: 6866788893725034548, guid: d91ca978fcbbaf9458d767fe31156a32, type: 3}
+    TargetComponentPath: 
+  - StyleName: InputField
+    Type: 4
+    Prefab: {fileID: 7760964057474337063, guid: 62e286b39cd176442b9ac4a355b96aaa, type: 3}
+    TargetComponentPath: 
+  - StyleName: TabsScrollView
+    Type: 9
+    Prefab: {fileID: 6615243951728829660, guid: 00e1e9ac2f61f1b4ea55d9913b719523, type: 3}
+    TargetComponentPath: 
+  - StyleName: Container
+    Type: 0
+    Prefab: {fileID: 6367246905906841249, guid: 8c60cd1cd5e0564448833d6472e8017b, type: 3}
+    TargetComponentPath: 
+  - StyleName: Text
+    Type: 1
+    Prefab: {fileID: 7596163921311041252, guid: 591097f27dece854ba8edc1baed5c25e, type: 3}
+    TargetComponentPath: 
+  - StyleName: Image
+    Type: 3
+    Prefab: {fileID: 3552643357113217949, guid: a4202fcfec5212a4694f677656acbcfe, type: 3}
+    TargetComponentPath: 
+  - StyleName: Dropdown
+    Type: 5
+    Prefab: {fileID: 8850516573590243983, guid: 6d479d98a51e75e438627923959bc407, type: 3}
+    TargetComponentPath: 
+  - StyleName: Toggle
+    Type: 6
+    Prefab: {fileID: 1144235855456229686, guid: e9d12e653f4184042bec5f3d207de5a2, type: 3}
+    TargetComponentPath: 
+  - StyleName: Slider
+    Type: 7
+    Prefab: {fileID: 2209184184215003577, guid: 470921bf51a38934fad269e577a3d3a9, type: 3}
+    TargetComponentPath: 
+  - StyleName: Custom
+    Type: 8
+    Prefab: {fileID: 7696051242964887892, guid: 6182b691bb32f43408c77d8a078a634f, type: 3}
+    TargetComponentPath: 
+  - StyleName: ScrollRect
+    Type: 9
+    Prefab: {fileID: 5747074818777259853, guid: e8d8cf86f96ec1e438d9adc51cfb1224, type: 3}
+    TargetComponentPath: 
+  - StyleName: Scrollbar
+    Type: 10
+    Prefab: {fileID: 4345031488776333989, guid: a624d91763c300d4db11e8d6611e7603, type: 3}
+    TargetComponentPath: 
+  - StyleName: RawImage
+    Type: 11
+    Prefab: {fileID: 8631672614767110980, guid: 4a30bc7a43ada8b40bf40705fdd35576, type: 3}
+    TargetComponentPath: 
+  - StyleName: ProgressBar
+    Type: 12
+    Prefab: {fileID: 2284139056800804656, guid: 21f5a1c009ac2344a8e29a62448e2021, type: 3}
+    TargetComponentPath: 
+  - StyleName: Divider
+    Type: 13
+    Prefab: {fileID: 376767183256991235, guid: e0c8d594bd3d3d84db5e4502acc4ceed, type: 3}
+    TargetComponentPath: 
+  - StyleName: Mask
+    Type: 14
+    Prefab: {fileID: 2087551622434010391, guid: ad18e58ff0e9ee14992372c4f0da10ed, type: 3}
+    TargetComponentPath: 

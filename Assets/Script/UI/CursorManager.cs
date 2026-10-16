@@ -20,7 +20,8 @@ namespace CoreSystem.UI
             SizeHorizontal,
             Information,
             CantInteract,
-            Dialogue
+            Dialogue,
+            ResizeHandle
         }
 
         [System.Serializable]
@@ -37,12 +38,26 @@ namespace CoreSystem.UI
 
         private Camera mainCamera;
         private CursorType currentCursorType = CursorType.None;
+        private CursorType _overrideCursorType = CursorType.None;
 
         private Dictionary<CursorType, Texture2D> cursorTexturesCache = new Dictionary<CursorType, Texture2D>();
         private Dictionary<CursorType, Vector2> cursorHotSpotsCache = new Dictionary<CursorType, Vector2>();
         #endregion
 
+        #region [Properties]
+        public static CursorManager Instance { get; private set; }
+        public CursorType CurrentCursorType => currentCursorType;
+        #endregion
+
         #region [Unity Methods]
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+        }
+
         private void Start()
         {
             mainCamera = Camera.main;
@@ -54,6 +69,23 @@ namespace CoreSystem.UI
         {
             HandleCursorState();
         }
+        #endregion
+
+        #region [Public Methods]
+        public void SetCursor(CursorType type)
+        {
+            _overrideCursorType = type;
+            ChangeCursor(type);
+        }
+
+        public void ResetCursor()
+        {
+            _overrideCursorType = CursorType.None;
+            ChangeCursor(CursorType.Default);
+        }
+
+        public void SetCursorOverride(CursorType type) => SetCursor(type);
+        public void ClearCursorOverride() => ResetCursor();
         #endregion
 
         #region [Private Methods]
@@ -74,7 +106,7 @@ namespace CoreSystem.UI
             if (!sprite.texture.isReadable)
             {
                 Debug.LogError($"[CursorManager] The texture '{sprite.texture.name}' is not readable! Please select it in the Project window and check 'Read/Write Enabled' in the Inspector.");
-                return sprite.texture; // Return original to avoid hard crash, though hardware cursor might ignore it
+                return sprite.texture;
             }
 
             Texture2D newText = new Texture2D((int)sprite.textureRect.width, (int)sprite.textureRect.height, TextureFormat.RGBA32, false);
@@ -104,18 +136,20 @@ namespace CoreSystem.UI
 
             if (results.Count > 0)
             {
-                // RaycastAll returns hits sorted by depth. results[0] is the top-most UI element.
-                if (results[0].gameObject.GetComponentInParent<Selectable>() != null)
+                if (results[0].gameObject.GetComponentInParent<CoreSystem.UI.UIModalResizeHandle>() != null)
+                {
+                    ChangeCursor(CursorType.ResizeHandle);
+                }
+                else if (results[0].gameObject.GetComponentInParent<Selectable>() != null)
                 {
                     ChangeCursor(CursorType.Interact);
                 }
                 else
                 {
-                    // Hovering over a UI background that isn't interactable
                     ChangeCursor(CursorType.Default);
                 }
 
-                return true; // We are over UI, block 2D world raycasts
+                return true;
             }
 
             return false;
@@ -123,13 +157,19 @@ namespace CoreSystem.UI
 
         private void HandleCursorState()
         {
+            if (_overrideCursorType != CursorType.None)
+            {
+                ChangeCursor(_overrideCursorType);
+                return;
+            }
+
             if (CheckUIHoverState())
             {
                 return;
             }
 
             Vector2 mousePos = Mouse.current != null ? Mouse.current.position.ReadValue() : Vector2.zero;
-            Vector2 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePos);
+            Vector2 mouseWorldPosition = mainCamera != null ? (Vector2)mainCamera.ScreenToWorldPoint(mousePos) : Vector2.zero;
             Collider2D hitCollider = Physics2D.OverlapPoint(mouseWorldPosition, attackableLayer | interactableLayer);
 
             if (hitCollider != null)
@@ -159,6 +199,26 @@ namespace CoreSystem.UI
             if (cursorTexturesCache.TryGetValue(newType, out Texture2D tex))
             {
                 Cursor.SetCursor(tex, cursorHotSpotsCache[newType], CursorMode.Auto);
+            }
+            else
+            {
+                if (newType == CursorType.ResizeHandle)
+                {
+                    if (cursorTexturesCache.TryGetValue(CursorType.SizeHorizontal, out Texture2D fallbackTex))
+                    {
+                        Cursor.SetCursor(fallbackTex, cursorHotSpotsCache[CursorType.SizeHorizontal], CursorMode.Auto);
+                        return;
+                    }
+                }
+
+                if (cursorTexturesCache.TryGetValue(CursorType.Default, out Texture2D defaultTex))
+                {
+                    Cursor.SetCursor(defaultTex, cursorHotSpotsCache[CursorType.Default], CursorMode.Auto);
+                }
+                else
+                {
+                    Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                }
             }
         }
         #endregion
