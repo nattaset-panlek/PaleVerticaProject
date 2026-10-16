@@ -26,6 +26,7 @@ namespace CoreSystem.Player
         private Camera _mainCamera;
         private InputSystem_Actions _inputActions;
         private readonly PlayerDeathScreen _deathScreen = new PlayerDeathScreen();
+        private readonly PlayerInteraction _interaction = new PlayerInteraction();
         private bool _isDead;
         private int _selectedSkillSlot = -1;
         private SkillInstance _selectedSkillInstance;
@@ -228,6 +229,14 @@ namespace CoreSystem.Player
             }
         }
 
+        public void SetAutoAttackTarget(IEntity target)
+        {
+            if (_controlled == null || target == null || ReferenceEquals(target, _controlled)) return;
+            if (!FactionDatabase.IsHostile(_controlled.Faction, target.Faction)) return;
+            ClearAiming();
+            _autoAttackTarget = target;
+        }
+
         public void TryEnterAimingMode(int slot, Vector3 mousePos)
         {
             if (_controlled == null || _controlled.skillCaster == null) return;
@@ -334,8 +343,10 @@ namespace CoreSystem.Player
 
             if (_inputActions.UI.RightClick.triggered)
             {
+                bool wasAiming = _selectedSkillInstance != null || _selectedSkillSlot >= 0;
                 ClearAiming();
                 SkillIndicatorManager.Instance?.HideCurrent();
+                if (!wasAiming) _interaction.TryOpenMenu(this, mousePos);
             }
         }
 

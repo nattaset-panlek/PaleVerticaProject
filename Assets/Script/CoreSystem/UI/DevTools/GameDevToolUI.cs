@@ -65,10 +65,10 @@ namespace CoreSystem.UI.DevTools
         {
             if (_modal != null) return;
 
-            _modal = UIBuilder.BuildGlobalModal(WindowTitle, BuildUI, WindowSize);
+            _modal = UIBuilder.BuildGlobalModal(WindowTitle, null, WindowSize);
             if (_modal == null) return;
 
-            _modal.SetMinSize(MinWindowSize).SetResizable(true);
+            Setup(_modal);
             _modal.OnClosed += HandleClosed;
         }
 
@@ -90,9 +90,13 @@ namespace CoreSystem.UI.DevTools
             _modal?.RefreshPage(PagesId);
         }
 
-        public void Build(UIBuilderContext ui)
+        public void Setup(UIGlobalModal modal)
         {
-            BuildUI(ui);
+            modal.SetTitle(WindowTitle)
+                 .SetMinSize(MinWindowSize)
+                 .SetResizable(true)
+                 .SetScrollable(false)
+                 .Build(BuildUI);
         }
         #endregion
 
@@ -134,9 +138,11 @@ namespace CoreSystem.UI.DevTools
             ui.Pages(PagesId, pages =>
             {
                 pages.NavWidth = 160f;
+                pages.ScrollPages = true;
                 pages.WithHeader(BuildSearchBar)
-                     .Add("Database", BuildDatabasePage)
-                     .Add("Inventory", BuildInventoryPage)
+                     .WithNavStyle(button => button.CornerRadius(5))
+                     .Add("Database", BuildDatabasePage, false)
+                     .Add("Inventory", BuildInventoryPage, false)
                      .Add("Equipment", BuildEquipmentPage)
                      .Add("Socketing", BuildSocketingPage)
                      .Add("Attributes", BuildAttributesPage)
@@ -162,6 +168,8 @@ namespace CoreSystem.UI.DevTools
                     _searchQuery = "";
                     ui.Document.Refresh();
                 }, UIVariant.Secondary);
+                bool dark = UIGlobalModal.GlobalThemeMode == UIThemeMode.Dark;
+                bar.Button(dark ? "Light" : "Dark", () => UIGlobalModal.SetGlobalThemeMode(dark ? UIThemeMode.Light : UIThemeMode.Dark), UIVariant.Ghost);
                 bar.Button("Snapshot", () => Diagnostics.UIDebugCapture.Capture(_modal), UIVariant.Ghost);
             }).Gap(8f);
             ui.Separator();
@@ -180,35 +188,38 @@ namespace CoreSystem.UI.DevTools
                         {
                             foreach (var item in Database.GetItems) GameData.Player.Inventory.AddItem(item);
                             RequestRebuild();
-                        }, UIVariant.Danger);
+                        }, UIVariant.Danger).CornerRadius(5);
                     });
 
-                    bool searching = !string.IsNullOrEmpty(_searchQuery);
-                    foreach (var group in Database.GetItems.GroupBy(i => i.Type.ToString()))
+                    list.Scroll(scroll =>
                     {
-                        var items = group.Where(item => Matches(item.Name)).ToList();
-                        if (items.Count == 0) continue;
-
-                        list.Foldout($"db.{group.Key}", $"{group.Key}  ({items.Count})", section =>
+                        bool searching = !string.IsNullOrEmpty(_searchQuery);
+                        foreach (var group in Database.GetItems.GroupBy(i => i.Type.ToString()))
                         {
-                            section.Grid(grid =>
+                            var items = group.Where(item => Matches(item.Name)).ToList();
+                            if (items.Count == 0) continue;
+
+                            scroll.Foldout($"db.{group.Key}", $"{group.Key}  ({items.Count})", section =>
                             {
-                                foreach (var item in items)
+                                section.Grid(grid =>
                                 {
-                                    var variant = item == _selectedDatabaseItem ? UIVariant.Selected : UIVariant.Default;
-                                    grid.Button(item.Name, () =>
+                                    foreach (var item in items)
                                     {
-                                        _selectedDatabaseItem = item;
-                                        RequestRebuild();
-                                    }, variant).FontSize(12f);
-                                }
-                            }).Cell(168f, 44f).Gap(6f);
-                        }, searching);
-                    }
-                }).Fill();
+                                        var variant = item == _selectedDatabaseItem ? UIVariant.Selected : UIVariant.Default;
+                                        grid.Button(item.Name, () =>
+                                        {
+                                            _selectedDatabaseItem = item;
+                                            RequestRebuild();
+                                        }, variant).FontSize(12f).CornerRadius(5);
+                                    }
+                                }).Cell(168f, 44f).Gap(6f).CornerRadius(5);
+                            }, searching, (header, open) => header.CornerRadius(5));
+                        }
+                    }, 0f).Id("db.list").Elastic(true).Padding(10);
+                }).Fill().FillHeight();
 
                 layout.Panel(BuildDatabaseDetail).Width(DetailWidth);
-            }).Align(TextAnchor.UpperLeft).Gap(12f);
+            }).Align(TextAnchor.UpperLeft).Gap(12f).FillHeight();
         }
 
         private void BuildDatabaseDetail(UIBuilderContext ui)
@@ -258,23 +269,26 @@ namespace CoreSystem.UI.DevTools
                         }
                     });
 
-                    if (instances.Count == 0)
+                    list.Scroll(scroll =>
                     {
-                        list.Caption("Inventory is empty.");
-                        return;
-                    }
-
-                    list.Grid(grid =>
-                    {
-                        foreach (var instance in instances)
+                        if (instances.Count == 0)
                         {
-                            if (Matches(instance.Name)) BuildInventorySlot(grid, instance);
+                            scroll.Caption("Inventory is empty.");
+                            return;
                         }
-                    }).Cell(118f, 122f).Gap(8f);
-                }).Fill();
+
+                        scroll.Grid(grid =>
+                        {
+                            foreach (var instance in instances)
+                            {
+                                if (Matches(instance.Name)) BuildInventorySlot(grid, instance);
+                            }
+                        }).Cell(118f, 122f).Gap(8f);
+                    }, 0f).Id("inv.list");
+                }).Fill().FillHeight();
 
                 layout.Panel(BuildInventoryDetail).Width(DetailWidth);
-            }).Align(TextAnchor.UpperLeft).Gap(12f);
+            }).Align(TextAnchor.UpperLeft).Gap(12f).FillHeight();
         }
 
         private void BuildInventorySlot(UIBuilderContext grid, ItemInstance instance)

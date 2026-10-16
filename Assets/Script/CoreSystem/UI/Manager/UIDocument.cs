@@ -39,6 +39,12 @@ namespace CoreSystem.UI
             _factory = new UIElementFactory(registry);
         }
 
+        public void SetTheme(UITheme theme, bool rebuild = true)
+        {
+            _factory.Theme = theme;
+            if (rebuild && _rootBuilder != null) Refresh();
+        }
+
         public void Build(Action<UIBuilderContext> builder)
         {
             _rootBuilder = builder;
@@ -118,6 +124,12 @@ namespace CoreSystem.UI
             SetState(PageKey(pagesId), index);
             Refresh(NavId(pagesId));
             Refresh(ContentId(pagesId));
+
+            if (TryFind(PageScrollId(pagesId), out UIElementRef scroll))
+            {
+                var scrollRect = FindScrollRect(scroll.GameObject);
+                if (scrollRect != null) scrollRect.verticalNormalizedPosition = 1f;
+            }
         }
 
         public void ShowPage(string pagesId, string title)
@@ -157,6 +169,8 @@ namespace CoreSystem.UI
         public static string NavId(string pagesId) => pagesId + ".nav";
 
         public static string ContentId(string pagesId) => pagesId + ".content";
+
+        public static string PageScrollId(string pagesId) => pagesId + ".scroll";
         #endregion
 
         #region [Private Methods]

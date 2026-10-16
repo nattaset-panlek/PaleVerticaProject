@@ -7,13 +7,20 @@ namespace CoreSystem.UI
     public sealed class UIElementFactory
     {
         #region [Variables/Fields]
+        public const string VerticalScrollbarStyle = "Scrollbar Vertical";
+        public const string HorizontalScrollbarStyle = "Scrollbar Horizontal";
+
         private readonly UIElementRegistrySO _registry;
-        private readonly UITheme _theme;
+        private UITheme _theme;
         #endregion
 
         #region [Properties]
         public UIElementRegistrySO Registry => _registry;
-        public UITheme Theme => _theme;
+        public UITheme Theme
+        {
+            get => _theme;
+            set => _theme = value ?? UITheme.Default;
+        }
         #endregion
 
         #region [Public Methods]
@@ -49,6 +56,7 @@ namespace CoreSystem.UI
                     sr.vertical = vertical;
                     sr.movementType = movementType;
                     content = sr.content != null ? sr.content : sr.transform;
+                    NormalizeScrollView(sr);
                 }
                 else
                 {
@@ -115,6 +123,17 @@ namespace CoreSystem.UI
             le.preferredHeight = height;
         }
 
+        public void ApplyStyleRules(GameObject go, UIElementType type, string styleName)
+        {
+            if (go == null || _registry == null) return;
+
+            var entry = _registry.GetEntry(type, styleName);
+            if (entry == null || !entry.HasRules) return;
+
+            if (entry.CornerRadius > 0f) UIShapes.ApplyCornerRadius(UIShapes.GetShapeImage(go), entry.CornerRadius);
+            if (entry.HasSizing) ApplyStyleSizing(go, entry);
+        }
+
         public void FitInput(GameObject go)
         {
             if (go == null) return;
@@ -140,6 +159,46 @@ namespace CoreSystem.UI
         {
             return parent != null && parent.GetComponent<LayoutGroup>() != null;
         }
+
+        public static void SetScrollbarSpacing(ScrollRect scrollRect, float gap, float inset)
+        {
+            if (scrollRect == null) return;
+            gap = Mathf.Max(0f, gap);
+            inset = Mathf.Max(0f, inset);
+
+            if (scrollRect.verticalScrollbar != null)
+            {
+                var rect = (RectTransform)scrollRect.verticalScrollbar.transform;
+                rect.anchoredPosition = new Vector2(-inset, -inset);
+                rect.sizeDelta = new Vector2(rect.sizeDelta.x, -inset * 2f);
+                scrollRect.verticalScrollbarSpacing = gap + inset;
+            }
+            if (scrollRect.horizontalScrollbar != null)
+            {
+                var rect = (RectTransform)scrollRect.horizontalScrollbar.transform;
+                rect.anchoredPosition = new Vector2(inset, inset);
+                rect.sizeDelta = new Vector2(-inset * 2f, rect.sizeDelta.y);
+                scrollRect.horizontalScrollbarSpacing = gap + inset;
+            }
+        }
+
+        public static void GetScrollbarSpacing(ScrollRect scrollRect, out float gap, out float inset)
+        {
+            gap = 0f;
+            inset = 0f;
+            if (scrollRect == null) return;
+
+            if (scrollRect.verticalScrollbar != null)
+            {
+                inset = Mathf.Max(0f, -((RectTransform)scrollRect.verticalScrollbar.transform).anchoredPosition.x);
+                gap = Mathf.Max(0f, scrollRect.verticalScrollbarSpacing - inset);
+            }
+            else if (scrollRect.horizontalScrollbar != null)
+            {
+                inset = Mathf.Max(0f, ((RectTransform)scrollRect.horizontalScrollbar.transform).anchoredPosition.y);
+                gap = Mathf.Max(0f, scrollRect.horizontalScrollbarSpacing - inset);
+            }
+        }
         #endregion
 
         #region [Private Methods]
@@ -159,6 +218,35 @@ namespace CoreSystem.UI
                 if (le.preferredHeight < 0) le.preferredHeight = prefabRect.sizeDelta.y;
             }
             return instance;
+        }
+
+        private static void ApplyStyleSizing(GameObject go, UIElementEntry entry)
+        {
+            var le = go.GetComponent<LayoutElement>();
+            if (le == null) le = go.AddComponent<LayoutElement>();
+
+            if (entry.MinSize.x > 0f)
+            {
+                le.minWidth = Mathf.Max(le.minWidth, entry.MinSize.x);
+                if (le.preferredWidth >= 0f && le.preferredWidth < le.minWidth) le.preferredWidth = le.minWidth;
+            }
+            if (entry.MinSize.y > 0f)
+            {
+                le.minHeight = Mathf.Max(le.minHeight, entry.MinSize.y);
+                if (le.preferredHeight < le.minHeight) le.preferredHeight = le.minHeight;
+            }
+            if (entry.FixedSize.x > 0f)
+            {
+                le.minWidth = entry.FixedSize.x;
+                le.preferredWidth = entry.FixedSize.x;
+                le.flexibleWidth = 0f;
+            }
+            if (entry.FixedSize.y > 0f)
+            {
+                le.minHeight = entry.FixedSize.y;
+                le.preferredHeight = entry.FixedSize.y;
+                le.flexibleHeight = 0f;
+            }
         }
 
         private static bool UsesPrefabHeight(UIElementType type)
@@ -504,7 +592,84 @@ namespace CoreSystem.UI
             scrollRect.scrollSensitivity = 25f;
 
             content = contentGo.transform;
+            NormalizeScrollView(scrollRect);
             return root;
+        }
+
+        private void NormalizeScrollView(ScrollRect scrollRect)
+        {
+            scrollRect.scrollSensitivity = Mathf.Max(scrollRect.scrollSensitivity, 25f);
+
+            var group = scrollRect.content != null ? scrollRect.content.GetComponent<HorizontalOrVerticalLayoutGroup>() : null;
+            if (group != null)
+            {
+                group.childControlWidth = true;
+                group.childControlHeight = true;
+                group.childForceExpandWidth = false;
+                group.childForceExpandHeight = false;
+            }
+
+            bool hasViewport = scrollRect.viewport != null && scrollRect.viewport != scrollRect.transform;
+            if (hasViewport && scrollRect.vertical && scrollRect.verticalScrollbar == null)
+            {
+                AttachScrollbar(scrollRect, true);
+            }
+            if (hasViewport && scrollRect.horizontal && scrollRect.horizontalScrollbar == null && HasStyle(UIElementType.Scrollbar, HorizontalScrollbarStyle))
+            {
+                AttachScrollbar(scrollRect, false);
+            }
+        }
+
+        private void AttachScrollbar(ScrollRect scrollRect, bool vertical)
+        {
+            string style = vertical ? VerticalScrollbarStyle : HorizontalScrollbarStyle;
+            GameObject go = InstantiateFromRegistry(UIElementType.Scrollbar, style, scrollRect.transform);
+            bool generated = go == null;
+            Vector2 prefabSize = generated ? new Vector2(6f, 6f) : ((RectTransform)go.transform).sizeDelta;
+            if (generated)
+            {
+                go = new GameObject(style, typeof(RectTransform));
+                go.transform.SetParent(scrollRect.transform, false);
+            }
+
+            var le = go.GetComponent<LayoutElement>();
+            if (le == null) le = go.AddComponent<LayoutElement>();
+            le.ignoreLayout = true;
+
+            var rect = (RectTransform)go.transform;
+            if (vertical)
+            {
+                rect.anchorMin = new Vector2(1f, 0f);
+                rect.anchorMax = new Vector2(1f, 1f);
+                rect.pivot = new Vector2(1f, 1f);
+                rect.sizeDelta = new Vector2(Mathf.Max(1f, prefabSize.x), 0f);
+            }
+            else
+            {
+                rect.anchorMin = new Vector2(0f, 0f);
+                rect.anchorMax = new Vector2(1f, 0f);
+                rect.pivot = new Vector2(0f, 0f);
+                rect.sizeDelta = new Vector2(0f, Mathf.Max(1f, prefabSize.y));
+            }
+            rect.anchoredPosition = Vector2.zero;
+
+            if (generated) GenerateScrollbar(go);
+            var scrollbar = GetTarget<Scrollbar>(go, UIElementType.Scrollbar, style);
+            if (scrollbar == null) return;
+            scrollbar.direction = vertical ? Scrollbar.Direction.BottomToTop : Scrollbar.Direction.LeftToRight;
+            if (generated && scrollbar.handleRect != null) scrollbar.handleRect.sizeDelta = Vector2.zero;
+
+            if (vertical)
+            {
+                scrollRect.verticalScrollbar = scrollbar;
+                scrollRect.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
+            }
+            else
+            {
+                scrollRect.horizontalScrollbar = scrollbar;
+                scrollRect.horizontalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
+            }
+            SetScrollbarSpacing(scrollRect, _theme.ScrollbarGap, _theme.ScrollbarInset);
         }
 
         private TextMeshProUGUI CreateChildText(Transform parent, string name, Color color, float size, TextAlignmentOptions alignment)

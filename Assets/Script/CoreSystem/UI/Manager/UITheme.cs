@@ -35,6 +35,12 @@ namespace CoreSystem.UI
         public float Gap = 8f;
         public int Padding = 12;
 
+        [Tooltip("Space between scroll content and its scrollbar while the bar is visible.")]
+        public float ScrollbarGap = 6f;
+
+        [Tooltip("Distance between a scrollbar and the edges of its scroll view.")]
+        public float ScrollbarInset = 2f;
+
         [Header("Controls")]
         public float ControlHeight = 34f;
         public int ControlPaddingX = 14;
@@ -45,9 +51,24 @@ namespace CoreSystem.UI
 
         #region [Properties]
         public static UITheme Default { get; } = new UITheme();
+        public static UITheme DefaultDark { get; } = CreateDark();
         #endregion
 
         #region [Public Methods]
+        public static UITheme CreateDark()
+        {
+            return new UITheme
+            {
+                Panel = new Color(0.15f, 0.16f, 0.20f, 0.96f),
+                PanelAlt = new Color(0.22f, 0.23f, 0.28f, 1f),
+                Divider = new Color(1f, 1f, 1f, 0.1f),
+                Text = new Color(0.92f, 0.93f, 0.95f, 1f),
+                TextMuted = new Color(0.62f, 0.65f, 0.72f, 1f),
+                Secondary = new Color(0.27f, 0.29f, 0.35f, 1f),
+                Selected = new Color(0.26f, 0.50f, 0.90f, 1f)
+            };
+        }
+
         public Color GetVariantColor(UIVariant variant)
         {
             switch (variant)

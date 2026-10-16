@@ -74,8 +74,35 @@ namespace CoreSystem.UI.Editor
                 EditorGUILayout.HelpBox("Assign a Prefab to select the Target Component.", MessageType.Info);
             }
 
+            SerializedProperty minSizeProp = entryProp.FindPropertyRelative("MinSize");
+            SerializedProperty fixedSizeProp = entryProp.FindPropertyRelative("FixedSize");
+            SerializedProperty cornerRadiusProp = entryProp.FindPropertyRelative("CornerRadius");
+            EditorGUILayout.Space(2f);
+            EditorGUILayout.LabelField("Builder Layout (0 = auto)", EditorStyles.miniBoldLabel);
+            EditorGUILayout.PropertyField(minSizeProp, new GUIContent("Min Size", minSizeProp.tooltip));
+            EditorGUILayout.PropertyField(fixedSizeProp, new GUIContent("Lock Size", fixedSizeProp.tooltip));
+            EditorGUILayout.PropertyField(cornerRadiusProp, new GUIContent("Corner Radius (px)", cornerRadiusProp.tooltip));
+            if (cornerRadiusProp.floatValue <= 0f && TryGetPrefabCornerRadius(prefab, out float prefabRadius))
+            {
+                EditorGUILayout.LabelField(" ", $"Prefab now: {prefabRadius:0.#} px", EditorStyles.miniLabel);
+            }
+
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space();
+        }
+
+        private static bool TryGetPrefabCornerRadius(GameObject prefab, out float radius)
+        {
+            radius = 0f;
+            Image image = UIShapes.GetShapeImage(prefab);
+            if (image == null || image.sprite == null || image.type != Image.Type.Sliced) return false;
+
+            Vector4 border = image.sprite.border;
+            float corner = Mathf.Max(Mathf.Max(border.x, border.y), Mathf.Max(border.z, border.w));
+            if (corner <= 0f) return false;
+
+            radius = corner * 100f / (image.sprite.pixelsPerUnit * Mathf.Max(0.01f, image.pixelsPerUnitMultiplier));
+            return true;
         }
 
         private void DrawComponentDropdown(GameObject prefab, UIElementType type, SerializedProperty pathProp)

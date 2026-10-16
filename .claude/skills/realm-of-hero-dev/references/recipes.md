@@ -92,6 +92,9 @@ private void BuildStats(UIBuilderContext ui)
 - New drop target: implement `IDropHandler`, read `GlobalDragManager.Payload`, type-check it, then act. Start drags with `GlobalDragManager.Instance.StartDrag(...)`.
 - Docs: `Docs/02-Technical/UI/Hotbar_Interaction.md`, `Docs/02-Technical/UI/GlobalDrag.md`.
 
+## Right-click option on a character
+Subscribe to `PlayerInteraction.OnBuildOptions += (player, target, items) => { if (...) items.Add(new ContextMenuItem("Label", () => ...)); };` (namespace `CoreSystem.Player`, `ContextMenuItem` in `CoreSystem.UI.Utility`). Do not edit `PlayerCore` input for new options. If the option opens a window, build it as a Global Modal with a `Setup(UIGlobalModal)` method (see `CharacterInspectWindow`) and add a `Snapshot(...)` line in `UISnapshotRenderer` to preview it.
+
 ## New persistent player data
 Add fields to `CoreSystem/Data/Save/PlayerDataModel.cs`, write them in `PlayerSaveStorage.Capture`, read them in `PlayerSaveStorage.Restore`. Keep defaults safe for old save files (missing JSON fields).
 

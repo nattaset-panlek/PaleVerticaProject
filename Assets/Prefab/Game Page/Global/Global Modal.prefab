@@ -607,6 +607,7 @@ MonoBehaviour:
   _headerRect: {fileID: 2459458082706804445}
   _clampToCanvas: 1
   _closeOnOverlayClick: 1
+  _closeOnEscape: 1
   _contentContainer: {fileID: 7755358814572455806}
   _titleText: {fileID: 3220955803081257770}
   _closeButton: {fileID: 3842070576599471401}
@@ -615,6 +616,20 @@ MonoBehaviour:
   _resizeHandleSprite: {fileID: 0}
   _minSize: {x: 256, y: 128}
   _maxSize: {x: 2560, y: 1440}
+  _themeMode: 0
+  _followGlobalTheme: 1
+  _windowImage: {fileID: 4197398281799949045}
+  _closeIcon: {fileID: 8934883440668024689}
+  _lightSkin:
+    WindowSprite: {fileID: -368689139791305217, guid: 9c641651d5484aa429591e605989bfa6, type: 3}
+    WindowColor: {r: 1, g: 1, b: 1, a: 1}
+    TitleColor: {r: 0.27, g: 0.27, b: 0.27, a: 1}
+    IconColor: {r: 0.28, g: 0.28, b: 0.28, a: 1}
+  _darkSkin:
+    WindowSprite: {fileID: 1909516565090210899, guid: 474549114cd96104d959fc21e975d90d, type: 3}
+    WindowColor: {r: 1, g: 1, b: 1, a: 1}
+    TitleColor: {r: 0.9, g: 0.91, b: 0.94, a: 1}
+    IconColor: {r: 0.85, g: 0.86, b: 0.9, a: 1}
 --- !u!1 &5771078381497325026
 GameObject:
   m_ObjectHideFlags: 0

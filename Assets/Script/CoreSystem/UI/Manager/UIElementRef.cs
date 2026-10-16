@@ -106,7 +106,7 @@ namespace CoreSystem.UI
         public UIElementRef Gap(float gap)
         {
             if (GameObject == null) return this;
-            var group = GameObject.GetComponent<LayoutGroup>();
+            var group = GetLayoutGroup();
             if (group is HorizontalOrVerticalLayoutGroup hv) hv.spacing = gap;
             else if (group is GridLayoutGroup grid) grid.spacing = new Vector2(gap, gap);
             return this;
@@ -140,6 +140,42 @@ namespace CoreSystem.UI
 
             var text = GameObject.GetComponentInChildren<TMP_Text>(true);
             if (text != null) text.color = theme.GetVariantTextColor(variant);
+            return this;
+        }
+
+        public UIElementRef CornerRadius(float radius)
+        {
+            if (GameObject == null) return this;
+            UIShapes.ApplyCornerRadius(UIShapes.GetShapeImage(GameObject), radius);
+            return this;
+        }
+
+        public UIElementRef ScrollbarGap(float gap)
+        {
+            if (GameObject == null) return this;
+            var scrollRect = GetScrollRect();
+            UIElementFactory.GetScrollbarSpacing(scrollRect, out _, out float inset);
+            UIElementFactory.SetScrollbarSpacing(scrollRect, gap, inset);
+            return this;
+        }
+
+        public UIElementRef ScrollbarInset(float inset)
+        {
+            if (GameObject == null) return this;
+            var scrollRect = GetScrollRect();
+            UIElementFactory.GetScrollbarSpacing(scrollRect, out float gap, out _);
+            UIElementFactory.SetScrollbarSpacing(scrollRect, gap, inset);
+            return this;
+        }
+
+        public UIElementRef Elastic(bool elastic = true, float elasticity = 0.1f)
+        {
+            if (GameObject == null) return this;
+            var scrollRect = GetScrollRect();
+            if (scrollRect == null) return this;
+
+            scrollRect.movementType = elastic ? ScrollRect.MovementType.Elastic : ScrollRect.MovementType.Clamped;
+            if (elastic) scrollRect.elasticity = Mathf.Max(0.01f, elasticity);
             return this;
         }
 
@@ -343,7 +379,7 @@ namespace CoreSystem.UI
         public UIElementRef SetPadding(int left, int right, int top, int bottom)
         {
             if (GameObject == null) return this;
-            var group = GameObject.GetComponent<LayoutGroup>();
+            var group = GetLayoutGroup();
             if (group == null) group = GameObject.GetComponentInChildren<LayoutGroup>(true);
             if (group != null) group.padding = new RectOffset(left, right, top, bottom);
             return this;
@@ -389,6 +425,21 @@ namespace CoreSystem.UI
         {
             var le = GameObject.GetComponent<LayoutElement>();
             return le != null ? le : GameObject.AddComponent<LayoutElement>();
+        }
+
+        private ScrollRect GetScrollRect()
+        {
+            var scrollRect = GameObject.GetComponent<ScrollRect>();
+            return scrollRect != null ? scrollRect : GameObject.GetComponentInChildren<ScrollRect>(true);
+        }
+
+        private LayoutGroup GetLayoutGroup()
+        {
+            var group = GameObject.GetComponent<LayoutGroup>();
+            if (group != null) return group;
+
+            var scrollRect = GameObject.GetComponent<ScrollRect>();
+            return scrollRect != null && scrollRect.content != null ? scrollRect.content.GetComponent<LayoutGroup>() : null;
         }
 
         private static TextAnchor ToAnchor(HorizontalAlignmentOptions alignment)

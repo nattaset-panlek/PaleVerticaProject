@@ -93,12 +93,16 @@ private void BuildUI(UIBuilderContext ui)
 | `Width(px)`, `Height(px)`, `Size(w, h)` | Fixed size (also cancels block stretch) |
 | `Fill(weight)`, `FillHeight(weight)` | Take remaining space |
 | `MinWidth`, `MinHeight` | Minimum size |
-| `Padding(all)`, `Padding(h, v)`, `Padding(l, r, t, b)`, `Gap(px)`, `Align(anchor)` | Container spacing and alignment |
+| `Padding(all)`, `Padding(h, v)`, `Padding(l, r, t, b)`, `Gap(px)`, `Align(anchor)` | Container spacing and alignment. On a scroll area they reach its content (padding inside the scrolled list, gap between items) |
 | `Cell(w, h)`, `Columns(n)` | Grid cells |
 | `Background(color)`, `Variant(UIVariant)` | Colours; variants come from the theme |
 | `TextColor`, `FontSize`, `Bold()`, `TextAlign`, `Text(value)` | Text styling and content |
 | `OnClick(action)` | Makes any element clickable (cards, slots) |
 | `OnSubmit(action)`, `Interactable(bool)`, `Visible(bool)` | Behaviour |
+| `CornerRadius(px)` | Rounded corners through the Image's **Pixels Per Unit Multiplier** (`multiplier = spriteBorder * referencePPU / (spritePPU * px)`). Uses the element's sliced sprite; a plain background gets the built-in rounded sprite (`UIShapes.RoundedRect`). `0` removes the generated rounding. Buttons round their target graphic. Overrides the registry entry's `Corner Radius (px)` |
+| `Elastic(bool, amount)` | Scroll areas: elastic overscroll (`true`, default amount 0.1) or clamped (`false`) |
+| `ScrollbarGap(px)` | Scroll areas: space between the content and the visible scrollbar (theme `ScrollbarGap`, default 6) |
+| `ScrollbarInset(px)` | Scroll areas: the scrollbar's margin from the scroll view's edges (theme `ScrollbarInset`, default 2). Keeps the gap |
 
 The older `Set*` methods (`SetPreferredSize`, `SetFlexibleSize`, `SetFitParent`, `SetBackgroundColor`, `SetTextColor`, `SetPadding`, `SetSpacing`, `SetChildAlignment`, `SetGrid*` ...) still work.
 
@@ -122,12 +126,41 @@ ui.Region("results", list =>
 - `ui.Region(id, builder)` builds now and remembers the builder; `modal.Refresh(id)` rebuilds only that region. The search field above keeps focus.
 - `modal.Refresh()` rebuilds the whole document. Ids are re-registered, state is kept.
 - Scroll views with an `Id` keep their scroll position across refreshes.
-- `ui.Foldout(id, title, builder, expanded)` is a region with a header button; its open state lives in the document state (`"<id>.open"`).
+- `ui.Foldout(id, title, builder, expanded, header)` is a region with a header button; its open state lives in the document state (`"<id>.open"`).
+  - Modifiers on the `Foldout(...)` result hit the region container (no Image), not the header. Style the header with the `header` callback: `(button, open) => button.CornerRadius(5)`. It re-runs every time the foldout opens or closes.
+  - For every foldout at once, add a Button entry named `Foldout Header` to the registry; headers are then built from it (with its size and Corner Radius rules) instead of `Button` + Secondary.
+  - The same applies to `Grid`/`Row`/`Column`: they have no Image, so `CornerRadius` does nothing until they get a `Background(...)`.
 - To change one value without any rebuild, give the element an id and update it: `modal.Find("hp").Text($"{hp}/{max}")`.
 
 ---
 
 ## 5. Pages and menus
+
+### Fixed layout with inner scroll areas
+By default the whole window content scrolls. For app-like windows (fixed menu, fixed search bar, fixed detail panel, only a list scrolling):
+
+```csharp
+modal.SetScrollable(false);                       // content fills the window height, the window itself no longer scrolls
+ui.Pages("tool", pages =>
+{
+    pages.ScrollPages = true;                     // each page gets its own scroll area under the fixed header
+    pages.Add("Database", BuildDatabase, false);  // this page manages its own scrolling
+}, UIPageNav.SideMenu);
+
+void BuildDatabase(UIBuilderContext ui)
+{
+    ui.Row(layout =>
+    {
+        layout.Column(list => list.Scroll(BuildList, 0f).Id("db.list")).Fill().FillHeight();
+        layout.Panel(BuildDetail).Width(290f);    // stays in place
+    }).FillHeight();
+}
+```
+
+- `Scroll(content, 0f)` fills the remaining height (`Scroll(content, 240f)` keeps a fixed height). Use it with `FillHeight()` on the containers above it and a non-scrollable window.
+- Scroll areas get an auto-hiding scrollbar from the registry style `Scrollbar Vertical` (a generated thin bar if that style is missing), wheel sensitivity 25, and their content controls child sizes (the registry `ScrollRect` prefab is normalised). Horizontal scroll areas get `Scrollbar Horizontal` only when that style is registered. A scrollbar already assigned on the ScrollRect prefab is kept.
+- The scrollbar never covers the content: it runs in `AutoHideAndExpandViewport` mode, so while the bar is visible the viewport shrinks by bar width + `ScrollbarGap` + `ScrollbarInset`, and when everything fits the bar hides and the content gets the full width back. Defaults come from the theme (`ScrollbarGap` 6, `ScrollbarInset` 2, editable on the registry asset); override per scroll with `.ScrollbarGap(px)` / `.ScrollbarInset(px)`.
+- Give a scroll area an `Id` to keep its position across refreshes; switching pages resets the page scroll to the top.
 
 ```csharp
 ui.Pages("settings", pages =>
@@ -141,6 +174,9 @@ ui.Pages("settings", pages =>
 
 - `UIPageNav.Tabs` puts a scrolling tab bar on top; `UIPageNav.SideMenu` puts a vertical menu on the left (`pages.NavWidth`).
 - `WithHeader` adds a fixed area above the page content (search bars, filters); it is not rebuilt when pages change.
+- **Styling the nav buttons** (tabs or side menu): modifiers on the `Pages(...)` result hit the outer container, not the buttons. Use the page set instead:
+  - `WithNavStyle(button => button.CornerRadius(5))` runs on every nav button after the default styling, so it wins. `WithNavStyle((button, selected) => ...)` also gets whether that button is the open page. It re-runs whenever the page changes.
+  - `pages.NavButtonStyle = "Nav Button"` builds the nav buttons from that registry style (with its Min/Lock Size and Corner Radius); a missing style falls back to `Button`.
 - Switching pages refreshes only the menu and the content regions. The current page is stored in the document (`document.GetPage(id)`) and survives full refreshes and closing/reopening the window.
 - From code: `modal.ShowPage("settings", "Audio")`, `modal.RefreshPage("settings")` (rebuild the current page after an action).
 
@@ -148,8 +184,16 @@ ui.Pages("settings", pages =>
 
 ## 6. Theme and styles
 
+### Light and dark mode
+- `UIGlobalModal` > **Theme**: `Theme Mode`, `Follow Global Theme`, and one **skin** per mode (`Light Skin`, `Dark Skin`): window sprite, window colour, title colour, close-icon colour. An empty Dark window sprite reuses the prefab sprite tinted dark. Assign `UI_Global_Window_White` / `UI_Global_Window_Dark` (`Assets/Art/UI/New/Modal/Global/`) on the Global Modal prefab.
+- The registry asset holds two palettes: `Theme` (light) and `Dark Theme`. Builder text, panels, variants and badges use the palette of the window's mode; switching mode rebuilds the content.
+- Code: `modal.SetThemeMode(UIThemeMode.Dark)` for one window, `UIGlobalModal.SetGlobalThemeMode(mode)` for every window that follows the global theme (new windows start in the global mode). The dev tool header has a Light/Dark button.
+- Snapshots: `UISnapshotRenderer` renders `dark_*` variants (gallery, a dev tool page, inspect, death screen).
+
 - **Theme** (`UIElementRegistry` asset > Theme): surface, text and accent colours, title/heading/body/caption sizes, gap, padding, control height. Defaults match the light Global Modal prefab.
-- **Styles**: `UIElementRegistrySO` maps (`UIElementType`, style name) to a prefab, with an optional `TargetComponentPath` to the child holding the real component. Registered today: `Text`, `Button`, `Primary Button`, `Button Fitter`, `InputField`, `Image`, `Toggle`, `Slider`, `Dropdown`, `ScrollRect`, `TabsScrollView`, `Container`, `Custom`, `Scrollbar`, `RawImage`, `ProgressBar`, `Divider`, `Mask`.
+- **Styles**: `UIElementRegistrySO` maps (`UIElementType`, style name) to a prefab, with an optional `TargetComponentPath` to the child holding the real component. Registered today: `Text`, `Button`, `Primary Button`, `Button Fitter`, `InputField`, `Image`, `Toggle`, `Slider`, `Dropdown`, `ScrollRect`, `TabsScrollView`, `Container`, `Custom`, `Scrollbar Vertical`, `RawImage`, `ProgressBar`, `Divider`, `Mask` (add `Scrollbar Horizontal` when its prefab exists).
+- **Per-style size rules** (entry > Builder Layout): `Min Size` sets a minimum (for example `Primary Button` with Min Size Y = 50 is never shorter than 50), `Lock Size` fixes the size so it never grows or shrinks. `0` = auto on that axis. They apply after the builder's own sizing (label measuring, block stretch), so code modifiers called afterwards still win: `Width/Height/Fill` override them, and `MinWidth/MinHeight` can raise but never lower them. Grid cells ignore them (the grid's `Cell` decides).
+- **Per-style corner radius** (entry > Builder Layout > `Corner Radius (px)`): above `0`, every builder element of that style gets `CornerRadius(px)` automatically, through the same Pixels Per Unit Multiplier math as the modifier. `0` keeps the prefab's own multiplier (the inspector shows the prefab's current radius as a hint). A `.CornerRadius(px)` call in code runs later, so it still wins.
 - Unregistered names (for example the default container style `Div` and grid style `Grid`) fall back to themed code-generated elements. Register a style only when you want a designed prefab.
 
 ### Custom prefabs (`UICustomElement`)
@@ -185,6 +229,7 @@ Issue kinds (`UILayoutInspector`): `TextOverflow` (text needs more height than i
 
 - `CoreSystem/UI/DevTools/GameDevToolUI.cs`: side-menu page app (9 pages), search header, foldouts, item grids with clickable cards, detail panels, variants, `RequestRebuild()` = `RefreshPage`.
 - `CoreSystem/Player/PlayerDeathScreen.cs`: small non-dismissable dialog, `FitContent`, `Center`, centred action row with spacers.
+- `UI/Inspect/CharacterInspectWindow.cs`: one window per character, badges, progress bars, stat grids, live region refresh from `AttributeSystem.OnAttributesChanged` (coalesced to once per frame).
 - `Assets/Script/Editor/Tests/UIDocumentTests.cs`: layout rules, regions, ids, pages and foldouts (EditMode).
 
 ---

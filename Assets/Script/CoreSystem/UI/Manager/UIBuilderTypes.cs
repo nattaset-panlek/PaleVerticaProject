@@ -24,4 +24,10 @@ namespace CoreSystem.UI
         Tabs,
         SideMenu
     }
+
+    public enum UIThemeMode
+    {
+        Light,
+        Dark
+    }
 }

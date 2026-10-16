@@ -18,6 +18,7 @@ namespace CoreSystem.UI
         public const string DefaultToggleStyle = "Toggle";
         public const string DefaultScrollStyle = "ScrollRect";
         public const string TabsScrollStyle = "TabsScrollView";
+        public const string FoldoutHeaderStyle = "Foldout Header";
         public const string DefaultDividerStyle = "Divider";
         public const string DefaultProgressStyle = "ProgressBar";
 
@@ -74,12 +75,14 @@ namespace CoreSystem.UI
 
         public UIElementRef Scroll(Action<UIBuilderContext> content, float height = 240f)
         {
-            return ScrollView(DefaultScrollStyle, content, horizontal: false, vertical: true, UnityEngine.UI.ScrollRect.MovementType.Clamped).Height(height);
+            var scroll = ScrollView(DefaultScrollStyle, content, horizontal: false, vertical: true, UnityEngine.UI.ScrollRect.MovementType.Clamped);
+            return height > 0f ? scroll.Height(height) : scroll.Height(60f).FillHeight();
         }
 
         public UIElementRef ScrollView(string styleName, Action<UIBuilderContext> content, bool horizontal = true, bool vertical = false, UnityEngine.UI.ScrollRect.MovementType movementType = UnityEngine.UI.ScrollRect.MovementType.Elastic)
         {
             GameObject go = Factory.CreateScrollView(styleName, _parent, horizontal, vertical, movementType, out Transform contentRoot);
+            Factory.ApplyStyleRules(go, UIElementType.ScrollRect, styleName);
             ApplyFlow(go, true);
             content?.Invoke(new UIBuilderContext(contentRoot, _document));
             return new UIElementRef(go, _document);
@@ -99,7 +102,12 @@ namespace CoreSystem.UI
         {
             GameObject go = Factory.Create(UIElementType.Text, styleName, _parent);
             var text = Factory.GetTarget<TMP_Text>(go, UIElementType.Text, styleName);
-            if (text != null) text.text = content;
+            if (text != null)
+            {
+                text.text = content;
+                text.color = Theme.Text;
+            }
+            Factory.ApplyStyleRules(go, UIElementType.Text, styleName);
             ApplyFlow(go, true);
             return new UIElementRef(go, _document);
         }
@@ -142,6 +150,7 @@ namespace CoreSystem.UI
             if (text != null) text.text = label;
             Factory.FitControl(go, text);
             if (text != null && UIElementFactory.GetLayoutKind(_parent) == UILayoutKind.Grid) text.overflowMode = TextOverflowModes.Ellipsis;
+            Factory.ApplyStyleRules(go, UIElementType.Button, styleName);
             ApplyFlow(go, false);
             return new UIElementRef(go, _document);
         }
@@ -157,6 +166,7 @@ namespace CoreSystem.UI
             GameObject go = Factory.Create(UIElementType.Image, styleName, _parent);
             var image = Factory.GetTarget<Image>(go, UIElementType.Image, styleName);
             if (image != null && sprite != null) image.sprite = sprite;
+            Factory.ApplyStyleRules(go, UIElementType.Image, styleName);
             ApplyFlow(go, false);
             return new UIElementRef(go, _document);
         }
@@ -175,6 +185,8 @@ namespace CoreSystem.UI
 
             var text = go.GetComponentInChildren<TMP_Text>(true);
             if (text != null && !string.IsNullOrEmpty(label)) text.text = label;
+            if (text != null) text.color = Theme.Text;
+            Factory.ApplyStyleRules(go, UIElementType.Toggle, styleName);
             ApplyFlow(go, false);
             return new UIElementRef(go, _document);
         }
@@ -191,6 +203,7 @@ namespace CoreSystem.UI
                 if (onValueChanged != null) input.onValueChanged.AddListener(value => onValueChanged(value));
             }
             Factory.FitInput(go);
+            Factory.ApplyStyleRules(go, UIElementType.InputField, styleName);
             ApplyFlow(go, false);
             return new UIElementRef(go, _document);
         }
@@ -200,6 +213,7 @@ namespace CoreSystem.UI
         public UICustomElement Custom(string styleName)
         {
             GameObject go = Factory.Create(UIElementType.Custom, styleName, _parent);
+            Factory.ApplyStyleRules(go, UIElementType.Custom, styleName);
             var custom = go.GetComponent<UICustomElement>();
             return custom != null ? custom : go.AddComponent<UICustomElement>();
         }
@@ -209,6 +223,7 @@ namespace CoreSystem.UI
             GameObject go = Factory.Create(UIElementType.RawImage, styleName, _parent);
             var raw = Factory.GetTarget<RawImage>(go, UIElementType.RawImage, styleName);
             if (raw != null && texture != null) raw.texture = texture;
+            Factory.ApplyStyleRules(go, UIElementType.RawImage, styleName);
             ApplyFlow(go, false);
             return new UIElementRef(go, _document);
         }
@@ -226,6 +241,7 @@ namespace CoreSystem.UI
                     if (fill != null) fill.color = fillColor.Value;
                 }
             }
+            Factory.ApplyStyleRules(go, UIElementType.ProgressBar, styleName);
             ApplyFlow(go, true);
             return new UIElementRef(go, _document);
         }
@@ -249,6 +265,7 @@ namespace CoreSystem.UI
                 var image = go.GetComponent<Image>();
                 if (image != null) image.color = color.Value;
             }
+            Factory.ApplyStyleRules(go, UIElementType.Divider, styleName);
             return new UIElementRef(go, _document);
         }
 
@@ -279,17 +296,24 @@ namespace CoreSystem.UI
             return new UIElementRef(go, _document);
         }
 
-        public UIElementRef Foldout(string id, string title, Action<UIBuilderContext> content, bool expanded = false)
+        public UIElementRef Foldout(string id, string title, Action<UIBuilderContext> content, bool expanded = false, Action<UIElementRef, bool> header = null)
         {
             string stateKey = id + ".open";
             return Region(id, section =>
             {
                 bool isOpen = section.Document.GetState(stateKey, expanded);
-                section.Button($"{(isOpen ? "[-]" : "[+]")}  {title}", () =>
+                string label = $"{(isOpen ? "[-]" : "[+]")}  {title}";
+                Action toggle = () =>
                 {
                     section.Document.SetState(stateKey, !isOpen);
                     section.Document.Refresh(id);
-                }, UIVariant.Secondary).TextAlign(TextAlignmentOptions.MidlineLeft).Fill();
+                };
+
+                var button = section.Factory.HasStyle(UIElementType.Button, FoldoutHeaderStyle)
+                    ? section.Button(FoldoutHeaderStyle, label, toggle)
+                    : section.Button(label, toggle, UIVariant.Secondary);
+                button.TextAlign(TextAlignmentOptions.MidlineLeft).Fill();
+                header?.Invoke(button, isOpen);
 
                 if (isOpen) content?.Invoke(section);
             });
@@ -303,6 +327,14 @@ namespace CoreSystem.UI
 
             string navId = UIDocument.NavId(id);
             string contentId = UIDocument.ContentId(id);
+            string scrollId = UIDocument.PageScrollId(id);
+
+            void BuildContent(UIBuilderContext page)
+            {
+                int index = CurrentPage(page.Document, id, pages);
+                if (pages.ScrollsPage(index)) page.Scroll(inner => pages.BuildPage(index, inner), 0f).Id(scrollId);
+                else pages.BuildPage(index, page);
+            }
 
             if (nav == UIPageNav.SideMenu)
             {
@@ -315,9 +347,9 @@ namespace CoreSystem.UI
                     row.Column(main =>
                     {
                         pages.Header?.Invoke(main);
-                        main.Region(contentId, page => pages.BuildPage(CurrentPage(page.Document, id, pages), page));
-                    }).Fill().Gap(Theme.Gap);
-                }).Align(TextAnchor.UpperLeft).Gap(Theme.Padding);
+                        main.Region(contentId, BuildContent).FillHeight();
+                    }).Fill().FillHeight().Gap(Theme.Gap);
+                }).Align(TextAnchor.UpperLeft).Gap(Theme.Padding).FillHeight();
             }
 
             return Column(column =>
@@ -326,8 +358,8 @@ namespace CoreSystem.UI
                     .Id(id + ".tabs")
                     .Height(Theme.ControlHeight + 10f));
                 pages.Header?.Invoke(column);
-                column.Region(contentId, page => pages.BuildPage(CurrentPage(page.Document, id, pages), page));
-            }).Gap(Theme.Gap);
+                column.Region(contentId, BuildContent).FillHeight();
+            }).Gap(Theme.Gap).FillHeight();
         }
         #endregion
 
@@ -335,6 +367,7 @@ namespace CoreSystem.UI
         private UIElementRef Container(string styleName, UILayoutKind layout, Action<UIBuilderContext> content)
         {
             GameObject go = Factory.Create(UIElementType.Container, styleName, _parent, layout);
+            Factory.ApplyStyleRules(go, UIElementType.Container, styleName);
             ApplyFlow(go, true);
             content?.Invoke(new UIBuilderContext(go.transform, _document));
             return new UIElementRef(go, _document);
@@ -358,13 +391,20 @@ namespace CoreSystem.UI
         private static void BuildNavigation(UIBuilderContext nav, string id, UIPageSet pages, bool vertical)
         {
             int selected = CurrentPage(nav.Document, id, pages);
+            string style = pages.NavButtonStyle;
+            bool customStyle = !string.IsNullOrEmpty(style) && nav.Factory.HasStyle(UIElementType.Button, style);
             for (int i = 0; i < pages.Count; i++)
             {
                 int index = i;
-                UIVariant variant = index == selected ? UIVariant.Selected : (vertical ? UIVariant.Ghost : UIVariant.Secondary);
-                var button = nav.Button(pages.GetTitle(i), () => nav.Document.ShowPage(id, index), variant);
+                bool isSelected = index == selected;
+                UIVariant variant = isSelected ? UIVariant.Selected : (vertical ? UIVariant.Ghost : UIVariant.Secondary);
+                Action onClick = () => nav.Document.ShowPage(id, index);
+                var button = customStyle
+                    ? nav.Button(style, pages.GetTitle(i), onClick).Variant(variant)
+                    : nav.Button(pages.GetTitle(i), onClick, variant);
                 if (vertical) button.Fill().TextAlign(TextAlignmentOptions.MidlineLeft);
                 else button.MinWidth(96f);
+                pages.StyleNavButton(button, isSelected);
             }
         }
         #endregion

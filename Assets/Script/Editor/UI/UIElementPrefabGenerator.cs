@@ -238,7 +238,7 @@ namespace CoreSystem.Editor.UI
             }, ref registryModified);
 
             // 10: Scrollbar
-            CreateAndRegister(registry, UIElementType.Scrollbar, "Scrollbar", "Scrollbar.prefab", () => 
+            CreateAndRegister(registry, UIElementType.Scrollbar, "Scrollbar Vertical", "Scrollbar.prefab", () => 
             {
                 GameObject go = new GameObject("Scrollbar", typeof(RectTransform), typeof(Scrollbar), typeof(Image));
                 var rt = go.GetComponent<RectTransform>();

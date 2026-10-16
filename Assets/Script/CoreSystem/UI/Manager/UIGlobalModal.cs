@@ -20,6 +20,14 @@ namespace CoreSystem.UI
         [SerializeField] private Vector2 _minSize = new Vector2(250f, 180f);
         [SerializeField] private Vector2 _maxSize = new Vector2(2560f, 1440f);
 
+        [Header("Theme")]
+        [SerializeField] private UIThemeMode _themeMode = UIThemeMode.Light;
+        [SerializeField] private bool _followGlobalTheme = true;
+        [SerializeField] private Image _windowImage;
+        [SerializeField] private Image _closeIcon;
+        [SerializeField] private UIModalSkin _lightSkin = new UIModalSkin();
+        [SerializeField] private UIModalSkin _darkSkin = UIModalSkin.CreateDark();
+
         public event Action OnOpened;
         public event Action OnClosed;
         public event Action<Vector2> OnResized;
@@ -31,6 +39,20 @@ namespace CoreSystem.UI
         private bool _fitContent;
         private bool _fitWidth = true;
         private Vector2 _fitMaxSize;
+        private bool _scrollable = true;
+        private bool _themeRebuildPending;
+        private bool _contentCaptured;
+        private bool _scrollVertical;
+        private bool _scrollHorizontal;
+        private Vector2 _contentAnchorMin;
+        private Vector2 _contentAnchorMax;
+        private Vector2 _contentPivot;
+        private Vector2 _contentSizeDelta;
+        private Vector2 _contentPosition;
+        private Sprite _prefabWindowSprite;
+        private bool _listensToGlobalTheme;
+        private static UIThemeMode _globalThemeMode = UIThemeMode.Light;
+        private static readonly Color DarkFallbackTint = new Color(0.30f, 0.31f, 0.36f, 1f);
         private const float CanvasMargin = 40f;
         #endregion
 
@@ -69,13 +91,36 @@ namespace CoreSystem.UI
         public Vector2 MinSize => _minSize;
         public Vector2 MaxSize => _maxSize;
         public bool IsFittingContent => _fitContent;
+        public bool IsScrollable => _scrollable;
+        public UIThemeMode ThemeMode => _themeMode;
+        public static UIThemeMode GlobalThemeMode => _globalThemeMode;
+        public static event Action<UIThemeMode> OnGlobalThemeModeChanged;
         #endregion
 
         #region [Unity Methods]
         protected override void Awake()
         {
             base.Awake();
+            if (_followGlobalTheme)
+            {
+                _themeMode = _globalThemeMode;
+                ListenToGlobalTheme(true);
+            }
+            ApplySkin();
             if (_isResizable) EnsureResizeHandle();
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            if (!_themeRebuildPending) return;
+            _themeRebuildPending = false;
+            if (_document != null) _document.Refresh();
+        }
+
+        private void OnDestroy()
+        {
+            ListenToGlobalTheme(false);
         }
         #endregion
 
@@ -126,6 +171,7 @@ namespace CoreSystem.UI
 
         public UIGlobalModal Build(Action<UIBuilderContext> builderAction)
         {
+            _themeRebuildPending = false;
             Document.Build(builderAction);
             return this;
         }
@@ -153,6 +199,42 @@ namespace CoreSystem.UI
         }
 
         public UIElementRef Find(string id) => Document.Find(id);
+
+        public static void SetGlobalThemeMode(UIThemeMode mode)
+        {
+            if (_globalThemeMode == mode) return;
+            _globalThemeMode = mode;
+            OnGlobalThemeModeChanged?.Invoke(mode);
+        }
+
+        public UIGlobalModal SetThemeMode(UIThemeMode mode)
+        {
+            _themeMode = mode;
+            ApplySkin();
+            if (_document == null) return this;
+
+            bool visible = isActiveAndEnabled;
+            _document.SetTheme(ResolveTheme(mode), visible);
+            _themeRebuildPending = !visible;
+            return this;
+        }
+
+        public UIGlobalModal SetFollowGlobalTheme(bool follow)
+        {
+            _followGlobalTheme = follow;
+            ListenToGlobalTheme(follow);
+            if (follow && _themeMode != _globalThemeMode) SetThemeMode(_globalThemeMode);
+            return this;
+        }
+
+        public UIGlobalModal SetSkin(UIThemeMode mode, UIModalSkin skin)
+        {
+            if (skin == null) return this;
+            if (mode == UIThemeMode.Dark) _darkSkin = skin;
+            else _lightSkin = skin;
+            if (mode == _themeMode) ApplySkin();
+            return this;
+        }
 
         public UIGlobalModal SetRegistry(UIElementRegistrySO registry)
         {
@@ -248,6 +330,58 @@ namespace CoreSystem.UI
             return ApplyFit(fitWidth, fitHeight, new Vector2(paddingX, paddingY));
         }
 
+        public UIGlobalModal SetScrollable(bool scrollable)
+        {
+            var scrollRect = ScrollRect;
+            RectTransform content = scrollRect != null ? scrollRect.content : null;
+            if (content == null)
+            {
+                _scrollable = scrollable;
+                return this;
+            }
+
+            if (!_contentCaptured)
+            {
+                _scrollVertical = scrollRect.vertical;
+                _scrollHorizontal = scrollRect.horizontal;
+                _contentAnchorMin = content.anchorMin;
+                _contentAnchorMax = content.anchorMax;
+                _contentPivot = content.pivot;
+                _contentSizeDelta = content.sizeDelta;
+                _contentPosition = content.anchoredPosition;
+                _contentCaptured = true;
+            }
+
+            _scrollable = scrollable;
+            var fitter = content.GetComponent<ContentSizeFitter>();
+            if (fitter != null) fitter.enabled = scrollable;
+
+            if (scrollable)
+            {
+                scrollRect.vertical = _scrollVertical;
+                scrollRect.horizontal = _scrollHorizontal;
+                content.anchorMin = _contentAnchorMin;
+                content.anchorMax = _contentAnchorMax;
+                content.pivot = _contentPivot;
+                content.sizeDelta = _contentSizeDelta;
+                content.anchoredPosition = _contentPosition;
+            }
+            else
+            {
+                scrollRect.StopMovement();
+                scrollRect.vertical = false;
+                scrollRect.horizontal = false;
+                content.anchorMin = Vector2.zero;
+                content.anchorMax = Vector2.one;
+                content.pivot = new Vector2(0.5f, 1f);
+                content.offsetMin = Vector2.zero;
+                content.offsetMax = Vector2.zero;
+            }
+
+            LayoutRebuilder.MarkLayoutForRebuild(content);
+            return this;
+        }
+
         public UIGlobalModal SetScrollMovementType(ScrollRect.MovementType movementType)
         {
             if (ScrollRect != null) ScrollRect.movementType = movementType;
@@ -307,10 +441,76 @@ namespace CoreSystem.UI
         #region [Private Methods]
         private void CreateDocument()
         {
-            var registry = _registryOverride != null ? _registryOverride : UIManager.Instance != null ? UIManager.Instance.ElementRegistry : null;
-            _document = new UIDocument(ContentContainer, registry);
+            _document = new UIDocument(ContentContainer, Registry);
+            _document.SetTheme(ResolveTheme(_themeMode), false);
             PrepareRoot(ContentContainer, _document.Theme);
             _document.OnRebuilt += HandleRebuilt;
+        }
+
+        private UIElementRegistrySO Registry => _registryOverride != null ? _registryOverride : UIManager.Instance != null ? UIManager.Instance.ElementRegistry : null;
+
+        private UITheme ResolveTheme(UIThemeMode mode)
+        {
+            var registry = Registry;
+            if (registry != null) return registry.GetTheme(mode);
+            return mode == UIThemeMode.Dark ? UITheme.DefaultDark : UITheme.Default;
+        }
+
+        private void ListenToGlobalTheme(bool listen)
+        {
+            if (listen == _listensToGlobalTheme) return;
+            if (listen) OnGlobalThemeModeChanged += HandleGlobalThemeChanged;
+            else OnGlobalThemeModeChanged -= HandleGlobalThemeChanged;
+            _listensToGlobalTheme = listen;
+        }
+
+        private void HandleGlobalThemeChanged(UIThemeMode mode)
+        {
+            if (this != null) SetThemeMode(mode);
+        }
+
+        private void ResolveSkinTargets()
+        {
+            if (_windowImage == null)
+            {
+                Transform background = transform.Find("Background");
+                if (background != null) _windowImage = background.GetComponent<Image>();
+            }
+
+            if (_closeIcon == null && _closeButton != null)
+            {
+                foreach (var image in _closeButton.GetComponentsInChildren<Image>(true))
+                {
+                    if (image.gameObject == _closeButton.gameObject) continue;
+                    _closeIcon = image;
+                    break;
+                }
+            }
+
+            if (_prefabWindowSprite == null && _windowImage != null) _prefabWindowSprite = _windowImage.sprite;
+        }
+
+        private void ApplySkin()
+        {
+            ResolveSkinTargets();
+            var skin = _themeMode == UIThemeMode.Dark ? _darkSkin : _lightSkin;
+            if (skin == null) return;
+
+            if (_windowImage != null)
+            {
+                bool fallback = skin.WindowSprite == null;
+                _windowImage.sprite = fallback ? _prefabWindowSprite : skin.WindowSprite;
+                _windowImage.color = fallback && _themeMode == UIThemeMode.Dark ? skin.WindowColor * DarkFallbackTint : skin.WindowColor;
+            }
+            if (_titleText != null) _titleText.color = skin.TitleColor;
+            if (_closeIcon != null) _closeIcon.color = skin.IconColor;
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetThemeStatics()
+        {
+            _globalThemeMode = UIThemeMode.Light;
+            OnGlobalThemeModeChanged = null;
         }
 
         private static void PrepareRoot(RectTransform root, UITheme theme)

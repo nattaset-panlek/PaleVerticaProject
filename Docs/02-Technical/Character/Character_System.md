@@ -80,6 +80,21 @@ PlayerCore.Instance.Possess(target);
 - When the lease ends (time, `keepWhile` returning false, or `Release`), control returns to the next lane automatically.
 - Bosses with `ImmuneToControl` reject Possession claims. The Dev lane always succeeds.
 
+## 5b. Right-click interaction
+
+- Right-clicking a character in the world (not over UI, not while aiming a skill; right-click still cancels aiming) opens the shared `ContextMenuManager` menu. Picking and options live in `CoreSystem/Player/PlayerInteraction.cs`, called from `PlayerCore`.
+- Built-in options: **Inspect** (anyone, including yourself), **Attack** (living hostile characters, sets the auto-attack target through `PlayerCore.SetAutoAttackTarget`), **Follow Me** / **Stop Following** (friendly characters driven by `AgentCore`).
+- Other systems add options without touching the player code:
+
+```csharp
+PlayerInteraction.OnBuildOptions += (player, target, items) =>
+{
+    if (target.HasTag(CharacterTag.Merchant)) items.Add(new ContextMenuItem("Trade", () => ShopWindow.Open(target)));
+};
+```
+
+- **Inspect** opens `CharacterInspectWindow` (`Assets/Script/UI/Inspect/`), a Global Modal per character (opening it again brings the same window forward): name, relation and controller badges, faction and levels, HP/MP bars, the six attributes, combat stats and tags. It listens to `AttributeSystem.OnAttributesChanged` and refreshes only its stats region (at most once per frame), and closes when the character leaves `CharacterRegistry`. Preview: snapshot `inspect_character` in `UISnapshotRenderer`.
+
 ## 6. Asset layout
 
 - Entity prefabs (`Addressable/Prefab/Entity/...`) and the scene player all carry the same `Character` component. AI settings live under its **Agent Profile** section, animation references under **Presentation**. Buffs are inside `Character` (`character.Buffs`); there is no separate `BuffSystem` component.

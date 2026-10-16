@@ -4,36 +4,6 @@ using UnityEngine;
 
 namespace CoreSystem.UI
 {
-    public enum UIElementType
-    {
-        Container = 0,
-        Text = 1,
-        Button = 2,
-        Image = 3,
-        InputField = 4,
-        Dropdown = 5,
-        Toggle = 6,
-        Slider = 7,
-        Custom = 8,
-        ScrollRect = 9,
-        Scrollbar = 10,
-        RawImage = 11,
-        ProgressBar = 12,
-        Divider = 13,
-        Mask = 14
-    }
-
-    [Serializable]
-    public class UIElementEntry
-    {
-        public string StyleName;
-        public UIElementType Type;
-        public GameObject Prefab;
-        
-        [Tooltip("The path to the child object holding the actual component, used by UIBuilder to inject data/events.")]
-        public string TargetComponentPath;
-    }
-
     [CreateAssetMenu(fileName = "UIElementRegistry", menuName = "Realm of Hero/UI/Element Registry (UIBuilder)")]
     public class UIElementRegistrySO : ScriptableObject
     {
@@ -41,18 +11,22 @@ namespace CoreSystem.UI
         [SerializeField] private TMPro.TMP_FontAsset _defaultFont;
         [SerializeField] private List<UIElementEntry> _entries = new List<UIElementEntry>();
         [SerializeField] private UITheme _theme = new UITheme();
+        [SerializeField] private UITheme _darkTheme = UITheme.CreateDark();
         #endregion
 
         #region [Properties]
         public TMPro.TMP_FontAsset DefaultFont => _defaultFont;
         public List<UIElementEntry> Entries => _entries;
         public UITheme Theme => _theme ?? UITheme.Default;
+        public UITheme DarkTheme => _darkTheme ?? UITheme.DefaultDark;
         #endregion
 
         #region [Unity Methods]
         #endregion
 
         #region [Public Methods]
+        public UITheme GetTheme(UIThemeMode mode) => mode == UIThemeMode.Dark ? DarkTheme : Theme;
+
         public UIElementEntry GetEntry(UIElementType type, string styleName)
         {
             if (string.IsNullOrEmpty(styleName)) return null;

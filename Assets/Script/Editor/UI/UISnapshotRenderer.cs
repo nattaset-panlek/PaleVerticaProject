@@ -7,6 +7,7 @@ using CoreSystem.Player;
 using CoreSystem.UI;
 using CoreSystem.UI.DevTools;
 using CoreSystem.UI.Diagnostics;
+using CoreSystem.UI.Inspect;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -86,7 +87,8 @@ namespace CoreSystem.Editor.UI
             {
                 Snapshot(() => "gallery", GallerySize, modal => modal.Build(BuildGallery));
 
-                var devTool = new GameDevToolUI(CreatePreviewPlayer(scene, seedPreviewData));
+                var player = CreatePreviewPlayer(scene, seedPreviewData);
+                var devTool = new GameDevToolUI(player);
                 int pageCount = 1;
                 for (int page = 0; page < pageCount; page++)
                 {
@@ -94,7 +96,7 @@ namespace CoreSystem.Editor.UI
                     string title = string.Empty;
                     Snapshot(() => $"devtool_{index + 1:00}_{title}", DevToolSize, modal =>
                     {
-                        modal.SetTitle("Dev Tool - Debug Menu").Build(devTool.Build);
+                        devTool.Setup(modal);
                         if (modal.Document.TryGetPages(GameDevToolUI.PagesId, out UIPageSet pages))
                         {
                             pageCount = pages.Count;
@@ -106,13 +108,32 @@ namespace CoreSystem.Editor.UI
 
                 Snapshot(() => "devtool_01b_Database_expanded", DevToolSize, modal =>
                 {
-                    modal.SetTitle("Dev Tool - Debug Menu").Build(devTool.Build);
+                    devTool.Setup(modal);
                     modal.Document.SetState("db.Consumable.open", true);
                     modal.Document.SetState("db.Equipment.open", true);
                     modal.RefreshPage(GameDevToolUI.PagesId);
                 });
 
                 Snapshot(() => "deathscreen", new Vector2(256f, 128f), modal => new PlayerDeathScreen().Setup(modal));
+                Snapshot(() => "inspect_character", new Vector2(480f, 560f), modal => new CharacterInspectWindow(player).Setup(modal));
+
+                Snapshot(() => "dark_gallery", GallerySize, modal => modal.SetThemeMode(UIThemeMode.Dark).Build(BuildGallery));
+                Snapshot(() => "dark_devtool_06_Skills", DevToolSize, modal =>
+                {
+                    modal.SetThemeMode(UIThemeMode.Dark);
+                    devTool.Setup(modal);
+                    modal.ShowPage(GameDevToolUI.PagesId, 5);
+                });
+                Snapshot(() => "dark_inspect_character", new Vector2(480f, 560f), modal =>
+                {
+                    modal.SetThemeMode(UIThemeMode.Dark);
+                    new CharacterInspectWindow(player).Setup(modal);
+                });
+                Snapshot(() => "dark_deathscreen", new Vector2(256f, 128f), modal =>
+                {
+                    modal.SetThemeMode(UIThemeMode.Dark);
+                    new PlayerDeathScreen().Setup(modal);
+                });
             }
             finally
             {
@@ -305,7 +326,7 @@ namespace CoreSystem.Editor.UI
                 panel.Label("A long description that has to wrap over several lines without overlapping the separator or the button that follows it in this panel.");
                 panel.Separator();
                 panel.Button("Primary full width", null, UIVariant.Primary).Fill();
-            });
+            }).CornerRadius(12f);
 
             ui.Foldout("gallery.fold", "Foldout (expanded)", fold =>
             {

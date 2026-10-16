@@ -136,6 +136,31 @@ namespace CoreSystem.Tests
         }
 
         [Test]
+        public void Pages_NavStyle_StylesEveryNavButton_AndFollowsSelection()
+        {
+            var selected = new System.Collections.Generic.List<bool>();
+            _document.Build(ui => ui.Pages("pages", set => set
+                .WithNavStyle((button, isSelected) =>
+                {
+                    selected.Add(isSelected);
+                    button.CornerRadius(5f);
+                })
+                .Add("A", page => page.Column(null))
+                .Add("B", page => page.Column(null)), UIPageNav.SideMenu));
+
+            CollectionAssert.AreEqual(new[] { true, false }, selected);
+            foreach (var button in _document.Find(UIDocument.NavId("pages")).GameObject.GetComponentsInChildren<Button>())
+            {
+                Assert.AreEqual(Image.Type.Sliced, UIShapes.GetShapeImage(button.gameObject).type);
+            }
+
+            selected.Clear();
+            _document.ShowPage("pages", "B");
+
+            CollectionAssert.AreEqual(new[] { false, true }, selected);
+        }
+
+        [Test]
         public void Foldout_ToggleKeepsStateAndShowsContent()
         {
             _document.Build(ui => ui.Foldout("fold", "Section", body => body.Column(null).Id("content")));
@@ -150,6 +175,26 @@ namespace CoreSystem.Tests
             _document.Refresh();
 
             Assert.IsTrue(_document.Find("content").IsValid);
+        }
+
+        [Test]
+        public void Foldout_HeaderStyle_ReappliesAfterToggle()
+        {
+            var states = new System.Collections.Generic.List<bool>();
+            _document.Build(ui => ui.Foldout("fold", "Section", body => body.Column(null), false, (header, open) =>
+            {
+                states.Add(open);
+                header.CornerRadius(5f);
+            }));
+
+            Button button = _document.Find("fold").GameObject.GetComponentInChildren<Button>();
+            Assert.AreEqual(Image.Type.Sliced, UIShapes.GetShapeImage(button.gameObject).type);
+
+            button.onClick.Invoke();
+
+            CollectionAssert.AreEqual(new[] { false, true }, states);
+            button = _document.Find("fold").GameObject.GetComponentInChildren<Button>();
+            Assert.AreEqual(Image.Type.Sliced, UIShapes.GetShapeImage(button.gameObject).type);
         }
         #endregion
     }
