@@ -4,6 +4,7 @@ System-level implementation docs, one folder per system. Source code lives in `A
 
 | Folder | Code area | Contents |
 |---|---|---|
+| `Data/` | `Resources/Data/*.json`, `Resources/Skill/ActiveSkill`, `Combat/Formulas` | Game data catalog: standalone base formulas, every active skill, support, unique passive and item with numbers, known data issues |
 | `Combat/` | `CoreSystem/Combat` | `CombatCore` pipeline: Gate, Dispatch, Offense, Defense, Riders, Apply |
 | `Attributes/` | `CoreSystem/Attributes`, `CoreSystem/Enums/AttributeType.cs` | Stat pipeline, AdditionalChain, all formulas |
 | `Character/` | `CoreSystem/Entity`, `CoreSystem/Agent`, `CoreSystem/Player`, `CoreSystem/Visuals` | Character System (Character, ControlSystem, PlayerCore, AgentCore), architecture plan, visual architecture |

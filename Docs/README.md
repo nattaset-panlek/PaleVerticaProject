@@ -22,6 +22,7 @@ System-level implementation docs, grouped by system. See [02-Technical/README.md
 
 | System | Docs |
 |---|---|
+| Data (game catalog) | [Game Data Reference](./02-Technical/Data/README.md), [Base Formulas (standalone)](./02-Technical/Data/Base_Formulas.md), [Active Skills](./02-Technical/Data/Active_Skills.md), [Support Skills](./02-Technical/Data/Support_Skills.md), [Unique Passives](./02-Technical/Data/Unique_Passives.md), [Items](./02-Technical/Data/Items.md), [Known Data Issues](./02-Technical/Data/Known_Data_Issues.md) |
 | Combat | [Combat Core Pipeline](./02-Technical/Combat/Combat_Core_Pipeline.md) |
 | Attributes | [AdditionalValue Standard](./02-Technical/Attributes/AdditionalValue_Standard.md), [All Attribute Formulas](./02-Technical/Attributes/All_Attribute_Formulas.md), [Attribute Mechanics & Classes](./02-Technical/Attributes/Attribute_Mechanics.md) |
 | Character / AI | [Character System](./02-Technical/Character/Character_System.md), [Character Architecture Plan (TH)](./02-Technical/Character/Character_Architecture_Plan_TH.md), [Character Visual Architecture (TH)](./02-Technical/Character/Character_Visual_Architecture_TH.md), [Extensible Visual Architecture (TH)](./02-Technical/Character/Extensible_Visual_Architecture_TH.md) |
