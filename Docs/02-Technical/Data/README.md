@@ -17,7 +17,7 @@ Related system docs: [Combat Core Pipeline](../Combat/Combat_Core_Pipeline.md), 
 
 ## Where the numbers come from
 
-All data files are in `Assets/Resources/Data/` and are edited through **Window > Realm of Hero > Game Data Workbench**.
+All data files are in `Assets/Resources/Data/` and are edited through **Window > Pale Vertica > Game Data Workbench**.
 
 | File | Holds |
 |---|---|

@@ -1,8 +1,8 @@
-# Realm of Hero: Documentation Hub
+# Pale Vertica: Documentation Hub
 
 This folder is the **single source** for every Markdown document in the project. Do not create `.md` files inside `Assets/` (Unity generates `.meta` noise and the docs get lost next to scripts). New docs go into the matching folder below.
 
-AI agents: start with `AGENTS.md` (project root) and the project skill at `.claude/skills/realm-of-hero-dev/SKILL.md`.
+AI agents: start with `AGENTS.md` (project root) and the project skill at `.claude/skills/pale-vertica-dev/SKILL.md`.
 
 ## 00-Overview
 High-level maps of the whole game.
