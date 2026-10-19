@@ -335,10 +335,10 @@ namespace CoreSystem.Editor.UI
             rowTemplateImg.type = Image.Type.Sliced;
             rowTemplateImg.raycastTarget = false;
 
-            var lTxt = CreateText(rowTemplateObj.transform, "Label", "PHYSICAL POWER", fontNovecento, 18f, Color.black, TextAlignmentOptions.MidlineLeft);
+            var lTxt = CreateText(rowTemplateObj.transform, "Label", "PHYSICAL POWER", fontNovecento, 18f, new Color(0.92f, 0.92f, 0.92f, 1f), TextAlignmentOptions.MidlineLeft);
             SetRect(lTxt.rectTransform, new Vector2(0f, 0f), new Vector2(0.55f, 1f), new Vector2(0f, 0.5f), new Vector2(15f, 0f), Vector2.zero);
 
-            var vTxt = CreateText(rowTemplateObj.transform, "Value", "100 <color=#38bdf8>+(500)</color>", fontNovecento, 20f, Color.black, TextAlignmentOptions.MidlineRight);
+            var vTxt = CreateText(rowTemplateObj.transform, "Value", "100 <color=#38bdf8>+(500)</color>", fontNovecento, 20f, Color.white, TextAlignmentOptions.MidlineRight);
             SetRect(vTxt.rectTransform, new Vector2(0.55f, 0f), new Vector2(1f, 1f), new Vector2(1f, 0.5f), new Vector2(-15f, 0f), Vector2.zero);
 
             var statRowView = rowTemplateObj.AddComponent<RefinementStatRowView>();
@@ -411,8 +411,9 @@ namespace CoreSystem.Editor.UI
             var refineBtn = refineBtnObj.AddComponent<Button>();
             refineBtn.targetGraphic = btnImg;
 
-            var btnTxt = CreateText(refineBtnObj.transform, "Button Text", "Refinement", fontNovecento, 20f, new Color(0.22f, 0.17f, 0.17f), TextAlignmentOptions.Center);
+            var btnTxt = CreateText(refineBtnObj.transform, "Button Text", string.Empty, fontNovecento, 20f, new Color(0.22f, 0.17f, 0.17f), TextAlignmentOptions.Center);
             SetStretch(btnTxt.rectTransform);
+            btnTxt.gameObject.SetActive(false);
 
             var so = new SerializedObject(windowComp);
             so.FindProperty("_headerRect").objectReferenceValue = header.GetComponent<RectTransform>();

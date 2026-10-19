@@ -263,11 +263,13 @@ namespace CoreSystem.UI.Refinement
             {
                 if (currentRefine >= RefinementSystem.MaxRefineLevel)
                 {
+                    _buttonText.gameObject.SetActive(true);
                     _buttonText.text = "MAX LEVEL";
                 }
                 else
                 {
-                    _buttonText.text = "Refinement";
+                    _buttonText.text = string.Empty;
+                    _buttonText.gameObject.SetActive(false);
                 }
             }
 
@@ -295,7 +297,11 @@ namespace CoreSystem.UI.Refinement
             if (_successRateBar != null) _successRateBar.fillAmount = 0f;
             if (_costText != null) _costText.text = "0 CREDITS";
             if (_refineButton != null) _refineButton.interactable = false;
-            if (_buttonText != null) _buttonText.text = "Refinement";
+            if (_buttonText != null)
+            {
+                _buttonText.text = string.Empty;
+                _buttonText.gameObject.SetActive(false);
+            }
 
             if (_materialSlotObjects != null)
             {
