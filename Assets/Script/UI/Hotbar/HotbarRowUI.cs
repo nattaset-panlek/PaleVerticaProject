@@ -210,17 +210,7 @@ namespace CoreSystem.UI.Hotbar
 
         private string GetDefaultHotkeyText(int row, int slot)
         {
-            string slotLabel = (slot + 1 % 10).ToString();
-            if (slot == 9) slotLabel = "0";
-
-            switch (row)
-            {
-                case 0: return slotLabel;
-                case 1: return $"Alt+{slotLabel}";
-                case 2: return $"Ctrl+{slotLabel}";
-                case 3: return $"Shift+{slotLabel}";
-                default: return $"R{row+1}-{slotLabel}";
-            }
+            return HotbarLayoutFormula.GetHotkeyLabel(row, slot);
         }
         #endregion
     }

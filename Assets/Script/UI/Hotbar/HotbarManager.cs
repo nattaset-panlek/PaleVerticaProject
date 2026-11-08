@@ -131,32 +131,20 @@ namespace CoreSystem.UI.Hotbar
                 var row = _activeRows[r];
                 if (row == null) continue;
 
-                var rowRec = new HotbarRowRecord
-                {
-                    RowIndex = row.RowIndex,
-                    IsLocked = row.IsLocked,
-                    AnchoredPosition = row.RectTransform != null ? row.RectTransform.anchoredPosition : Vector2.zero,
-                    SlotCount = row.Slots.Count
-                };
-
+                var slotData = new List<HotbarSlotData>(row.Slots.Count);
                 for (int s = 0; s < row.Slots.Count; s++)
                 {
-                    var slot = row.Slots[s];
-                    if (slot != null && slot.SlotData != null)
-                    {
-                        rowRec.Slots.Add(new HotbarSlotRecord
-                        {
-                            ActionType = (int)slot.SlotData.ActionType,
-                            SkillId = slot.SlotData.SkillId,
-                            ItemId = slot.SlotData.ItemId,
-                            ItemInstanceId = slot.SlotData.ItemInstanceId,
-                            CustomActionId = slot.SlotData.CustomActionId,
-                            HotkeyText = slot.SlotData.HotkeyText
-                        });
-                    }
+                    slotData.Add(row.Slots[s] != null ? row.Slots[s].SlotData : null);
                 }
 
-                records.Add(rowRec);
+                records.Add(new HotbarRowRecord
+                {
+                    RowIndex = records.Count,
+                    IsLocked = row.IsLocked,
+                    AnchoredPosition = row.RectTransform != null ? row.RectTransform.anchoredPosition : Vector2.zero,
+                    SlotCount = row.Slots.Count,
+                    Slots = HotbarLayoutFormula.ToRecords(slotData, records.Count)
+                });
             }
 
             return records;
@@ -188,27 +176,16 @@ namespace CoreSystem.UI.Hotbar
                 HotbarRowUI rowUI = rowObj.GetComponent<HotbarRowUI>();
                 if (rowUI == null) rowUI = rowObj.AddComponent<HotbarRowUI>();
 
-                rowUI.SetupRow(rec.RowIndex, rec.SlotCount, rec.AnchoredPosition, rec.IsLocked);
+                int rowIndex = _activeRows.Count;
+                rowUI.SetupRow(rowIndex, rec.SlotCount, rec.AnchoredPosition, rec.IsLocked);
                 _activeRows.Add(rowUI);
 
-                if (rec.Slots != null)
+                HotbarSlotData[] slotData = HotbarLayoutFormula.FromRecords(rec.Slots, rowUI.Slots.Count);
+                for (int s = 0; s < rowUI.Slots.Count; s++)
                 {
-                    for (int s = 0; s < rec.Slots.Count && s < rowUI.Slots.Count; s++)
+                    if (rowUI.Slots[s] != null)
                     {
-                        var sRec = rec.Slots[s];
-                        var slotUI = rowUI.Slots[s];
-                        if (sRec != null && slotUI != null)
-                        {
-                            var sData = new HotbarSlotData
-                            {
-                                ActionType = (HotbarActionType)sRec.ActionType,
-                                SkillId = sRec.SkillId,
-                                ItemId = sRec.ItemId,
-                                ItemInstanceId = sRec.ItemInstanceId,
-                                CustomActionId = sRec.CustomActionId
-                            };
-                            slotUI.SetupSlot(rec.RowIndex, s, sRec.HotkeyText, sData);
-                        }
+                        rowUI.Slots[s].SetupSlot(rowIndex, s, HotbarLayoutFormula.GetHotkeyLabel(rowIndex, s), slotData[s]);
                     }
                 }
             }
@@ -256,8 +233,7 @@ namespace CoreSystem.UI.Hotbar
 
             for (int s = 0; s < row.Slots.Count; s++)
             {
-                UnityEngine.InputSystem.Key key = GetKeyForSlotIndex(s);
-                if (key != UnityEngine.InputSystem.Key.None && keyboard[key].wasPressedThisFrame)
+                if (IsSlotKeyPressed(keyboard, s))
                 {
                     row.Slots[s].ExecuteAction();
                     break;
@@ -265,22 +241,14 @@ namespace CoreSystem.UI.Hotbar
             }
         }
 
-        private UnityEngine.InputSystem.Key GetKeyForSlotIndex(int slotIndex)
+        private static bool IsSlotKeyPressed(UnityEngine.InputSystem.Keyboard keyboard, int slotIndex)
         {
-            switch (slotIndex)
+            for (int slot = 0; slot < CoreSystem.Settings.Keybinds.KeybindPair.SlotCount; slot++)
             {
-                case 0: return UnityEngine.InputSystem.Key.Digit1;
-                case 1: return UnityEngine.InputSystem.Key.Digit2;
-                case 2: return UnityEngine.InputSystem.Key.Digit3;
-                case 3: return UnityEngine.InputSystem.Key.Digit4;
-                case 4: return UnityEngine.InputSystem.Key.Digit5;
-                case 5: return UnityEngine.InputSystem.Key.Digit6;
-                case 6: return UnityEngine.InputSystem.Key.Digit7;
-                case 7: return UnityEngine.InputSystem.Key.Digit8;
-                case 8: return UnityEngine.InputSystem.Key.Digit9;
-                case 9: return UnityEngine.InputSystem.Key.Digit0;
-                default: return UnityEngine.InputSystem.Key.None;
+                UnityEngine.InputSystem.Key key = CoreSystem.Settings.Keybinds.KeybindSetting.GetHotbarKey(slotIndex, slot);
+                if (key != UnityEngine.InputSystem.Key.None && keyboard[key].wasPressedThisFrame) return true;
             }
+            return false;
         }
         #endregion
     }

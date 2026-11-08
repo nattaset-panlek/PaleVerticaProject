@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document outlines the architectural refactoring of the Hotbar Interaction, Combat Aiming, and Consumable Item Assignment systems in **Realm of Hero**. The refactor resolves overlapping keyboard handling between `PlayerCore` and `HotbarManager` while unifying all action executions (Skills, Consumables, Items, and future interactive systems) under a centralized Hotbar gateway.
+This document outlines the architectural refactoring of the Hotbar Interaction, Combat Aiming, and Consumable Item Assignment systems in **Pale Vertica**. The refactor resolves overlapping keyboard handling between `PlayerCore` and `HotbarManager` while unifying all action executions (Skills, Consumables, Items, and future interactive systems) under a centralized Hotbar gateway.
 
 ---
 

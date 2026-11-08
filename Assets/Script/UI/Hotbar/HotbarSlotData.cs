@@ -11,7 +11,6 @@ namespace CoreSystem.UI.Hotbar
         public int ItemId = -1;
         public long ItemInstanceId = -1;
         public string CustomActionId = string.Empty;
-        public string HotkeyText = string.Empty;
         #endregion
 
         #region [Public Methods]

@@ -8,6 +8,7 @@ using CoreSystem.Entity;
 using CoreSystem.Skills;
 using CoreSystem.Data;
 using CoreSystem.Data.Items;
+using CoreSystem.Data.Skills;
 using CoreSystem.Data.Items.Model;
 using CoreSystem.UI.Utility;
 using CoreSystem.UI.Inventory;
@@ -30,6 +31,18 @@ namespace CoreSystem.UI.Hotbar
         [SerializeField] private TMP_Text _overlayValueText;
         [SerializeField] private TMP_Text _numHotSlotText;
         [SerializeField] private GameObject _comboHintObj;
+
+        [Header("Icon Colour")]
+        [Tooltip("Skill icons show their own colours (white tint). Item icons and the default placeholder icon keep the Image colour set on the prefab.")]
+        [SerializeField] private bool _keepSkillIconColors = true;
+        [Tooltip("Dark rounded plate drawn behind skill icons that keep their own colours, so white parts stay readable on the light slot.")]
+        [SerializeField] private bool _showSkillIconBackplate = true;
+        [SerializeField] private Color _skillIconBackplateColor = new Color(0.078f, 0.075f, 0.075f, 1f);
+        [SerializeField] private float _skillIconBackplateRadius = 10f;
+        [SerializeField] private float _skillIconBackplatePadding = 2f;
+        private Color _iconTint = Color.white;
+        private bool _iconTintCaptured;
+        private Image _skillIconBackplate;
 
         [Header("Slot Configuration")]
         [SerializeField] private int _rowIndex;
@@ -215,8 +228,6 @@ namespace CoreSystem.UI.Hotbar
                 _slotData = new HotbarSlotData();
             }
 
-            _slotData.HotkeyText = hotkeyText;
-
             if (_numHotSlotText != null)
             {
                 _numHotSlotText.text = hotkeyText;
@@ -364,6 +375,8 @@ namespace CoreSystem.UI.Hotbar
             if (_onUse != null) _onUse.SetActive(hasAction);
             if (_onEmpty != null) _onEmpty.SetActive(!hasAction);
 
+            SetBackplateVisible(false);
+
             if (!hasAction)
             {
                 if (_skillIcon != null) _skillIcon.gameObject.SetActive(false);
@@ -386,10 +399,7 @@ namespace CoreSystem.UI.Hotbar
                         var overrideData = ActiveSkill.GetActiveChainOverride(player, skillData);
                         var effectiveSkill = (overrideData != null && overrideData.ReplacementSkill != null) ? overrideData.ReplacementSkill : skillData;
 
-                        if (_skillIcon != null && effectiveSkill.Icon != null)
-                        {
-                            _skillIcon.sprite = effectiveSkill.Icon;
-                        }
+                        SetSkillIcon(effectiveSkill.Icon);
                         if (_costText != null)
                         {
                             _costText.text = $"{effectiveSkill.BaseManaCost:F0} MP";
@@ -422,10 +432,7 @@ namespace CoreSystem.UI.Hotbar
                             return;
                         }
 
-                        if (_skillIcon != null && itemData.Icon != null)
-                        {
-                            _skillIcon.sprite = itemData.Icon;
-                        }
+                        SetItemIcon(itemData.Icon);
                         if (_costText != null)
                         {
                             _costText.text = "Instant";
@@ -437,6 +444,67 @@ namespace CoreSystem.UI.Hotbar
         #endregion
 
         #region [Private Methods]
+        private void SetSkillIcon(Sprite icon)
+        {
+            if (_skillIcon == null || icon == null) return;
+            CaptureIconTint();
+            bool ownColours = _keepSkillIconColors && icon != SkillIconLoader.GetFallback();
+            _skillIcon.sprite = icon;
+            _skillIcon.color = ownColours ? Color.white : _iconTint;
+            SetBackplateVisible(ownColours && _showSkillIconBackplate);
+        }
+
+        private void SetItemIcon(Sprite icon)
+        {
+            if (_skillIcon == null || icon == null) return;
+            CaptureIconTint();
+            _skillIcon.sprite = icon;
+            _skillIcon.color = _iconTint;
+            SetBackplateVisible(false);
+        }
+
+        private void SetBackplateVisible(bool visible)
+        {
+            if (!visible)
+            {
+                if (_skillIconBackplate != null && _skillIconBackplate.gameObject.activeSelf) _skillIconBackplate.gameObject.SetActive(false);
+                return;
+            }
+            if (_skillIcon == null) return;
+            if (_skillIconBackplate == null) _skillIconBackplate = CreateBackplate();
+            if (!_skillIconBackplate.gameObject.activeSelf) _skillIconBackplate.gameObject.SetActive(true);
+        }
+
+        private Image CreateBackplate()
+        {
+            RectTransform iconRect = _skillIcon.rectTransform;
+            var go = new GameObject("[Runtime] SkillIconBackplate", typeof(RectTransform), typeof(Image));
+            var rect = (RectTransform)go.transform;
+            rect.SetParent(iconRect.parent, false);
+            rect.SetSiblingIndex(iconRect.GetSiblingIndex());
+            rect.anchorMin = iconRect.anchorMin;
+            rect.anchorMax = iconRect.anchorMax;
+            rect.pivot = iconRect.pivot;
+            rect.anchoredPosition = iconRect.anchoredPosition;
+            rect.sizeDelta = iconRect.sizeDelta + Vector2.one * (_skillIconBackplatePadding * 2f);
+            rect.localRotation = iconRect.localRotation;
+            rect.localScale = iconRect.localScale;
+
+            var image = go.GetComponent<Image>();
+            image.raycastTarget = false;
+            image.color = _skillIconBackplateColor;
+            image.sprite = UIShapes.RoundedRect;
+            UIShapes.ApplyCornerRadius(image, _skillIconBackplateRadius);
+            return image;
+        }
+
+        private void CaptureIconTint()
+        {
+            if (_iconTintCaptured) return;
+            _iconTint = _skillIcon.color;
+            _iconTintCaptured = true;
+        }
+
         private void ShowContextMenu(Vector2 screenPos)
         {
             if (_slotData == null || _slotData.IsEmpty || ContextMenuManager.Instance == null) return;
@@ -598,10 +666,7 @@ namespace CoreSystem.UI.Hotbar
                     var overrideData = ActiveSkill.GetActiveChainOverride(player, baseSkill);
                     if (overrideData != null && overrideData.ReplacementSkill != null)
                     {
-                        if (_skillIcon != null && overrideData.ReplacementSkill.Icon != null)
-                        {
-                            _skillIcon.sprite = overrideData.ReplacementSkill.Icon;
-                        }
+                        SetSkillIcon(overrideData.ReplacementSkill.Icon);
                         if (_costText != null)
                         {
                             _costText.text = $"{overrideData.ReplacementSkill.BaseManaCost:F0} MP";
@@ -613,10 +678,7 @@ namespace CoreSystem.UI.Hotbar
                     }
                     else
                     {
-                        if (_skillIcon != null && baseSkill.Icon != null)
-                        {
-                            _skillIcon.sprite = baseSkill.Icon;
-                        }
+                        SetSkillIcon(baseSkill.Icon);
                         if (_costText != null)
                         {
                             _costText.text = $"{baseSkill.BaseManaCost:F0} MP";
