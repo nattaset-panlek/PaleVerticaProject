@@ -1,0 +1,18 @@
+{
+  "Shops": [
+    {
+      "Id": "general_merchant",
+      "Name": "Merchant",
+      "Items": [
+        { "ItemId": 6001, "Price": 40000, "Stock": 1 },
+        { "ItemId": 3005, "Price": 2400, "Stock": 3 },
+        { "ItemId": 3003, "Price": 1800, "Stock": 2 },
+        { "ItemId": 4005, "Price": 650, "Stock": 20 },
+        { "ItemId": 2002, "Price": 120, "Stock": -1 },
+        { "ItemId": 2003, "Price": 300, "Stock": -1 },
+        { "ItemId": 5003, "Price": 30, "Stock": -1 },
+        { "ItemId": 5001, "Price": 15, "Stock": -1 }
+      ]
+    }
+  ]
+}

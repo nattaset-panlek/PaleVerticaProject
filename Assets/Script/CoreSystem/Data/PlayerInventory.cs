@@ -8,13 +8,24 @@ namespace CoreSystem.Data
 {
     public class PlayerInventory
     {
+        #region [Variables/Fields]
         private readonly Dictionary<long, ItemInstance> _itemsByInstanceId = new Dictionary<long, ItemInstance>();
         private long _nextInstanceId = 1;
+        private int _batchDepth;
+        private bool _batchChanged;
 
         public Action OnInventoryChanged;
+        public Action<Item, int> OnProgressionReceived;
+        #endregion
 
+        #region [Properties]
         public List<ItemInstance> ItemInstances => _itemsByInstanceId.Values.ToList();
+        public Dictionary<long, ItemInstance>.ValueCollection Items => _itemsByInstanceId.Values;
+        public int Count => _itemsByInstanceId.Count;
+        public bool IsBatching => _batchDepth > 0;
+        #endregion
 
+        #region [Public Methods]
         public List<ItemInstance> GetAllItems()
         {
             return ItemInstances;
@@ -31,6 +42,34 @@ namespace CoreSystem.Data
             return _itemsByInstanceId.Values.FirstOrDefault(instance => instance.ItemId == itemId);
         }
 
+        public void BeginBatch()
+        {
+            _batchDepth++;
+        }
+
+        public void EndBatch()
+        {
+            if (_batchDepth == 0) return;
+            _batchDepth--;
+            if (_batchDepth > 0 || !_batchChanged) return;
+            _batchChanged = false;
+            OnInventoryChanged?.Invoke();
+        }
+
+        public void AddItems(IEnumerable<Item> templates, int amount = 1)
+        {
+            if (templates == null) return;
+            BeginBatch();
+            try
+            {
+                foreach (Item template in templates) AddItem(template, amount);
+            }
+            finally
+            {
+                EndBatch();
+            }
+        }
+
         public void AddItem(int id, int qty = 1)
         {
             Item template = Database.GetItem(id);
@@ -44,6 +83,12 @@ namespace CoreSystem.Data
         {
             if (template == null || amount <= 0) return;
 
+            if (template.Type == ItemType.Progression)
+            {
+                OnProgressionReceived?.Invoke(template, amount);
+                return;
+            }
+
             if (template.IsStackable)
             {
                 // Find an existing stack
@@ -53,7 +98,7 @@ namespace CoreSystem.Data
                 if (existingInstance != null)
                 {
                     existingInstance.Quantity += amount;
-                    OnInventoryChanged?.Invoke();
+                    RaiseChanged();
                     return;
                 }
             }
@@ -80,7 +125,7 @@ namespace CoreSystem.Data
             }
 
             // [FIX] Invoke AFTER items are added to dictionary
-            OnInventoryChanged?.Invoke();
+            RaiseChanged();
         }
 
         public bool RemoveItemByInstance(long instanceId, int amount = 1)
@@ -101,7 +146,7 @@ namespace CoreSystem.Data
 
                 if (removed)
                 {
-                    OnInventoryChanged?.Invoke();
+                    RaiseChanged();
                     return true;
                 }
             }
@@ -112,7 +157,7 @@ namespace CoreSystem.Data
         {
             if (_itemsByInstanceId.Remove(instanceId))
             {
-                OnInventoryChanged?.Invoke();
+                RaiseChanged();
             }
         }
 
@@ -120,12 +165,68 @@ namespace CoreSystem.Data
         {
             if (instance == null) return;
             _itemsByInstanceId[instance.Id] = instance;
-            OnInventoryChanged?.Invoke();
+            RaiseChanged();
         }
 
         public void Clear()
         {
             _itemsByInstanceId.Clear();
+            RaiseChanged();
+        }
+
+        public int GetCreditAmount()
+        {
+            foreach (var inst in _itemsByInstanceId.Values)
+            {
+                if (inst.ItemId == 1000 || string.Equals(inst.Name, "Xeny Credit", StringComparison.OrdinalIgnoreCase))
+                {
+                    return inst.Quantity;
+                }
+            }
+            return 0;
+        }
+
+        public bool HasCredit(int amount)
+        {
+            return GetCreditAmount() >= amount;
+        }
+
+        public bool SpendCredit(int amount)
+        {
+            if (amount <= 0) return true;
+            foreach (var inst in _itemsByInstanceId.Values)
+            {
+                if (inst.ItemId == 1000 || string.Equals(inst.Name, "Xeny Credit", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (inst.Quantity >= amount)
+                    {
+                        return RemoveItemByInstance(inst.Id, amount);
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        public void AddCredit(int amount)
+        {
+            if (amount <= 0) return;
+            Item creditItem = Database.GetItem(1000);
+            if (creditItem != null)
+            {
+                AddItem(creditItem, amount);
+            }
+        }
+        #endregion
+
+        #region [Private Methods]
+        private void RaiseChanged()
+        {
+            if (_batchDepth > 0)
+            {
+                _batchChanged = true;
+                return;
+            }
             OnInventoryChanged?.Invoke();
         }
 
@@ -134,5 +235,6 @@ namespace CoreSystem.Data
             // Simple unique ID logic
             return (long)(DateTime.UtcNow - new DateTime(2024, 1, 1)).TotalMilliseconds + (_nextInstanceId++);
         }
+        #endregion
     }
 }

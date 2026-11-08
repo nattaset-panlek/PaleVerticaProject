@@ -76,9 +76,7 @@ namespace CoreSystem.UI.Inventory.Utility
 
                 hoverable.Setup($"{ItemSocketInfo}<color=#{ItemRarityExtensions.GetHexColor(itemInstance.Item.Rarity)}>{itemInstance.Name}</color>",itemInstance.Item.Description);
 
-                // Left-click Context Menu
-                var ctx = GetComponent<ContextMenuUI>() ?? gameObject.AddComponent<ContextMenuUI>();
-                ctx.SetupMenu(GetDefaultContextMenuItems());
+                if (TryGetComponent(out ContextMenuUI legacyMenu)) legacyMenu.enabled = false;
 
                 // Drag support
                 if (GetComponent<ItemDragHandler>() == null)
@@ -89,27 +87,57 @@ namespace CoreSystem.UI.Inventory.Utility
 
         public virtual void OnPointerClick(PointerEventData eventData)
         {
-            // Right-click แสดง item info ทันที
+            if (itemInstance == null || itemInstance.Item == null) return;
+
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                if (itemInstance != null && itemInstance.Item != null)
-                {
-                    if (ItemInformationManager.Instance != null)
-                    {
-                        ItemInformationManager.Instance.Open(itemInstance);
-                    }
-                    else
-                    {
-                        Debug.Log($"[Info] {itemInstance.Name}: {itemInstance.Item.Description}");
-                    }
-                }
+                ShowContextMenu(eventData.position);
             }
+            else if (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount >= 2)
+            {
+                UsePrimaryAction();
+            }
+        }
+
+        public void ShowContextMenu(Vector2 screenPosition)
+        {
+            if (ContextMenuManager.Instance == null) return;
+            var items = GetDefaultContextMenuItems();
+            if (items != null && items.Count > 0) ContextMenuManager.Instance.Show(items, screenPosition);
+        }
+
+        public bool UsePrimaryAction()
+        {
+            var captured = itemInstance;
+            if (captured == null || captured.Item == null) return false;
+
+            if (captured is EquipmentInstance equipInst && equipInst.Item is Equipment equipment)
+            {
+                if (equipInst.IsEquipped) GameData.Player.Equipment.Equip(Database.GetDefaultSlotForType(equipment.Slot), null);
+                else GameData.Player.Equipment.SmartEquip(captured);
+                return true;
+            }
+
+            if (captured is CostumeInstance costumeInst && costumeInst.Item is Costume costume)
+            {
+                if (costumeInst.IsEquipped) GameData.Player.Costumes.Unequip((int)costume.Slot);
+                else GameData.Player.Costumes.Equip(captured);
+                return true;
+            }
+
+            if (captured.Item is Consumable || captured.Item is SkillRune)
+            {
+                UseItem(captured);
+                return true;
+            }
+
+            return false;
         }
 
         protected virtual List<ContextMenuItem> GetDefaultContextMenuItems()
         {
             var captured = itemInstance;
-            var items = new List<ContextMenuItem>();
+            var items = ItemInsertRegistry.BuildContextMenuItems(captured);
 
             if (captured is EquipmentInstance equipInst && equipInst.Item is Equipment equipment)
             {
@@ -151,14 +179,7 @@ namespace CoreSystem.UI.Inventory.Utility
 
             if (captured.Item is Consumable || captured.Item is SkillRune)
             {
-                items.Add(new ContextMenuItem("Use", () =>
-                {
-                    captured.Item.OnUse();
-                    if (GameData.Player != null && GameData.Player.Inventory != null)
-                    {
-                        GameData.Player.Inventory.RemoveItemByInstance(captured.Id, 1);
-                    }
-                }));
+                items.Add(new ContextMenuItem("Use", () => UseItem(captured)));
             }
 
             items.Add(new ContextMenuItem("Info", () =>
@@ -175,6 +196,15 @@ namespace CoreSystem.UI.Inventory.Utility
             items.Add(new ContextMenuItem("Discard", () => Debug.Log($"[Discard] {captured.Name}")));
 
             return items;
+        }
+
+        private static void UseItem(ItemInstance instance)
+        {
+            instance.Item.OnUse();
+            if (GameData.Player != null && GameData.Player.Inventory != null)
+            {
+                GameData.Player.Inventory.RemoveItemByInstance(instance.Id, 1);
+            }
         }
 
         protected virtual void OnEnable()
