@@ -1,8 +1,10 @@
 using CoreSystem.Agent;
+using CoreSystem.Combat;
 using CoreSystem.Controllers;
 using CoreSystem.Data;
 using CoreSystem.Data.Save;
 using CoreSystem.Entity;
+using CoreSystem.Interaction;
 using CoreSystem.Skills;
 using CoreSystem.Skills.Logic;
 using CoreSystem.Skills.Visuals;
@@ -26,7 +28,10 @@ namespace CoreSystem.Player
         private Camera _mainCamera;
         private InputSystem_Actions _inputActions;
         private readonly PlayerDeathScreen _deathScreen = new PlayerDeathScreen();
+        private IEntity _lastAttacker;
         private readonly PlayerInteraction _interaction = new PlayerInteraction();
+        private const float LootPickupRange = 1f;
+        private readonly PlayerApproach _approach = new PlayerApproach();
         private bool _isDead;
         private int _selectedSkillSlot = -1;
         private SkillInstance _selectedSkillInstance;
@@ -57,6 +62,11 @@ namespace CoreSystem.Player
             _instance = this;
             _mainCamera = Camera.main;
             _inputActions = new InputSystem_Actions();
+            CoreSystem.Settings.Keybinds.KeybindSetting.Attach(_inputActions.asset);
+            InteractionRegistry.Register(_interaction);
+            CoreSystem.Dialogue.DialogueManager.Ensure();
+            InteractionCore.OnApproachStarted += HandleInteractionApproachStarted;
+            CoreSystem.Loot.LootManager.OnPickupRequested += HandleLootPickupRequested;
             OnReady?.Invoke(this);
         }
 
@@ -73,7 +83,11 @@ namespace CoreSystem.Player
         private void OnDestroy()
         {
             if (_instance != this) return;
+            InteractionRegistry.Unregister(_interaction);
+            InteractionCore.OnApproachStarted -= HandleInteractionApproachStarted;
+            CoreSystem.Loot.LootManager.OnPickupRequested -= HandleLootPickupRequested;
             Release();
+            if (_inputActions != null) CoreSystem.Settings.Keybinds.KeybindSetting.Detach(_inputActions.asset);
             _inputActions?.Dispose();
             _instance = null;
         }
@@ -86,6 +100,7 @@ namespace CoreSystem.Player
 
             if (CheckDeath())
             {
+                _approach.Cancel();
                 _autoAttackTarget = null;
                 SkillIndicatorManager.Instance?.HideIndicator();
                 return;
@@ -93,6 +108,7 @@ namespace CoreSystem.Player
 
             if (!HasControl)
             {
+                _approach.Cancel();
                 _autoAttackTarget = null;
                 _controlled.Presenter.SetMoving(false);
                 SkillIndicatorManager.Instance?.HideIndicator();
@@ -103,6 +119,7 @@ namespace CoreSystem.Player
             HandleLookDirection();
             HandleSkillInput();
             HandleAutoAttack();
+            _approach.Tick(_controlled, this);
             UpdateIndicator();
         }
         #endregion
@@ -134,6 +151,9 @@ namespace CoreSystem.Player
             return character != null && character == GetPlayer();
         }
 
+        public static void AddBaseExp(long amount) => GetPlayer()?.AddBaseExp(amount);
+        public static void AddJobExp(long amount) => GetPlayer()?.AddJobExp(amount);
+
         public void Possess(Character character)
         {
             if (character == null || character == _controlled) return;
@@ -151,6 +171,7 @@ namespace CoreSystem.Player
 
             GameData.Player.Stats.Bind(character.attributeSystem);
             GameData.Player.Skills.Bind(character.skillCaster);
+            GameData.Player.Experience.Bind(character.expSystem);
             GameData.Player.Equipment.Bind(character);
             GameData.Player.Costumes.Bind(character);
 
@@ -172,6 +193,8 @@ namespace CoreSystem.Player
             _selectedSkillSlot = -1;
             _autoAttackTarget = null;
             _deathScreen.Close();
+
+            GameData.Player.Experience.Bind(null);
 
             OnReleased?.Invoke(previous);
             OnPlayerChanged?.Invoke(null);
@@ -232,7 +255,7 @@ namespace CoreSystem.Player
         public void SetAutoAttackTarget(IEntity target)
         {
             if (_controlled == null || target == null || ReferenceEquals(target, _controlled)) return;
-            if (!FactionDatabase.IsHostile(_controlled.Faction, target.Faction)) return;
+            if (!TeamRegistry.IsHostile(_controlled, target)) return;
             ClearAiming();
             _autoAttackTarget = target;
         }
@@ -246,8 +269,41 @@ namespace CoreSystem.Player
         #endregion
 
         #region [Private Methods]
+        private bool TryBeginPortal(Vector3 mousePos)
+        {
+            CoreSystem.World.MapPortal portal = CoreSystem.World.MapPortal.AtPoint(mousePos);
+            if (portal == null) return false;
+
+            InteractionCore.Instance?.Cancel(_controlled);
+            _approach.Begin(_controlled, portal.transform.position,
+                () => portal != null ? (Vector2?)portal.transform.position : null, portal.Range, portal.Enter);
+            return true;
+        }
+
+        private void HandleLootPickupRequested(CoreSystem.Loot.GroundItem item)
+        {
+            if (_controlled == null || !HasControl) return;
+            if (item == null || !item.CanBePickedUpBy(_controlled)) return;
+
+            Character player = _controlled;
+            bool started = _approach.Begin(player, item.transform.position,
+                () => item != null ? (Vector2?)item.transform.position : null, LootPickupRange,
+                () => item.TryPickUp(player, GameData.Player != null ? GameData.Player.Inventory : null));
+            if (!started) return;
+            _autoAttackTarget = null;
+            InteractionCore.Instance?.Cancel(_controlled);
+        }
+
+        private void HandleInteractionApproachStarted(InteractionRequest request)
+        {
+            if (_controlled == null || request.Context.Actor != _controlled) return;
+            _autoAttackTarget = null;
+            ClearAiming();
+        }
+
         private void HandleControlledTakeDamage(IEntity attacker, float damage)
         {
+            if (attacker != null) _lastAttacker = attacker;
             CameraController.Instance?.ScreenShake(0.15f, 0.4f);
         }
 
@@ -269,13 +325,21 @@ namespace CoreSystem.Player
                 _controlled.Presenter.PlayDeath();
                 SkillIndicatorManager.Instance?.HideIndicator();
                 _controlled.Control.CommandInterruptCast(this);
-                _deathScreen.Show(Revive);
+                _deathScreen.Show(BuildDeathInfo(), Revive);
             }
             return true;
         }
 
+        private PlayerDeathInfo BuildDeathInfo()
+        {
+            string killer = _lastAttacker is Character attacker && attacker != null ? attacker.Name : null;
+            string location = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            return new PlayerDeathInfo(_controlled != null ? _controlled.Name : null, _controlled != null ? _controlled.BaseLevel : 0, location, killer);
+        }
+
         private void Revive()
         {
+            _lastAttacker = null;
             _isDead = false;
             _deathScreen.Close();
 
@@ -304,6 +368,8 @@ namespace CoreSystem.Player
             if (isMoving)
             {
                 _autoAttackTarget = null;
+                _approach.Cancel();
+                InteractionCore.Instance?.Cancel(_controlled);
                 _controlled.Control.CommandMove(direction, this);
                 _controlled.Presenter.Face(new Vector3(moveInput.x, 0f, 0f));
             }
@@ -327,9 +393,14 @@ namespace CoreSystem.Player
         {
             if (_controlled.skillCaster == null || _inputActions == null) return;
 
+            bool leftClick = _inputActions.Player.Attack.triggered;
+            bool rightClick = _inputActions.UI.RightClick.triggered;
+            if (!leftClick && !rightClick) return;
+            if (CoreSystem.UI.UIManager.IsPointerOverUI()) return;
+
             Vector3 mousePos = GetMouseWorldPosition();
 
-            if (_inputActions.Player.Attack.triggered)
+            if (leftClick)
             {
                 SkillInstance instance = _selectedSkillInstance;
                 if (instance == null && _selectedSkillSlot >= 0 && _selectedSkillSlot < _controlled.skillCaster.EquippedSkills.Count)
@@ -338,10 +409,12 @@ namespace CoreSystem.Player
                 }
 
                 if (instance != null) CastAimedSkill(instance, mousePos);
+                else if (TryBeginPortal(mousePos)) _autoAttackTarget = null;
+                else if (_interaction.TryPrimaryInteract(this, mousePos)) _autoAttackTarget = null;
                 else SelectAutoAttackTarget(mousePos);
             }
 
-            if (_inputActions.UI.RightClick.triggered)
+            if (rightClick)
             {
                 bool wasAiming = _selectedSkillInstance != null || _selectedSkillSlot >= 0;
                 ClearAiming();
@@ -398,8 +471,9 @@ namespace CoreSystem.Player
             }
 
             IEntity target = col.GetComponentInParent<IEntity>();
-            if (target != null && !ReferenceEquals(target, _controlled) && FactionDatabase.IsHostile(_controlled.Faction, target.Faction))
+            if (target != null && !ReferenceEquals(target, _controlled) && TeamRegistry.IsHostile(_controlled, target))
             {
+                InteractionCore.Instance?.Cancel(_controlled);
                 _autoAttackTarget = target;
             }
         }
@@ -446,7 +520,10 @@ namespace CoreSystem.Player
             if (_controlled.BasicAttackCooldownTimer <= 0 && _controlled.skillCaster.CurrentState == SkillCasterState.Idle)
             {
                 _controlled.Control.CommandBasicAttack(_autoAttackTarget, this);
-                _controlled.Presenter.PlayAttack();
+                float aspd = _controlled.attributeSystem != null 
+                    ? _controlled.attributeSystem.GetAttribute(AttributeType.ASPD).CurrentValue 
+                    : BasicAttackFormula.BaseAspd;
+                _controlled.Presenter.PlayAttack(BasicAttackFormula.AttacksPerSecond(aspd));
             }
         }
 

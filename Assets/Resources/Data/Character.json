@@ -6,7 +6,83 @@
             "Faction": 2,
             "BaseHP": 500,
             "BaseMP": 300,
+            "BaseExp": 0,
+            "JobExp": 0,
+            "ExpMultiplier": 1.0,
+            "DropTableId": 1,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/Enemy/Skeletom.prefab"
+        },
+        {
+            "Id": 1002,
+            "Name": "Skeletom Archer",
+            "Faction": 2,
+            "BaseHP": 500,
+            "BaseMP": 300,
+            "BaseExp": 0,
+            "JobExp": 0,
+            "ExpMultiplier": 1.0,
+            "DropTableId": 1,
+            "PrefabPath": "Assets/Addressable/Prefab/Entity/Enemy/Skeletom.prefab"
+        },
+        {
+            "Id": 1003,
+            "Name": "Skeletom Captain",
+            "Faction": 2,
+            "BaseHP": 500,
+            "BaseMP": 300,
+            "BaseExp": 0,
+            "JobExp": 0,
+            "ExpMultiplier": 1.0,
+            "DropTableId": 2,
+            "PrefabPath": "Assets/Addressable/Prefab/Entity/Enemy/Skeletom.prefab"
+        },
+        {
+            "Id": 2001,
+            "Name": "Alchemist",
+            "Faction": 3,
+            "BaseHP": 100,
+            "BaseMP": 50,
+            "BaseExp": 0,
+            "JobExp": 0,
+            "ExpMultiplier": 1.0,
+            "DialogueId": 1,
+            "PrefabPath": "Assets/Addressable/Prefab/Entity/NPC/Alchemist.prefab"
+        },
+        {
+            "Id": 2002,
+            "Name": "Blacksmith",
+            "Faction": 3,
+            "BaseHP": 100,
+            "BaseMP": 50,
+            "BaseExp": 0,
+            "JobExp": 0,
+            "ExpMultiplier": 1.0,
+            "DialogueId": 2,
+            "PrefabPath": "Assets/Addressable/Prefab/Entity/NPC/Blacksmith.prefab"
+        },
+        {
+            "Id": 2003,
+            "Name": "Shopkeeper",
+            "Faction": 3,
+            "BaseHP": 100,
+            "BaseMP": 50,
+            "BaseExp": 0,
+            "JobExp": 0,
+            "ExpMultiplier": 1.0,
+            "DialogueId": 3,
+            "PrefabPath": "Assets/Addressable/Prefab/Entity/NPC/Shopkeeper.prefab"
+        },
+        {
+            "Id": 2004,
+            "Name": "Old Man",
+            "Faction": 3,
+            "BaseHP": 100,
+            "BaseMP": 50,
+            "BaseExp": 0,
+            "JobExp": 0,
+            "ExpMultiplier": 1.0,
+            "DialogueId": 4,
+            "PrefabPath": "Assets/Addressable/Prefab/Entity/NPC/OldMan.prefab"
         }
     ]
 }

@@ -19,6 +19,11 @@ namespace CoreSystem.Data
         public int Faction;
         public int BaseHP;
         public int BaseMP;
+        public int BaseExp;
+        public int JobExp;
+        public float ExpMultiplier = 1f;
+        public int DropTableId;
+        public int DialogueId;
         public string PrefabPath;
     }
 }

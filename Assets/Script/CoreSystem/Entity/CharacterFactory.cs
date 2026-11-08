@@ -44,6 +44,7 @@ namespace CoreSystem.Entity
                     PlayerCore.Ensure().Possess(character);
                     break;
                 case CharacterControllerType.Agent:
+                    CoreSystem.Loot.LootManager.Ensure();
                     AgentCore.Ensure().Register(character);
                     break;
             }

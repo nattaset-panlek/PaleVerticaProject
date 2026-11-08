@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9775d7333c5f2245bb230ba61677121, type: 3}
+  m_Name: LootVisualSettings
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Loot.LootVisualSettings
+  _defaultPrefab: {fileID: 4513242705115836820, guid: 8b7d60f1b5c16b741a9ee8f7e56b4040, type: 3}
+  _uniqueVisuals: []
