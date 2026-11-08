@@ -1,3 +1,6 @@
 [submodule "Assets/ThirdParty/MapLab"]
 	path = Assets/ThirdParty/MapLab
 	url = https://github.com/nattaset-panlek/MapLab.git
+[submodule "Packages/com.globalvisualizer.core"]
+	path = Packages/com.globalvisualizer.core
+	url = https://github.com/nattaset-panlek/unity-global-rectscroller-visualizer.git
