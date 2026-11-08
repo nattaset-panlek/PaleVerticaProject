@@ -4,8 +4,8 @@ Monsters drop items on the ground when they die. Each drop shows a name label; p
 
 ## Where to edit
 
-- Drop tables: `Assets/Resources/Data/DropTable.json`
-- Which monster uses which table: `DropTableId` on the character, in **Window > Pale Vertica > Game Data Workbench**, Characters tab, or in `Character.json`. `0` means no drops.
+- Drop tables: **Window > Pale Vertica > Game Data Workbench**, **Drop Tables** tab. It saves to `Assets/Resources/Data/DropTable.json`.
+- Which monster uses which table: **Drop Table** in the Characters tab. `None` means no drops.
 
 ## First-time setup
 
@@ -30,8 +30,8 @@ Open `Resources/Loot/LootVisualSettings.asset`:
 
 ## Add drops to a monster
 
-1. Add a table with a new `Id` to `DropTable.json`.
-2. Set that `Id` as the monster's `DropTableId`.
+1. In the Drop Tables tab, add a table and its items.
+2. In the Characters tab, choose it as the monster's **Drop Table**.
 3. Enter Play mode and kill the monster.
 
 ## Expected result

@@ -7,7 +7,7 @@ public partial class GameDataWorkbench : EditorWindow
     private static readonly (string category, ToolTab[] tabs)[] NavigatorTree =
     {
         ("OVERVIEW", new[] { ToolTab.Dashboard }),
-        ("DATA", new[] { ToolTab.Attributes, ToolTab.Items, ToolTab.Sets, ToolTab.Characters, ToolTab.Factions, ToolTab.Experience }),
+        ("DATA", new[] { ToolTab.Attributes, ToolTab.Items, ToolTab.Sets, ToolTab.Characters, ToolTab.Quests, ToolTab.Dialogues, ToolTab.DropTables, ToolTab.Shops, ToolTab.Factions, ToolTab.Experience }),
         ("COMBAT", new[] { ToolTab.Skills, ToolTab.SupportSkills, ToolTab.UniquePassives }),
         ("SYSTEM", new[] { ToolTab.IdManager })
     };
@@ -107,6 +107,10 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.Items: return "Items";
             case ToolTab.Sets: return "Sets";
             case ToolTab.Characters: return "Characters";
+            case ToolTab.Quests: return "Quests";
+            case ToolTab.Dialogues: return "Dialogues";
+            case ToolTab.DropTables: return "Drop Tables";
+            case ToolTab.Shops: return "Shops";
             case ToolTab.Factions: return "Factions";
             case ToolTab.Skills: return "Skills";
             case ToolTab.SupportSkills: return "Support Skills";
@@ -125,6 +129,10 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.Items: return _itemData?.Items?.Count ?? 0;
             case ToolTab.Sets: return _itemSetData?.Sets?.Count ?? 0;
             case ToolTab.Characters: return _characterData?.Characters?.Count ?? 0;
+            case ToolTab.Quests: return _questData?.Quests?.Count ?? 0;
+            case ToolTab.Dialogues: return _dialogueData?.Dialogues?.Count ?? 0;
+            case ToolTab.DropTables: return _dropTableData?.Tables?.Count ?? 0;
+            case ToolTab.Shops: return _shopData?.Shops?.Count ?? 0;
             case ToolTab.Factions: return _factionData?.Factions?.Count ?? 0;
             case ToolTab.Skills: return _skillData?.ActiveSkills?.Count ?? 0;
             case ToolTab.SupportSkills: return _supportSkillData?.SupportModifiers?.Count ?? 0;

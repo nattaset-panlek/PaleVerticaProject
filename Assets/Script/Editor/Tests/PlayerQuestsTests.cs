@@ -194,6 +194,84 @@ namespace CoreSystem.Tests
         }
 
         [Test]
+        public void ScenarioNeedsEveryRequiredQuest()
+        {
+            var finale = Quest(5, 0, new QuestObjectiveModel { Type = QuestObjectiveType.Kill, TargetId = 1, Required = 1 });
+            finale.RequiresQuestIds = new List<int> { 1, 3 };
+
+            FinishKillQuest();
+            Assert.AreEqual(QuestStatus.Locked, _quests.GetStatus(finale));
+
+            _quests.Accept(_map);
+            _quests.ReportScene("Field");
+            _quests.Complete(_map);
+            Assert.AreEqual(QuestStatus.Available, _quests.GetStatus(finale));
+        }
+
+        [Test]
+        public void SequentialQuestIgnoresLaterSteps()
+        {
+            PlayerQuests quests = SequentialSetup(out QuestModel story);
+            quests.Report(QuestObjectiveType.Kill, 9);
+            Assert.AreEqual(0, quests.GetCount(10, 1));
+
+            quests.Report(QuestObjectiveType.Talk, 7);
+            quests.Report(QuestObjectiveType.Kill, 9);
+            Assert.AreEqual(1, quests.GetCount(10, 1));
+            Assert.AreEqual(2, quests.CurrentObjective(story));
+        }
+
+        [Test]
+        public void OneEventAdvancesOneSequentialStep()
+        {
+            PlayerQuests quests = SequentialSetup(out QuestModel story);
+            quests.Report(QuestObjectiveType.Talk, 7);
+            Assert.AreEqual(1, quests.CurrentObjective(story));
+            Assert.AreEqual(0, quests.GetCount(10, 2));
+        }
+
+        [Test]
+        public void SequentialProgressLinesHideFutureSteps()
+        {
+            PlayerQuests quests = SequentialSetup(out QuestModel story);
+            Assert.AreEqual(1, QuestTextFormula.ProgressLines(quests, story, id => "x").Count);
+            quests.Report(QuestObjectiveType.Talk, 7);
+            Assert.AreEqual(2, QuestTextFormula.ProgressLines(quests, story, id => "x").Count);
+        }
+
+        [Test]
+        public void DialogueTalkDoesNotCountFromPlainTalk()
+        {
+            var talk = Quest(6, 0, new QuestObjectiveModel { Type = QuestObjectiveType.Talk, TargetId = 7, Required = 1, DialogueId = 50 });
+            var quests = new PlayerQuests(id => id == 6 ? talk : null);
+            quests.Accept(talk);
+            quests.Report(QuestObjectiveType.Talk, 7);
+            Assert.AreEqual(0, quests.GetCount(6, 0));
+
+            Assert.AreEqual(1, quests.GetDialogueTalks(7, new List<QuestModel> { talk }).Count);
+            Assert.IsTrue(quests.CompleteDialogueObjective(talk, 0));
+            Assert.AreEqual(QuestStatus.ReadyToTurnIn, quests.GetStatus(talk));
+            Assert.AreEqual(0, quests.GetDialogueTalks(7, new List<QuestModel> { talk }).Count);
+        }
+
+        [Test]
+        public void DialogueTalkIsOfferedOnlyOnItsTurn()
+        {
+            var story = Quest(11, 0, new QuestObjectiveModel { Type = QuestObjectiveType.Kill, TargetId = 9, Required = 1 });
+            story.Sequential = true;
+            story.Objectives.Add(new QuestObjectiveModel { Type = QuestObjectiveType.Talk, TargetId = 7, Required = 1, DialogueId = 50 });
+            var quests = new PlayerQuests(id => id == 11 ? story : null);
+            var all = new List<QuestModel> { story };
+
+            quests.Accept(story);
+            Assert.AreEqual(0, quests.GetDialogueTalks(7, all).Count);
+            Assert.IsFalse(quests.CompleteDialogueObjective(story, 1));
+
+            quests.Report(QuestObjectiveType.Kill, 9);
+            Assert.AreEqual(1, quests.GetDialogueTalks(7, all).Count);
+        }
+
+        [Test]
         public void CannotCompleteUnfinishedQuest()
         {
             _quests.Accept(_kill);
@@ -246,6 +324,18 @@ namespace CoreSystem.Tests
         #endregion
 
         #region [Private Methods]
+        private static PlayerQuests SequentialSetup(out QuestModel story)
+        {
+            QuestModel quest = Quest(10, 0, new QuestObjectiveModel { Type = QuestObjectiveType.Talk, TargetId = 7, Required = 1 });
+            quest.Sequential = true;
+            quest.Objectives.Add(new QuestObjectiveModel { Type = QuestObjectiveType.Kill, TargetId = 9, Required = 1 });
+            quest.Objectives.Add(new QuestObjectiveModel { Type = QuestObjectiveType.Talk, TargetId = 7, Required = 1 });
+            story = quest;
+            var quests = new PlayerQuests(id => id == 10 ? quest : null);
+            quests.Accept(quest);
+            return quests;
+        }
+
         private void FinishKillQuest()
         {
             _quests.Accept(_kill);
@@ -258,7 +348,7 @@ namespace CoreSystem.Tests
             return new QuestModel
             {
                 Id = id,
-                RequiresQuestId = requires,
+                RequiresQuestIds = requires > 0 ? new List<int> { requires } : new List<int>(),
                 Objectives = new List<QuestObjectiveModel> { objective }
             };
         }

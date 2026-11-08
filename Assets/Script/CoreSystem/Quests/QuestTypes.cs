@@ -28,6 +28,7 @@ namespace CoreSystem.Quests
         public int TargetId;
         public string TargetScene;
         public int Required = 1;
+        public int DialogueId;
         public LocalizedString Text;
     }
 
@@ -54,9 +55,24 @@ namespace CoreSystem.Quests
         public LocalizedString Description;
         public int GiverCharacterId;
         public int TurnInCharacterId;
-        public int RequiresQuestId;
+        public List<int> RequiresQuestIds = new List<int>();
+        public bool Sequential;
+        public int AcceptDialogueId;
+        public int TurnInDialogueId;
         public List<QuestObjectiveModel> Objectives = new List<QuestObjectiveModel>();
         public QuestRewardModel Reward = new QuestRewardModel();
+    }
+
+    public readonly struct QuestTalk
+    {
+        public readonly QuestModel Quest;
+        public readonly int ObjectiveIndex;
+
+        public QuestTalk(QuestModel quest, int objectiveIndex)
+        {
+            Quest = quest;
+            ObjectiveIndex = objectiveIndex;
+        }
     }
 
     [Serializable]

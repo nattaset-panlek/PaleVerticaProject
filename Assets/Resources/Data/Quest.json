@@ -2,34 +2,186 @@
     "Quests": [
         {
             "Id": 1,
-            "Name": { "EN": "Bones on the Road", "TH": "กระดูกบนเส้นทาง" },
-            "Description": { "EN": "The Old Man wants the road cleared.", "TH": "ชายชราอยากให้ถนนปลอดภัย" },
+            "Name": {
+                "EN": "Bones on the Road",
+                "TH": "กระดูกบนเส้นทาง"
+            },
+            "Description": {
+                "EN": "The Old Man wants the road cleared.",
+                "TH": "ชายชราอยากให้ถนนปลอดภัย"
+            },
             "GiverCharacterId": 2004,
             "TurnInCharacterId": 2004,
-            "RequiresQuestId": 0,
+            "RequiresQuestIds": [],
+            "Sequential": false,
+            "AcceptDialogueId": 0,
+            "TurnInDialogueId": 0,
             "Objectives": [
-                { "Type": 0, "TargetId": 1001, "TargetScene": "", "Required": 3, "Text": { "EN": "Defeat Skeletom", "TH": "กำจัด Skeletom" } }
+                {
+                    "Type": 0,
+                    "TargetId": 1001,
+                    "TargetScene": "",
+                    "Required": 3,
+                    "DialogueId": 0,
+                    "Text": {
+                        "EN": "Defeat Skeletom",
+                        "TH": "กำจัด Skeletom"
+                    }
+                }
             ],
             "Reward": {
                 "BaseExp": 100,
                 "JobExp": 50,
-                "Items": [ { "ItemId": 1003, "Quantity": 50 }, { "ItemId": 2001, "Quantity": 3 } ]
+                "Items": [
+                    {
+                        "ItemId": 1003,
+                        "Quantity": 50
+                    },
+                    {
+                        "ItemId": 2001,
+                        "Quantity": 3
+                    }
+                ]
             }
         },
         {
             "Id": 2,
-            "Name": { "EN": "A Word with the Smith", "TH": "คุยกับช่างตีเหล็ก" },
-            "Description": { "EN": "Tell the Blacksmith the road is clear.", "TH": "บอกช่างตีเหล็กว่าถนนปลอดภัยแล้ว" },
+            "Name": {
+                "EN": "A Word with the Smith",
+                "TH": "คุยกับช่างตีเหล็ก"
+            },
+            "Description": {
+                "EN": "Tell the Blacksmith the road is clear.",
+                "TH": "บอกช่างตีเหล็กว่าถนนปลอดภัยแล้ว"
+            },
             "GiverCharacterId": 2004,
             "TurnInCharacterId": 2002,
-            "RequiresQuestId": 1,
+            "RequiresQuestIds": [
+                1
+            ],
+            "Sequential": false,
+            "AcceptDialogueId": 0,
+            "TurnInDialogueId": 0,
             "Objectives": [
-                { "Type": 2, "TargetId": 2002, "TargetScene": "", "Required": 1, "Text": { "EN": "Talk to the Blacksmith", "TH": "คุยกับช่างตีเหล็ก" } }
+                {
+                    "Type": 2,
+                    "TargetId": 2002,
+                    "TargetScene": "",
+                    "Required": 1,
+                    "DialogueId": 0,
+                    "Text": {
+                        "EN": "Talk to the Blacksmith",
+                        "TH": "คุยกับช่างตีเหล็ก"
+                    }
+                }
             ],
             "Reward": {
                 "BaseExp": 50,
                 "JobExp": 25,
-                "Items": [ { "ItemId": 1003, "Quantity": 20 } ]
+                "Items": [
+                    {
+                        "ItemId": 1003,
+                        "Quantity": 20
+                    }
+                ]
+            }
+        },
+        {
+            "Id": 3,
+            "Name": {
+                "EN": "The Old Road",
+                "TH": "ถนนสายเก่า"
+            },
+            "Description": {
+                "EN": "Follow the trail the Old Man remembers.",
+                "TH": "ตามรอยที่ชายชราจำได้"
+            },
+            "GiverCharacterId": 2004,
+            "TurnInCharacterId": 2004,
+            "RequiresQuestIds": [
+                1,
+                2
+            ],
+            "Sequential": true,
+            "AcceptDialogueId": 101,
+            "TurnInDialogueId": 105,
+            "Objectives": [
+                {
+                    "Type": 2,
+                    "TargetId": 2002,
+                    "TargetScene": "",
+                    "Required": 1,
+                    "DialogueId": 102,
+                    "Text": {
+                        "EN": "Ask the Blacksmith about the road",
+                        "TH": "ถามช่างตีเหล็กเรื่องถนน"
+                    }
+                },
+                {
+                    "Type": 0,
+                    "TargetId": 1001,
+                    "TargetScene": "",
+                    "Required": 2,
+                    "DialogueId": 0,
+                    "Text": {
+                        "EN": "Defeat Skeletom",
+                        "TH": "กำจัด Skeletom"
+                    }
+                },
+                {
+                    "Type": 2,
+                    "TargetId": 2001,
+                    "TargetScene": "",
+                    "Required": 1,
+                    "DialogueId": 103,
+                    "Text": {
+                        "EN": "Answer the Alchemist",
+                        "TH": "ตอบคำถามนักเล่นแร่"
+                    }
+                },
+                {
+                    "Type": 1,
+                    "TargetId": 2001,
+                    "TargetScene": "",
+                    "Required": 1,
+                    "DialogueId": 0,
+                    "Text": {
+                        "EN": "Carry a Minor Health Potion",
+                        "TH": "พก Minor Health Potion"
+                    }
+                },
+                {
+                    "Type": 0,
+                    "TargetId": 1003,
+                    "TargetScene": "",
+                    "Required": 1,
+                    "DialogueId": 0,
+                    "Text": {
+                        "EN": "Defeat the Skeletom Captain",
+                        "TH": "กำจัด Skeletom Captain"
+                    }
+                },
+                {
+                    "Type": 2,
+                    "TargetId": 2004,
+                    "TargetScene": "",
+                    "Required": 1,
+                    "DialogueId": 104,
+                    "Text": {
+                        "EN": "Report to the Old Man",
+                        "TH": "รายงานชายชรา"
+                    }
+                }
+            ],
+            "Reward": {
+                "BaseExp": 300,
+                "JobExp": 150,
+                "Items": [
+                    {
+                        "ItemId": 1002,
+                        "Quantity": 5
+                    }
+                ]
             }
         }
     ]

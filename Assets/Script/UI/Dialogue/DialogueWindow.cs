@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CoreSystem.Data;
 using CoreSystem.Dialogue;
@@ -15,6 +16,7 @@ namespace CoreSystem.UI.Dialogue
         private const string AcceptLabel = "Accept";
         private const string TurnInLabel = "Complete";
         private const string RewardsHeading = "Rewards";
+        private const string ContinueLabel = "Continue";
         private static readonly Vector2 WindowSize = new Vector2(520f, 240f);
         private static readonly Vector2 MaxWindowSize = new Vector2(520f, 620f);
 
@@ -22,6 +24,8 @@ namespace CoreSystem.UI.Dialogue
         private readonly int _characterId;
         private UIGlobalModal _modal;
         private QuestModel _selectedQuest;
+        private DialogueSession _questDialogue;
+        private Action _questDialogueDone;
         #endregion
 
         #region [Public Methods]
@@ -60,6 +64,12 @@ namespace CoreSystem.UI.Dialogue
 
         private void BuildUI(UIBuilderContext ui)
         {
+            if (_questDialogue != null)
+            {
+                BuildQuestDialogue(ui);
+                return;
+            }
+
             if (_selectedQuest != null)
             {
                 BuildQuest(ui, _selectedQuest);
@@ -85,11 +95,84 @@ namespace CoreSystem.UI.Dialogue
 
         private void BuildQuestButtons(UIBuilderContext ui)
         {
-            foreach (QuestModel quest in GameData.Player.Quests.GetOffers(_characterId, QuestDatabase.All))
+            PlayerQuests quests = GameData.Player.Quests;
+            foreach (QuestTalk talk in quests.GetDialogueTalks(_characterId, QuestDatabase.All))
+            {
+                QuestTalk captured = talk;
+                ui.Button($"{talk.Quest.Name}: {talk.Quest.Objectives[talk.ObjectiveIndex].Text}", () => PlayObjectiveDialogue(captured));
+            }
+
+            foreach (QuestModel quest in quests.GetOffers(_characterId, QuestDatabase.All))
             {
                 QuestModel captured = quest;
-                ui.Button(quest.Name, () => Select(captured));
+                ui.Button(quest.Name, () => OpenOffer(captured));
             }
+        }
+
+        private void BuildQuestDialogue(UIBuilderContext ui)
+        {
+            ui.Label(_questDialogue.Current.Text);
+
+            var choices = _questDialogue.Current.Choices;
+            if (choices == null || choices.Count == 0)
+            {
+                ui.Button(ContinueLabel, FinishQuestDialogue);
+                return;
+            }
+
+            for (int i = 0; i < choices.Count; i++)
+            {
+                int index = i;
+                ui.Button(choices[i].Text, () => ChooseQuestDialogue(index));
+            }
+        }
+
+        private void PlayObjectiveDialogue(QuestTalk talk)
+        {
+            PlayQuestDialogue(talk.Quest.Objectives[talk.ObjectiveIndex].DialogueId, () =>
+            {
+                GameData.Player.Quests.CompleteDialogueObjective(talk.Quest, talk.ObjectiveIndex);
+                Select(null);
+            });
+        }
+
+        private void OpenOffer(QuestModel quest)
+        {
+            bool isTurnIn = GameData.Player.Quests.GetStatus(quest) == QuestStatus.ReadyToTurnIn;
+            PlayQuestDialogue(isTurnIn ? quest.TurnInDialogueId : quest.AcceptDialogueId, () => Select(quest));
+        }
+
+        private void PlayQuestDialogue(int dialogueId, Action onDone)
+        {
+            var session = new DialogueSession(DialogueDatabase.Get(dialogueId));
+            if (session.IsFinished)
+            {
+                onDone();
+                return;
+            }
+
+            _questDialogue = session;
+            _questDialogueDone = onDone;
+            Rebuild();
+        }
+
+        private void ChooseQuestDialogue(int index)
+        {
+            _questDialogue.Choose(index);
+            if (_questDialogue.IsFinished)
+            {
+                _questDialogue = null;
+                _questDialogueDone = null;
+            }
+            Rebuild();
+        }
+
+        private void FinishQuestDialogue()
+        {
+            Action done = _questDialogueDone;
+            _questDialogue = null;
+            _questDialogueDone = null;
+            done?.Invoke();
         }
 
         private void BuildQuest(UIBuilderContext ui, QuestModel quest)
@@ -100,11 +183,7 @@ namespace CoreSystem.UI.Dialogue
             ui.Heading(quest.Name);
             ui.Label(quest.Description);
 
-            for (int i = 0; i < quest.Objectives.Count; i++)
-            {
-                QuestObjectiveModel objective = quest.Objectives[i];
-                ui.Caption($"{objective.Text.ToString()} {quests.GetCount(quest.Id, i)}/{objective.Required}");
-            }
+            foreach (string line in QuestTextFormula.ProgressLines(quests, quest, CoreSystem.UI.Quests.QuestLogWindow.NpcName)) ui.Caption(line);
 
             ui.Heading(RewardsHeading);
             foreach (string line in RewardLines(quest.Reward)) ui.Caption(line);

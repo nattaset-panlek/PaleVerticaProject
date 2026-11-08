@@ -10,6 +10,7 @@
             "JobExp": 0,
             "ExpMultiplier": 1.0,
             "DropTableId": 1,
+            "DialogueId": 0,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/Enemy/Skeletom.prefab"
         },
         {
@@ -22,6 +23,7 @@
             "JobExp": 0,
             "ExpMultiplier": 1.0,
             "DropTableId": 1,
+            "DialogueId": 0,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/Enemy/Skeletom.prefab"
         },
         {
@@ -34,6 +36,7 @@
             "JobExp": 0,
             "ExpMultiplier": 1.0,
             "DropTableId": 2,
+            "DialogueId": 0,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/Enemy/Skeletom.prefab"
         },
         {
@@ -45,6 +48,7 @@
             "BaseExp": 0,
             "JobExp": 0,
             "ExpMultiplier": 1.0,
+            "DropTableId": 0,
             "DialogueId": 1,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/NPC/Alchemist.prefab"
         },
@@ -57,6 +61,7 @@
             "BaseExp": 0,
             "JobExp": 0,
             "ExpMultiplier": 1.0,
+            "DropTableId": 0,
             "DialogueId": 2,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/NPC/Blacksmith.prefab"
         },
@@ -69,6 +74,7 @@
             "BaseExp": 0,
             "JobExp": 0,
             "ExpMultiplier": 1.0,
+            "DropTableId": 0,
             "DialogueId": 3,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/NPC/Shopkeeper.prefab"
         },
@@ -81,6 +87,7 @@
             "BaseExp": 0,
             "JobExp": 0,
             "ExpMultiplier": 1.0,
+            "DropTableId": 0,
             "DialogueId": 4,
             "PrefabPath": "Assets/Addressable/Prefab/Entity/NPC/OldMan.prefab"
         }

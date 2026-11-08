@@ -55,7 +55,6 @@ namespace CoreSystem.Tests
             Assert.AreNotEqual(CharacterControllerType.Player, character.DefaultController);
             Assert.AreEqual(NpcPrefabBuilder.NeutralFaction, character.Faction);
             Assert.IsTrue(character.IsInteractable);
-            Assert.AreEqual(spec.NpcId, character.NpcId);
             Assert.IsTrue(character.HasTag(spec.Tags));
             if (character.DefaultController == CharacterControllerType.None) Assert.IsFalse(character.AgentProfile.CanRoam);
         }

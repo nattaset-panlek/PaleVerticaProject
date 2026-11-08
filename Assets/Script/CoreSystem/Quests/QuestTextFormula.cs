@@ -36,7 +36,8 @@ namespace CoreSystem.Quests
                 return lines;
             }
 
-            for (int i = 0; i < quest.Objectives.Count; i++)
+            int last = quest.Sequential ? Math.Min(quests.CurrentObjective(quest), quest.Objectives.Count - 1) : quest.Objectives.Count - 1;
+            for (int i = 0; i <= last; i++)
             {
                 QuestObjectiveModel objective = quest.Objectives[i];
                 lines.Add($"{objective.Text} {quests.GetCount(quest.Id, i)}/{objective.Required}");

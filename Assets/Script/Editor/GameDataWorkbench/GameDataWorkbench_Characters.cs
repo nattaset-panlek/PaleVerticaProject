@@ -33,8 +33,8 @@ public partial class GameDataWorkbench : EditorWindow
                 entry.BaseHP = EditorGUILayout.IntField("Base HP", entry.BaseHP);
                 entry.BaseMP = EditorGUILayout.IntField("Base MP", entry.BaseMP);
                 entry.ExpMultiplier = EditorGUILayout.FloatField("EXP Multiplier", entry.ExpMultiplier);
-                entry.DropTableId = EditorGUILayout.IntField("Drop Table Id (0 = none)", entry.DropTableId);
-                entry.DialogueId = EditorGUILayout.IntField("Dialogue Id (0 = none)", entry.DialogueId);
+                DrawDropTablePicker("Drop Table", entry.DropTableId, id => entry.DropTableId = id);
+                DrawDialoguePicker("Talk Dialogue", entry.DialogueId, id => entry.DialogueId = id, false);
                 entry.BaseExp = EditorGUILayout.IntField("Base EXP Override (0 = by level)", entry.BaseExp);
                 entry.JobExp = EditorGUILayout.IntField("Job EXP Override (0 = by level)", entry.JobExp);
             }
@@ -49,6 +49,7 @@ public partial class GameDataWorkbench : EditorWindow
                     entry.PrefabPath = GetAddressableKey(dropPrefab);
                     GUI.FocusControl(null);
                 }
+                DrawPrefabLink(entry);
             }
             EndGroup();
             EndInspectorColumns();
@@ -63,6 +64,41 @@ public partial class GameDataWorkbench : EditorWindow
         },
         () => new CharacterModel { Id = _characterData.Characters.Count > 0 ? _characterData.Characters.Max(x => x.Id) + 1 : 1 },
         CharacterFilter, DrawCharacterFilters, sorts: GetCharacterSorts());
+    }
+
+    private void DrawPrefabLink(CharacterModel entry)
+    {
+        if (string.IsNullOrEmpty(entry.PrefabPath)) return;
+
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(entry.PrefabPath);
+        var character = prefab != null ? prefab.GetComponent<CoreSystem.Entity.Character>() : null;
+        if (character == null)
+        {
+            EditorGUILayout.HelpBox("Prefab Path does not point to a prefab with a Character component.", MessageType.Warning);
+            return;
+        }
+
+        var sharedIds = _characterData.Characters.Where(c => c.PrefabPath == entry.PrefabPath).Select(c => c.Id);
+        if (CoreSystem.Entity.CharacterPrefabLinkFormula.IsLinked(character.CharacterId, sharedIds)) return;
+
+        EditorGUILayout.HelpBox($"The prefab points to Character Id {character.CharacterId}, not this entry.", MessageType.Warning);
+        if (GUILayout.Button("Set Prefab To This Character")) SetPrefabCharacter(entry);
+    }
+
+    private static void SetPrefabCharacter(CharacterModel entry)
+    {
+        GameObject contents = PrefabUtility.LoadPrefabContents(entry.PrefabPath);
+        try
+        {
+            var serialized = new SerializedObject(contents.GetComponent<CoreSystem.Entity.Character>());
+            serialized.FindProperty("characterId").intValue = entry.Id;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            PrefabUtility.SaveAsPrefabAsset(contents, entry.PrefabPath);
+        }
+        finally
+        {
+            PrefabUtility.UnloadPrefabContents(contents);
+        }
     }
 
     private string GetFactionName(int factionId)

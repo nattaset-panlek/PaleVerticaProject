@@ -9,8 +9,7 @@ namespace CoreSystem.Agent
     public class AgentProfile
     {
         #region [Variables/Fields]
-        [Header("Identity")]
-        public string AgentName = "Agent";
+        [HideInInspector] public string AgentName = "Agent";
 
         [Header("AI Configuration")]
         public AIBehaviorType Behavior = AIBehaviorType.Aggressive;

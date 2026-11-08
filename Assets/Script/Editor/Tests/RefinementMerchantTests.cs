@@ -91,7 +91,6 @@ namespace CoreSystem.Tests
             Assert.AreEqual(CharacterControllerType.None, _merchant.DefaultController);
             Assert.IsTrue(_merchant.HasTag(CharacterTag.Merchant));
             Assert.AreEqual(NpcPrefabBuilder.NeutralFaction, _merchant.Faction);
-            Assert.AreEqual("blacksmith", _merchant.NpcId);
             Assert.IsTrue(_merchant.IsInteractable);
             Assert.IsFalse(_merchant.AgentProfile.CanRoam);
             Assert.AreEqual("Refine", _system.Label);

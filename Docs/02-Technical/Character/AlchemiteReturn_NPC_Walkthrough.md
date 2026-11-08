@@ -58,7 +58,6 @@ NPC settings written on each prefab's `Character`:
 | Default Controller | `None` | `None` | `None` | not registered with `AgentCore`: never moves or fights |
 | Tags | `Merchant` | `Merchant` | `Villager` | Inspect shows them; the cursor turns into the Dialogue cursor |
 | Faction | `3` (Neutral) | `3` | `3` | nobody attacks them, no Attack option |
-| Npc Id | `alchemist` | `blacksmith` | `shopkeeper`, `oldman` | data id for future dialogue and quests |
 | Character Id | `2001` | `2002` | `2003`, `2004` | links the prefab to its `Character.json` entry; `Character.Name` (Inspect, kill messages) comes from that entry |
 | Agent Profile > Agent Name | `Alchemist` | `Blacksmith` | `Shopkeeper`, `OldMan` | was `Ally` (copied from the base prefab) |
 | Interactable | on | on | on | right-click menu works |
@@ -74,7 +73,6 @@ The same NPC has a different name in each place. Change all of them together; `A
 | Group in `alchemist.psb` | `Folder 7` | `Folder 6` | `Folder 8` | `Folder 9` |
 | Object name in AlchemiteReturn `Main.unity` | `Alchemite` | `BlackSmite` | `Shop` | `Dept` |
 | Port spec, PSB, prefab file, prefab root object, spec `Name` | `Alchemist` | `Blacksmith` | `Shopkeeper` | `OldMan` |
-| `Character` > Npc Id | `alchemist` | `blacksmith` | `shopkeeper` | `oldman` |
 | `Character` > Character Id / `Character.json` Id | `2001` | `2002` | `2003` | `2004` |
 | `Character.json` Name (shown in game) | `Alchemist` | `Blacksmith` | `Shopkeeper` | `Old Man` |
 | Merchant window / right-click label | `Socket` / `Socket` | `Refinement` / `Refine` | none | none |

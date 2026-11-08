@@ -48,7 +48,7 @@ namespace CoreSystem.Tests
         public void MenuItems_FollowTheDesignOrder()
         {
             var labels = new SystemMenuWindow().Items.Where(i => !i.IsSeparator).Select(i => i.Label).ToArray();
-            CollectionAssert.AreEqual(new[] { "Character", "Equipment", "Inventory", "Skills", "Passive Tree", "Keybind", "Settings", "Save Game", "Load Game", "Exit Game" }, labels);
+            CollectionAssert.AreEqual(new[] { "Character", "Equipment", "Inventory", "Skills", "Passive Tree", "Keybind", "Settings", "Save Game", "Load Game", "Return to Title", "Exit Game" }, labels);
             Assert.AreEqual(3, new SystemMenuWindow().Items.Count(i => i.IsSeparator));
         }
 

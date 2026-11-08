@@ -44,7 +44,7 @@ Money is the inventory credit (`PlayerInventory.GetCreditAmount` / `SpendCredit`
 
 ## 3. Add a merchant
 
-1. Add a shop block to `Shop.json` with a new `Id`.
+1. In **Game Data Workbench**, **Shops** tab, add a shop and its items.
 2. On the NPC prefab, add **Merchant Shop System**, set **Character** (filled by Reset) and **Shop Id**.
 3. Play, right-click the NPC, choose **Shop**.
 4. Run the EditMode tests: `ShopSessionTests.ShopJson_LoadsAndPointsAtRealItems` fails if an `ItemId` does not exist.

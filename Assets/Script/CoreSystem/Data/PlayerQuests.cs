@@ -65,6 +65,40 @@ namespace CoreSystem.Data
             return Filter(quests, status => status == QuestStatus.Completed);
         }
 
+        public List<QuestTalk> GetDialogueTalks(int characterId, IEnumerable<QuestModel> quests)
+        {
+            var result = new List<QuestTalk>();
+            if (quests == null) return result;
+
+            foreach (QuestModel quest in quests)
+            {
+                if (!_records.TryGetValue(quest.Id, out QuestRecord record) || record.Completed) continue;
+                for (int i = 0; i < quest.Objectives.Count; i++)
+                {
+                    QuestObjectiveModel objective = quest.Objectives[i];
+                    bool isTalk = objective.Type == QuestObjectiveType.Talk && objective.TargetId == characterId && objective.DialogueId > 0;
+                    if (isTalk && IsOpen(quest, record, i)) result.Add(new QuestTalk(quest, i));
+                }
+            }
+            return result;
+        }
+
+        public bool CompleteDialogueObjective(QuestModel quest, int objectiveIndex)
+        {
+            if (quest == null || !_records.TryGetValue(quest.Id, out QuestRecord record) || record.Completed) return false;
+            if (objectiveIndex < 0 || objectiveIndex >= quest.Objectives.Count || !IsOpen(quest, record, objectiveIndex)) return false;
+
+            record.Counts[objectiveIndex] = quest.Objectives[objectiveIndex].Required;
+            OnQuestsChanged?.Invoke();
+            return true;
+        }
+
+        public int CurrentObjective(QuestModel quest)
+        {
+            if (quest == null || !_records.TryGetValue(quest.Id, out QuestRecord record)) return 0;
+            return FirstUnfinished(quest, record);
+        }
+
         public int GetCount(int questId, int objectiveIndex)
         {
             if (!_records.TryGetValue(questId, out QuestRecord record)) return 0;
@@ -85,7 +119,7 @@ namespace CoreSystem.Data
         public void Report(QuestObjectiveType type, int targetId, int amount = 1)
         {
             if (amount <= 0) return;
-            Apply((objective, count) => objective.Type == type && objective.TargetId == targetId
+            Apply((objective, count) => objective.Type == type && objective.TargetId == targetId && objective.DialogueId <= 0
                 ? count + amount
                 : count);
         }
@@ -170,8 +204,12 @@ namespace CoreSystem.Data
 
         private bool IsUnlocked(QuestModel quest)
         {
-            if (quest.RequiresQuestId <= 0) return true;
-            return _records.TryGetValue(quest.RequiresQuestId, out QuestRecord required) && required.Completed;
+            if (quest.RequiresQuestIds == null) return true;
+            foreach (int id in quest.RequiresQuestIds)
+            {
+                if (!_records.TryGetValue(id, out QuestRecord required) || !required.Completed) return false;
+            }
+            return true;
         }
 
         private static bool AllObjectivesMet(QuestModel quest, QuestRecord record)
@@ -182,6 +220,23 @@ namespace CoreSystem.Data
                 if (count < quest.Objectives[i].Required) return false;
             }
             return true;
+        }
+
+        private static int FirstUnfinished(QuestModel quest, QuestRecord record)
+        {
+            for (int i = 0; i < quest.Objectives.Count; i++)
+            {
+                int count = i < record.Counts.Count ? record.Counts[i] : 0;
+                if (count < quest.Objectives[i].Required) return i;
+            }
+            return quest.Objectives.Count;
+        }
+
+        private static bool IsOpen(QuestModel quest, QuestRecord record, int index)
+        {
+            int count = index < record.Counts.Count ? record.Counts[index] : 0;
+            if (count >= quest.Objectives[index].Required) return false;
+            return !quest.Sequential || index == FirstUnfinished(quest, record);
         }
 
         private void Apply(Func<QuestObjectiveModel, int, int> next)
@@ -196,10 +251,12 @@ namespace CoreSystem.Data
                 while (record.Counts.Count < quest.Objectives.Count) record.Counts.Add(0);
                 for (int i = 0; i < quest.Objectives.Count; i++)
                 {
+                    if (quest.Sequential && !IsOpen(quest, record, i)) continue;
                     int updated = Mathf.Min(next(quest.Objectives[i], record.Counts[i]), quest.Objectives[i].Required);
                     if (updated == record.Counts[i]) continue;
                     record.Counts[i] = updated;
                     changed = true;
+                    if (quest.Sequential) break;
                 }
             }
             if (changed) OnQuestsChanged?.Invoke();

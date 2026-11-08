@@ -21,7 +21,6 @@ Settings on the Blacksmith prefab:
 | Default Controller | `None` | Not registered with `AgentCore`: no AI, no roaming, never moves |
 | Tags | `Merchant` | Shown in Inspect; lets other systems recognise merchants; Dialogue cursor |
 | Faction | `3` (Neutral) | `FactionDatabase.IsHostile` returns false both ways: nobody attacks it, no Attack option |
-| Npc Id | `blacksmith` | Data id for future quests and dialogue |
 | Interactable | on | `InteractionCore` gives no options for non-interactable characters |
 | Agent Profile > Can Roam | off | Safe if someone later switches the controller to Agent |
 | Refinement Merchant System | label `Refine`, window `Refinement`, range 1.5, priority 200 | Right-click **Refine** walks the player up and opens the Refinement window |

@@ -4,7 +4,7 @@ NPCs with a dialogue get a **Talk** option. The conversation opens in a Global M
 
 ## Where to edit
 
-- Lines: `Assets/Resources/Data/Dialogue.json`
+- Lines: **Game Data Workbench**, **Dialogues** tab. See [Dialogue Editor](../Quests/Dialogue_Editor_Walkthrough.md).
 - Which NPC says what: `DialogueId` on the character, in **Window > Pale Vertica > Game Data Workbench**, Characters tab, or in `Character.json`. `0` means no Talk option.
 
 ## Inputs

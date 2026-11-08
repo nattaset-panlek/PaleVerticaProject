@@ -89,7 +89,6 @@ namespace CoreSystem.Editor.NPC
             SetInt(so, "tags", (int)spec.Tags);
             SetInt(so, "faction", NeutralFaction);
             SetBool(so, "interactable", true);
-            SetString(so, "npcId", spec.NpcId);
             SetInt(so, "characterId", spec.CharacterId);
             SetString(so, "agentProfile.AgentName", spec.Name);
             SetBool(so, "agentProfile.CanRoam", false);

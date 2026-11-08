@@ -78,7 +78,7 @@ namespace CoreSystem.Agent
             _profile = character.AgentProfile;
             _orbitSpeed = _profile.OrbitSpeed;
             _homePosition = character.transform.position;
-            if (string.IsNullOrEmpty(_profile.AgentName)) _profile.AgentName = character.gameObject.name;
+            _profile.AgentName = character.Name;
         }
 
         public void Start()

@@ -6,15 +6,33 @@
             "Nodes": [
                 {
                     "Id": 0,
-                    "Text": { "EN": "Need a potion, traveler?", "TH": "ต้องการยาไหม นักเดินทาง" },
+                    "Text": {
+                        "EN": "Need a potion, traveler?",
+                        "TH": "ต้องการยาไหม นักเดินทาง"
+                    },
                     "Choices": [
-                        { "Text": { "EN": "What do you brew?", "TH": "คุณปรุงอะไรบ้าง" }, "Next": 1 },
-                        { "Text": { "EN": "Goodbye.", "TH": "ลาก่อน" }, "Next": -1 }
+                        {
+                            "Text": {
+                                "EN": "What do you brew?",
+                                "TH": "คุณปรุงอะไรบ้าง"
+                            },
+                            "Next": 1
+                        },
+                        {
+                            "Text": {
+                                "EN": "Goodbye.",
+                                "TH": "ลาก่อน"
+                            },
+                            "Next": -1
+                        }
                     ]
                 },
                 {
                     "Id": 1,
-                    "Text": { "EN": "Whatever keeps you standing.", "TH": "อะไรก็ตามที่ทำให้คุณยังยืนอยู่ได้" },
+                    "Text": {
+                        "EN": "Whatever keeps you standing.",
+                        "TH": "อะไรก็ตามที่ทำให้คุณยังยืนอยู่ได้"
+                    },
                     "Choices": []
                 }
             ]
@@ -25,7 +43,10 @@
             "Nodes": [
                 {
                     "Id": 0,
-                    "Text": { "EN": "Bring me steel and I will make it sing.", "TH": "เอาเหล็กมา แล้วข้าจะตีให้มันเปล่งเสียง" },
+                    "Text": {
+                        "EN": "Bring me steel and I will make it sing.",
+                        "TH": "เอาเหล็กมา แล้วข้าจะตีให้มันเปล่งเสียง"
+                    },
                     "Choices": []
                 }
             ]
@@ -36,7 +57,10 @@
             "Nodes": [
                 {
                     "Id": 0,
-                    "Text": { "EN": "Fair prices, mostly.", "TH": "ราคายุติธรรม ส่วนใหญ่นะ" },
+                    "Text": {
+                        "EN": "Fair prices, mostly.",
+                        "TH": "ราคายุติธรรม ส่วนใหญ่นะ"
+                    },
                     "Choices": []
                 }
             ]
@@ -47,7 +71,174 @@
             "Nodes": [
                 {
                     "Id": 0,
-                    "Text": { "EN": "These roads were safer once.", "TH": "ถนนสายนี้เคยปลอดภัยกว่านี้" },
+                    "Text": {
+                        "EN": "These roads were safer once.",
+                        "TH": "ถนนสายนี้เคยปลอดภัยกว่านี้"
+                    },
+                    "Choices": []
+                }
+            ]
+        },
+        {
+            "Id": 101,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": {
+                        "EN": "You cleared the bones. Good.",
+                        "TH": "เจ้ากำจัดโครงกระดูกแล้ว ดีมาก"
+                    },
+                    "Choices": [
+                        {
+                            "Text": {
+                                "EN": "What now?",
+                                "TH": "แล้วไงต่อ"
+                            },
+                            "Next": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 1,
+                    "Text": {
+                        "EN": "That road was never empty. Ask the Smith what he saw.",
+                        "TH": "ถนนนั่นไม่เคยว่างเปล่า ไปถามช่างเหล็กว่าเห็นอะไร"
+                    },
+                    "Choices": []
+                }
+            ]
+        },
+        {
+            "Id": 102,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": {
+                        "EN": "Bones do not walk on their own.",
+                        "TH": "กระดูกไม่เดินเองหรอก"
+                    },
+                    "Choices": [
+                        {
+                            "Text": {
+                                "EN": "Who moves them?",
+                                "TH": "ใครบังคับมัน"
+                            },
+                            "Next": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 1,
+                    "Text": {
+                        "EN": "Someone leads them. The Alchemist knows the signs.",
+                        "TH": "มีคนนำพวกมัน นักเล่นแร่รู้สัญญาณ"
+                    },
+                    "Choices": []
+                }
+            ]
+        },
+        {
+            "Id": 103,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": {
+                        "EN": "Before I help: what stops a wound from bleeding?",
+                        "TH": "ก่อนจะช่วย ตอบมา อะไรทำให้แผลหยุดเลือด"
+                    },
+                    "Choices": [
+                        {
+                            "Text": {
+                                "EN": "A potion.",
+                                "TH": "ยา"
+                            },
+                            "Next": 1
+                        },
+                        {
+                            "Text": {
+                                "EN": "Prayer.",
+                                "TH": "คำอธิษฐาน"
+                            },
+                            "Next": 2
+                        },
+                        {
+                            "Text": {
+                                "EN": "I will come back.",
+                                "TH": "เดี๋ยวกลับมา"
+                            },
+                            "Next": -1
+                        }
+                    ]
+                },
+                {
+                    "Id": 1,
+                    "Text": {
+                        "EN": "Good. Keep one with you, and find their captain.",
+                        "TH": "ดี พกติดตัวไว้ แล้วไปหาหัวหน้าพวกมัน"
+                    },
+                    "Choices": []
+                },
+                {
+                    "Id": 2,
+                    "Text": {
+                        "EN": "Wrong. Think again.",
+                        "TH": "ผิด คิดใหม่"
+                    },
+                    "Choices": [
+                        {
+                            "Text": {
+                                "EN": "Let me try again.",
+                                "TH": "ขอลองใหม่"
+                            },
+                            "Next": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Id": 104,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": {
+                        "EN": "The captain is gone?",
+                        "TH": "หัวหน้าพวกมันตายแล้วหรือ"
+                    },
+                    "Choices": [
+                        {
+                            "Text": {
+                                "EN": "It is done.",
+                                "TH": "เรียบร้อย"
+                            },
+                            "Next": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 1,
+                    "Text": {
+                        "EN": "Then the road may rest.",
+                        "TH": "ถนนจะได้พักเสียที"
+                    },
+                    "Choices": []
+                }
+            ]
+        },
+        {
+            "Id": 105,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": {
+                        "EN": "Take this. You earned it.",
+                        "TH": "รับไว้เถอะ เจ้าสมควรได้"
+                    },
                     "Choices": []
                 }
             ]

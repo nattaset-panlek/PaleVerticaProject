@@ -18,7 +18,7 @@ namespace CoreSystem.Entity
     public class Character : MonoBehaviour, IEntity
     {
         [Header("Character Identity")]
-        [SerializeField] private int characterId;
+        [SerializeField, CharacterDropdown] private int characterId;
         [SerializeField] private CharacterControllerType defaultController = CharacterControllerType.Agent;
         [SerializeField] private CharacterTag tags = CharacterTag.None;
         public int CharacterId => characterId;
@@ -30,10 +30,8 @@ namespace CoreSystem.Entity
         public string Name => GetCharacterData()?.Name ?? (defaultController == CharacterControllerType.Player ? "Player Character" : gameObject.name);
 
         [Header("NPC")]
-        [SerializeField] private string npcId;
         [SerializeField] private bool interactable = true;
         [SerializeField] private NPCInventory _npcInventory;
-        public string NpcId => npcId;
         public bool IsInteractable => interactable;
         public NPCInventory Inventory => _npcInventory;
 
@@ -191,12 +189,6 @@ namespace CoreSystem.Entity
                 var type = (AttributeType)rec.AttributeId;
                 _attributeSystem.AddAdditional(type, 2, AdditionalOp.Add, rec.Value, "Passive");
             }
-        }
-
-        public void InitializeNPC(string newNpcId, int newFaction = 0)
-        {
-            npcId = newNpcId;
-            faction = newFaction;
         }
 
         public void SetInteractable(bool state)
@@ -489,6 +481,12 @@ namespace CoreSystem.Entity
 
         protected virtual void Start()
         {
+#if UNITY_EDITOR
+            if (defaultController != CharacterControllerType.Player && GetCharacterData() == null)
+            {
+                Debug.LogWarning($"[Character] '{name}' has no Game Data entry (Character Id {characterId}). Quests, dialogue and drops will skip it.", this);
+            }
+#endif
             CharacterFactory.AssignController(this);
         }
 

@@ -34,7 +34,11 @@ public partial class GameDataWorkbench : EditorWindow
         Sets,
         UniquePassives,
         Factions,
-        Experience
+        Experience,
+        Quests,
+        Dialogues,
+        DropTables,
+        Shops
     }
 
     private string _itemJsonPath = "Assets/Resources/Data/Item.json";
@@ -135,6 +139,10 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.Skills:          DrawSkillEditor(); break;
             case ToolTab.SupportSkills:   DrawSupportSkillEditor(); break;
             case ToolTab.Characters:      DrawCharacterEditor(); break;
+            case ToolTab.Quests:          DrawQuestEditor(); break;
+            case ToolTab.Dialogues:       DrawDialogueEditor(); break;
+            case ToolTab.DropTables:      DrawDropTableEditor(); break;
+            case ToolTab.Shops:           DrawShopEditor(); break;
             case ToolTab.Factions:        DrawFactionEditor(); break;
             case ToolTab.IdManager:       DrawIdManager(); break;
             case ToolTab.Sets:            DrawItemSetEditor(); break;
@@ -239,6 +247,10 @@ public partial class GameDataWorkbench : EditorWindow
         _itemData = LoadData<ItemDataList>(_itemJsonPath) ?? new ItemDataList { Items = new List<ItemEntry>() };
         _skillData = LoadData<SkillDataList>(_skillJsonPath) ?? new SkillDataList { ActiveSkills = new List<ActiveSkillJsonData>(), SupportSkills = new List<SupportSkillJsonData>() };
         _supportSkillData = LoadData<SupportModifierDataList>(_supportSkillJsonPath) ?? new SupportModifierDataList { SupportModifiers = new List<SupportSkillJsonData>() };
+        _dialogueData = LoadData<CoreSystem.Dialogue.DialogueDataList>(_dialogueJsonPath) ?? new CoreSystem.Dialogue.DialogueDataList();
+        _dropTableData = LoadData<CoreSystem.Loot.DropTableDataList>(_dropTableJsonPath) ?? new CoreSystem.Loot.DropTableDataList();
+        _shopData = LoadData<ShopFile>(_shopJsonPath) ?? new ShopFile();
+        _questData = LoadData<CoreSystem.Quests.QuestDataList>(_questJsonPath) ?? new CoreSystem.Quests.QuestDataList { Quests = new List<CoreSystem.Quests.QuestModel>() };
         _characterData = LoadData<CharacterDataList>(_characterJsonPath) ?? new CharacterDataList { Characters = new List<CharacterModel>() };
         _itemSetData = LoadData<ItemSetList>(_setJsonPath) ?? new ItemSetList { Sets = new List<ItemSetEntry>() };
         _uniquePassiveData = LoadData<UniquePassiveDataList>(_uniquePassiveJsonPath) ?? new UniquePassiveDataList { UniquePassives = new List<UniquePassiveEntry>() };
@@ -264,6 +276,10 @@ public partial class GameDataWorkbench : EditorWindow
         SaveData(_skillJsonPath, _skillData);
         SaveData(_supportSkillJsonPath, _supportSkillData);
         SaveData(_characterJsonPath, _characterData);
+        SaveData(_questJsonPath, _questData);
+        SaveData(_dialogueJsonPath, _dialogueData);
+        SaveData(_dropTableJsonPath, _dropTableData);
+        SaveData(_shopJsonPath, _shopData);
         SaveData(_setJsonPath, _itemSetData);
         SaveData(_uniquePassiveJsonPath, _uniquePassiveData);
         SaveData(_factionJsonPath, _factionData);
