@@ -142,7 +142,7 @@ on crit: damage *= 1.5 + CriticalDamage
 - The caster power, element/size/race factors and the crit roll only apply when the attacker has stats. The element table always applies.
 - The element/size/race bonus and resist values are used as **fractions** (0.2 = +20%). See Known_Data_Issues for the item data that uses whole numbers.
 - `CriticalDamage` starts at 0, so a crit is x1.5.
-- `DamageMultiplier` is the only whole-hit scaler. Repeats use it: Echo Spell x0.6, Double Spell x0.4 (they multiply). Supports that change `BaseDamage` instead (Damage Up, Critical Power, Spell Cascade) are added **before** ATK/MATK, so they do not scale the caster's power.
+- `DamageMultiplier` is the only whole-hit scaler. Repeats use it: Echo Spell x0.6, Double Spell x0.4 (they multiply). Spell Cascade also uses it. Supports that change `BaseDamage` instead (Damage Up, Critical Power) are added **before** ATK/MATK, so they do not scale the caster's power.
 
 ### 4c. Defense (target side, `DamageFormula.Mitigate`)
 
@@ -265,11 +265,11 @@ Pressing turns the skill on (cost checked) and fires immediately if off cooldown
 | Echo Spell (support 1021) | every cast of the linked skill | 0.15 s | `DamageMultiplier x0.6`, `AOERadius x1.3` | free |
 | Double Spell (unique passive) | skill instance at level 1 | 0.2 s | `DamageMultiplier x0.4`, cast from the caster's current position | free |
 | Double Attack (unique passive) | every basic attack | 0.12 s | damage x1.0 | n/a |
-| Spell Cascade (support 1022) | ground-target skill | none | 3 copies: main `BaseDamage x0.75`, left/right `BaseDamage x0.5`, sides 5 units to each side, perpendicular to the aim | one cost |
+| Spell Cascade (support 1022) | ground-target skill | none | 3 copies: main `DamageMultiplier x0.75`, left/right `DamageMultiplier x0.5`, sides 5 units to each side, perpendicular to the aim | one cost |
 
 - A Double Spell copy is a full cast, so a linked Echo Spell echoes it too: **4 hits at 100% / 60% / 40% / 24%** of the whole hit.
 - Echo Spell repeats go through Spell Cascade again (3 circles per echo).
-- Spell Cascade scales `BaseDamage` only, so the caster's ATK/MATK is added in full. Fire Pila (base 20) with MATK 84.33: normal 104.33, main circle 15 + 84.33 = 99.33 (95%), side circle 10 + 84.33 = 94.33 (90%).
+- Spell Cascade scales the whole hit, including the caster's ATK/MATK. Fire Pila (base 20) with MATK 84.33: normal 104.33, main circle 78.25 (75%), side circle 52.17 (50%).
 
 ### 6f. Projectiles
 `SpawnProjectileEffect` fires `ProjectileCount` projectiles from the caster toward the aim. With more than one, they spread 45 degrees apart up to a 180 degree arc. A projectile flies at its prefab `Speed` (Fire Bolt's `MagicProjectile.prefab`: 8 units/s), lives 5 s, hits the first hostile it touches and is destroyed.
