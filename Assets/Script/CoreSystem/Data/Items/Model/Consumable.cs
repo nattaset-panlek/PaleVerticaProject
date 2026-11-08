@@ -1,17 +1,24 @@
 using CoreSystem.Data.Items;
 
 using CoreSystem;
+using CoreSystem.Combat;
+using CoreSystem.Entity;
+using CoreSystem.Player;
+using CoreSystem.Skills;
 
 namespace CoreSystem.Data.Items.Model
 {
     public class Consumable : Item
     {
-        // Add specific consumable data here (e.g., Heal amount, buff effect ID)
+        public float HealHP;
+        public float HealMP;
 
         public override void OnUse()
         {
-            // Apply consumable logic
-            // TODO: Move decrement logic to ItemInstance / Inventory
+            var player = PlayerCore.GetPlayer();
+            if (player == null) return;
+            Restore(player, AttributeType.HP, HealHP);
+            Restore(player, AttributeType.MP, HealMP);
         }
 
         public override Item Clone()
@@ -24,8 +31,18 @@ namespace CoreSystem.Data.Items.Model
                 Description = this.Description,
                 IsStackable = this.IsStackable,
                 Type = this.Type,
-                Rarity = this.Rarity
+                Rarity = this.Rarity,
+                IconPath = this.IconPath,
+                HealHP = this.HealHP,
+                HealMP = this.HealMP
             };
+        }
+
+        private static void Restore(Character player, AttributeType attribute, float amount)
+        {
+            if (amount <= 0f) return;
+            var spec = new HealSpec { TargetAttribute = attribute, BaseAmount = amount };
+            CombatCore.Execute(new CombatAction(new SkillPayload { Caster = player }).WithEffect(spec), player, player);
         }
     }
 }

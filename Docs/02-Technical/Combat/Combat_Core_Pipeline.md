@@ -56,12 +56,12 @@ Every number the game derives lives here. Callers only gather inputs and apply r
 |---|---|---|
 | `StatFormula.cs` | Attribute value: Base x (1+StatPercent) + StatFlat + Initial + Flat -> x(1+PercentAdd) -> x PercentMult -> AdditionalChain | `Attribute.Recalculate` |
 | `DerivedStatFormula.cs` | STR/AGI/VIT/INT/DEX/LUK -> ATK, MATK, Flee, Hit, StatusDEF, ASPD, MaxHP%, MaxMP%, regen, crit, etc. | `AttributeSystem.InnerUpdateDerivedAttributes` |
-| `DamageFormula.cs` | Damage Offense (power, element, size, race, crit) and Mitigate (defense, min 1) | `DamageHandler` |
+| `DamageFormula.cs` | Damage Offense (power, element, payload multiplier, size, race, crit) and Mitigate (defense, min 1). `SkillPayload.DamageMultiplier` (default 1) scales the whole hit, e.g. Echo Spell's repeat at 0.6 and Double Spell's second cast at 0.4 (they multiply: an echo of a double is 0.24) | `DamageHandler` |
 | `CombatStatLookup.cs` | Which attribute holds the element/size/race bonus or resist | `DamageFormula` |
 | `CastTimeFormula.cs` | Variable cast time (DEX/INT curve, gear/skill/buff %) and Fixed cast time | `SkillInstance.CalculateCastTimeModified` |
 | `SkillValueFormula.cs` | Cooldown, area/range scaling, skill output scaling | `SkillInstance`, `OutputScaling.ApplyScaling` |
 | `ResourceFormula.cs` | Can-afford check, HP/MP after cost, HP/MP regen tick | `SkillCaster` (`ResolveCost`/`CanAfford`/`PayCost`), `Character.HandleRecovery` |
-| `BasicAttackFormula.cs` | Basic attack bonus damage (STR/DEX/INT), attack delay from ASPD | `Character.BasicAttack` |
+| `BasicAttackFormula.cs` | Basic attack bonus damage (STR/DEX/INT), attacks per second and delay from ASPD (% speed, clamped 50-300%) | `Character.BasicAttack` |
 | `ProgressionFormula.cs` | Refine table and multiplier, reforge bonus, equipment baseline and tooltip bonus, fallback EXP curves | `Equipment`, `EquipmentDatabase` (facade), `ItemInformationUI`, `ExperienceSystem` |
 
 ## Where to change what
@@ -81,7 +81,7 @@ Every number the game derives lives here. Callers only gather inputs and apply r
 |---|---|---|---|
 | 1 | Foundation: core types, Gate, Dispatch, `DamageHandler`, Riders stage, `OutcomeApplier`; all damage routed through `CombatCore` | No | Done |
 | 2 | Move remaining formulas into `Formulas/` (stats, derived stats, cast time, cooldown, AOE, scaling, cost, regen, ASPD, EXP, refine) | No | Done |
-| 3 | Handlers for Heal, Status, Displace, Summon wrapping existing effects | No | Planned |
+| 3 | Handlers for Heal and Status done (heal scaling approved 2026-11-08: Base + MATK x 0.5); Displace, Summon still planned | Heal: yes | In progress |
 | 4 | Offense/Defense modifiers + concrete riders; migrate unique passives off `ref` hooks and `ProcSkillIds` | No | Planned |
 | 5 | Wire the 11 support modifiers that currently do nothing | Yes | Needs approval |
 | 6 | New mechanics: Hit/Flee/Dodge, heal scaling, Control (charm), convert-on-kill, FCT rule | Yes | Needs approval |

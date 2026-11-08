@@ -91,7 +91,7 @@ namespace CoreSystem.Data.Items
                 case "Currency":
                     return new Currency { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, IconPath = entry.IconPath };
                 case "Consumable":
-                    return new Consumable { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, IconPath = entry.IconPath };
+                    return new Consumable { HealHP = entry.HealHP, HealMP = entry.HealMP, Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, IconPath = entry.IconPath };
                 case "Equipment":
                     if (System.Enum.TryParse(entry.EquipmentSlot, out EquipmentSlot slot))
                     {
@@ -133,6 +133,13 @@ namespace CoreSystem.Data.Items
                     return new SupportRune { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, SupportSkillID = entry.SkillID, IconPath = entry.IconPath };
                 case "Additional":
                     return new Additional { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, IconPath = entry.IconPath };
+                case "Progression":
+                    ProgressionKind progKind = ProgressionKind.General;
+                    if (!string.IsNullOrEmpty(entry.ProgressionKind))
+                    {
+                        System.Enum.TryParse(entry.ProgressionKind, true, out progKind);
+                    }
+                    return new Progression { Id = entry.ItemId, Code = entry.ItemId.ToString(), Name = entry.Name, Description = entry.Description, IsStackable = entry.MaxStack > 1, ProgressionKind = progKind, IconPath = entry.IconPath };
                 case "Costume":
                     if (System.Enum.TryParse(entry.CostumeSlot, out CostumeSlot cSlot))
                     {

@@ -27,9 +27,12 @@ namespace CoreSystem.Data.Items
         public string Rarity;
         public int SkillID;
         public string FragmentKind;
+        public string ProgressionKind;
         public float BasePhysical;
         public float BaseMagic;
         public int MaxSockets;
+        public float HealHP;
+        public float HealMP;
         public List<EffectEntry> Effects;
 
         // Costume specific
