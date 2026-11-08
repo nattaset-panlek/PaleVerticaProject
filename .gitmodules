@@ -1,0 +1,3 @@
+[submodule "Assets/ThirdParty/MapLab"]
+	path = Assets/ThirdParty/MapLab
+	url = https://github.com/nattaset-panlek/MapLab.git
