@@ -3,25 +3,23 @@ using CoreSystem.Data;
 using CoreSystem.Data.Save;
 using CoreSystem.Entity;
 using CoreSystem.Player;
+using CoreSystem.UI.Loading;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace CoreSystem.World
 {
     public sealed class MapTravel : MonoBehaviour
     {
         #region [Variables/Fields]
-        private const int OverlaySortingOrder = 5000;
         private static MapTravel _instance;
 
         private PlayerDataModel _carried;
         private string _spawnId;
-        private Canvas _canvas;
+        private bool _travelling;
         #endregion
 
         #region [Properties]
-        public static bool IsTravelling => _instance != null && _instance._canvas.enabled;
+        public static bool IsTravelling => _instance != null && _instance._travelling;
         #endregion
 
         #region [Unity Methods]
@@ -29,19 +27,6 @@ namespace CoreSystem.World
         {
             _instance = this;
             DontDestroyOnLoad(gameObject);
-
-            _canvas = gameObject.AddComponent<Canvas>();
-            _canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            _canvas.sortingOrder = OverlaySortingOrder;
-            _canvas.enabled = false;
-
-            var fill = new GameObject("Fill", typeof(RectTransform)).AddComponent<Image>();
-            fill.transform.SetParent(transform, false);
-            fill.color = Color.black;
-            fill.rectTransform.anchorMin = Vector2.zero;
-            fill.rectTransform.anchorMax = Vector2.one;
-            fill.rectTransform.offsetMin = Vector2.zero;
-            fill.rectTransform.offsetMax = Vector2.zero;
         }
 
         private void OnDestroy()
@@ -60,12 +45,6 @@ namespace CoreSystem.World
         public static void Travel(string sceneName, string spawnId)
         {
             if (IsTravelling) return;
-            if (string.IsNullOrEmpty(sceneName) || !Application.CanStreamedLevelBeLoaded(sceneName))
-            {
-                Debug.LogError($"[MapTravel] Scene '{sceneName}' is not in Build Settings.");
-                return;
-            }
-
             MapTravel travel = _instance != null ? _instance : Create();
             travel.Begin(sceneName, spawnId);
         }
@@ -76,9 +55,14 @@ namespace CoreSystem.World
         {
             _carried = PlayerCore.Ensure().SaveData();
             _spawnId = spawnId;
-            _canvas.enabled = true;
+            _travelling = true;
             PlayerCore.OnPlayerChanged += HandlePlayerChanged;
-            SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+
+            if (LoadingManager.LoadScene(sceneName, null, () => !_travelling)) return;
+
+            PlayerCore.OnPlayerChanged -= HandlePlayerChanged;
+            _carried = null;
+            _travelling = false;
         }
 
         private void HandlePlayerChanged(Character character)
@@ -101,7 +85,7 @@ namespace CoreSystem.World
             }
 
             _carried = null;
-            _canvas.enabled = false;
+            _travelling = false;
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

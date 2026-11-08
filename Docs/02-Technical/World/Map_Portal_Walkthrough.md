@@ -1,6 +1,6 @@
 # Map Portal and Respawn Walkthrough
 
-Maps are separate scenes joined by portals, with a short black loading screen. The player's data travels with them.
+Maps are separate scenes joined by portals, with the global loading screen. The player's data travels with them.
 
 ## Build the prototype maps
 
@@ -30,7 +30,7 @@ Run **Pale Vertica > World > Build Prototype Town and Field**. It copies `SandBo
 
 ## Expected result
 
-- Left click a portal with no skill aimed: the character walks a path to it, the screen goes black, and the new map loads.
+- Left click a portal with no skill aimed: the character walks a path to it, the loading screen appears, and the new map loads.
 - Inventory, stats and equipment carry over. The player appears at the spawn point.
 - With `Respawn Delay` above 0, the first wave fills the zone, then each kill is replaced one at a time after the delay.
 
@@ -39,4 +39,4 @@ Run **Pale Vertica > World > Build Prototype Town and Field**. It copies `SandBo
 - Scene missing from Build Settings: an error is logged and nothing happens.
 - A spawn id that does not exist: a warning is logged and the player stays at the scene's default position.
 - A portal without a `Collider2D` cannot be clicked.
-- A map with no player character: the black screen stays up.
+- A map with no player character: the loading screen stays up.
