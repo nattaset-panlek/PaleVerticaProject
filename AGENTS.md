@@ -58,7 +58,7 @@ The `Assets/Script` directory is highly modular. Maintain and respect this organ
 ## 5. Testing and Validation
 - **Isolation**: Build systems that can be tested in isolation. A bug in the UI or an animation event should never break the core mathematical calculations.
 - **Data Validation**: Ensure all combat formulas strictly follow the **"Additional Value"** order of operations: `Base -> Flat Bonus -> Percentage Multiplier`.
-- **Edge Cases**: Always validate edge cases in the combat economy (e.g., ensuring `Variable Cast Time` can reach zero, but `Fixed Cast Time` remains immutable).
+- **Edge Cases**: Always validate edge cases in the combat economy (e.g., ensuring `Variable Cast Time` can reach zero, but `Fixed Cast Time` can only be reduced by the Reduce FCT attribute, a Rare Attribute Bonus).
 
 ## 6. Boundaries
 - **System Integrity**: Do NOT alter core mathematical formulas (Combat Stats derived from the 6 core attributes) without explicit systemic consideration and user approval.
