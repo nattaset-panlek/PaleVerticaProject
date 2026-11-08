@@ -43,6 +43,8 @@ Anything under an `Editor/` folder is left out of player builds by Unity automat
 | Pale Vertica > UI > Build ItemSlot, Build ItemCard, Build Merchant Stall, Apply ItemSlot To Windows | `ItemSlotPrefabBuilder.cs`, `ItemCardPrefabBuilder.cs`, `MerchantStallPrefabBuilder.cs`, `ItemSlotAdoptionBuilder.cs` (content tools: they rebuild prefabs, keep or move to a dev-only folder; `EditorUIFactory.cs` is their shared helper) |
 | Pale Vertica > UI > Build Status Vitals Element | `StatusVitalsPrefabBuilder.cs` (content tool: rebuilds `Status Vitals.prefab` from `StatusModal Window.prefab`; StatusModal itself is never saved) |
 | Pale Vertica > World > Set Up SandBox Test Scene | `Editor/World/SandBoxSceneSetup.cs` (one-off migration: delete after SandBox is moved) |
+| Pale Vertica > World > Preview Camera | `Editor/World/ScenePreviewCamera.cs` (editor-only temporary camera for map editing) |
+| Pale Vertica > World > Import Alchemite Monsters And Environment | `Editor/World/AlchemiteContentBuilder.cs` (one-off content import: builds monsters and dresses Town and Field) |
 | Pale Vertica > World > Rebuild Town and Field | `Editor/World/WorldMapsBuilder.cs` (content tool: builds Town and Field from project art; archives the old scenes) |
 | Pale Vertica > Quests > Build Quest Tracker | `Editor/Quests/QuestTrackerBuilder.cs` (content tool: builds the tracker window and its registry entry) |
 | Pale Vertica > World > Convert Scenes To Game Core | `Editor/World/GameCoreSceneConverter.cs` (one-off migration: delete after the scenes are converted) |

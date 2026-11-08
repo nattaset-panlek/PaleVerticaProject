@@ -22,7 +22,11 @@ namespace CoreSystem.Entity
         [SerializeField] private CharacterControllerType defaultController = CharacterControllerType.Agent;
         [SerializeField] private CharacterTag tags = CharacterTag.None;
         public int CharacterId => characterId;
-        public void AssignCharacterId(int id) => characterId = id;
+        public void AssignCharacterId(int id)
+        {
+            characterId = id;
+            ApplyGameData();
+        }
         public int RuntimeId { get; private set; }
         public CharacterControllerType DefaultController => defaultController;
         public CharacterTag Tags => tags;
@@ -487,6 +491,7 @@ namespace CoreSystem.Entity
                 Debug.LogWarning($"[Character] '{name}' has no Game Data entry (Character Id {characterId}). Quests, dialogue and drops will skip it.", this);
             }
 #endif
+            ApplyGameData();
             CharacterFactory.AssignController(this);
         }
 
@@ -523,6 +528,26 @@ namespace CoreSystem.Entity
         protected virtual void LateUpdate()
         {
             Presenter.LateTick();
+        }
+
+        private int _appliedDataId;
+
+        private void ApplyGameData()
+        {
+            CoreSystem.Data.CharacterModel model = GetCharacterData();
+            if (model == null || !model.UseDataStats || _appliedDataId == model.Id) return;
+
+            _appliedDataId = model.Id;
+            element = model.Element;
+            size = model.Size;
+            race = model.Race;
+            faction = model.Faction;
+            CharacterDataApplier.ApplyStats(_attributeSystem, model);
+            RecalculateStats();
+            CharacterDataApplier.FillVitals(_attributeSystem);
+            CharacterDataApplier.ApplyBehavior(agentProfile, model);
+            agentProfile.OverrideAttackRange(this, model.AttackRange);
+            agentProfile.SkillPool = CharacterDataApplier.BuildSkillPool(model);
         }
 
         private void ApplyTrainingDummyRule()
@@ -623,6 +648,7 @@ namespace CoreSystem.Entity
 
         private void OnValidate()
         {
+            if (UnityEditor.AssetDatabase.IsAssetImportWorkerProcess()) return;
             if (!Application.isPlaying && defaultController == CharacterControllerType.Agent && skillCaster != null)
             {
                 AgentHandle.SyncEquippedSkills(this, agentProfile);

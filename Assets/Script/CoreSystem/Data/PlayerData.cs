@@ -19,6 +19,7 @@ namespace CoreSystem.Data
         public PlayerCostumes Costumes { get; } = new PlayerCostumes();
         public PlayerSkills Skills { get; } = new PlayerSkills();
         public PlayerQuests Quests { get; } = new PlayerQuests();
+        public PlayerEvents Events { get; } = new PlayerEvents();
 
         public PlayerData()
         {

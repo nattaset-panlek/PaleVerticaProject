@@ -119,7 +119,7 @@
   - [ ] ทยอยบรรจุสกิลและโหนดของ 12 คลาสอาชีพลงใน `Skill.json` และ `SkillTree.json`
 - [ ] **E2. คลังไอเทมและอุปกรณ์ (Items, Sets, Costumes, Sockets)**
   - [ ] เพิ่มไอเทมสวมใส่, ชุดแฟชั่น, อัญมณี Fragment, และสูตรคราฟต์ลงใน `Item.json`
-- [ ] **E3. มอนสเตอร์และบอส (Bestiary & Encounters)**
-  - [ ] กำหนดค่าสเตตัส, Drop Tables, และพฤติกรรม AI มอนสเตอร์ใน `Character.json`
+- [x] **E3. มอนสเตอร์และบอส (Bestiary & Encounters)**
+  - [x] กำหนดค่าสเตตัส, Drop Tables, และพฤติกรรม AI มอนสเตอร์ใน `Character.json`
 - [ ] **E4. ออกแบบแผนที่และดันเจี้ยน (Level Design with MapLab)**
   - [ ] ขึ้นรูปแผนที่โลกด้วย `ExtrudedShape` และ Bake เลเยอร์ Walkable พร้อม Elevation

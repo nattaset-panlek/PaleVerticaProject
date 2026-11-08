@@ -20,6 +20,8 @@ namespace CoreSystem.Entity
         private float _lastFlipTime = -1f;
         private FloatingStatusBar _worldStatusBar;
         private bool _hasAttackSpeedParam;
+        private bool _hasAttackParam;
+        private bool _hasDeadParam;
         #endregion
 
         #region [Properties]
@@ -61,13 +63,13 @@ namespace CoreSystem.Entity
                 {
                     Anim.speed = speed;
                 }
-                Anim.SetTrigger(AttackTriggerParam);
+                if (_hasAttackParam) Anim.SetTrigger(AttackTriggerParam);
             }
         }
 
         public void PlayDeath()
         {
-            if (Anim != null) Anim.SetTrigger(DeadTriggerParam);
+            if (Anim != null && _hasDeadParam) Anim.SetTrigger(DeadTriggerParam);
         }
 
         public void ResetAnimator()
@@ -83,14 +85,14 @@ namespace CoreSystem.Entity
         private void CacheAnimatorParameters()
         {
             _hasAttackSpeedParam = false;
+            _hasAttackParam = false;
+            _hasDeadParam = false;
             if (Anim == null) return;
             foreach (var param in Anim.parameters)
             {
-                if (param.name == AttackSpeedFloatParam)
-                {
-                    _hasAttackSpeedParam = true;
-                    break;
-                }
+                if (param.name == AttackSpeedFloatParam) _hasAttackSpeedParam = true;
+                else if (param.name == AttackTriggerParam) _hasAttackParam = true;
+                else if (param.name == DeadTriggerParam) _hasDeadParam = true;
             }
         }
 

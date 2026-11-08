@@ -185,7 +185,7 @@ ScriptedImporter:
     spritePosition: {x: 117, y: 80}
   - name: LegL
     originalName: 
-    pivot: {x: 0.8818883, y: 0.2422567}
+    pivot: {x: 0.49160978, y: 0.83831817}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -207,7 +207,7 @@ ScriptedImporter:
     spritePosition: {x: 210, y: 3}
   - name: LegR
     originalName: 
-    pivot: {x: 0.8781251, y: 0.2610299}
+    pivot: {x: 0.67943764, y: 0.8796395}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 

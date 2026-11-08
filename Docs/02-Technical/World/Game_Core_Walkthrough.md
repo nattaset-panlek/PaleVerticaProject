@@ -20,6 +20,10 @@ Run **Pale Vertica > World > Convert Scenes To Game Core** once. Save your work 
 
 Do not add a Player, Camera, Canvas, EventSystem or Manager to a map.
 
+## See the game camera while editing
+
+Maps have no camera of their own, so a temporary `[Preview Camera]` appears in the Hierarchy when you open one. It copies the camera in `[Game Core]`, starts at the `start` point, and shows in the Game view. Move it to check framing or lighting. It is never saved and is removed when you press Play. Turn it on or off in **Edit > Preferences > Pale Vertica**, or with **Pale Vertica > World > Preview Camera**.
+
 ## Inputs
 
 | Where | Field | Meaning |

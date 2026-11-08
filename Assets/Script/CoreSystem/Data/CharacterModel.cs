@@ -24,6 +24,28 @@ namespace CoreSystem.Data
         public float ExpMultiplier = 1f;
         public int DropTableId;
         public int DialogueId;
+        public bool UseDataStats;
+        public int Level = 1;
+        public float STR = 1f;
+        public float AGI = 1f;
+        public float VIT = 1f;
+        public float INT = 1f;
+        public float DEX = 1f;
+        public float LUK = 1f;
+        public float Defense;
+        public float MDEF;
+        public float WeaponATK;
+        public float WeaponMATK;
+        public float MoveSpeed;
+        public ElementType Element;
+        public SizeType Size = SizeType.Medium;
+        public RaceType Race;
+        public CoreSystem.Enums.AIBehaviorType Behavior = CoreSystem.Enums.AIBehaviorType.Aggressive;
+        public CoreSystem.Enums.CombatStyle Combat;
+        public float DetectionRadius = 10f;
+        public float AttackRange = 3f;
+        public bool CanRoam = true;
+        public List<int> SkillIds = new List<int>();
         public string PrefabPath;
     }
 }

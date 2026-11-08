@@ -181,7 +181,7 @@ namespace CoreSystem.Data
 
         public ActiveSkill GetSynchronizedActiveSkill(int id)
         {
-            if (!_activeSkillAssets.TryGetValue(id, out ActiveSkill templateAsset))
+            if (!_activeSkillAssets.TryGetValue(id, out ActiveSkill templateAsset) || templateAsset == null)
             {
                 return null;
             }

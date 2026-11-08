@@ -11,6 +11,7 @@ namespace CoreSystem.UI.Dialogue
     {
         #region [Variables/Fields]
         private const string ModalName = "Dialogue";
+        private static int _openCount;
         private const string CloseLabel = "Close";
         private const string BackLabel = "Back";
         private const string AcceptLabel = "Accept";
@@ -26,6 +27,8 @@ namespace CoreSystem.UI.Dialogue
         private QuestModel _selectedQuest;
         private DialogueSession _questDialogue;
         private Action _questDialogueDone;
+        private int _questDialogueId;
+        private readonly int _dialogueId;
         #endregion
 
         #region [Public Methods]
@@ -41,6 +44,7 @@ namespace CoreSystem.UI.Dialogue
         private DialogueWindow(DialogueModel dialogue, int characterId)
         {
             _session = new DialogueSession(dialogue);
+            _dialogueId = dialogue != null ? dialogue.Id : 0;
             _characterId = characterId;
         }
 
@@ -48,7 +52,7 @@ namespace CoreSystem.UI.Dialogue
         {
             if (_session.IsFinished) return;
 
-            _modal = UIBuilder.BuildGlobalModal(ModalName, null, WindowSize);
+            _modal = UIBuilder.BuildGlobalModal($"{ModalName} #{++_openCount}", null, WindowSize);
             if (_modal == null) return;
 
             _modal.DestroyOnClose = true;
@@ -82,7 +86,7 @@ namespace CoreSystem.UI.Dialogue
             var choices = _session.Current.Choices;
             if (choices == null || choices.Count == 0)
             {
-                ui.Button(CloseLabel, Close);
+                ui.Button(CloseLabel, FinishDialogue);
                 return;
             }
 
@@ -152,6 +156,7 @@ namespace CoreSystem.UI.Dialogue
             }
 
             _questDialogue = session;
+            _questDialogueId = dialogueId;
             _questDialogueDone = onDone;
             Rebuild();
         }
@@ -173,6 +178,7 @@ namespace CoreSystem.UI.Dialogue
             _questDialogue = null;
             _questDialogueDone = null;
             done?.Invoke();
+            DialogueManager.RaiseDialogueEnded(_questDialogueId);
         }
 
         private void BuildQuest(UIBuilderContext ui, QuestModel quest)
@@ -234,6 +240,12 @@ namespace CoreSystem.UI.Dialogue
                 return;
             }
             Rebuild();
+        }
+
+        private void FinishDialogue()
+        {
+            Close();
+            DialogueManager.RaiseDialogueEnded(_dialogueId);
         }
 
         private void Close()

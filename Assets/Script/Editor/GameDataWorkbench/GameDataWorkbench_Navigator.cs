@@ -7,7 +7,7 @@ public partial class GameDataWorkbench : EditorWindow
     private static readonly (string category, ToolTab[] tabs)[] NavigatorTree =
     {
         ("OVERVIEW", new[] { ToolTab.Dashboard }),
-        ("DATA", new[] { ToolTab.Attributes, ToolTab.Items, ToolTab.Sets, ToolTab.Characters, ToolTab.Quests, ToolTab.Dialogues, ToolTab.DropTables, ToolTab.Shops, ToolTab.Factions, ToolTab.Experience }),
+        ("DATA", new[] { ToolTab.Attributes, ToolTab.Items, ToolTab.Sets, ToolTab.Characters, ToolTab.Quests, ToolTab.Dialogues, ToolTab.DropTables, ToolTab.Shops, ToolTab.Events, ToolTab.Factions, ToolTab.Experience }),
         ("COMBAT", new[] { ToolTab.Skills, ToolTab.SupportSkills, ToolTab.UniquePassives }),
         ("SYSTEM", new[] { ToolTab.IdManager })
     };
@@ -111,6 +111,7 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.Dialogues: return "Dialogues";
             case ToolTab.DropTables: return "Drop Tables";
             case ToolTab.Shops: return "Shops";
+            case ToolTab.Events: return "Events";
             case ToolTab.Factions: return "Factions";
             case ToolTab.Skills: return "Skills";
             case ToolTab.SupportSkills: return "Support Skills";
@@ -133,6 +134,7 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.Dialogues: return _dialogueData?.Dialogues?.Count ?? 0;
             case ToolTab.DropTables: return _dropTableData?.Tables?.Count ?? 0;
             case ToolTab.Shops: return _shopData?.Shops?.Count ?? 0;
+            case ToolTab.Events: return _eventData?.Events?.Count ?? 0;
             case ToolTab.Factions: return _factionData?.Factions?.Count ?? 0;
             case ToolTab.Skills: return _skillData?.ActiveSkills?.Count ?? 0;
             case ToolTab.SupportSkills: return _supportSkillData?.SupportModifiers?.Count ?? 0;

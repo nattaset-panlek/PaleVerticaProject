@@ -34,6 +34,21 @@ namespace CoreSystem.Entity
             };
         }
 
+        public static void SpawnFromData(CoreSystem.Data.CharacterModel model, Vector3 position, System.Action<Character> onDone)
+        {
+            UnityEngine.AddressableAssets.Addressables.InstantiateAsync(model.PrefabPath, position, Quaternion.identity).Completed += handle =>
+            {
+                bool succeeded = handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded && handle.Result != null;
+                Character character = succeeded ? handle.Result.GetComponent<Character>() : null;
+                if (character != null)
+                {
+                    character.AssignCharacterId(model.Id);
+                    character.faction = model.Faction;
+                }
+                onDone?.Invoke(character);
+            };
+        }
+
         public static void AssignController(Character character)
         {
             if (character == null) return;

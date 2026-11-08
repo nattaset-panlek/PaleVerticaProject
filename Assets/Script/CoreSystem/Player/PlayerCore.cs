@@ -66,6 +66,7 @@ namespace CoreSystem.Player
             InteractionRegistry.Register(_interaction);
             CoreSystem.Dialogue.DialogueManager.Ensure();
             CoreSystem.Quests.QuestManager.Ensure();
+            CoreSystem.Events.EventManager.Ensure();
             InteractionCore.OnApproachStarted += HandleInteractionApproachStarted;
             CoreSystem.Loot.LootManager.OnPickupRequested += HandleLootPickupRequested;
             OnReady?.Invoke(this);

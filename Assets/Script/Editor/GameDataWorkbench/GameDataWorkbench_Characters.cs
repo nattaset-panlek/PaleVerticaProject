@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 using System.Linq;
+using CoreSystem;
 using CoreSystem.Data;
 
 public partial class GameDataWorkbench : EditorWindow
@@ -52,6 +53,8 @@ public partial class GameDataWorkbench : EditorWindow
                 DrawPrefabLink(entry);
             }
             EndGroup();
+            if (BeginGroup("Stats And AI From Game Data", ThemeAccent)) DrawCharacterStats(entry);
+            EndGroup();
             EndInspectorColumns();
         }, (entry) => new EntryView {
             Id = entry.Id.ToString(),
@@ -64,6 +67,63 @@ public partial class GameDataWorkbench : EditorWindow
         },
         () => new CharacterModel { Id = _characterData.Characters.Count > 0 ? _characterData.Characters.Max(x => x.Id) + 1 : 1 },
         CharacterFilter, DrawCharacterFilters, sorts: GetCharacterSorts());
+    }
+
+    private void DrawCharacterStats(CharacterModel entry)
+    {
+        entry.UseDataStats = EditorGUILayout.Toggle(new GUIContent("Use Game Data Stats", "Replaces the prefab's stats and AI when the character spawns."), entry.UseDataStats);
+        if (!entry.UseDataStats) return;
+
+        entry.Level = EditorGUILayout.IntField("Level", entry.Level);
+        entry.STR = EditorGUILayout.FloatField("STR", entry.STR);
+        entry.AGI = EditorGUILayout.FloatField("AGI", entry.AGI);
+        entry.VIT = EditorGUILayout.FloatField("VIT", entry.VIT);
+        entry.INT = EditorGUILayout.FloatField("INT", entry.INT);
+        entry.DEX = EditorGUILayout.FloatField("DEX", entry.DEX);
+        entry.LUK = EditorGUILayout.FloatField("LUK", entry.LUK);
+        entry.Defense = EditorGUILayout.FloatField("Defense", entry.Defense);
+        entry.MDEF = EditorGUILayout.FloatField("MDEF", entry.MDEF);
+        entry.WeaponATK = EditorGUILayout.FloatField("Weapon ATK", entry.WeaponATK);
+        entry.WeaponMATK = EditorGUILayout.FloatField("Weapon MATK", entry.WeaponMATK);
+        entry.MoveSpeed = EditorGUILayout.FloatField("Move Speed (0 = prefab)", entry.MoveSpeed);
+        entry.Element = (ElementType)EditorGUILayout.EnumPopup("Element", entry.Element);
+        entry.Size = (SizeType)EditorGUILayout.EnumPopup("Size", entry.Size);
+        entry.Race = (RaceType)EditorGUILayout.EnumPopup("Race", entry.Race);
+        EditorGUILayout.Space(6f);
+        entry.Behavior = (CoreSystem.Enums.AIBehaviorType)EditorGUILayout.EnumPopup("Behavior", entry.Behavior);
+        entry.Combat = (CoreSystem.Enums.CombatStyle)EditorGUILayout.EnumPopup("Combat Style", entry.Combat);
+        entry.DetectionRadius = EditorGUILayout.FloatField("Detection Radius", entry.DetectionRadius);
+        entry.AttackRange = EditorGUILayout.FloatField("Attack Range", entry.AttackRange);
+        entry.CanRoam = EditorGUILayout.Toggle("Can Roam", entry.CanRoam);
+        DrawCharacterSkills(entry);
+    }
+
+    private void DrawCharacterSkills(CharacterModel entry)
+    {
+        if (entry.SkillIds == null) entry.SkillIds = new System.Collections.Generic.List<int>();
+        EditorGUILayout.LabelField("AI Skills");
+
+        int removeIndex = -1;
+        for (int i = 0; i < entry.SkillIds.Count; i++)
+        {
+            int index = i;
+            EditorGUILayout.BeginHorizontal();
+            DrawSkillSelector(entry.SkillIds[i], id => { entry.SkillIds[index] = id; MarkDirty(); });
+            if (GUILayout.Button("X", GUILayout.Width(24f))) removeIndex = i;
+            EditorGUILayout.EndHorizontal();
+        }
+
+        if (removeIndex >= 0)
+        {
+            entry.SkillIds.RemoveAt(removeIndex);
+            MarkDirty();
+        }
+
+        if (GUILayout.Button("+ AI Skill"))
+        {
+            entry.SkillIds.Add(0);
+            MarkDirty();
+        }
     }
 
     private void DrawPrefabLink(CharacterModel entry)

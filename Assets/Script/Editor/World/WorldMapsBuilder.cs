@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CoreSystem.Agent;
-using CoreSystem.Enums;
 using CoreSystem.Pathfinding;
 using CoreSystem.World;
 using MapLab;
@@ -35,6 +34,7 @@ namespace CoreSystem.Editor.World
         private const string TownGate = "town_gate";
         private const string FieldGate = "field_gate";
         private const float CellSize = 0.5f;
+        private const float TreeArtScale = 0.6f;
         private const float RoadWidth = 1.8f;
         private static readonly Rect MapArea = new Rect(-30f, -20f, 60f, 40f);
         private static readonly Color Warm = new Color(1f, 0.74f, 0.46f);
@@ -223,11 +223,10 @@ namespace CoreSystem.Editor.World
             Spawner("Clearing Spawner", new Vector2(12f, 8f), 4.5f, 5,
                 new SpawnEntry
                 {
-                    CharacterId = 1002, Label = "Ranged", MinCount = 5, MaxCount = 5,
-                    OverrideCombatStyle = true, Combat = CombatStyle.Ranged, OverrideAttackRange = true, AttackRange = 6f
+                    CharacterId = 1002, Label = "Ranged", MinCount = 5, MaxCount = 5
                 });
             Spawner("Arena Spawner", new Vector2(16f, -12f), 2f, 1,
-                new SpawnEntry { CharacterId = 1003, Label = "Mini Boss", MinCount = 1, MaxCount = 1, OverrideLevel = true, Level = 15 });
+                new SpawnEntry { CharacterId = 1003, Label = "Mini Boss", MinCount = 1, MaxCount = 1 });
         }
 
         private static void BuildGround(Transform root)
@@ -316,26 +315,27 @@ namespace CoreSystem.Editor.World
 
         private static void Tree(Transform parent, Vector2 position)
         {
-            GameObject tree = Prop(parent, "Tree", position, Art(MapLabArtPainter.TreeTrunk), new Vector2(1.2f, 0.45f));
+            string art = MapLabArtPainter.Trees[Mathf.Abs(position.GetHashCode()) % MapLabArtPainter.Trees.Length];
+            GameObject tree = Prop(parent, "Tree", position, Art(art), new Vector2(2.4f, 0.8f));
             var circle = tree.AddComponent<CircleCollider2D>();
             circle.radius = 0.22f;
             circle.offset = new Vector2(0f, 0.08f);
 
-            Sprite(tree.transform, "Canopy Shadow", Art(MapLabArtPainter.SoftShadow), MapLabSceneBuilder.ShadowOrder,
-                new Color(0f, 0f, 0f, 0.24f), new Vector3(0.35f, 0.15f, 0f), new Vector3(3.3f, 1.5f, 1f));
-            SpriteRenderer canopy = Sprite(tree.transform, "Canopy", Art(MapLabArtPainter.TreeCanopy), MapLabSceneBuilder.CanopyOrder,
-                Color.white, new Vector3(0f, 2.05f, 0f), Vector3.one);
-            canopy.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+            SpriteRenderer body = tree.transform.Find("Sprite").GetComponent<SpriteRenderer>();
+            body.transform.localScale = Vector3.one * TreeArtScale;
 
-            var trigger = canopy.gameObject.AddComponent<BoxCollider2D>();
+            var holder = new GameObject("Canopy") { layer = LayerMask.NameToLayer("Ignore Raycast") };
+            holder.transform.SetParent(tree.transform, false);
+            Vector2 size = body.sprite.bounds.size * TreeArtScale;
+            var trigger = holder.AddComponent<BoxCollider2D>();
             trigger.isTrigger = true;
-            trigger.size = new Vector2(2.6f, 3.05f);
-            trigger.offset = new Vector2(0f, -0.575f);
+            trigger.size = new Vector2(size.x * 0.8f, size.y * 0.7f);
+            trigger.offset = new Vector2(0f, size.y * 0.55f);
 
-            var serialized = new SerializedObject(canopy.gameObject.AddComponent<OccluderFadeController>());
+            var serialized = new SerializedObject(holder.AddComponent<OccluderFadeController>());
             SerializedProperty renderers = serialized.FindProperty("_renderers");
             renderers.arraySize = 1;
-            renderers.GetArrayElementAtIndex(0).objectReferenceValue = canopy;
+            renderers.GetArrayElementAtIndex(0).objectReferenceValue = body;
             serialized.FindProperty("_viewerLayers").intValue = 1 << LayerMask.NameToLayer("Player");
             serialized.FindProperty("_fadedAlpha").floatValue = 0.35f;
             serialized.FindProperty("_fadeDuration").floatValue = 0.25f;

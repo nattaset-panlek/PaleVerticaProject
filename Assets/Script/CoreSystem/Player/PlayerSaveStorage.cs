@@ -17,6 +17,8 @@ namespace CoreSystem.Player
         {
             PlayerDataModel model = new PlayerDataModel();
             model.Quests = GameData.Player.Quests.Capture();
+            model.Events = GameData.Player.Events.CaptureEvents();
+            model.EventObjects = GameData.Player.Events.CaptureObjects();
             model.Meta.SceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
             if (character.attributeSystem != null)
@@ -155,6 +157,7 @@ namespace CoreSystem.Player
 
             GameData.Player.Data = data;
             GameData.Player.Quests.Restore(data.Quests);
+            GameData.Player.Events.Restore(data.Events, data.EventObjects);
 
             if (data.Stats != null && character.attributeSystem != null)
             {

@@ -38,7 +38,8 @@ public partial class GameDataWorkbench : EditorWindow
         Quests,
         Dialogues,
         DropTables,
-        Shops
+        Shops,
+        Events
     }
 
     private string _itemJsonPath = "Assets/Resources/Data/Item.json";
@@ -143,6 +144,7 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.Dialogues:       DrawDialogueEditor(); break;
             case ToolTab.DropTables:      DrawDropTableEditor(); break;
             case ToolTab.Shops:           DrawShopEditor(); break;
+            case ToolTab.Events:          DrawEventEditor(); break;
             case ToolTab.Factions:        DrawFactionEditor(); break;
             case ToolTab.IdManager:       DrawIdManager(); break;
             case ToolTab.Sets:            DrawItemSetEditor(); break;
@@ -250,6 +252,7 @@ public partial class GameDataWorkbench : EditorWindow
         _dialogueData = LoadData<CoreSystem.Dialogue.DialogueDataList>(_dialogueJsonPath) ?? new CoreSystem.Dialogue.DialogueDataList();
         _dropTableData = LoadData<CoreSystem.Loot.DropTableDataList>(_dropTableJsonPath) ?? new CoreSystem.Loot.DropTableDataList();
         _shopData = LoadData<ShopFile>(_shopJsonPath) ?? new ShopFile();
+        _eventData = LoadData<CoreSystem.Events.EventDataList>(_eventJsonPath) ?? new CoreSystem.Events.EventDataList();
         _questData = LoadData<CoreSystem.Quests.QuestDataList>(_questJsonPath) ?? new CoreSystem.Quests.QuestDataList { Quests = new List<CoreSystem.Quests.QuestModel>() };
         _characterData = LoadData<CharacterDataList>(_characterJsonPath) ?? new CharacterDataList { Characters = new List<CharacterModel>() };
         _itemSetData = LoadData<ItemSetList>(_setJsonPath) ?? new ItemSetList { Sets = new List<ItemSetEntry>() };
@@ -280,6 +283,7 @@ public partial class GameDataWorkbench : EditorWindow
         SaveData(_dialogueJsonPath, _dialogueData);
         SaveData(_dropTableJsonPath, _dropTableData);
         SaveData(_shopJsonPath, _shopData);
+        SaveData(_eventJsonPath, _eventData);
         SaveData(_setJsonPath, _itemSetData);
         SaveData(_uniquePassiveJsonPath, _uniquePassiveData);
         SaveData(_factionJsonPath, _factionData);

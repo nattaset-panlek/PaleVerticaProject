@@ -18,6 +18,7 @@ namespace CoreSystem.UI.DevTools
     {
         #region [Variables/Fields]
         private const string WindowTitle = "Dev Tool - Debug Menu";
+        private readonly DevToolCharacterSpawnPage _characterSpawnPage = new DevToolCharacterSpawnPage();
         private const int WorldCreditAmount = 100000;
         private const string DisplayTitle = "Dev Tool";
         public const string PagesId = "devtool";
@@ -166,6 +167,11 @@ namespace CoreSystem.UI.DevTools
                 || (!string.IsNullOrEmpty(text) && text.IndexOf(_searchQuery, System.StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
+        private void BuildCharactersPage(UIBuilderContext ui)
+        {
+            _characterSpawnPage.Build(ui, _player != null ? _player.transform : null, _searchQuery, RequestRebuild);
+        }
+
         private void BuildWorldPage(UIBuilderContext ui)
         {
             ui.Heading("Merchant");
@@ -207,6 +213,7 @@ namespace CoreSystem.UI.DevTools
                      .Add("Upgrade", BuildUpgradePage)
                      .Add("Passive", BuildPassivePage)
                      .Add("Unique Passive", BuildUniquePassivesPage)
+                     .Add("Characters", BuildCharactersPage)
                      .Add("World", BuildWorldPage);
             }, UIPageNav.SideMenu);
         }

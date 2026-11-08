@@ -1,0 +1,34 @@
+{
+    "Events": [
+        {
+            "Id": 1,
+            "Name": "Old Man's Gift",
+            "Once": true,
+            "Trigger": {
+                "Type": 1,
+                "ZoneId": "",
+                "QuestId": 3,
+                "ObjectiveIndex": 0,
+                "CharacterId": 0,
+                "Count": 1,
+                "DialogueId": 0
+            },
+            "Actions": [
+                {
+                    "Type": 2,
+                    "DialogueId": 0,
+                    "SpeakerCharacterId": 0,
+                    "CharacterId": 0,
+                    "Count": 1,
+                    "SpawnPointId": "",
+                    "ItemId": 2001,
+                    "Quantity": 1,
+                    "BaseExp": 0,
+                    "JobExp": 0,
+                    "ObjectId": "",
+                    "Active": true
+                }
+            ]
+        }
+    ]
+}

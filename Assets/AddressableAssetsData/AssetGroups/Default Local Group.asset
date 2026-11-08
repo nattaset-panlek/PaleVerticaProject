@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 2732205d243a2874798c847d41878dc9
   m_SerializeEntries:
+  - m_GUID: 17fc22e194eb2414b8fbde38b59eb04c
+    m_Address: Assets/Addressable/Prefab/Entity/Enemy/Slime.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6012d8e3b32ebaa43a68590a62f2b852
     m_Address: Assets/Addressable/Prefab/Effect/PhysicalProjectile.prefab
     m_ReadOnly: 0
@@ -22,6 +27,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7c55aa0f8a92a0049919f18c11f60958
     m_Address: Assets/Addressable/Prefab/Effect/MagicProjectile.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a8ce8bdac4df9b1459868d2b09a579f4
+    m_Address: Assets/Addressable/Prefab/Entity/Enemy/Golem.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ebfe712831410ca4cbbaa9440036584c
+    m_Address: Assets/Addressable/Prefab/Entity/Enemy/Gas.prefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

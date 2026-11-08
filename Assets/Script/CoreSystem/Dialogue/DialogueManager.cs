@@ -19,6 +19,7 @@ namespace CoreSystem.Dialogue
         private static DialogueManager _instance;
 
         public static event System.Action<int> OnTalkStarted;
+        public static event System.Action<int> OnDialogueEnded;
         #endregion
 
         #region [Properties]
@@ -50,6 +51,11 @@ namespace CoreSystem.Dialogue
             return _instance != null ? _instance : Create();
         }
 
+        public static void RaiseDialogueEnded(int dialogueId)
+        {
+            OnDialogueEnded?.Invoke(dialogueId);
+        }
+
         public void Collect(InteractionContext context, List<InteractionOption> options)
         {
             Character target = context.Target;
@@ -78,6 +84,7 @@ namespace CoreSystem.Dialogue
         {
             _instance = null;
             OnTalkStarted = null;
+            OnDialogueEnded = null;
         }
         #endregion
     }

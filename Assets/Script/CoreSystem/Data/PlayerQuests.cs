@@ -13,6 +13,9 @@ namespace CoreSystem.Data
         private readonly Func<int, QuestModel> _lookup;
 
         public event Action OnQuestsChanged;
+        public event Action<QuestModel> OnQuestAccepted;
+        public event Action<QuestModel> OnQuestCompleted;
+        public event Action<QuestModel, int> OnObjectiveCompleted;
         #endregion
 
         #region [Properties]
@@ -90,6 +93,7 @@ namespace CoreSystem.Data
 
             record.Counts[objectiveIndex] = quest.Objectives[objectiveIndex].Required;
             OnQuestsChanged?.Invoke();
+            OnObjectiveCompleted?.Invoke(quest, objectiveIndex);
             return true;
         }
 
@@ -113,6 +117,7 @@ namespace CoreSystem.Data
             foreach (QuestObjectiveModel _ in quest.Objectives) record.Counts.Add(0);
             _records[quest.Id] = record;
             OnQuestsChanged?.Invoke();
+            OnQuestAccepted?.Invoke(quest);
             return true;
         }
 
@@ -152,6 +157,7 @@ namespace CoreSystem.Data
             if (GetStatus(quest) != QuestStatus.ReadyToTurnIn) return false;
             _records[quest.Id].Completed = true;
             OnQuestsChanged?.Invoke();
+            OnQuestCompleted?.Invoke(quest);
             return true;
         }
 
@@ -242,6 +248,7 @@ namespace CoreSystem.Data
         private void Apply(Func<QuestObjectiveModel, int, int> next)
         {
             bool changed = false;
+            var finished = new List<(QuestModel Quest, int Index)>();
             foreach (QuestRecord record in _records.Values)
             {
                 if (record.Completed) continue;
@@ -254,12 +261,14 @@ namespace CoreSystem.Data
                     if (quest.Sequential && !IsOpen(quest, record, i)) continue;
                     int updated = Mathf.Min(next(quest.Objectives[i], record.Counts[i]), quest.Objectives[i].Required);
                     if (updated == record.Counts[i]) continue;
+                    if (record.Counts[i] < quest.Objectives[i].Required && updated >= quest.Objectives[i].Required) finished.Add((quest, i));
                     record.Counts[i] = updated;
                     changed = true;
                     if (quest.Sequential) break;
                 }
             }
             if (changed) OnQuestsChanged?.Invoke();
+            foreach ((QuestModel quest, int index) in finished) OnObjectiveCompleted?.Invoke(quest, index);
         }
         #endregion
     }

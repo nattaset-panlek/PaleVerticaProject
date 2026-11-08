@@ -6,17 +6,66 @@
             "Id": 1,
             "Name": "Skeletom",
             "Entries": [
-                { "ItemId": 1003, "Chance": 1.0, "MinQty": 5, "MaxQty": 20 },
-                { "ItemId": 3001, "Chance": 0.25, "MinQty": 1, "MaxQty": 1 }
+                {
+                    "ItemId": 1003,
+                    "Chance": 1.0,
+                    "MinQty": 5,
+                    "MaxQty": 20
+                },
+                {
+                    "ItemId": 3001,
+                    "Chance": 0.25,
+                    "MinQty": 1,
+                    "MaxQty": 1
+                }
             ]
         },
         {
             "Id": 2,
             "Name": "Skeletom Captain",
             "Entries": [
-                { "ItemId": 1002, "Chance": 1.0, "MinQty": 1, "MaxQty": 3 },
-                { "ItemId": 3003, "Chance": 0.5, "MinQty": 1, "MaxQty": 1 },
-                { "ItemId": 2002, "Chance": 0.5, "MinQty": 1, "MaxQty": 2 }
+                {
+                    "ItemId": 1002,
+                    "Chance": 1.0,
+                    "MinQty": 1,
+                    "MaxQty": 3
+                },
+                {
+                    "ItemId": 3003,
+                    "Chance": 0.5,
+                    "MinQty": 1,
+                    "MaxQty": 1
+                },
+                {
+                    "ItemId": 2002,
+                    "Chance": 0.5,
+                    "MinQty": 1,
+                    "MaxQty": 2
+                }
+            ]
+        },
+        {
+            "Id": 3,
+            "Name": "Skeletom Veteran",
+            "Entries": [
+                {
+                    "ItemId": 1003,
+                    "Chance": 1.0,
+                    "MinQty": 20,
+                    "MaxQty": 60
+                },
+                {
+                    "ItemId": 2001,
+                    "Chance": 0.4000000059604645,
+                    "MinQty": 1,
+                    "MaxQty": 2
+                },
+                {
+                    "ItemId": 3003,
+                    "Chance": 0.15000000596046449,
+                    "MinQty": 1,
+                    "MaxQty": 1
+                }
             ]
         }
     ]

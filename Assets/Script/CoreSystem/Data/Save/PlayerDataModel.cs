@@ -17,6 +17,8 @@ namespace CoreSystem.Data.Save
         public List<string> ActiveUniquePassiveIds = new List<string>();
         public List<HotbarRowRecord> Hotbars = new List<HotbarRowRecord>();
         public List<QuestRecord> Quests = new List<QuestRecord>();
+        public List<EventRecord> Events = new List<EventRecord>();
+        public List<EventObjectRecord> EventObjects = new List<EventObjectRecord>();
         #endregion
 
         #region [Public Methods]
