@@ -16,6 +16,7 @@ namespace CoreSystem.Player
         public static PlayerDataModel Capture(Character character)
         {
             PlayerDataModel model = new PlayerDataModel();
+            model.Quests = GameData.Player.Quests.Capture();
 
             if (character.attributeSystem != null)
             {
@@ -152,6 +153,7 @@ namespace CoreSystem.Player
             if (character == null || data == null) return;
 
             GameData.Player.Data = data;
+            GameData.Player.Quests.Restore(data.Quests);
 
             if (data.Stats != null && character.attributeSystem != null)
             {

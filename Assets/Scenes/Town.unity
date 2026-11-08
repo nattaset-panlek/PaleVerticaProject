@@ -872,86 +872,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &232858297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
-  m_Name: Tackle_1001
-  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
-  Id: 1001
-  Name: Tackle
-  Icon: {fileID: 21300000, guid: 5bc984f9c2642af4e95a7259aee8c59d, type: 3}
-  SkillElement: 0
-  SkillDamageType: 0
-  BaseTargeting:
-    rid: 1245210149551341642
-  Effects:
-  - rid: 1245210149551341643
-  - rid: 1245210149551341644
-  CastVfxPrefab: {fileID: 0}
-  CastVfxSpawnPoint: 2
-  VisualType: 0
-  SkillIndicatorPrefab: {fileID: 0}
-  EruptionVfxPrefab: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
-  ImpactVfxPrefab: {fileID: 0}
-  AuraVfxPrefab: {fileID: 0}
-  BeamVfxPrefab: {fileID: 0}
-  BaseDamage: 1
-  BaseAOERadius: 1.92
-  BaseProjectileCount: 0
-  BaseManaCost: 0
-  Tags: 000000000700000008000000
-  Description: 
-  IsToggle: 0
-  IsContinuousArea: 0
-  AreaDuration: 5
-  AreaTickRate: 0.5
-  BaseVCT: 0
-  BaseFCT: 0.35
-  BaseCastDelay: 0.5
-  BaseCooldown: 1
-  ChainOverrides: []
-  Scalings:
-  - TargetField: 0
-    ScalingAttribute: 9
-    AttributeMultiplier: 15
-    GlobalMultiplier: 0.15
-    FlatBonus: 0
-    LevelMultiplier: 0
-  MaxSupportSlots: 5
-  references:
-    version: 2
-    RefIds:
-    - rid: 1245210149551341642
-      type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
-      data:
-        AlignmentAction: 0
-        IncludeSelf: 0
-        BoxSize: {x: 2, y: 2.5}
-        Offset: {x: 0, y: 1.5}
-    - rid: 1245210149551341643
-      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
-      data:
-        <ApplyToCaster>k__BackingField: 0
-        <ApplyOncePerCast>k__BackingField: 0
-        TargetAttribute: 1
-    - rid: 1245210149551341644
-      type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
-      data:
-        <ApplyToCaster>k__BackingField: 0
-        <ApplyOncePerCast>k__BackingField: 0
-        Type: 5
-        Distance: 0
-        StunDuration: 0.15
-        UseLerp: 0
-        LerpDuration: 0
 --- !u!1 &245859316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1263,6 +1183,86 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &347987076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Tackle_1001
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
+  Id: 1001
+  Name: Tackle
+  Icon: {fileID: 21300000, guid: 5bc984f9c2642af4e95a7259aee8c59d, type: 3}
+  SkillElement: 0
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 1245210149551341642
+  Effects:
+  - rid: 1245210149551341643
+  - rid: 1245210149551341644
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 0
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
+  BaseDamage: 1
+  BaseAOERadius: 1.92
+  BaseProjectileCount: 0
+  BaseManaCost: 0
+  Tags: 000000000700000008000000
+  Description: 
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 0
+  BaseFCT: 0.35
+  BaseCastDelay: 0.5
+  BaseCooldown: 1
+  ChainOverrides: []
+  Scalings:
+  - TargetField: 0
+    ScalingAttribute: 9
+    AttributeMultiplier: 15
+    GlobalMultiplier: 0.15
+    FlatBonus: 0
+    LevelMultiplier: 0
+  MaxSupportSlots: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 1245210149551341642
+      type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        BoxSize: {x: 2, y: 2.5}
+        Offset: {x: 0, y: 1.5}
+    - rid: 1245210149551341643
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 1
+    - rid: 1245210149551341644
+      type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        Type: 5
+        Distance: 0
+        StunDuration: 0.15
+        UseLerp: 0
+        LerpDuration: 0
 --- !u!1 &420551017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,7 +1722,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1541636198}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &496090820
+--- !u!114 &481617264
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8026,7 +8026,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &751759103
+--- !u!114 &790180870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8250,6 +8250,86 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &829994233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Tackle_1001
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
+  Id: 1001
+  Name: Tackle
+  Icon: {fileID: 21300000, guid: 5bc984f9c2642af4e95a7259aee8c59d, type: 3}
+  SkillElement: 0
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 1245210149551341642
+  Effects:
+  - rid: 1245210149551341643
+  - rid: 1245210149551341644
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 0
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
+  BaseDamage: 1
+  BaseAOERadius: 1.92
+  BaseProjectileCount: 0
+  BaseManaCost: 0
+  Tags: 000000000700000008000000
+  Description: 
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 0
+  BaseFCT: 0.35
+  BaseCastDelay: 0.5
+  BaseCooldown: 1
+  ChainOverrides: []
+  Scalings:
+  - TargetField: 0
+    ScalingAttribute: 9
+    AttributeMultiplier: 15
+    GlobalMultiplier: 0.15
+    FlatBonus: 0
+    LevelMultiplier: 0
+  MaxSupportSlots: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 1245210149551341642
+      type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        BoxSize: {x: 2, y: 2.5}
+        Offset: {x: 0, y: 1.5}
+    - rid: 1245210149551341643
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 1
+    - rid: 1245210149551341644
+      type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        Type: 5
+        Distance: 0
+        StunDuration: 0.15
+        UseLerp: 0
+        LerpDuration: 0
 --- !u!1 &830808928
 GameObject:
   m_ObjectHideFlags: 0
@@ -8477,86 +8557,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &926078728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
-  m_Name: Tackle_1001
-  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
-  Id: 1001
-  Name: Tackle
-  Icon: {fileID: 21300000, guid: 5bc984f9c2642af4e95a7259aee8c59d, type: 3}
-  SkillElement: 0
-  SkillDamageType: 0
-  BaseTargeting:
-    rid: 1245210149551341642
-  Effects:
-  - rid: 1245210149551341643
-  - rid: 1245210149551341644
-  CastVfxPrefab: {fileID: 0}
-  CastVfxSpawnPoint: 2
-  VisualType: 0
-  SkillIndicatorPrefab: {fileID: 0}
-  EruptionVfxPrefab: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
-  ImpactVfxPrefab: {fileID: 0}
-  AuraVfxPrefab: {fileID: 0}
-  BeamVfxPrefab: {fileID: 0}
-  BaseDamage: 1
-  BaseAOERadius: 1.92
-  BaseProjectileCount: 0
-  BaseManaCost: 0
-  Tags: 000000000700000008000000
-  Description: 
-  IsToggle: 0
-  IsContinuousArea: 0
-  AreaDuration: 5
-  AreaTickRate: 0.5
-  BaseVCT: 0
-  BaseFCT: 0.35
-  BaseCastDelay: 0.5
-  BaseCooldown: 1
-  ChainOverrides: []
-  Scalings:
-  - TargetField: 0
-    ScalingAttribute: 9
-    AttributeMultiplier: 15
-    GlobalMultiplier: 0.15
-    FlatBonus: 0
-    LevelMultiplier: 0
-  MaxSupportSlots: 5
-  references:
-    version: 2
-    RefIds:
-    - rid: 1245210149551341642
-      type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
-      data:
-        AlignmentAction: 0
-        IncludeSelf: 0
-        BoxSize: {x: 2, y: 2.5}
-        Offset: {x: 0, y: 1.5}
-    - rid: 1245210149551341643
-      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
-      data:
-        <ApplyToCaster>k__BackingField: 0
-        <ApplyOncePerCast>k__BackingField: 0
-        TargetAttribute: 1
-    - rid: 1245210149551341644
-      type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
-      data:
-        <ApplyToCaster>k__BackingField: 0
-        <ApplyOncePerCast>k__BackingField: 0
-        Type: 5
-        Distance: 0
-        StunDuration: 0.15
-        UseLerp: 0
-        LerpDuration: 0
 --- !u!1 &935870567
 GameObject:
   m_ObjectHideFlags: 0
@@ -9111,6 +9111,86 @@ MonoBehaviour:
     AttackRange: 0
   _waveCount: 0
   _aliveCount: 0
+--- !u!114 &1025845553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
+  m_Name: Tackle_1001
+  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
+  Id: 1001
+  Name: Tackle
+  Icon: {fileID: 21300000, guid: 5bc984f9c2642af4e95a7259aee8c59d, type: 3}
+  SkillElement: 0
+  SkillDamageType: 0
+  BaseTargeting:
+    rid: 1245210149551341642
+  Effects:
+  - rid: 1245210149551341643
+  - rid: 1245210149551341644
+  CastVfxPrefab: {fileID: 0}
+  CastVfxSpawnPoint: 2
+  VisualType: 0
+  SkillIndicatorPrefab: {fileID: 0}
+  EruptionVfxPrefab: {fileID: 0}
+  ProjectilePrefab: {fileID: 0}
+  ImpactVfxPrefab: {fileID: 0}
+  AuraVfxPrefab: {fileID: 0}
+  BeamVfxPrefab: {fileID: 0}
+  BaseDamage: 1
+  BaseAOERadius: 1.92
+  BaseProjectileCount: 0
+  BaseManaCost: 0
+  Tags: 000000000700000008000000
+  Description: 
+  IsToggle: 0
+  IsContinuousArea: 0
+  AreaDuration: 5
+  AreaTickRate: 0.5
+  BaseVCT: 0
+  BaseFCT: 0.35
+  BaseCastDelay: 0.5
+  BaseCooldown: 1
+  ChainOverrides: []
+  Scalings:
+  - TargetField: 0
+    ScalingAttribute: 9
+    AttributeMultiplier: 15
+    GlobalMultiplier: 0.15
+    FlatBonus: 0
+    LevelMultiplier: 0
+  MaxSupportSlots: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 1245210149551341642
+      type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        AlignmentAction: 0
+        IncludeSelf: 0
+        BoxSize: {x: 2, y: 2.5}
+        Offset: {x: 0, y: 1.5}
+    - rid: 1245210149551341643
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 1
+    - rid: 1245210149551341644
+      type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        Type: 5
+        Distance: 0
+        StunDuration: 0.15
+        UseLerp: 0
+        LerpDuration: 0
 --- !u!1 &1055784212
 GameObject:
   m_ObjectHideFlags: 0
@@ -9316,86 +9396,6 @@ MonoBehaviour:
   _drawAsGround: 0
   _groundOrder: 0
   _groundShadow: 1
---- !u!114 &1182037508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dfaa4b0ae584104b8074ca83d465ece, type: 3}
-  m_Name: Tackle_1001
-  m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
-  Id: 1001
-  Name: Tackle
-  Icon: {fileID: 21300000, guid: 5bc984f9c2642af4e95a7259aee8c59d, type: 3}
-  SkillElement: 0
-  SkillDamageType: 0
-  BaseTargeting:
-    rid: 1245210149551341642
-  Effects:
-  - rid: 1245210149551341643
-  - rid: 1245210149551341644
-  CastVfxPrefab: {fileID: 0}
-  CastVfxSpawnPoint: 2
-  VisualType: 0
-  SkillIndicatorPrefab: {fileID: 0}
-  EruptionVfxPrefab: {fileID: 0}
-  ProjectilePrefab: {fileID: 0}
-  ImpactVfxPrefab: {fileID: 0}
-  AuraVfxPrefab: {fileID: 0}
-  BeamVfxPrefab: {fileID: 0}
-  BaseDamage: 1
-  BaseAOERadius: 1.92
-  BaseProjectileCount: 0
-  BaseManaCost: 0
-  Tags: 000000000700000008000000
-  Description: 
-  IsToggle: 0
-  IsContinuousArea: 0
-  AreaDuration: 5
-  AreaTickRate: 0.5
-  BaseVCT: 0
-  BaseFCT: 0.35
-  BaseCastDelay: 0.5
-  BaseCooldown: 1
-  ChainOverrides: []
-  Scalings:
-  - TargetField: 0
-    ScalingAttribute: 9
-    AttributeMultiplier: 15
-    GlobalMultiplier: 0.15
-    FlatBonus: 0
-    LevelMultiplier: 0
-  MaxSupportSlots: 5
-  references:
-    version: 2
-    RefIds:
-    - rid: 1245210149551341642
-      type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
-      data:
-        AlignmentAction: 0
-        IncludeSelf: 0
-        BoxSize: {x: 2, y: 2.5}
-        Offset: {x: 0, y: 1.5}
-    - rid: 1245210149551341643
-      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
-      data:
-        <ApplyToCaster>k__BackingField: 0
-        <ApplyOncePerCast>k__BackingField: 0
-        TargetAttribute: 1
-    - rid: 1245210149551341644
-      type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
-      data:
-        <ApplyToCaster>k__BackingField: 0
-        <ApplyOncePerCast>k__BackingField: 0
-        Type: 5
-        Distance: 0
-        StunDuration: 0.15
-        UseLerp: 0
-        LerpDuration: 0
 --- !u!1 &1213854405
 GameObject:
   m_ObjectHideFlags: 0
@@ -10347,7 +10347,7 @@ Transform:
   - {fileID: 214785719}
   m_Father: {fileID: 1055784213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1443071888
+--- !u!114 &1530036832
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -16329,11 +16329,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1628670537070273326, guid: 745ad3cb128ed6242a1e4c2a0ca133fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 1628670537070273326, guid: 745ad3cb128ed6242a1e4c2a0ca133fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: 1628670537070273326, guid: 745ad3cb128ed6242a1e4c2a0ca133fd, type: 3}
       propertyPath: m_LocalPosition.z

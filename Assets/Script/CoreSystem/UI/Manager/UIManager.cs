@@ -383,7 +383,7 @@ namespace CoreSystem.UI
             return _modalStack.Count > 0;
         }
 
-        private static bool IsTypingInField()
+        public static bool IsTypingInField()
         {
             GameObject selected = EventSystem.current != null ? EventSystem.current.currentSelectedGameObject : null;
             return selected != null && (selected.GetComponent<TMPro.TMP_InputField>() != null || selected.GetComponent<InputField>() != null);

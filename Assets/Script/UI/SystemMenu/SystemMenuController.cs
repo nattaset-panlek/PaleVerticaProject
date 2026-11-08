@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using CoreSystem.Utility;
 
 namespace CoreSystem.UI.SystemMenu
@@ -66,6 +67,13 @@ namespace CoreSystem.UI.SystemMenu
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Bootstrap()
+        {
+            SceneManager.sceneLoaded -= HandleSceneLoaded;
+            SceneManager.sceneLoaded += HandleSceneLoaded;
+            Create();
+        }
+
+        private static void HandleSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             Create();
         }

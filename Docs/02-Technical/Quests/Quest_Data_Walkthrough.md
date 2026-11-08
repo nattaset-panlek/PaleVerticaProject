@@ -1,0 +1,81 @@
+# Quest Data Walkthrough
+
+Quests are defined in JSON. Each player's progress lives in `GameData.Player.Quests` and is saved with the character.
+
+This covers data, state, objective tracking, accepting and completing in dialogue, the Quest Log and the on-screen tracker.
+
+## Where to edit
+
+`Assets/Resources/Data/Quest.json`
+
+## Inputs
+
+| Field | Meaning |
+|---|---|
+| `Id` | Unique quest id |
+| `Name`, `Description` | `EN` and `TH` text |
+| `GiverCharacterId` | NPC that offers the quest |
+| `TurnInCharacterId` | NPC that completes the quest |
+| `RequiresQuestId` | Quest that must be completed first. `0` means none |
+| `Objectives[].Type` | `0` Kill, `1` Collect, `2` Talk, `3` ReachMap |
+| `Objectives[].TargetId` | Character id for Kill and Talk, item id for Collect |
+| `Objectives[].TargetScene` | Scene name for ReachMap |
+| `Objectives[].Required` | Count needed |
+| `Objectives[].Text` | Line shown to the player |
+| `Reward.BaseExp`, `Reward.JobExp` | EXP given on completion |
+| `Reward.Items[]` | `ItemId` and `Quantity`. Money is a currency item, such as 1003 Copper Coin |
+
+## Add a quest
+
+1. Add an entry with a new `Id` to `Quest.json`.
+2. Use character ids from `Character.json` and item ids from `Item.json`.
+3. To chain it, set `RequiresQuestId`.
+
+## Expected result
+
+A quest moves through `Locked`, `Available`, `Active`, `ReadyToTurnIn` and `Completed`. It can be taken only once.
+
+## How objectives count
+
+`QuestManager` updates active quests by itself:
+
+| Type | Counts when |
+|---|---|
+| Kill | A monster with that character id dies and the player dealt damage to it |
+| Collect | The inventory holds that item. The count goes down if the item leaves the inventory |
+| Talk | The player opens that NPC's dialogue. The NPC needs a `DialogueId` |
+| ReachMap | That scene loads, or the player is already in it |
+
+## Accept and complete
+
+1. Click the giver NPC and choose **Talk**. Offered quests appear as buttons above the conversation choices.
+2. Click a quest to see its objectives and rewards, then press **Accept**.
+3. When the objectives are done, Talk to the turn-in NPC, open the quest and press **Complete**.
+
+On completion the player receives the EXP and items. Items required by Collect objectives are taken from the inventory.
+
+## Quest Log and tracker
+
+Run **Pale Vertica > Quests > Build Quest Tracker** once. It creates `Prefab/Game Page/Quest Tracker Window.prefab` and registers `QuestTracker` in `UIWindowRegistry`.
+
+- Press **L** to open or close the Quest Log. Esc also closes it.
+- The tracker at the top right lists up to 5 active quests and updates by itself.
+
+## Use it from code
+
+```csharp
+QuestModel quest = QuestDatabase.Get(1);
+GameData.Player.Quests.Accept(quest);
+GameData.Player.Quests.Report(QuestObjectiveType.Kill, 1001);
+QuestManager.TurnIn(quest);
+```
+
+## Common mistakes
+
+- `RequiresQuestId` pointing at a quest that does not exist: the quest stays `Locked`.
+- `Type` is a number in JSON, not a name.
+- `Required` of 0 makes the objective finished as soon as the quest is accepted.
+- A Talk objective on an NPC with `DialogueId` 0 can never finish.
+- Forgetting the Build Quest Tracker menu: a warning is logged and no tracker appears. The Quest Log still works.
+- Calling `PlayerQuests.Complete` directly gives no rewards. Use `QuestManager.TurnIn`.
+- A giver or turn-in NPC with `DialogueId` 0 has no Talk option, so it cannot offer the quest.

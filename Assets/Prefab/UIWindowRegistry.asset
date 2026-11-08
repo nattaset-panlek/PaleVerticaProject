@@ -63,3 +63,8 @@ MonoBehaviour:
     Prefab: {fileID: 174968693301037432, guid: 10fd5fd750469ba4190d2a170d31edc1, type: 3}
     DestroyOnClose: 0
     Keys: 7a000000
+  - WindowName: QuestTracker
+    Type: 0
+    Prefab: {fileID: 9152214647640292437, guid: 18de20fbf2204474589ac1d1fb04ee1f, type: 3}
+    DestroyOnClose: 0
+    Keys: 

@@ -16,6 +16,7 @@ namespace CoreSystem.Data.Save
         public List<PassiveNodeRecord> PassiveNodes = new List<PassiveNodeRecord>();
         public List<string> ActiveUniquePassiveIds = new List<string>();
         public List<HotbarRowRecord> Hotbars = new List<HotbarRowRecord>();
+        public List<QuestRecord> Quests = new List<QuestRecord>();
         #endregion
 
         #region [Public Methods]

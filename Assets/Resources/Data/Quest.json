@@ -1,0 +1,36 @@
+{
+    "Quests": [
+        {
+            "Id": 1,
+            "Name": { "EN": "Bones on the Road", "TH": "กระดูกบนเส้นทาง" },
+            "Description": { "EN": "The Old Man wants the road cleared.", "TH": "ชายชราอยากให้ถนนปลอดภัย" },
+            "GiverCharacterId": 2004,
+            "TurnInCharacterId": 2004,
+            "RequiresQuestId": 0,
+            "Objectives": [
+                { "Type": 0, "TargetId": 1001, "TargetScene": "", "Required": 3, "Text": { "EN": "Defeat Skeletom", "TH": "กำจัด Skeletom" } }
+            ],
+            "Reward": {
+                "BaseExp": 100,
+                "JobExp": 50,
+                "Items": [ { "ItemId": 1003, "Quantity": 50 }, { "ItemId": 2001, "Quantity": 3 } ]
+            }
+        },
+        {
+            "Id": 2,
+            "Name": { "EN": "A Word with the Smith", "TH": "คุยกับช่างตีเหล็ก" },
+            "Description": { "EN": "Tell the Blacksmith the road is clear.", "TH": "บอกช่างตีเหล็กว่าถนนปลอดภัยแล้ว" },
+            "GiverCharacterId": 2004,
+            "TurnInCharacterId": 2002,
+            "RequiresQuestId": 1,
+            "Objectives": [
+                { "Type": 2, "TargetId": 2002, "TargetScene": "", "Required": 1, "Text": { "EN": "Talk to the Blacksmith", "TH": "คุยกับช่างตีเหล็ก" } }
+            ],
+            "Reward": {
+                "BaseExp": 50,
+                "JobExp": 25,
+                "Items": [ { "ItemId": 1003, "Quantity": 20 } ]
+            }
+        }
+    ]
+}

@@ -17,6 +17,8 @@ namespace CoreSystem.Dialogue
         private const float TalkRange = 1.5f;
         private const int TalkPriority = 220;
         private static DialogueManager _instance;
+
+        public static event System.Action<int> OnTalkStarted;
         #endregion
 
         #region [Properties]
@@ -60,15 +62,22 @@ namespace CoreSystem.Dialogue
             DialogueModel dialogue = DialogueDatabase.Get(model.DialogueId);
             if (dialogue == null) return;
 
-            options.Add(new InteractionOption(OptionId, OptionLabel, _ => DialogueWindow.Open(model.Name, dialogue), TalkRange, TalkPriority));
+            options.Add(new InteractionOption(OptionId, OptionLabel, _ => StartTalk(model, dialogue), TalkRange, TalkPriority));
         }
         #endregion
 
         #region [Private Methods]
+        private static void StartTalk(CharacterModel model, DialogueModel dialogue)
+        {
+            OnTalkStarted?.Invoke(model.Id);
+            DialogueWindow.Open(model.Name, dialogue, model.Id);
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics()
         {
             _instance = null;
+            OnTalkStarted = null;
         }
         #endregion
     }

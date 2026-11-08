@@ -65,6 +65,7 @@ namespace CoreSystem.Player
             CoreSystem.Settings.Keybinds.KeybindSetting.Attach(_inputActions.asset);
             InteractionRegistry.Register(_interaction);
             CoreSystem.Dialogue.DialogueManager.Ensure();
+            CoreSystem.Quests.QuestManager.Ensure();
             InteractionCore.OnApproachStarted += HandleInteractionApproachStarted;
             CoreSystem.Loot.LootManager.OnPickupRequested += HandleLootPickupRequested;
             OnReady?.Invoke(this);
