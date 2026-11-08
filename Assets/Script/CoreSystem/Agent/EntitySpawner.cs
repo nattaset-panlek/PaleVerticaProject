@@ -32,6 +32,8 @@ namespace CoreSystem.Agent
         public int MaxWaves = 0;
         [Tooltip("Maximum number of alive spawned entities at any time. 0 = unlimited.")]
         public int MaxAlive = 0;
+        [Tooltip("Seconds before a dead monster is replaced. 0 keeps the wave behaviour.")]
+        [Min(0f)] public float RespawnDelay = 0f;
 
         [Header("Spawn Table")]
         public List<SpawnEntry> SpawnTable = new List<SpawnEntry>();
@@ -50,9 +52,45 @@ namespace CoreSystem.Agent
             _spawnRoutine = StartCoroutine(SpawnLoop());
         }
 
+        private void OnEnable()
+        {
+            CoreSystem.Combat.CombatEvents.OnKilled += HandleKilled;
+        }
+
+        private void OnDisable()
+        {
+            CoreSystem.Combat.CombatEvents.OnKilled -= HandleKilled;
+        }
+
+        private void HandleKilled(CoreSystem.Entity.IEntity killer, CoreSystem.Entity.IEntity victim)
+        {
+            if (RespawnDelay <= 0f || victim == null) return;
+            if (!_aliveEntities.Remove(victim.transform.gameObject)) return;
+
+            _aliveCount = Mathf.Max(0, _aliveCount - 1);
+            StartCoroutine(RespawnAfterDelay());
+        }
+
+        private IEnumerator RespawnAfterDelay()
+        {
+            yield return new WaitForSeconds(RespawnDelay);
+
+            CleanDestroyedEntities();
+            if (!HasRoom(_aliveCount, MaxAlive)) yield break;
+
+            var selected = SelectEntriesForWave();
+            if (selected.Count > 0) SpawnOne(selected[Random.Range(0, selected.Count)]);
+        }
+
         private IEnumerator SpawnLoop()
         {
             if (InitialDelay > 0f) yield return new WaitForSeconds(InitialDelay);
+
+            if (RespawnDelay > 0f)
+            {
+                yield return StartCoroutine(SpawnWave());
+                yield break;
+            }
 
             while (MaxWaves == 0 || _waveCount < MaxWaves)
             {
@@ -145,6 +183,7 @@ namespace CoreSystem.Agent
             var character = go.GetComponent<CoreSystem.Entity.Character>();
             if (character != null)
             {
+                character.AssignCharacterId(entry.CharacterId);
                 var profile = character.AgentProfile;
                 if (entry.OverrideBehavior)        profile.Behavior        = entry.Behavior;
                 if (entry.OverrideCombatStyle)     profile.Combat          = entry.Combat;
@@ -195,6 +234,11 @@ namespace CoreSystem.Agent
         }
 
         // ─── Public API ───────────────────────────────────────────
+
+        public static bool HasRoom(int alive, int maxAlive)
+        {
+            return maxAlive <= 0 || alive < maxAlive;
+        }
 
         public void StartSpawning()
         {
