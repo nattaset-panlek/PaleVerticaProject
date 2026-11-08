@@ -43,15 +43,15 @@ namespace CoreSystem.Skills.Modifiers
             Vector3 rightDir = new Vector3(direction.y, -direction.x, 0f);
 
             var mainPayload = payload.Clone();
-            mainPayload.BaseDamage *= mainDamageMultiplier;
+            mainPayload.DamageMultiplier *= mainDamageMultiplier;
 
             var leftPayload = payload.Clone();
             leftPayload.TargetPosition = targetPos + leftDir * offsetMargin;
-            leftPayload.BaseDamage *= sideDamageMultiplier;
+            leftPayload.DamageMultiplier *= sideDamageMultiplier;
 
             var rightPayload = payload.Clone();
             rightPayload.TargetPosition = targetPos + rightDir * offsetMargin;
-            rightPayload.BaseDamage *= sideDamageMultiplier;
+            rightPayload.DamageMultiplier *= sideDamageMultiplier;
 
             return new[] { leftPayload, mainPayload, rightPayload };
         }

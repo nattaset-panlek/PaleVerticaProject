@@ -18,8 +18,8 @@ namespace CoreSystem.Skills.Logic
             if (caster == null || target == null) return false;
 
             if (AlignmentAction == TargetAlignment.All) return true;
-            if (AlignmentAction == TargetAlignment.Ally && CoreSystem.Data.FactionDatabase.IsAlly(caster.Faction, target.Faction)) return true;
-            if (AlignmentAction == TargetAlignment.Enemy && CoreSystem.Data.FactionDatabase.IsHostile(caster.Faction, target.Faction)) return true;
+            if (AlignmentAction == TargetAlignment.Ally && TeamRegistry.IsAlly(caster, target)) return true;
+            if (AlignmentAction == TargetAlignment.Enemy && TeamRegistry.IsHostile(caster, target)) return true;
 
             return false;
         }

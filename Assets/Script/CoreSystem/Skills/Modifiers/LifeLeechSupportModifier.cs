@@ -23,6 +23,7 @@ namespace CoreSystem.Skills.Modifiers
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+            payload.LifeLeechPercent += leechPercent;
         }
 
         public override bool IsCompatible(ActiveSkill activeSkill)

@@ -34,6 +34,7 @@ MonoBehaviour:
   BaseProjectileCount: 0
   BaseManaCost: 40
   Tags: 
+  Description: 
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
@@ -45,9 +46,9 @@ MonoBehaviour:
   ChainOverrides: []
   Scalings: []
   MaxSupportSlots: 5
-  MaxJumps: 0
-  JumpRadius: 0
-  DamageDecayPerJump: 0
+  MaxJumps: 5
+  JumpRadius: 5
+  DamageDecayPerJump: 0.8
   references:
     version: 2
     RefIds:

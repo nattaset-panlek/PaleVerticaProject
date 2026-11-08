@@ -19,6 +19,7 @@ namespace CoreSystem.Skills.Modifiers
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+            payload.IsHoming = true;
         }
 
         public override bool IsCompatible(ActiveSkill activeSkill)

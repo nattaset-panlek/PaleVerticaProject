@@ -1,29 +1,26 @@
 using UnityEngine;
-using CoreSystem.Entity;
 
 namespace CoreSystem.Skills.UniqueSkill
 {
     [CreateAssetMenu(fileName = "BlinkStrikeSkill", menuName = "Skill System/Unique/Blink Strike")]
     public class BlinkStrikeSkill : ActiveSkill
     {
+        #region [Variables/Fields]
         public float StrikeDamageMult = 1.5f;
+        public float BehindDistance = 1f;
+        #endregion
 
+        #region [Public Methods]
         public override void Execute(SkillPayload payload, SkillInstance instance, SkillCaster caster)
         {
             if (!payload.IsTargetPositionSet) return;
 
-            // 1. Teleport behind target position (facing direction)
-            Vector3 targetPos = payload.TargetPosition;
-            Vector3 blinkPos = targetPos - (payload.GetAimDirection() * 1f); 
-            
-            caster.CharacterRef.transform.position = blinkPos;
-            
-            // 2. Immediate Strike
-            Debug.Log("[BlinkStrike] Teleported and Striking from behind!");
-            
-            // Apply standard effects
-            base.Execute(payload, instance, caster);
+            caster.CharacterRef.transform.position = payload.TargetPosition - payload.GetAimDirection() * BehindDistance;
+
+            SkillPayload strike = payload.Clone();
+            strike.DamageMultiplier *= StrikeDamageMult;
+            base.Execute(strike, instance, caster);
         }
+        #endregion
     }
 }
-

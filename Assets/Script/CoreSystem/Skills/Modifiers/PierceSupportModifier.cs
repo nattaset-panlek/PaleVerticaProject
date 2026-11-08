@@ -10,6 +10,10 @@ namespace CoreSystem.Skills.Modifiers
     [SupportModifierId(1003)]
     public class PierceSupportModifier : SupportModifier
     {
+        #region [Variables/Fields]
+        public int pierceCount = 2;
+        #endregion
+
         #region [Public Methods]
         public PierceSupportModifier()
         {
@@ -19,6 +23,7 @@ namespace CoreSystem.Skills.Modifiers
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+            payload.PierceCount += pierceCount;
         }
 
         public override bool IsCompatible(ActiveSkill activeSkill)

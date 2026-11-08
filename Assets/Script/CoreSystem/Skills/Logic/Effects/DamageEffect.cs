@@ -14,7 +14,8 @@ namespace CoreSystem.Skills.Logic
         public override void Apply(SkillPayload payload, IEntity target)
         {
             if (payload == null) return;
-            CombatCore.Execute(CombatAction.Damage(payload, TargetAttribute), payload.Caster, target);
+            ActionResult result = CombatCore.Execute(CombatAction.Damage(payload, TargetAttribute), payload.Caster, target);
+            SupportHitApplier.Apply(payload, target, result);
         }
         #endregion
     }

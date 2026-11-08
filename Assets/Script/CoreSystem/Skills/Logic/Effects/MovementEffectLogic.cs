@@ -1,3 +1,6 @@
+using CoreSystem.Agent;
+using CoreSystem.Combat;
+using CoreSystem.Pathfinding;
 using CoreSystem.Entity;
 using UnityEngine;
 
@@ -37,7 +40,11 @@ namespace CoreSystem.Skills.Logic.Effects
             switch (Type)
             {
                 case MovementType.TeleportToTarget:
-                    if (target != null)
+                    if (payload.IsTargetPositionSet)
+                    {
+                        TeleportToPoint(payload);
+                    }
+                    else if (target != null)
                     {
                         if (UseLerp)
                         {
@@ -129,7 +136,7 @@ namespace CoreSystem.Skills.Logic.Effects
                 case MovementType.StunTarget:
                     if (target != null)
                     {
-                        target.ApplyStun(StunDuration);
+                        CoreSystem.Combat.StatusHandler.Apply(payload.Caster, target, new CoreSystem.Combat.StatusSpec { Status = CoreSystem.Combat.StatusKind.Stun, Duration = SupportHitFormula.Duration(StunDuration, payload.DurationMultiplier) }, ProcSkillIds.StatusApply);
                     }
                     break;
                 case MovementType.PullToTargetPosition:
@@ -153,6 +160,19 @@ namespace CoreSystem.Skills.Logic.Effects
                     }
                     break;
             }
+        }
+
+        private static void TeleportToPoint(SkillPayload payload)
+        {
+            Vector3 casterPosition = payload.Caster.transform.position;
+            Vector2 destination = payload.TargetPosition;
+            AgentCore core = AgentCore.Instance;
+            if (core != null)
+            {
+                if (core.SnapPoint(casterPosition, destination, out Vector2 snapped) == PathOutcome.NoRoute) return;
+                destination = snapped;
+            }
+            payload.Caster.transform.position = new Vector3(destination.x, destination.y, casterPosition.z);
         }
     }
 }

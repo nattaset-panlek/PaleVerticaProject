@@ -19,7 +19,8 @@ MonoBehaviour:
   SkillDamageType: 0
   BaseTargeting:
     rid: 1245210145478934785
-  Effects: []
+  Effects:
+  - rid: 2091417545210331215
   CastVfxPrefab: {fileID: 0}
   CastVfxSpawnPoint: 2
   VisualType: 0
@@ -34,6 +35,7 @@ MonoBehaviour:
   BaseProjectileCount: 0
   BaseManaCost: 30
   Tags: 
+  Description: 
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
@@ -45,7 +47,8 @@ MonoBehaviour:
   ChainOverrides: []
   Scalings: []
   MaxSupportSlots: 5
-  StrikeDamageMult: 0
+  StrikeDamageMult: 1.5
+  BehindDistance: 1
   references:
     version: 2
     RefIds:
@@ -55,3 +58,9 @@ MonoBehaviour:
         AlignmentAction: 0
         IncludeSelf: 0
         CastRange: 8
+    - rid: 2091417545210331215
+      type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 1

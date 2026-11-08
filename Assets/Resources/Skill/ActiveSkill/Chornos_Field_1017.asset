@@ -18,8 +18,9 @@ MonoBehaviour:
   SkillElement: 0
   SkillDamageType: 0
   BaseTargeting:
-    rid: 1245210145478934791
-  Effects: []
+    rid: 2091417545210331216
+  Effects:
+  - rid: 2091417545210331217
   CastVfxPrefab: {fileID: 0}
   CastVfxSpawnPoint: 2
   VisualType: 4
@@ -34,9 +35,10 @@ MonoBehaviour:
   BaseProjectileCount: 0
   BaseManaCost: 0
   Tags: 
+  Description: 
   IsToggle: 0
-  IsContinuousArea: 0
-  AreaDuration: 5
+  IsContinuousArea: 1
+  AreaDuration: 6
   AreaTickRate: 0.5
   BaseVCT: 0
   BaseFCT: 0
@@ -48,8 +50,23 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1245210145478934791
+    - rid: 2091417545210331216
       type: {class: SphereAOETargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
+    - rid: 2091417545210331217
+      type: {class: ApplyTemporaryBuffEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+      data:
+        <ApplyToCaster>k__BackingField: 0
+        <ApplyOncePerCast>k__BackingField: 0
+        TargetAttribute: 131
+        ModifierValue: -0.5
+        ModType: 1
+        Duration: 1
+        MaxStacks: 1
+        BuffName: Time Slow
+        BuffCode: Chronos_Slow
+        Category: 3
+        Icon: {fileID: 0}
+        BuffIconPath: 

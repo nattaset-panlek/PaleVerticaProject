@@ -71,9 +71,9 @@ namespace CoreSystem.Skills.Logic
                         }
 
                         // Play visual on hit (optional: maybe only play at origin once? or repeat every tick?)
-                        if (_skillData != null && VisualManager.Instance != null)
+                        if (_skillData != null)
                         {
-                            VisualManager.Instance.PlayVisual(_skillData, _payload);
+                            VisualManager.Ensure().PlayVisual(_skillData, _payload);
                         }
                     }
                 }

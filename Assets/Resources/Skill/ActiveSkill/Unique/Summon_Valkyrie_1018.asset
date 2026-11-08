@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 027d8af3c762f7748a76ddf798cefa0f, type: 3}
-  m_Name: Summon_Valkyrie_0
+  m_Name: Summon_Valkyrie_1018
   m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.UniqueSkill.SummonSkill
-  Id: 0
+  Id: 1018
   Name: Summon Valkyrie
   Icon: {fileID: 21300000, guid: bdd1a3af1ebf8e347baf21416aab4898, type: 3}
   SkillElement: 0
   SkillDamageType: 0
   BaseTargeting:
-    rid: 1245210145478934782
+    rid: 2091417515171250404
   Effects: []
   CastVfxPrefab: {fileID: 0}
   CastVfxSpawnPoint: 2
@@ -34,6 +34,7 @@ MonoBehaviour:
   BaseProjectileCount: 0
   BaseManaCost: 50
   Tags: 
+  Description: 
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
@@ -45,15 +46,18 @@ MonoBehaviour:
   ChainOverrides: []
   Scalings: []
   MaxSupportSlots: 5
-  MinionPrefab: {fileID: 0}
+  MinionPrefab: {fileID: 593199419734919740, guid: 0e61fbac7fa689743ae257b33349078a, type: 3}
   IsPermanent: 0
-  Lifetime: 0
-  MaxMinions: 0
+  Lifetime: 20
+  MaxMinions: 2
+  SummonsPerCast: 1
+  SpawnDistance: 1.5
+  LeashRadius: 4
   references:
     version: 2
     RefIds:
-    - rid: 1245210145478934782
-      type: {class: SingleTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
+    - rid: 2091417515171250404
+      type: {class: SelfTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0

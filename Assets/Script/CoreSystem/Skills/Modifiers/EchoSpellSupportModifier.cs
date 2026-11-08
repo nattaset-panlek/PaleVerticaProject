@@ -35,7 +35,7 @@ namespace CoreSystem.Skills.Modifiers
         {
             var echoPayload = original.Clone();
             echoPayload.AOERadius *= aoeMultiplier;
-            echoPayload.BaseDamage *= damageMultiplier;
+            echoPayload.DamageMultiplier *= damageMultiplier;
             return echoPayload;
         }
 

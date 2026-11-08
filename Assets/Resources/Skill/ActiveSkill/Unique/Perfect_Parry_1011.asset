@@ -34,6 +34,7 @@ MonoBehaviour:
   BaseProjectileCount: 0
   BaseManaCost: 15
   Tags: 
+  Description: 
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
@@ -45,8 +46,8 @@ MonoBehaviour:
   ChainOverrides: []
   Scalings: []
   MaxSupportSlots: 5
-  ParryWindow: 0
-  CounterDamageMult: 0
+  ParryWindow: 0.5
+  CounterDamageMult: 2
   CounterVfx: {fileID: 0}
   references:
     version: 2

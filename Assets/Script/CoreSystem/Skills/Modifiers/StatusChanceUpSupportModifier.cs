@@ -23,6 +23,7 @@ namespace CoreSystem.Skills.Modifiers
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+            payload.StatusChanceBonus += statusChancePercent;
         }
 
         public override string GetDescription(string template)

@@ -23,6 +23,7 @@ namespace CoreSystem.Skills.Modifiers
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+            payload.BurnChance += burnChancePercent;
         }
 
         public override bool IsCompatible(ActiveSkill activeSkill)

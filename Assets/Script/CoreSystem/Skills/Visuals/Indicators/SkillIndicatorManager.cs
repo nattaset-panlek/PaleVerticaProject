@@ -20,7 +20,7 @@ namespace CoreSystem.Skills.Visuals
         
         private ISkillIndicator _currentActive;
         private GameObject _customIndicatorInstance;
-        private GameObject _activeCastIndicatorInstance;
+        private readonly List<GameObject> _activeCastIndicators = new List<GameObject>();
 
         private void Awake()
         {
@@ -108,42 +108,30 @@ namespace CoreSystem.Skills.Visuals
 
         public void HideIndicator() => HideCurrent();
 
-        public void StartCastIndicator(SkillPayload payload)
+        public bool StartCastIndicator(SkillPayload payload)
+        {
+            return StartCastIndicators(new[] { payload });
+        }
+
+        public bool StartCastIndicators(IReadOnlyList<SkillPayload> payloads)
         {
             StopCastIndicator();
+            if (payloads == null) return false;
 
-            if (payload == null || payload.SkillIndicatorPrefab == null || payload.TotalCastTime <= 0f) return;
-            if (payload.SkillTargeting is SingleUnitTargeting) return;
-
-            Vector3 spawnPos = payload.TargetPosition;
-            _activeCastIndicatorInstance = Instantiate(payload.SkillIndicatorPrefab, spawnPos, Quaternion.identity);
-
-            var visual = _activeCastIndicatorInstance.GetComponent<ISkillVisual>();
-            if (visual != null)
+            for (int i = 0; i < payloads.Count; i++)
             {
-                visual.Initialize(payload);
+                GameObject instance = SpawnCastIndicator(payloads[i]);
+                if (instance != null) _activeCastIndicators.Add(instance);
             }
-            else
-            {
-                var visuals = _activeCastIndicatorInstance.GetComponentsInChildren<ISkillVisual>();
-                foreach (var v in visuals)
-                {
-                    v.Initialize(payload);
-                }
-            }
-
-            var indicator = _activeCastIndicatorInstance.GetComponent<ISkillIndicator>();
-            if (indicator != null)
-            {
-                indicator.Show(payload, payload.SkillTargeting);
-            }
+            return _activeCastIndicators.Count > 0;
         }
 
         public void UpdateCastIndicatorProgress(float progress)
         {
-            if (_activeCastIndicatorInstance != null)
+            for (int i = 0; i < _activeCastIndicators.Count; i++)
             {
-                var indicator = _activeCastIndicatorInstance.GetComponent<ISkillIndicator>();
+                if (_activeCastIndicators[i] == null) continue;
+                var indicator = _activeCastIndicators[i].GetComponent<ISkillIndicator>();
                 if (indicator != null)
                 {
                     indicator.SetProgress(progress);
@@ -153,16 +141,46 @@ namespace CoreSystem.Skills.Visuals
 
         public void StopCastIndicator()
         {
-            if (_activeCastIndicatorInstance != null)
+            for (int i = 0; i < _activeCastIndicators.Count; i++)
             {
-                var indicator = _activeCastIndicatorInstance.GetComponent<ISkillIndicator>();
+                GameObject instance = _activeCastIndicators[i];
+                if (instance == null) continue;
+                var indicator = instance.GetComponent<ISkillIndicator>();
                 if (indicator != null)
                 {
                     indicator.Hide();
                 }
-                Destroy(_activeCastIndicatorInstance);
-                _activeCastIndicatorInstance = null;
+                Destroy(instance);
             }
+            _activeCastIndicators.Clear();
+        }
+
+        private static GameObject SpawnCastIndicator(SkillPayload payload)
+        {
+            if (payload == null || payload.SkillIndicatorPrefab == null || payload.TotalCastTime <= 0f) return null;
+            if (payload.SkillTargeting is SingleUnitTargeting) return null;
+
+            GameObject instance = Instantiate(payload.SkillIndicatorPrefab, payload.TargetPosition, Quaternion.identity);
+
+            var visual = instance.GetComponent<ISkillVisual>();
+            if (visual != null)
+            {
+                visual.Initialize(payload);
+            }
+            else
+            {
+                foreach (var v in instance.GetComponentsInChildren<ISkillVisual>())
+                {
+                    v.Initialize(payload);
+                }
+            }
+
+            var indicator = instance.GetComponent<ISkillIndicator>();
+            if (indicator != null)
+            {
+                indicator.Show(payload, payload.SkillTargeting);
+            }
+            return instance;
         }
 
         private class CustomIndicatorWrapper : ISkillIndicator

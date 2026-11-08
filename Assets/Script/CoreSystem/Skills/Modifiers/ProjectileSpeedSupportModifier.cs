@@ -1,3 +1,4 @@
+using CoreSystem.Combat;
 using System.Collections.Generic;
 using UnityEngine;
 using CoreSystem.Entity;
@@ -23,6 +24,7 @@ namespace CoreSystem.Skills.Modifiers
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+            payload.ProjectileSpeedMultiplier = SupportHitFormula.AddPercent(payload.ProjectileSpeedMultiplier, speedPercent);
         }
 
         public override bool IsCompatible(ActiveSkill activeSkill)

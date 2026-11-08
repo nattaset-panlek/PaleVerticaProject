@@ -18,6 +18,8 @@ namespace CoreSystem.Skills
         public Vector3 TargetPosition; // For ground-targeted skills
         public bool IsTargetPositionSet; // To distinguish between 0,0,0 and unset
         public bool IsPositionLocked; // If true, range-clamping should be skipped or anchored to the lock-in point
+        public bool IsRepeatCast;
+        public bool CastIndicatorShown;
         public List<IEntity> Targets = new List<IEntity>();
         
         public Vector3 GetAimDirection()
@@ -39,6 +41,7 @@ namespace CoreSystem.Skills
         }
         
         public float BaseDamage;
+        public float DamageMultiplier = 1f;
         public float Heal;
         public float AOERadius;
         public float CastRange;
@@ -51,6 +54,19 @@ namespace CoreSystem.Skills
         public float Cooldown;
         public float ManaCost;
         public float TotalCastTime;
+
+        public float ProjectileSpeedMultiplier = 1f;
+        public int PierceCount;
+        public int ChainCount;
+        public float ChainRange = 5f;
+        public bool IsHoming;
+        public float KnockbackDistance;
+        public float LifeLeechPercent;
+        public float ManaLeechPercent;
+        public float BurnChance;
+        public float FreezeChance;
+        public float StatusChanceBonus;
+        public float DurationMultiplier = 1f;
 
         public SkillPayload Clone()
         {
@@ -67,8 +83,11 @@ namespace CoreSystem.Skills
                 TargetPosition = this.TargetPosition,
                 IsTargetPositionSet = this.IsTargetPositionSet,
                 IsPositionLocked = this.IsPositionLocked,
+                IsRepeatCast = this.IsRepeatCast,
+                CastIndicatorShown = this.CastIndicatorShown,
                 Targets = new List<IEntity>(this.Targets),
                 BaseDamage = this.BaseDamage,
+                DamageMultiplier = this.DamageMultiplier,
                 Heal = this.Heal,
                 AOERadius = this.AOERadius,
                 CastRange = this.CastRange,
@@ -79,7 +98,19 @@ namespace CoreSystem.Skills
                 CastDelay = this.CastDelay,
                 Cooldown = this.Cooldown,
                 ManaCost = this.ManaCost,
-                TotalCastTime = this.TotalCastTime
+                TotalCastTime = this.TotalCastTime,
+                ProjectileSpeedMultiplier = this.ProjectileSpeedMultiplier,
+                PierceCount = this.PierceCount,
+                ChainCount = this.ChainCount,
+                ChainRange = this.ChainRange,
+                IsHoming = this.IsHoming,
+                KnockbackDistance = this.KnockbackDistance,
+                LifeLeechPercent = this.LifeLeechPercent,
+                ManaLeechPercent = this.ManaLeechPercent,
+                BurnChance = this.BurnChance,
+                FreezeChance = this.FreezeChance,
+                StatusChanceBonus = this.StatusChanceBonus,
+                DurationMultiplier = this.DurationMultiplier
             };
         }
     }

@@ -1,3 +1,4 @@
+using CoreSystem.Combat;
 using System.Collections.Generic;
 using CoreSystem;
 using CoreSystem.Attributes;
@@ -43,6 +44,9 @@ namespace CoreSystem.Skills
         public int BaseProjectileCount;
         public float BaseManaCost;
         public List<SkillTag> Tags = new List<SkillTag>();
+
+        [TextArea(3, 8)]
+        public string Description;
         
         [Header("Skill Type")]
         public bool IsToggle;
@@ -106,7 +110,7 @@ namespace CoreSystem.Skills
                 }
                 
                 var areaBehaviour = areaGo.AddComponent<ContinuousAreaBehaviour>();
-                areaBehaviour.Initialize(this, payload, this.BaseTargeting, this.Effects, this.AreaDuration, this.AreaTickRate);
+                areaBehaviour.Initialize(this, payload, this.BaseTargeting, this.Effects, SupportHitFormula.Duration(this.AreaDuration, payload.DurationMultiplier), this.AreaTickRate);
                 return;
             }
 
@@ -177,10 +181,7 @@ namespace CoreSystem.Skills
             }
             else
             {
-                if (Visuals.VisualManager.Instance != null)
-                {
-                    Visuals.VisualManager.Instance.PlayVisual(this, payload);
-                }
+                Visuals.VisualManager.Ensure().PlayVisual(this, payload);
             }
 
             if (this.IsToggle && this.CastVfxPrefab != null && instance.ActiveVisual == null)

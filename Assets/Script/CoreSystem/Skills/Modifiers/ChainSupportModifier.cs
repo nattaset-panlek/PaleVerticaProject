@@ -10,6 +10,11 @@ namespace CoreSystem.Skills.Modifiers
     [SupportModifierId(1004)]
     public class ChainSupportModifier : SupportModifier
     {
+        #region [Variables/Fields]
+        public int chainCount = 2;
+        public float chainRange = 5f;
+        #endregion
+
         #region [Public Methods]
         public ChainSupportModifier()
         {
@@ -19,6 +24,8 @@ namespace CoreSystem.Skills.Modifiers
 
         public override void ModifyPayload(ref SkillPayload payload)
         {
+            payload.ChainCount += chainCount;
+            payload.ChainRange = Mathf.Max(payload.ChainRange, chainRange);
         }
 
         public override bool IsCompatible(ActiveSkill activeSkill)

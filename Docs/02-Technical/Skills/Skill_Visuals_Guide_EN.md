@@ -1,12 +1,12 @@
 # Skill Visuals and Handover Guide for VFX Artists (English Version)
 
-This document outlines how the Realm of Hero skill visual system is structured and how visual assets (prefabs, particles, lines, sprites) must be configured to work seamlessly with the game engine.
+This document outlines how the Pale Vertica skill visual system is structured and how visual assets (prefabs, particles, lines, sprites) must be configured to work seamlessly with the game engine.
 
 ---
 
 ## 1. System Overview
 
-The Realm of Hero skill system is decoupled. Visual effects do not calculate damage or logic. They are spawned on-demand by the Skill Caster and are governed by the `VisualManager` and the `SkillVisualEffect` helper component.
+The Pale Vertica skill system is decoupled. Visual effects do not calculate damage or logic. They are spawned on-demand by the Skill Caster and are governed by the `VisualManager` and the `SkillVisualEffect` helper component.
 
 To make a visual effect work with the system, it must:
 
@@ -40,6 +40,12 @@ When setting up an `ActiveSkill` ScriptableObject, you select a `VisualType`. Th
 * **Critical Art Guidelines**:
   * **Sprite Orientation**: The projectile sprite/particle direction MUST face **Up (Y+)** in the prefab. Because of the internal rotation calculations, any projectile art facing Right (X+) or Left (X-) will appear rotated incorrectly when flying.
   * **Movement**: The projectile prefab must have its own movement script (e.g. traveling forward along its local Y+ axis) or physics controller.
+* **Damaging projectiles vs. visual-only**: the `Projectile` category only *draws* `ActiveSkill.ProjectilePrefab`; it deals no damage. A projectile that hits uses the `SpawnProjectileEffect` effect instead. Reference skill: **Fire Bolt (1020)**, `Resources/Skill/ActiveSkill/Fire_Bolt_1020.asset`:
+  * `Self` targeting, one `SpawnProjectileEffect` with `ApplyOncePerCast`, `ProjectilePrefab` = `Assets/Addressable/Prefab/Effect/MagicProjectile.prefab` (has `ProjectileBehaviour`), `DamageEffectToApply` = `DamageEffect`.
+  * `VisualType` = `Projectile` but the skill's own `ProjectilePrefab` stays empty, otherwise a second, damage-less copy flies with it.
+  * `BaseAOERadius` = 0: `ProjectileBehaviour` grows the projectile by the AOE radius. `BaseProjectileCount` sets how many are fired (fan spread), so Multi-Shot works.
+  * Aims at the cast point (mouse) or the caster's facing. Hits hostiles only; `DestroyOnHit` on the prefab decides pierce.
+  * In `Skill.json` the effect is `"EffectType": "SpawnProjectileEffect"` with `PrefabPath` as a full `Assets/...prefab` path; the Workbench and `SkillConverter` rebuild it from that.
 
 ### C. Ray Beam (RayBeam)
 

@@ -102,6 +102,7 @@ namespace CoreSystem.Skills
         
         public float GlobalCastDelayTimer => globalCastDelayTimer;
         private float globalCastDelayTimer;
+        private readonly List<ICastRepeater> _passiveCastRepeaters = new List<ICastRepeater>();
         
         public System.Action<string, float> OnCastInitiated;
         public System.Action<float, float> OnCastProgress;
@@ -479,7 +480,8 @@ namespace CoreSystem.Skills
 
             OnCastInitiated?.Invoke(instance.SkillData.Name, currentCastTimeTotal);
 
-            SkillIndicatorManager.Instance?.StartCastIndicator(payload);
+            var indicatorManager = SkillIndicatorManager.Instance;
+            payload.CastIndicatorShown = indicatorManager != null && indicatorManager.StartCastIndicators(CastIndicatorPayloads(instance, payload));
 
             if (instance.SkillData.CastVfxPrefab != null)
             {
@@ -575,15 +577,28 @@ namespace CoreSystem.Skills
                 PayCost(ResolveCost(payload));
             }
 
-            if (instance.SkillData != null)
-            {
-                ExecuteWithSplitters(instance, payload);
+            if (instance.SkillData == null) return;
 
-                var repeater = FindLinkedModifier<ICastRepeater>(instance);
-                if (repeater != null && this.character != null && this.character.gameObject.activeInHierarchy)
-                {
-                    this.character.StartCoroutine(ExecuteRepeatCoroutine(instance, payload, repeater));
-                }
+            ExecuteCast(instance, payload);
+
+            if (this.character == null || this.character.UniquePassives == null || !this.character.gameObject.activeInHierarchy) return;
+
+            _passiveCastRepeaters.Clear();
+            this.character.UniquePassives.CollectCastRepeaters(instance, _passiveCastRepeaters);
+            for (int i = 0; i < _passiveCastRepeaters.Count; i++)
+            {
+                this.character.StartCoroutine(ExecuteRepeatCoroutine(instance, payload, _passiveCastRepeaters[i], true));
+            }
+        }
+
+        private void ExecuteCast(SkillInstance instance, SkillPayload payload)
+        {
+            ExecuteWithSplitters(instance, payload);
+
+            var repeater = FindLinkedModifier<ICastRepeater>(instance);
+            if (repeater != null && this.character != null && this.character.gameObject.activeInHierarchy)
+            {
+                this.character.StartCoroutine(ExecuteRepeatCoroutine(instance, payload, repeater, false));
             }
         }
 
@@ -641,6 +656,16 @@ namespace CoreSystem.Skills
             attribute.Recalculate();
         }
 
+        private IReadOnlyList<SkillPayload> CastIndicatorPayloads(SkillInstance instance, SkillPayload payload)
+        {
+            var splitter = FindLinkedModifier<IPayloadSplitter>(instance);
+            if (splitter != null && character != null && splitter.CanSplit(instance.SkillData))
+            {
+                return splitter.Split(payload, character.transform.position);
+            }
+            return new[] { payload };
+        }
+
         private static T FindLinkedModifier<T>(SkillInstance instance) where T : class
         {
             if (instance.LinkedModifiers == null) return null;
@@ -651,13 +676,15 @@ namespace CoreSystem.Skills
             return null;
         }
 
-        private System.Collections.IEnumerator ExecuteRepeatCoroutine(SkillInstance instance, SkillPayload originalPayload, ICastRepeater repeater)
+        private System.Collections.IEnumerator ExecuteRepeatCoroutine(SkillInstance instance, SkillPayload originalPayload, ICastRepeater repeater, bool asFullCast)
         {
             yield return new WaitForSeconds(repeater.RepeatDelay);
-            if (instance != null && instance.SkillData != null && this.character != null && !this.character.IsDead)
-            {
-                ExecuteWithSplitters(instance, repeater.CreateRepeatPayload(originalPayload));
-            }
+            if (instance == null || instance.SkillData == null || this.character == null || this.character.IsDead) yield break;
+
+            SkillPayload repeatPayload = repeater.CreateRepeatPayload(originalPayload);
+            repeatPayload.IsRepeatCast = true;
+            if (asFullCast) ExecuteCast(instance, repeatPayload);
+            else ExecuteWithSplitters(instance, repeatPayload);
         }
 
 #if UNITY_EDITOR

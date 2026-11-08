@@ -31,6 +31,24 @@ namespace CoreSystem.Skills.Logic
             return false;
         }
 
+        public ActiveBuff GetBuff(string buffCode, AttributeType type)
+        {
+            for (int i = 0; i < activeBuffs.Count; i++)
+            {
+                if (activeBuffs[i].BuffCode == buffCode && activeBuffs[i].TargetAttribute == type) return activeBuffs[i];
+            }
+            return null;
+        }
+
+        public void ReplaceModifier(ActiveBuff buff, AttributeModifier modifier)
+        {
+            if (attributeSystem == null || buff == null || modifier == null || !activeBuffs.Contains(buff)) return;
+            RemoveModifiers(buff);
+            buff.Modifiers.Clear();
+            buff.Modifiers.Add(modifier);
+            attributeSystem.AddModifier(buff.TargetAttribute, modifier);
+        }
+
         public void RemoveBuff(string buffCode)
         {
             bool removed = false;

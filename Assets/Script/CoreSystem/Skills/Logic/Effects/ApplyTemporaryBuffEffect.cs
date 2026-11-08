@@ -1,3 +1,4 @@
+using CoreSystem.Combat;
 using CoreSystem.Attributes;
 using CoreSystem.Entity;
 using UnityEngine;
@@ -33,7 +34,7 @@ namespace CoreSystem.Skills.Logic
                 finalIcon = BuffIconLoader.Load(BuffIconPath);
             }
 
-            character.Buffs.ApplyTemporaryBuff(finalBuffName, finalBuffCode, TargetAttribute, buffModifier, Duration, finalIcon, Category, MaxStacks);
+            character.Buffs.ApplyTemporaryBuff(finalBuffName, finalBuffCode, TargetAttribute, buffModifier, SupportHitFormula.Duration(Duration, payload.DurationMultiplier), finalIcon, Category, MaxStacks);
         }
     }
 }
