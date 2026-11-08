@@ -1,0 +1,56 @@
+{
+    "Dialogues": [
+        {
+            "Id": 1,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": { "EN": "Need a potion, traveler?", "TH": "ต้องการยาไหม นักเดินทาง" },
+                    "Choices": [
+                        { "Text": { "EN": "What do you brew?", "TH": "คุณปรุงอะไรบ้าง" }, "Next": 1 },
+                        { "Text": { "EN": "Goodbye.", "TH": "ลาก่อน" }, "Next": -1 }
+                    ]
+                },
+                {
+                    "Id": 1,
+                    "Text": { "EN": "Whatever keeps you standing.", "TH": "อะไรก็ตามที่ทำให้คุณยังยืนอยู่ได้" },
+                    "Choices": []
+                }
+            ]
+        },
+        {
+            "Id": 2,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": { "EN": "Bring me steel and I will make it sing.", "TH": "เอาเหล็กมา แล้วข้าจะตีให้มันเปล่งเสียง" },
+                    "Choices": []
+                }
+            ]
+        },
+        {
+            "Id": 3,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": { "EN": "Fair prices, mostly.", "TH": "ราคายุติธรรม ส่วนใหญ่นะ" },
+                    "Choices": []
+                }
+            ]
+        },
+        {
+            "Id": 4,
+            "StartNode": 0,
+            "Nodes": [
+                {
+                    "Id": 0,
+                    "Text": { "EN": "These roads were safer once.", "TH": "ถนนสายนี้เคยปลอดภัยกว่านี้" },
+                    "Choices": []
+                }
+            ]
+        }
+    ]
+}
