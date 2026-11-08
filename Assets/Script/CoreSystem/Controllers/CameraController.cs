@@ -48,6 +48,7 @@ namespace CoreSystem.Controllers
             _targetZoom = DefaultZoom;
             if (_cam != null) _cam.orthographicSize = DefaultZoom;
             _inputActions = new InputSystem_Actions();
+            CoreSystem.Settings.Keybinds.KeybindSetting.Attach(_inputActions.asset);
         }
 
         private void OnEnable()
@@ -90,17 +91,11 @@ namespace CoreSystem.Controllers
 
         private void HandleZoomInput()
         {
-            float scroll = 0f;
-            if (_inputActions != null)
-            {
-                float rawScroll = _inputActions.UI.ScrollWheel.ReadValue<Vector2>().y;
-                if (Mathf.Abs(rawScroll) > 0.01f)
-                {
-                    scroll = Mathf.Sign(rawScroll) * 0.1f;
-                }
-            }
+            float rawScroll = _inputActions != null ? _inputActions.UI.ScrollWheel.ReadValue<Vector2>().y : 0f;
+            bool pointerOverUI = CameraZoomFormula.HasScroll(rawScroll) && CoreSystem.UI.UIManager.IsPointerOverUI();
+            float scroll = CameraZoomFormula.ScrollStep(rawScroll, pointerOverUI);
 
-            if (Mathf.Abs(scroll) > 0.01f)
+            if (scroll != 0f)
             {
                 _targetZoom = Mathf.Clamp(_targetZoom - scroll * ZoomSensitivity, MinZoom, MaxZoom);
             }
