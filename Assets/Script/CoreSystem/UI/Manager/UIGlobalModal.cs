@@ -28,6 +28,10 @@ namespace CoreSystem.UI
         [SerializeField] private UIModalSkin _lightSkin = new UIModalSkin();
         [SerializeField] private UIModalSkin _darkSkin = UIModalSkin.CreateDark();
 
+        [Header("Style")]
+        [SerializeField] private UIModalStyle _style = UIModalStyle.Default;
+        [SerializeField] private UIModalStyleView _styleView;
+
         public event Action OnOpened;
         public event Action OnClosed;
         public event Action<Vector2> OnResized;
@@ -93,6 +97,8 @@ namespace CoreSystem.UI
         public bool IsFittingContent => _fitContent;
         public bool IsScrollable => _scrollable;
         public UIThemeMode ThemeMode => _themeMode;
+        public UIModalStyle Style => _style;
+        public UIModalStyleView StyleView => _styleView;
         public static UIThemeMode GlobalThemeMode => _globalThemeMode;
         public static event Action<UIThemeMode> OnGlobalThemeModeChanged;
         #endregion
@@ -107,6 +113,7 @@ namespace CoreSystem.UI
                 ListenToGlobalTheme(true);
             }
             ApplySkin();
+            if (_style != UIModalStyle.Default) ApplyStyle();
             if (_isResizable) EnsureResizeHandle();
         }
 
@@ -151,6 +158,12 @@ namespace CoreSystem.UI
             {
                 _closeButton.onClick.RemoveAllListeners();
                 _closeButton.onClick.AddListener(HandleCloseClicked);
+            }
+
+            if (_styleView != null && _styleView.MiniCloseButton != null)
+            {
+                _styleView.MiniCloseButton.onClick.RemoveAllListeners();
+                _styleView.MiniCloseButton.onClick.AddListener(HandleCloseClicked);
             }
 
             if (_isResizable)
@@ -236,6 +249,14 @@ namespace CoreSystem.UI
             return this;
         }
 
+        public UIGlobalModal SetStyle(UIModalStyle style)
+        {
+            _style = style;
+            ApplyStyle();
+            if (_fitContent) FitToContent();
+            return this;
+        }
+
         public UIGlobalModal SetRegistry(UIElementRegistrySO registry)
         {
             _registryOverride = registry;
@@ -250,6 +271,7 @@ namespace CoreSystem.UI
         public UIGlobalModal SetTitle(string title)
         {
             if (_titleText != null) _titleText.text = title;
+            if (_styleView != null) _styleView.SetTitle(title);
             return this;
         }
 
@@ -292,6 +314,7 @@ namespace CoreSystem.UI
         public UIGlobalModal SetCloseButtonVisible(bool isVisible)
         {
             if (_closeButton != null) _closeButton.gameObject.SetActive(isVisible);
+            if (_styleView != null) _styleView.SetCloseVisible(isVisible);
             return this;
         }
 
@@ -496,7 +519,7 @@ namespace CoreSystem.UI
             var skin = _themeMode == UIThemeMode.Dark ? _darkSkin : _lightSkin;
             if (skin == null) return;
 
-            if (_windowImage != null)
+            if (_windowImage != null && _style == UIModalStyle.Default)
             {
                 bool fallback = skin.WindowSprite == null;
                 _windowImage.sprite = fallback ? _prefabWindowSprite : skin.WindowSprite;
@@ -504,6 +527,18 @@ namespace CoreSystem.UI
             }
             if (_titleText != null) _titleText.color = skin.TitleColor;
             if (_closeIcon != null) _closeIcon.color = skin.IconColor;
+        }
+
+        private void ApplyStyle()
+        {
+            if (_styleView == null)
+            {
+                if (_style != UIModalStyle.Default) Debug.LogWarning($"[UIGlobalModal] {name} has no UIModalStyleView; style {_style} is ignored.");
+                return;
+            }
+            if (_titleText != null) _styleView.SetTitle(_titleText.text);
+            _styleView.Apply(_style);
+            ApplySkin();
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

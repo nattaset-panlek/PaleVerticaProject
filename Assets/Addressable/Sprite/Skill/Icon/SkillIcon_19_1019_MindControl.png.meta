@@ -1,0 +1,481 @@
+fileFormatVersion: 2
+guid: 5a04745cf5d4d594b88b8a964cc8000b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8198109874442715230
+    second: SkillIcon_19_1019_MindControl_0
+  - first:
+      213: -4951219635298381400
+    second: SkillIcon_19_1019_MindControl_1
+  - first:
+      213: 6370816360683060812
+    second: SkillIcon_19_1019_MindControl_2
+  - first:
+      213: -6068578245305267777
+    second: SkillIcon_19_1019_MindControl_3
+  - first:
+      213: 1863303779860570350
+    second: SkillIcon_19_1019_MindControl_4
+  - first:
+      213: 3429659347188924558
+    second: SkillIcon_19_1019_MindControl_5
+  - first:
+      213: -1457328965174485791
+    second: SkillIcon_19_1019_MindControl_6
+  - first:
+      213: -4142125211585474639
+    second: SkillIcon_19_1019_MindControl_7
+  - first:
+      213: -2051156413825112575
+    second: SkillIcon_19_1019_MindControl_8
+  - first:
+      213: 2967858611219830091
+    second: SkillIcon_19_1019_MindControl_9
+  - first:
+      213: 2981675095397462347
+    second: SkillIcon_19_1019_MindControl_10
+  - first:
+      213: 1051311364669595489
+    second: SkillIcon_19_1019_MindControl_11
+  - first:
+      213: -6413506441676123207
+    second: SkillIcon_19_1019_MindControl_12
+  - first:
+      213: -6715384208904125592
+    second: SkillIcon_19_1019_MindControl_13
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 155
+        width: 44
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e50c7cfce7985c170800000000000000
+      internalID: 8198109874442715230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 128
+        width: 123
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a1d91179fbb94bb0800000000000000
+      internalID: -4951219635298381400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_2
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 175
+        width: 91
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4eb2cbd9bfa96850800000000000000
+      internalID: 6370816360683060812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_3
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 155
+        width: 37
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb98ae41d3418cba0800000000000000
+      internalID: -6068578245305267777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_4
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 79
+        width: 22
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee06b336ae8cbd910800000000000000
+      internalID: 1863303779860570350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_5
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 53
+        width: 19
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e804bc15109989f20800000000000000
+      internalID: 3429659347188924558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_6
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 43
+        width: 17
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ec13e5070786cbe0800000000000000
+      internalID: -1457328965174485791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_7
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 41
+        width: 24
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bf0244e0173486c0800000000000000
+      internalID: -4142125211585474639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_8
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 63
+        width: 20
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 106a03feb14d883e0800000000000000
+      internalID: -2051156413825112575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_9
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 53
+        width: 19
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b459759bea3ff2920800000000000000
+      internalID: 2967858611219830091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_10
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 79
+        width: 22
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b417bc0a3b9016920800000000000000
+      internalID: 2981675095397462347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 65
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16f5677bd12079e00800000000000000
+      internalID: 1051311364669595489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_12
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 60
+        width: 12
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b3173b1fd5aef6a0800000000000000
+      internalID: -6413506441676123207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_19_1019_MindControl_13
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 44
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 863800244a92ec2a0800000000000000
+      internalID: -6715384208904125592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SkillIcon_19_1019_MindControl_0: 8198109874442715230
+      SkillIcon_19_1019_MindControl_1: -4951219635298381400
+      SkillIcon_19_1019_MindControl_10: 2981675095397462347
+      SkillIcon_19_1019_MindControl_11: 1051311364669595489
+      SkillIcon_19_1019_MindControl_12: -6413506441676123207
+      SkillIcon_19_1019_MindControl_13: -6715384208904125592
+      SkillIcon_19_1019_MindControl_2: 6370816360683060812
+      SkillIcon_19_1019_MindControl_3: -6068578245305267777
+      SkillIcon_19_1019_MindControl_4: 1863303779860570350
+      SkillIcon_19_1019_MindControl_5: 3429659347188924558
+      SkillIcon_19_1019_MindControl_6: -1457328965174485791
+      SkillIcon_19_1019_MindControl_7: -4142125211585474639
+      SkillIcon_19_1019_MindControl_8: -2051156413825112575
+      SkillIcon_19_1019_MindControl_9: 2967858611219830091
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -75,6 +75,7 @@ Material:
     m_Colors:
     - _BorderColor: {r: 1, g: 1, b: 1, a: 0}
     - _FillColor: {r: 1, g: 1, b: 1, a: 0.08627451}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 0.2}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
     - _WorldSize: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -1,6 +1,6 @@
 # Global Drag & Drop System (GlobalDragDoc.md)
 
-Welcome, AI Collaborator and Developer. This document is the definitive guide for integrating with and extending the **Global Drag & Drop System** (`GlobalDragManager`) in **Realm of Hero**.
+Welcome, AI Collaborator and Developer. This document is the definitive guide for integrating with and extending the **Global Drag & Drop System** (`GlobalDragManager`) in **Pale Vertica**.
 
 The Global Drag System is a decoupled, centralized workflow designed to handle all drag-and-drop interactions across the UI—including Inventory Items, Equipment, Costumes, Hotbar Skills/Consumables, and future features like Mounts, Emotes, or Pet Commands.
 
@@ -175,3 +175,20 @@ namespace CoreSystem.UI.CustomSystem
   - Updates the local coordinates of the visual drag model inside its Canvas. Call this inside `OnDrag`.
 - **`FinishDrag()`**:
   - Hides the visual drag model, restores raycast blocking, and clears `Payload` and `Source`. Call this inside `OnEndDrag`.
+
+---
+
+## 5. Inventory slot clicks (2026-10-19)
+
+`ItemSlotGlobal` (base of `ItemSlotSquare` and `ItemSlotWide`) handles clicks in one place:
+
+| Input | Result |
+|---|---|
+| Left click (single) | nothing |
+| Right click | context menu from `GetDefaultContextMenuItems()`: Equip/Unequip or Wear/Take Off, Use (consumables, skill runes), Info, Discard |
+| Left double click (`clickCount >= 2`) | `UsePrimaryAction()`: equipment equips (SmartEquip) or unequips, costumes wear or take off, consumables and skill runes are used. Other items do nothing |
+| Left drag | unchanged: `ItemDragHandler` (horizontal = carry the item, vertical = scroll the list) |
+
+- The old left-click menu (`ContextMenuUI` added by the slot, and `ItemSlotWide.OnClickSlotButton`) is turned off. The button stays for its hover and press tint.
+- Other windows can open the same menu with `slot.ShowContextMenu(screenPosition)` or run the same action with `slot.UsePrimaryAction()`.
+- Equipment and costume slots in the character window (`EquipmentSlotUI`, `CostumeSlotUI`) still use their own `ContextMenuUI`.

@@ -1,6 +1,6 @@
 import os
 
-path = r'F:\GameProject\Realm of Hero\My project\Assets\Script\Editor\ProjectMobilityAssistant.cs'
+path = r'F:\GameProject\Pale Vertica\Assets\Script\Editor\ProjectMobilityAssistant.cs'
 
 with open(path, 'r', encoding='utf-8') as f:
     lines = f.readlines()

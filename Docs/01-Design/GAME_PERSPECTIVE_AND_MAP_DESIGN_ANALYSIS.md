@@ -1,10 +1,10 @@
-# Realm of Hero: Game Perspective & Map Design Architectural Analysis
+# Pale Vertica: Game Perspective & Map Design Architectural Analysis
 
 ---
 
 ## 1. Executive Summary: Core Game Identity
 
-**Realm of Hero: Whispers of the Pale Throne** is a high-fidelity **Top-Down 2D / 2.5D Action RPG (ARPG)** built on Unity Universal Render Pipeline (URP). It marries the deep, mathematical character progression of classic isometric/top-down ARPGs (*Ragnarok Online*, *Path of Exile*, *Grim Dawn*) with the immediate, reactive micro-combat of modern twin-stick titles (*Hades*, *CrossCode*, *Children of Morta*).
+**Pale Vertica: Whispers of the Pale Throne** is a high-fidelity **Top-Down 2D / 2.5D Action RPG (ARPG)** built on Unity Universal Render Pipeline (URP). It marries the deep, mathematical character progression of classic isometric/top-down ARPGs (*Ragnarok Online*, *Path of Exile*, *Grim Dawn*) with the immediate, reactive micro-combat of modern twin-stick titles (*Hades*, *CrossCode*, *Children of Morta*).
 
 ### Key Game Pillars Defining World & Map Design
 - **Deterministic Math & Stat Purity**: 6 core attributes (STR, AGI, VIT, INT, DEX, LUK) driving complex secondary stats (ATK, MATK, Hit, Flee, ASPD, Cast Speed, Critical).
@@ -52,7 +52,7 @@
 
 ---
 
-## 3. Map Layout Archetypes for Realm of Hero
+## 3. Map Layout Archetypes for Pale Vertica
 
 Below are five distinct map design options evaluated against the game's mechanics, combat pacing, and technical architecture.
 

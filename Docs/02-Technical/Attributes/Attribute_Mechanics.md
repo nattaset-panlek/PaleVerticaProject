@@ -1,4 +1,4 @@
-# Realm of Hero: Attribute Mechanics & Class Guide
+# Pale Vertica: Attribute Mechanics & Class Guide
 
 This document details the flow of attributes, calculation formulas, and class archetypes found in the game.
 
@@ -12,10 +12,10 @@ The following table lists all attributes defined in the system and their roles.
 | 1-4 | **HP / MaxHP** | Resource | Base HP + Flat Bonus + (VIT * 1%) |
 | 5-8 | **MP / MaxMP** | Resource | Base MP + Flat Bonus + (INT * 1%) |
 | 9-10 | **STR** | Core | Increases Physical ATK (1:1) and Weight Limit (1:30) |
-| 11-12 | **AGI** | Core | Increases Flee (1:1), ASPD (1:0.5), and Status DEF (1:0.2) |
+| 11-12 | **AGI** | Core | Increases Flee (1:1), ASPD (1:1, % attack speed), and Status DEF (1:0.2) |
 | 13-14 | **VIT** | Core | Increases MaxHP (1:1%), HP Recovery (1:0.2), and Status DEF (1:0.7) |
 | 15-16 | **INT** | Core | Increases MATK (1:1.5), MaxMP (1:1%), MP Recovery (1:0.16), and Status DEF (1:1) |
-| 17-18 | **DEX** | Core | Increases Hit (1:1), ASPD (1:0.15), and slightly ATK/MATK (5:1) |
+| 17-18 | **DEX** | Core | Increases Hit (1:1), ASPD (1:0.3), and slightly ATK/MATK (5:1) |
 | 19-20 | **LUK** | Core | Increases Crit Rate (1:0.3), Perfect Dodge (1:0.1), and minorly all stats |
 | 21-24 | **ATK / MATK** | Combat | Primary damage stats for Physical and Magic |
 | 33-34 | **Status DEF** | Defense | Soft defense derived from VIT, AGI, INT, DEX, LUK |

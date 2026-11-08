@@ -194,6 +194,7 @@ namespace CoreSystem.Data
             if (_activeSkillJsonData.TryGetValue(id, out ActiveSkillJsonData jsonData))
             {
                 clonedSkill.Name = jsonData.SkillName;
+                clonedSkill.Description = jsonData.Description;
                 if (System.Enum.TryParse(jsonData.SkillElement, out ElementType element))
                 {
                     clonedSkill.SkillElement = element;

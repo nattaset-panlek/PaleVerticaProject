@@ -1,4 +1,5 @@
 using CoreSystem;
+using CoreSystem.Combat;
 using CoreSystem.Data;
 using CoreSystem.UI.Utility;
 using System.Collections.Generic;
@@ -206,33 +207,23 @@ namespace CoreSystem.UI.AttributePanel
                 valueStr = "0.0 Hit/s";
                 return;
             }
-            int AttactSpeedMinPreHit = 1;
-            int AttactSpeedMaxPreHit = 100;
             float finalValue = attr.CurrentValue;
             float baseValue = attr.BaseValue;
             float flatBonus = attr.FlatBonusSum;
             float percentBonus = attr.PercentBonusSum;
-            float preFinal = (baseValue + flatBonus) * (1f + percentBonus);
-            float addBonus = finalValue - preFinal;
-            float finalDelay = (200f - finalValue) / 50f;
-            float minDelay = 1f / AttactSpeedMaxPreHit;
-            float maxDelay = 1f / AttactSpeedMinPreHit;
-            finalDelay = Mathf.Clamp(finalDelay, minDelay, maxDelay);
-            float finalHitsPerSecond = 1f / finalDelay;
-            float baseDelay = (200f - baseValue) / 50f;
-            baseDelay = Mathf.Clamp(baseDelay, minDelay, maxDelay);
-            float baseHitsPerSecond = 1f / baseDelay;
-            string finalText = $"<b>{finalHitsPerSecond:F1} Hit/s</b>";
+            float finalHitsPerSecond = BasicAttackFormula.AttacksPerSecond(finalValue);
+            float baseHitsPerSecond = BasicAttackFormula.AttacksPerSecond(baseValue);
+            string finalText = $"<b>{finalHitsPerSecond:F2} Hit/s</b>";
             string breakdownText = "";
             if (finalValue != baseValue)
             {
-                string basePart = $"{baseHitsPerSecond:F1}";
+                string basePart = $"{baseHitsPerSecond:F2}";
                 float diff = finalHitsPerSecond - baseHitsPerSecond;
                 string diffSign = diff >= 0 ? "+" : "";
-                breakdownText = $" <size=85%><color=#A0A0A0>({basePart}<color=#25E3B7>{diffSign}{diff:F1}</color> Hit/s)</color></size>";
+                breakdownText = $" <size=85%><color=#A0A0A0>({basePart}<color=#25E3B7>{diffSign}{diff:F2}</color> Hit/s)</color></size>";
             }
             valueStr = $"{finalText}{breakdownText}";
-            tooltipDesc += $"\n\nRaw ASPD Breakdown:\nBase: {baseValue:F0}\nFlat Bonus: {flatBonus:F0}\nPercent Bonus: {percentBonus * 100f:F0}%\nTotal Raw ASPD: {finalValue:F0}";
+            tooltipDesc += $"\n\nAttack Speed Breakdown:\nBase: {baseValue:F0}%\nFlat Bonus: +{flatBonus:F0}%\nPercent Bonus: {percentBonus * 100f:F0}%\nTotal: {finalValue:F0}% (limit {BasicAttackFormula.MinAspd:F0}-{BasicAttackFormula.MaxAspd:F0}%)";
         }
 
         private void CalculateConsolidatedValue(AttributeType type, out string label, out string valueStr, out string tooltipTitle, out string tooltipDesc)

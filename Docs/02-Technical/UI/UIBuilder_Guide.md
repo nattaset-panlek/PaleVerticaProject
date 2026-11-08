@@ -68,11 +68,15 @@ private void BuildUI(UIBuilderContext ui)
 | `Grid(b)` / `Grid(style, b)` | Wrapping grid; set cells with `.Cell(w, h)`, fixed columns with `.Columns(n)` (default: as many as fit) |
 | `Panel(b)` | Column with theme panel background, padding and gap (a "card") |
 | `Scroll(b, height)` / `ScrollView(style, b, horizontal, vertical)` | Scroll area |
+| `Visualizer(items, layout, (cell, item, index) => ..., height)` | Virtualized list or grid (Global Visualizer): only visible cells are built, recycled cells are rebuilt with your builder code. Use it for long lists. See [Global Visualizer Walkthrough](./Global_Visualizer_Walkthrough.md) |
 | `Spacer()` / `Spacer(px)` | Flexible gap (pushes siblings apart) or fixed gap |
 | `Separator()` | Thin themed line |
 
 ### Text
-`Title`, `Heading`, `Label` (body), `Caption` (small, muted), `KeyValue(key, value)`, `Badge(text, color)`, or `Text(style, content)` for a registry style. Rich text tags work (`<color=#33FF66>`).
+`Title`, `Heading`, `Label` (body), `Caption` (small, muted), `KeyValue(key, value)`, `SectionHeader(title)`, `Badge(text, color)`, or `Text(style, content)` for a registry style. Rich text tags work (`<color=#33FF66>`).
+- `KeyValue` builds the registry Custom style `Key Value` (keys `Key`, `Value`) when it exists, otherwise a caption + label row.
+- `SectionHeader` builds the registry Custom style `Section Header` (key `Title`), otherwise a `Heading`.
+- `Badge` uses dark text on light colours and white text on dark colours.
 
 ### Controls
 `Button(label, onClick, variant)`, `Button(style, label, onClick)`, `Input(text, onChanged)` (+ `.OnSubmit(...)`), `Toggle(label, isOn, onChanged)`, `Image(sprite)`, `RawImage(style, texture)`, `Progress(value, variant)` / `ProgressBar(style, value, color)`, `Custom(style)`.
@@ -109,6 +113,13 @@ The older `Set*` methods (`SetPreferredSize`, `SetFlexibleSize`, `SetFitParent`,
 ### Variants (`UIVariant`)
 `Default` keeps the registry prefab look. `Primary`, `Secondary`, `Danger`, `Success`, `Warning`, `Selected`, `Ghost` recolour the element and its text from `UITheme`. Use them instead of hard-coded colours.
 
+Art styles: a registry entry with **Keep Prefab Look** keeps its prefab colours, label font size and layout padding. `Button(label, onClick, variant)` on such a style:
+- Danger / Success / Warning recolour the label only;
+- Selected uses the `Primary Button` art;
+- Ghost is transparent.
+
+`LabelVariant(variant)` does the same on any element. An explicit `.Variant(...)` still recolours the background. The Light UI Kit uses this for the white / #1E1E1E button pair ([Light_UI_Kit_Walkthrough.md](./Light_UI_Kit_Walkthrough.md)).
+
 ---
 
 ## 4. Updating without rebuilding everything
@@ -125,7 +136,7 @@ ui.Region("results", list =>
 
 - `ui.Region(id, builder)` builds now and remembers the builder; `modal.Refresh(id)` rebuilds only that region. The search field above keeps focus.
 - `modal.Refresh()` rebuilds the whole document. Ids are re-registered, state is kept.
-- Scroll views with an `Id` keep their scroll position across refreshes.
+- Scroll views with an `Id` keep their scroll position across refreshes. A scroll view whose content fitted is not restored, so a list that grows (a foldout opens) starts at the top.
 - `ui.Foldout(id, title, builder, expanded, header)` is a region with a header button; its open state lives in the document state (`"<id>.open"`).
   - Modifiers on the `Foldout(...)` result hit the region container (no Image), not the header. Style the header with the `header` callback: `(button, open) => button.CornerRadius(5)`. It re-runs every time the foldout opens or closes.
   - For every foldout at once, add a Button entry named `Foldout Header` to the registry; headers are then built from it (with its size and Corner Radius rules) instead of `Button` + Secondary.
@@ -176,7 +187,7 @@ ui.Pages("settings", pages =>
 - `WithHeader` adds a fixed area above the page content (search bars, filters); it is not rebuilt when pages change.
 - **Styling the nav buttons** (tabs or side menu): modifiers on the `Pages(...)` result hit the outer container, not the buttons. Use the page set instead:
   - `WithNavStyle(button => button.CornerRadius(5))` runs on every nav button after the default styling, so it wins. `WithNavStyle((button, selected) => ...)` also gets whether that button is the open page. It re-runs whenever the page changes.
-  - `pages.NavButtonStyle = "Nav Button"` builds the nav buttons from that registry style (with its Min/Lock Size and Corner Radius); a missing style falls back to `Button`.
+  - `pages.NavButtonStyle = "Nav Button"` builds the nav buttons from that registry style (with its Min/Lock Size and Corner Radius); a missing style falls back to `Button`. With a custom style, pages that are not selected keep the prefab look and only the open page gets `UIVariant.Selected`.
 - Switching pages refreshes only the menu and the content regions. The current page is stored in the document (`document.GetPage(id)`) and survives full refreshes and closing/reopening the window.
 - From code: `modal.ShowPage("settings", "Audio")`, `modal.RefreshPage("settings")` (rebuild the current page after an action).
 
@@ -185,21 +196,24 @@ ui.Pages("settings", pages =>
 ## 6. Theme and styles
 
 ### Light and dark mode
-- `UIGlobalModal` > **Theme**: `Theme Mode`, `Follow Global Theme`, and one **skin** per mode (`Light Skin`, `Dark Skin`): window sprite, window colour, title colour, close-icon colour. An empty Dark window sprite reuses the prefab sprite tinted dark. Assign `UI_Global_Window_White` / `UI_Global_Window_Dark` (`Assets/Art/UI/New/Modal/Global/`) on the Global Modal prefab.
+- `UIGlobalModal` > **Theme**: `Theme Mode`, `Follow Global Theme`, and one **skin** per mode (`Light Skin`, `Dark Skin`): window sprite, window colour, title colour, close-icon colour. An empty Dark window sprite reuses the prefab sprite tinted dark. The Light UI Kit assigns the window art (`Modal/UI_Modal_Skill_Window` light, `Modal/UI_Modal_Window` dark, Image type Tiled) and the header layout (94 px band, black title tag): [Light_UI_Kit_Walkthrough.md](./Light_UI_Kit_Walkthrough.md).
 - The registry asset holds two palettes: `Theme` (light) and `Dark Theme`. Builder text, panels, variants and badges use the palette of the window's mode; switching mode rebuilds the content.
 - Code: `modal.SetThemeMode(UIThemeMode.Dark)` for one window, `UIGlobalModal.SetGlobalThemeMode(mode)` for every window that follows the global theme (new windows start in the global mode). The dev tool header has a Light/Dark button.
 - Snapshots: `UISnapshotRenderer` renders `dark_*` variants (gallery, a dev tool page, inspect, death screen).
 
 - **Theme** (`UIElementRegistry` asset > Theme): surface, text and accent colours, title/heading/body/caption sizes, gap, padding, control height. Defaults match the light Global Modal prefab.
-- **Styles**: `UIElementRegistrySO` maps (`UIElementType`, style name) to a prefab, with an optional `TargetComponentPath` to the child holding the real component. Registered today: `Text`, `Button`, `Primary Button`, `Button Fitter`, `InputField`, `Image`, `Toggle`, `Slider`, `Dropdown`, `ScrollRect`, `TabsScrollView`, `Container`, `Custom`, `Scrollbar Vertical`, `RawImage`, `ProgressBar`, `Divider`, `Mask` (add `Scrollbar Horizontal` when its prefab exists).
+- **Styles**: `UIElementRegistrySO` maps (`UIElementType`, style name) to a prefab, with an optional `TargetComponentPath` to the child holding the real component. Registered today: `Text`, `Button`, `Primary Button`, `Button Fitter`, `InputField`, `Image`, `Toggle`, `Slider`, `Dropdown`, `ScrollRect`, `TabsScrollView`, `Container`, `Custom`, `Scrollbar Vertical`, `RawImage`, `ProgressBar`, `Divider`, `Mask` (add `Scrollbar Horizontal` when its prefab exists). The Light UI Kit adds `Nav Button`, `Chip`, `Foldout Header`, `Section Header`, `Key Value`, `Item Row`, `Attr Cell`, `Level Frame`, `HP Bar`, `MP Bar`, `EXP Bar`, `Item Card` and re-points `Button`, `Primary Button` and `InputField` to its art prefabs.
 - **Per-style size rules** (entry > Builder Layout): `Min Size` sets a minimum (for example `Primary Button` with Min Size Y = 50 is never shorter than 50), `Lock Size` fixes the size so it never grows or shrinks. `0` = auto on that axis. They apply after the builder's own sizing (label measuring, block stretch), so code modifiers called afterwards still win: `Width/Height/Fill` override them, and `MinWidth/MinHeight` can raise but never lower them. Grid cells ignore them (the grid's `Cell` decides).
+- **Keep Prefab Look** (entry > Builder Layout): art styles keep the prefab's colours and label font size (see Variants in section 3).
 - **Per-style corner radius** (entry > Builder Layout > `Corner Radius (px)`): above `0`, every builder element of that style gets `CornerRadius(px)` automatically, through the same Pixels Per Unit Multiplier math as the modifier. `0` keeps the prefab's own multiplier (the inspector shows the prefab's current radius as a hint). A `.CornerRadius(px)` call in code runs later, so it still wins.
 - Unregistered names (for example the default container style `Div` and grid style `Grid`) fall back to themed code-generated elements. Register a style only when you want a designed prefab.
 
 ### Custom prefabs (`UICustomElement`)
 1. Build any prefab, add `UICustomElement` to its root and map children to keys (`"Icon"`, `"Title"`, `"Action"`).
 2. Register it under `UIElementType.Custom` with a style name.
-3. `var card = ui.Custom("ItemCard"); card.Get<TMP_Text>("Title").text = "Excalibur";`
+3. `var card = ui.Custom("ItemCard"); card.Get<TMP_Text>("Title").text = "Excalibur";`, or chain `card.SetText("Title", "Excalibur").SetSprite("Icon", sprite).SetColor("Outline", color)`.
+4. `Custom` does not stretch on its own: give the prefab root a `LayoutElement` (flexible width 1 to fill a column or share a row).
+5. Make it clickable with `new UIElementRef(card.gameObject, ui.Document).OnClick(...)`.
 
 ---
 
@@ -215,9 +229,11 @@ ui.Pages("settings", pages =>
 
 Ways to capture:
 - **Play mode**: press **F9** (all open Global Modals) or **Snapshot** in the dev tool header. `UIDebugCapture.Capture(modal)` from code. Only in the Editor and development builds.
-- **Editor, no Play mode**: menu **Realm of Hero > UI > Render UI Snapshots** renders the gallery, every dev tool page, an expanded database page and the death screen in an isolated preview scene.
+- **Editor, no Play mode**: menu **Pale Vertica > UI > Render UI Snapshots** renders the gallery, every dev tool page, an expanded database page and the death screen in an isolated preview scene.
 - **Unity closed (batch, used by AI agents)**: run without `-nographics`, then read the PNG and TXT files:
   `"D:/Unity/6000.4.8f1/Editor/Unity.exe" -batchmode -projectPath "F:/GameProject/Pale Vertica" -executeMethod CoreSystem.Editor.UI.UISnapshotRenderer.RenderAllBatch -logFile render.log`
+
+Prefab pages are rendered too: `skillmanage_1_Modifier`, `_2_Effect`, `_3_Basic` instantiate `Character SkillManager Window.prefab` at 1920 x 1080, at the same place as the Figma frames, with a #434343 backdrop (see [Skill_Manage_Window_Walkthrough.md](./Skill_Manage_Window_Walkthrough.md)). Scrollbars set to Permanent stay visible in snapshots; the others hide when the content fits.
 
 Issue kinds (`UILayoutInspector`): `TextOverflow` (text needs more height than its box; hidden when the overflow mode is not Overflow), `LabelSquashed` (a word does not fit, so text breaks inside words), `LabelTruncated`, `BelowMinSize` (parent too small for its children), `OutsideParent`, `SiblingOverlap`, `NestedFitter`, `ZeroSize`, `OversizedControl` (usually a prefab size leaking into layout).
 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,8 @@ namespace CoreSystem.UI
         public const string DefaultScrollStyle = "ScrollRect";
         public const string TabsScrollStyle = "TabsScrollView";
         public const string FoldoutHeaderStyle = "Foldout Header";
+        public const string SectionHeaderStyle = "Section Header";
+        public const string KeyValueStyle = "Key Value";
         public const string DefaultDividerStyle = "Divider";
         public const string DefaultProgressStyle = "ProgressBar";
 
@@ -88,6 +91,11 @@ namespace CoreSystem.UI
             return new UIElementRef(go, _document);
         }
 
+        public UIElementRef Visualizer<T>(System.Collections.Generic.IReadOnlyList<T> items, GlobalVisualizer.VisualLayoutSettings layout, Action<UIBuilderContext, T, int> buildItem, float height = 240f, GlobalVisualizer.VisualSizeMode sizeMode = GlobalVisualizer.VisualSizeMode.Fixed)
+        {
+            return UIVisualizerFactory.Create(this, items, layout, buildItem, height, sizeMode);
+        }
+
         public UIElementRef HorizontalScrollView(string styleName, Action<UIBuilderContext> content, UnityEngine.UI.ScrollRect.MovementType movementType = UnityEngine.UI.ScrollRect.MovementType.Elastic)
         {
             return ScrollView(styleName, content, horizontal: true, vertical: false, movementType);
@@ -122,6 +130,13 @@ namespace CoreSystem.UI
 
         public UIElementRef KeyValue(string key, string value, float keyWidth = 110f)
         {
+            if (Factory.HasStyle(UIElementType.Custom, KeyValueStyle))
+            {
+                var box = Custom(KeyValueStyle).SetText("Key", key).SetText("Value", value);
+                ApplyFlow(box.gameObject, true);
+                return new UIElementRef(box.gameObject, _document);
+            }
+
             return Row(row =>
             {
                 row.Caption(key).Width(keyWidth);
@@ -132,7 +147,7 @@ namespace CoreSystem.UI
         public UIElementRef Badge(string content, Color? background = null)
         {
             Color fill = background ?? Theme.PanelAlt;
-            Color ink = background.HasValue ? Theme.TextOnAccent : Theme.Text;
+            Color ink = background.HasValue && background.Value.grayscale < 0.6f ? Theme.TextOnAccent : Theme.Text;
             return Row(row => row.Label(content).FontSize(Theme.CaptionSize).Bold().TextColor(ink).Fill(0f))
                 .Background(fill)
                 .Padding(6, 6, 2, 2)
@@ -148,9 +163,10 @@ namespace CoreSystem.UI
 
             var text = go.GetComponentInChildren<TMP_Text>(true);
             if (text != null) text.text = label;
-            Factory.FitControl(go, text);
+            Factory.FitControl(go, text, Factory.KeepsPrefabLook(UIElementType.Button, styleName));
             if (text != null && UIElementFactory.GetLayoutKind(_parent) == UILayoutKind.Grid) text.overflowMode = TextOverflowModes.Ellipsis;
             Factory.ApplyStyleRules(go, UIElementType.Button, styleName);
+            if (_parent != null) UIStyleSizeLock.FitGridCell(_parent.GetComponent<GridLayoutGroup>());
             ApplyFlow(go, false);
             return new UIElementRef(go, _document);
         }
@@ -158,7 +174,21 @@ namespace CoreSystem.UI
         public UIElementRef Button(string label, Action onClick, UIVariant variant = UIVariant.Default)
         {
             string style = variant == UIVariant.Primary ? PrimaryButtonStyle : DefaultButtonStyle;
-            return Button(style, label, onClick).Variant(variant);
+            if (!Factory.KeepsPrefabLook(UIElementType.Button, style)) return Button(style, label, onClick).Variant(variant);
+
+            if (variant == UIVariant.Selected && Factory.KeepsPrefabLook(UIElementType.Button, PrimaryButtonStyle)) style = PrimaryButtonStyle;
+            return Button(style, label, onClick).LabelVariant(variant);
+        }
+
+        public UIElementRef SectionHeader(string title)
+        {
+            if (!Factory.HasStyle(UIElementType.Custom, SectionHeaderStyle)) return Heading(title);
+
+            var header = Custom(SectionHeaderStyle);
+            var text = header.GetComponentInChildren<TMP_Text>(true);
+            if (text != null) text.text = title;
+            ApplyFlow(header.gameObject, true);
+            return new UIElementRef(header.gameObject, _document);
         }
 
         public UIElementRef Image(string styleName, Sprite sprite)
@@ -209,6 +239,41 @@ namespace CoreSystem.UI
         }
 
         public UIElementRef Input(string initialText, Action<string> onValueChanged) => InputField(DefaultInputStyle, initialText, onValueChanged);
+
+        public UIElementRef Slider(string styleName, float value, float min, float max, bool wholeNumbers, Action<float> onValueChanged)
+        {
+            GameObject go = Factory.Create(UIElementType.Slider, styleName, _parent);
+            var slider = Factory.GetTarget<Slider>(go, UIElementType.Slider, styleName);
+            if (slider != null)
+            {
+                slider.minValue = min;
+                slider.maxValue = max;
+                slider.wholeNumbers = wholeNumbers;
+                slider.SetValueWithoutNotify(Mathf.Clamp(value, min, max));
+                if (onValueChanged != null) slider.onValueChanged.AddListener(v => onValueChanged(v));
+            }
+            Factory.ApplyStyleRules(go, UIElementType.Slider, styleName);
+            ApplyFlow(go, false);
+            return new UIElementRef(go, _document);
+        }
+
+        public UIElementRef Dropdown(string styleName, IList<string> options, int index, Action<int> onValueChanged)
+        {
+            GameObject go = Factory.Create(UIElementType.Dropdown, styleName, _parent);
+            var dropdown = Factory.GetTarget<TMP_Dropdown>(go, UIElementType.Dropdown, styleName);
+            if (dropdown != null)
+            {
+                dropdown.ClearOptions();
+                if (options != null) dropdown.AddOptions(new List<string>(options));
+                int count = options != null ? options.Count : 0;
+                dropdown.SetValueWithoutNotify(count > 0 ? Mathf.Clamp(index, 0, count - 1) : 0);
+                dropdown.RefreshShownValue();
+                if (onValueChanged != null) dropdown.onValueChanged.AddListener(i => onValueChanged(i));
+            }
+            Factory.ApplyStyleRules(go, UIElementType.Dropdown, styleName);
+            ApplyFlow(go, false);
+            return new UIElementRef(go, _document);
+        }
 
         public UICustomElement Custom(string styleName)
         {
@@ -397,7 +462,7 @@ namespace CoreSystem.UI
             {
                 int index = i;
                 bool isSelected = index == selected;
-                UIVariant variant = isSelected ? UIVariant.Selected : (vertical ? UIVariant.Ghost : UIVariant.Secondary);
+                UIVariant variant = isSelected ? UIVariant.Selected : customStyle ? UIVariant.Default : (vertical ? UIVariant.Ghost : UIVariant.Secondary);
                 Action onClick = () => nav.Document.ShowPage(id, index);
                 var button = customStyle
                     ? nav.Button(style, pages.GetTitle(i), onClick).Variant(variant)

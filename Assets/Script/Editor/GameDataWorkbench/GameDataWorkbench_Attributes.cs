@@ -14,26 +14,47 @@ using CoreSystem.Skills.Logic.Effects;
 
 public partial class GameDataWorkbench : EditorWindow
 {
+    #region [Private Methods]
     private void DrawAttributeEditor()
     {
         DrawEditor(_attributeData.Attributes, _attributeSelectedIndex, (idx) => _attributeSelectedIndex = idx, (entry) => {
-            entry.Id = EditorGUILayout.IntField("ID", entry.Id);
-            entry.Name = EditorGUILayout.TextField("Name (Short)", entry.Name);
-            entry.FullName = EditorGUILayout.TextField("Full Name", entry.FullName);
-            entry.Mapping = EditorGUILayout.TextField("Mapping (Enum Name)", entry.Mapping);
-            entry.Icon = EditorGUILayout.TextField("Icon Name", entry.Icon);
-            entry.IsPercent = EditorGUILayout.Toggle("Is Percent (%)", entry.IsPercent);
-            entry.Description = EditorGUILayout.TextArea(entry.Description, GUILayout.Height(60));
-        }, (entry) => $"[{entry.Id}] {(string.IsNullOrEmpty(entry.FullName) ? entry.Name : entry.FullName)}", 
+            BeginInspectorColumns();
+            if (BeginGroup("Attribute", ThemeAccent))
+            {
+                entry.Id = EditorGUILayout.IntField("ID", entry.Id);
+                entry.Name = EditorGUILayout.TextField("Name (Short)", entry.Name);
+                entry.FullName = EditorGUILayout.TextField("Full Name", entry.FullName);
+                entry.Icon = EditorGUILayout.TextField("Icon Name", entry.Icon);
+                entry.Mapping = EditorGUILayout.TextField("Mapping (Enum Name)", entry.Mapping);
+                entry.IsPercent = EditorGUILayout.Toggle("Is Percent (%)", entry.IsPercent);
+            }
+            EndGroup();
+            NextInspectorColumn();
+            if (BeginGroup("Description", ThemeAccent))
+            {
+                entry.Description = EditorGUILayout.TextArea(entry.Description ?? string.Empty, EditorStyles.textArea, GUILayout.MinHeight(60));
+            }
+            EndGroup();
+            EndInspectorColumns();
+        }, (entry) => new EntryView {
+            Id = entry.Id.ToString(),
+            Name = entry.Name,
+            Meta = entry.IsPercent ? "%" : "flat",
+            MetaColor = ThemeMuted,
+            Accent = ThemeAccent,
+            Subtitle = entry.FullName,
+            Chips = string.IsNullOrEmpty(entry.Mapping) ? null : new[] { new EntryChip(entry.Mapping, ThemeMuted) }
+        },
         () => new AttributeEntry { Id = _attributeData.Attributes.Count > 0 ? _attributeData.Attributes.Max(x => x.Id) + 1 : 1 },
-        null, null,
+        AttributeFilter,
         () => {
-            if (GUILayout.Button("\u2699\uFE0F  Generate Enum (AttributeType.cs)", GUILayout.Height(28)))
+            DrawAttributeFilters();
+            GUILayout.Space(4);
+            if (GUILayout.Button(new GUIContent("Generate AttributeType Enum", "Writes Assets/Script/CoreSystem/Enums/AttributeType.cs from this table."), EditorStyles.miniButton))
             {
                 GenerateAttributeEnum();
             }
-            EditorGUILayout.Space(5);
-        });
+        }, sorts: GetAttributeSorts(), columns: GetAttributeColumns());
     }
 
     private void DrawAttributeSelector(int currentId, System.Action<int> onSelected)
@@ -61,12 +82,13 @@ public partial class GameDataWorkbench : EditorWindow
         {
             var dropdown = new GenericAttributeDropdown(_attributeData.Attributes, (selectedAttr) => {
                 onSelected(selectedAttr.Id);
+                MarkDirty();
             });
             dropdown.Show(rect);
         }
         GUI.color = Color.white;
         
-        if (isInvalid) GUILayout.Label("\u26A0", GUILayout.Width(20));
+        if (isInvalid) GUILayout.Label(EditorGUIUtility.IconContent("console.warnicon.sml"), GUILayout.Width(20));
         
         EditorGUILayout.EndHorizontal();
     }
@@ -141,4 +163,5 @@ public partial class GameDataWorkbench : EditorWindow
             Debug.LogError($"Failed to generate Enum: {ex.Message}");
         }
     }
+    #endregion
 }

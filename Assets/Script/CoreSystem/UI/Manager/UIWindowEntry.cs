@@ -13,11 +13,24 @@ namespace CoreSystem.UI
         public bool DestroyOnClose = false;
         public List<KeyCode> Keys = new List<KeyCode>();
 
+        public bool IsSingleKey => Keys != null && Keys.Count == 1 && ToInputSystemKey(Keys[0]) != UnityEngine.InputSystem.Key.None && !IsModifier(Keys[0]);
+
         public bool IsKeyPressed()
         {
             if (Keys == null || Keys.Count == 0) return false;
             var keyboard = UnityEngine.InputSystem.Keyboard.current;
             if (keyboard == null) return false;
+
+            if (IsSingleKey && CoreSystem.Settings.Keybinds.KeybindSetting.TryGetWindowKeys(WindowName, out var pair))
+            {
+                if (keyboard.leftAltKey.isPressed || keyboard.rightAltKey.isPressed || keyboard.leftCtrlKey.isPressed || keyboard.rightCtrlKey.isPressed || keyboard.leftShiftKey.isPressed || keyboard.rightShiftKey.isPressed) return false;
+                for (int slot = 0; slot < CoreSystem.Settings.Keybinds.KeybindPair.SlotCount; slot++)
+                {
+                    var bound = pair.Get(slot);
+                    if (bound != UnityEngine.InputSystem.Key.None && keyboard[bound].wasPressedThisFrame) return true;
+                }
+                return false;
+            }
 
             bool requiresAlt = false;
             bool requiresCtrl = false;
@@ -54,7 +67,12 @@ namespace CoreSystem.UI
             return false;
         }
 
-        private static UnityEngine.InputSystem.Key ToInputSystemKey(KeyCode keyCode)
+        private static bool IsModifier(KeyCode k)
+        {
+            return k == KeyCode.LeftAlt || k == KeyCode.RightAlt || k == KeyCode.LeftControl || k == KeyCode.RightControl || k == KeyCode.LeftShift || k == KeyCode.RightShift;
+        }
+
+        public static UnityEngine.InputSystem.Key ToInputSystemKey(KeyCode keyCode)
         {
             if (keyCode >= KeyCode.A && keyCode <= KeyCode.Z)
                 return (UnityEngine.InputSystem.Key)((int)UnityEngine.InputSystem.Key.A + (keyCode - KeyCode.A));

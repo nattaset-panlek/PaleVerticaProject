@@ -39,6 +39,8 @@ namespace CoreSystem.UI
         private Camera mainCamera;
         private CursorType currentCursorType = CursorType.None;
         private CursorType _overrideCursorType = CursorType.None;
+        private Collider2D _lastDialogueCollider;
+        private bool _lastDialogueResult;
 
         private Dictionary<CursorType, Texture2D> cursorTexturesCache = new Dictionary<CursorType, Texture2D>();
         private Dictionary<CursorType, Vector2> cursorHotSpotsCache = new Dictionary<CursorType, Vector2>();
@@ -122,6 +124,13 @@ namespace CoreSystem.UI
             return newText;
         }
 
+        private static bool ShowsInteractCursor(GameObject target)
+        {
+            if (target.GetComponentInParent<Selectable>() != null) return true;
+            var hoverable = target.GetComponentInParent<CoreSystem.UI.Utility.IHoverInteractable>();
+            return hoverable != null && hoverable.ShowsInteractCursor;
+        }
+
         private bool CheckUIHoverState()
         {
             if (EventSystem.current == null) return false;
@@ -140,7 +149,7 @@ namespace CoreSystem.UI
                 {
                     ChangeCursor(CursorType.ResizeHandle);
                 }
-                else if (results[0].gameObject.GetComponentInParent<Selectable>() != null)
+                else if (ShowsInteractCursor(results[0].gameObject))
                 {
                     ChangeCursor(CursorType.Interact);
                 }
@@ -174,6 +183,12 @@ namespace CoreSystem.UI
 
             if (hitCollider != null)
             {
+                if (IsDialogueTarget(hitCollider))
+                {
+                    ChangeCursor(CursorType.Dialogue);
+                    return;
+                }
+
                 if (((1 << hitCollider.gameObject.layer) & attackableLayer) != 0)
                 {
                     ChangeCursor(CursorType.Attack);
@@ -188,6 +203,24 @@ namespace CoreSystem.UI
             }
 
             ChangeCursor(CursorType.Default);
+        }
+
+        private bool IsDialogueTarget(Collider2D hitCollider)
+        {
+            if (hitCollider == _lastDialogueCollider) return _lastDialogueResult;
+            _lastDialogueCollider = hitCollider;
+            _lastDialogueResult = false;
+
+            if (hitCollider.GetComponentInParent<CoreSystem.Interaction.IInteractionProvider>() != null)
+            {
+                _lastDialogueResult = true;
+            }
+            else
+            {
+                var character = hitCollider.GetComponentInParent<CoreSystem.Entity.Character>();
+                _lastDialogueResult = character != null && (character.HasTag(CoreSystem.Entity.CharacterTag.Merchant) || character.HasTag(CoreSystem.Entity.CharacterTag.Villager));
+            }
+            return _lastDialogueResult;
         }
 
         private void ChangeCursor(CursorType newType)

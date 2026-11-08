@@ -32,7 +32,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 100
@@ -406,7 +406,7 @@ ScriptedImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0
     crunchedCompression: 0
@@ -464,60 +464,50 @@ ScriptedImporter:
   resliceFromLayer: 0
   pSDLayerImportSetting: []
   psdLayers:
-  - name: Folder 8
-    spriteName: 
-    isGroup: 1
-    parentIndex: -1
-    spriteID: 06c0d786248a43b4a816f5ac8c67bb11
-    layerID: 0
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: Head
-    spriteName: Head
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 2ee6e0014a026354f8329afae94fdc21
-    layerID: -158744160
-    mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
   - name: ArmL
     spriteName: ArmL
     isGroup: 0
-    parentIndex: 0
+    parentIndex: -1
     spriteID: 72fef95e1e2033e4ebcd19726f6ffa30
     layerID: -1186771440
     mosaicPosition: {x: 267, y: 141}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: ArmR
-    spriteName: ArmR
+  - name: Head
+    spriteName: Head
     isGroup: 0
-    parentIndex: 0
-    spriteID: 4394910b0b20117429a88dfc9e187602
-    layerID: -1280879774
-    mosaicPosition: {x: 382, y: 4}
+    parentIndex: -1
+    spriteID: 2ee6e0014a026354f8329afae94fdc21
+    layerID: -158744160
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
   - name: Body
     spriteName: Body
     isGroup: 0
-    parentIndex: 0
+    parentIndex: -1
     spriteID: 5fa05b770e819184a85d09fbd12cb282
     layerID: -911352830
     mosaicPosition: {x: 267, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
+  - name: ArmR
+    spriteName: ArmR
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 4394910b0b20117429a88dfc9e187602
+    layerID: -1280879774
+    mosaicPosition: {x: 382, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: LegL
     spriteName: LegL
     isGroup: 0
-    parentIndex: 0
+    parentIndex: -1
     spriteID: 6da57291577bb4d4ab222bfb88e40313
     layerID: 909946794
     mosaicPosition: {x: 382, y: 100}
@@ -527,14 +517,14 @@ ScriptedImporter:
   - name: LegR
     spriteName: LegR
     isGroup: 0
-    parentIndex: 0
+    parentIndex: -1
     spriteID: 493498c9379505a4795c1aaee5f37070
     layerID: 1716515848
     mosaicPosition: {x: 443, y: 100}
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Folder 1
+  - name: _Guide
     spriteName: 
     isGroup: 1
     parentIndex: -1
@@ -544,47 +534,47 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 0
-  - name: Layer 1
+  - name: _Guide_Head
     spriteName: 
     isGroup: 0
-    parentIndex: 7
+    parentIndex: 6
     spriteID: 4ec49b78a8ebe1e489729ba0b779f8db
     layerID: -7500616
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 2
+  - name: _Guide_Body
     spriteName: 
     isGroup: 0
-    parentIndex: 7
+    parentIndex: 6
     spriteID: 2511d8cf7ba82fc46a388b22918ed50e
     layerID: -7500619
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 4
+  - name: _Guide_Arms
     spriteName: 
     isGroup: 0
-    parentIndex: 7
+    parentIndex: 6
     spriteID: 1556b86fa62fb4149be7c741c5c246c4
     layerID: -7500613
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 3
+  - name: _Guide_Legs
     spriteName: 
     isGroup: 0
-    parentIndex: 7
+    parentIndex: 6
     spriteID: a85d2fabfe731684bb0c2db4a6a95c38
     layerID: -7500618
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 7
+  - name: _Ref_OldParts
     spriteName: 
     isGroup: 1
     parentIndex: -1
@@ -594,67 +584,67 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 0
-  - name: Head
+  - name: _Ref_Old_Head
     spriteName: 
     isGroup: 0
-    parentIndex: 12
+    parentIndex: 11
     spriteID: 5b87c06e949535142a4d06a78bbcecf5
     layerID: 1334954620
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: ArmL
+  - name: _Ref_Old_ArmL
     spriteName: 
     isGroup: 0
-    parentIndex: 12
+    parentIndex: 11
     spriteID: 905e985c4d5932745882e2e7b3fe177a
     layerID: 1507670856
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: ArmR
+  - name: _Ref_Old_ArmR
     spriteName: 
     isGroup: 0
-    parentIndex: 12
+    parentIndex: 11
     spriteID: 53ef71986adb1eb44becf2dfc51787e8
     layerID: 1272141690
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Body
+  - name: _Ref_Old_Body
     spriteName: 
     isGroup: 0
-    parentIndex: 12
+    parentIndex: 11
     spriteID: 85c8758448c611c47a8630320b6e9315
     layerID: 2006550406
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: LegL
+  - name: _Ref_Old_LegL
     spriteName: 
     isGroup: 0
-    parentIndex: 12
+    parentIndex: 11
     spriteID: f348e795297e7504fa3062a7055b10e1
     layerID: -607825022
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: LegR
+  - name: _Ref_Old_LegR
     spriteName: 
     isGroup: 0
-    parentIndex: 12
+    parentIndex: 11
     spriteID: 501136506dc657044a40a50e4637489b
     layerID: 1664071424
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 2
+  - name: _Ref_Acrxer
     spriteName: 
     isGroup: 1
     parentIndex: -1
@@ -664,67 +654,67 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 0
-  - name: Folder 3
+  - name: _Ref_Acrxer_Head
     spriteName: 
     isGroup: 0
-    parentIndex: 19
+    parentIndex: 18
     spriteID: 76f9d1b0de817af4697978d9ee5e7d65
     layerID: -253554475
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 4
+  - name: _Ref_Acrxer_Body
     spriteName: 
     isGroup: 0
-    parentIndex: 19
+    parentIndex: 18
     spriteID: 3574c46bc318c0d4d9eeae707fb9ce11
     layerID: 1668759826
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 5 Copy
+  - name: _Ref_Acrxer_ArmL
     spriteName: 
     isGroup: 0
-    parentIndex: 19
+    parentIndex: 18
     spriteID: 935de8f0b967e474c96f3cd0338d3812
     layerID: 375670846
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 5
+  - name: _Ref_Acrxer_ArmR
     spriteName: 
     isGroup: 0
-    parentIndex: 19
+    parentIndex: 18
     spriteID: 014ed53e36110af49860c7571d574fb0
     layerID: -1060123529
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 6 Copy
+  - name: _Ref_Acrxer_LegL
     spriteName: 
     isGroup: 0
-    parentIndex: 19
+    parentIndex: 18
     spriteID: c222bde9da39e4b418e2aee3ab998a14
     layerID: 456741081
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 6
+  - name: _Ref_Acrxer_LegR
     spriteName: 
     isGroup: 0
-    parentIndex: 19
+    parentIndex: 18
     spriteID: 9edab42499e28a94c86b3d8f69e48c2e
     layerID: 505960412
     mosaicPosition: {x: 0, y: 0}
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 6
+  - name: _Ref_Background
     spriteName: 
     isGroup: 0
     parentIndex: -1
@@ -1008,7 +998,7 @@ ScriptedImporter:
     isVisible: 0
   sharedRigPSDLayers: []
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638827607920246794
+  platformSettingsDirtyTick: 639243202886574901
   spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 

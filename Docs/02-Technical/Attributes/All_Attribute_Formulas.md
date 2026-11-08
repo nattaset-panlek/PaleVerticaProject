@@ -1,4 +1,4 @@
-# Realm of Hero: All Attribute Formulas (Total 154)
+# Pale Vertica: All Attribute Formulas (Total 154)
 
 This document provides the derivation and calculation logic for every attribute defined in the `AttributeType` enum.
 
@@ -22,7 +22,7 @@ These attributes have complex derivations from Core Stats (STR, AGI, VIT, INT, D
 | 33 | **Status DEF** | `(VIT * 0.7) + (AGI * 0.2) + (LUK * 0.2) + (DEX * 0.2) + INT` |
 | 37 | **Hit** | `DEX + (LUK / 3)` |
 | 39 | **Flee** | `AGI + (LUK / 5)` |
-| 41 | **ASPD** | `(AGI * 0.5) + (DEX * 0.15)` |
+| 41 | **ASPD** | `(AGI * 1.5) + (DEX * 0.3)` on top of base 100 (ASPD is % attack speed, see 1a) |
 | 43 | **Critical Rate** | `LUK * 0.3` |
 | 45 | **Perfect Dodge** | `LUK / 10` |
 | 49 | **Crit Resistance** | `LUK / 5` |
@@ -35,6 +35,14 @@ These attributes have complex derivations from Core Stats (STR, AGI, VIT, INT, D
 | 141-148 | **Cast Time (VCT/FCT)** | **VCT**: `(Base - Flats) * (1 - sqrt((DEX*2+INT)/530)) * (1 - Gear%) * (1 - Skill%)` <br> **FCT**: `(Base - Flat) * (1 - Percent%)` |
 | 151-152 | **Cooldown Reduc** | `(Base - Flat) * (1 - Percent%)` |
 | 150 | **AOE Radius** | `Base * (1 + Bonus%)` |
+
+### 1a. Attack Speed (updated 2026-10-17)
+ASPD is a percentage of the base attack speed, so every point is worth the same and percent buffs scale speed exactly.
+- **ASPD** = `(100 + AGI * 1.5 + DEX * 0.3 + gear flat) * (1 + ASPD%)` through the normal pipeline (base 100 = `BasicAttackFormula.BaseAspd`).
+- **Attacks per second** = `1.0 * clamp(ASPD, 50, 600) / 100` (`BasicAttackFormula.AttacksPerSecond`).
+- **Attack delay** = `1 / attacks per second` (`BasicAttackFormula.AttackDelay`), so between 0.167 s (cap 600%) and 2 s (floor 50%, slows work).
+- Examples: AGI 1 / DEX 1 = 101.8% (1.02 hits/s); AGI 40 / DEX 30 = 169% (1.69); AGI 200 / DEX 30 = 409% (4.09 hits/s); with +20% buff gives 490.8% (4.91 hits/s).
+- Replaced the RO-style `delay = (200 - ASPD) / 50` (base 150, AGI*0.5 + DEX*0.15), which reached 100 hits/s at AGI 90 because the delay approached zero near ASPD 200.
 
 ---
 

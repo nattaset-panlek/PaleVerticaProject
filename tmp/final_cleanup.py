@@ -1,7 +1,7 @@
 import json
 import os
 
-path = r'F:\GameProject\Realm of Hero\My project\Assets\Resources\Data\Item.json'
+path = r'F:\GameProject\Pale Vertica\Assets\Resources\Data\Item.json'
 
 with open(path, 'r', encoding='utf-8') as f:
     data = json.load(f)

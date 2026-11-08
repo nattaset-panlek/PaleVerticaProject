@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: c09218fa7364521419ca31270070e882
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3211062058776155191
+    second: SkillIcon_09_1009_LightningBlessing_0
+  - first:
+      213: 8147764266368453600
+    second: SkillIcon_09_1009_LightningBlessing_1
+  - first:
+      213: -1585128546308615858
+    second: SkillIcon_09_1009_LightningBlessing_2
+  - first:
+      213: -3782976903847677215
+    second: SkillIcon_09_1009_LightningBlessing_3
+  - first:
+      213: 4188893122760723038
+    second: SkillIcon_09_1009_LightningBlessing_4
+  - first:
+      213: 2494111601409656578
+    second: SkillIcon_09_1009_LightningBlessing_5
+  - first:
+      213: -5758082115159398376
+    second: SkillIcon_09_1009_LightningBlessing_6
+  - first:
+      213: 715240543318329689
+    second: SkillIcon_09_1009_LightningBlessing_7
+  - first:
+      213: 1174758550967107316
+    second: SkillIcon_09_1009_LightningBlessing_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_0
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 57
+        width: 56
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7345615fdebff8c20800000000000000
+      internalID: 3211062058776155191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_1
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 31
+        width: 26
+        height: 144
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eb438a7e6ca21170800000000000000
+      internalID: 8147764266368453600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_2
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 174
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4191f94cfd700ae0800000000000000
+      internalID: -1585128546308615858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_3
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 57
+        width: 56
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e2f6ac8c8a208bc0800000000000000
+      internalID: -3782976903847677215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_4
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 106
+        width: 27
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5aca38f910f12a30800000000000000
+      internalID: 4188893122760723038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_5
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 68
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2070430894ddc9220800000000000000
+      internalID: 2494111601409656578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_6
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 46
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 818e46ae2de2710b0800000000000000
+      internalID: -5758082115159398376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_7
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 31
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95942711c7b0de900800000000000000
+      internalID: 715240543318329689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_09_1009_LightningBlessing_8
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 49
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fe3f3f8da49d4010800000000000000
+      internalID: 1174758550967107316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SkillIcon_09_1009_LightningBlessing_0: 3211062058776155191
+      SkillIcon_09_1009_LightningBlessing_1: 8147764266368453600
+      SkillIcon_09_1009_LightningBlessing_2: -1585128546308615858
+      SkillIcon_09_1009_LightningBlessing_3: -3782976903847677215
+      SkillIcon_09_1009_LightningBlessing_4: 4188893122760723038
+      SkillIcon_09_1009_LightningBlessing_5: 2494111601409656578
+      SkillIcon_09_1009_LightningBlessing_6: -5758082115159398376
+      SkillIcon_09_1009_LightningBlessing_7: 715240543318329689
+      SkillIcon_09_1009_LightningBlessing_8: 1174758550967107316
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

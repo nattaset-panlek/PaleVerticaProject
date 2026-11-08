@@ -109,7 +109,7 @@ namespace CoreSystem.Tests
             Assert.AreEqual(60f * 1.5f + 25f / 5f + 9f / 3f, stats.GetAttribute(AttributeType.MATK).StatFlatBonus, Tolerance);
             Assert.AreEqual(20f + 9f / 5f, stats.GetAttribute(AttributeType.Flee).StatFlatBonus, Tolerance);
             Assert.AreEqual(25f + 9f / 3f, stats.GetAttribute(AttributeType.Hit).StatFlatBonus, Tolerance);
-            Assert.AreEqual(20f * 0.5f + 25f * 0.15f, stats.GetAttribute(AttributeType.ASPD).StatFlatBonus, Tolerance);
+            Assert.AreEqual(20f * 1.5f + 25f * 0.3f, stats.GetAttribute(AttributeType.ASPD).StatFlatBonus, Tolerance);
             Assert.AreEqual(50f * 0.01f, stats.GetAttribute(AttributeType.MaxHP).StatPercentBonus, Tolerance);
             Assert.AreEqual(9f * 0.3f, stats.GetAttribute(AttributeType.CriticalRate).StatFlatBonus, Tolerance);
             Assert.AreEqual(50f / 2f + 20f / 5f + 9f / 5f + 50f / 5f + 25f / 5f + 60f, stats.GetAttribute(AttributeType.StatusDEF).StatFlatBonus, Tolerance);

@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using CoreSystem.Combat;
+using CoreSystem.Entity;
 using CoreSystem.Skills;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace CoreSystem.Tests
 {
@@ -202,6 +204,115 @@ namespace CoreSystem.Tests
             var result = CombatCore.Resolve(CombatAction.Damage(Payload(50f)), user, target, new FixedCombatRandom(99f));
 
             Assert.IsTrue(result.PredictsKill());
+        }
+
+        [Test]
+        public void CreditTo_GetsHitEventWithoutAddingItsStats()
+        {
+            var burner = Create(FreeForAllFaction, TestStats.Create(str: 200f));
+            var target = Create(FreeForAllFaction);
+            float before = target.Hp;
+            var tick = new SkillPayload { SkillID = ProcSkillIds.BurnTick, SkillLevel = 1, BaseDamage = 7f, DamageType = DamageType.Status, SkillElement = ElementType.Neutral };
+            var action = CombatAction.Damage(tick);
+            action.CreditTo = burner;
+
+            CombatCore.Execute(action, null, target, new FixedCombatRandom(99f));
+
+            Assert.AreEqual(1, burner.HitEvents);
+            Assert.AreEqual(1, target.DamageTakenEvents);
+            Assert.AreEqual(before - DamageFormula.Mitigate(7f, target.attributeSystem.GetAttribute(AttributeType.StatusDEF)), target.Hp, 0.001f);
+        }
+
+        [Test]
+        public void KillingBlow_RaisesKilledOnceForTheCreditedKiller()
+        {
+            var burner = Create(FreeForAllFaction);
+            var target = Create(FreeForAllFaction);
+            target.SetHp(5f);
+            int kills = 0;
+            IEntity killer = null;
+            System.Action<IEntity, IEntity> listener = (k, v) => { kills++; killer = k; };
+            CombatEvents.OnKilled += listener;
+            try
+            {
+                var action = CombatAction.Damage(new SkillPayload { SkillID = ProcSkillIds.BurnTick, BaseDamage = 50f, DamageType = DamageType.Status });
+                action.CreditTo = burner;
+                CombatCore.Execute(action, null, target, new FixedCombatRandom(99f));
+                var second = CombatAction.Damage(new SkillPayload { SkillID = ProcSkillIds.BurnTick, BaseDamage = 50f, DamageType = DamageType.Status });
+                second.CreditTo = burner;
+                CombatCore.Execute(second, null, target, new FixedCombatRandom(99f));
+            }
+            finally
+            {
+                CombatEvents.OnKilled -= listener;
+            }
+
+            Assert.AreEqual(1, kills);
+            Assert.AreSame(burner, killer);
+        }
+
+        [Test]
+        public void KillReward_LevelCurveAndOverride()
+        {
+            Assert.AreEqual(0L, KillRewardFormula.BaseExpForLevel(0));
+            Assert.AreEqual(12L, KillRewardFormula.BaseExpForLevel(1));
+            Assert.Greater(KillRewardFormula.BaseExpForLevel(10), KillRewardFormula.BaseExpForLevel(9));
+            Assert.AreEqual(Mathf.RoundToInt(KillRewardFormula.BaseExpForLevel(10) * 0.6f), KillRewardFormula.JobExpForLevel(10));
+            Assert.AreEqual(50L, KillRewardFormula.FullExp(50, 999));
+            Assert.AreEqual(999L, KillRewardFormula.FullExp(0, 999));
+        }
+
+        [Test]
+        public void KillReward_LevelGap()
+        {
+            Assert.AreEqual(1f, KillRewardFormula.LevelDifferenceMultiplier(10, 10), 0.0001f);
+            Assert.AreEqual(1.25f, KillRewardFormula.LevelDifferenceMultiplier(10, 15), 0.0001f);
+            Assert.AreEqual(1.5f, KillRewardFormula.LevelDifferenceMultiplier(10, 40), 0.0001f);
+            Assert.AreEqual(1f, KillRewardFormula.LevelDifferenceMultiplier(10, 5), 0.0001f);
+            Assert.AreEqual(0.7f, KillRewardFormula.LevelDifferenceMultiplier(20, 12), 0.0001f);
+            Assert.AreEqual(0.4f, KillRewardFormula.LevelDifferenceMultiplier(20, 7), 0.0001f);
+            Assert.AreEqual(0.1f, KillRewardFormula.LevelDifferenceMultiplier(30, 1), 0.0001f);
+        }
+
+        [Test]
+        public void KillReward_ShareAndReward()
+        {
+            Assert.AreEqual(0.25f, KillRewardFormula.Share(25f, 100f), 0.0001f);
+            Assert.AreEqual(0f, KillRewardFormula.Share(25f, 0f), 0.0001f);
+            Assert.AreEqual(30L, KillRewardFormula.Reward(100, 0.25f, 1.2f, 1f));
+            Assert.AreEqual(0L, KillRewardFormula.Reward(100, 0f, 1f, 1f));
+            Assert.AreEqual(50L, KillRewardFormula.Reward(100, 1f, 1f, 0.5f));
+            Assert.IsTrue(CombatEvents.IsKillingBlow(5f, 0f));
+            Assert.IsFalse(CombatEvents.IsKillingBlow(0f, 0f));
+            Assert.IsFalse(CombatEvents.IsKillingBlow(5f, 1f));
+        }
+
+        [Test]
+        public void KillCredit_SplitsByHpRemovedAndCountsSummonForOwner()
+        {
+            var owner = Create(FreeForAllFaction);
+            var summon = Create(FreeForAllFaction);
+            var other = Create(FreeForAllFaction);
+            var victim = Create(FreeForAllFaction);
+            TeamRegistry.Bind(summon, owner);
+            try
+            {
+                KillCreditRegistry.Record(owner, victim, 30f);
+                KillCreditRegistry.Record(summon, victim, 30f);
+                KillCreditRegistry.Record(other, victim, 40f);
+                KillCreditRegistry.Record(summon, owner, 99f);
+
+                Assert.AreEqual(0.6f, KillCreditRegistry.ShareOf(victim, owner), 0.0001f);
+                Assert.AreEqual(0f, KillCreditRegistry.ShareOf(victim, summon), 0.0001f);
+                Assert.AreEqual(0.4f, KillCreditRegistry.ShareOf(victim, other), 0.0001f);
+                Assert.AreEqual(0f, KillCreditRegistry.Total(owner), 0.0001f);
+            }
+            finally
+            {
+                TeamRegistry.Unbind(summon);
+                KillCreditRegistry.Forget(victim);
+                KillCreditRegistry.Forget(owner);
+            }
         }
         #endregion
 

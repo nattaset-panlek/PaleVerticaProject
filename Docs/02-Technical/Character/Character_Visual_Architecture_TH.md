@@ -1,6 +1,6 @@
 # สรุปโครงสร้าง Component ของ Character ในโปรเจกต์ (Zero Clutter Architecture)
 
-เอกสารนี้อธิบายโครงสร้าง Component ปัจจุบันของ Character ในโปรเจกต์ Realm of Hero และแนวทางรวมระบบ Visual ให้อยู่ใน Component เดียว เพื่อไม่ให้มี Script ติดบน GameObject เยอะจนรก
+เอกสารนี้อธิบายโครงสร้าง Component ปัจจุบันของ Character ในโปรเจกต์ Pale Vertica และแนวทางรวมระบบ Visual ให้อยู่ใน Component เดียว เพื่อไม่ให้มี Script ติดบน GameObject เยอะจนรก
 
 ---
 

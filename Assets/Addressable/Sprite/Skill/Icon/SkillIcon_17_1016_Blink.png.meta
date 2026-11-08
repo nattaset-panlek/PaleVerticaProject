@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: 10d6d3e9506b3734a8a3851a6d12c437
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3850019383972072459
+    second: SkillIcon_17_1016_Blink_0
+  - first:
+      213: -2858652748000733792
+    second: SkillIcon_17_1016_Blink_1
+  - first:
+      213: 3616040286863078699
+    second: SkillIcon_17_1016_Blink_2
+  - first:
+      213: -3006598867075950624
+    second: SkillIcon_17_1016_Blink_3
+  - first:
+      213: 2373948953736630018
+    second: SkillIcon_17_1016_Blink_4
+  - first:
+      213: -8189990514492634028
+    second: SkillIcon_17_1016_Blink_5
+  - first:
+      213: 510654358410696684
+    second: SkillIcon_17_1016_Blink_6
+  - first:
+      213: 5926011572083942895
+    second: SkillIcon_17_1016_Blink_7
+  - first:
+      213: -1795594925021657109
+    second: SkillIcon_17_1016_Blink_8
+  - first:
+      213: -7650197026537852132
+    second: SkillIcon_17_1016_Blink_9
+  - first:
+      213: 2868740927264843713
+    second: SkillIcon_17_1016_Blink_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_0
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 144
+        width: 65
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0c06004b340e6530800000000000000
+      internalID: 3850019383972072459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 173
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a5d833b8760458d0800000000000000
+      internalID: -2858652748000733792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_2
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 180
+        width: 38
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b25b9f77b71ce2230800000000000000
+      internalID: 3616040286863078699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_3
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 172
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e798d1924a6646d0800000000000000
+      internalID: -3006598867075950624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_4
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 166
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20fc166eef5f1f020800000000000000
+      internalID: 2373948953736630018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_5
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 162
+        width: 10
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45c09ddf40f475e80800000000000000
+      internalID: -8189990514492634028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_6
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 151
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce71314fe65361700800000000000000
+      internalID: 510654358410696684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_7
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 80
+        width: 63
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5eae0a02c6d3250800000000000000
+      internalID: 5926011572083942895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_8
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 55
+        width: 143
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be7079ddde3c417e0800000000000000
+      internalID: -1795594925021657109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_9
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 122
+        width: 37
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c13367b365a05d590800000000000000
+      internalID: -7650197026537852132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_17_1016_Blink_10
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 144
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c7ee329ca0dfc720800000000000000
+      internalID: 2868740927264843713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SkillIcon_17_1016_Blink_0: 3850019383972072459
+      SkillIcon_17_1016_Blink_1: -2858652748000733792
+      SkillIcon_17_1016_Blink_10: 2868740927264843713
+      SkillIcon_17_1016_Blink_2: 3616040286863078699
+      SkillIcon_17_1016_Blink_3: -3006598867075950624
+      SkillIcon_17_1016_Blink_4: 2373948953736630018
+      SkillIcon_17_1016_Blink_5: -8189990514492634028
+      SkillIcon_17_1016_Blink_6: 510654358410696684
+      SkillIcon_17_1016_Blink_7: 5926011572083942895
+      SkillIcon_17_1016_Blink_8: -1795594925021657109
+      SkillIcon_17_1016_Blink_9: -7650197026537852132
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

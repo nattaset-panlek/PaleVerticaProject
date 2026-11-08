@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Model;
+using CoreSystem.UI.Inventory.Utility;
 using CoreSystem.UI.Utility;
 
 namespace CoreSystem.UI.Refinement
@@ -14,6 +15,7 @@ namespace CoreSystem.UI.Refinement
         [SerializeField] private Image _slotBorderImage;
         [SerializeField] private Image _itemIcon;
         [SerializeField] private Sprite _defaultSlotSprite;
+        [SerializeField] private ItemSlotArtView _art;
 
         private EquipmentInstance _currentEquipment;
         #endregion
@@ -24,6 +26,7 @@ namespace CoreSystem.UI.Refinement
         public Image SlotBorderImage => _slotBorderImage;
         public Image ItemIcon => _itemIcon;
         public Sprite DefaultSlotSprite => _defaultSlotSprite;
+        public ItemSlotArtView Art => _art;
         #endregion
 
         #region [Unity Methods]
@@ -44,49 +47,23 @@ namespace CoreSystem.UI.Refinement
         #region [Public Methods]
         public void OnDrop(PointerEventData eventData)
         {
-            EquipmentInstance equipment = GlobalDragManager.Payload as EquipmentInstance
-                ?? ItemDragHandler.DraggedItem as EquipmentInstance;
-
-            if (equipment == null)
-            {
-                equipment = ResolveEquipment(GlobalDragManager.Payload)
-                    ?? ResolveEquipment(ItemDragHandler.DraggedItem)
-                    ?? ResolveEquipment(ItemDragHandler.ActiveSource);
-            }
-
-            if (equipment != null)
-            {
-                if (_window == null)
-                {
-                    _window = GetComponentInParent<RefinementWindow>();
-                }
-
-                if (_window != null)
-                {
-                    _window.SetTarget(equipment);
-                }
-            }
+            ItemInstance item = ItemInsertSlot.ResolveDraggedItem();
+            RefinementWindow window = ResolveWindow();
+            if (item == null || window == null) return;
+            window.TryInsert(item, ItemInsertRegistry.AnySlot);
         }
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (eventData.button == PointerEventData.InputButton.Right)
-            {
-                if (_window == null)
-                {
-                    _window = GetComponentInParent<RefinementWindow>();
-                }
-
-                if (_window != null)
-                {
-                    _window.SetTarget(null);
-                }
-            }
+            if (eventData.button != PointerEventData.InputButton.Right) return;
+            RefinementWindow window = ResolveWindow();
+            if (window != null) window.ClearInsert(ItemInsertRegistry.AnySlot);
         }
 
         public void UpdateDisplay(EquipmentInstance equipment)
         {
             _currentEquipment = equipment;
+            if (_art != null) _art.Show(ItemSlotDisplay.From(equipment));
 
             if (equipment == null)
             {
@@ -126,24 +103,10 @@ namespace CoreSystem.UI.Refinement
         #endregion
 
         #region [Private Methods]
-        private EquipmentInstance ResolveEquipment(object payload)
+        private RefinementWindow ResolveWindow()
         {
-            if (payload is EquipmentInstance eq)
-            {
-                return eq;
-            }
-
-            if (payload is ItemInstance item && item is EquipmentInstance itemEq)
-            {
-                return itemEq;
-            }
-
-            if (payload is IItemProvider provider && provider.GetItem() is EquipmentInstance providerEq)
-            {
-                return providerEq;
-            }
-
-            return null;
+            if (_window == null) _window = GetComponentInParent<RefinementWindow>();
+            return _window;
         }
         #endregion
     }

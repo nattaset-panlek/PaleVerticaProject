@@ -94,7 +94,7 @@ namespace CoreSystem.Tests
             var image = _document.Find("button").GameObject.GetComponent<Image>();
             Assert.AreSame(UIShapes.RoundedRect, image.sprite);
             Assert.AreEqual(Image.Type.Sliced, image.type);
-            Assert.AreEqual(UIShapes.RoundedRadius / 10f, image.pixelsPerUnitMultiplier, 0.001f);
+            Assert.AreEqual(UIShapes.RoundedRadius * 100f / (UIShapes.RoundedRect.pixelsPerUnit * 10f), image.pixelsPerUnitMultiplier, 0.001f);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace CoreSystem.Tests
             _document.Build(ui => ui.Button("Round", "OK", null).Id("button").CornerRadius(16f));
 
             var image = _document.Find("button").GameObject.GetComponent<Image>();
-            Assert.AreEqual(UIShapes.RoundedRadius / 16f, image.pixelsPerUnitMultiplier, 0.001f);
+            Assert.AreEqual(UIShapes.RoundedRadius * 100f / (UIShapes.RoundedRect.pixelsPerUnit * 16f), image.pixelsPerUnitMultiplier, 0.001f);
         }
 
         [Test]

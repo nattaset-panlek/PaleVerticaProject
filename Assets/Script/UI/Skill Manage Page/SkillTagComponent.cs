@@ -30,11 +30,12 @@ namespace CoreSystem.UI.SkillManagePage
         #endregion
 
         #region [Public Methods]
-        public void Setup(string tagText, Color? bgColor = null)
+        public void Setup(string tagText, Color? bgColor = null, Color? textColor = null)
         {
             if (_type != null)
             {
                 _type.text = tagText;
+                if (textColor.HasValue) _type.color = textColor.Value;
             }
 
             if (_background != null && bgColor.HasValue)

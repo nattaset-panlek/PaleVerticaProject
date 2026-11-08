@@ -37,7 +37,7 @@ namespace CoreSystem.Tests
             var image = _document.Find("panel").GameObject.GetComponent<Image>();
             Assert.AreSame(UIShapes.RoundedRect, image.sprite);
             Assert.AreEqual(Image.Type.Sliced, image.type);
-            Assert.AreEqual(UIShapes.RoundedRadius / 12f, image.pixelsPerUnitMultiplier, 0.001f);
+            Assert.AreEqual(UIShapes.RoundedRadius * 100f / (UIShapes.RoundedRect.pixelsPerUnit * 12f), image.pixelsPerUnitMultiplier, 0.001f);
             Assert.AreEqual(Color.gray, image.color);
         }
 

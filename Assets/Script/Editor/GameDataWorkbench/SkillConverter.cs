@@ -61,6 +61,7 @@ public static class SkillConverter
         asset.BaseFCT = data.BaseFCT;
         asset.BaseCastDelay = data.BaseCastDelay;
         asset.BaseCooldown = data.BaseCooldown;
+        asset.Description = data.Description;
         asset.BaseProjectileCount = data.BaseProjectileCount;
         asset.IsToggle = data.IsToggle;
         asset.BaseAOERadius = data.BaseAOERadius;
@@ -162,6 +163,14 @@ public static class SkillConverter
                 switch (e.EffectType)
                 {
                     case "DamageEffect": effect = new DamageEffect(); break;
+                    case "SpawnProjectileEffect":
+                        effect = new SpawnProjectileEffect
+                        {
+                            ProjectilePrefab = LoadEffectPrefab(e.PrefabPath),
+                            DamageEffectToApply = new DamageEffect(),
+                            ApplyOncePerCast = true
+                        };
+                        break;
                     case "HealEffect": effect = new HealEffect { TargetAttribute = (AttributeType)e.AttributeID, BaseHealAmount = e.Value }; break;
                     case "ApplyBuffEffect": 
                         if (System.Enum.TryParse(e.ModType, out CoreSystem.ModifierType mType))
@@ -182,6 +191,16 @@ public static class SkillConverter
                                 BuffIconPath = e.BuffIconPath
                             };
                         }
+                        break;
+                    case "SprintEffect":
+                        effect = new SprintEffect
+                        {
+                            SprintBonusPercent = e.Value > 0f ? e.Value : 60f,
+                            Duration = e.Duration > 0f ? e.Duration : 10f,
+                            BuffName = string.IsNullOrEmpty(e.BuffName) ? "Sprint" : e.BuffName,
+                            BuffCode = string.IsNullOrEmpty(e.BuffCode) ? SprintEffect.DefaultBuffCode : e.BuffCode,
+                            BuffIconPath = e.BuffIconPath
+                        };
                         break;
                     case "MovementEffectLogic":
                         if (System.Enum.TryParse(e.MovementType, out CoreSystem.Skills.Logic.Effects.MovementType movType))
@@ -228,6 +247,58 @@ public static class SkillConverter
         }
 
         AssetDatabase.SaveAssets();
+    }
+
+    public const string SkillJsonPath = "Assets/Resources/Data/Skill.json";
+    public const string ActiveSkillFolder = "Assets/Resources/Skill/ActiveSkill";
+    public const string SkillIdsEnvironmentVariable = "PV_SKILL_IDS";
+
+    public static int ConvertSkillIds(ICollection<int> ids)
+    {
+        if (ids == null || ids.Count == 0) return 0;
+        var list = JsonUtility.FromJson<SkillDataList>(System.IO.File.ReadAllText(SkillJsonPath));
+        if (list == null || list.ActiveSkills == null) return 0;
+
+        int count = 0;
+        foreach (var data in list.ActiveSkills)
+        {
+            if (data == null || !ids.Contains(data.SkillID)) continue;
+            string folder = ActiveSkillFolder;
+            if (!string.IsNullOrEmpty(data.CustomClassName))
+            {
+                folder = ActiveSkillFolder + "/Unique";
+                if (!AssetDatabase.IsValidFolder(folder)) AssetDatabase.CreateFolder(ActiveSkillFolder, "Unique");
+            }
+            CreateOrUpdateAsset(data, $"{folder}/{data.SkillName.Replace(" ", "_")}_{data.SkillID}.asset");
+            count++;
+        }
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        return count;
+    }
+
+    public static void ConvertSkillIdsBatch()
+    {
+        int exitCode = 0;
+        try
+        {
+            var ids = new List<int>();
+            string raw = System.Environment.GetEnvironmentVariable(SkillIdsEnvironmentVariable) ?? string.Empty;
+            foreach (string part in raw.Split(','))
+            {
+                if (int.TryParse(part.Trim(), out int id)) ids.Add(id);
+            }
+            int converted = ConvertSkillIds(ids);
+            Debug.Log($"[SkillConverter] Converted {converted} skill(s) for ids '{raw}'.");
+            if (converted == 0) exitCode = 1;
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogException(e);
+            exitCode = 1;
+        }
+        EditorApplication.Exit(exitCode);
     }
 
     public static void BatchConvert(List<ActiveSkillJsonData> skills)
@@ -331,6 +402,7 @@ public static class SkillConverter
         asset.BaseFCT = data.BaseFCT;
         asset.BaseCastDelay = data.BaseCastDelay;
         asset.BaseCooldown = data.BaseCooldown;
+        asset.Description = data.Description;
         asset.BaseProjectileCount = data.BaseProjectileCount;
         asset.IsToggle = data.IsToggle;
         asset.BaseAOERadius = data.BaseAOERadius;
@@ -432,6 +504,14 @@ public static class SkillConverter
                 switch (e.EffectType)
                 {
                     case "DamageEffect": effect = new DamageEffect(); break;
+                    case "SpawnProjectileEffect":
+                        effect = new SpawnProjectileEffect
+                        {
+                            ProjectilePrefab = LoadEffectPrefab(e.PrefabPath),
+                            DamageEffectToApply = new DamageEffect(),
+                            ApplyOncePerCast = true
+                        };
+                        break;
                     case "HealEffect": effect = new HealEffect { TargetAttribute = (AttributeType)e.AttributeID, BaseHealAmount = e.Value }; break;
                     case "ApplyBuffEffect": 
                         if (!System.Enum.TryParse(e.ModType, out CoreSystem.ModifierType mType)) mType = CoreSystem.ModifierType.Flat;
@@ -450,6 +530,16 @@ public static class SkillConverter
                             BuffName = e.BuffName,
                             BuffCode = e.BuffCode,
                             Category = bCat,
+                            BuffIconPath = e.BuffIconPath
+                        };
+                        break;
+                    case "SprintEffect":
+                        effect = new SprintEffect
+                        {
+                            SprintBonusPercent = e.Value > 0f ? e.Value : 60f,
+                            Duration = e.Duration > 0f ? e.Duration : 10f,
+                            BuffName = string.IsNullOrEmpty(e.BuffName) ? "Sprint" : e.BuffName,
+                            BuffCode = string.IsNullOrEmpty(e.BuffCode) ? SprintEffect.DefaultBuffCode : e.BuffCode,
                             BuffIconPath = e.BuffIconPath
                         };
                         break;
@@ -579,5 +669,12 @@ public static class SkillConverter
             
             asset.ChainOverrides.Add(chain);
         }
+    }
+
+    private static GameObject LoadEffectPrefab(string path)
+    {
+        if (string.IsNullOrEmpty(path)) return null;
+        if (path.StartsWith("Assets/")) return AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        return AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/" + path + ".prefab");
     }
 }

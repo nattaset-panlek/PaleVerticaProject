@@ -123,6 +123,24 @@ namespace CoreSystem.Entity.UniquePassives
             }
         }
 
+        public void CollectBasicAttackRepeaters(List<IBasicAttackRepeater> results)
+        {
+            if (results == null) return;
+            foreach (var passive in _activePassives.Values)
+            {
+                if (passive is IBasicAttackRepeater repeater) results.Add(repeater);
+            }
+        }
+
+        public void CollectCastRepeaters(SkillInstance instance, List<ICastRepeater> results)
+        {
+            if (results == null || instance == null) return;
+            foreach (var passive in _activePassives.Values)
+            {
+                if (passive is ISkillCastRepeater repeater && repeater.CanRepeat(instance)) results.Add(repeater);
+            }
+        }
+
         public void ModifyCoreAttributes(ref float str, ref float agi, ref float vit, ref float @int, ref float dex, ref float luk)
         {
             _tempPassiveList.Clear();

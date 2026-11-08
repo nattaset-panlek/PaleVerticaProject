@@ -1,12 +1,16 @@
+using System;
 using UnityEngine;
 using CoreSystem.Attributes;
 using CoreSystem.Combat;
+using CoreSystem.Data.Items;
+using CoreSystem.Data.Items.Model;
 
 namespace CoreSystem.Entity
 {
-    [System.Serializable]
+    [Serializable]
     public class ExperienceSystem
     {
+        #region [Variables/Fields]
         [Header("State")]
         public long CurrentBaseExp = 0;
         public long CurrentJobExp = 0;
@@ -14,9 +18,39 @@ namespace CoreSystem.Entity
         private Character _owner;
         private CoreSystem.Data.ExperienceTable _table;
 
-        public event System.Action<int> OnBaseLevelUp;
-        public event System.Action<int> OnJobLevelUp;
+        public event Action<int> OnBaseLevelUp;
+        public event Action<int> OnJobLevelUp;
+        public event Action<long, long> OnBaseExpChanged;
+        public event Action<long, long> OnJobExpChanged;
+        #endregion
 
+        #region [Properties]
+        public int CurrentBaseLevel
+        {
+            get
+            {
+                var levelAttr = _owner?.attributeSystem?.GetAttribute(AttributeType.BaseLevel);
+                return levelAttr != null ? (int)levelAttr.BaseValue : 1;
+            }
+        }
+
+        public int CurrentJobLevel
+        {
+            get
+            {
+                var levelAttr = _owner?.attributeSystem?.GetAttribute(AttributeType.JobLevel);
+                return levelAttr != null ? (int)levelAttr.BaseValue : 1;
+            }
+        }
+
+        public long NextBaseExp => GetNextBaseExp(CurrentBaseLevel);
+        public long NextJobExp => GetNextJobExp(CurrentJobLevel);
+
+        public float BaseExpNormalized => NextBaseExp > 0 ? Mathf.Clamp01((float)CurrentBaseExp / NextBaseExp) : 0f;
+        public float JobExpNormalized => NextJobExp > 0 ? Mathf.Clamp01((float)CurrentJobExp / NextJobExp) : 0f;
+        #endregion
+
+        #region [Public Methods]
         public void Initialize(Character owner)
         {
             _owner = owner;
@@ -39,27 +73,63 @@ namespace CoreSystem.Entity
             return ProgressionFormula.FallbackJobExp(currentLevel);
         }
 
-
         public void SetExp(long baseExp, long jobExp)
         {
             CurrentBaseExp = baseExp;
             CurrentJobExp = jobExp;
+            OnBaseExpChanged?.Invoke(CurrentBaseExp, NextBaseExp);
+            OnJobExpChanged?.Invoke(CurrentJobExp, NextJobExp);
         }
 
         public void AddBaseExp(long amount)
         {
+            if (amount <= 0) return;
             CurrentBaseExp += amount;
             CheckBaseLevelUp();
+            OnBaseExpChanged?.Invoke(CurrentBaseExp, NextBaseExp);
         }
 
         public void AddJobExp(long amount)
         {
+            if (amount <= 0) return;
             CurrentJobExp += amount;
             CheckJobLevelUp();
+            OnJobExpChanged?.Invoke(CurrentJobExp, NextJobExp);
         }
 
+        public void ReceiveProgressionItem(Item item, int amount)
+        {
+            if (item == null || amount <= 0) return;
+
+            if (item is Progression progression)
+            {
+                switch (progression.ProgressionKind)
+                {
+                    case ProgressionKind.JobExp:
+                        AddJobExp(amount);
+                        return;
+                    case ProgressionKind.BaseExp:
+                    default:
+                        AddBaseExp(amount);
+                        return;
+                }
+            }
+
+            if (!string.IsNullOrEmpty(item.Name) && item.Name.IndexOf("Job", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                AddJobExp(amount);
+            }
+            else
+            {
+                AddBaseExp(amount);
+            }
+        }
+        #endregion
+
+        #region [Private Methods]
         private void CheckBaseLevelUp()
         {
+            if (_owner == null || _owner.attributeSystem == null) return;
             var levelAttr = _owner.attributeSystem.GetAttribute(AttributeType.BaseLevel);
             if (levelAttr == null) return;
 
@@ -83,6 +153,7 @@ namespace CoreSystem.Entity
 
         private void CheckJobLevelUp()
         {
+            if (_owner == null || _owner.attributeSystem == null) return;
             var levelAttr = _owner.attributeSystem.GetAttribute(AttributeType.JobLevel);
             if (levelAttr == null) return;
 
@@ -103,5 +174,6 @@ namespace CoreSystem.Entity
             
             _owner.attributeSystem.UpdateDerivedAttributes();
         }
+        #endregion
     }
 }

@@ -22,7 +22,7 @@ namespace CoreSystem.Combat
                 WeightLimitFlat = str * 30f,
 
                 FleeFlat = agi + (luk / 5f),
-                AspdFlat = (agi * 0.5f) + (dex * 0.15f),
+                AspdFlat = (agi * 1.5f) + (dex * 0.3f),
 
                 MaxHpPercent = vit * 0.01f,
                 HealingItemsPercent = vit * 0.02f,

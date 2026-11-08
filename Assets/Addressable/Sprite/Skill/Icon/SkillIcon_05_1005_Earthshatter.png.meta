@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 66d4e726d27860a40ba456f995b4fbb3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7858200488428953260
+    second: SkillIcon_05_1005_Earthshatter_0
+  - first:
+      213: 8867876171647773617
+    second: SkillIcon_05_1005_Earthshatter_1
+  - first:
+      213: -4287665209772792250
+    second: SkillIcon_05_1005_Earthshatter_2
+  - first:
+      213: 1475212126441456329
+    second: SkillIcon_05_1005_Earthshatter_3
+  - first:
+      213: 2936447900203638979
+    second: SkillIcon_05_1005_Earthshatter_4
+  - first:
+      213: -7293717142788059134
+    second: SkillIcon_05_1005_Earthshatter_5
+  - first:
+      213: -3838383715469627170
+    second: SkillIcon_05_1005_Earthshatter_6
+  - first:
+      213: 6588264848097246687
+    second: SkillIcon_05_1005_Earthshatter_7
+  - first:
+      213: -6194845112914176240
+    second: SkillIcon_05_1005_Earthshatter_8
+  - first:
+      213: -3636276579317144582
+    second: SkillIcon_05_1005_Earthshatter_9
+  - first:
+      213: -6691903903281659167
+    second: SkillIcon_05_1005_Earthshatter_10
+  - first:
+      213: 3293521300039351484
+    second: SkillIcon_05_1005_Earthshatter_11
+  - first:
+      213: 7835424745695704437
+    second: SkillIcon_05_1005_Earthshatter_12
+  - first:
+      213: -6237645584458312378
+    second: SkillIcon_05_1005_Earthshatter_13
+  - first:
+      213: 3945723855888507241
+    second: SkillIcon_05_1005_Earthshatter_14
+  - first:
+      213: -1085154193248720539
+    second: SkillIcon_05_1005_Earthshatter_15
+  - first:
+      213: -1408189077290315713
+    second: SkillIcon_05_1005_Earthshatter_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_0
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 104
+        width: 46
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45124615a4012f290800000000000000
+      internalID: -7858200488428953260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_1
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 91
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bb6733e466011b70800000000000000
+      internalID: 8867876171647773617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_2
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 99
+        width: 63
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64621bf65372f74c0800000000000000
+      internalID: -4287665209772792250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_3
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 89
+        width: 43
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c244ecec91097410800000000000000
+      internalID: 1475212126441456329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_4
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 110
+        width: 45
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c06419aecb50c820800000000000000
+      internalID: 2936447900203638979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_5
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 104
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 200d0f307e287ca90800000000000000
+      internalID: -7293717142788059134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_6
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 60
+        width: 28
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed0f9cfe8525bbac0800000000000000
+      internalID: -3838383715469627170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_7
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 86
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdd770529f73e6b50800000000000000
+      internalID: 6588264848097246687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_8
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 72
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0179f26013d770aa0800000000000000
+      internalID: -6194845112914176240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_9
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 85
+        width: 27
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af3aab887b9598dc0800000000000000
+      internalID: -3636276579317144582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_10
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 66
+        width: 27
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e2c8ddead49123a0800000000000000
+      internalID: -6691903903281659167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_11
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 89
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbc370d2c20f4bd20800000000000000
+      internalID: 3293521300039351484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_12
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 35
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5757f77da450dbc60800000000000000
+      internalID: 7835424745695704437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_13
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 35
+        width: 40
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 645149fa36e6f69a0800000000000000
+      internalID: -6237645584458312378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_14
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 66
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 961e40c01f602c630800000000000000
+      internalID: 3945723855888507241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_15
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 35
+        width: 31
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56962e8b202c0f0f0800000000000000
+      internalID: -1085154193248720539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SkillIcon_05_1005_Earthshatter_16
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 61
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f30968fbe7b157ce0800000000000000
+      internalID: -1408189077290315713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      SkillIcon_05_1005_Earthshatter_0: -7858200488428953260
+      SkillIcon_05_1005_Earthshatter_1: 8867876171647773617
+      SkillIcon_05_1005_Earthshatter_10: -6691903903281659167
+      SkillIcon_05_1005_Earthshatter_11: 3293521300039351484
+      SkillIcon_05_1005_Earthshatter_12: 7835424745695704437
+      SkillIcon_05_1005_Earthshatter_13: -6237645584458312378
+      SkillIcon_05_1005_Earthshatter_14: 3945723855888507241
+      SkillIcon_05_1005_Earthshatter_15: -1085154193248720539
+      SkillIcon_05_1005_Earthshatter_16: -1408189077290315713
+      SkillIcon_05_1005_Earthshatter_2: -4287665209772792250
+      SkillIcon_05_1005_Earthshatter_3: 1475212126441456329
+      SkillIcon_05_1005_Earthshatter_4: 2936447900203638979
+      SkillIcon_05_1005_Earthshatter_5: -7293717142788059134
+      SkillIcon_05_1005_Earthshatter_6: -3838383715469627170
+      SkillIcon_05_1005_Earthshatter_7: 6588264848097246687
+      SkillIcon_05_1005_Earthshatter_8: -6194845112914176240
+      SkillIcon_05_1005_Earthshatter_9: -3636276579317144582
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

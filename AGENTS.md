@@ -1,9 +1,9 @@
-# Realm of Hero: AI Agent Guidelines (AGENTS.md)
+# Pale Vertica: AI Agent Guidelines (AGENTS.md)
 
-Welcome, AI Collaborator. This document serves as the supreme directive for assisting with the **Realm of Hero: Whispers of the Pale Throne** project. It outlines the project's essence, technical standards, and boundaries to ensure seamless and high-quality development.
+Welcome, AI Collaborator. This document serves as the supreme directive for assisting with the **Pale Vertica: Whispers of the Pale Throne** project. It outlines the project's essence, technical standards, and boundaries to ensure seamless and high-quality development.
 
 ## 1. Project Overview
-**Realm of Hero** is a Top-down 2D Action RPG built on Unity.
+**Pale Vertica** is a Top-down 2D Action RPG built on Unity.
 - **Core Pillars**: Deep mathematical stat progression (STR, AGI, VIT, INT, DEX, LUK), 12 distinct class archetypes, reactive combat, and meaningful narrative choices.
 - **Architecture**: Data-driven (using `ScriptableObjects` extensively) and Event-driven (Decoupled systems via Observer Pattern).
 - **Aesthetic**: High-fidelity 2D Art / HD-2D paradigms.
@@ -15,7 +15,7 @@ When executing tasks or generating code for this project, you must adhere strict
 - **Code Updates**: Provide *only* the modified blocks/methods and clearly specify the replacement position. Do not rewrite the entire file.
 - **Scannability**: Prioritize Markdown, bolding, and lists. Use LaTeX only for complex formulas.
 - **Comments**: **NO code comments** unless specifically requested by the user.
-- **Language**: **Always respond in English.** Do not switch to Thai or any other language.
+- **Language**: Respond in English by default, or in Thai when explicitly requested by the user.
 - **Dont Type Emoji**: Do not use emoji in your response.
 
 ## 3. Project Structure
@@ -68,7 +68,13 @@ The `Assets/Script` directory is highly modular. Maintain and respect this organ
 
 ## 7. Documentation & Skills
 - **Single source for docs**: `Docs/` (index: `Docs/README.md`). Never create `.md` files inside `Assets/`.
-- **Project skill**: `.claude/skills/realm-of-hero-dev/SKILL.md` (architecture map + recipes in `references/`). Read it before working on scripts.
+- **Project skill**: `.claude/skills/pale-vertica-dev/SKILL.md` (architecture map + recipes in `references/`). Read it before working on scripts.
+- **Walkthrough required**: every tool, task or feature that devs will use again (editor tools and windows, Workbench or pipeline steps, templates, reusable systems) ships with a walkthrough at `Docs/02-Technical/<System>/<Name>_Walkthrough.md`, linked from `Docs/README.md`. It covers where to open it, inputs, each step in order, the expected result, and common mistakes. The work is not done until the walkthrough exists.
+
+## 7b. UI from Figma
+- Any UI built or restyled from a Figma design follows `.claude/skills/figma-to-unity/SKILL.md` and uses the scripts in `Tools/FigmaToUnity/`.
+- Do not report UI work as done until a render was compared with the Figma export, the layout report shows 0 errors, and EditMode tests pass.
+- Never hand-write prefab or scene YAML or invent GUIDs; change prefabs through an editor script.
 
 ## 8. Naming & Script Types
 - Follow `Docs/02-Technical/Coding_Standards.md` (approved 2026-10-16).

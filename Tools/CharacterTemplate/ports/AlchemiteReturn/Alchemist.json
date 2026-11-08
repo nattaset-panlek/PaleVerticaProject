@@ -1,0 +1,14 @@
+{
+  "name": "Alchemist",
+  "source": "../../../../../AlchemiteReturn/Assets/Raw Source/Player/NPC/alchemist.psb",
+  "scale": 0.735,
+  "canvasHeight": 440,
+  "parts": {
+    "Head": {"layer": "Folder 7/Layer 12", "joint": [255.74, 198.42], "scale": 0.84},
+    "Body": {"layer": "Folder 7/Layer 11", "joint": [261.9, 137.0], "scale": 0.8},
+    "ArmL": {"layer": "Folder 5/Folder 3 Copy", "joint": [298.8, 170.4], "scale": 0.82},
+    "ArmR": {"layer": "Folder 5/Folder 3", "joint": [228.0, 169.2], "scale": 0.82},
+    "LegL": {"layer": "Folder 5/Folder 4 Copy", "joint": [292.8, 86.2]},
+    "LegR": {"layer": "Folder 5/Folder 4", "joint": [230.6, 86.6]}
+  }
+}

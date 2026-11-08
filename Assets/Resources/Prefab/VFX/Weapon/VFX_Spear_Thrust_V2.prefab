@@ -1,0 +1,125 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5680369820358173447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5458252087041858821}
+  - component: {fileID: 4315247274463917452}
+  - component: {fileID: 8749964811540164477}
+  m_Layer: 0
+  m_Name: VFX_Spear_Thrust_V2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5458252087041858821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680369820358173447}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &4315247274463917452
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680369820358173447}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9e56f9a7862c4222bfae2aff1ce3be63, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 50
+  m_Sprite: {fileID: 1325597990780795424, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 2.56, y: 2.56}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &8749964811540164477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680369820358173447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3038e8e30b22460489a58df00db61ceb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier:
+  _renderer: {fileID: 4315247274463917452}
+  _frames:
+  - {fileID: 1325597990780795424, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -533157538589599022, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -379063526756795599, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: 1372520556312711038, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -3781814972261938110, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -3078209452791056529, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: 4442702895226858927, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: 2339429519122143336, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: 1355588434989707832, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -2189791248900220209, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: 1902848995614339907, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -4011198039649573583, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -399322760939188632, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -1228227075594658260, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -3935791404292184423, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  - {fileID: -958449128697166242, guid: 6aabc335b81d4813865655cd55d5b915, type: 3}
+  _framesPerSecond: 30
+  _visibleLength: 1.71
+  _fitToBoxSkill: 1
+  _destroyWhenFinished: 1
+  _ramp:
+    Shadow: {r: 0.35, g: 0.38, b: 0.45, a: 1}
+    Mid: {r: 1, g: 1, b: 1, a: 1}
+    Highlight: {r: 1, g: 1, b: 1, a: 1}

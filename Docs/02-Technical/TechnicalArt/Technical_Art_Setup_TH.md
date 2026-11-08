@@ -1,4 +1,4 @@
-# Realm of Hero: แผนงานและคู่มือการติดตั้ง Shader, Material และ EntityVisualController
+# Pale Vertica: แผนงานและคู่มือการติดตั้ง Shader, Material และ EntityVisualController
 
 เอกสารนี้อธิบายอย่างชัดเจนว่า **Shader และ Material สร้างที่ไหน วางไว้ตรงไหน และเชื่อมต่อกับ `EntityVisualController` อย่างไร** เพื่อให้เห็นภาพตั้งแต่ต้นจนจบ
 

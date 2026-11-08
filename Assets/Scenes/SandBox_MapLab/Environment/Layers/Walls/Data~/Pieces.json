@@ -1,0 +1,1299 @@
+{
+    "version": 1,
+    "originX": -2,
+    "originY": -1,
+    "countX": 4,
+    "countY": 3,
+    "chunkSize": 16.0,
+    "pixelsPerUnit": 64,
+    "pieces": [
+        {
+            "file": "Piece_0000.png",
+            "x": 2440,
+            "y": 1019,
+            "width": 37,
+            "height": 366,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 14.022676467895508,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0001.png",
+            "x": 2088,
+            "y": 1157,
+            "width": 39,
+            "height": 7,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 13.19405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0002.png",
+            "x": 1962,
+            "y": 1162,
+            "width": 291,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 12.69405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0003.png",
+            "x": 1914,
+            "y": 1194,
+            "width": 387,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 12.19405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0004.png",
+            "x": 1892,
+            "y": 1226,
+            "width": 431,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 11.69405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0005.png",
+            "x": 1350,
+            "y": 1226,
+            "width": 22,
+            "height": 8,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 11.649002075195313,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0006.png",
+            "x": 1871,
+            "y": 1258,
+            "width": 473,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 11.19405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0007.png",
+            "x": 853,
+            "y": 1232,
+            "width": 616,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 11.149002075195313,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0008.png",
+            "x": 1857,
+            "y": 1311,
+            "width": 501,
+            "height": 269,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 10.880000114440918,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0009.png",
+            "x": 1857,
+            "y": 1290,
+            "width": 501,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 10.69405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0010.png",
+            "x": 785,
+            "y": 1264,
+            "width": 757,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 10.649002075195313,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0011.png",
+            "x": 2475,
+            "y": 1239,
+            "width": 929,
+            "height": 446,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 10.5,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0012.png",
+            "x": 1857,
+            "y": 1322,
+            "width": 493,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 10.19405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0013.png",
+            "x": 728,
+            "y": 1296,
+            "width": 883,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 10.149002075195313,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0014.png",
+            "x": 1858,
+            "y": 1354,
+            "width": 470,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 9.69405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0015.png",
+            "x": 680,
+            "y": 1328,
+            "width": 994,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 9.649002075195313,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0016.png",
+            "x": 1858,
+            "y": 1386,
+            "width": 449,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 9.19405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0017.png",
+            "x": 2118,
+            "y": 1419,
+            "width": 167,
+            "height": 201,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 9.182944297790528,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0018.png",
+            "x": 641,
+            "y": 1360,
+            "width": 1084,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 9.149002075195313,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0019.png",
+            "x": 1859,
+            "y": 1418,
+            "width": 426,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 8.69405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0020.png",
+            "x": 610,
+            "y": 1392,
+            "width": 1150,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 8.649002075195313,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0021.png",
+            "x": 3267,
+            "y": 1376,
+            "width": 38,
+            "height": 57,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 8.371018409729004,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0022.png",
+            "x": 1859,
+            "y": 1450,
+            "width": 393,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 8.19405746459961,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0023.png",
+            "x": 589,
+            "y": 1424,
+            "width": 1191,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 8.149002075195313,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0024.png",
+            "x": 1860,
+            "y": 1482,
+            "width": 359,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 7.694057464599609,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0025.png",
+            "x": 576,
+            "y": 1456,
+            "width": 1207,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 7.649001598358154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0026.png",
+            "x": 1771,
+            "y": 1495,
+            "width": 12,
+            "height": 103,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 7.555008888244629,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0027.png",
+            "x": 1861,
+            "y": 1543,
+            "width": 259,
+            "height": 77,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 7.239296913146973,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0028.png",
+            "x": 1860,
+            "y": 1514,
+            "width": 326,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 7.194057464599609,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0029.png",
+            "x": 568,
+            "y": 1488,
+            "width": 1215,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 7.149001598358154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0030.png",
+            "x": 1752,
+            "y": 1530,
+            "width": 21,
+            "height": 108,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 6.997835159301758,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0031.png",
+            "x": 1884,
+            "y": 1546,
+            "width": 269,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.9300000071525574,
+                "y": 6.694057464599609,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0032.png",
+            "x": 565,
+            "y": 1520,
+            "width": 1210,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 6.649001598358154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0033.png",
+            "x": 564,
+            "y": 1568,
+            "width": 1190,
+            "height": 109,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 6.514869213104248,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0034.png",
+            "x": 564,
+            "y": 1552,
+            "width": 1197,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 6.149001598358154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0035.png",
+            "x": 565,
+            "y": 1599,
+            "width": 1164,
+            "height": 116,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 5.979008674621582,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0036.png",
+            "x": 1454,
+            "y": 1388,
+            "width": 18,
+            "height": 187,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 5.747600555419922,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0037.png",
+            "x": 2598,
+            "y": 1549,
+            "width": 428,
+            "height": 242,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 5.650909423828125,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0038.png",
+            "x": 565,
+            "y": 1584,
+            "width": 1178,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 5.649001598358154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0039.png",
+            "x": 569,
+            "y": 1630,
+            "width": 1132,
+            "height": 121,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 5.468804359436035,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0040.png",
+            "x": 568,
+            "y": 1616,
+            "width": 1153,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 5.149001598358154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0041.png",
+            "x": 575,
+            "y": 1659,
+            "width": 1097,
+            "height": 123,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 5.0,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0042.png",
+            "x": 1388,
+            "y": 1497,
+            "width": 68,
+            "height": 118,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.979599952697754,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0043.png",
+            "x": 782,
+            "y": 1472,
+            "width": 159,
+            "height": 176,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.658184051513672,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0044.png",
+            "x": 573,
+            "y": 1648,
+            "width": 1124,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.649001598358154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0045.png",
+            "x": 1268,
+            "y": 1546,
+            "width": 122,
+            "height": 97,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.617755889892578,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0046.png",
+            "x": 584,
+            "y": 1685,
+            "width": 1061,
+            "height": 126,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.5730366706848148,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0047.png",
+            "x": 939,
+            "y": 1567,
+            "width": 331,
+            "height": 107,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.254040718078613,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0048.png",
+            "x": 782,
+            "y": 1218,
+            "width": 690,
+            "height": 376,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.253540992736816,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0049.png",
+            "x": 948,
+            "y": 1123,
+            "width": 380,
+            "height": 326,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.2435407638549809,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0050.png",
+            "x": 583,
+            "y": 1680,
+            "width": 1088,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 4.149001598358154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0051.png",
+            "x": 614,
+            "y": 1734,
+            "width": 1002,
+            "height": 103,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 3.7974016666412355,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0052.png",
+            "x": 599,
+            "y": 1712,
+            "width": 1044,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 3.6490018367767336,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0053.png",
+            "x": 2440,
+            "y": 899,
+            "width": 964,
+            "height": 764,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 3.5851428508758547,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0054.png",
+            "x": 634,
+            "y": 1758,
+            "width": 951,
+            "height": 104,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 3.4373526573181154,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0055.png",
+            "x": 623,
+            "y": 1744,
+            "width": 987,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 3.1490018367767336,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0056.png",
+            "x": 656,
+            "y": 1780,
+            "width": 895,
+            "height": 115,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 3.088228940963745,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0057.png",
+            "x": 1500,
+            "y": 1660,
+            "width": 94,
+            "height": 103,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 2.8628547191619875,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0058.png",
+            "x": 653,
+            "y": 1776,
+            "width": 918,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 2.6490018367767336,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0059.png",
+            "x": 703,
+            "y": 1814,
+            "width": 813,
+            "height": 112,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 2.5476763248443605,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0060.png",
+            "x": 1185,
+            "y": 1722,
+            "width": 3,
+            "height": 23,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 2.4524097442626955,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0061.png",
+            "x": 686,
+            "y": 1808,
+            "width": 839,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 2.1490018367767336,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0062.png",
+            "x": 730,
+            "y": 1848,
+            "width": 719,
+            "height": 110,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 2.0268948078155519,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0063.png",
+            "x": 1186,
+            "y": 1766,
+            "width": 235,
+            "height": 54,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 1.982346534729004,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0064.png",
+            "x": 1419,
+            "y": 1740,
+            "width": 83,
+            "height": 79,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 1.982346534729004,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0065.png",
+            "x": 1185,
+            "y": 1590,
+            "width": 409,
+            "height": 208,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 1.981846570968628,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0066.png",
+            "x": 722,
+            "y": 1840,
+            "width": 751,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 1.6490018367767335,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0067.png",
+            "x": 2219,
+            "y": 1801,
+            "width": 55,
+            "height": 143,
+            "sortPoint": {
+                "x": 3.0999999046325685,
+                "y": 1.6399999856948853,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0068.png",
+            "x": 2487,
+            "y": 1801,
+            "width": 56,
+            "height": 143,
+            "sortPoint": {
+                "x": 7.300000190734863,
+                "y": 1.6399999856948853,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0069.png",
+            "x": 2219,
+            "y": 1768,
+            "width": 55,
+            "height": 35,
+            "sortPoint": {
+                "x": 3.0999999046325685,
+                "y": 1.6395000219345093,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0070.png",
+            "x": 2487,
+            "y": 1768,
+            "width": 56,
+            "height": 35,
+            "sortPoint": {
+                "x": 7.300000190734863,
+                "y": 1.6395000219345093,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0071.png",
+            "x": 760,
+            "y": 1874,
+            "width": 635,
+            "height": 122,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 1.620646357536316,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0072.png",
+            "x": 3640,
+            "y": 1824,
+            "width": 67,
+            "height": 387,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": 1.521737813949585,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0073.png",
+            "x": 759,
+            "y": 1872,
+            "width": 659,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 1.1490018367767335,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0074.png",
+            "x": 826,
+            "y": 1905,
+            "width": 527,
+            "height": 118,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 1.1329874992370606,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0075.png",
+            "x": 799,
+            "y": 1904,
+            "width": 565,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 0.6490017771720886,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0076.png",
+            "x": 858,
+            "y": 1945,
+            "width": 94,
+            "height": 94,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 0.5051108002662659,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0077.png",
+            "x": 845,
+            "y": 1936,
+            "width": 118,
+            "height": 34,
+            "sortPoint": {
+                "x": 0.0,
+                "y": 0.149001806974411,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0078.png",
+            "x": 2875,
+            "y": 1926,
+            "width": 36,
+            "height": 174,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -0.0900002121925354,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0079.png",
+            "x": 2909,
+            "y": 1972,
+            "width": 41,
+            "height": 146,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -0.800674557685852,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0080.png",
+            "x": 2219,
+            "y": 2070,
+            "width": 55,
+            "height": 143,
+            "sortPoint": {
+                "x": 3.0999999046325685,
+                "y": -2.559999942779541,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0081.png",
+            "x": 2487,
+            "y": 2070,
+            "width": 56,
+            "height": 143,
+            "sortPoint": {
+                "x": 7.300000190734863,
+                "y": -2.559999942779541,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0082.png",
+            "x": 2219,
+            "y": 2037,
+            "width": 55,
+            "height": 35,
+            "sortPoint": {
+                "x": 3.0999999046325685,
+                "y": -2.560499906539917,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0083.png",
+            "x": 2487,
+            "y": 2037,
+            "width": 56,
+            "height": 35,
+            "sortPoint": {
+                "x": 7.300000190734863,
+                "y": -2.560499906539917,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0084.png",
+            "x": 3479,
+            "y": 2086,
+            "width": 163,
+            "height": 361,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -2.591658115386963,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0085.png",
+            "x": 2905,
+            "y": 2170,
+            "width": 18,
+            "height": 236,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -3.8099019527435304,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0086.png",
+            "x": 2921,
+            "y": 2284,
+            "width": 265,
+            "height": 193,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -5.6897735595703129,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0087.png",
+            "x": 3184,
+            "y": 2319,
+            "width": 297,
+            "height": 158,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -6.24303674697876,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0088.png",
+            "x": 2875,
+            "y": 1621,
+            "width": 832,
+            "height": 729,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -6.6961236000061039,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0089.png",
+            "x": 2994,
+            "y": 1528,
+            "width": 516,
+            "height": 568,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -6.7061238288879398,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0090.png",
+            "x": 3067,
+            "y": 1418,
+            "width": 321,
+            "height": 409,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -6.716124057769775,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 6
+        },
+        {
+            "file": "Piece_0091.png",
+            "x": 3133,
+            "y": 1974,
+            "width": 484,
+            "height": 334,
+            "sortPoint": {
+                "x": 16.84000015258789,
+                "y": -6.7061238288879398,
+                "z": 0.0
+            },
+            "sortingLayer": "Default",
+            "sortingOrder": 7
+        }
+    ]
+}

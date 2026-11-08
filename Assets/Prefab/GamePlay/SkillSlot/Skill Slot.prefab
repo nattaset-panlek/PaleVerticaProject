@@ -612,10 +612,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 6265869021626109141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 4}
-  m_SizeDelta: {x: -28, y: -28}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1}
+  m_SizeDelta: {x: 48, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6348777259712437328
 CanvasRenderer:
@@ -1256,6 +1256,11 @@ MonoBehaviour:
   _overlayValueText: {fileID: 1567948629715409383}
   _numHotSlotText: {fileID: 8257094841865803147}
   _comboHintObj: {fileID: 53670330302738050}
+  _keepSkillIconColors: 1
+  _showSkillIconBackplate: 1
+  _skillIconBackplateColor: {r: 0.078, g: 0.075, b: 0.075, a: 1}
+  _skillIconBackplateRadius: 10
+  _skillIconBackplatePadding: 2
   _rowIndex: 0
   _slotIndex: 0
   _holdThreshold: 0.15

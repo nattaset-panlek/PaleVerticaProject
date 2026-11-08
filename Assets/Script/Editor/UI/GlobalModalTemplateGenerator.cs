@@ -7,7 +7,7 @@ namespace CoreSystem.UI.Editor
 {
     public class GlobalModalTemplateGenerator
     {
-        [MenuItem("Realm of Hero/UI/Create Global Modal Template")]
+        [MenuItem("Pale Vertica/UI/Create Global Modal Template")]
         public static void CreateTemplate()
         {
             // 1. Create Root

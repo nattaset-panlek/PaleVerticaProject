@@ -5,9 +5,12 @@ using CoreSystem.Data;
 using CoreSystem.Entity;
 using CoreSystem.Player;
 using CoreSystem.UI;
+using CoreSystem.UI.Components;
 using CoreSystem.UI.DevTools;
+using CoreSystem.UI.GameInterface;
 using CoreSystem.UI.Diagnostics;
 using CoreSystem.UI.Inspect;
+using CoreSystem.UI.SkillManagePage;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -26,11 +29,18 @@ namespace CoreSystem.Editor.UI
         private const int ScreenHeight = 1080;
         private static readonly Vector2 DevToolSize = new Vector2(1000f, 680f);
         private static readonly Vector2 GallerySize = new Vector2(900f, 760f);
+        private static readonly Vector2 InspectSize = new Vector2(560f, 760f);
+        private const string SkillManagePrefabPath = "Assets/Prefab/Game Page/Character SkillManager Window.prefab";
+        private const string StatusModalPrefabPath = "Assets/Prefab/Game Page/StatusModal Window.prefab";
+        private static readonly string[] SkillManageTabs = { "Modifier", "Effect", "Basic", "Advance" };
+        private static readonly Vector2 SocketFigmaPosition = new Vector2(-24.5f, -1.5f);
+        private static readonly Vector2[] SkillManageFigmaPositions = { new Vector2(-268.5f, -16f), new Vector2(-3.5f, -16f), new Vector2(-0.5f, 0f), new Vector2(-0.5f, 0f) };
+        private static readonly Color FigmaBackdrop = new Color(0.263f, 0.263f, 0.263f, 1f);
         private static readonly Color Backdrop = new Color(0.16f, 0.18f, 0.22f, 1f);
         #endregion
 
         #region [Public Methods]
-        [MenuItem("Realm of Hero/UI/Render UI Snapshots")]
+        [MenuItem("Pale Vertica/UI/Render UI Snapshots")]
         public static void RenderFromMenu()
         {
             Debug.Log(RenderAll(false));
@@ -114,8 +124,25 @@ namespace CoreSystem.Editor.UI
                     modal.RefreshPage(GameDevToolUI.PagesId);
                 });
 
-                Snapshot(() => "deathscreen", new Vector2(256f, 128f), modal => new PlayerDeathScreen().Setup(modal));
-                Snapshot(() => "inspect_character", new Vector2(480f, 560f), modal => new CharacterInspectWindow(player).Setup(modal));
+                Snapshot(() => "devtool_01c_Database_selected", DevToolSize, modal =>
+                {
+                    var items = Database.GetItems;
+                    var item = items.Find(i => i.Rarity == ItemRarity.Unique) ?? (items.Count > 0 ? items[0] : null);
+                    devTool.Setup(modal);
+                    if (item != null) modal.Document.SetState($"db.{item.Type}.open", true);
+                    devTool.SelectDatabaseItem(item);
+                    modal.RefreshPage(GameDevToolUI.PagesId);
+                });
+
+                Snapshot(() => "deathscreen", new Vector2(UIMiniHeaderStyleRegistry.DeathWindowWidth, 260f), modal => new PlayerDeathScreen().Setup(modal));
+                Snapshot(() => "inspect_character", InspectSize, modal => new CharacterInspectWindow(player).Setup(modal));
+
+                var statusModal = AssetDatabase.LoadAssetAtPath<GameObject>(StatusModalPrefabPath);
+                if (render && statusModal != null)
+                {
+                    var issues = ProcessPrefab(scene, statusModal, "status_modal", Vector2.zero, Backdrop, go => SetupStatusModal(go, player), render);
+                    summary.AppendLine($"status_modal (reference only, not checked): {issues.Count} issue(s)");
+                }
 
                 Snapshot(() => "dark_gallery", GallerySize, modal => modal.SetThemeMode(UIThemeMode.Dark).Build(BuildGallery));
                 Snapshot(() => "dark_devtool_06_Skills", DevToolSize, modal =>
@@ -124,16 +151,106 @@ namespace CoreSystem.Editor.UI
                     devTool.Setup(modal);
                     modal.ShowPage(GameDevToolUI.PagesId, 5);
                 });
-                Snapshot(() => "dark_inspect_character", new Vector2(480f, 560f), modal =>
+                Snapshot(() => "dark_inspect_character", InspectSize, modal =>
                 {
                     modal.SetThemeMode(UIThemeMode.Dark);
                     new CharacterInspectWindow(player).Setup(modal);
                 });
-                Snapshot(() => "dark_deathscreen", new Vector2(256f, 128f), modal =>
+
+                var skillManage = AssetDatabase.LoadAssetAtPath<GameObject>(SkillManagePrefabPath);
+                if (skillManage != null)
                 {
-                    modal.SetThemeMode(UIThemeMode.Dark);
-                    new PlayerDeathScreen().Setup(modal);
-                });
+                    for (int tab = 0; tab < SkillManageTabs.Length; tab++)
+                    {
+                        int index = tab;
+                        string fileName = $"skillmanage_{index + 1}_{SkillManageTabs[index]}";
+                        var issues = ProcessPrefab(scene, skillManage, fileName, SkillManageFigmaPositions[index], FigmaBackdrop, go => SetupSkillManage(go, player, index), render);
+                        found[fileName] = issues;
+                        summary.AppendLine($"{fileName}: {issues.Count} issue(s), {issues.FindAll(issue => issue.Severity == UIIssueSeverity.Error).Count} error(s)");
+                    }
+                }
+
+                var actionProgress = AssetDatabase.LoadAssetAtPath<GameObject>(ActionProgressPrefabBuilder.PrefabPath);
+                if (actionProgress != null)
+                {
+                    var defaultIcon = AssetDatabase.LoadAssetAtPath<Sprite>(ActionProgressPrefabBuilder.DefaultIconPath);
+                    var variants = new (string file, Sprite icon, CoreSystem.UI.ActionProgress.ActionProgressColor color, float progress)[]
+                    {
+                        ("action_progress_cyan", defaultIcon, CoreSystem.UI.ActionProgress.ActionProgressColor.Cyan, 120f / 268f),
+                        ("action_progress_magenta", defaultIcon, CoreSystem.UI.ActionProgress.ActionProgressColor.Magenta, 120f / 268f),
+                        ("action_progress_noicon", null, CoreSystem.UI.ActionProgress.ActionProgressColor.Cyan, 157f / 350f)
+                    };
+                    foreach (var variant in variants)
+                    {
+                        var request = new CoreSystem.UI.ActionProgress.ActionProgressRequest { ActionName = "Action Name", ActionType = "Action", Icon = variant.icon, Color = variant.color };
+                        var issues = ProcessPrefab(scene, actionProgress, variant.file, Vector2.zero, FigmaBackdrop, go => go.GetComponent<CoreSystem.UI.ActionProgress.ActionProgressWindow>().Preview(request, variant.progress, 99.99f), render);
+                        found[variant.file] = issues;
+                        summary.AppendLine($"{variant.file}: {issues.Count} issue(s), {issues.FindAll(issue => issue.Severity == UIIssueSeverity.Error).Count} error(s)");
+                    }
+                }
+
+                if (MiniHeaderUIKitGenerator.LoadKitPrefab("MH Setting Row") != null)
+                {
+                    Snapshot(() => "miniheader_settings", new Vector2(720f, 500f), MiniHeaderUIKitGenerator.BuildSampleSettings);
+                }
+
+                if (registry.GetEntry(UIElementType.Button, UIMiniHeaderStyleRegistry.MenuRow) != null)
+                {
+                    Snapshot(() => "system_menu", new Vector2(300f, 420f), modal => new CoreSystem.UI.SystemMenu.SystemMenuWindow().Setup(modal));
+                    var settingsPages = CoreSystem.Settings.SettingsRegistry.Pages;
+                    for (int tab = 0; tab < settingsPages.Count; tab++)
+                    {
+                        int index = tab;
+                        Snapshot(() => $"settings_{index + 1}_{settingsPages[index].Title}", UIMiniHeaderStyleRegistry.SettingsWindowSize, modal => new CoreSystem.UI.SystemMenu.SettingsWindow().Setup(modal, index));
+                    }
+                    Snapshot(() => "system_confirm_exit", new Vector2(440f, 200f), modal =>
+                    {
+                        var dialog = new CoreSystem.UI.SystemMenu.SystemConfirmDialog();
+                        dialog.Prime("Exit Game", "Return to the desktop? Unsaved progress will be lost.", "Exit");
+                        dialog.Setup(modal);
+                    });
+                }
+
+                var socketWindow = AssetDatabase.LoadAssetAtPath<GameObject>(RefinementAndSocketPrefabBuilder.SocketPrefabPath);
+                if (socketWindow != null)
+                {
+                    var issues = ProcessPrefab(scene, socketWindow, "socket_window", SocketFigmaPosition, FigmaBackdrop, null, render);
+                    found["socket_window"] = issues;
+                    summary.AppendLine($"socket_window: {issues.Count} issue(s), {issues.FindAll(issue => issue.Severity == UIIssueSeverity.Error).Count} error(s)");
+                }
+
+                var sheets = new (string file, Color backdrop, Func<GameObject> create)[]
+                {
+                    (ItemSlotSnapshotSheet.FileName, ItemSlotSnapshotSheet.Backdrop, ItemSlotSnapshotSheet.Create),
+                    (ItemCardSnapshotSheet.FileName, ItemCardSnapshotSheet.Backdrop, ItemCardSnapshotSheet.Create)
+                };
+                foreach (var sheet in sheets)
+                {
+                    GameObject sheetObject = sheet.create();
+                    if (sheetObject == null) continue;
+                    try
+                    {
+                        var issues = ProcessPrefab(scene, sheetObject, sheet.file, Vector2.zero, sheet.backdrop, null, render);
+                        found[sheet.file] = issues;
+                        summary.AppendLine($"{sheet.file}: {issues.Count} issue(s), {issues.FindAll(issue => issue.Severity == UIIssueSeverity.Error).Count} error(s)");
+                    }
+                    finally
+                    {
+                        Object.DestroyImmediate(sheetObject);
+                    }
+                }
+
+                var stall = AssetDatabase.LoadAssetAtPath<GameObject>(MerchantStallPrefabBuilder.WindowPrefabPath);
+                if (stall != null)
+                {
+                    foreach (string state in MerchantStallSnapshot.States)
+                    {
+                        string file = $"merchant_stall_{state}";
+                        var issues = ProcessPrefab(scene, stall, file, Vector2.zero, MerchantStallSnapshot.Backdrop, go => MerchantStallSnapshot.Setup(go, state), render);
+                        found[file] = issues;
+                        summary.AppendLine($"{file}: {issues.Count} issue(s), {issues.FindAll(issue => issue.Severity == UIIssueSeverity.Error).Count} error(s)");
+                    }
+                }
             }
             finally
             {
@@ -187,6 +304,73 @@ namespace CoreSystem.Editor.UI
                     Object.DestroyImmediate(texture);
                 }
             }
+        }
+
+        private static List<UILayoutIssue> ProcessPrefab(Scene scene, GameObject prefab, string fileName, Vector2 position, Color backdrop, Action<GameObject> setup, bool render)
+        {
+            var root = new GameObject("[UISnapshot]");
+            SceneManager.MoveGameObjectToScene(root, scene);
+            var texture = render ? new RenderTexture(ScreenWidth, ScreenHeight, 24, RenderTextureFormat.ARGB32) : null;
+
+            try
+            {
+                var camera = CreateCamera(root, scene, texture);
+                camera.backgroundColor = backdrop;
+                var canvas = CreateCanvas(root, camera);
+
+                var instance = Object.Instantiate(prefab, canvas.transform, false);
+                var window = (RectTransform)instance.transform;
+                window.anchorMin = new Vector2(0.5f, 0.5f);
+                window.anchorMax = new Vector2(0.5f, 0.5f);
+                window.anchoredPosition = position;
+                setup?.Invoke(instance);
+
+                RefreshLayout(canvas);
+                SettleScrollRects(instance);
+                RefreshLayout(canvas);
+
+                var issues = UILayoutInspector.Inspect(window, UITheme.Default);
+                if (!render) return issues;
+
+                string basePath = UIDebugSnapshot.GetBasePath(fileName);
+                SaveFrame(camera, texture, basePath, string.Empty);
+                if (UIDebugOverlay.Build(canvas, issues, window) != null)
+                {
+                    RefreshLayout(canvas);
+                    SaveFrame(camera, texture, basePath, ".issues");
+                }
+                UIDebugSnapshot.SaveReport(basePath, UILayoutInspector.FormatReport(fileName, window, issues));
+                return issues;
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+                if (texture != null)
+                {
+                    texture.Release();
+                    Object.DestroyImmediate(texture);
+                }
+            }
+        }
+
+        private static void SetupStatusModal(GameObject instance, Character player)
+        {
+            var window = instance.GetComponent<PlayerStatusWindow>();
+            if (window != null) window.Initialize(player);
+        }
+
+        private static void SetupSkillManage(GameObject instance, Character player, int tab)
+        {
+            var window = instance.GetComponent<SkillManageWindow>();
+            if (window != null) window.Initialize(player);
+
+            var tabs = instance.GetComponentInChildren<TabGroup>(true);
+            if (tabs != null) tabs.SelectTab(tab);
+
+            var selected = window != null ? window.SelectedSkillInstance : null;
+            foreach (var page in instance.GetComponentsInChildren<SkillEffectPageView>(true)) page.Render(selected);
+            foreach (var page in instance.GetComponentsInChildren<SkillBasicPageView>(true)) page.Render(selected);
+            foreach (var page in instance.GetComponentsInChildren<SkillAdvancePageView>(true)) page.Render(selected);
         }
 
         private static Camera CreateCamera(GameObject root, Scene scene, RenderTexture texture)
@@ -249,11 +433,11 @@ namespace CoreSystem.Editor.UI
                 if (scrollRect.content == null || scrollRect.viewport == null) continue;
                 Vector2 content = scrollRect.content.rect.size;
                 Vector2 view = scrollRect.viewport.rect.size;
-                if (scrollRect.horizontalScrollbar != null)
+                if (scrollRect.horizontalScrollbar != null && scrollRect.horizontalScrollbarVisibility != ScrollRect.ScrollbarVisibility.Permanent)
                 {
                     scrollRect.horizontalScrollbar.gameObject.SetActive(scrollRect.horizontal && content.x > view.x + 0.5f);
                 }
-                if (scrollRect.verticalScrollbar != null)
+                if (scrollRect.verticalScrollbar != null && scrollRect.verticalScrollbarVisibility != ScrollRect.ScrollbarVisibility.Permanent)
                 {
                     scrollRect.verticalScrollbar.gameObject.SetActive(scrollRect.vertical && content.y > view.y + 0.5f);
                 }
@@ -312,11 +496,11 @@ namespace CoreSystem.Editor.UI
                 row.Button("Clear", null, UIVariant.Secondary);
             });
 
-            ui.Row(row =>
+            ui.Label("Buttons, every variant");
+            ui.Grid(grid =>
             {
-                row.Label("Row of buttons").Fill();
-                foreach (UIVariant variant in Enum.GetValues(typeof(UIVariant))) row.Button(variant.ToString(), null, variant);
-            });
+                foreach (UIVariant variant in Enum.GetValues(typeof(UIVariant))) grid.Button(variant.ToString(), null, variant);
+            }).Cell(181f, 50f).Gap(8f);
 
             ui.Panel(panel =>
             {

@@ -8,6 +8,7 @@ using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Model;
 using CoreSystem.Data.Save;
 using CoreSystem.Entity;
+using CoreSystem.Shop;
 using CoreSystem.Skills;
 using CoreSystem.SkillTree;
 
@@ -17,13 +18,29 @@ namespace CoreSystem.UI.DevTools
     {
         #region [Variables/Fields]
         private const string WindowTitle = "Dev Tool - Debug Menu";
+        private const int WorldCreditAmount = 100000;
+        private const string DisplayTitle = "Dev Tool";
         public const string PagesId = "devtool";
-        private const float DetailWidth = 290f;
+        private const float DetailWidth = 300f;
+        private const float NavWidth = 150f;
+        private const float ChipRadius = 10f;
+        private const float LightColorLimit = 0.8f;
+        private const string NavButtonStyle = "Nav Button";
+        private const string ChipStyle = "Chip";
+        private const string ItemRowStyle = "Item Row";
+        private const string ItemCardStyle = "Item Card";
+        private const string SearchPlaceholder = "search items...";
+        private const string DatabaseListId = "db.list";
+        private const string DatabaseCardId = "db.card";
+        private const float DatabaseRowEstimate = 60f;
+        public const int MinAddAmount = 1;
+        public const int MaxAddAmount = 9999;
+        private const float AmountInputWidth = 80f;
 
         private static readonly Vector2 WindowSize = new Vector2(1000f, 680f);
         private static readonly Vector2 MinWindowSize = new Vector2(760f, 440f);
-        private static readonly Color SlotColor = new Color(0.17f, 0.18f, 0.23f, 1f);
-        private static readonly Color SlotTextColor = new Color(0.78f, 0.8f, 0.86f, 1f);
+        private static readonly Color SlotColor = new Color(0.12f, 0.12f, 0.12f, 1f);
+        private static readonly Color SlotTextColor = new Color(0.79f, 0.79f, 0.79f, 1f);
         private static readonly AttributeType[] PrimaryAttributes =
         {
             AttributeType.STR, AttributeType.AGI, AttributeType.VIT,
@@ -31,6 +48,7 @@ namespace CoreSystem.UI.DevTools
         };
 
         private readonly Character _player;
+        private string _worldStatus = "Spawns a Shopkeeper with a random shop where the player stands.";
         private UIGlobalModal _modal;
         private string _searchQuery = "";
 
@@ -40,7 +58,10 @@ namespace CoreSystem.UI.DevTools
         private ItemInstance _selectedFragment;
         private SkillInstance _selectedSkillForSupports;
         private Item _selectedDatabaseItem;
+        private readonly List<DevToolDatabaseRow> _databaseRows = new List<DevToolDatabaseRow>();
+        private GlobalVisualizer.GlobalVisualizerView _databaseView;
         private ItemInstance _selectedInventoryItem;
+        private int _addAmount = MinAddAmount;
         #endregion
 
         #region [Properties]
@@ -51,6 +72,12 @@ namespace CoreSystem.UI.DevTools
         public GameDevToolUI(Character player)
         {
             _player = player;
+        }
+
+        public static int ParseAddAmount(string text, int fallback)
+        {
+            if (!int.TryParse(text, out int value)) return Mathf.Clamp(fallback, MinAddAmount, MaxAddAmount);
+            return Mathf.Clamp(value, MinAddAmount, MaxAddAmount);
         }
 
         public void Update()
@@ -90,9 +117,15 @@ namespace CoreSystem.UI.DevTools
             _modal?.RefreshPage(PagesId);
         }
 
+        public void SelectDatabaseItem(Item item)
+        {
+            _selectedDatabaseItem = item;
+            RequestRebuild();
+        }
+
         public void Setup(UIGlobalModal modal)
         {
-            modal.SetTitle(WindowTitle)
+            modal.SetTitle(DisplayTitle)
                  .SetMinSize(MinWindowSize)
                  .SetResizable(true)
                  .SetScrollable(false)
@@ -133,14 +166,38 @@ namespace CoreSystem.UI.DevTools
                 || (!string.IsNullOrEmpty(text) && text.IndexOf(_searchQuery, System.StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
+        private void BuildWorldPage(UIBuilderContext ui)
+        {
+            ui.Heading("Merchant");
+            ui.Label(_worldStatus);
+            ui.Row(row =>
+            {
+                row.Button("Spawn Random Merchant Here", SpawnRandomMerchant, UIVariant.Primary).Fill();
+                row.Button("Open Random Shop", () => MerchantFactory.OpenShop(MerchantFactory.CreateRandomShop(new System.Random())), UIVariant.Secondary).Fill();
+                row.Button($"Add {WorldCreditAmount:N0} Credit", () => GameData.Player.Inventory.AddCredit(WorldCreditAmount), UIVariant.Secondary).Fill();
+            });
+        }
+
+        private void SpawnRandomMerchant()
+        {
+            MerchantFactory.SpawnRandom(_player.transform.position, merchant =>
+            {
+                _worldStatus = merchant != null
+                    ? $"{merchant.gameObject.name} is ready. Move away, then right-click it and choose Shop."
+                    : "Spawn failed. See the Console.";
+                RequestRebuild();
+            });
+        }
+
         private void BuildUI(UIBuilderContext ui)
         {
             ui.Pages(PagesId, pages =>
             {
-                pages.NavWidth = 160f;
+                pages.NavWidth = NavWidth;
                 pages.ScrollPages = true;
+                pages.NavButtonStyle = NavButtonStyle;
                 pages.WithHeader(BuildSearchBar)
-                     .WithNavStyle(button => button.CornerRadius(5))
+                     .WithNavStyle(button => button.TextAlign(TextAlignmentOptions.Center))
                      .Add("Database", BuildDatabasePage, false)
                      .Add("Inventory", BuildInventoryPage, false)
                      .Add("Equipment", BuildEquipmentPage)
@@ -149,7 +206,8 @@ namespace CoreSystem.UI.DevTools
                      .Add("Skills", BuildSkillsPage)
                      .Add("Upgrade", BuildUpgradePage)
                      .Add("Passive", BuildPassivePage)
-                     .Add("Unique Passive", BuildUniquePassivesPage);
+                     .Add("Unique Passive", BuildUniquePassivesPage)
+                     .Add("World", BuildWorldPage);
             }, UIPageNav.SideMenu);
         }
 
@@ -157,22 +215,51 @@ namespace CoreSystem.UI.DevTools
         {
             ui.Row(bar =>
             {
-                bar.Caption("Search").Width(56f);
-                bar.Input(_searchQuery, value =>
+                var search = bar.Input(_searchQuery, value =>
                 {
                     _searchQuery = value;
                     RequestRebuild();
                 }).Fill();
-                bar.Button("Clear", () =>
+                SetPlaceholder(search, SearchPlaceholder);
+                bar.Button(ChipStyle, "Clear", () =>
                 {
                     _searchQuery = "";
                     ui.Document.Refresh();
-                }, UIVariant.Secondary);
+                });
                 bool dark = UIGlobalModal.GlobalThemeMode == UIThemeMode.Dark;
-                bar.Button(dark ? "Light" : "Dark", () => UIGlobalModal.SetGlobalThemeMode(dark ? UIThemeMode.Light : UIThemeMode.Dark), UIVariant.Ghost);
-                bar.Button("Snapshot", () => Diagnostics.UIDebugCapture.Capture(_modal), UIVariant.Ghost);
-            }).Gap(8f);
-            ui.Separator();
+                bar.Toggle("Dark mode", dark, isOn => UIGlobalModal.SetGlobalThemeMode(isOn ? UIThemeMode.Dark : UIThemeMode.Light));
+                bar.Button("Snapshot", () => Diagnostics.UIDebugCapture.Capture(_modal), UIVariant.Secondary);
+            }).Gap(10f);
+        }
+
+        private static void SetPlaceholder(UIElementRef input, string text)
+        {
+            var field = input.GameObject != null ? input.GameObject.GetComponentInChildren<TMP_InputField>(true) : null;
+            if (field != null && field.placeholder is TMP_Text placeholder) placeholder.text = text;
+        }
+
+        private static Color Legible(Color color, UITheme theme)
+        {
+            return color.grayscale > LightColorLimit ? theme.Text : color;
+        }
+
+        private static void Chip(UIBuilderContext ui, string label, Color? color)
+        {
+            ui.Badge(label.ToUpperInvariant(), color).Padding(10, 10, 3, 3).CornerRadius(ChipRadius);
+        }
+
+        private static UIElementRef ChipButton(UIBuilderContext ui, string label, System.Action onClick, UIVariant variant = UIVariant.Default)
+        {
+            var chip = ui.Button(ChipStyle, label, onClick);
+            return variant == UIVariant.Selected ? chip.Variant(variant) : chip.LabelVariant(variant);
+        }
+
+        private static UIElementRef ListButton(UIBuilderContext ui, string label, System.Action onClick, bool selected)
+        {
+            return ui.Button(NavButtonStyle, label, onClick)
+                     .Variant(selected ? UIVariant.Selected : UIVariant.Default)
+                     .TextAlign(TextAlignmentOptions.MidlineLeft)
+                     .Fill();
         }
 
         private void BuildDatabasePage(UIBuilderContext ui)
@@ -181,45 +268,104 @@ namespace CoreSystem.UI.DevTools
             {
                 layout.Column(list =>
                 {
+                    var allItems = Database.GetItems;
                     list.Row(header =>
                     {
-                        header.Heading("Item Database").Fill();
-                        header.Button("Add All To Inventory", () =>
+                        header.Column(title =>
                         {
-                            foreach (var item in Database.GetItems) GameData.Player.Inventory.AddItem(item);
+                            title.Heading("ITEM DATABASE");
+                            title.Caption($"{allItems.Count} items  ·  {allItems.Select(i => i.Type).Distinct().Count()} types");
+                        }).Fill().Gap(2f);
+                        header.Button("Add All", () =>
+                        {
+                            GameData.Player.Inventory.AddItems(allItems);
                             RequestRebuild();
-                        }, UIVariant.Danger).CornerRadius(5);
-                    });
+                        }, UIVariant.Danger);
+                    }).Gap(12f);
 
-                    list.Scroll(scroll =>
-                    {
-                        bool searching = !string.IsNullOrEmpty(_searchQuery);
-                        foreach (var group in Database.GetItems.GroupBy(i => i.Type.ToString()))
-                        {
-                            var items = group.Where(item => Matches(item.Name)).ToList();
-                            if (items.Count == 0) continue;
+                    FillDatabaseRows(list.Document);
+                    var rows = GlobalVisualizer.VisualLayoutSettings.Vertical(DatabaseRowEstimate, 8f);
+                    rows.Padding = new GlobalVisualizer.VisualPadding(2f, 2f, 2f, 8f);
+                    var listRef = list.Visualizer(_databaseRows, rows, BuildDatabaseCell, 0f, GlobalVisualizer.VisualSizeMode.Measure).Id(DatabaseListId).Elastic(true);
+                    _databaseView = UIVisualizerFactory.Find(listRef);
+                }).Fill().FillHeight().Gap(10f);
 
-                            scroll.Foldout($"db.{group.Key}", $"{group.Key}  ({items.Count})", section =>
-                            {
-                                section.Grid(grid =>
-                                {
-                                    foreach (var item in items)
-                                    {
-                                        var variant = item == _selectedDatabaseItem ? UIVariant.Selected : UIVariant.Default;
-                                        grid.Button(item.Name, () =>
-                                        {
-                                            _selectedDatabaseItem = item;
-                                            RequestRebuild();
-                                        }, variant).FontSize(12f).CornerRadius(5);
-                                    }
-                                }).Cell(168f, 44f).Gap(6f).CornerRadius(5);
-                            }, searching, (header, open) => header.CornerRadius(5));
-                        }
-                    }, 0f).Id("db.list").Elastic(true).Padding(10);
-                }).Fill().FillHeight();
+                var card = layout.Div(ItemCardStyle, BuildDatabaseDetail).Width(DetailWidth).FillHeight();
+                layout.Document.RegisterRegion(DatabaseCardId, card.GameObject.transform, BuildDatabaseDetail);
+            }).Align(TextAnchor.UpperLeft).Gap(16f).FillHeight();
+        }
 
-                layout.Panel(BuildDatabaseDetail).Width(DetailWidth);
-            }).Align(TextAnchor.UpperLeft).Gap(12f).FillHeight();
+        private void BuildItemRow(UIBuilderContext ui, Item item)
+        {
+            var row = ui.Custom(ItemRowStyle)
+                        .SetText("Name", item.Name)
+                        .SetText("Sub", $"{item.Type}  ·  {item.Rarity}")
+                        .SetText("ValueLabel", "ID")
+                        .SetText("Value", item.Id.ToString())
+                        .SetSprite("Icon", item.Icon);
+
+            if (item == _selectedDatabaseItem)
+            {
+                Color rarity = Legible(item.Rarity.GetColor(), ui.Theme);
+                row.SetColor("Outline", rarity).SetColor("Name", rarity).SetColor("Body", ui.Theme.PanelAlt);
+            }
+
+            UIDocument document = ui.Document;
+            new UIElementRef(row.gameObject, document).OnClick(() => SelectFromDatabaseList(document, item));
+        }
+
+        private void FillDatabaseRows(UIDocument document)
+        {
+            bool searching = !string.IsNullOrEmpty(_searchQuery);
+            DevToolDatabaseRow.Fill(_databaseRows, Database.GetItems, Matches, group => document.GetState(DevToolDatabaseRow.StateKey(group), searching));
+        }
+
+        private void BuildDatabaseCell(UIBuilderContext cell, DevToolDatabaseRow row, int index)
+        {
+            if (!row.IsHeader)
+            {
+                BuildItemRow(cell, row.Item);
+                return;
+            }
+
+            UIDocument document = cell.Document;
+            string label = row.IsOpen ? row.Title : $"{row.Title}  +";
+            System.Action toggle = () => ToggleDatabaseGroup(document, row.Group);
+            var header = document.Factory.HasStyle(UIElementType.Button, UIBuilderContext.FoldoutHeaderStyle)
+                ? cell.Button(UIBuilderContext.FoldoutHeaderStyle, label, toggle)
+                : cell.Button(label, toggle, UIVariant.Secondary);
+            header.TextAlign(TextAlignmentOptions.MidlineLeft).Fill();
+        }
+
+        private void ToggleDatabaseGroup(UIDocument document, string group)
+        {
+            string key = DevToolDatabaseRow.StateKey(group);
+            document.SetState(key, !document.GetState(key, !string.IsNullOrEmpty(_searchQuery)));
+            if (_databaseView == null)
+            {
+                RequestRebuild();
+                return;
+            }
+
+            int before = _databaseRows.Count;
+            FillDatabaseRows(document);
+            int header = DevToolDatabaseRow.IndexOfHeader(_databaseRows, group);
+            int delta = _databaseRows.Count - before;
+            if (header < 0) _databaseView.NotifyReset();
+            else if (delta > 0) _databaseView.NotifyInserted(header + 1, delta);
+            else if (delta < 0) _databaseView.NotifyRemoved(header + 1, -delta);
+            else _databaseView.Refresh(true);
+        }
+
+        private void SelectFromDatabaseList(UIDocument document, Item item)
+        {
+            _selectedDatabaseItem = item;
+            if (_databaseView == null || !document.Refresh(DatabaseCardId))
+            {
+                RequestRebuild();
+                return;
+            }
+            _databaseView.Refresh(true);
         }
 
         private void BuildDatabaseDetail(UIBuilderContext ui)
@@ -231,17 +377,60 @@ namespace CoreSystem.UI.DevTools
                 return;
             }
 
-            ui.Caption($"ID {item.Id}");
-            ui.Heading(item.Name);
+            ui.Scroll(details => BuildDatabaseDetailBody(details, item), 0f).Id("db.detail").Gap(10f);
+            ui.Row(actions =>
+            {
+                actions.Button("Add One", () => AddToInventory(item, MinAddAmount), UIVariant.Secondary).Fill();
+            });
+            ui.Row(actions =>
+            {
+                actions.Input(_addAmount.ToString(), value => _addAmount = ParseAddAmount(value, _addAmount)).Width(AmountInputWidth);
+                actions.Button("Add Amount", () => AddToInventory(item, _addAmount), UIVariant.Primary).Fill();
+            }).Gap(8f);
+        }
+
+        private void AddToInventory(Item item, int amount)
+        {
+            GameData.Player.Inventory.AddItem(item, Mathf.Clamp(amount, MinAddAmount, MaxAddAmount));
+            RequestRebuild();
+        }
+
+        private void BuildDatabaseDetailBody(UIBuilderContext ui, Item item)
+        {
+            Color rarity = item.Rarity.GetColor();
+            ui.Row(head =>
+            {
+                head.Column(ring =>
+                {
+                    ring.Column(box =>
+                    {
+                        if (item.Icon != null) box.Image(item.Icon).Size(40f, 40f);
+                    }).Size(60f, 60f).Background(ring.Theme.Selected).CornerRadius(8f).Align(TextAnchor.MiddleCenter);
+                }).Size(64f, 64f).Padding(2).Background(rarity).CornerRadius(10f);
+
+                head.Column(info =>
+                {
+                    info.Heading(item.Name.ToUpperInvariant());
+                    info.Row(tags =>
+                    {
+                        Chip(tags, item.Rarity.ToString(), rarity);
+                        Chip(tags, item.Type.ToString(), null);
+                    }).Gap(6f);
+                }).Fill().Gap(4f);
+            }).Gap(12f);
+
+            ui.SectionHeader("DETAILS");
+            ui.KeyValue("ID", item.Id.ToString());
             ui.KeyValue("Type", item.Type.ToString());
             ui.KeyValue("Rarity", item.Rarity.ToString());
-            if (!string.IsNullOrEmpty(item.Description)) ui.Label(item.Description);
-            ui.Separator();
-            ui.Button("Add To Inventory", () =>
+            int maxSockets = (item as Equipment)?.MaxSockets ?? 0;
+            if (maxSockets > 0) ui.KeyValue("Sockets", $"0 / {maxSockets}");
+
+            if (!string.IsNullOrEmpty(item.Description))
             {
-                GameData.Player.Inventory.AddItem(item);
-                RequestRebuild();
-            }, UIVariant.Primary).Fill();
+                ui.SectionHeader("DESCRIPTION");
+                ui.Label(item.Description);
+            }
         }
 
         private void BuildInventoryPage(UIBuilderContext ui)
@@ -259,32 +448,28 @@ namespace CoreSystem.UI.DevTools
                         {
                             header.Button("Discard All", () =>
                             {
+                                GameData.Player.Inventory.BeginBatch();
                                 foreach (var inst in new List<ItemInstance>(instances))
                                 {
                                     GameData.Player.Inventory.RemoveItemByInstance(inst.Id, inst.Quantity);
                                 }
+                                GameData.Player.Inventory.EndBatch();
                                 _selectedInventoryItem = null;
                                 RequestRebuild();
                             }, UIVariant.Danger);
                         }
                     });
 
-                    list.Scroll(scroll =>
+                    if (instances.Count == 0)
                     {
-                        if (instances.Count == 0)
-                        {
-                            scroll.Caption("Inventory is empty.");
-                            return;
-                        }
-
-                        scroll.Grid(grid =>
-                        {
-                            foreach (var instance in instances)
-                            {
-                                if (Matches(instance.Name)) BuildInventorySlot(grid, instance);
-                            }
-                        }).Cell(118f, 122f).Gap(8f);
-                    }, 0f).Id("inv.list");
+                        list.Scroll(scroll => scroll.Caption("Inventory is empty."), 0f).Id("inv.list");
+                    }
+                    else
+                    {
+                        var shown = instances.Where(instance => Matches(instance.Name)).ToList();
+                        var cells = GlobalVisualizer.VisualLayoutSettings.Grid(new Vector2(118f, 122f), 8f);
+                        list.Visualizer(shown, cells, (cell, instance, index) => BuildInventorySlot(cell, instance), 0f).Id("inv.list");
+                    }
                 }).Fill().FillHeight();
 
                 layout.Panel(BuildInventoryDetail).Width(DetailWidth);
@@ -415,7 +600,7 @@ namespace CoreSystem.UI.DevTools
 
             ui.Row(actions =>
             {
-                actions.Button("Discard", () =>
+                ChipButton(actions, "Discard", () =>
                 {
                     GameData.Player.Inventory.RemoveItemByInstance(selected.Id, 1);
                     if (selected.Quantity <= 1) _selectedInventoryItem = null;
@@ -424,7 +609,7 @@ namespace CoreSystem.UI.DevTools
 
                 if (selected.Quantity > 1)
                 {
-                    actions.Button("Discard All", () =>
+                    ChipButton(actions, "Discard All", () =>
                     {
                         GameData.Player.Inventory.RemoveItemByInstance(selected.Id, selected.Quantity);
                         _selectedInventoryItem = null;
@@ -527,11 +712,11 @@ namespace CoreSystem.UI.DevTools
                         var inst = _player.EquipmentSlots[i] as EquipmentInstance;
                         if (inst == null) continue;
 
-                        left.Button($"[{i}] {inst.Name}", () =>
+                        ListButton(left, $"[{i}] {inst.Name}", () =>
                         {
                             _selectedSocketItem = inst;
                             RequestRebuild();
-                        }, inst == _selectedSocketItem ? UIVariant.Selected : UIVariant.Default).Fill();
+                        }, inst == _selectedSocketItem);
                     }
                 }).Fill();
 
@@ -547,11 +732,11 @@ namespace CoreSystem.UI.DevTools
 
                     foreach (var fragment in fragments)
                     {
-                        right.Button($"{fragment.Name}  (x{fragment.Quantity})", () =>
+                        ListButton(right, $"{fragment.Name}  (x{fragment.Quantity})", () =>
                         {
                             _selectedFragment = fragment;
                             RequestRebuild();
-                        }, fragment == _selectedFragment ? UIVariant.Selected : UIVariant.Default).Fill();
+                        }, fragment == _selectedFragment);
                     }
                 }).Fill();
             }).Align(TextAnchor.UpperLeft).Gap(12f);
@@ -597,9 +782,9 @@ namespace CoreSystem.UI.DevTools
                         row.Label(type.ToString()).Bold().Width(60f);
                         row.Label($"{attr.CurrentValue:F0}").Bold().Width(60f);
                         row.Caption($"base {attr.BaseValue:F0}").Fill();
-                        row.Button("-", () => ChangeAttribute(attr, -1), UIVariant.Secondary).MinWidth(44f);
-                        row.Button("+", () => ChangeAttribute(attr, 1), UIVariant.Secondary).MinWidth(44f);
-                        row.Button("+10", () => ChangeAttribute(attr, 10), UIVariant.Secondary).MinWidth(56f);
+                        ChipButton(row, "-", () => ChangeAttribute(attr, -1)).MinWidth(44f);
+                        ChipButton(row, "+", () => ChangeAttribute(attr, 1)).MinWidth(44f);
+                        ChipButton(row, "+10", () => ChangeAttribute(attr, 10)).MinWidth(56f);
                     }).Gap(6f);
                 }
             });
@@ -630,8 +815,8 @@ namespace CoreSystem.UI.DevTools
             {
                 row.Label(label).Bold().Width(90f);
                 row.Caption($"{current} / {next}").Fill();
-                row.Button("+100", () => { addExp(100); RequestRebuild(); }, UIVariant.Secondary).MinWidth(64f);
-                row.Button("+1000", () => { addExp(1000); RequestRebuild(); }, UIVariant.Secondary).MinWidth(72f);
+                ChipButton(row, "+100", () => { addExp(100); RequestRebuild(); }).MinWidth(64f);
+                ChipButton(row, "+1000", () => { addExp(1000); RequestRebuild(); }).MinWidth(72f);
             }).Gap(6f);
             ui.Progress(next > 0 ? (float)current / next : 0f);
         }
@@ -651,18 +836,18 @@ namespace CoreSystem.UI.DevTools
                         for (int slot = 0; slot < 3; slot++)
                         {
                             int slotIndex = slot;
-                            row.Button($"Eq {slot + 1}", () =>
+                            ChipButton(row, $"Eq {slot + 1}", () =>
                             {
                                 _player.skillCaster.EquipSkill(granted, slotIndex);
                                 RequestRebuild();
-                            }, UIVariant.Secondary).MinWidth(56f);
+                            }).MinWidth(56f);
                         }
-                        row.Button("Select", () =>
+                        ChipButton(row, "Select", () =>
                         {
                             _selectedSkillForSupports = isSelected ? null : granted;
                             RequestRebuild();
-                        }, isSelected ? UIVariant.Selected : UIVariant.Secondary).MinWidth(70f);
-                        row.Button("Revoke", () =>
+                        }, isSelected ? UIVariant.Selected : UIVariant.Default).MinWidth(70f);
+                        ChipButton(row, "Revoke", () =>
                         {
                             _player.skillCaster.RevokeSkill(granted.SkillData);
                             if (_selectedSkillForSupports == granted) _selectedSkillForSupports = null;
@@ -704,11 +889,11 @@ namespace CoreSystem.UI.DevTools
                     foreach (var inst in equipment)
                     {
                         if (!Matches(inst.Name)) continue;
-                        left.Button($"+{inst.Refine}  {inst.Name}", () =>
+                        ListButton(left, $"+{inst.Refine}  {inst.Name}", () =>
                         {
                             _selectedUpgradeItem = inst;
                             RequestRebuild();
-                        }, inst == _selectedUpgradeItem ? UIVariant.Selected : UIVariant.Default).Fill();
+                        }, inst == _selectedUpgradeItem);
                     }
                 }).Fill();
 
@@ -732,11 +917,11 @@ namespace CoreSystem.UI.DevTools
             ui.Row(row =>
             {
                 row.KeyValue("Refine", $"{target.Refine} / {maxRefine}").Fill();
-                row.Button("Reset", () =>
+                ChipButton(row, "Reset", () =>
                 {
                     target.Refine = 0;
                     RequestRebuild();
-                }, UIVariant.Secondary).MinWidth(70f);
+                }).MinWidth(70f);
             }).Gap(6f);
             ui.Progress(maxRefine > 0 ? (float)target.Refine / maxRefine : 0f, UIVariant.Warning);
             ui.KeyValue("Bonus", $"+{bonus:F0}% base stats");
@@ -770,8 +955,8 @@ namespace CoreSystem.UI.DevTools
                 panel.KeyValue("Available", _player.PassivePoints.ToString());
                 panel.Row(row =>
                 {
-                    row.Button("+1 Point", () => { _player.PassivePoints++; RequestRebuild(); }, UIVariant.Secondary);
-                    row.Button("+10 Points", () => { _player.PassivePoints += 10; RequestRebuild(); }, UIVariant.Secondary);
+                    ChipButton(row, "+1 Point", () => { _player.PassivePoints++; RequestRebuild(); });
+                    ChipButton(row, "+10 Points", () => { _player.PassivePoints += 10; RequestRebuild(); });
                     row.Spacer();
                     row.Button("Reset All", () =>
                     {
@@ -818,7 +1003,7 @@ namespace CoreSystem.UI.DevTools
                         row.Label($"Node {record.NodeId}").Width(90f);
                         row.Label(((AttributeType)record.AttributeId).ToString()).Fill();
                         row.Caption(record.Value.ToString()).Width(60f);
-                        row.Button("X", () =>
+                        ChipButton(row, "X", () =>
                         {
                             _player.PassiveNodes.Remove(record);
                             _player.PassivePoints++;

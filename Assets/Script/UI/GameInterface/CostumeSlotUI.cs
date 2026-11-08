@@ -5,6 +5,7 @@ using CoreSystem.Data.Items.Model;
 using CoreSystem.UI.Inventory;
 using CoreSystem.UI.Utility;
 using System.Collections.Generic;
+using CoreSystem.UI.Inventory.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -21,6 +22,8 @@ namespace CoreSystem.UI.GameInterface
         public CostumeSlot TargetSlot;
         public Image Icon;
         public Image RarityFrame;
+        [SerializeField] private ItemSlotArtView _art;
+        [SerializeField] private GameObject _emptyIcon;
 
         #endregion
 
@@ -146,6 +149,8 @@ namespace CoreSystem.UI.GameInterface
                 ctx.ClearMenu();
             }
 
+            ShowArt(currentCostume);
+
             // Drag support
             if (GetComponent<ItemDragHandler>() == null)
                 gameObject.AddComponent<ItemDragHandler>();
@@ -193,5 +198,15 @@ namespace CoreSystem.UI.GameInterface
         }
 
         #endregion
+
+        private void ShowArt(ItemInstance current)
+        {
+            bool empty = current == null || current.Item == null;
+            if (_emptyIcon != null) _emptyIcon.SetActive(empty);
+            if (_art == null) return;
+            ItemSlotDisplay display = ItemSlotDisplay.From(empty ? null : current);
+            display.Equipped = false;
+            _art.Show(display);
+        }
     }
 }

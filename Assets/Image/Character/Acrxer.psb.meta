@@ -32,7 +32,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 100
@@ -406,7 +406,7 @@ ScriptedImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0
     crunchedCompression: 0
@@ -464,6 +464,16 @@ ScriptedImporter:
   resliceFromLayer: 0
   pSDLayerImportSetting: []
   psdLayers:
+  - name: ArmL
+    spriteName: ArmL
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e54819dff6d2b0d49998c1d2203a1928
+    layerID: -1186771440
+    mosaicPosition: {x: 302, y: 148}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: Head
     spriteName: Head
     isGroup: 0
@@ -481,16 +491,6 @@ ScriptedImporter:
     spriteID: f2f7abb98d204494d8546a9587040831
     layerID: -911352830
     mosaicPosition: {x: 302, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: ArmL
-    spriteName: ArmL
-    isGroup: 0
-    parentIndex: -1
-    spriteID: e54819dff6d2b0d49998c1d2203a1928
-    layerID: -1186771440
-    mosaicPosition: {x: 302, y: 148}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -524,7 +524,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Folder 1
+  - name: _Guide
     spriteName: 
     isGroup: 1
     parentIndex: -1
@@ -534,7 +534,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 0
-  - name: Layer 1
+  - name: _Guide_Head
     spriteName: 
     isGroup: 0
     parentIndex: 6
@@ -544,7 +544,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 2
+  - name: _Guide_Body
     spriteName: 
     isGroup: 0
     parentIndex: 6
@@ -554,7 +554,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 4
+  - name: _Guide_Arms
     spriteName: 
     isGroup: 0
     parentIndex: 6
@@ -564,7 +564,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 3
+  - name: _Guide_Legs
     spriteName: 
     isGroup: 0
     parentIndex: 6
@@ -688,7 +688,7 @@ ScriptedImporter:
     isVisible: 1
   sharedRigPSDLayers: []
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638827607920241737
+  platformSettingsDirtyTick: 639243202886584927
   spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 

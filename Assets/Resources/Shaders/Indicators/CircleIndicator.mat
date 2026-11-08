@@ -44,8 +44,9 @@ Material:
     m_Colors:
     - _BorderColor: {r: 1, g: 1, b: 1, a: 1}
     - _FillColor: {r: 1, g: 1, b: 1, a: 0.5}
-    - _MainColor: {r: 1, g: 1, b: 1, a: 0.5019608}
+    - _MainColor: {r: 0.933033, g: 0.933033, b: 0.933033, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &3729088454302811300
 MonoBehaviour:
   m_ObjectHideFlags: 11

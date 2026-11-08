@@ -1,4 +1,4 @@
-# Realm of Hero: System Architecture Analysis
+# Pale Vertica: System Architecture Analysis
 
 This document provides a comprehensive overview of the gameplay systems implemented in the project. It is designed to serve as a reference for Game Design and further development.
 

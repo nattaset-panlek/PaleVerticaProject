@@ -18,6 +18,7 @@ namespace CoreSystem.Combat
             var input = new DamageInput
             {
                 BaseDamage = payload.BaseDamage,
+                PayloadDamageBonus = payload.DamageMultiplier - 1f,
                 ElementAdvantage = ElementAdvantageTable.GetMultiplier(payload.SkillElement, target.Element)
             };
 
@@ -63,6 +64,7 @@ namespace CoreSystem.Combat
             }
 
             damage *= input.ElementAdvantage;
+            damage *= Mathf.Max(0f, 1f + input.PayloadDamageBonus);
 
             bool isCritical = false;
             if (input.HasCasterStats)

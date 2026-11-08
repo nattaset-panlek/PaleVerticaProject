@@ -14,8 +14,14 @@ namespace CoreSystem.Data
 
         public PlayerInventory Inventory { get; } = new PlayerInventory();
         public PlayerStats Stats { get; } = new PlayerStats();
+        public PlayerExperience Experience { get; } = new PlayerExperience();
         public PlayerEquipment Equipment { get; } = new PlayerEquipment();
         public PlayerCostumes Costumes { get; } = new PlayerCostumes();
         public PlayerSkills Skills { get; } = new PlayerSkills();
+
+        public PlayerData()
+        {
+            Inventory.OnProgressionReceived += (item, qty) => Experience.ReceiveProgressionItem(item, qty);
+        }
     }
 }

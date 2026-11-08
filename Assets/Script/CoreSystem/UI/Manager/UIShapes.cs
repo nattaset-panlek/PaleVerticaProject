@@ -8,6 +8,7 @@ namespace CoreSystem.UI
         #region [Variables/Fields]
         public const float RoundedRadius = 32f;
         private const int TextureSize = 66;
+        private const float SpritePixelsPerUnit = 800f;
         private static Sprite _roundedRect;
         #endregion
 
@@ -82,7 +83,7 @@ namespace CoreSystem.UI
             texture.Apply(false, true);
 
             var border = new Vector4(RoundedRadius, RoundedRadius, RoundedRadius, RoundedRadius);
-            return Sprite.Create(texture, new Rect(0, 0, TextureSize, TextureSize), new Vector2(0.5f, 0.5f), 100f, 0, SpriteMeshType.FullRect, border);
+            return Sprite.Create(texture, new Rect(0, 0, TextureSize, TextureSize), new Vector2(0.5f, 0.5f), SpritePixelsPerUnit, 0, SpriteMeshType.FullRect, border);
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]

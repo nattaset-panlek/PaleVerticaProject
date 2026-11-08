@@ -1,5 +1,5 @@
 const fs = require('fs');
-const filePath = 'f:/GameProject/Realm of Hero/My project/Assets/Resources/Data/Item.json';
+const filePath = 'f:/GameProject/Pale Vertica/Assets/Resources/Data/Item.json';
 
 const rawData = fs.readFileSync(filePath, 'utf8');
 const data = JSON.parse(rawData);

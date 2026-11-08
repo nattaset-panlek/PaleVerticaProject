@@ -6,10 +6,10 @@ namespace CoreSystem.Combat
     public static class BasicAttackFormula
     {
         #region [Variables/Fields]
-        public const int MinHitsPerSecond = 1;
-        public const int MaxHitsPerSecond = 100;
-        public const float AspdCeiling = 200f;
-        public const float AspdDivisor = 50f;
+        public const float BaseAttacksPerSecond = 1f;
+        public const float BaseAspd = 100f;
+        public const float MinAspd = 50f;
+        public const float MaxAspd = 600f;
         #endregion
 
         #region [Public Methods]
@@ -21,10 +21,14 @@ namespace CoreSystem.Combat
             return 0f;
         }
 
+        public static float AttacksPerSecond(float aspd)
+        {
+            return BaseAttacksPerSecond * Mathf.Clamp(aspd, MinAspd, MaxAspd) / BaseAspd;
+        }
+
         public static float AttackDelay(float aspd)
         {
-            float delay = (AspdCeiling - aspd) / AspdDivisor;
-            return Mathf.Clamp(delay, 1f / MaxHitsPerSecond, 1f / MinHitsPerSecond);
+            return 1f / AttacksPerSecond(aspd);
         }
         #endregion
     }

@@ -283,8 +283,8 @@ def main():
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
     
     p_analyze = subparsers.add_parser("analyze", help="Analyze PNG assets and output Data.json")
-    p_analyze.add_argument("--dir", default="F:/GameProject/Realm of Hero/My project/Assets/Addressable", help="Directory to scan")
-    p_analyze.add_argument("--output", default="F:/GameProject/Realm of Hero/My project/Tools/Data.json", help="Output JSON path")
+    p_analyze.add_argument("--dir", default="F:/GameProject/Pale Vertica/Assets/Addressable", help="Directory to scan")
+    p_analyze.add_argument("--output", default="F:/GameProject/Pale Vertica/Tools/Data.json", help="Output JSON path")
     
     p_draw = subparsers.add_parser("draw", help="Draw icon from JSON specification")
     p_draw.add_argument("--spec", required=True, help="Path to JSON file or inline JSON string")

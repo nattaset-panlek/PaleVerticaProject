@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +8,8 @@ using CoreSystem.Data;
 using CoreSystem.Data.Items;
 using TMPro;
 using CoreSystem.Player;
+using CoreSystem.UI.Visualizer;
+using GlobalVisualizer;
 
 namespace CoreSystem.UI.SkillManagePage
 {
@@ -22,17 +25,41 @@ namespace CoreSystem.UI.SkillManagePage
         [SerializeField] private GameObject _skillTagPrefab;
         [SerializeField] private Transform _tagContainer;
 
+        [Header("Skill Tag Colours")]
+        [SerializeField] private Color _castTagColor = new Color(0.314f, 0.314f, 0.314f, 1f);
+        [SerializeField] private Color _castTagText = Color.white;
+        [SerializeField] private Color _neutralTagColor = new Color(0.718f, 0.718f, 0.718f, 1f);
+        [SerializeField] private Color _neutralTagText = new Color(0.314f, 0.314f, 0.314f, 1f);
+        [SerializeField] private Color _elementTagText = Color.white;
+        [SerializeField] private List<ElementTagColor> _elementTagColors = new List<ElementTagColor>
+        {
+            new ElementTagColor(ElementType.Fire, new Color(1f, 0.486f, 0.263f, 1f)),
+            new ElementTagColor(ElementType.Water, new Color(0.239f, 0.608f, 0.914f, 1f)),
+            new ElementTagColor(ElementType.Earth, new Color(0.722f, 0.525f, 0.231f, 1f)),
+            new ElementTagColor(ElementType.Electric, new Color(0.851f, 0.643f, 0f, 1f)),
+            new ElementTagColor(ElementType.Ghost, new Color(0.557f, 0.424f, 0.788f, 1f)),
+            new ElementTagColor(ElementType.Holy, new Color(0.788f, 0.635f, 0.153f, 1f))
+        };
+
         [Header("Support Skill Slots")]
         [SerializeField] private SupportSkillSlotComponent[] _supportSkillSlots = new SupportSkillSlotComponent[5];
 
         [Header("Modifier Fields Container")]
         [SerializeField] private GameObject _modifierFieldPrefab;
         [SerializeField] private Transform _modifierFieldContainer;
+        [SerializeField] private GameObject _modifierPlaceholder;
 
-        private List<SkillItemListUI> _spawnedItemUIList = new List<SkillItemListUI>();
+        [Header("Skill List Filter")]
+        [SerializeField] private SkillListFilterView _filter;
+
+        private readonly List<SkillInstance> _listedSkills = new List<SkillInstance>();
+        private GlobalVisualizerView _skillListView;
         private List<GameObject> _spawnedTagList = new List<GameObject>();
+        private readonly HashSet<string> _spawnedTagTexts = new HashSet<string>();
         private List<ModelModifierFieldContainerComponent> _spawnedModifierFieldList = new List<ModelModifierFieldContainerComponent>();
         private SkillInstance _selectedSkillInstance;
+
+        public event Action<SkillInstance> OnSelectedSkillChanged;
         #endregion
 
         #region [Properties]
@@ -57,11 +84,13 @@ namespace CoreSystem.UI.SkillManagePage
 
         private void OnEnable()
         {
+            if (_filter != null) _filter.OnFilterChanged += RefreshUI;
             RefreshUI();
         }
 
         private void OnDisable()
         {
+            if (_filter != null) _filter.OnFilterChanged -= RefreshUI;
             UnsubscribeFromSkillCaster();
             UnsubscribeFromSelectedSkill();
         }
@@ -100,20 +129,17 @@ namespace CoreSystem.UI.SkillManagePage
             _selectedSkillInstance = instance;
             SubscribeToSelectedSkill();
 
-            for (int i = 0; i < _spawnedItemUIList.Count; i++)
-            {
-                if (_spawnedItemUIList[i] != null)
-                {
-                    _spawnedItemUIList[i].SetSelected(_spawnedItemUIList[i].SkillInstance == _selectedSkillInstance);
-                }
-            }
+            UpdateListedSelection();
 
             UpdateSelectedSkillDetails(instance);
+            OnSelectedSkillChanged?.Invoke(_selectedSkillInstance);
         }
 
         public void RefreshUI()
         {
-            ClearItems();
+            ClearTags();
+            _listedSkills.Clear();
+            EnsureSkillListView();
 
             if (_playerCharacter == null)
             {
@@ -122,29 +148,22 @@ namespace CoreSystem.UI.SkillManagePage
 
             SubscribeToSkillCaster();
 
-            if (_playerCharacter == null || _playerCharacter.skillCaster == null) return;
-            if (_skillItemPrefab == null || _itemContainer == null) return;
-
-            List<SkillInstance> grantedSkills = _playerCharacter.skillCaster.GrantedSkills;
-            if (grantedSkills == null || grantedSkills.Count == 0) return;
+            List<SkillInstance> grantedSkills = _playerCharacter != null && _playerCharacter.skillCaster != null ? _playerCharacter.skillCaster.GrantedSkills : null;
+            if (grantedSkills == null || grantedSkills.Count == 0 || _skillListView == null)
+            {
+                ShowListedSkills();
+                return;
+            }
 
             for (int i = 0; i < grantedSkills.Count; i++)
             {
                 SkillInstance instance = grantedSkills[i];
                 if (instance == null || instance.SkillData == null) continue;
+                if (_filter != null && !_filter.Matches(instance, _playerCharacter)) continue;
 
-                GameObject itemObj = Instantiate(_skillItemPrefab, _itemContainer);
-                itemObj.SetActive(true);
-
-                SkillItemListUI itemUI = itemObj.GetComponent<SkillItemListUI>();
-                if (itemUI == null)
-                {
-                    itemUI = itemObj.AddComponent<SkillItemListUI>();
-                }
-
-                itemUI.Setup(instance, _playerCharacter, this, RefreshUI);
-                _spawnedItemUIList.Add(itemUI);
+                _listedSkills.Add(instance);
             }
+            ShowListedSkills();
 
             if (!grantedSkills.Contains(_selectedSkillInstance))
             {
@@ -201,17 +220,36 @@ namespace CoreSystem.UI.SkillManagePage
         #endregion
 
         #region [Private Methods]
-        private void ClearItems()
+        private void EnsureSkillListView()
         {
-            for (int i = 0; i < _spawnedItemUIList.Count; i++)
+            if (_skillListView != null || _skillItemPrefab == null || _itemContainer == null) return;
+            _skillListView = VisualizerViewFactory.AttachTo(_itemContainer, (RectTransform)_skillItemPrefab.transform);
+            if (_skillListView != null) _skillListView.SetItems(_listedSkills, BindSkillItem);
+        }
+
+        private void ShowListedSkills()
+        {
+            if (_skillListView != null) _skillListView.NotifyReset();
+        }
+
+        private void BindSkillItem(GameObject view, SkillInstance instance, int index)
+        {
+            SkillItemListUI itemUI = view.GetComponent<SkillItemListUI>();
+            if (itemUI == null) itemUI = view.AddComponent<SkillItemListUI>();
+            itemUI.Setup(instance, _playerCharacter, this, RefreshUI);
+            itemUI.SetSelected(instance == _selectedSkillInstance);
+        }
+
+        private void UpdateListedSelection()
+        {
+            if (_skillListView == null) return;
+            VisualRange range = _skillListView.VisibleRange;
+            for (int i = range.First; i <= range.Last; i++)
             {
-                if (_spawnedItemUIList[i] != null)
-                {
-                    Destroy(_spawnedItemUIList[i].gameObject);
-                }
+                RectTransform view = _skillListView.GetView(i);
+                SkillItemListUI itemUI = view != null ? view.GetComponent<SkillItemListUI>() : null;
+                if (itemUI != null) itemUI.SetSelected(itemUI.SkillInstance == _selectedSkillInstance);
             }
-            _spawnedItemUIList.Clear();
-            ClearTags();
         }
 
         private void UpdateSelectedSkillDetails(SkillInstance instance)
@@ -241,29 +279,31 @@ namespace CoreSystem.UI.SkillManagePage
 
             ActiveSkill data = instance.SkillData;
 
-            SpawnTag(data.SkillDamageType.ToString());
+            SpawnTag(data.IsToggle ? "Toggle" : "Active", _castTagColor, _castTagText);
 
             if (data.SkillElement != ElementType.Neutral)
             {
-                SpawnTag(data.SkillElement.ToString());
+                SpawnTag(data.SkillElement.ToString(), ElementColor(data.SkillElement), _elementTagText);
             }
 
-            SpawnTag(data.IsToggle ? "Toggle" : "Active");
+            SpawnTag(data.SkillDamageType.ToString(), _neutralTagColor, _neutralTagText);
 
             if (data.Tags != null)
             {
                 for (int i = 0; i < data.Tags.Count; i++)
                 {
-                    SpawnTag(data.Tags[i].ToString());
+                    SpawnTag(data.Tags[i].ToString(), _neutralTagColor, _neutralTagText);
                 }
             }
 
             UpdateSupportSkillSlots(instance);
         }
 
-        private void SpawnTag(string text)
+        private void SpawnTag(string text, Color background, Color ink)
         {
             if (string.IsNullOrEmpty(text) || _skillTagPrefab == null || _tagContainer == null) return;
+            if (_spawnedTagTexts.Contains(text.ToUpperInvariant())) return;
+            _spawnedTagTexts.Add(text.ToUpperInvariant());
 
             GameObject tagObj = Instantiate(_skillTagPrefab, _tagContainer);
             tagObj.SetActive(true);
@@ -271,12 +311,16 @@ namespace CoreSystem.UI.SkillManagePage
             SkillTagComponent tagComponent = tagObj.GetComponent<SkillTagComponent>();
             if (tagComponent != null)
             {
-                tagComponent.Setup(text);
+                tagComponent.Setup(text, background, ink);
             }
             else
             {
                 TMP_Text tmp = tagObj.GetComponentInChildren<TMP_Text>();
-                if (tmp != null) tmp.text = text;
+                if (tmp != null)
+                {
+                    tmp.text = text;
+                    tmp.color = ink;
+                }
             }
 
             _spawnedTagList.Add(tagObj);
@@ -292,6 +336,16 @@ namespace CoreSystem.UI.SkillManagePage
                 }
             }
             _spawnedTagList.Clear();
+            _spawnedTagTexts.Clear();
+        }
+
+        private Color ElementColor(ElementType element)
+        {
+            for (int i = 0; i < _elementTagColors.Count; i++)
+            {
+                if (_elementTagColors[i].Element == element) return _elementTagColors[i].Color;
+            }
+            return _neutralTagColor;
         }
 
         private void UpdateSupportSkillSlots(SkillInstance instance)
@@ -355,10 +409,12 @@ namespace CoreSystem.UI.SkillManagePage
         private void OnSelectedSkillSupportChanged()
         {
             UpdateSupportSkillSlots(_selectedSkillInstance);
+            OnSelectedSkillChanged?.Invoke(_selectedSkillInstance);
         }
 
         private void UpdateModifierFields(SkillInstance instance)
         {
+            if (_modifierPlaceholder != null) _modifierPlaceholder.SetActive(!HasLinkedModifier(instance));
             if (_modifierFieldContainer == null || _modifierFieldPrefab == null) return;
 
             List<SupportModifier> activeModifiers = new List<SupportModifier>();
@@ -408,6 +464,16 @@ namespace CoreSystem.UI.SkillManagePage
                     _spawnedModifierFieldList[i].gameObject.SetActive(false);
                 }
             }
+        }
+
+        private static bool HasLinkedModifier(SkillInstance instance)
+        {
+            if (instance == null || instance.LinkedModifiers == null) return false;
+            for (int i = 0; i < instance.LinkedModifiers.Count; i++)
+            {
+                if (instance.LinkedModifiers[i] != null) return true;
+            }
+            return false;
         }
         #endregion
     }

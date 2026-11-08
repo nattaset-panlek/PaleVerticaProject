@@ -10,6 +10,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using CoreSystem.Agent;
+using CoreSystem.Visuals;
 
 namespace CoreSystem.Entity
 {
@@ -21,6 +22,7 @@ namespace CoreSystem.Entity
         [SerializeField] private CharacterControllerType defaultController = CharacterControllerType.Agent;
         [SerializeField] private CharacterTag tags = CharacterTag.None;
         public int CharacterId => characterId;
+        public void AssignCharacterId(int id) => characterId = id;
         public int RuntimeId { get; private set; }
         public CharacterControllerType DefaultController => defaultController;
         public CharacterTag Tags => tags;
@@ -59,8 +61,19 @@ namespace CoreSystem.Entity
         public MovementSystem movementSystem = new MovementSystem();
         public SkillCaster skillCaster = new SkillCaster();
         public ExperienceSystem expSystem = new ExperienceSystem();
+        public long CurrentBaseExp => expSystem != null ? expSystem.CurrentBaseExp : 0;
+        public long CurrentJobExp => expSystem != null ? expSystem.CurrentJobExp : 0;
+        public long NextBaseExp => expSystem != null ? expSystem.NextBaseExp : 0;
+        public long NextJobExp => expSystem != null ? expSystem.NextJobExp : 0;
+        public float BaseExpNormalized => expSystem != null ? expSystem.BaseExpNormalized : 0f;
+        public float JobExpNormalized => expSystem != null ? expSystem.JobExpNormalized : 0f;
+        public int BaseLevel => expSystem != null ? expSystem.CurrentBaseLevel : 1;
+        public int JobLevel => expSystem != null ? expSystem.CurrentJobLevel : 1;
         private CoreSystem.Entity.UniquePassives.UniquePassiveSystem _uniquePassives = new CoreSystem.Entity.UniquePassives.UniquePassiveSystem();
+        private readonly List<CoreSystem.Entity.UniquePassives.IBasicAttackRepeater> _basicAttackRepeaters = new List<CoreSystem.Entity.UniquePassives.IBasicAttackRepeater>();
         public CoreSystem.Entity.UniquePassives.UniquePassiveSystem UniquePassives => _uniquePassives;
+        private readonly CoreSystem.Visuals.WeaponVfx.WeaponVfxSystem _weaponVfx = new CoreSystem.Visuals.WeaponVfx.WeaponVfxSystem();
+        public CoreSystem.Visuals.WeaponVfx.WeaponVfxSystem WeaponVfx => _weaponVfx;
 
         [Header("Modules")]
         public Agent.FaceDirectionModule FaceDirection = new Agent.FaceDirectionModule();
@@ -259,6 +272,29 @@ namespace CoreSystem.Entity
             return null;
         }
 
+        public Equipment GetEquippedWeapon()
+        {
+            if (EquipmentSlots != null)
+            {
+                if (EquipmentSlots.Length > 0 && EquipmentSlots[0]?.Item is Equipment mainHand)
+                {
+                    return mainHand;
+                }
+                if (EquipmentSlots.Length > 7 && EquipmentSlots[7]?.Item is Equipment offHand)
+                {
+                    return offHand;
+                }
+            }
+            return null;
+        }
+
+        public bool HasEquippedEdgedWeapon()
+        {
+            var weapon = GetEquippedWeapon();
+            if (weapon == null) return false;
+            return weapon.IsEdgedWeapon();
+        }
+
         private int GetSlotIndex(EquipmentSlot slot, bool secondSlot)
         {
             switch (slot)
@@ -324,6 +360,24 @@ namespace CoreSystem.Entity
             if (IsDead || target == null) return;
             if (BasicAttackCooldownTimer > 0) return;
 
+            StrikeBasicAttack(target, 1f);
+
+            _basicAttackRepeaters.Clear();
+            _uniquePassives.CollectBasicAttackRepeaters(_basicAttackRepeaters);
+            if (gameObject.activeInHierarchy)
+            {
+                for (int i = 0; i < _basicAttackRepeaters.Count; i++)
+                {
+                    StartCoroutine(RepeatBasicAttack(target, _basicAttackRepeaters[i]));
+                }
+            }
+
+            float aspd = attributeSystem.GetAttribute(AttributeType.ASPD).CurrentValue;
+            BasicAttackCooldownTimer = BasicAttackFormula.AttackDelay(aspd);
+        }
+
+        private void StrikeBasicAttack(IEntity target, float damageMultiplier)
+        {
             var damageEffect = new CoreSystem.Skills.Logic.DamageEffect
             {
                 TargetAttribute = AttributeType.HP
@@ -350,7 +404,8 @@ namespace CoreSystem.Entity
                 OriginPosition = transform.position,
                 TargetPosition = target.transform.position,
                 IsTargetPositionSet = true,
-                BaseDamage = bonusDamage
+                BaseDamage = bonusDamage,
+                DamageMultiplier = damageMultiplier
             };
 
             GameObject prefab = null;
@@ -378,16 +433,31 @@ namespace CoreSystem.Entity
                 var proj = projGo.GetComponent<CoreSystem.Skills.Logic.ProjectileBehaviour>();
                 if (proj == null) proj = projGo.AddComponent<CoreSystem.Skills.Logic.ProjectileBehaviour>();
                 proj.Initialize(payload, damageEffect);
+                _weaponVfx.Play(this, target, true);
             }
             else
             {
+                _weaponVfx.Play(this, target, false);
+
                 damageEffect.Apply(payload, target);
             }
 
             _uniquePassives.TriggerOnBasicAttack(target);
+        }
 
-            float aspd = attributeSystem.GetAttribute(AttributeType.ASPD).CurrentValue;
-            BasicAttackCooldownTimer = BasicAttackFormula.AttackDelay(aspd);
+        private System.Collections.IEnumerator RepeatBasicAttack(IEntity target, CoreSystem.Entity.UniquePassives.IBasicAttackRepeater repeater)
+        {
+            yield return new WaitForSeconds(repeater.RepeatDelay);
+            if (IsDead || !CanStillHit(target)) yield break;
+            StrikeBasicAttack(target, repeater.RepeatDamageMultiplier);
+        }
+
+        private static bool CanStillHit(IEntity target)
+        {
+            if (target == null || (target is UnityEngine.Object unityObject && unityObject == null)) return false;
+            if (target is Character character) return !character.IsDead;
+            var hp = target.attributeSystem != null ? target.attributeSystem.GetAttribute(AttributeType.HP) : null;
+            return hp == null || hp.CurrentValue > 0f;
         }
 
         protected virtual void Awake()
@@ -414,6 +484,7 @@ namespace CoreSystem.Entity
         protected virtual void OnEnable()
         {
             CharacterRegistry.Register(this);
+            CombatEvents.OnKilled += HandleKilled;
         }
 
         protected virtual void Start()
@@ -424,10 +495,30 @@ namespace CoreSystem.Entity
         protected virtual void OnDisable()
         {
             CharacterRegistry.Unregister(this);
+            CombatEvents.OnKilled -= HandleKilled;
+        }
+
+        private void HandleKilled(IEntity killer, IEntity victim)
+        {
+            if (TeamRegistry.LeaderOf(this) != null || !(victim is Character victimCharacter)) return;
+            float share = KillCreditRegistry.ShareOf(victim, this);
+            if (share <= 0f) return;
+            var model = CoreSystem.Data.Database.GetCharacter(victimCharacter.CharacterId);
+            if (model == null) return;
+
+            int victimLevel = victimCharacter.BaseLevel;
+            float levelMultiplier = KillRewardFormula.LevelDifferenceMultiplier(BaseLevel, victimLevel);
+            long fullBase = KillRewardFormula.FullExp(model.BaseExp, KillRewardFormula.BaseExpForLevel(victimLevel));
+            long fullJob = KillRewardFormula.FullExp(model.JobExp, KillRewardFormula.JobExpForLevel(victimLevel));
+            long baseExp = KillRewardFormula.Reward(fullBase, share, levelMultiplier, model.ExpMultiplier);
+            long jobExp = KillRewardFormula.Reward(fullJob, share, levelMultiplier, model.ExpMultiplier);
+            if (baseExp > 0) AddBaseExp(baseExp);
+            if (jobExp > 0) AddJobExp(jobExp);
         }
 
         protected virtual void OnDestroy()
         {
+            KillCreditRegistry.Forget(this);
             CharacterFactory.ReleaseController(this);
         }
 
@@ -568,5 +659,10 @@ namespace CoreSystem.Entity
 
             transform.position = targetPos;
         }
+
+        public void AddBaseExp(long amount) => expSystem?.AddBaseExp(amount);
+        public void AddJobExp(long amount) => expSystem?.AddJobExp(amount);
+        public void SetExp(long baseExp, long jobExp) => expSystem?.SetExp(baseExp, jobExp);
+        public void ReceiveProgressionItem(Item item, int amount) => expSystem?.ReceiveProgressionItem(item, amount);
     }
 }

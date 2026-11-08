@@ -32,7 +32,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 100
@@ -95,7 +95,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   multiSpriteImportData: []
   layeredSpriteImportData:
-  - name: Layer 5
+  - name: Head
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -406,7 +406,7 @@ ScriptedImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 0
     compressionQuality: 50
     forceMaximumCompressionQuality_BC6H_BC7: 0
     crunchedCompression: 0
@@ -464,16 +464,6 @@ ScriptedImporter:
   resliceFromLayer: 0
   pSDLayerImportSetting: []
   psdLayers:
-  - name: Layer 5
-    spriteName: Layer 5
-    isGroup: 0
-    parentIndex: -1
-    spriteID: cb9a1a979d2124749806d3982a3ffdda
-    layerID: 0
-    mosaicPosition: {x: 4, y: 4}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
   - name: ArmL
     spriteName: ArmL
     isGroup: 0
@@ -484,13 +474,13 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: ArmR
-    spriteName: ArmR
+  - name: Head
+    spriteName: Head
     isGroup: 0
     parentIndex: -1
-    spriteID: 1d1d9dc88b0517e49af0b5f9a00079f8
-    layerID: -1280879774
-    mosaicPosition: {x: 370, y: 4}
+    spriteID: cb9a1a979d2124749806d3982a3ffdda
+    layerID: 0
+    mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -501,6 +491,16 @@ ScriptedImporter:
     spriteID: cdf238201a45eeb4ea98e3f32afe3be1
     layerID: -911352830
     mosaicPosition: {x: 266, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: ArmR
+    spriteName: ArmR
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1d1d9dc88b0517e49af0b5f9a00079f8
+    layerID: -1280879774
+    mosaicPosition: {x: 370, y: 4}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -524,7 +524,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 1
     isVisible: 1
-  - name: Folder 1
+  - name: _Guide
     spriteName: 
     isGroup: 1
     parentIndex: -1
@@ -534,7 +534,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 0
-  - name: Layer 1
+  - name: _Guide_Head
     spriteName: 
     isGroup: 0
     parentIndex: 6
@@ -544,7 +544,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 2
+  - name: _Guide_Body
     spriteName: 
     isGroup: 0
     parentIndex: 6
@@ -554,7 +554,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 4
+  - name: _Guide_Arms
     spriteName: 
     isGroup: 0
     parentIndex: 6
@@ -564,7 +564,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 3
+  - name: _Guide_Legs
     spriteName: 
     isGroup: 0
     parentIndex: 6
@@ -574,7 +574,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 2
+  - name: _Ref_Acrxer
     spriteName: 
     isGroup: 1
     parentIndex: -1
@@ -584,7 +584,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 0
-  - name: Folder 3
+  - name: _Ref_Acrxer_Head
     spriteName: 
     isGroup: 0
     parentIndex: 11
@@ -594,7 +594,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 4
+  - name: _Ref_Acrxer_Body
     spriteName: 
     isGroup: 0
     parentIndex: 11
@@ -604,7 +604,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 5 Copy
+  - name: _Ref_Acrxer_ArmL
     spriteName: 
     isGroup: 0
     parentIndex: 11
@@ -614,7 +614,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 5
+  - name: _Ref_Acrxer_ArmR
     spriteName: 
     isGroup: 0
     parentIndex: 11
@@ -624,7 +624,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 6 Copy
+  - name: _Ref_Acrxer_LegL
     spriteName: 
     isGroup: 0
     parentIndex: 11
@@ -634,7 +634,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Folder 6
+  - name: _Ref_Acrxer_LegR
     spriteName: 
     isGroup: 0
     parentIndex: 11
@@ -644,7 +644,7 @@ ScriptedImporter:
     flatten: 0
     isImported: 0
     isVisible: 1
-  - name: Layer 6
+  - name: _Ref_Background
     spriteName: 
     isGroup: 0
     parentIndex: -1
@@ -848,7 +848,7 @@ ScriptedImporter:
     isVisible: 0
   sharedRigPSDLayers: []
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638827607920241737
+  platformSettingsDirtyTick: 639243202886589949
   spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: 

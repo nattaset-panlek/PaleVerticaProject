@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8512121553711143681}
   - component: {fileID: 1349630177222271429}
+  - component: {fileID: 4571298302155674210}
   m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
@@ -68,9 +69,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1628670537070273326}
   - component: {fileID: 8404096999502310040}
+  - component: {fileID: 6283124277807907103}
   - component: {fileID: 1077654028377627567}
   - component: {fileID: 2630608399788674367}
-  - component: {fileID: 6283124277807907103}
   - component: {fileID: 4269732920431769452}
   m_Layer: 6
   m_Name: Dummy
@@ -123,6 +124,42 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &6283124277807907103
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593199419734919740}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.25
 --- !u!114 &1077654028377627567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +173,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterId: 10
+  defaultController: 2
+  tags: 0
+  npcId: 
+  interactable: 1
+  _npcInventory: {fileID: 0}
+  Presenter:
+    Anim: {fileID: 1349630177222271429}
+    MovingBoolParam: IsMoving
+    DeadTriggerParam: IsDead
+    AttackTriggerParam: Attack
+    ModelTransform: {fileID: 8512121553711143681}
+    LockModelRotation: 1
+    FlipCooldown: 0.1
+  agentProfile:
+    AgentName: Agent
+    Behavior: 0
+    Combat: 0
+    DetectionRadius: 0
+    _attackRange: 3
+    LoseSightRadius: 0
+    RotationSpeed: 0
+    PreferredRangeMin: 5
+    PreferredRangeMax: 7
+    OrbitSpeed: 0
+    UseHomeZone: 0
+    HomeZoneRadius: 4
+    RoamRadius: 5
+    RoamWaitDuration: 3
+    CanRoam: 0
+    GroupID: 0
+    AlertRadius: 12
+    SkillPool: []
+    AISkillCooldown: 1.5
+    UsePathfinding: 1
+    PathRefreshRate: 99999
   _attributeSystem:
     initialAttributes:
     - Type: 3
@@ -148,7 +220,9 @@ MonoBehaviour:
       BaseValue: -1000
       InitialValue: 0
   skillCaster:
-    EquippedSkills: []
+    EquippedSkills:
+    - SkillData: {fileID: 0}
+      CurrentLevel: 1
     GrantedSkills: []
     LastHitTargets: []
     AimedSkillSlot: -1
@@ -210,34 +284,6 @@ MonoBehaviour:
   size: 1
   race: 0
   faction: 2
-  Presenter:
-    Anim: {fileID: 1349630177222271429}
-    MovingBoolParam: IsMoving
-    DeadTriggerParam: IsDead
-    ModelTransform: {fileID: 8512121553711143681}
-    LockModelRotation: 1
-  agentProfile:
-    AgentName: Agent
-    Behavior: 0
-    Combat: 0
-    DetectionRadius: 0
-    _attackRange: 3
-    LoseSightRadius: 0
-    RotationSpeed: 0
-    PreferredRangeMin: 5
-    PreferredRangeMax: 7
-    OrbitSpeed: 0
-    UseHomeZone: 0
-    HomeZoneRadius: 4
-    RoamRadius: 5
-    RoamWaitDuration: 3
-    CanRoam: 0
-    GroupID: 0
-    AlertRadius: 12
-    SkillPool: []
-    AISkillCooldown: 1.5
-    UsePathfinding: 1
-    PathRefreshRate: 99999
 --- !u!114 &2630608399788674367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,42 +301,6 @@ MonoBehaviour:
   _coneTemplate: {fileID: 4002355336748361883, guid: c7e8f3183ea0ddc4eaef8200b4cc57b2, type: 3}
   _indicatorTint: {r: 1, g: 0.3, b: 0.3, a: 1}
   _telegraphDuration: 0.6
---- !u!58 &6283124277807907103
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 593199419734919740}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.25
 --- !u!114 &4269732920431769452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,6 +1177,7 @@ GameObject:
   m_Component:
   - component: {fileID: 475937115227903958}
   - component: {fileID: 3184561879160891701}
+  - component: {fileID: 6129834470183526617}
   m_Layer: 6
   m_Name: Shadow
   m_TagString: Untagged
@@ -1280,3 +1291,29 @@ Transform:
   - {fileID: 1762114490847642035}
   m_Father: {fileID: 8512121553711143681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &4571298302155674210
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73429770206712462}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 6
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
+--- !u!210 &6129834470183526617
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7567381741210800602}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_SortAtRoot: 1
+  m_Sort3DAs2D: 0

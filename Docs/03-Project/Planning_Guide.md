@@ -1,6 +1,6 @@
-# Realm of Hero: Project Planning Guide
+# Pale Vertica: Project Planning Guide
 
-This guide outlines the standards and best practices for managing data and systems in the "Realm of Hero" project to ensure high **Mobility** (ease of refactoring/scaling) and effective **Planning**.
+This guide outlines the standards and best practices for managing data and systems in the "Pale Vertica" project to ensure high **Mobility** (ease of refactoring/scaling) and effective **Planning**.
 
 ## 1. Data Mobility Standards
 
@@ -20,7 +20,7 @@ To avoid collisions and maintain organization, use the following ID ranges for n
 
 ### JSON Reference Safety
 - **Always** ensure that `AttributeID` in `Item.json` or `Skill.json` exists in `Attribute.json`.
-- Use the **Mobility Assistant** tool in Unity (`Window > Realm of Hero > Mobility Assistant`) to validate references before committing changes.
+- Use the **Mobility Assistant** tool in Unity (`Window > Pale Vertica > Mobility Assistant`) to validate references before committing changes.
 
 ## 2. Planning for Balance
 

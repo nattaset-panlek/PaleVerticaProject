@@ -3,6 +3,7 @@ using CoreSystem;
 using CoreSystem.Data.Items.Effects;
 using CoreSystem.Data.Items;
 using CoreSystem.Attributes;
+using CoreSystem.Enums;
 using UnityEngine;
 using CoreSystem.Combat;
 
@@ -12,6 +13,7 @@ namespace CoreSystem.Data.Items.Model
     {
         public EquipmentSlot Slot { get; set; }
         public EquipmentSetData SetResource { get; set; }
+        public WeaponType WeaponType { get; set; } = WeaponType.None;
         
         // Sockets
         public int MaxSockets { get; set; } = 0;
@@ -20,6 +22,37 @@ namespace CoreSystem.Data.Items.Model
         
         public float BasePhysical { get; set; } = 1f;
         public float BaseMagic { get; set; } = 1f;
+
+        public bool IsEdgedWeapon()
+        {
+            if (WeaponType != WeaponType.None)
+            {
+                return WeaponType.IsEdgedWeapon();
+            }
+
+            if (Slot == EquipmentSlot.WeaponOneHandLeft ||
+                Slot == EquipmentSlot.WeaponOneHandRight ||
+                Slot == EquipmentSlot.WeaponTwoHand)
+            {
+                string n = Name ?? string.Empty;
+                string p = IconPath ?? string.Empty;
+                return n.IndexOf("Sword", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       n.IndexOf("Dagger", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       n.IndexOf("Blade", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       n.IndexOf("Katana", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       n.IndexOf("Axe", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       n.IndexOf("Cleaver", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       n.IndexOf("Knife", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       n.IndexOf("Rapier", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       n.IndexOf("Scythe", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       p.IndexOf("Sword", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       p.IndexOf("Axe", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       p.IndexOf("Dagger", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                       p.IndexOf("WeaponLeft", System.StringComparison.OrdinalIgnoreCase) >= 0;
+            }
+
+            return false;
+        }
 
         // Track system-level baseline modifiers (e.g. mandatory +1)
         private List<(AttributeType type, AttributeModifier mod)> _systemModifiers = new List<(AttributeType, AttributeModifier)>();

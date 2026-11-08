@@ -1,4 +1,4 @@
-# Realm of Hero: Technical Art Setup Guide & TODO
+# Pale Vertica: Technical Art Setup Guide & TODO
 
 This document details exactly **where the Shader and Master Material are created, where they live, and how they connect to `EntityVisualController`**.
 

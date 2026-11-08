@@ -1,4 +1,4 @@
-# ⚙️ System Architecture & Script Dictionary (Realm of Hero)
+# ⚙️ System Architecture & Script Dictionary (Pale Vertica)
 
 This document provides a high-level overview of the architectural layers and a dictionary of the core scripts used in the project.
 
@@ -52,7 +52,7 @@ How the player communicates with the core systems.
 | **GameData.cs** | Global Access | Main entry point for player data. |
 | **AttributeSystem.cs** | The Calculator | Stores and calculates all `Attribute` values. |
 | **SkillCaster.cs** | Execution Manager | Handles the casting lifecycle and costs. |
-| **Pathfinder2D.cs** | Navigation Brain | Uses A* for 2D pathfinding. |
+| **GridPathFormula.cs** | Navigation Brain | A* + line of sight over the MapLab-baked `Walkable.json`, loaded per scene by `WalkableGridManager`; `AgentCore.TryFindPath` routes to it (the old `PathfinderGrid` / `Pathfinder2D` were removed 2026-10-24). |
 | **InventoryManager.cs** | Logical Backbone | Handles item addition, sorting, and searching. |
 | **VisualManager.cs** | VFX Spawner | Connects active effects to world particles. |
 

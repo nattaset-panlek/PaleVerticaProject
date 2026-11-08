@@ -94,6 +94,26 @@ namespace CoreSystem.Tests
             Assert.IsFalse(ProcSkillIds.IsProc(1));
             Assert.IsFalse(ProcSkillIds.IsProc(0));
         }
+
+        [Test]
+        public void PayloadDamageBonus_ScalesTheWholeHit()
+        {
+            var full = CasterInput();
+            var reduced = CasterInput();
+            reduced.PayloadDamageBonus = -0.6f;
+
+            float fullRaw = DamageFormula.Offense(full, 99f).RawDamage;
+            float reducedRaw = DamageFormula.Offense(reduced, 99f).RawDamage;
+
+            Assert.AreEqual(fullRaw * 0.4f, reducedRaw, Tolerance);
+        }
+
+        [Test]
+        public void SkillPayload_DamageMultiplierDefaultsToOne_AndSurvivesClone()
+        {
+            Assert.AreEqual(1f, new SkillPayload().DamageMultiplier, Tolerance);
+            Assert.AreEqual(0.4f, new SkillPayload { DamageMultiplier = 0.4f }.Clone().DamageMultiplier, Tolerance);
+        }
         #endregion
 
         #region [Private Methods]

@@ -1,0 +1,566 @@
+fileFormatVersion: 2
+guid: 13c47ef2e24930e479167289b2a6e349
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6081807711952645645
+    second: VFX_Pure_Slash_Sheet_0
+  - first:
+      213: -8642963603515683732
+    second: VFX_Pure_Slash_Sheet_1
+  - first:
+      213: 1518084498939946285
+    second: VFX_Pure_Slash_Sheet_2
+  - first:
+      213: -2708780731348105615
+    second: VFX_Pure_Slash_Sheet_3
+  - first:
+      213: 4733298456694211414
+    second: VFX_Pure_Slash_Sheet_4
+  - first:
+      213: -6187536341884845540
+    second: VFX_Pure_Slash_Sheet_5
+  - first:
+      213: -726705441741076641
+    second: VFX_Pure_Slash_Sheet_6
+  - first:
+      213: -3157503165459401738
+    second: VFX_Pure_Slash_Sheet_7
+  - first:
+      213: -3558286462836062905
+    second: VFX_Pure_Slash_Sheet_8
+  - first:
+      213: -7968567391135930694
+    second: VFX_Pure_Slash_Sheet_9
+  - first:
+      213: 2914227512576892637
+    second: VFX_Pure_Slash_Sheet_10
+  - first:
+      213: 5565072943549953663
+    second: VFX_Pure_Slash_Sheet_11
+  - first:
+      213: -4683841944407176821
+    second: VFX_Pure_Slash_Sheet_12
+  - first:
+      213: 3077327709484039030
+    second: VFX_Pure_Slash_Sheet_13
+  - first:
+      213: -2852596245278130040
+    second: VFX_Pure_Slash_Sheet_14
+  - first:
+      213: -3885433657064690806
+    second: VFX_Pure_Slash_Sheet_15
+  - first:
+      213: -3926641259550622269
+    second: VFX_Pure_Slash_Sheet_16
+  - first:
+      213: -7169810016995628275
+    second: VFX_Pure_Slash_Sheet_17
+  - first:
+      213: 8926671753628610595
+    second: VFX_Pure_Slash_Sheet_18
+  - first:
+      213: -5361458096714778185
+    second: VFX_Pure_Slash_Sheet_19
+  - first:
+      213: 84513675204160333
+    second: VFX_Pure_Slash_Sheet_20
+  - first:
+      213: -1450296922365732095
+    second: VFX_Pure_Slash_Sheet_21
+  - first:
+      213: -9203139101620204907
+    second: VFX_Pure_Slash_Sheet_22
+  - first:
+      213: -7405543334846229438
+    second: VFX_Pure_Slash_Sheet_23
+  - first:
+      213: 6190037832349437225
+    second: VFX_Pure_Slash_Sheet_24
+  - first:
+      213: 2476359460974526532
+    second: VFX_Pure_Slash_Sheet_25
+  - first:
+      213: 4394649238469021688
+    second: VFX_Pure_Slash_Sheet_26
+  - first:
+      213: -5643937886951218225
+    second: VFX_Pure_Slash_Sheet_27
+  - first:
+      213: -1521682495118758253
+    second: VFX_Pure_Slash_Sheet_28
+  - first:
+      213: -6008370742015915153
+    second: VFX_Pure_Slash_Sheet_29
+  - first:
+      213: 6760653804651818499
+    second: VFX_Pure_Slash_Sheet_30
+  - first:
+      213: 3226864225419299517
+    second: VFX_Pure_Slash_Sheet_31
+  - first:
+      213: -7415224640079326903
+    second: VFX_Pure_Slash_Sheet_32
+  - first:
+      213: -6908437630291795164
+    second: VFX_Pure_Slash_Sheet_33
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f1d4d8db14199ba0800000000000000
+      internalID: -6081807711952645645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6c41dd15660e0880800000000000000
+      internalID: -8642963603515683732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d25a7520fc1511510800000000000000
+      internalID: 1518084498939946285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 176c29dc64a786ad0800000000000000
+      internalID: -2708780731348105615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 653c9274edd00b140800000000000000
+      internalID: 4733298456694211414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c124223ea74712aa0800000000000000
+      internalID: -6187536341884845540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f570ea040493ae5f0800000000000000
+      internalID: -726705441741076641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f3fe95a99b4e24d0800000000000000
+      internalID: -3157503165459401738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 745439d805d6e9ec0800000000000000
+      internalID: -3558286462836062905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab6e4925d26f96190800000000000000
+      internalID: -7968567391135930694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dded0d18b7a617820800000000000000
+      internalID: 2914227512576892637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f76be6d6b5c1b3d40800000000000000
+      internalID: 5565072943549953663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b89098f4196affeb0800000000000000
+      internalID: -4683841944407176821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67b33455f3dd4ba20800000000000000
+      internalID: 3077327709484039030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VFX_Pure_Slash_Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 880859024da8968d0800000000000000
+      internalID: -2852596245278130040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 6c619a3b2ae08544ea8be43ee1b07bf8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      VFX_Pure_Slash_Sheet_0: -6081807711952645645
+      VFX_Pure_Slash_Sheet_1: -8642963603515683732
+      VFX_Pure_Slash_Sheet_10: 2914227512576892637
+      VFX_Pure_Slash_Sheet_11: 5565072943549953663
+      VFX_Pure_Slash_Sheet_12: -4683841944407176821
+      VFX_Pure_Slash_Sheet_13: 3077327709484039030
+      VFX_Pure_Slash_Sheet_14: -2852596245278130040
+      VFX_Pure_Slash_Sheet_2: 1518084498939946285
+      VFX_Pure_Slash_Sheet_3: -2708780731348105615
+      VFX_Pure_Slash_Sheet_4: 4733298456694211414
+      VFX_Pure_Slash_Sheet_5: -6187536341884845540
+      VFX_Pure_Slash_Sheet_6: -726705441741076641
+      VFX_Pure_Slash_Sheet_7: -3157503165459401738
+      VFX_Pure_Slash_Sheet_8: -3558286462836062905
+      VFX_Pure_Slash_Sheet_9: -7968567391135930694
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

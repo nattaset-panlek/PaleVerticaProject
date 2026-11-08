@@ -82,15 +82,17 @@ PlayerCore.Instance.Possess(target);
 
 ## 5b. Right-click interaction
 
-- Right-clicking a character in the world (not over UI, not while aiming a skill; right-click still cancels aiming) opens the shared `ContextMenuManager` menu. Picking and options live in `CoreSystem/Player/PlayerInteraction.cs`, called from `PlayerCore`.
-- Built-in options: **Inspect** (anyone, including yourself), **Attack** (living hostile characters, sets the auto-attack target through `PlayerCore.SetAutoAttackTarget`), **Follow Me** / **Stop Following** (friendly characters driven by `AgentCore`).
+- Right-clicking a character in the world (not over UI, not while aiming a skill; right-click still cancels aiming) opens the shared `ContextMenuManager` menu. Picking lives in `CoreSystem/Player/PlayerInteraction.cs`, called from `PlayerCore`; the options come from the interaction core (`CoreSystem/Interaction/`).
+- `InteractionCore` collects options from every registered `IInteractionProvider`, walks the actor into each option's range through `ControlSystem`, then executes it. Full guide: [Character_Interaction_Walkthrough.md](Character_Interaction_Walkthrough.md).
+- Built-in options (provider `PlayerInteraction`): **Inspect** (anyone, including yourself), **Attack** (living hostile characters, sets the auto-attack target through `PlayerCore.SetAutoAttackTarget`), **Follow Me** / **Stop Following** (friendly characters driven by `AgentCore`).
 - Other systems add options without touching the player code:
 
 ```csharp
-PlayerInteraction.OnBuildOptions += (player, target, items) =>
+public void Collect(InteractionContext context, List<InteractionOption> options)
 {
-    if (target.HasTag(CharacterTag.Merchant)) items.Add(new ContextMenuItem("Trade", () => ShopWindow.Open(target)));
-};
+    if (context.Target.HasTag(CharacterTag.Merchant)) options.Add(new InteractionOption("shop.trade", "Trade", ctx => ShopWindow.Open(ctx.Target), range: 1.5f));
+}
+InteractionRegistry.Register(provider);
 ```
 
 - **Inspect** opens `CharacterInspectWindow` (`Assets/Script/UI/Inspect/`), a Global Modal per character (opening it again brings the same window forward): name, relation and controller badges, faction and levels, HP/MP bars, the six attributes, combat stats and tags. It listens to `AttributeSystem.OnAttributesChanged` and refreshes only its stats region (at most once per frame), and closes when the character leaves `CharacterRegistry`. Preview: snapshot `inspect_character` in `UISnapshotRenderer`.

@@ -43,7 +43,7 @@ namespace CoreSystem.Tests
             Assert.AreEqual(20f + 1.8f, d.FleeFlat, Tolerance);
             Assert.AreEqual(25f + 3f, d.HitFlat, Tolerance);
             Assert.AreEqual(25f + 4f + 1.8f + 10f + 5f + 150f, d.StatusDefFlat, Tolerance);
-            Assert.AreEqual(10f + 3.75f, d.AspdFlat, Tolerance);
+            Assert.AreEqual(20f * 1.5f + 25f * 0.3f, d.AspdFlat, Tolerance);
             Assert.AreEqual(0.5f, d.MaxHpPercent, Tolerance);
             Assert.AreEqual(1.5f, d.MaxMpPercent, Tolerance);
             Assert.AreEqual(1f, d.HealingItemsPercent, Tolerance);
@@ -116,10 +116,33 @@ namespace CoreSystem.Tests
             Assert.AreEqual(7f, BasicAttackFormula.BonusDamage(DamageType.Magic, AutoAttackType.Melee, 5f, 6f, 7f), Tolerance);
             Assert.AreEqual(5f, BasicAttackFormula.BonusDamage(DamageType.Physical, AutoAttackType.Melee, 5f, 6f, 7f), Tolerance);
             Assert.AreEqual(6f, BasicAttackFormula.BonusDamage(DamageType.Physical, AutoAttackType.Range, 5f, 6f, 7f), Tolerance);
-            Assert.AreEqual(1f, BasicAttackFormula.AttackDelay(150f), Tolerance);
-            Assert.AreEqual(0.5f, BasicAttackFormula.AttackDelay(175f), Tolerance);
-            Assert.AreEqual(0.01f, BasicAttackFormula.AttackDelay(250f), Tolerance);
-            Assert.AreEqual(1f, BasicAttackFormula.AttackDelay(0f), Tolerance);
+            Assert.AreEqual(1f, BasicAttackFormula.AttackDelay(100f), Tolerance);
+            Assert.AreEqual(0.5f, BasicAttackFormula.AttackDelay(200f), Tolerance);
+            Assert.AreEqual(1f / 4f, BasicAttackFormula.AttackDelay(400f), Tolerance);
+            Assert.AreEqual(2f, BasicAttackFormula.AttackDelay(0f), Tolerance);
+        }
+
+        [Test]
+        public void BasicAttackFormula_AttacksPerSecond_IsLinearInAspd()
+        {
+            Assert.AreEqual(1.72f, BasicAttackFormula.AttacksPerSecond(172f), Tolerance);
+            Assert.AreEqual(BasicAttackFormula.AttacksPerSecond(150f) - BasicAttackFormula.AttacksPerSecond(140f),
+                            BasicAttackFormula.AttacksPerSecond(260f) - BasicAttackFormula.AttacksPerSecond(250f), Tolerance);
+            Assert.AreEqual(6f, BasicAttackFormula.AttacksPerSecond(1000f), Tolerance);
+            Assert.AreEqual(0.5f, BasicAttackFormula.AttacksPerSecond(-20f), Tolerance);
+        }
+
+        [Test]
+        public void Aspd_PercentBuff_ScalesAttackSpeedExactly()
+        {
+            var stats = TestStats.Create(agi: 40f, dex: 30f);
+            Attribute aspd = stats.GetAttribute(AttributeType.ASPD);
+            Assert.AreEqual(BasicAttackFormula.BaseAspd + 40f * 1.5f + 30f * 0.3f, aspd.CurrentValue, Tolerance);
+
+            float before = BasicAttackFormula.AttacksPerSecond(aspd.CurrentValue);
+            aspd.AddModifier(new AttributeModifier(0.1f, ModifierType.PercentAdd));
+
+            Assert.AreEqual(before * 1.1f, BasicAttackFormula.AttacksPerSecond(aspd.CurrentValue), Tolerance);
         }
 
         [Test]

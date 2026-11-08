@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CoreSystem.Entity;
 using CoreSystem.Skills;
 
 namespace CoreSystem.Combat
@@ -15,6 +16,7 @@ namespace CoreSystem.Combat
         public IReadOnlyList<EffectSpec> Effects => _effects;
         public IReadOnlyList<ActionRider> Riders => _riders;
         public bool IsProc { get; set; }
+        public IEntity CreditTo { get; set; }
         #endregion
 
         #region [Public Methods]

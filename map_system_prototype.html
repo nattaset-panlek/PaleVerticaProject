@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pale Vertica - HD-2D Map Architecture & Decoupled Mediator Prototype</title>
+  <style>
+    :root {
+      --bg-dark: #0b0f17;
+      --panel-bg: rgba(18, 24, 38, 0.85);
+      --panel-border: #2a364f;
+      --accent-gold: #e5a93c;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #34d399;
+      --accent-crimson: #f43f5e;
+      --accent-purple: #a855f7;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-family);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: linear-gradient(180deg, rgba(20, 26, 43, 0.95) 0%, rgba(13, 17, 28, 0.9) 100%);
+      border-bottom: 1px solid var(--panel-border);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 10;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .title-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .badge-core {
+      background: linear-gradient(135deg, #b45309, #d97706);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(217, 119, 6, 0.4);
+    }
+
+    h1 {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-left: 6px;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      background: #1e293b;
+      color: var(--text-main);
+      border: 1px solid var(--panel-border);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      background: #334155;
+      border-color: var(--accent-gold);
+      color: #fff;
+      box-shadow: 0 0 8px rgba(229, 169, 60, 0.25);
+    }
+
+    .btn.active {
+      background: rgba(229, 169, 60, 0.15);
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    .main-workspace {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Left Map Canvas Area */
+    .viewport-container {
+      flex: 1;
+      position: relative;
+      background: #06090e;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #gameCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: crosshair;
+    }
+
+    .hud-overlay {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      pointer-events: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      z-index: 5;
+    }
+
+    .hud-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-val {
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: monospace;
+    }
+
+    .hud-chip {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: bold;
+    }
+
+    .chip-ground { background: #065f46; color: #a7f3d0; }
+    .chip-elevated { background: #92400e; color: #fde68a; }
+    .chip-ramp { background: #1e40af; color: #bfdbfe; }
+
+    /* Right Inspection Sidebar */
+    .sidebar {
+      width: 440px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(12px);
+      border-left: 1px solid var(--panel-border);
+      display: flex;
+      flex-direction: column;
+      z-index: 8;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.4);
+    }
+
+    .sidebar-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--panel-border);
+      background: rgba(13, 17, 28, 0.7);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 12px 8px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-gold);
+      border-bottom-color: var(--accent-gold);
+      background: rgba(229, 169, 60, 0.05);
+    }
+
+    .tab-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tab-content.active {
+      display: flex;
+    }
+
+    .section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 12px;
+    }
+
+    /* Mediator Console Styles */
+    .mediator-log-box {
+      flex: 1;
+      min-height: 240px;
+      background: #050811;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 10px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 11px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .log-item {
+      padding: 5px 8px;
+      border-radius: 4px;
+      line-height: 1.4;
+      border-left: 3px solid transparent;
+      background: rgba(255,255,255,0.02);
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .log-time { color: var(--text-dim); margin-right: 6px; }
+    .log-channel { font-weight: bold; margin-right: 6px; }
+    .chan-player { color: var(--accent-cyan); border-left-color: var(--accent-cyan); }
+    .chan-mediator { color: var(--accent-gold); border-left-color: var(--accent-gold); }
+    .chan-map { color: var(--accent-emerald); border-left-color: var(--accent-emerald); }
+    .chan-meta { color: var(--accent-purple); border-left-color: var(--accent-purple); }
+    .chan-gameplay { color: var(--accent-crimson); border-left-color: var(--accent-crimson); }
+
+    /* JSON Data Editor */
+    .json-editor {
+      width: 100%;
+      height: 280px;
+      background: #050811;
+      color: #38bdf8;
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      padding: 10px;
+      font-family: 'Consolas', monospace;
+      font-size: 11px;
+      resize: vertical;
+      outline: none;
+    }
+
+    .meta-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .tag-npc { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #0284c7; }
+    .tag-chest { background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #ca8a04; }
+    .tag-gate { background: rgba(244, 63, 94, 0.2); color: #fb7185; border: 1px solid #e11d48; }
+    .tag-portal { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid #9333ea; }
+
+    .help-tooltip {
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 11px;
+    }
+
+    .legend-box {
+      width: 16px;
+      height: 16px;
+      border-radius: 3px;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="title-group">
+      <span class="badge-core">SYSTEM ARCHITECTURE</span>
+      <h1>Pale Vertica: Whispers of the Pale Throne</h1>
+      <span class="subtitle">Decoupled Map Runtime & Multi-Elevation Depth Prototype</span>
+    </div>
+    <div class="header-controls">
+      <button class="btn active" id="btnDepth" onclick="toggleViewMode('depth')">2.5D Depth View</button>
+      <button class="btn" id="btnGrid" onclick="toggleViewMode('grid')">Elevation Grid</button>
+      <button class="btn" id="btnMeta" onclick="toggleViewMode('meta')">Metadata Hooks</button>
+      <button class="btn" onclick="resetPlayer()">Reset Avatar</button>
+    </div>
+  </header>
+
+  <div class="main-workspace">
+    
+    <!-- Viewport Canvas -->
+    <div class="viewport-container">
+      <canvas id="gameCanvas"></canvas>
+      
+      <div class="hud-overlay">
+        <div class="hud-row">
+          <span>Avatar Coord:</span>
+          <span class="hud-val" id="hudCoord">(4, 6)</span>
+          <span id="hudElevationBadge" class="hud-chip chip-ground">ELEVATION 0</span>
+        </div>
+        <div class="hud-row">
+          <span>Current Surface:</span>
+          <span class="hud-val" id="hudSurface">Cobblestone Courtyard</span>
+        </div>
+        <div class="hud-row">
+          <span>Nearby Meta Trigger:</span>
+          <span class="hud-val" id="hudMetaTag" style="color: var(--text-dim);">None</span>
+        </div>
+        <div class="help-tooltip" style="margin-top: 4px;">
+          Controls: <strong>WASD / Arrow Keys</strong> or <strong>Click on Grid</strong> to move. Walk onto the wooden ramp to ascend the plateau!
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-tabs">
+        <button class="tab-btn active" onclick="selectTab('mediatorTab')">Mediator Bus</button>
+        <button class="tab-btn" onclick="selectTab('layersTab')">Depth & Layers</button>
+        <button class="tab-btn" onclick="selectTab('jsonTab')">Data (JSON / DLC)</button>
+        <button class="tab-btn" onclick="selectTab('astraTab')">Astra Prompt</button>
+      </div>
+
+      <!-- Tab 1: Live Decoupled Mediator Event Stream -->
+      <div class="tab-content active" id="mediatorTab">
+        <div class="section-title">
+          <span>Decoupled Event Stream</span>
+          <button class="btn" style="padding: 2px 8px; font-size: 10px;" onclick="clearLogs()">Clear</button>
+        </div>
+        <div class="help-tooltip">
+          Notice how the <strong>Player never references the Map</strong>. Movement and interaction flow exclusively through <code>WorldMediator</code> via lightweight payloads.
+        </div>
+        <div class="mediator-log-box" id="logBox"></div>
+        
+        <div class="card">
+          <div class="section-title" style="margin-bottom: 6px;">Mediator Flow Pipeline</div>
+          <div style="font-size: 11px; line-height: 1.6; color: var(--text-muted);">
+            <div style="color: var(--accent-cyan);">&bull; [Player] &rarr; Send <code>MoveIntent(pos, elevation)</code></div>
+            <div style="color: var(--accent-gold);">&bull; [WorldMediator] &rarr; Queries <code>IMapService.ValidateTraversal()</code></div>
+            <div style="color: var(--accent-emerald);">&bull; [MapService] &rarr; Confirms height &amp; obstacle collision</div>
+            <div style="color: var(--accent-purple);">&bull; [WorldMediator] &rarr; Evaluates <code>MapMetadataNode</code> (NPC / Chest / Portal)</div>
+            <div style="color: var(--accent-crimson);">&bull; [Gameplay System] &rarr; Receives decoupled trigger execution</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Depth & Layering Specifications -->
+      <div class="tab-content" id="layersTab">
+        <div class="section-title">HD-2D Elevation &amp; Layer Model</div>
+        <div class="card">
+          <div class="legend-item">
+            <div class="legend-box" style="background: #111827;"></div>
+            <span><strong>Layer 0: Parallax Abyss / Sky</strong> (Floating particles, depth scrolling)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background: #1f2937;"></div>
+            <span><strong>Layer 1: Ground Surface (Z: 0)</strong> (Grass, stone, roads)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background: #374151;"></div>
+            <span><strong>Layer 2: Cliff Faces &amp; Drop Shadows</strong> (Ambient occlusion onto Level 0)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background: #4b5563;"></div>
+            <span><strong>Layer 3: Elevated Plateau (Z: 1)</strong> (High terraces, walkable rooftops)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background: #2563eb;"></div>
+            <span><strong>Layer 4: Ramps &amp; Connectors</strong> (Dynamic slope bridging Z:0 &harr; Z:1)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background: #e5a93c;"></div>
+            <span><strong>Layer 5: Dynamic Entities</strong> (Player, NPCs sorted by Y-axis)</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-box" style="background: #059669; opacity: 0.7;"></div>
+            <span><strong>Layer 6: Canopy &amp; Overhead Overhangs</strong> (Fades when avatar enters)</span>
+          </div>
+        </div>
+
+        <div class="section-title">Minimal-Authoring Strategy</div>
+        <div class="card" style="line-height: 1.5; color: var(--text-muted); font-size: 11px;">
+          To author as little as possible manually:
+          <ol style="margin-left: 16px; margin-top: 6px;">
+            <li><strong>Bitmask Autotiling:</strong> 47-tile autotiler handles all cliff edges and transition blending.</li>
+            <li><strong>Macro Room Blueprints:</strong> Connect pre-baked 8x8 functional chunks (Plaza, Shrine, Pass).</li>
+            <li><strong>Metadata Ingestion:</strong> Procedurally place NPC, Chest, and Portal anchors from Seed Table.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Tab 3: JSON Data & Modding Format -->
+      <div class="tab-content" id="jsonTab">
+        <div class="section-title">
+          <span>Map Schema (Moddable / DLC)</span>
+          <button class="btn" style="padding: 2px 8px; font-size: 10px;" onclick="reloadFromJSON()">Apply JSON</button>
+        </div>
+        <div class="help-tooltip">
+          This pure JSON structure has zero engine coupling. External mods or DLC can drop new JSON map packages directly into the game.
+        </div>
+        <textarea class="json-editor" id="jsonInput"></textarea>
+      </div>
+
+      <!-- Tab 4: Astra Prompt Pack -->
+      <div class="tab-content" id="astraTab">
+        <div class="section-title">
+          <span>ChatGPT Astra Master Prompt</span>
+          <button class="btn" style="padding: 2px 8px; font-size: 10px;" onclick="copyAstraPrompt()">Copy Prompt</button>
+        </div>
+        <div class="help-tooltip">
+          Use this engineered prompt in ChatGPT Astra to generate procedural map layouts, room templates, or autotile algorithms tailored to this exact architecture.
+        </div>
+        <textarea class="json-editor" id="astraPromptBox" readonly style="height: 320px; color: #cbd5e1;"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // --- MAP SPECIFICATION & SAMPLE DATA ---
+    const DEFAULT_MAP_DATA = {
+      mapId: "pale_highlands_01",
+      displayName: "Ascendant Crest - Outpost 7",
+      gridWidth: 16,
+      gridHeight: 12,
+      tileSize: 48,
+      biome: "PaleHighland",
+      parallaxBackdrop: {
+        skyColorTop: "#080d1a",
+        skyColorBottom: "#172338",
+        nebulaGlow: "#38bdf8",
+        particleCount: 40
+      },
+      // Elevation Grid: 0 = Low Ground, 1 = Elevated Plateau
+      elevation: [
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0],
+        [0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0],
+        [0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0],
+        [0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0],
+        [0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+      ],
+      // Ramps connecting Elevation 0 and 1
+      ramps: [
+        { x: 10, y: 4, direction: "EastWest", connects: [0, 1] },
+        { x: 10, y: 5, direction: "EastWest", connects: [0, 1] }
+      ],
+      // Solid Walls / Blockers (1 = impassable within that elevation)
+      obstacles: [
+        { x: 5, y: 3, elevation: 1, type: "AncientMonolith" },
+        { x: 13, y: 8, elevation: 0, type: "StoneRuins" }
+      ],
+      // Overhanging Canopies / Bridge Ceilings (Fade when player walks under)
+      canopies: [
+        { x: 4, y: 8, width: 3, height: 2, name: "Sanctuary Archway" }
+      ],
+      // Metadata Registry (Pins for External Systems via Mediator)
+      metadataNodes: [
+        {
+          nodeId: "npc_elder_01",
+          type: "NPC_SPAWN",
+          x: 6,
+          y: 4,
+          elevation: 1,
+          label: "Hermit Oswald",
+          payload: { archetype: "Sage", dialogueId: "dlg_pale_whisper_intro", questRef: "Q101" }
+        },
+        {
+          nodeId: "chest_relic_02",
+          type: "CHEST",
+          x: 8,
+          y: 3,
+          elevation: 1,
+          label: "Sunken Cache",
+          payload: { lootTier: "Rare", lockLevel: 0, trapActive: false }
+        },
+        {
+          nodeId: "gate_sealed_arch",
+          type: "LOCK_GATE",
+          x: 5,
+          y: 9,
+          elevation: 0,
+          label: "Iron Grate",
+          payload: { isLocked: true, requiredKeyId: "KEY_CRYPT_RUSTED" }
+        },
+        {
+          nodeId: "portal_valley_pass",
+          type: "ZONE_PORTAL",
+          x: 15,
+          y: 5,
+          elevation: 0,
+          label: "Valley Exit",
+          payload: { targetMapId: "pale_valley_02", targetSpawnId: "spawn_west_gate" }
+        }
+      ]
+    };
+
+    // --- STATE ---
+    let mapData = JSON.parse(JSON.stringify(DEFAULT_MAP_DATA));
+    let viewMode = 'depth'; // 'depth', 'grid', 'meta'
+    let player = {
+      x: 1,
+      y: 5,
+      elevation: 0,
+      targetX: 1,
+      targetY: 5,
+      moving: false,
+      facing: 'right',
+      animTime: 0
+    };
+
+    let particles = [];
+    for (let i = 0; i < 35; i++) {
+      particles.push({
+        x: Math.random() * 800,
+        y: Math.random() * 600,
+        speed: 0.2 + Math.random() * 0.4,
+        size: 1 + Math.random() * 2,
+        opacity: 0.2 + Math.random() * 0.5
+      });
+    }
+
+    // --- SETUP CANVAS ---
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    let canvasW = 800;
+    let canvasH = 600;
+
+    function resizeCanvas() {
+      const container = canvas.parentElement;
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+      canvasW = canvas.width;
+      canvasH = canvas.height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // --- DECOUPLED MEDIATOR SIMULATOR ---
+    const logBox = document.getElementById('logBox');
+    function logMediator(channel, message) {
+      const d = new Date();
+      const timeStr = d.toTimeString().split(' ')[0] + '.' + String(d.getMilliseconds()).padStart(3, '0');
+      const item = document.createElement('div');
+      item.className = 'log-item chan-' + channel.toLowerCase();
+      item.innerHTML = `<span class="log-time">[${timeStr}]</span><span class="log-channel">${channel.toUpperCase()}:</span>${message}`;
+      logBox.appendChild(item);
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function clearLogs() {
+      logBox.innerHTML = '';
+    }
+
+    // Simulated World Mediator Contract
+    const WorldMediator = {
+      // Step 1: Player issues movement intent
+      sendPlayerMoveIntent: function(newX, newY) {
+        logMediator('player', `MoveIntent requested to (${newX}, ${newY}) [Current Elev: ${player.elevation}]`);
+        
+        // Step 2: Mediator queries isolated MapRuntime
+        const validation = MapRuntime.validateTraversal(player.x, player.y, player.elevation, newX, newY);
+        
+        if (validation.allowed) {
+          logMediator('mediator', `Traversal APPROVED: Moving to (${newX}, ${newY}) at Elevation ${validation.newElevation}`);
+          player.x = newX;
+          player.y = newY;
+          player.elevation = validation.newElevation;
+          updateHUD();
+
+          // Step 3: Check for metadata triggers at destination
+          const node = MapRuntime.getMetadataAt(newX, newY, player.elevation);
+          if (node) {
+            this.handleMetadataTrigger(node);
+          }
+        } else {
+          logMediator('mediator', `Traversal REJECTED: ${validation.reason}`);
+        }
+      },
+
+      handleMetadataTrigger: function(node) {
+        logMediator('meta', `Pin Entered: <strong>[${node.type}]</strong> "${node.label}" (ID: ${node.nodeId})`);
+        
+        // Mediator routes to appropriate isolated gameplay system
+        switch(node.type) {
+          case 'CHEST':
+            logMediator('gameplay', `&rarr; <em>LootSystem</em> opened cache: [Tier: ${node.payload.lootTier}]`);
+            break;
+          case 'NPC_SPAWN':
+            logMediator('gameplay', `&rarr; <em>DialogueSystem</em> started prompt: "${node.payload.dialogueId}" with ${node.label}`);
+            break;
+          case 'LOCK_GATE':
+            if (node.payload.isLocked) {
+              logMediator('gameplay', `&rarr; <em>KeySystem</em> checked for "${node.payload.requiredKeyId}" (Locked)`);
+            }
+            break;
+          case 'ZONE_PORTAL':
+            logMediator('gameplay', `&rarr; <em>SceneDirector</em> triggered transition to "${node.payload.targetMapId}"`);
+            break;
+        }
+      }
+    };
+
+    // Isolated Map Runtime Service (Pure Map Logic)
+    const MapRuntime = {
+      validateTraversal: function(currX, currY, currElev, targetX, targetY) {
+        if (targetX < 0 || targetX >= mapData.gridWidth || targetY < 0 || targetY >= mapData.gridHeight) {
+          return { allowed: false, reason: "Boundary blocked (out of map)" };
+        }
+
+        // Check if there is a ramp
+        const isRamp = mapData.ramps.some(r => r.x === targetX && r.y === targetY);
+        const currIsRamp = mapData.ramps.some(r => r.x === currX && r.y === currY);
+        const targetTileElev = mapData.elevation[targetY][targetX];
+
+        // Check static obstacle
+        const hasObstacle = mapData.obstacles.some(o => o.x === targetX && o.y === targetY && o.elevation === targetTileElev);
+        if (hasObstacle) {
+          return { allowed: false, reason: "Solid structure impassable" };
+        }
+
+        // Elevation transition rules
+        if (isRamp || currIsRamp) {
+          // Ramp allows crossing between elevation 0 and 1
+          return { allowed: true, newElevation: targetTileElev };
+        }
+
+        if (currElev !== targetTileElev) {
+          return { allowed: false, reason: `Elevation cliff mismatch (${currElev} vs ${targetTileElev}). Requires a ramp or ladder.` };
+        }
+
+        return { allowed: true, newElevation: targetTileElev };
+      },
+
+      getMetadataAt: function(x, y, elevation) {
+        return mapData.metadataNodes.find(n => n.x === x && n.y === y && n.elevation === elevation);
+      }
+    };
+
+    // --- HUD UPDATE ---
+    function updateHUD() {
+      document.getElementById('hudCoord').textContent = `(${player.x}, ${player.y})`;
+      const badge = document.getElementById('hudElevationBadge');
+      const isRamp = mapData.ramps.some(r => r.x === player.x && r.y === player.y);
+
+      if (isRamp) {
+        badge.className = 'hud-chip chip-ramp';
+        badge.textContent = 'RAMP CONNECTOR';
+      } else if (player.elevation === 1) {
+        badge.className = 'hud-chip chip-elevated';
+        badge.textContent = 'ELEVATION 1 (HIGH)';
+      } else {
+        badge.className = 'hud-chip chip-ground';
+        badge.textContent = 'ELEVATION 0 (GROUND)';
+      }
+
+      const meta = MapRuntime.getMetadataAt(player.x, player.y, player.elevation);
+      const metaTagEl = document.getElementById('hudMetaTag');
+      if (meta) {
+        metaTagEl.textContent = `${meta.label} [${meta.type}]`;
+        metaTagEl.style.color = 'var(--accent-gold)';
+      } else {
+        metaTagEl.textContent = 'None';
+        metaTagEl.style.color = 'var(--text-dim)';
+      }
+    }
+
+    // --- INPUT HANDLERS ---
+    window.addEventListener('keydown', (e) => {
+      let dx = 0, dy = 0;
+      if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') dy = -1;
+      if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') dy = 1;
+      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') dx = -1;
+      if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') dx = 1;
+
+      if (dx !== 0 || dy !== 0) {
+        e.preventDefault();
+        WorldMediator.sendPlayerMoveIntent(player.x + dx, player.y + dy);
+      }
+    });
+
+    canvas.addEventListener('click', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      // Calculate grid offset
+      const startX = (canvasW - mapData.gridWidth * mapData.tileSize) / 2;
+      const startY = (canvasH - mapData.gridHeight * mapData.tileSize) / 2 + 20;
+
+      const gx = Math.floor((clickX - startX) / mapData.tileSize);
+      const gy = Math.floor((clickY - startY) / mapData.tileSize);
+
+      if (gx >= 0 && gx < mapData.gridWidth && gy >= 0 && gy < mapData.gridHeight) {
+        WorldMediator.sendPlayerMoveIntent(gx, gy);
+      }
+    });
+
+    function resetPlayer() {
+      player.x = 1;
+      player.y = 5;
+      player.elevation = 0;
+      updateHUD();
+      logMediator('player', 'Avatar repositioned to initial spawn (1, 5)');
+    }
+
+    function toggleViewMode(mode) {
+      viewMode = mode;
+      document.getElementById('btnDepth').classList.toggle('active', mode === 'depth');
+      document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+      document.getElementById('btnMeta').classList.toggle('active', mode === 'meta');
+    }
+
+    function selectTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    // --- RENDERING PIPELINE ---
+    function render() {
+      ctx.clearRect(0, 0, canvasW, canvasH);
+
+      const ts = mapData.tileSize;
+      const startX = (canvasW - mapData.gridWidth * ts) / 2;
+      const startY = (canvasH - mapData.gridHeight * ts) / 2 + 20;
+
+      // 1. Parallax Backdrop
+      const grad = ctx.createLinearGradient(0, 0, 0, canvasH);
+      grad.addColorStop(0, mapData.parallaxBackdrop.skyColorTop);
+      grad.addColorStop(1, mapData.parallaxBackdrop.skyColorBottom);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvasW, canvasH);
+
+      // Distant stars / ambient dust particles
+      ctx.fillStyle = mapData.parallaxBackdrop.nebulaGlow;
+      for (let p of particles) {
+        p.y -= p.speed;
+        if (p.y < 0) p.y = canvasH;
+        ctx.globalAlpha = p.opacity;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1.0;
+
+      // 2. Base Grid / Ground Elevation 0
+      for (let y = 0; y < mapData.gridHeight; y++) {
+        for (let x = 0; x < mapData.gridWidth; x++) {
+          const px = startX + x * ts;
+          const py = startY + y * ts;
+          const elev = mapData.elevation[y][x];
+
+          if (viewMode === 'grid') {
+            // Schematic Grid Mode
+            ctx.fillStyle = elev === 1 ? '#78350f' : '#14532d';
+            ctx.fillRect(px + 1, py + 1, ts - 2, ts - 2);
+            ctx.strokeStyle = '#1f2937';
+            ctx.strokeRect(px, py, ts, ts);
+            ctx.fillStyle = 'rgba(255,255,255,0.4)';
+            ctx.font = '10px monospace';
+            ctx.fillText(`Z:${elev}`, px + 6, py + 16);
+          } else {
+            // Visual Depth Mode
+            // Level 0 Ground Tile
+            ctx.fillStyle = ((x + y) % 2 === 0) ? '#182436' : '#131e2f';
+            ctx.fillRect(px, py, ts, ts);
+
+            // Subtle floor grid lines
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.03)';
+            ctx.strokeRect(px, py, ts, ts);
+          }
+        }
+      }
+
+      // 3. Render Elevation 1 Plateau & Cliff Drops (Only in Depth Mode)
+      if (viewMode === 'depth' || viewMode === 'meta') {
+        const ELEV_OFFSET = 18; // Height visual displacement (HD-2D cliff height)
+
+        // Draw Cliff Base & Drop Shadow first
+        for (let y = 0; y < mapData.gridHeight; y++) {
+          for (let x = 0; x < mapData.gridWidth; x++) {
+            if (mapData.elevation[y][x] === 1) {
+              const px = startX + x * ts;
+              const py = startY + y * ts;
+
+              // Shadow cast downward onto Level 0
+              if (y + 1 >= mapData.gridHeight || mapData.elevation[y + 1][x] === 0) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+                ctx.fillRect(px - 2, py + ts, ts + 4, 14);
+
+                // Vertical Cliff Face
+                ctx.fillStyle = '#263445';
+                ctx.fillRect(px, py + ts - ELEV_OFFSET, ts, ELEV_OFFSET);
+                ctx.fillStyle = '#1c2633';
+                ctx.fillRect(px, py + ts - 4, ts, 4); // Cliff lower shadow
+              }
+            }
+          }
+        }
+
+        // Draw Plateau Tops (Shifted upward by ELEV_OFFSET)
+        for (let y = 0; y < mapData.gridHeight; y++) {
+          for (let x = 0; x < mapData.gridWidth; x++) {
+            if (mapData.elevation[y][x] === 1) {
+              const px = startX + x * ts;
+              const py = startY + y * ts - ELEV_OFFSET;
+
+              ctx.fillStyle = ((x + y) % 2 === 0) ? '#38485e' : '#2f3e53';
+              ctx.fillRect(px, py, ts, ts);
+              ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+              ctx.strokeRect(px, py, ts, ts);
+
+              // Top rim highlight
+              if (y === 0 || mapData.elevation[y - 1][x] === 0) {
+                ctx.fillStyle = '#60a5fa';
+                ctx.fillRect(px, py, ts, 2);
+              }
+            }
+          }
+        }
+
+        // 4. Draw Ramps Connecting Levels
+        for (let ramp of mapData.ramps) {
+          const px = startX + ramp.x * ts;
+          const py = startY + ramp.y * ts;
+          
+          // Wooden inclined ramp planking
+          const rampGrad = ctx.createLinearGradient(px, py, px + ts, py);
+          rampGrad.addColorStop(0, '#78350f');
+          rampGrad.addColorStop(1, '#92400e');
+          ctx.fillStyle = rampGrad;
+          ctx.fillRect(px, py - ELEV_OFFSET / 2, ts, ts);
+
+          // Ramp steps / planks
+          ctx.strokeStyle = '#b45309';
+          ctx.lineWidth = 2;
+          for (let i = 0; i < ts; i += 8) {
+            ctx.beginPath();
+            ctx.moveTo(px + i, py - ELEV_OFFSET / 2);
+            ctx.lineTo(px + i, py - ELEV_OFFSET / 2 + ts);
+            ctx.stroke();
+          }
+          ctx.lineWidth = 1;
+        }
+      }
+
+      // 5. Draw Obstacles (Monolith, Ruins)
+      for (let obs of mapData.obstacles) {
+        const elevY = (obs.elevation === 1 && viewMode !== 'grid') ? -18 : 0;
+        const px = startX + obs.x * ts;
+        const py = startY + obs.y * ts + elevY;
+
+        // Shadow
+        ctx.fillStyle = 'rgba(0,0,0,0.4)';
+        ctx.beginPath();
+        ctx.ellipse(px + ts / 2, py + ts - 6, ts * 0.4, 6, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Pillar / Obstacle graphic
+        ctx.fillStyle = '#64748b';
+        ctx.fillRect(px + 8, py + 6, ts - 16, ts - 12);
+        ctx.strokeStyle = '#94a3b8';
+        ctx.strokeRect(px + 8, py + 6, ts - 16, ts - 12);
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = '9px sans-serif';
+        ctx.fillText('WALL', px + 12, py + ts / 2 + 3);
+      }
+
+      // 6. Draw Metadata Hooks & Pins
+      for (let node of mapData.metadataNodes) {
+        const elevY = (node.elevation === 1 && viewMode !== 'grid') ? -18 : 0;
+        const px = startX + node.x * ts + ts / 2;
+        const py = startY + node.y * ts + ts / 2 + elevY;
+
+        let pinColor = '#38bdf8';
+        let pinIcon = 'NPC';
+        if (node.type === 'CHEST') { pinColor = '#eab308'; pinIcon = 'CHEST'; }
+        if (node.type === 'LOCK_GATE') { pinColor = '#f43f5e'; pinIcon = 'GATE'; }
+        if (node.type === 'ZONE_PORTAL') { pinColor = '#a855f7'; pinIcon = 'PORTAL'; }
+
+        // Glow ring
+        ctx.strokeStyle = pinColor;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(px, py, 12, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.lineWidth = 1;
+
+        // Inner solid badge
+        ctx.fillStyle = pinColor;
+        ctx.beginPath();
+        ctx.arc(px, py, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (viewMode === 'meta' || viewMode === 'depth') {
+          ctx.fillStyle = '#fff';
+          ctx.font = 'bold 9px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(node.label, px, py - 16);
+          ctx.textAlign = 'left';
+        }
+      }
+
+      // 7. Draw Player Avatar (With Dynamic Height Elevation)
+      const pElevY = (player.elevation === 1 && viewMode !== 'grid') ? -18 : 0;
+      const pPx = startX + player.x * ts + ts / 2;
+      const pPy = startY + player.y * ts + ts / 2 + pElevY;
+
+      // Drop shadow underneath player
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.45)';
+      ctx.beginPath();
+      ctx.ellipse(pPx, pPy + 14, 12, 5, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Avatar Halo / Torch Light
+      const lightGrad = ctx.createRadialGradient(pPx, pPy, 4, pPx, pPy, 60);
+      lightGrad.addColorStop(0, 'rgba(229, 169, 60, 0.35)');
+      lightGrad.addColorStop(1, 'rgba(229, 169, 60, 0)');
+      ctx.fillStyle = lightGrad;
+      ctx.beginPath();
+      ctx.arc(pPx, pPy, 60, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Avatar Body
+      ctx.fillStyle = '#f8fafc';
+      ctx.beginPath();
+      ctx.arc(pPx, pPy - 4, 10, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Cloak
+      ctx.fillStyle = '#d97706';
+      ctx.fillRect(pPx - 8, pPy + 2, 16, 10);
+
+      // 8. Overhead Canopies / Archways (Fade when player walks under)
+      for (let c of mapData.canopies) {
+        const cpx = startX + c.x * ts;
+        const cpy = startY + c.y * ts;
+        const cpw = c.width * ts;
+        const cph = c.height * ts;
+
+        // Detect if player is under this canopy
+        const isPlayerUnder = (
+          player.x >= c.x && player.x < c.x + c.width &&
+          player.y >= c.y && player.y < c.y + c.height
+        );
+
+        ctx.globalAlpha = isPlayerUnder ? 0.25 : 0.85;
+        ctx.fillStyle = '#1e3a8a';
+        ctx.fillRect(cpx, cpy, cpw, cph);
+        ctx.strokeStyle = '#60a5fa';
+        ctx.strokeRect(cpx, cpy, cpw, cph);
+
+        ctx.fillStyle = '#e2e8f0';
+        ctx.font = '10px sans-serif';
+        ctx.fillText(c.name + (isPlayerUnder ? " (Occluded - Transparent)" : ""), cpx + 8, cpy + 18);
+        ctx.globalAlpha = 1.0;
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    // --- JSON EDITOR & ASTRA PROMPT LOGIC ---
+    const jsonInput = document.getElementById('jsonInput');
+    jsonInput.value = JSON.stringify(DEFAULT_MAP_DATA, null, 2);
+
+    function reloadFromJSON() {
+      try {
+        const parsed = JSON.parse(jsonInput.value);
+        mapData = parsed;
+        logMediator('map', `Map definition reloaded from external JSON [ID: ${mapData.mapId}]`);
+        updateHUD();
+      } catch (err) {
+        alert("JSON Parse Error: " + err.message);
+      }
+    }
+
+    // Astra Master Prompt Setup
+    const ASTRA_PROMPT = `[PROJECT CONTEXT & ROLE]
+Project: Pale Vertica: Whispers of the Pale Throne (Top-down 2D Action RPG in Unity).
+Task: Implement an Isolated, Data-Driven Map Creation & Management System.
+
+[STRICT ARCHITECTURAL REQUIREMENTS]
+1. Zero Coupling: The Map System must reside in its own isolated module ('WorldSystem'). It must NEVER directly reference 'PlayerCharacter', 'Combat', or 'Entity' scripts.
+2. The World Mediator Pattern: All gameplay interactions, traversal validation, and triggers MUST flow through a centralized 'IWorldMediator' service bus.
+3. 2.5D Elevation & Depth: Maps must support multi-tier elevation levels (Level 0, Level 1, Level 2), connected by dynamic Ramps/Stairs, with automatic drop-shadow casting and canopy transparency stencils.
+4. Minimal Manual Drawing:
+   - Chunk-based template assembly (Plaza, Cliff, Corridor macro-rooms).
+   - Bitmask autotiling (47-tile Wang pattern) for cliffs and terrain borders.
+   - Procedural decal & prop scatter via deterministic seed.
+5. Modding & DLC Schema: Pure JSON file serialization format ('PaleMapData') containing tile grids, elevation layers, and a 'MetadataNode[]' registry.
+6. Metadata Pins: Each map file defines hooks for external systems:
+   - NPC_SPAWN (Archetype, Dialogue ID, Quest Ref)
+   - CHEST (Loot Tier, Lock Level)
+   - LOCK_GATE (Required Key ID, Obstacle Zone)
+   - ZONE_PORTAL (Target Map ID, Spawn Pin)
+
+[DELIVERABLES REQUESTED FROM ASTRA]
+1. Complete C# architectural contracts using strict #region structures:
+   - IWorldMediator & WorldMediator
+   - IMapService & MapRuntimeController
+   - PaleMapData & MapMetadataNode (Serializable JSON models)
+2. Procedural Room / Dungeon Assembler algorithm that generates valid 'PaleMapData' with elevation cliffs, ramps, and metadata pins without manual drawing.
+3. Unity Tilemap Baker script that reads 'PaleMapData' and generates Layer 0 (Ground), Layer 1 (Cliffs), Layer 2 (Terraces), and Sorting Group Colliders automatically.`;
+
+    document.getElementById('astraPromptBox').value = ASTRA_PROMPT;
+
+    function copyAstraPrompt() {
+      navigator.clipboard.writeText(ASTRA_PROMPT);
+      alert("Astra Master Prompt copied to clipboard! You can paste this directly into ChatGPT Astra.");
+    }
+
+    // Initialize HUD and start animation loop
+    updateHUD();
+    logMediator('mediator', 'WorldMediator initialized. Event bus ready.');
+    logMediator('map', `MapRuntime loaded asset: "${DEFAULT_MAP_DATA.displayName}" (${DEFAULT_MAP_DATA.gridWidth}x${DEFAULT_MAP_DATA.gridHeight})`);
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>

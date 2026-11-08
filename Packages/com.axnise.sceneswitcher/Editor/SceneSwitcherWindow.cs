@@ -1,76 +1,85 @@
+using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Overlays;
 using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.UIElements;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using UnityEditor.Toolbars;
 
-namespace RealmOfHero.Editor
+namespace Axnise.SceneSwitcher.Editor
 {
-    // --- traditional Window version for easy access ---
     public class SceneSwitcherWindow : EditorWindow
     {
-        private Vector2 scrollPos;
+        #region [Variables/Fields]
+        private Vector2 _scroll;
+        private string _search = string.Empty;
+        #endregion
 
-        [MenuItem("Window/Realm of Hero/Scene Switcher")]
-        public static void ShowWindow()
+        #region [Unity Methods]
+        private void OnEnable()
         {
-            GetWindow<SceneSwitcherWindow>("Scene Switcher");
+            SceneSwitcherRegistry.OnChanged += Repaint;
+        }
+
+        private void OnDisable()
+        {
+            SceneSwitcherRegistry.OnChanged -= Repaint;
         }
 
         private void OnGUI()
         {
-            GUILayout.Label("Quick Scene Switcher", EditorStyles.boldLabel);
-            EditorGUILayout.Space(5);
-
-            scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
-
-            // Build Scenes
-            var buildScenes = EditorBuildSettings.scenes.Select(s => s.path).ToList();
-            if (buildScenes.Count > 0)
+            using (new EditorGUILayout.HorizontalScope(EditorStyles.toolbar))
             {
-                GUILayout.Label("Build Settings", EditorStyles.miniBoldLabel);
-                foreach (var path in buildScenes)
-                {
-                    DrawSceneButton(path, "Build/");
-                }
-                EditorGUILayout.Space(10);
+                _search = EditorGUILayout.TextField(_search, EditorStyles.toolbarSearchField);
+                if (GUILayout.Button("Refresh", EditorStyles.toolbarButton, GUILayout.Width(60))) SceneSwitcherRegistry.Invalidate();
             }
 
-            // All Scenes
-            GUILayout.Label("All Scenes", EditorStyles.miniBoldLabel);
-            string[] guids = AssetDatabase.FindAssets("t:Scene");
-            foreach (var guid in guids)
+            using (new EditorGUI.DisabledScope(EditorApplication.isPlayingOrWillChangePlaymode))
             {
-                string path = AssetDatabase.GUIDToAssetPath(guid);
-                if (buildScenes.Contains(path)) continue;
-                DrawSceneButton(path, "");
+                _scroll = EditorGUILayout.BeginScrollView(_scroll);
+                DrawSection("Build Profile", SceneSwitcherRegistry.BuildScenes);
+                DrawSection("Recent", SceneSwitcherRegistry.RecentScenes);
+                DrawSection("All Scenes", SceneSwitcherRegistry.AllScenes);
+                EditorGUILayout.EndScrollView();
             }
-
-            EditorGUILayout.EndScrollView();
         }
+        #endregion
 
-        private void DrawSceneButton(string path, string prefix)
+        #region [Public Methods]
+        [MenuItem("Window/Axnise/Scene Switcher")]
+        public static void ShowWindow()
         {
-            string sceneName = Path.GetFileNameWithoutExtension(path);
-            bool isActive = EditorSceneManager.GetActiveScene().path == path;
-
-            GUI.enabled = !isActive;
-            if (isActive) GUI.backgroundColor = Color.green;
-
-            if (GUILayout.Button(prefix + sceneName, GUILayout.Height(25)))
-            {
-                if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-                {
-                    EditorSceneManager.OpenScene(path);
-                }
-            }
-
-            GUI.enabled = true;
-            GUI.backgroundColor = Color.white;
+            GetWindow<SceneSwitcherWindow>("Scene Switcher");
         }
+        #endregion
+
+        #region [Private Methods]
+        private void DrawSection(string title, IReadOnlyList<string> paths)
+        {
+            if (paths.Count == 0) return;
+            EditorGUILayout.Space(4);
+            GUILayout.Label(title, EditorStyles.miniBoldLabel);
+
+            string active = SceneSwitcherRegistry.ActiveScenePath;
+            foreach (string path in paths)
+            {
+                string name = SceneSwitcherRegistry.GetDisplayName(path);
+                string folder = SceneSwitcherRegistry.GetFolderPath(path);
+                if (!string.IsNullOrEmpty(_search) && name.IndexOf(_search, System.StringComparison.OrdinalIgnoreCase) < 0
+                    && folder.IndexOf(_search, System.StringComparison.OrdinalIgnoreCase) < 0) continue;
+
+                bool isActive = path == active;
+                using (new EditorGUILayout.HorizontalScope())
+                {
+                    using (new EditorGUI.DisabledScope(isActive))
+                    {
+                        if (GUILayout.Button(new GUIContent(name, path), GUILayout.Height(22))) SceneSwitcherRegistry.OpenScene(path);
+                    }
+                    if (GUILayout.Button(new GUIContent("+", "Open additive"), GUILayout.Width(24), GUILayout.Height(22)))
+                    {
+                        SceneSwitcherRegistry.OpenScene(path, OpenSceneMode.Additive);
+                    }
+                }
+                if (!string.IsNullOrEmpty(folder)) EditorGUILayout.LabelField(folder, EditorStyles.centeredGreyMiniLabel);
+            }
+        }
+        #endregion
     }
 }

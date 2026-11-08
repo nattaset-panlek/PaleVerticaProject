@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using CoreSystem.Entity;
+using CoreSystem.Pathfinding;
 using CoreSystem.Utility;
 using UnityEngine;
 
@@ -41,6 +42,7 @@ namespace CoreSystem.Agent
             }
 
             _instance = this;
+            WalkableGridManager.OnGridsChanged += HandleGridsChanged;
             OnReady?.Invoke();
         }
 
@@ -55,6 +57,7 @@ namespace CoreSystem.Agent
         private void OnDestroy()
         {
             if (_instance != this) return;
+            WalkableGridManager.OnGridsChanged -= HandleGridsChanged;
             foreach (var handle in _handles.Values) handle.Dispose();
             _handles.Clear();
             _instance = null;
@@ -128,9 +131,28 @@ namespace CoreSystem.Agent
         {
             GetHandle(character)?.Revive(hp);
         }
+
+        public PathOutcome FindPath(Vector2 from, Vector2 to, List<Vector2> result)
+        {
+            result.Clear();
+            var walkable = WalkableGridManager.Instance;
+            return walkable != null ? walkable.FindPath(from, to, result) : PathOutcome.NoGrid;
+        }
+
+        public PathOutcome SnapPoint(Vector2 from, Vector2 point, out Vector2 snapped)
+        {
+            snapped = point;
+            var walkable = WalkableGridManager.Instance;
+            return walkable != null ? walkable.SnapPoint(from, point, out snapped) : PathOutcome.NoGrid;
+        }
         #endregion
 
         #region [Private Methods]
+        private void HandleGridsChanged()
+        {
+            foreach (var handle in _handles.Values) handle.InvalidatePath();
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics()
         {

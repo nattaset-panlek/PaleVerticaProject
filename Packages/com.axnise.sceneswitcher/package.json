@@ -1,0 +1,17 @@
+{
+  "name": "com.axnise.sceneswitcher",
+  "version": "1.0.0",
+  "displayName": "Scene Switcher",
+  "description": "Open any scene from a dropdown in the main toolbar next to the Play, Pause and Step buttons. Lists Build Profile scenes, recently opened scenes and every scene in the project grouped by folder. Also adds a Scene view overlay and a dockable window.",
+  "unity": "6000.3",
+  "keywords": [
+    "scene",
+    "toolbar",
+    "switcher",
+    "editor"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Axnise"
+  }
+}

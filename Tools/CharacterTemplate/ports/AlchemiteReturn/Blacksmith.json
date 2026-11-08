@@ -1,0 +1,13 @@
+{
+  "name": "Blacksmith",
+  "source": "../../../../../AlchemiteReturn/Assets/Raw Source/Player/NPC/alchemist.psb",
+  "scale": 0.735,
+  "parts": {
+    "Head": {"layer": "Folder 6/Layer 1", "joint": [259.04, 192.98], "scale": 0.85},
+    "Body": {"layer": "Folder 6/Layer 7", "joint": [257.0, 122.0], "scale": 0.8},
+    "ArmL": {"layer": "Folder 5/Folder 3 Copy", "joint": [298.8, 170.4], "scale": 0.82},
+    "ArmR": {"layer": "Folder 5/Folder 3", "joint": [228.0, 169.2], "scale": 0.82},
+    "LegL": {"layer": "Folder 5/Folder 4 Copy", "joint": [292.8, 86.2]},
+    "LegR": {"layer": "Folder 5/Folder 4", "joint": [230.6, 86.6]}
+  }
+}

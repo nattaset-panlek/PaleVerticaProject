@@ -61,7 +61,7 @@ def get_dynamic_effects(item):
     return effects if len(effects) >= 2 else None
 
 def inject_effects():
-    file_path = r"F:\GameProject\Realm of Hero\My project\Assets\Resources\Data\Item.json"
+    file_path = r"F:\GameProject\Pale Vertica\Assets\Resources\Data\Item.json"
     
     if not os.path.exists(file_path):
         print(f"File not found: {file_path}")

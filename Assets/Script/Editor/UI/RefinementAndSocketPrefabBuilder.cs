@@ -9,6 +9,7 @@ using UnityEngine.UI;
 using CoreSystem.UI;
 using CoreSystem.UI.Refinement;
 using CoreSystem.UI.Socket;
+using CoreSystem.UI.Utility;
 using GlobalVisualizer;
 
 namespace CoreSystem.Editor.UI
@@ -44,10 +45,20 @@ namespace CoreSystem.Editor.UI
         private const string SocketBtnPath = "Assets/Art/UI/New/Socket/UI_Primary_Button_Socket.png";
         private const string FragmentSlotPath = "Assets/Art/UI/New/Page/Skill Manager Page/UI_Fragment_Slot.png";
 
-        private const string HeaderTagPillPath = "Assets/Art/UI/Refinement/tag_header_pill.png";
-        private const string HeaderTagStarPath = "Assets/Art/UI/Refinement/tag_star_icon.png";
-        private const string CleanBtnPath = "Assets/Art/UI/Refinement/btn_primary_clean_290x50.png";
+        private const string HeaderTagPillPath = "Assets/Art/UI/New/Refinement/tag_header_pill.png";
+        private const string HeaderTagStarPath = "Assets/Art/UI/New/Refinement/tag_star_icon.png";
+        private const string CleanBtnPath = "Assets/Art/UI/New/Refinement/btn_primary_clean_290x50.png";
+        private const string HasSocketIconPath = "Assets/Art/UI/New/ItemSlot/UI_HasSocket_ItemSlot_Icon.png";
+        private const string NullItemIconPath = "Assets/Resources/Sprite/Item/UI_Null_Icon.png";
+        private const float SocketArtInset = 3f;
+        private const float RoundedSpriteRadius = 21f;
+        private static readonly Color SocketSlotBlue = new Color(0f, 72f / 255f, 1f, 1f);
+        private static readonly Color SocketSlotFill = new Color(10f / 255f, 10f / 255f, 11f / 255f, 1f);
         private const string CircleSpritePath = "Assets/ThirdParty/Le Tai's Asset/TrueShadow/Demo/Inspiration/Sprites/Circle.png";
+        private const string FragmentBackingCirclePath = "Assets/Art/UI/New/Socket/UI_Fragment_Backing_Circle.png";
+        private const string FragmentSlotHighlightPath = "Assets/Art/UI/New/Socket/UI_Fragment_Slot_Highlight.png";
+        private const float ExportPixelsPerUnit = 200f;
+        private static readonly Color SocketHighlightYellow = new Color(250f / 255f, 1f, 0f, 1f);
         private const string FragGemIconPath = "Assets/Art/UI/New/Icon/UI_Fragment_Gem_Icon.png";
         private const string FragLinkIconPath = "Assets/Art/UI/New/Icon/UI_Fragment_Link_Icon.png";
         #endregion
@@ -93,6 +104,24 @@ namespace CoreSystem.Editor.UI
             {
                 BuildSocketWindow();
                 TakeSnapshots();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogException(e);
+                exitCode = 1;
+            }
+            EditorApplication.Exit(exitCode);
+        }
+
+        public static void BuildSocketBatch()
+        {
+            int exitCode = 0;
+            try
+            {
+                BuildSocketWindow();
+                RegisterWindows();
+                AssetDatabase.SaveAssets();
+                Debug.Log("[RefinementAndSocketPrefabBuilder] Built Socket Window.");
             }
             catch (System.Exception e)
             {
@@ -488,12 +517,18 @@ namespace CoreSystem.Editor.UI
             var sprCenterSlot = AssetDatabase.LoadAssetAtPath<Sprite>(SocketItemSlotPath);
             var sprCleanBtn = AssetDatabase.LoadAssetAtPath<Sprite>(CleanBtnPath);
             var sprFragSlot = AssetDatabase.LoadAssetAtPath<Sprite>(FragmentSlotPath);
-            var sprCircle = AssetDatabase.LoadAssetAtPath<Sprite>(CircleSpritePath);
+            var sprCircle = PrepareSprite(FragmentBackingCirclePath, ExportPixelsPerUnit) ?? AssetDatabase.LoadAssetAtPath<Sprite>(CircleSpritePath);
+            var sprSlotHighlight = PrepareSprite(FragmentSlotHighlightPath, ExportPixelsPerUnit);
             var sprFragGem = AssetDatabase.LoadAssetAtPath<Sprite>(FragGemIconPath);
             var sprFragLink = AssetDatabase.LoadAssetAtPath<Sprite>(FragLinkIconPath);
+            var sprHasSocket = AssetDatabase.LoadAssetAtPath<Sprite>(HasSocketIconPath);
+            var sprNullItem = AssetDatabase.LoadAssetAtPath<Sprite>(NullItemIconPath);
 
             var bgObj = CreateChild(root.transform, "Background");
-            SetStretch(bgObj.GetComponent<RectTransform>());
+            var bgRt = bgObj.GetComponent<RectTransform>();
+            SetStretch(bgRt);
+            bgRt.offsetMin = new Vector2(-SocketArtInset, -SocketArtInset);
+            bgRt.offsetMax = new Vector2(SocketArtInset, SocketArtInset);
             var bgImg = bgObj.AddComponent<Image>();
             bgImg.sprite = sprBg;
             bgImg.type = Image.Type.Simple;
@@ -519,11 +554,12 @@ namespace CoreSystem.Editor.UI
             starImg.color = Color.white;
 
             var headerTitle = CreateText(tagObj.transform, "Title Text", "Socket Mastery", fontKanitBold, 24f, Color.black, TextAlignmentOptions.MidlineLeft);
-            headerTitle.fontStyle = FontStyles.Bold;
+            headerTitle.fontStyle = FontStyles.UpperCase;
+            headerTitle.enableAutoSizing = false;
             headerTitle.enableWordWrapping = false;
             headerTitle.overflowMode = TextOverflowModes.Overflow;
             var titleRt = headerTitle.rectTransform;
-            SetRect(titleRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -9f), new Vector2(210f, 26f));
+            SetRect(titleRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, 0f), new Vector2(204f, 40f));
 
             var closeObj = CreateChild(header.transform, "Close Button");
             var closeRt = closeObj.GetComponent<RectTransform>();
@@ -536,7 +572,7 @@ namespace CoreSystem.Editor.UI
 
             var dialObj = CreateChild(root.transform, "Mandala Dial");
             var dialRt = dialObj.GetComponent<RectTransform>();
-            SetRect(dialRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -123f), new Vector2(460f, 460f));
+            SetRect(dialRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(-93f, 26f), new Vector2(758f, 758f));
             var dialImg = dialObj.AddComponent<Image>();
             dialImg.sprite = sprMandala;
             dialImg.preserveAspect = true;
@@ -546,15 +582,39 @@ namespace CoreSystem.Editor.UI
             var centerSlotRt = centerSlot.GetComponent<RectTransform>();
             SetRect(centerSlotRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(247f, -311f), new Vector2(79f, 79f));
             var centerSlotImg = centerSlot.AddComponent<Image>();
-            centerSlotImg.sprite = sprCenterSlot;
-            centerSlotImg.preserveAspect = true;
+            centerSlotImg.sprite = sprRounded;
+            centerSlotImg.type = Image.Type.Sliced;
+            centerSlotImg.pixelsPerUnitMultiplier = RoundedSpriteRadius / 16f;
+            centerSlotImg.color = SocketSlotBlue;
+
+            var slotFillObj = CreateChild(centerSlot.transform, "Fill");
+            var slotFillRt = slotFillObj.GetComponent<RectTransform>();
+            SetStretch(slotFillRt);
+            slotFillRt.offsetMin = new Vector2(5f, 5f);
+            slotFillRt.offsetMax = new Vector2(-5f, -5f);
+            var slotFillImg = slotFillObj.AddComponent<Image>();
+            slotFillImg.sprite = sprRounded;
+            slotFillImg.type = Image.Type.Sliced;
+            slotFillImg.pixelsPerUnitMultiplier = RoundedSpriteRadius / 11f;
+            slotFillImg.color = SocketSlotFill;
+            slotFillImg.raycastTarget = false;
 
             var itemIconObj = CreateChild(centerSlot.transform, "Item Icon");
             var itemIconRt = itemIconObj.GetComponent<RectTransform>();
-            SetRect(itemIconRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(60f, 60f));
+            SetRect(itemIconRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(37f, 37f));
             var itemIconImg = itemIconObj.AddComponent<Image>();
+            itemIconImg.sprite = sprNullItem;
             itemIconImg.preserveAspect = true;
-            itemIconImg.enabled = false;
+            itemIconImg.raycastTarget = false;
+
+            var hasSocketObj = CreateChild(centerSlot.transform, "Has Socket Icon");
+            var hasSocketRt = hasSocketObj.GetComponent<RectTransform>();
+            SetRect(hasSocketRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(56f, -57f), new Vector2(14f, 14f));
+            var hasSocketImg = hasSocketObj.AddComponent<Image>();
+            hasSocketImg.sprite = sprHasSocket;
+            hasSocketImg.raycastTarget = false;
+
+            centerSlot.AddComponent<ItemInsertSlot>().Setup(windowComp, SocketWindow.CenterSlot);
 
             var rarityObj = CreateChild(root.transform, "Rarity Badge");
             var rarityRt = rarityObj.GetComponent<RectTransform>();
@@ -564,16 +624,24 @@ namespace CoreSystem.Editor.UI
             rarityImg.type = Image.Type.Sliced;
             rarityImg.color = new Color(0f, 0.28235f, 1f, 1f);
 
-            var rarityTxt = CreateText(rarityObj.transform, "Rarity Text", "COMMON", fontNovecentoDemi, 18f, Color.white, TextAlignmentOptions.Center);
+            var rarityTxt = CreateText(rarityObj.transform, "Rarity Text", "COMMON", fontNovecentoDemi, 20f, Color.white, TextAlignmentOptions.Center);
+            rarityTxt.fontStyle = FontStyles.UpperCase;
+            rarityTxt.characterSpacing = -0.6f / 20f * 100f;
+            rarityTxt.enableWordWrapping = false;
             var rarityTxtRt = rarityTxt.rectTransform;
             SetRect(rarityTxtRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(110f, 24f));
 
             var itemNameTxt = CreateText(root.transform, "Item Name", "Dragon Tooth Pendant", fontNovecentoDemi, 32f, new Color(0.96f, 0.96f, 0.96f), TextAlignmentOptions.TopLeft);
-            itemNameTxt.characterSpacing = 2f;
+            itemNameTxt.fontStyle = FontStyles.UpperCase;
+            itemNameTxt.characterSpacing = 2f / 32f * 100f;
+            itemNameTxt.enableWordWrapping = false;
+            itemNameTxt.overflowMode = TextOverflowModes.Ellipsis;
             var itemNameRt = itemNameTxt.rectTransform;
-            SetRect(itemNameRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(622f, -82f), new Vector2(404f, 32f));
+            SetRect(itemNameRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(622f, -82f), new Vector2(404f, 44f));
 
             var itemTypeTxt = CreateText(root.transform, "Item Type", "Talisman", fontNovecentoNormal, 16f, new Color(0.45f, 0.45f, 0.45f), TextAlignmentOptions.TopLeft);
+            itemTypeTxt.fontStyle = FontStyles.UpperCase;
+            itemTypeTxt.characterSpacing = -0.6f / 16f * 100f;
             var itemTypeRt = itemTypeTxt.rectTransform;
             SetRect(itemTypeRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(622f, -128f), new Vector2(215f, 24f));
 
@@ -582,6 +650,7 @@ namespace CoreSystem.Editor.UI
             var slotIcons = new List<Image>();
             var slotIndicators = new List<GameObject>();
             var slotHighlights = new List<GameObject>();
+            var slotBackings = new List<GameObject>();
 
             Vector2[] socketPositions = {
                 new Vector2(703f, -208f),
@@ -606,11 +675,11 @@ namespace CoreSystem.Editor.UI
 
                 var circObj = CreateChild(sObj.transform, "Backing Circle");
                 var circRt = circObj.GetComponent<RectTransform>();
-                SetRect(circRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(64f, 64f));
+                SetRect(circRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(70f, 70f));
                 var circImg = circObj.AddComponent<Image>();
                 circImg.sprite = sprCircle;
                 circImg.preserveAspect = true;
-                circImg.color = new Color(0.851f, 0.851f, 0.851f, 1f);
+                circImg.raycastTarget = false;
                 circObj.SetActive(isFilled[i]);
 
                 var iconObj = CreateChild(sObj.transform, "Fragment Icon");
@@ -619,6 +688,8 @@ namespace CoreSystem.Editor.UI
                 var iconImg = iconObj.AddComponent<Image>();
                 iconImg.sprite = socketSprites[i];
                 iconImg.preserveAspect = true;
+                iconImg.color = Color.black;
+                iconImg.raycastTarget = false;
                 iconImg.enabled = isFilled[i];
                 iconObj.SetActive(isFilled[i]);
 
@@ -629,27 +700,34 @@ namespace CoreSystem.Editor.UI
 
                 var hlObj = CreateChild(sObj.transform, "Active Highlight");
                 var hlRt = hlObj.GetComponent<RectTransform>();
-                SetRect(hlRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(96f, 96f));
+                SetRect(hlRt, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(102f, 102f));
                 var hlImg = hlObj.AddComponent<Image>();
-                hlImg.sprite = sprRounded;
-                hlImg.type = Image.Type.Sliced;
-                hlImg.color = new Color(0.4f, 0.91f, 0.98f, 0.35f);
+                hlImg.sprite = sprSlotHighlight;
+                hlImg.preserveAspect = true;
+                hlImg.color = SocketHighlightYellow;
+                hlImg.raycastTarget = false;
                 hlObj.SetActive(false);
 
+                sObj.AddComponent<ItemInsertSlot>().Setup(windowComp, i);
+
                 slotButtons.Add(sBtn);
+                slotBackings.Add(circObj);
                 slotBgs.Add(sImg);
                 slotIcons.Add(iconImg);
                 slotIndicators.Add(emptyObj);
                 slotHighlights.Add(hlObj);
             }
 
-            var costLabel = CreateText(root.transform, "Cost Label", "Consumption", fontNovecentoNormal, 18f, new Color(0.45f, 0.45f, 0.45f), TextAlignmentOptions.TopLeft);
+            var costLabel = CreateText(root.transform, "Cost Label", "Consumption", fontNovecentoNormal, 15f, new Color(0.45f, 0.45f, 0.45f), TextAlignmentOptions.TopLeft);
+            costLabel.fontStyle = FontStyles.UpperCase;
             var costLabelRt = costLabel.rectTransform;
-            SetRect(costLabelRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(622f, -545f), new Vector2(200f, 18f));
+            SetRect(costLabelRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(622f, -545f), new Vector2(200f, 22f));
 
-            var costVal = CreateText(root.transform, "Cost Value", "5,000 credits", fontNovecentoNormal, 24f, new Color(0.96f, 0.96f, 0.96f), TextAlignmentOptions.MidlineRight);
+            var costVal = CreateText(root.transform, "Cost Value", "5,000 credits", fontNovecentoNormal, 21f, new Color(0.96f, 0.96f, 0.96f), TextAlignmentOptions.MidlineRight);
+            costVal.fontStyle = FontStyles.UpperCase;
+            costVal.enableWordWrapping = false;
             var costValRt = costVal.rectTransform;
-            SetRect(costValRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(1020f, -540f), new Vector2(180f, 24f));
+            SetRect(costValRt, new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(1f, 1f), new Vector2(1016f, -540f), new Vector2(200f, 30f));
 
             var infuseBtnObj = CreateChild(root.transform, "Infuse Button");
             var btnRt = infuseBtnObj.GetComponent<RectTransform>();
@@ -671,6 +749,7 @@ namespace CoreSystem.Editor.UI
             so.FindProperty("_itemTypeText").objectReferenceValue = itemTypeTxt;
             so.FindProperty("_rarityText").objectReferenceValue = rarityTxt;
             so.FindProperty("_itemIcon").objectReferenceValue = itemIconImg;
+            so.FindProperty("_emptyItemSprite").objectReferenceValue = sprNullItem;
             so.FindProperty("_costText").objectReferenceValue = costVal;
             so.FindProperty("_infuseButton").objectReferenceValue = infuseBtn;
             so.FindProperty("_buttonText").objectReferenceValue = btnTxt;
@@ -708,6 +787,14 @@ namespace CoreSystem.Editor.UI
                 propInds.GetArrayElementAtIndex(i).objectReferenceValue = slotIndicators[i];
             }
 
+            var propBackings = so.FindProperty("_socketFilledBackings");
+            propBackings.ClearArray();
+            for (int i = 0; i < slotBackings.Count; i++)
+            {
+                propBackings.InsertArrayElementAtIndex(i);
+                propBackings.GetArrayElementAtIndex(i).objectReferenceValue = slotBackings[i];
+            }
+
             var propHls = so.FindProperty("_socketActiveHighlights");
             propHls.ClearArray();
             for (int i = 0; i < slotHighlights.Count; i++)
@@ -743,6 +830,30 @@ namespace CoreSystem.Editor.UI
         #endregion
 
         #region [Private Methods]
+        private static Sprite PrepareSprite(string path, float pixelsPerUnit)
+        {
+            if (!File.Exists(path)) return null;
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceSynchronousImport);
+            var importer = AssetImporter.GetAtPath(path) as TextureImporter;
+            if (importer != null)
+            {
+                bool dirty = importer.textureType != TextureImporterType.Sprite || importer.spriteImportMode != SpriteImportMode.Single
+                             || !Mathf.Approximately(importer.spritePixelsPerUnit, pixelsPerUnit) || importer.mipmapEnabled
+                             || importer.textureCompression != TextureImporterCompression.Uncompressed;
+                if (dirty)
+                {
+                    importer.textureType = TextureImporterType.Sprite;
+                    importer.spriteImportMode = SpriteImportMode.Single;
+                    importer.spritePixelsPerUnit = pixelsPerUnit;
+                    importer.alphaIsTransparency = true;
+                    importer.mipmapEnabled = false;
+                    importer.textureCompression = TextureImporterCompression.Uncompressed;
+                    importer.SaveAndReimport();
+                }
+            }
+            return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        }
+
         [InitializeOnLoadMethod]
         private static void AutoSnapshotOnLoad()
         {
@@ -927,7 +1038,7 @@ namespace CoreSystem.Editor.UI
                         if (row != null)
                         {
                             string[] names = { "PHYSICAL POWER", "MAGIC POWER", "MAX HEALTH", "DEFENSE" };
-                            row.Bind(new RefinementStatRowData(names[index % 4], "100 <color=#38bdf8>+(500)</color>", false));
+                            row.Bind(new RefinementStatRowData(names[index % 4], "100 <color=#4D5CFF>+(500)</color>", false));
                         }
                     });
                 }

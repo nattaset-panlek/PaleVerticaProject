@@ -14,7 +14,8 @@ Core math is covered by NUnit EditMode tests so balance and refactor work can be
 | `CombatCoreTests.cs` | `CombatCore` pipeline: Resolve is pure, Execute applies, Gate rules, dispatch, riders re-entering Resolve, depth guard, kill prediction |
 | `FakeCombatant.cs` | Test `IEntity` + `FixedCombatRandom` for scene-free pipeline tests |
 | `RegistryTests.cs` | Every support modifier id and unique passive id maps to the expected class |
-| `SupportExecutionHookTests.cs` | SpellCascade split geometry/damage, EchoSpell repeat payload |
+| `SupportExecutionHookTests.cs` | SpellCascade split geometry/damage, EchoSpell repeat payload (whole-hit `DamageMultiplier` 0.6) |
+| `DoubleUniquePassiveTests.cs` | DoubleSpell (level 1 only, 0.4 multiplier, stacks with Echo) and DoubleAttack (basic attack repeater only) |
 | `TestStats.cs` | Helper that builds an initialized `AttributeSystem` with chosen core stats |
 
 ## Running

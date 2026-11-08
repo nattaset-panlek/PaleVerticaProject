@@ -10,12 +10,13 @@ using CoreSystem.Data.Items;
 using CoreSystem.Data.Items.Effects;
 using CoreSystem.Data.Items.Model;
 using CoreSystem.Refinement;
+using CoreSystem.UI.ActionProgress;
 using CoreSystem.UI.Utility;
 using GlobalVisualizer;
 
 namespace CoreSystem.UI.Refinement
 {
-    public class RefinementWindow : UIWindow
+    public class RefinementWindow : UIWindow, IItemInsertTarget
     {
         #region [Variables/Fields]
         [Header("Header & Info")]
@@ -53,6 +54,10 @@ namespace CoreSystem.UI.Refinement
         [SerializeField] private List<GameObject> _materialSlotObjects = new List<GameObject>();
         [SerializeField] private List<Image> _materialIcons = new List<Image>();
         [SerializeField] private List<TMP_Text> _materialCountTexts = new List<TMP_Text>();
+
+        public const float RefineLoadingSeconds = 0.5f;
+        public const string RefineActionType = "REFINE";
+        public const string InsertLabel = "Insert to Refine";
 
         private EquipmentInstance _targetEquipment;
         #endregion
@@ -94,11 +99,13 @@ namespace CoreSystem.UI.Refinement
         protected override void OnEnable()
         {
             base.OnEnable();
-            if (_targetEquipment == null)
-            {
-                FindDefaultEquipment();
-            }
+            ItemInsertRegistry.Register(this);
             UpdateUI();
+        }
+
+        private void OnDisable()
+        {
+            ItemInsertRegistry.Unregister(this);
         }
         #endregion
 
@@ -106,21 +113,31 @@ namespace CoreSystem.UI.Refinement
         public override void OnOpen(object data)
         {
             base.OnOpen(data);
-
-            if (data is EquipmentInstance equip)
-            {
-                _targetEquipment = equip;
-            }
-            else if (data is ItemInstance itemInst && itemInst is EquipmentInstance eq)
-            {
-                _targetEquipment = eq;
-            }
-            else if (_targetEquipment == null)
-            {
-                FindDefaultEquipment();
-            }
-
+            _targetEquipment = data as EquipmentInstance;
             UpdateUI();
+        }
+
+        public bool CanInsert(ItemInstance item, int slotIndex)
+        {
+            return item is EquipmentInstance && !ActionProgressWindow.IsRunningFor(this);
+        }
+
+        public bool TryInsert(ItemInstance item, int slotIndex)
+        {
+            if (!CanInsert(item, slotIndex)) return false;
+            SetTarget((EquipmentInstance)item);
+            return true;
+        }
+
+        public void ClearInsert(int slotIndex)
+        {
+            if (_targetEquipment == null || ActionProgressWindow.IsRunningFor(this)) return;
+            SetTarget(null);
+        }
+
+        public string GetInsertLabel(ItemInstance item)
+        {
+            return InsertLabel;
         }
 
         public void SetTarget(EquipmentInstance equipment)
@@ -135,11 +152,34 @@ namespace CoreSystem.UI.Refinement
 
         public void ExecuteRefine()
         {
-            if (_targetEquipment == null) return;
+            if (_targetEquipment == null || ActionProgressWindow.IsRunningFor(this)) return;
 
             PlayerInventory inventory = GameData.Player != null ? GameData.Player.Inventory : null;
-            RefinementSystem.ExecuteRefine(_targetEquipment, inventory);
-            UpdateUI();
+            if (!RefinementSystem.CanRefine(_targetEquipment, inventory, out _))
+            {
+                RefinementSystem.ExecuteRefine(_targetEquipment, inventory);
+                UpdateUI();
+                return;
+            }
+
+            EquipmentInstance target = _targetEquipment;
+            if (_refineButton != null) _refineButton.interactable = false;
+            ActionProgressWindow.Show(new ActionProgressRequest
+            {
+                ActionName = $"{(target.Item != null ? target.Item.Name : "Item")} +{target.Refine}",
+                ActionType = RefineActionType,
+                Icon = target.Item != null ? target.Item.Icon : null,
+                Duration = RefineLoadingSeconds,
+                UseUnscaledTime = true,
+                Color = ActionProgressColor.Cyan,
+                Owner = this,
+                OnCompleted = () =>
+                {
+                    RefinementSystem.ExecuteRefine(target, GameData.Player != null ? GameData.Player.Inventory : null);
+                    UpdateUI();
+                },
+                OnCancelled = UpdateUI
+            });
         }
 
         public void CloseWindow()
@@ -156,30 +196,6 @@ namespace CoreSystem.UI.Refinement
         #endregion
 
         #region [Private Methods]
-        private void FindDefaultEquipment()
-        {
-            if (GameData.Player != null && GameData.Player.Equipment != null)
-            {
-                _targetEquipment = GameData.Player.Equipment.GetEquipment(EquipmentSlot.Talisman);
-                if (_targetEquipment != null) return;
-
-                _targetEquipment = GameData.Player.Equipment.GetEquipment(EquipmentSlot.WeaponOneHandRight);
-                if (_targetEquipment != null) return;
-            }
-
-            if (GameData.Player != null && GameData.Player.Inventory != null)
-            {
-                foreach (var item in GameData.Player.Inventory.GetAllItems())
-                {
-                    if (item is EquipmentInstance equip)
-                    {
-                        _targetEquipment = equip;
-                        return;
-                    }
-                }
-            }
-        }
-
         private void UpdateUI()
         {
             if (_targetEquipment == null)
@@ -226,7 +242,7 @@ namespace CoreSystem.UI.Refinement
 
             if (_levelText != null)
             {
-                _levelText.text = $"Lv.{currentRefine}/{RefinementSystem.MaxRefineLevel}";
+                _levelText.text = $"<size=32>Lv.{currentRefine}</size><#9F9F9F>/{RefinementSystem.MaxRefineLevel}</color>";
             }
 
             float rate = RefinementSystem.CalculateSuccessRate(currentRefine);
@@ -290,8 +306,8 @@ namespace CoreSystem.UI.Refinement
 
             if (_itemNameText != null) _itemNameText.text = "SELECT EQUIPMENT";
             if (_itemTypeText != null) _itemTypeText.text = string.Empty;
-            if (_rarityText != null) _rarityText.text = string.Empty;
-            if (_levelText != null) _levelText.text = $"Lv.0/{RefinementSystem.MaxRefineLevel}";
+            if (_rarityText != null) _rarityText.text = "None";
+            if (_levelText != null) _levelText.text = $"<size=32>Lv.0<#9F9F9F></size>/{RefinementSystem.MaxRefineLevel}</color>";
             if (_successRateText != null) _successRateText.text = "0%";
             if (_successRateSlider != null) _successRateSlider.value = 0f;
             if (_successRateBar != null) _successRateBar.fillAmount = 0f;

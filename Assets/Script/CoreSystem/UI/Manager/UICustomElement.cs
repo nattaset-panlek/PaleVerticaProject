@@ -40,6 +40,34 @@ namespace CoreSystem.UI
             }
             return null;
         }
+
+        public UICustomElement SetText(string key, string value)
+        {
+            var text = Get<TMPro.TMP_Text>(key);
+            if (text != null) text.text = value;
+            return this;
+        }
+
+        public UICustomElement SetSprite(string key, Sprite sprite)
+        {
+            var image = Get<UnityEngine.UI.Image>(key);
+            if (image != null && sprite != null) image.sprite = sprite;
+            return this;
+        }
+
+        public UICustomElement SetColor(string key, Color color)
+        {
+            var graphic = Get<UnityEngine.UI.Graphic>(key);
+            if (graphic != null) graphic.color = color;
+            return this;
+        }
+
+        public UICustomElement SetFill(string key, float amount)
+        {
+            var image = Get<UnityEngine.UI.Image>(key);
+            if (image != null) image.fillAmount = Mathf.Clamp01(amount);
+            return this;
+        }
         #endregion
     }
 }

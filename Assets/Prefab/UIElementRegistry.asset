@@ -16,131 +16,377 @@ MonoBehaviour:
   _entries:
   - StyleName: Primary Button
     Type: 2
-    Prefab: {fileID: 6866788893725034548, guid: f5bb1ae520d641b478e766b6dadf596c, type: 3}
+    Prefab: {fileID: 1903651088600843468, guid: 9e285bd8a238e4f4ca21b1de77452281, type: 3}
     TargetComponentPath: 
-    MinSize: {x: 0, y: 50}
+    MinSize: {x: 181, y: 55}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
   - StyleName: Button
     Type: 2
-    Prefab: {fileID: 6866788893725034548, guid: 6ca0e649c8dc0c94386f1bc58e49a299, type: 3}
+    Prefab: {fileID: 945151834402835241, guid: 98920bfd3d153504e93af6ae33d6dd3c, type: 3}
     TargetComponentPath: 
-    MinSize: {x: 0, y: 40}
+    MinSize: {x: 181, y: 55}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
   - StyleName: Button Fitter
     Type: 2
     Prefab: {fileID: 6866788893725034548, guid: d91ca978fcbbaf9458d767fe31156a32, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: InputField
     Type: 4
-    Prefab: {fileID: 7760964057474337063, guid: 62e286b39cd176442b9ac4a355b96aaa, type: 3}
+    Prefab: {fileID: 3568024632535698351, guid: d2b956a6b2d131b479f6318342bcd1af, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: TabsScrollView
     Type: 9
     Prefab: {fileID: 6615243951728829660, guid: 00e1e9ac2f61f1b4ea55d9913b719523, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Container
     Type: 0
     Prefab: {fileID: 6367246905906841249, guid: 8c60cd1cd5e0564448833d6472e8017b, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Text
     Type: 1
     Prefab: {fileID: 7596163921311041252, guid: 591097f27dece854ba8edc1baed5c25e, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Image
     Type: 3
     Prefab: {fileID: 3552643357113217949, guid: a4202fcfec5212a4694f677656acbcfe, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Dropdown
     Type: 5
     Prefab: {fileID: 8850516573590243983, guid: 6d479d98a51e75e438627923959bc407, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Toggle
     Type: 6
     Prefab: {fileID: 1144235855456229686, guid: e9d12e653f4184042bec5f3d207de5a2, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Slider
     Type: 7
     Prefab: {fileID: 2209184184215003577, guid: 470921bf51a38934fad269e577a3d3a9, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Custom
     Type: 8
     Prefab: {fileID: 7696051242964887892, guid: 6182b691bb32f43408c77d8a078a634f, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: ScrollRect
     Type: 9
     Prefab: {fileID: 5747074818777259853, guid: e8d8cf86f96ec1e438d9adc51cfb1224, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Scrollbar Vertical
     Type: 10
     Prefab: {fileID: 4345031488776333989, guid: a624d91763c300d4db11e8d6611e7603, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: RawImage
     Type: 11
     Prefab: {fileID: 8631672614767110980, guid: 4a30bc7a43ada8b40bf40705fdd35576, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: ProgressBar
     Type: 12
     Prefab: {fileID: 2284139056800804656, guid: 21f5a1c009ac2344a8e29a62448e2021, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Divider
     Type: 13
     Prefab: {fileID: 376767183256991235, guid: e0c8d594bd3d3d84db5e4502acc4ceed, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
   - StyleName: Mask
     Type: 14
     Prefab: {fileID: 2087551622434010391, guid: ad18e58ff0e9ee14992372c4f0da10ed, type: 3}
     TargetComponentPath: 
     MinSize: {x: 0, y: 0}
     FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: Nav Button
+    Type: 2
+    Prefab: {fileID: 5700388125589316949, guid: 6e99b5031d2759547ab936b7b4b63599, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 34}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: Chip
+    Type: 2
+    Prefab: {fileID: 5700388125589316949, guid: 6e99b5031d2759547ab936b7b4b63599, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 34}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: Foldout Header
+    Type: 2
+    Prefab: {fileID: 1423195026073576719, guid: 0bc3668032759494cb0240b439b5b21a, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: Section Header
+    Type: 8
+    Prefab: {fileID: 1423195026073576719, guid: 0bc3668032759494cb0240b439b5b21a, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: Key Value
+    Type: 8
+    Prefab: {fileID: 3198276655054293438, guid: c8ae4e6af6ec8984fa71aba3aa78a5e4, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: Item Row
+    Type: 8
+    Prefab: {fileID: 2006269841848098114, guid: a3e8c1f3288cf4341bc38f0e5ec6feaa, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: Attr Cell
+    Type: 8
+    Prefab: {fileID: 9038862859906044149, guid: 1fd103bb1498cf94f965e62ba4c82135, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: Level Frame
+    Type: 8
+    Prefab: {fileID: 3399586405373322544, guid: b2eecc260d304d0499e44bf931f0a1d0, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: HP Bar
+    Type: 12
+    Prefab: {fileID: 2596298535109101398, guid: 2e34244749ef48b46b4a3aeca2b15ecb, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: MP Bar
+    Type: 12
+    Prefab: {fileID: 1154456001184426394, guid: b69e003212f407c46b483271f371ce08, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: EXP Bar
+    Type: 12
+    Prefab: {fileID: 3389573028316842141, guid: 6a5ce41f4c0372d4db146917733a2f09, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: Item Card
+    Type: 0
+    Prefab: {fileID: 6571644743262359292, guid: dd2fbc27a8bd8484a844d791117e6dd1, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 0
+  - StyleName: MH Button Primary
+    Type: 2
+    Prefab: {fileID: 4383096770203531386, guid: eb60798832ea8f1499e79dae3ef799cc, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 181, y: 55}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Button Secondary
+    Type: 2
+    Prefab: {fileID: 4929073372382658242, guid: 3a2590d00acb5fe4ba4d7e77b0c56ea7, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 181, y: 55}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Button Danger
+    Type: 2
+    Prefab: {fileID: 4752228835687414460, guid: a1cbcee81fb78a346bb88b744b6817f8, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 181, y: 55}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Menu Row
+    Type: 2
+    Prefab: {fileID: 4984459558237605025, guid: 93690959a7d647a45978cf73c9960477, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 30}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Tab Button
+    Type: 2
+    Prefab: {fileID: 1721362727774404588, guid: 7f6ef55c49b58ac4c87ed854014eeeef, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 34}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Switch Toggle
+    Type: 6
+    Prefab: {fileID: 346592581452651905, guid: fe830a062b65f0648b97c60d4770f738, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 36, y: 18}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Checkbox
+    Type: 6
+    Prefab: {fileID: 2331497905854156269, guid: a8c8a1d7faae3ba45ac58df80b0b5079, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 18, y: 18}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Slider
+    Type: 7
+    Prefab: {fileID: 7868334372750472562, guid: a00db9113445e964cb0d28d83c377b2c, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 18}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Dropdown
+    Type: 5
+    Prefab: {fileID: 8134071537089090879, guid: 6bc0c7de53a633a44ab74755642b4637, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 30}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Input Field
+    Type: 4
+    Prefab: {fileID: 2351349960156271642, guid: e3863d1607ceb8e43943a7a7d45121ad, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 30}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Separator
+    Type: 13
+    Prefab: {fileID: 2968242951853980507, guid: b29ec5d04cd856f46abc82f05547b448, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Foldout Header
+    Type: 2
+    Prefab: {fileID: 1915487807610137438, guid: 1f62f7fa788b44140b012522072e6a06, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 32}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: MH Key Button
+    Type: 2
+    Prefab: {fileID: 2444701515185880858, guid: 9acb5156d031bc84d9019698493672e2, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 110, y: 28}
+    FixedSize: {x: 0, y: 28}
+    CornerRadius: 0
+    KeepPrefabLook: 1
+  - StyleName: Status Vitals
+    Type: 8
+    Prefab: {fileID: 1250438645671254807, guid: 441b3a5fa9a29194e8d79ee6cebee78d, type: 3}
+    TargetComponentPath: 
+    MinSize: {x: 0, y: 0}
+    FixedSize: {x: 0, y: 0}
+    CornerRadius: 0
+    KeepPrefabLook: 1
   _theme:
-    Panel: {r: 0.94, g: 0.95, b: 0.97, a: 1}
-    PanelAlt: {r: 0.87, g: 0.89, b: 0.92, a: 1}
-    Divider: {r: 0, g: 0, b: 0, a: 0.12}
-    Text: {r: 0.2, g: 0.2, b: 0.22, a: 1}
-    TextMuted: {r: 0.45, g: 0.47, b: 0.52, a: 1}
+    Panel: {r: 0.9490196, g: 0.9490196, b: 0.9490196, a: 1}
+    PanelAlt: {r: 0.8509804, g: 0.8509804, b: 0.8509804, a: 1}
+    Divider: {r: 0.078431375, g: 0.07450981, b: 0.07450981, a: 0.14}
+    Text: {r: 0.078431375, g: 0.07450981, b: 0.07450981, a: 1}
+    TextMuted: {r: 0.38039216, g: 0.38039216, b: 0.38039216, a: 1}
     TextOnAccent: {r: 1, g: 1, b: 1, a: 1}
-    Primary: {r: 0.24, g: 0.49, b: 0.92, a: 1}
-    Secondary: {r: 0.86, g: 0.87, b: 0.9, a: 1}
-    Danger: {r: 0.82, g: 0.26, b: 0.26, a: 1}
-    Success: {r: 0.2, g: 0.62, b: 0.38, a: 1}
-    Warning: {r: 0.95, g: 0.7, b: 0.2, a: 1}
-    Selected: {r: 0.22, g: 0.46, b: 0.85, a: 1}
+    Primary: {r: 0.078431375, g: 0.07450981, b: 0.07450981, a: 1}
+    Secondary: {r: 0.7411765, g: 0.7411765, b: 0.7411765, a: 1}
+    Danger: {r: 0.8509804, g: 0.21176471, b: 0.21176471, a: 1}
+    Success: {r: 0.07058824, g: 0.627451, b: 0.41568628, a: 1}
+    Warning: {r: 1, g: 0.73333335, b: 0, a: 1}
+    Selected: {r: 0.20784314, g: 0.20784314, b: 0.20784314, a: 1}
     TitleSize: 28
     HeadingSize: 18
     BodySize: 14
     CaptionSize: 12
     Gap: 8
     Padding: 12
+    ScrollbarGap: 6
+    ScrollbarInset: 2
     ControlHeight: 34
     ControlPaddingX: 14
     ControlPaddingY: 6
@@ -165,6 +411,8 @@ MonoBehaviour:
     CaptionSize: 12
     Gap: 8
     Padding: 12
+    ScrollbarGap: 6
+    ScrollbarInset: 2
     ControlHeight: 34
     ControlPaddingX: 14
     ControlPaddingY: 6

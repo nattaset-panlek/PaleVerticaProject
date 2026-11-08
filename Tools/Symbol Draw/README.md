@@ -1,6 +1,6 @@
 # AI Icon Crafter & Asset Analyzer (`icon_crafter.py`)
 
-A specialized command-line tool designed for AI collaborators (and human developers) to synthesize high-fidelity 2D icons, complex geometric vector shapes, and analyze existing game assets in **Realm of Hero**.
+A specialized command-line tool designed for AI collaborators (and human developers) to synthesize high-fidelity 2D icons, complex geometric vector shapes, and analyze existing game assets in **Pale Vertica**.
 
 ---
 
@@ -24,7 +24,7 @@ The analysis engine enables the AI to "learn" from existing game art without req
 
 ### How It Works
 
-- Scans `F:/GameProject/Realm of Hero/My project/Assets/Addressable` recursively for `.png` files.
+- Scans `F:/GameProject/Pale Vertica/Assets/Addressable` recursively for `.png` files.
 - Computes alpha bounding boxes (`bbox`) to strip transparent padding and determine real shape aspect ratios.
 - Calculates **Opacity Coverage** (density of the silhouette).
 - Quantizes RGB channels into top 5 **Dominant Hex Colors** to establish accurate color palettes.
@@ -34,7 +34,7 @@ The analysis engine enables the AI to "learn" from existing game art without req
 ### Running Analysis
 
 ```powershell
-python Tools/icon_crafter.py analyze --dir "F:/GameProject/Realm of Hero/My project/Assets/Addressable" --output "Tools/Data.json"
+python Tools/icon_crafter.py analyze --dir "F:/GameProject/Pale Vertica/Assets/Addressable" --output "Tools/Data.json"
 ```
 
 ---

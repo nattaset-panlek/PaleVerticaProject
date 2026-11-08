@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace CoreSystem.Visuals
 {
-    [CreateAssetMenu(fileName = "EntityVisualSettings", menuName = "Realm of Hero/Visuals/Entity Visual Settings")]
+    [CreateAssetMenu(fileName = "EntityVisualSettings", menuName = "Pale Vertica/Visuals/Entity Visual Settings")]
     public class EntityVisualSettings : ScriptableObject
     {
         #region [Variables/Fields]

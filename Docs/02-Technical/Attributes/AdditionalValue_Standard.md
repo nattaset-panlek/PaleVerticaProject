@@ -1,4 +1,4 @@
-# AdditionalValue Standard — Realm of Hero
+# AdditionalValue Standard — Pale Vertica
 
 > ระบบ **AdditionalChain** คือชั้นการคำนวณที่เพิ่มเข้าหลัง pipeline ปกติของ Attribute จบแล้ว  
 > ใช้สำหรับ Skill, Buff, Debuff, หรือ Effect พิเศษที่ต้องการแทรก value โดยไม่กระทบสูตรหลัก

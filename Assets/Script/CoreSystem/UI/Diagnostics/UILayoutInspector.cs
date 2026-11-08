@@ -125,7 +125,7 @@ namespace CoreSystem.UI.Diagnostics
             }
 
             var selectable = rect.GetComponent<Selectable>();
-            if (selectable != null && !(selectable is Scrollbar) && !(parentGroup is GridLayoutGroup) && r.height > theme.ControlHeight * 2f)
+            if (selectable != null && !(selectable is Scrollbar) && !(parentGroup is GridLayoutGroup) && !IsVisualizerCell(rect) && rect.GetComponent<UICustomElement>() == null && r.height > theme.ControlHeight * 2f)
             {
                 Add(issues, UILayoutIssueKind.OversizedControl, UIIssueSeverity.Warning, rect, root,
                     $"{selectable.GetType().Name} is {r.height:0}px tall (theme control height {theme.ControlHeight:0})",
@@ -133,6 +133,12 @@ namespace CoreSystem.UI.Diagnostics
             }
 
             if (managed) CheckInsideParent(rect, parent, root, issues);
+        }
+
+        private static bool IsVisualizerCell(RectTransform rect)
+        {
+            Transform parent = rect.parent;
+            return parent != null && parent.name == UIVisualizerFactory.ItemRootName;
         }
 
         private static void CheckText(TMP_Text text, RectTransform rect, RectTransform root, List<UILayoutIssue> issues)

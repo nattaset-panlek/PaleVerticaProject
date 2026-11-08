@@ -12,13 +12,16 @@ using CoreSystem.Skills.Logic.Effects;
 
 public partial class GameDataWorkbench : EditorWindow
 {
+    #region [Variables/Fields]
     private Vector2 _idMgrScroll;
     private static bool _showIdItems = true;
     private static bool _showIdAttributes = true;
     private static bool _showIdActiveSkills = true;
     private static bool _showIdSupportMods = true;
     private static bool _showIdCharacters = true;
+    #endregion
 
+    #region [Private Methods]
     private void DrawIdManager()
     {
         _idMgrScroll = EditorGUILayout.BeginScrollView(_idMgrScroll);
@@ -236,4 +239,5 @@ public partial class GameDataWorkbench : EditorWindow
         for (int i = 0; i < sorted.Count; i++)
             setter(sorted[i], counter++);
     }
+    #endregion
 }

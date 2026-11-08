@@ -86,6 +86,8 @@ namespace CoreSystem.UI.Editor
             {
                 EditorGUILayout.LabelField(" ", $"Prefab now: {prefabRadius:0.#} px", EditorStyles.miniLabel);
             }
+            SerializedProperty keepLookProp = entryProp.FindPropertyRelative("KeepPrefabLook");
+            EditorGUILayout.PropertyField(keepLookProp, new GUIContent("Keep Prefab Look", keepLookProp.tooltip));
 
             EditorGUILayout.EndVertical();
             EditorGUILayout.Space();

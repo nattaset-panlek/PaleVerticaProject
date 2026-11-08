@@ -19,17 +19,9 @@ using UnityEditor.IMGUI.Controls;
 public partial class GameDataWorkbench : EditorWindow
 {
     #region [Variables/Fields]
-    private enum TabCategory { Overview, Data, Combat, System }
-    private enum DataSubTab { Attributes, Items, Sets, Characters, Factions }
-    private enum CombatSubTab { Skills, SupportSkills, UniquePassives }
-    private enum SystemSubTab { IdManager }
-
-    private TabCategory _category = TabCategory.Overview;
-    private DataSubTab _dataTab = DataSubTab.Attributes;
-    private CombatSubTab _combatTab = CombatSubTab.Skills;
-    private SystemSubTab _systemTab = SystemSubTab.IdManager;
-
-    private ToolTab _currentTab = ToolTab.Dashboard;
+    [SerializeField] private ToolTab _currentTab = ToolTab.Dashboard;
+    private bool _isDirty;
+    private readonly Dictionary<string, Sprite> _spriteCache = new Dictionary<string, Sprite>();
     private enum ToolTab
     {
         Dashboard,
@@ -41,7 +33,8 @@ public partial class GameDataWorkbench : EditorWindow
         IdManager,
         Sets,
         UniquePassives,
-        Factions
+        Factions,
+        Experience
     }
 
     private string _itemJsonPath = "Assets/Resources/Data/Item.json";
@@ -62,13 +55,13 @@ public partial class GameDataWorkbench : EditorWindow
     private UniquePassiveDataList _uniquePassiveData;
     private FactionList _factionData;
 
-    private int _itemSelectedIndex = -1;
-    private int _skillSelectedIndex = -1;
-    private int _supportSelectedIndex = -1;
-    private int _attributeSelectedIndex = -1;
-    private int _itemSetSelectedIndex = -1;
-    private int _characterSelectedIndex = -1;
-    private int _uniquePassiveSelectedIndex = -1;
+    [SerializeField] private int _itemSelectedIndex = -1;
+    [SerializeField] private int _skillSelectedIndex = -1;
+    [SerializeField] private int _supportSelectedIndex = -1;
+    [SerializeField] private int _attributeSelectedIndex = -1;
+    [SerializeField] private int _itemSetSelectedIndex = -1;
+    [SerializeField] private int _characterSelectedIndex = -1;
+    [SerializeField] private int _uniquePassiveSelectedIndex = -1;
 
     private string _searchQuery = "";
     private Vector2 _listScroll;
@@ -79,12 +72,12 @@ public partial class GameDataWorkbench : EditorWindow
     private string[] _itemTypeNames;
     private int _skillElementFilterIndex = 0;
     private string[] _skillElementFilterNames;
-    private string[] _tabNamesForItems = { "All", "Currency", "Consumable", "Equip", "Frag", "Res", "SkillRune", "SupportRune", "Cos", "Add" };
+    private string[] _tabNamesForItems = { "All", "Currency", "Consumable", "Equip", "Frag", "Res", "SkillRune", "SupportRune", "Cos", "Add", "Prog" };
     private bool _showOnlyWithEffects = false;
     
     private Dictionary<string, int> _itemPrefixes = new Dictionary<string, int> {
         { "Currency", 1 }, { "Consumable", 2 }, { "Equipment", 3 }, { "Fragment", 4 },
-        { "Resource", 5 }, { "SkillRune", 6 }, { "SupportRune", 7 }, { "Costume", 8 }, { "Additional", 9 }
+        { "Resource", 5 }, { "SkillRune", 6 }, { "SupportRune", 7 }, { "Costume", 8 }, { "Additional", 9 }, { "Progression", 10 }
     };
 
     private Dictionary<string, int> _startIds = new Dictionary<string, int> {
@@ -99,7 +92,6 @@ public partial class GameDataWorkbench : EditorWindow
     private Vector2 _previewTargetPoint = Vector2.zero;
     private int _simSkillLevel = 1;
     private Dictionary<int, int> _mockStats = new Dictionary<int, int>();
-    private bool _showSimulator = true;
 
     private List<System.Type> _modifierTypes = new List<System.Type>();
     private string[] _modifierTypeNames;
@@ -107,33 +99,34 @@ public partial class GameDataWorkbench : EditorWindow
     private bool _useManualAttributeInput = false;
     private bool _isValidated = false;
     private List<string> _validationErrors = new List<string>();
-
-    private static readonly Color CategoryOverview = new Color(0.55f, 0.75f, 0.95f);
-    private static readonly Color CategoryData     = new Color(0.45f, 0.70f, 1.0f);
-    private static readonly Color CategoryCombat   = new Color(1.0f, 0.45f, 0.45f);
-    private static readonly Color CategorySystem   = new Color(0.40f, 0.85f, 0.55f);
     #endregion
 
     #region [Unity Methods]
-    [MenuItem("Window/Realm of Hero/Game Data Workbench")]
+    [MenuItem("Window/Pale Vertica/Pale Vertica GameDataWorkbench")]
     public static void ShowWindow()
     {
-        GetWindow<GameDataWorkbench>("Game Data Workbench");
+        GetWindow<GameDataWorkbench>("Pale Vertica GameDataWorkbench");
     }
 
     private void OnEnable()
     {
-        LoadAllData();
+        minSize = new Vector2(980, 560);
+        wantsMouseMove = true;
         InitializeFilters();
         DiscoverModifiers();
+        LoadAllData();
     }
 
     private void OnGUI()
     {
-        DrawHeaderBanner();
-        DrawCategoryToolbar();
-        DrawSubTabToolbar();
+        HandleShortcuts();
+        EditorGUI.DrawRect(new Rect(0, 0, position.width, position.height), ThemeWindow);
+        DrawHeaderBanner(new Rect(0, 0, position.width, BannerHeight));
 
+        Rect body = new Rect(0, BannerHeight, position.width, position.height - BannerHeight);
+        DrawNavigator(new Rect(body.x, body.y, NavigatorWidth, body.height));
+
+        GUILayout.BeginArea(new Rect(body.x + NavigatorWidth, body.y, body.width - NavigatorWidth, body.height));
         switch (_currentTab)
         {
             case ToolTab.Dashboard:       DrawDashboard(); break;
@@ -146,174 +139,81 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.IdManager:       DrawIdManager(); break;
             case ToolTab.Sets:            DrawItemSetEditor(); break;
             case ToolTab.UniquePassives:  DrawUniquePassiveEditor(); break;
+            case ToolTab.Experience:      DrawExperienceEditor(); break;
         }
+        GUILayout.EndArea();
+
+        if (Event.current.type == EventType.MouseMove) Repaint();
     }
     #endregion
 
     #region [Private Methods]
-    private void DrawHeaderBanner()
+    private void DrawHeaderBanner(Rect rect)
     {
-        Rect bannerRect = EditorGUILayout.GetControlRect(false, 32);
-        EditorGUI.DrawRect(bannerRect, new Color(0.14f, 0.14f, 0.18f));
+        EditorGUI.DrawRect(rect, ThemeBanner);
+        EditorGUI.DrawRect(new Rect(rect.x, rect.yMax - 1, rect.width, 1), ThemeLine);
+        GUI.Label(new Rect(rect.x + 16, rect.y, 260, rect.height), "Pale Vertica GameDataWorkbench", TitleStyle);
 
-        Rect accentLine = new Rect(bannerRect.x, bannerRect.yMax - 2, bannerRect.width, 2);
-        EditorGUI.DrawRect(accentLine, CategoryData);
+        float x = rect.xMax - 16;
+        Rect save = new Rect(x - 70, rect.y + 8, 70, 24);
+        Color prevBg = GUI.backgroundColor;
+        GUI.backgroundColor = ThemePrimary * 1.6f;
+        if (GUI.Button(save, new GUIContent("Save", "Save all tables to JSON (Ctrl+S)"))) SaveAllData();
+        GUI.backgroundColor = prevBg;
+        x = save.x - 6;
 
-        GUIStyle titleStyle = new GUIStyle(EditorStyles.boldLabel) {
-            fontSize = 13,
-            normal = { textColor = new Color(0.85f, 0.90f, 1.0f) }
-        };
-        GUI.Label(new Rect(bannerRect.x + 12, bannerRect.y + 4, 250, 24), "Game Data Workbench", titleStyle);
+        Rect reload = new Rect(x - 70, rect.y + 8, 70, 24);
+        if (GUI.Button(reload, new GUIContent("Reload", "Reload all tables from JSON")))
+        {
+            if (!_isDirty || EditorUtility.DisplayDialog("Reload Data", "You have unsaved changes. Reload and lose them?", "Reload", "Cancel"))
+                LoadAllData();
+        }
+        x = reload.x - 10;
 
-        int totalEntries = 0;
-        if (_attributeData?.Attributes != null) totalEntries += _attributeData.Attributes.Count;
-        if (_itemData?.Items != null) totalEntries += _itemData.Items.Count;
-        if (_skillData?.ActiveSkills != null) totalEntries += _skillData.ActiveSkills.Count;
-        if (_supportSkillData?.SupportModifiers != null) totalEntries += _supportSkillData.SupportModifiers.Count;
-        if (_characterData?.Characters != null) totalEntries += _characterData.Characters.Count;
+        if (_isDirty)
+        {
+            const string unsaved = "Unsaved changes";
+            float w = ChipWidth(unsaved);
+            DrawChip(new Rect(x - w, rect.y + 11, w, 18), unsaved, ThemeWarn);
+            x -= w + 10;
+        }
 
-        GUIStyle infoStyle = new GUIStyle(EditorStyles.miniLabel) {
-            normal = { textColor = new Color(0.6f, 0.65f, 0.7f) },
-            alignment = TextAnchor.MiddleRight
-        };
-        GUI.Label(new Rect(bannerRect.xMax - 330, bannerRect.y + 4, 160, 24), $"{totalEntries} entries loaded", infoStyle);
-
-        float btnX = bannerRect.xMax - 160;
-        GUIStyle btnStyle = new GUIStyle(EditorStyles.miniButton) { fixedHeight = 22 };
-        if (GUI.Button(new Rect(btnX, bannerRect.y + 5, 74, 22), "Reload", btnStyle)) LoadAllData();
-        if (GUI.Button(new Rect(btnX + 78, bannerRect.y + 5, 74, 22), "Save", btnStyle)) SaveAllData();
+        GUI.Label(new Rect(x - 220, rect.y, 220, rect.height), $"{GetTotalEntries()} entries loaded", MutedRightStyle);
     }
 
-    private void DrawCategoryToolbar()
+    private void HandleShortcuts()
     {
-        Rect catRect = EditorGUILayout.GetControlRect(false, 28);
-        EditorGUI.DrawRect(catRect, new Color(0.18f, 0.18f, 0.22f));
-
-        float btnW = catRect.width / 4f;
-        string[] catNames = { "Overview", "Data", "Combat", "System" };
-        Color[] catColors = { CategoryOverview, CategoryData, CategoryCombat, CategorySystem };
-
-        for (int i = 0; i < 4; i++)
+        Event e = Event.current;
+        if (e.type == EventType.KeyDown && e.keyCode == KeyCode.S && (e.control || e.command))
         {
-            Rect btnRect = new Rect(catRect.x + btnW * i, catRect.y, btnW, catRect.height);
-            bool isActive = (int)_category == i;
-
-            if (isActive)
-            {
-                EditorGUI.DrawRect(btnRect, new Color(catColors[i].r, catColors[i].g, catColors[i].b, 0.15f));
-                Rect underline = new Rect(btnRect.x + 4, btnRect.yMax - 3, btnRect.width - 8, 3);
-                EditorGUI.DrawRect(underline, catColors[i]);
-            }
-
-            GUIStyle catStyle = new GUIStyle(EditorStyles.miniLabel) {
-                alignment = TextAnchor.MiddleCenter,
-                fontSize = 11,
-                fontStyle = isActive ? FontStyle.Bold : FontStyle.Normal,
-                normal = { textColor = isActive ? Color.white : new Color(0.65f, 0.65f, 0.70f) }
-            };
-
-            if (GUI.Button(btnRect, catNames[i], catStyle))
-            {
-                _category = (TabCategory)i;
-                SyncTabFromCategory();
-            }
+            SaveAllData();
+            e.Use();
         }
     }
 
-    private void DrawSubTabToolbar()
+    private int GetTotalEntries()
     {
-        if (_category == TabCategory.Overview) return;
-
-        string[] subNames;
-        int selectedSub;
-
-        switch (_category)
+        int total = 0;
+        foreach (ToolTab tab in System.Enum.GetValues(typeof(ToolTab)))
         {
-            case TabCategory.Data:
-                subNames = GetDataSubTabNames();
-                selectedSub = (int)_dataTab;
-                break;
-            case TabCategory.Combat:
-                subNames = GetCombatSubTabNames();
-                selectedSub = (int)_combatTab;
-                break;
-            case TabCategory.System:
-                subNames = GetSystemSubTabNames();
-                selectedSub = (int)_systemTab;
-                break;
-            default: return;
+            int count = GetTabCount(tab);
+            if (count > 0) total += count;
         }
-
-        Rect subRect = EditorGUILayout.GetControlRect(false, 24);
-        EditorGUI.DrawRect(subRect, new Color(0.20f, 0.20f, 0.24f));
-
-        int newSub = GUI.Toolbar(subRect, selectedSub, subNames, EditorStyles.toolbarButton);
-
-        if (newSub != selectedSub)
-        {
-            switch (_category)
-            {
-                case TabCategory.Data:   _dataTab = (DataSubTab)newSub; break;
-                case TabCategory.Combat: _combatTab = (CombatSubTab)newSub; break;
-                case TabCategory.System: _systemTab = (SystemSubTab)newSub; break;
-            }
-        }
-
-        SyncTabFromCategory();
+        return total;
     }
 
-    private string[] GetDataSubTabNames()
+    private void MarkDirty()
     {
-        int attrCount = _attributeData?.Attributes?.Count ?? 0;
-        int itemCount = _itemData?.Items?.Count ?? 0;
-        int setCount  = _itemSetData?.Sets?.Count ?? 0;
-        int charCount = _characterData?.Characters?.Count ?? 0;
-        int factionCount = _factionData?.Factions?.Count ?? 0;
-        return new[] { $"Attributes ({attrCount})", $"Items ({itemCount})", $"Sets ({setCount})", $"Characters ({charCount})", $"Factions ({factionCount})" };
+        _isDirty = true;
     }
 
-    private string[] GetCombatSubTabNames()
+    private Sprite GetCachedSprite(string keyOrPath)
     {
-        int skillCount   = _skillData?.ActiveSkills?.Count ?? 0;
-        int supportCount = _supportSkillData?.SupportModifiers?.Count ?? 0;
-        int passiveCount = _uniquePassiveData?.UniquePassives?.Count ?? 0;
-        return new[] { $"Skills ({skillCount})", $"Support Skills ({supportCount})", $"Unique Passives ({passiveCount})" };
-    }
-
-    private string[] GetSystemSubTabNames()
-    {
-        return new[] { "ID Manager" };
-    }
-
-    private void SyncTabFromCategory()
-    {
-        switch (_category)
-        {
-            case TabCategory.Overview:
-                _currentTab = ToolTab.Dashboard;
-                break;
-            case TabCategory.Data:
-                switch (_dataTab)
-                {
-                    case DataSubTab.Attributes:  _currentTab = ToolTab.Attributes; break;
-                    case DataSubTab.Items:        _currentTab = ToolTab.Items; break;
-                    case DataSubTab.Sets:         _currentTab = ToolTab.Sets; break;
-                    case DataSubTab.Characters:   _currentTab = ToolTab.Characters; break;
-                    case DataSubTab.Factions:     _currentTab = ToolTab.Factions; break;
-                }
-                break;
-            case TabCategory.Combat:
-                switch (_combatTab)
-                {
-                    case CombatSubTab.Skills:         _currentTab = ToolTab.Skills; break;
-                    case CombatSubTab.SupportSkills:   _currentTab = ToolTab.SupportSkills; break;
-                    case CombatSubTab.UniquePassives:   _currentTab = ToolTab.UniquePassives; break;
-                }
-                break;
-            case TabCategory.System:
-                _currentTab = ToolTab.IdManager;
-                break;
-        }
+        if (string.IsNullOrEmpty(keyOrPath)) return null;
+        if (_spriteCache.TryGetValue(keyOrPath, out Sprite sprite)) return sprite;
+        sprite = ResolveEditorSprite(keyOrPath);
+        _spriteCache[keyOrPath] = sprite;
+        return sprite;
     }
 
     private void DiscoverModifiers()
@@ -343,6 +243,9 @@ public partial class GameDataWorkbench : EditorWindow
         _itemSetData = LoadData<ItemSetList>(_setJsonPath) ?? new ItemSetList { Sets = new List<ItemSetEntry>() };
         _uniquePassiveData = LoadData<UniquePassiveDataList>(_uniquePassiveJsonPath) ?? new UniquePassiveDataList { UniquePassives = new List<UniquePassiveEntry>() };
         _factionData = LoadData<FactionList>(_factionJsonPath) ?? new FactionList { Factions = new List<FactionEntry>() };
+        _spriteCache.Clear();
+        _isDirty = false;
+        RunValidation(false);
     }
 
     private void SaveAllData()
@@ -365,6 +268,8 @@ public partial class GameDataWorkbench : EditorWindow
         SaveData(_uniquePassiveJsonPath, _uniquePassiveData);
         SaveData(_factionJsonPath, _factionData);
         AssetDatabase.Refresh();
+        _isDirty = false;
+        RunValidation(false);
     }
 
     private T LoadData<T>(string path) where T : class

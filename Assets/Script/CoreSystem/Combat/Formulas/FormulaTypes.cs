@@ -32,6 +32,7 @@ namespace CoreSystem.Combat
     {
         #region [Variables/Fields]
         public float BaseDamage;
+        public float PayloadDamageBonus;
         public bool HasCasterStats;
         public float CasterPower;
         public float CasterWeaponPower;

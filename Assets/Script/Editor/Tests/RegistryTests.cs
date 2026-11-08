@@ -49,7 +49,9 @@ namespace CoreSystem.Tests
             { "BlessingOfMagearna", typeof(BlessingOfMagearnaUniquePassive) },
             { "BloodMage", typeof(BloodMageUniquePassive) },
             { "EldritchFaith", typeof(EldritchFaithUniquePassive) },
-            { "Rock", typeof(RockUniquePassive) }
+            { "Rock", typeof(RockUniquePassive) },
+            { "DoubleAttack", typeof(DoubleAttackUniquePassive) },
+            { "DoubleSpell", typeof(DoubleSpellUniquePassive) }
         };
         #endregion
 

@@ -55,7 +55,7 @@ namespace CoreSystem.Attributes
 
             // Movement & Combat basics
             attributes[AttributeType.MoveSpeed].BaseValue = 100f;
-            attributes[AttributeType.ASPD].BaseValue = 150f; 
+            attributes[AttributeType.ASPD].BaseValue = BasicAttackFormula.BaseAspd;
             attributes[AttributeType.WeightLimit].BaseValue = 2000f;
             
             // Baseline Attack (Physical Only)

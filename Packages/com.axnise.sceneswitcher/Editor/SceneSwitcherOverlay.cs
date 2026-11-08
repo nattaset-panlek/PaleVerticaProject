@@ -1,88 +1,53 @@
 using UnityEditor;
 using UnityEditor.Overlays;
-using UnityEditor.SceneManagement;
+using UnityEditor.Toolbars;
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using UnityEditor.Toolbars;
 
-namespace RealmOfHero.Editor
+namespace Axnise.SceneSwitcher.Editor
 {
-    [Overlay(typeof(SceneView), "Scene Switcher", true)]
+    [Overlay(typeof(SceneView), "Scene Switcher", false)]
     public class SceneSwitcherOverlay : ToolbarOverlay
     {
-        // Define the IDs for the toolbar elements
-        public const string DropdownId = "SceneSwitcher/Dropdown";
+        #region [Variables/Fields]
+        public const string DropdownId = "Axnise/SceneSwitcher/Dropdown";
+        #endregion
 
-        // Constructor to setup the toolbar items
-        public SceneSwitcherOverlay() : base(DropdownId) { }
+        #region [Public Methods]
+        public SceneSwitcherOverlay() : base(DropdownId)
+        {
+        }
+        #endregion
 
         [EditorToolbarElement(DropdownId, typeof(SceneView))]
-        class SceneDropdown : EditorToolbarDropdown
+        private class SceneDropdown : EditorToolbarDropdown
         {
+            #region [Unity Methods]
             public SceneDropdown()
             {
-                text = "Select Scene...";
-                tooltip = "Quickly switch between scenes in the project.";
+                tooltip = "Switch scene";
                 icon = EditorGUIUtility.IconContent("SceneAsset Icon").image as Texture2D;
-                
-                // Update text to current scene
-                this.RegisterCallback<AttachToPanelEvent>(evt => {
+                clicked += ShowMenu;
+                RegisterCallback<AttachToPanelEvent>(_ =>
+                {
                     UpdateText();
-                    EditorSceneManager.sceneOpened += (scene, mode) => UpdateText();
+                    SceneSwitcherRegistry.OnChanged += UpdateText;
                 });
-
-                clicked += ShowSceneMenu;
+                RegisterCallback<DetachFromPanelEvent>(_ => SceneSwitcherRegistry.OnChanged -= UpdateText);
             }
+            #endregion
 
+            #region [Private Methods]
             private void UpdateText()
             {
-                text = EditorSceneManager.GetActiveScene().name;
+                text = SceneSwitcherRegistry.ActiveSceneName;
             }
 
-            private void ShowSceneMenu()
+            private void ShowMenu()
             {
-                GenericMenu menu = new GenericMenu();
-                
-                // 1. Get Build Scenes
-                var buildScenes = EditorBuildSettings.scenes.Select(s => s.path).ToList();
-                if (buildScenes.Count > 0)
-                {
-                    menu.AddDisabledItem(new GUIContent("--- Build Settings ---"));
-                    foreach (var path in buildScenes)
-                        AddPathToMenu(menu, path, "Build/");
-                    menu.AddSeparator("");
-                }
-
-                // 2. Get All Scenes (Recursive Search)
-                menu.AddDisabledItem(new GUIContent("--- All Scenes ---"));
-                string[] guids = AssetDatabase.FindAssets("t:Scene");
-                foreach (var guid in guids)
-                {
-                    string path = AssetDatabase.GUIDToAssetPath(guid);
-                    if (buildScenes.Contains(path)) continue;
-
-                    string folder = Path.GetDirectoryName(path).Replace("Assets/", "").Replace("\\", "/");
-                    AddPathToMenu(menu, path, folder + "/");
-                }
-
-                menu.ShowAsContext();
+                SceneSwitcherMenu.Build().DropDown(worldBound);
             }
-
-            private void AddPathToMenu(GenericMenu menu, string path, string prefix)
-            {
-                string sceneName = Path.GetFileNameWithoutExtension(path);
-                bool isActive = EditorSceneManager.GetActiveScene().path == path;
-                
-                menu.AddItem(new GUIContent(prefix + sceneName), isActive, () => {
-                    if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-                    {
-                        EditorSceneManager.OpenScene(path);
-                    }
-                });
-            }
+            #endregion
         }
     }
 }

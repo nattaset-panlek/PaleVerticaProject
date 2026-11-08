@@ -36,6 +36,12 @@ namespace CoreSystem.UI
             return entry != null && entry.Prefab != null;
         }
 
+        public bool KeepsPrefabLook(UIElementType type, string styleName)
+        {
+            var entry = _registry != null ? _registry.GetEntry(type, styleName) : null;
+            return entry != null && entry.Prefab != null && entry.KeepPrefabLook;
+        }
+
         public GameObject Create(UIElementType type, string styleName, Transform parent, UILayoutKind layout = UILayoutKind.Column)
         {
             GameObject go = InstantiateFromRegistry(type, styleName, parent) ?? Generate(type, styleName, parent, layout);
@@ -86,7 +92,7 @@ namespace CoreSystem.UI
             return instance.GetComponentInChildren<T>(true);
         }
 
-        public void FitControl(GameObject go, TMP_Text label)
+        public void FitControl(GameObject go, TMP_Text label, bool keepPrefabLook = false)
         {
             if (go == null) return;
 
@@ -94,10 +100,13 @@ namespace CoreSystem.UI
             if (le == null) le = go.AddComponent<LayoutElement>();
 
             var group = go.GetComponent<HorizontalOrVerticalLayoutGroup>();
+            RectOffset padding = keepPrefabLook && group != null
+                ? group.padding
+                : new RectOffset(_theme.ControlPaddingX, _theme.ControlPaddingX, _theme.ControlPaddingY, _theme.ControlPaddingY);
             if (group != null)
             {
                 group.enabled = true;
-                group.padding = new RectOffset(_theme.ControlPaddingX, _theme.ControlPaddingX, _theme.ControlPaddingY, _theme.ControlPaddingY);
+                group.padding = padding;
                 group.childControlWidth = true;
                 group.childControlHeight = true;
                 group.childForceExpandWidth = false;
@@ -108,13 +117,13 @@ namespace CoreSystem.UI
             float height = _theme.ControlHeight;
             if (label != null)
             {
-                label.fontSize = _theme.ControlFontSize;
+                if (!keepPrefabLook) label.fontSize = _theme.ControlFontSize;
                 label.textWrappingMode = TextWrappingModes.NoWrap;
                 label.overflowMode = TextOverflowModes.Overflow;
 
                 Vector2 size = label.GetPreferredValues(label.text, float.PositiveInfinity, float.PositiveInfinity);
-                float width = Mathf.Ceil(size.x) + _theme.ControlPaddingX * 2;
-                height = Mathf.Max(height, Mathf.Ceil(size.y) + _theme.ControlPaddingY * 2);
+                float width = Mathf.Ceil(size.x) + padding.horizontal;
+                height = Mathf.Max(height, Mathf.Ceil(size.y) + padding.vertical);
                 le.minWidth = Mathf.Max(le.minWidth, width);
                 if (le.preferredWidth < width) le.preferredWidth = width;
             }
@@ -132,6 +141,7 @@ namespace CoreSystem.UI
 
             if (entry.CornerRadius > 0f) UIShapes.ApplyCornerRadius(UIShapes.GetShapeImage(go), entry.CornerRadius);
             if (entry.HasSizing) ApplyStyleSizing(go, entry);
+            if (entry.HasSizing && entry.KeepPrefabLook && entry.Prefab != null) UIStyleSizeLock.Attach(go, entry.MinSize, entry.FixedSize);
         }
 
         public void FitInput(GameObject go)

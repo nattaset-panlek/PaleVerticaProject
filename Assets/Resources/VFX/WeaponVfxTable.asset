@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1d6082cfaab47a1b2e01513e33f06e2, type: 3}
+  m_Name: WeaponVfxTable
+  m_EditorClassIdentifier: 
+  _profiles:
+  - Name: Unarmed
+    WeaponTypes: 00000000
+    ExcludedTags: 6
+    SelectMode: 0
+    ComboResetSeconds: 1.2
+    Variants:
+    - Id: Jab
+      Prefab: {fileID: 6155604310836809461, guid: 9ca1b8a8c905467584ecf17213da3818, type: 3}
+      Anchor: 0
+      ImpactOffset: {x: 0, y: 0}
+      Scale: 0.75
+      AlignToAim: 1
+      MirrorWhenAimingLeft: 1
+      FlipVertical: 0
+      ColorMode: 0
+      FixedColor: {r: 1, g: 1, b: 1, a: 1}
+    - Id: Hook
+      Prefab: {fileID: 8308469290066095809, guid: b6a00c4639db4560b2636c335431f4cc, type: 3}
+      Anchor: 0
+      ImpactOffset: {x: 0.14, y: -0.06}
+      Scale: 0.75
+      AlignToAim: 1
+      MirrorWhenAimingLeft: 1
+      FlipVertical: 0
+      ColorMode: 0
+      FixedColor: {r: 1, g: 1, b: 1, a: 1}
+  - Name: Edged
+    WeaponTypes: 01000000020000000300000004000000
+    ExcludedTags: 0
+    SelectMode: 0
+    ComboResetSeconds: 1.2
+    Variants:
+    - Id: SlashDown
+      Prefab: {fileID: 3350342649918040549, guid: 9a832ef740bc4369a1945c9283710009, type: 3}
+      Anchor: 0
+      ImpactOffset: {x: 0.815, y: 0}
+      Scale: 1
+      AlignToAim: 1
+      MirrorWhenAimingLeft: 0
+      FlipVertical: 0
+      ColorMode: 0
+      FixedColor: {r: 1, g: 1, b: 1, a: 1}
+    - Id: SlashUp
+      Prefab: {fileID: 3350342649918040549, guid: 9a832ef740bc4369a1945c9283710009, type: 3}
+      Anchor: 0
+      ImpactOffset: {x: 0.815, y: 0}
+      Scale: 1
+      AlignToAim: 1
+      MirrorWhenAimingLeft: 0
+      FlipVertical: 0
+      ColorMode: 0
+      FixedColor: {r: 1, g: 1, b: 1, a: 1}
+  - Name: Spear
+    WeaponTypes: 08000000
+    ExcludedTags: 0
+    SelectMode: 0
+    ComboResetSeconds: 1.2
+    Variants:
+    - Id: Thrust
+      Prefab: {fileID: 5680369820358173447, guid: 92d95e7f45024f02b87e23bb75f86911, type: 3}
+      Anchor: 0
+      ImpactOffset: {x: 0.85, y: 0}
+      Scale: 1
+      AlignToAim: 1
+      MirrorWhenAimingLeft: 1
+      FlipVertical: 0
+      ColorMode: 0
+      FixedColor: {r: 1, g: 1, b: 1, a: 1}
+  _itemOverrides: []
+  _defaultRamp:
+    Shadow: {r: 0.35, g: 0.38, b: 0.45, a: 1}
+    Mid: {r: 1, g: 1, b: 1, a: 1}
+    Highlight: {r: 1, g: 1, b: 1, a: 1}
+  _elementRamps:
+  - Element: 1
+    Ramp:
+      Shadow: {r: 0.04, g: 0.2, b: 0.35, a: 1}
+      Mid: {r: 0.2, g: 0.75, b: 1, a: 1}
+      Highlight: {r: 0.85, g: 0.97, b: 1, a: 1}
+  - Element: 2
+    Ramp:
+      Shadow: {r: 0.3, g: 0.22, b: 0.08, a: 1}
+      Mid: {r: 0.85, g: 0.7, b: 0.35, a: 1}
+      Highlight: {r: 1, g: 0.95, b: 0.8, a: 1}
+  - Element: 3
+    Ramp:
+      Shadow: {r: 0.43, g: 0.08, b: 0.07, a: 1}
+      Mid: {r: 1, g: 0.55, b: 0.1, a: 1}
+      Highlight: {r: 1, g: 0.97, b: 0.82, a: 1}
+  - Element: 4
+    Ramp:
+      Shadow: {r: 0.05, g: 0.25, b: 0.4, a: 1}
+      Mid: {r: 0.35, g: 0.85, b: 1, a: 1}
+      Highlight: {r: 0.92, g: 1, b: 1, a: 1}
+  - Element: 5
+    Ramp:
+      Shadow: {r: 0.25, g: 0.06, b: 0.42, a: 1}
+      Mid: {r: 0.7, g: 0.5, b: 0.95, a: 1}
+      Highlight: {r: 0.98, g: 0.92, b: 1, a: 1}
+  - Element: 6
+    Ramp:
+      Shadow: {r: 0.44, g: 0.3, b: 0.06, a: 1}
+      Mid: {r: 1, g: 0.9, b: 0.4, a: 1}
+      Highlight: {r: 1, g: 0.99, b: 0.92, a: 1}

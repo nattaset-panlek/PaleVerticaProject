@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 namespace CoreSystem.UI
@@ -8,6 +11,9 @@ namespace CoreSystem.UI
     {
         #region [Variables/Fields]
         private static UIManager _instance;
+        private static readonly List<RaycastResult> PointerHits = new List<RaycastResult>();
+        private static PointerEventData _pointerData;
+        private static EventSystem _pointerEventSystem;
 
         [Header("Registry")]
         [SerializeField] private UIWindowRegistrySO _registry;
@@ -24,6 +30,8 @@ namespace CoreSystem.UI
         [Header("Global Modal System")]
         [SerializeField] private UIElementRegistrySO _elementRegistry;
         [SerializeField] private UIGlobalModal _globalModalTemplate;
+
+        public static event Action OnEscapeUnhandled;
         #endregion
 
         #region [Properties]
@@ -33,7 +41,7 @@ namespace CoreSystem.UI
             {
                 if (_instance == null)
                 {
-                    _instance = Object.FindAnyObjectByType<UIManager>();
+                    _instance = UnityEngine.Object.FindAnyObjectByType<UIManager>();
                 }
                 return _instance;
             }
@@ -56,18 +64,20 @@ namespace CoreSystem.UI
 
             _instance = this;
             SetupModalOverlayButton();
+            RegisterWindowKeybinds();
         }
 
         private void Update()
         {
             if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.escapeKey.wasPressedThisFrame)
             {
-                if (_modalStack.Count > 0)
+                if (HasOpenModal())
                 {
                     UIModal top = _modalStack.Peek();
                     if (top == null || top.CloseOnEscape) CloseTopModal();
                     return;
                 }
+                if (!IsTypingInField()) OnEscapeUnhandled?.Invoke();
             }
 
             if (_registry != null && _registry.Entries != null)
@@ -85,6 +95,21 @@ namespace CoreSystem.UI
         #endregion
 
         #region [Public Methods]
+        public static bool IsPointerOverUI()
+        {
+            EventSystem eventSystem = EventSystem.current;
+            if (eventSystem == null || Mouse.current == null) return false;
+            if (_pointerData == null || _pointerEventSystem != eventSystem)
+            {
+                _pointerData = new PointerEventData(eventSystem);
+                _pointerEventSystem = eventSystem;
+            }
+            _pointerData.position = Mouse.current.position.ReadValue();
+            PointerHits.Clear();
+            eventSystem.RaycastAll(_pointerData, PointerHits);
+            return PointerHits.Count > 0;
+        }
+
         public UIGlobalModal GetOrCreateGlobalModal(string modalName)
         {
             if (string.IsNullOrEmpty(modalName)) modalName = "Default_Global_Modal";
@@ -333,6 +358,41 @@ namespace CoreSystem.UI
             _instantiatedViews[windowName] = view;
 
             return view;
+        }
+
+        private void RegisterWindowKeybinds()
+        {
+            if (_registry == null || _registry.Entries == null) return;
+            int order = 0;
+            foreach (var entry in _registry.Entries)
+            {
+                if (entry == null || string.IsNullOrEmpty(entry.WindowName) || !entry.IsSingleKey) continue;
+                var key = UIWindowEntry.ToInputSystemKey(entry.Keys[0]);
+                CoreSystem.Settings.Keybinds.KeybindSetting.AddDefinition(new CoreSystem.Settings.Keybinds.KeybindDefinition(
+                    CoreSystem.Settings.Keybinds.KeybindSetting.WindowId(entry.WindowName),
+                    CoreSystem.Settings.Keybinds.KeybindCatalog.Pretty(entry.WindowName, null),
+                    "Interface",
+                    order++,
+                    new CoreSystem.Settings.Keybinds.KeybindPair(key, UnityEngine.InputSystem.Key.None)));
+            }
+        }
+
+        private bool HasOpenModal()
+        {
+            while (_modalStack.Count > 0 && (_modalStack.Peek() == null || !_modalStack.Peek().IsOpen)) _modalStack.Pop();
+            return _modalStack.Count > 0;
+        }
+
+        private static bool IsTypingInField()
+        {
+            GameObject selected = EventSystem.current != null ? EventSystem.current.currentSelectedGameObject : null;
+            return selected != null && (selected.GetComponent<TMPro.TMP_InputField>() != null || selected.GetComponent<InputField>() != null);
+        }
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics()
+        {
+            OnEscapeUnhandled = null;
         }
 
         private void RemoveModalFromStack(UIModal modal)

@@ -1,6 +1,6 @@
 # 🛠️ Modding & API Architecture
 
-This directory outlines the structure and standards required to support user-created content (Mods) in **Realm of Hero**.
+This directory outlines the structure and standards required to support user-created content (Mods) in **Pale Vertica**.
 
 ## 🏗️ Technical Foundation
 

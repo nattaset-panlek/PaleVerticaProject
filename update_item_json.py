@@ -33,7 +33,7 @@ mapping = {
     138: 149,         # AngelDmg% (AngelDamagePercent 149)
 }
 
-file_path = r'f:\GameProject\Realm of Hero\My project\Assets\Resources\Data\Item.json'
+file_path = r'f:\GameProject\Pale Vertica\Assets\Resources\Data\Item.json'
 
 with open(file_path, 'r', encoding='utf-8') as f:
     data = json.load(f)

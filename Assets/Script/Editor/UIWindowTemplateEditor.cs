@@ -9,8 +9,8 @@ namespace CoreSystem.EditorTools
     public static class UIWindowTemplateEditor
     {
         #region [Public Methods]
-        [MenuItem("GameObject/UI/Realm UI/Create UI Window Template", false, 10)]
-        [MenuItem("Tools/Realm of Hero/UI/Create UI Window Template", false, 10)]
+        [MenuItem("GameObject/UI/Pale Vertica UI/Create UI Window Template", false, 10)]
+        [MenuItem("Tools/Pale Vertica/UI/Create UI Window Template", false, 10)]
         public static void CreateUIWindowTemplate(MenuCommand menuCommand)
         {
             GameObject template = CreateBaseUITemplate("UIWindow_Template", menuCommand);
@@ -21,8 +21,8 @@ namespace CoreSystem.EditorTools
             }
         }
 
-        [MenuItem("GameObject/UI/Realm UI/Create UI Modal Template", false, 11)]
-        [MenuItem("Tools/Realm of Hero/UI/Create UI Modal Template", false, 11)]
+        [MenuItem("GameObject/UI/Pale Vertica UI/Create UI Modal Template", false, 11)]
+        [MenuItem("Tools/Pale Vertica/UI/Create UI Modal Template", false, 11)]
         public static void CreateUIModalTemplate(MenuCommand menuCommand)
         {
             GameObject template = CreateBaseUITemplate("UIModal_Template", menuCommand);
@@ -33,7 +33,7 @@ namespace CoreSystem.EditorTools
             }
         }
 
-        [MenuItem("Tools/Realm of Hero/UI/Create UI Manager Hierarchy Structure", false, 0)]
+        [MenuItem("Tools/Pale Vertica/UI/Create UI Manager Hierarchy Structure", false, 0)]
         public static void CreateUIManagerHierarchy(MenuCommand menuCommand)
         {
             Canvas canvas = GetOrCreateCanvas();

@@ -21,9 +21,9 @@ namespace CoreSystem.Combat
             switch (rule)
             {
                 case TargetRule.Hostile:
-                    return FactionDatabase.IsHostile(user.Faction, target.Faction) ? BlockReason.None : BlockReason.NotHostile;
+                    return TeamRegistry.IsHostile(user, target) ? BlockReason.None : BlockReason.NotHostile;
                 case TargetRule.Ally:
-                    return ReferenceEquals(user, target) || FactionDatabase.IsAlly(user.Faction, target.Faction) ? BlockReason.None : BlockReason.NotAlly;
+                    return ReferenceEquals(user, target) || TeamRegistry.IsAlly(user, target) ? BlockReason.None : BlockReason.NotAlly;
                 default:
                     return BlockReason.None;
             }

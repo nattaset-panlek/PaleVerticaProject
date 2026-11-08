@@ -23,6 +23,9 @@ namespace CoreSystem.UI
         [Tooltip("Corner radius in pixels for builder elements of this style, applied through the Image's Pixels Per Unit Multiplier. 0 = keep the prefab's multiplier. Code (CornerRadius) still wins.")]
         [Min(0f)]
         public float CornerRadius;
+
+        [Tooltip("Art style: builder controls keep the prefab's colours and label font size. Semantic variants (Danger, Success, Warning) only recolour the label; Selected uses the Primary Button art.")]
+        public bool KeepPrefabLook;
         #endregion
 
         #region [Properties]

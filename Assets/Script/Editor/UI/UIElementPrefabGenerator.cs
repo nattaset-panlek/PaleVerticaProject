@@ -19,7 +19,7 @@ namespace CoreSystem.Editor.UI
             EditorApplication.delayCall += GenerateMissingBasePrefabs;
         }
 
-        [MenuItem("Realm of Hero/UI/Generate Base UIElement Prefabs")]
+        [MenuItem("Pale Vertica/UI/Generate Base UIElement Prefabs")]
         public static void GenerateMissingBasePrefabs()
         {
             if (!Directory.Exists(PrefabFolderPath))

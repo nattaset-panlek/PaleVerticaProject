@@ -55,7 +55,8 @@ namespace CoreSystem.Player
             var allInstances = GameData.Player.Inventory.GetAllItems();
             foreach (var inst in allInstances)
             {
-                if (inst == null) continue;
+                if (inst == null || inst.Item == null) continue;
+                if (inst.Item.Type == ItemType.Progression) continue;
 
                 var record = new InventoryItemRecord
                 {

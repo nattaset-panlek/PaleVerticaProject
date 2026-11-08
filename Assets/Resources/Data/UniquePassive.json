@@ -64,6 +64,16 @@
             "Id": "Rock",
             "Name": "Rock",
             "Description": "Immune to pushes and impulses."
+        },
+        {
+            "Id": "DoubleAttack",
+            "Name": "Double Attack",
+            "Description": "Every basic attack strikes twice. Basic attacks only."
+        },
+        {
+            "Id": "DoubleSpell",
+            "Name": "Double Spell",
+            "Description": "Level 1 skills cast a second time for free; the second cast deals 60% less damage. Stacks with Echo Spell."
         }
     ]
 }

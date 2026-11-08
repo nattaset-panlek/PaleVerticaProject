@@ -15,447 +15,98 @@ using CoreSystem.Skills.Visuals;
 public partial class GameDataWorkbench : EditorWindow
 {
     #region [Variables/Fields]
-    private static bool _showBasicInfo = true;
-    private static bool _showUniqueSettings = true;
-    private static bool _showStatsTiming = true;
-    private static bool _showVisualsContext = true;
-    private static bool _showVisualPrefabs = true;
-    private static bool _showSkillTags = true;
-    private static bool _showTargeting = true;
-    private static bool _showScalings = true;
-    private static bool _showEffects = true;
-    private static bool _showChainOverrides = true;
-    private static bool _showSupportConditions = true;
-    private static bool _showSupportEffects = true;
+    private bool _skillPreviewHover;
     #endregion
 
     #region [Private Methods]
     private void DrawSkillEditor()
     {
         DrawEditor(_skillData.ActiveSkills, _skillSelectedIndex, (idx) => _skillSelectedIndex = idx, (entry) => {
-            
-            EditorGUILayout.BeginHorizontal();
-            
-            EditorGUILayout.BeginVertical(SectionStyle, GUILayout.Width(350));
-            
-            _showBasicInfo = EditorGUILayout.BeginFoldoutHeaderGroup(_showBasicInfo, "Basic Info");
-            if (_showBasicInfo)
+            if (entry.BaseTargeting == null) entry.BaseTargeting = new BaseTargetingData { Type = "Single", Radius = 2 };
+
+            BeginInspectorColumns();
+            if (BeginGroup("Basic Info", ThemeAccent))
             {
                 entry.SkillID = EditorGUILayout.IntField("Skill ID", entry.SkillID);
                 entry.SkillName = EditorGUILayout.TextField("Name", entry.SkillName);
 
-                EditorGUILayout.Space(5);
-                GUI.color = new Color(1f, 0.9f, 0.6f);
-                MonoScript currentScript = null;
-                if (!string.IsNullOrEmpty(entry.CustomClassName))
-                {
-                    var t = System.Type.GetType(entry.CustomClassName + ", Assembly-CSharp");
-                    if (t != null)
-                    {
-                        var componentNames = AssetDatabase.FindAssets("t:MonoScript " + t.Name);
-                        foreach (var guid in componentNames)
-                        {
-                            var path = AssetDatabase.GUIDToAssetPath(guid);
-                            var script = AssetDatabase.LoadAssetAtPath<MonoScript>(path);
-                            if (script != null && script.GetClass() == t)
-                            {
-                                currentScript = script;
-                                break;
-                            }
-                        }
-                    }
-                }
+                if (!System.Enum.TryParse(entry.SkillElement, out ElementType element)) element = ElementType.Neutral;
+                entry.SkillElement = ((ElementType)EditorGUILayout.EnumPopup("Element", element)).ToString();
 
-                MonoScript newScript = (MonoScript)EditorGUILayout.ObjectField(new GUIContent("Unique Skill Script", "Custom C# script class inheriting from ActiveSkill to override execution logic."), currentScript, typeof(MonoScript), false);
-                if (newScript != currentScript)
-                {
-                    if (newScript != null)
-                    {
-                        System.Type scriptClass = newScript.GetClass();
-                        if (scriptClass != null && typeof(ActiveSkill).IsAssignableFrom(scriptClass))
-                        {
-                            entry.CustomClassName = scriptClass.FullName;
-                        }
-                        else
-                        {
-                            EditorUtility.DisplayDialog("Invalid Script", "The script must inherit from ActiveSkill to be used here.", "OK");
-                            entry.CustomClassName = "";
-                        }
-                    }
-                    else
-                    {
-                        entry.CustomClassName = "";
-                    }
-                }
-                GUI.color = Color.white;
+                if (!System.Enum.TryParse(entry.DamageType, out DamageType damageType)) damageType = DamageType.Physical;
+                entry.DamageType = ((DamageType)EditorGUILayout.EnumPopup("Damage Type", damageType)).ToString();
+
+                EditorGUILayout.LabelField("Description");
+                entry.Description = EditorGUILayout.TextArea(entry.Description ?? string.Empty, EditorStyles.textArea, GUILayout.MinHeight(54f));
+
+                DrawUniqueSkillScriptField(entry);
+
+                EditorGUILayout.Space(4);
+                if (GUILayout.Button("Convert to ScriptableObject", EditorStyles.miniButton))
+                    SkillConverter.ShowConverter(entry);
             }
-            EditorGUILayout.EndFoldoutHeaderGroup();
+            EndGroup();
 
-            if (!string.IsNullOrEmpty(entry.CustomClassName))
-            {
-                System.Type t = System.Type.GetType(entry.CustomClassName + ", Assembly-CSharp");
-                if (t != null)
-                {
-                    _showUniqueSettings = EditorGUILayout.BeginFoldoutHeaderGroup(_showUniqueSettings, "Unique Skill Settings");
-                    if (_showUniqueSettings)
-                    {
-                        EditorGUILayout.BeginVertical(GUI.skin.box);
-                        
-                        if (entry.UniqueFields == null) entry.UniqueFields = new List<UniqueSkillFieldData>();
-                        
-                        var fields = t.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
-                        foreach (var field in fields)
-                        {
-                            var fData = entry.UniqueFields.FirstOrDefault(x => x.FieldName == field.Name);
-                            if (fData == null)
-                            {
-                                fData = new UniqueSkillFieldData { FieldName = field.Name, FieldType = field.FieldType.FullName, StringValue = "" };
-                                entry.UniqueFields.Add(fData);
-                            }
-                            
-                            EditorGUILayout.BeginHorizontal();
-                            EditorGUILayout.LabelField(field.Name, GUILayout.Width(120));
-                            
-                            if (field.FieldType == typeof(float))
-                            {
-                                float.TryParse(fData.StringValue, out float fVal);
-                                fVal = EditorGUILayout.FloatField(fVal);
-                                fData.StringValue = fVal.ToString();
-                            }
-                            else if (field.FieldType == typeof(int))
-                            {
-                                int.TryParse(fData.StringValue, out int iVal);
-                                iVal = EditorGUILayout.IntField(iVal);
-                                fData.StringValue = iVal.ToString();
-                            }
-                            else if (field.FieldType == typeof(string))
-                            {
-                                fData.StringValue = EditorGUILayout.TextField(fData.StringValue);
-                            }
-                            else if (field.FieldType == typeof(bool))
-                            {
-                                bool.TryParse(fData.StringValue, out bool bVal);
-                                bVal = EditorGUILayout.Toggle(bVal);
-                                fData.StringValue = bVal.ToString();
-                            }
-                            else if (field.FieldType == typeof(Vector2))
-                            {
-                                string[] parts = fData.StringValue.Split(',');
-                                Vector2 vVal = Vector2.zero;
-                                if (parts.Length == 2)
-                                {
-                                    float.TryParse(parts[0], out vVal.x);
-                                    float.TryParse(parts[1], out vVal.y);
-                                }
-                                vVal = EditorGUILayout.Vector2Field("", vVal);
-                                fData.StringValue = $"{vVal.x},{vVal.y}";
-                            }
-                            else if (field.FieldType == typeof(Vector3))
-                            {
-                                string[] parts = fData.StringValue.Split(',');
-                                Vector3 vVal = Vector3.zero;
-                                if (parts.Length == 3)
-                                {
-                                    float.TryParse(parts[0], out vVal.x);
-                                    float.TryParse(parts[1], out vVal.y);
-                                    float.TryParse(parts[2], out vVal.z);
-                                }
-                                vVal = EditorGUILayout.Vector3Field("", vVal);
-                                fData.StringValue = $"{vVal.x},{vVal.y},{vVal.z}";
-                            }
-                            else
-                            {
-                                EditorGUILayout.LabelField($"Unsupported Type: {field.FieldType.Name}", EditorStyles.miniLabel);
-                            }
-                            EditorGUILayout.EndHorizontal();
-                        }
-                        EditorGUILayout.EndVertical();
-                    }
-                    EditorGUILayout.EndFoldoutHeaderGroup();
-                    EditorGUILayout.Space(5);
-                }
-            }
-            
-            if (!System.Enum.TryParse(entry.SkillElement, out ElementType element)) element = ElementType.Neutral;
-            entry.SkillElement = ((ElementType)EditorGUILayout.EnumPopup("Element", element)).ToString();
+            DrawUniqueSkillSettings(entry);
 
-            if (!System.Enum.TryParse(entry.DamageType, out DamageType damageType)) damageType = DamageType.Physical;
-            entry.DamageType = ((DamageType)EditorGUILayout.EnumPopup("Damage Type", damageType)).ToString();
-
-            EditorGUILayout.Space();
-            _showStatsTiming = EditorGUILayout.BeginFoldoutHeaderGroup(_showStatsTiming, "Stats & Timing");
-            if (_showStatsTiming)
+            if (BeginGroup("Stats", ThemeAccent))
             {
                 entry.BaseDamage = EditorGUILayout.FloatField("Base Damage", entry.BaseDamage);
                 entry.BaseManaCost = EditorGUILayout.FloatField("Mana Cost", entry.BaseManaCost);
                 entry.IsToggle = EditorGUILayout.Toggle("Is Toggle", entry.IsToggle);
                 entry.BaseProjectileCount = EditorGUILayout.IntField("Projectiles", entry.BaseProjectileCount);
                 entry.BaseAOERadius = EditorGUILayout.FloatField("Base AOE Radius", entry.BaseAOERadius);
-                
+            }
+            EndGroup();
+
+            if (BeginGroup("Cast Timing", ThemeAccent))
+            {
                 entry.BaseVCT = EditorGUILayout.FloatField("Base VCT", entry.BaseVCT);
                 entry.BaseFCT = EditorGUILayout.FloatField("Base FCT", entry.BaseFCT);
                 entry.BaseCastDelay = EditorGUILayout.FloatField("Cast Delay", entry.BaseCastDelay);
                 entry.BaseCooldown = EditorGUILayout.FloatField("Cooldown", entry.BaseCooldown);
             }
-            EditorGUILayout.EndFoldoutHeaderGroup();
+            EndGroup();
 
-            EditorGUILayout.Space();
-            _showVisualsContext = EditorGUILayout.BeginFoldoutHeaderGroup(_showVisualsContext, "Visuals & Context Configuration");
-            if (_showVisualsContext)
-            {
-                EditorGUILayout.BeginVertical(SectionStyle);
-                EditorGUILayout.HelpBox("Drag Sprite from Assets/Addressable/Sprite/Skill/Icon to auto-resolve Addressable Key", MessageType.Info);
-
-                EditorGUILayout.BeginHorizontal();
-                string iconPathToResolve = string.IsNullOrEmpty(entry.IconPath) ? "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png" : entry.IconPath;
-                Sprite currentIcon = ResolveEditorSprite(iconPathToResolve);
-                Sprite newIcon = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Skill Icon", "Sprite loaded from Assets/Addressable/Sprite/Skill/Icon."), currentIcon, typeof(Sprite), false);
-
-                if (newIcon != currentIcon)
-                {
-                    if (newIcon != null)
-                    {
-                        string path = AssetDatabase.GetAssetPath(newIcon);
-                        if (!path.StartsWith("Assets/Addressable/Sprite/Skill/Icon"))
-                        {
-                            EditorUtility.DisplayDialog("Invalid Folder", "Please select a Sprite from Assets/Addressable/Sprite/Skill/Icon", "OK");
-                        }
-                        else
-                        {
-                            entry.IconPath = GetAddressableKey(newIcon);
-                        }
-                    }
-                    else
-                    {
-                        entry.IconPath = "";
-                    }
-                }
-                EditorGUILayout.EndHorizontal();
-
-                EditorGUILayout.BeginHorizontal();
-                entry.IconPath = EditorGUILayout.TextField("Addressable Key", entry.IconPath ?? "");
-                if (GUILayout.Button("Default", GUILayout.Width(60)))
-                {
-                    entry.IconPath = "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png";
-                }
-                EditorGUILayout.EndHorizontal();
-
-                Sprite previewSprite = ResolveEditorSprite(string.IsNullOrEmpty(entry.IconPath) ? "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png" : entry.IconPath);
-                if (previewSprite != null)
-                {
-                    Texture2D preview = AssetPreview.GetAssetPreview(previewSprite) ?? previewSprite.texture;
-                    if (preview != null)
-                    {
-                        EditorGUILayout.Space(5);
-                        Rect r = EditorGUILayout.GetControlRect(false, 64);
-                        r.width = 64;
-                        GUI.DrawTexture(r, preview, ScaleMode.ScaleToFit);
-                    }
-                }
-                else if (!string.IsNullOrEmpty(entry.IconPath))
-                {
-                    EditorGUILayout.HelpBox($"Key '{entry.IconPath}' not found in Addressables or Path", MessageType.Warning);
-                }
-                EditorGUILayout.EndVertical();
-                EditorGUILayout.Space(5);
-
-                if (!System.Enum.TryParse(entry.VisualType, out VisualCategory vCategory)) vCategory = VisualCategory.InstantHit;
-                entry.VisualType = ((VisualCategory)EditorGUILayout.EnumPopup("Visual Type", vCategory)).ToString();
-
-                GameObject castVfxObj = null;
-                if (!string.IsNullOrEmpty(entry.CastVfxPrefabName))
-                {
-                    if (entry.CastVfxPrefabName.StartsWith("Assets/")) castVfxObj = AssetDatabase.LoadAssetAtPath<GameObject>(entry.CastVfxPrefabName);
-                    else castVfxObj = Resources.Load<GameObject>(entry.CastVfxPrefabName);
-                }
-                var newCastVfx = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Cast VFX Prefab", "Played during cast phase of the skill (VCT/FCT)."), castVfxObj, typeof(GameObject), false);
-                if (newCastVfx != castVfxObj) entry.CastVfxPrefabName = newCastVfx == null ? "" : AssetDatabase.GetAssetPath(newCastVfx);
-
-                if (!System.Enum.TryParse(entry.CastVfxSpawnPoint, out VisualAppearance castSpawn)) castSpawn = VisualAppearance.FollowCaster;
-                entry.CastVfxSpawnPoint = ((VisualAppearance)EditorGUILayout.EnumPopup("Cast VFX Spawn Point", castSpawn)).ToString();
-
-                GameObject indicatorObj = null;
-                if (!string.IsNullOrEmpty(entry.SkillIndicatorPrefabName))
-                {
-                    if (entry.SkillIndicatorPrefabName.StartsWith("Assets/")) indicatorObj = AssetDatabase.LoadAssetAtPath<GameObject>(entry.SkillIndicatorPrefabName);
-                    else indicatorObj = Resources.Load<GameObject>(entry.SkillIndicatorPrefabName);
-                }
-                var newIndicator = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Custom Ground Indicator", "Custom ground warning or targeting indicator prefab spawned at the target location during the casting phase."), indicatorObj, typeof(GameObject), false);
-                if (newIndicator != indicatorObj) entry.SkillIndicatorPrefabName = newIndicator == null ? "" : AssetDatabase.GetAssetPath(newIndicator);
-
-                EditorGUILayout.Space(5);
-                _showVisualPrefabs = EditorGUILayout.Foldout(_showVisualPrefabs, "Visual Type Prefabs", true, EditorStyles.foldoutHeader);
-                if (_showVisualPrefabs)
-                {
-                    DrawVfxPrefabField(ref entry.EruptionVfxPrefabName, "Eruption VFX Prefab", "Visual effect prefab spawned at the target location when using the GroundEruption visual category.");
-                    DrawVfxPrefabField(ref entry.ProjectilePrefabName, "Projectile Prefab", "Visual prefab spawned for the Projectile visual category.");
-                    DrawVfxPrefabField(ref entry.ImpactVfxPrefabName, "Impact VFX Prefab", "Visual effect prefab spawned on top of each target when using the InstantHit visual category.");
-                    DrawVfxPrefabField(ref entry.AuraVfxPrefabName, "Aura VFX Prefab", "Visual effect prefab spawned and parented to each target when using the AuraBuff visual category.");
-                    DrawVfxPrefabField(ref entry.BeamVfxPrefabName, "Beam VFX Prefab", "Visual effect prefab utilizing a LineRenderer component, spawned for the RayBeam visual category.");
-                }
-            }
-            EditorGUILayout.EndFoldoutHeaderGroup();
-
-            EditorGUILayout.Space();
-            _showSkillTags = EditorGUILayout.BeginFoldoutHeaderGroup(_showSkillTags, "Skill Tags");
-            if (_showSkillTags)
-            {
-                if (entry.Tags == null) entry.Tags = new List<string>();
-
-                EditorGUILayout.BeginVertical(GUI.skin.box);
-                if (entry.Tags.Count == 0)
-                {
-                    EditorGUILayout.LabelField("No tags assigned.", EditorStyles.miniLabel);
-                }
-                else
-                {
-                    float currentWidth = 0;
-                    float maxWidth = 330;
-                    EditorGUILayout.BeginHorizontal();
-                    for (int i = 0; i < entry.Tags.Count; i++)
-                    {
-                        string tagStr = entry.Tags[i];
-                        GUIContent tagContent = new GUIContent($"{tagStr} x");
-                        Vector2 size = EditorStyles.miniButton.CalcSize(tagContent);
-                        if (currentWidth + size.x > maxWidth)
-                        {
-                            EditorGUILayout.EndHorizontal();
-                            EditorGUILayout.BeginHorizontal();
-                            currentWidth = 0;
-                        }
-                        if (GUILayout.Button(tagContent, EditorStyles.miniButton, GUILayout.Width(size.x)))
-                        {
-                            entry.Tags.RemoveAt(i);
-                            i--;
-                            continue;
-                        }
-                        currentWidth += size.x + 4;
-                    }
-                    EditorGUILayout.EndHorizontal();
-                }
-
-                if (GUILayout.Button("Add Tag", EditorStyles.miniButton))
-                {
-                    GenericMenu menu = new GenericMenu();
-                    var allTags = System.Enum.GetNames(typeof(SkillTag));
-                    foreach (var tag in allTags)
-                    {
-                        if (!entry.Tags.Contains(tag))
-                        {
-                            menu.AddItem(new GUIContent(tag), false, () => {
-                                entry.Tags.Add(tag);
-                            });
-                        }
-                        else
-                        {
-                            menu.AddDisabledItem(new GUIContent(tag));
-                        }
-                    }
-                    menu.ShowAsContext();
-                }
-                EditorGUILayout.EndVertical();
-            }
-            EditorGUILayout.EndFoldoutHeaderGroup();
-
-            EditorGUILayout.Space();
-            _showTargeting = EditorGUILayout.BeginFoldoutHeaderGroup(_showTargeting, "Targeting");
-            if (_showTargeting)
-            {
-                if (entry.BaseTargeting == null) entry.BaseTargeting = new BaseTargetingData { Type = "Single", Radius = 2 };
-                
-                string[] targetingTypes = { "Single", "SingleUnit", "Sphere", "Cone", "Box", "Self", "Line", "TargetLocation" };
-                int typeIdx = Mathf.Max(0, System.Array.IndexOf(targetingTypes, entry.BaseTargeting.Type));
-                entry.BaseTargeting.Type = targetingTypes[EditorGUILayout.Popup("Target Type", typeIdx, targetingTypes)];
-                
-                entry.BaseTargeting.Radius = EditorGUILayout.FloatField("Radius/Range", entry.BaseTargeting.Radius);
-
-                if (entry.BaseTargeting.Type == "Cone")
-                {
-                    entry.BaseTargeting.Angle = EditorGUILayout.Slider("Cone Angle", entry.BaseTargeting.Angle, 0, 360);
-                }
-                else if (entry.BaseTargeting.Type == "Box")
-                {
-                    entry.BaseTargeting.BoxSize = EditorGUILayout.Vector2Field("Box Size", entry.BaseTargeting.BoxSize);
-                    entry.BaseTargeting.Offset = EditorGUILayout.Vector2Field("Offset", entry.BaseTargeting.Offset);
-                }
-                else if (entry.BaseTargeting.Type == "Line")
-                {
-                    entry.BaseTargeting.LineWidth = EditorGUILayout.FloatField("Line Width", entry.BaseTargeting.LineWidth);
-                    EditorGUILayout.LabelField("Line Length (Linked to Stats)", entry.BaseAOERadius.ToString());
-                }
-                else if (entry.BaseTargeting.Type == "SingleUnit")
-                {
-                    entry.BaseTargeting.CastRange = EditorGUILayout.FloatField("Cast Range (Fixed)", entry.BaseTargeting.CastRange);
-                }
-                else if (entry.BaseTargeting.Type == "TargetLocation")
-                {
-                    entry.BaseTargeting.CastRange = EditorGUILayout.FloatField("Cast Range (Fixed)", entry.BaseTargeting.CastRange);
-                    entry.BaseTargeting.Radius = entry.BaseAOERadius;
-                    EditorGUILayout.LabelField("AOE Radius (Linked to Stats)", entry.BaseAOERadius.ToString());
-                }
-            }
-            EditorGUILayout.EndFoldoutHeaderGroup();
-
-            EditorGUILayout.Space();
-            _showScalings = EditorGUILayout.BeginFoldoutHeaderGroup(_showScalings, "Scalings");
-            if (_showScalings)
-            {
-                EditorGUILayout.HelpBox("Formula: (Stat x AttrMult + FlatBonus + LevelMult x Level) x GlobalMult", MessageType.Info);
-                if (entry.Scalings == null) entry.Scalings = new List<OutputScaling>();
-                for (int i = 0; i < entry.Scalings.Count; i++)
-                {
-                    EditorGUILayout.BeginVertical(GUI.skin.box);
-                    var scaling = entry.Scalings[i];
-                    EditorGUILayout.BeginHorizontal();
-                    scaling.TargetField = (PayloadTarget)EditorGUILayout.EnumPopup("Target", scaling.TargetField);
-                    if (GUILayout.Button("X", GUILayout.Width(20))) { entry.Scalings.RemoveAt(i); break; }
-                    EditorGUILayout.EndHorizontal();
-                    EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.PrefixLabel("Scaling Attr");
-                    string currentAttr = scaling.ScalingAttribute.ToString();
-                    Rect rect = GUILayoutUtility.GetRect(new GUIContent(currentAttr), EditorStyles.popup);
-                    if (GUI.Button(rect, new GUIContent(currentAttr), EditorStyles.popup))
-                    {
-                        var dropdown = new GenericAttributeDropdown(_attributeData.Attributes, (selected) => {
-                            scaling.ScalingAttribute = (AttributeType)selected.Id;
-                        });
-                        dropdown.Show(rect);
-                    }
-                    EditorGUILayout.EndHorizontal();
-                    scaling.AttributeMultiplier = EditorGUILayout.FloatField("Attr Mult", scaling.AttributeMultiplier);
-                    scaling.FlatBonus = EditorGUILayout.FloatField("Flat Bonus", scaling.FlatBonus);
-                    scaling.LevelMultiplier = EditorGUILayout.FloatField("Level Mult", scaling.LevelMultiplier);
-                    scaling.GlobalMultiplier = EditorGUILayout.FloatField("Global Mult", scaling.GlobalMultiplier);
-                    EditorGUILayout.EndVertical();
-                }
-                if (GUILayout.Button("Add Scaling")) entry.Scalings.Add(new OutputScaling());
-            }
-            EditorGUILayout.EndFoldoutHeaderGroup();
-
-            EditorGUILayout.Space();
             DrawEffectSection(entry.Effects ?? (entry.Effects = new List<EffectEntry>()), true);
-
-            EditorGUILayout.Space();
             DrawChainOverridesSection(entry);
+            DrawSkillTags(entry);
 
-            EditorGUILayout.Space(20);
-            GUI.color = Color.cyan;
-            if (GUILayout.Button("Convert to ScriptableObject", GUILayout.Height(30)))
-            {
-                SkillConverter.ShowConverter(entry);
-            }
-            GUI.color = Color.white;
-            EditorGUILayout.EndVertical();
+            NextInspectorColumn();
+            DrawSkillTargeting(entry);
+            DrawSkillScalings(entry);
 
-            EditorGUILayout.BeginVertical();
-            DrawSkillPreview(entry);
-            EditorGUILayout.EndVertical();
+            if (BeginGroup("Simulator", ThemeAccent, $"Lv {_simSkillLevel}"))
+                DrawSkillSimulator(entry);
+            EndGroup();
 
-            EditorGUILayout.EndHorizontal();
-        }, (entry) => $"[{entry.SkillID}] {entry.SkillName}", 
+            if (BeginGroup("Skill Graphic Preview", ThemeAccent))
+                DrawSkillPreview(entry);
+            EndGroup();
+
+            DrawSkillVisuals(entry);
+            EndInspectorColumns();
+        },
+        (entry) => {
+            Color elementColor = System.Enum.TryParse(entry.SkillElement, out ElementType el) ? GetElementColor(el) : ThemeMuted;
+            var chips = new List<EntryChip> { new EntryChip(entry.SkillElement ?? "Neutral", elementColor) };
+            if (entry.BaseTargeting != null && !string.IsNullOrEmpty(entry.BaseTargeting.Type)) chips.Add(new EntryChip(entry.BaseTargeting.Type, ThemeAccent));
+            if (entry.IsToggle) chips.Add(new EntryChip("Toggle", ThemeMuted));
+            if (entry.ChainOverrides != null && entry.ChainOverrides.Count > 0) chips.Add(new EntryChip("Chain", ThemeWarn));
+            return new EntryView {
+                Id = entry.SkillID.ToString(),
+                Name = entry.SkillName,
+                Meta = entry.SkillElement,
+                MetaColor = elementColor,
+                Accent = ThemeAccent,
+                Icon = GetCachedSprite(entry.IconPath),
+                Subtitle = entry.DamageType,
+                Chips = chips.ToArray()
+            };
+        },
         () => {
-            var s = new ActiveSkillJsonData { 
-                SkillElement = ElementType.Neutral.ToString(), 
+            var s = new ActiveSkillJsonData {
+                SkillElement = ElementType.Neutral.ToString(),
                 DamageType = DamageType.Physical.ToString(),
                 VisualType = VisualCategory.InstantHit.ToString(),
                 CastVfxSpawnPoint = VisualAppearance.FollowCaster.ToString(),
@@ -465,52 +116,361 @@ public partial class GameDataWorkbench : EditorWindow
             s.BaseTargeting = new BaseTargetingData { Type = "Single", Radius = 2 };
             return s;
         },
-        (rect, entry) => {
-            if (System.Enum.TryParse(entry.SkillElement, out ElementType element)) {
-                 Rect colorRect = new Rect(rect.x + 2, rect.y + 2, 4, rect.height - 4);
-                 EditorGUI.DrawRect(colorRect, GetElementColor(element));
-            }
-            if (entry.ChainOverrides != null && entry.ChainOverrides.Count > 0) {
-                Rect chainBadge = new Rect(rect.xMax - 58, rect.y + 8, 16, 16);
-                EditorGUI.DrawRect(chainBadge, new Color(1f, 0.6f, 0.1f, 0.8f));
-                GUI.Label(chainBadge, "C", new GUIStyle(EditorStyles.miniLabel) { alignment = TextAnchor.MiddleCenter, normal = { textColor = Color.white }, fontStyle = FontStyle.Bold });
-            }
-        },
-        (entry) => {
-            if (_skillElementFilterIndex == 0) return true;
-            return entry.SkillElement == _skillElementFilterNames[_skillElementFilterIndex];
-        },
+        SkillFilter,
         () => {
-            _skillElementFilterIndex = EditorGUILayout.Popup("Element Filter", _skillElementFilterIndex, _skillElementFilterNames);
-            EditorGUILayout.Space(2);
-            if (GUILayout.Button("Convert ALL to ScriptableAssets", GUILayout.Height(28)))
-            {
+            DrawSkillFilters();
+            GUILayout.Space(4);
+            if (GUILayout.Button("Convert ALL to ScriptableAssets", EditorStyles.miniButton))
                 SkillConverter.BatchConvert(_skillData.ActiveSkills);
+        }, sorts: GetSkillSorts());
+    }
+
+    private void DrawUniqueSkillScriptField(ActiveSkillJsonData entry)
+    {
+        MonoScript currentScript = null;
+        if (!string.IsNullOrEmpty(entry.CustomClassName))
+        {
+            var t = System.Type.GetType(entry.CustomClassName + ", Assembly-CSharp");
+            if (t != null)
+            {
+                foreach (var guid in AssetDatabase.FindAssets("t:MonoScript " + t.Name))
+                {
+                    var script = AssetDatabase.LoadAssetAtPath<MonoScript>(AssetDatabase.GUIDToAssetPath(guid));
+                    if (script != null && script.GetClass() == t)
+                    {
+                        currentScript = script;
+                        break;
+                    }
+                }
             }
-            EditorGUILayout.Space(5);
-        });
+        }
+
+        MonoScript newScript = (MonoScript)EditorGUILayout.ObjectField(new GUIContent("Unique Skill Script", "Custom C# script class inheriting from ActiveSkill to override execution logic."), currentScript, typeof(MonoScript), false);
+        if (newScript == currentScript) return;
+        if (newScript == null)
+        {
+            entry.CustomClassName = "";
+            return;
+        }
+        System.Type scriptClass = newScript.GetClass();
+        if (scriptClass != null && typeof(ActiveSkill).IsAssignableFrom(scriptClass))
+        {
+            entry.CustomClassName = scriptClass.FullName;
+        }
+        else
+        {
+            EditorUtility.DisplayDialog("Invalid Script", "The script must inherit from ActiveSkill to be used here.", "OK");
+            entry.CustomClassName = "";
+        }
+    }
+
+    private void DrawUniqueSkillSettings(ActiveSkillJsonData entry)
+    {
+        if (string.IsNullOrEmpty(entry.CustomClassName)) return;
+        System.Type t = System.Type.GetType(entry.CustomClassName + ", Assembly-CSharp");
+        if (t == null) return;
+
+        if (BeginGroup("Unique Skill Settings", ThemeWarn, t.Name))
+        {
+            if (entry.UniqueFields == null) entry.UniqueFields = new List<UniqueSkillFieldData>();
+
+            var fields = t.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.DeclaredOnly);
+            foreach (var field in fields)
+            {
+                var fData = entry.UniqueFields.FirstOrDefault(x => x.FieldName == field.Name);
+                if (fData == null)
+                {
+                    fData = new UniqueSkillFieldData { FieldName = field.Name, FieldType = field.FieldType.FullName, StringValue = "" };
+                    entry.UniqueFields.Add(fData);
+                }
+
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.LabelField(field.Name, GUILayout.Width(120));
+                if (field.FieldType == typeof(float))
+                {
+                    float.TryParse(fData.StringValue, out float fVal);
+                    fData.StringValue = EditorGUILayout.FloatField(fVal).ToString();
+                }
+                else if (field.FieldType == typeof(int))
+                {
+                    int.TryParse(fData.StringValue, out int iVal);
+                    fData.StringValue = EditorGUILayout.IntField(iVal).ToString();
+                }
+                else if (field.FieldType == typeof(string))
+                {
+                    fData.StringValue = EditorGUILayout.TextField(fData.StringValue);
+                }
+                else if (field.FieldType == typeof(bool))
+                {
+                    bool.TryParse(fData.StringValue, out bool bVal);
+                    fData.StringValue = EditorGUILayout.Toggle(bVal).ToString();
+                }
+                else if (field.FieldType == typeof(Vector2))
+                {
+                    string[] parts = fData.StringValue.Split(',');
+                    Vector2 vVal = Vector2.zero;
+                    if (parts.Length == 2)
+                    {
+                        float.TryParse(parts[0], out vVal.x);
+                        float.TryParse(parts[1], out vVal.y);
+                    }
+                    vVal = EditorGUILayout.Vector2Field("", vVal);
+                    fData.StringValue = $"{vVal.x},{vVal.y}";
+                }
+                else if (field.FieldType == typeof(Vector3))
+                {
+                    string[] parts = fData.StringValue.Split(',');
+                    Vector3 vVal = Vector3.zero;
+                    if (parts.Length == 3)
+                    {
+                        float.TryParse(parts[0], out vVal.x);
+                        float.TryParse(parts[1], out vVal.y);
+                        float.TryParse(parts[2], out vVal.z);
+                    }
+                    vVal = EditorGUILayout.Vector3Field("", vVal);
+                    fData.StringValue = $"{vVal.x},{vVal.y},{vVal.z}";
+                }
+                else
+                {
+                    EditorGUILayout.LabelField($"Unsupported Type: {field.FieldType.Name}", EditorStyles.miniLabel);
+                }
+                EditorGUILayout.EndHorizontal();
+            }
+        }
+        EndGroup();
+    }
+
+    private void DrawSkillTags(ActiveSkillJsonData entry)
+    {
+        if (entry.Tags == null) entry.Tags = new List<string>();
+        if (BeginGroup("Skill Tags", ThemeAccent, $"{entry.Tags.Count} tags"))
+        {
+            if (entry.Tags.Count == 0)
+            {
+                EditorGUILayout.LabelField("No tags assigned.", EditorStyles.miniLabel);
+            }
+            else
+            {
+                float currentWidth = 0;
+                float maxWidth = Mathf.Max(200, (_twoColumns ? _columnWidth : position.width - NavigatorWidth - ListPaneWidth - 80) - 40);
+                EditorGUILayout.BeginHorizontal();
+                for (int i = 0; i < entry.Tags.Count; i++)
+                {
+                    GUIContent tagContent = new GUIContent($"{entry.Tags[i]}  x");
+                    Vector2 size = EditorStyles.miniButton.CalcSize(tagContent);
+                    if (currentWidth + size.x > maxWidth)
+                    {
+                        GUILayout.FlexibleSpace();
+                        EditorGUILayout.EndHorizontal();
+                        EditorGUILayout.BeginHorizontal();
+                        currentWidth = 0;
+                    }
+                    if (GUILayout.Button(tagContent, EditorStyles.miniButton, GUILayout.Width(size.x)))
+                    {
+                        entry.Tags.RemoveAt(i);
+                        i--;
+                        continue;
+                    }
+                    currentWidth += size.x + 4;
+                }
+                GUILayout.FlexibleSpace();
+                EditorGUILayout.EndHorizontal();
+            }
+
+            if (GUILayout.Button("Add Tag", EditorStyles.miniButton))
+            {
+                GenericMenu menu = new GenericMenu();
+                foreach (var tag in System.Enum.GetNames(typeof(SkillTag)))
+                {
+                    if (!entry.Tags.Contains(tag)) menu.AddItem(new GUIContent(tag), false, () => { entry.Tags.Add(tag); MarkDirty(); });
+                    else menu.AddDisabledItem(new GUIContent(tag));
+                }
+                menu.ShowAsContext();
+            }
+        }
+        EndGroup();
+    }
+
+    private void DrawSkillTargeting(ActiveSkillJsonData entry)
+    {
+        if (BeginGroup("Targeting", ThemeAccent, entry.BaseTargeting.Type))
+        {
+            string[] targetingTypes = { "Single", "SingleUnit", "Sphere", "Cone", "Box", "Self", "Line", "TargetLocation" };
+            int typeIdx = Mathf.Max(0, System.Array.IndexOf(targetingTypes, entry.BaseTargeting.Type));
+            entry.BaseTargeting.Type = targetingTypes[EditorGUILayout.Popup("Target Type", typeIdx, targetingTypes)];
+            entry.BaseTargeting.Radius = EditorGUILayout.FloatField("Radius/Range", entry.BaseTargeting.Radius);
+
+            if (entry.BaseTargeting.Type == "Cone")
+            {
+                entry.BaseTargeting.Angle = EditorGUILayout.Slider("Cone Angle", entry.BaseTargeting.Angle, 0, 360);
+            }
+            else if (entry.BaseTargeting.Type == "Box")
+            {
+                entry.BaseTargeting.BoxSize = EditorGUILayout.Vector2Field("Box Size", entry.BaseTargeting.BoxSize);
+                entry.BaseTargeting.Offset = EditorGUILayout.Vector2Field("Offset", entry.BaseTargeting.Offset);
+            }
+            else if (entry.BaseTargeting.Type == "Line")
+            {
+                entry.BaseTargeting.LineWidth = EditorGUILayout.FloatField("Line Width", entry.BaseTargeting.LineWidth);
+                EditorGUILayout.LabelField("Line Length (Linked to Stats)", entry.BaseAOERadius.ToString());
+            }
+            else if (entry.BaseTargeting.Type == "SingleUnit")
+            {
+                entry.BaseTargeting.CastRange = EditorGUILayout.FloatField("Cast Range (Fixed)", entry.BaseTargeting.CastRange);
+            }
+            else if (entry.BaseTargeting.Type == "TargetLocation")
+            {
+                entry.BaseTargeting.CastRange = EditorGUILayout.FloatField("Cast Range (Fixed)", entry.BaseTargeting.CastRange);
+                entry.BaseTargeting.Radius = entry.BaseAOERadius;
+                EditorGUILayout.LabelField("AOE Radius (Linked to Stats)", entry.BaseAOERadius.ToString());
+            }
+        }
+        EndGroup();
+    }
+
+    private void DrawSkillScalings(ActiveSkillJsonData entry)
+    {
+        if (entry.Scalings == null) entry.Scalings = new List<OutputScaling>();
+        if (BeginGroup("Scalings", ThemeAccent, $"{entry.Scalings.Count} rows"))
+        {
+            EditorGUILayout.HelpBox("Formula: (Stat x AttrMult + FlatBonus + LevelMult x Level) x GlobalMult", MessageType.None);
+            for (int i = 0; i < entry.Scalings.Count; i++)
+            {
+                var scaling = entry.Scalings[i];
+                EditorGUILayout.BeginVertical(SectionStyle);
+                EditorGUILayout.BeginHorizontal();
+                scaling.TargetField = (PayloadTarget)EditorGUILayout.EnumPopup("Target", scaling.TargetField);
+                bool removed = GUILayout.Button("X", GUILayout.Width(20));
+                EditorGUILayout.EndHorizontal();
+                if (removed)
+                {
+                    entry.Scalings.RemoveAt(i);
+                    MarkDirty();
+                    EditorGUILayout.EndVertical();
+                    break;
+                }
+
+                bool attrExists = _attributeData.Attributes.Any(a => a.Id == (int)scaling.ScalingAttribute);
+                EditorGUILayout.BeginHorizontal();
+                EditorGUILayout.PrefixLabel("Scaling Attr");
+                string currentAttr = attrExists ? scaling.ScalingAttribute.ToString() : $"Attr ID {(int)scaling.ScalingAttribute} (not in Attribute.json)";
+                Rect rect = GUILayoutUtility.GetRect(new GUIContent(currentAttr), EditorStyles.popup);
+                Color prev = GUI.contentColor;
+                if (!attrExists) GUI.contentColor = ThemeWarn;
+                if (GUI.Button(rect, new GUIContent(currentAttr), EditorStyles.popup))
+                {
+                    var dropdown = new GenericAttributeDropdown(_attributeData.Attributes, (selected) => {
+                        scaling.ScalingAttribute = (AttributeType)selected.Id;
+                        MarkDirty();
+                    });
+                    dropdown.Show(rect);
+                }
+                GUI.contentColor = prev;
+                EditorGUILayout.EndHorizontal();
+
+                scaling.AttributeMultiplier = EditorGUILayout.FloatField("Attr Mult", scaling.AttributeMultiplier);
+                scaling.FlatBonus = EditorGUILayout.FloatField("Flat Bonus", scaling.FlatBonus);
+                scaling.LevelMultiplier = EditorGUILayout.FloatField("Level Mult", scaling.LevelMultiplier);
+                scaling.GlobalMultiplier = EditorGUILayout.FloatField("Global Mult", scaling.GlobalMultiplier);
+                EditorGUILayout.EndVertical();
+            }
+            if (GUILayout.Button("Add Scaling")) entry.Scalings.Add(new OutputScaling());
+        }
+        EndGroup();
+    }
+
+    private void DrawSkillVisuals(ActiveSkillJsonData entry)
+    {
+        if (!BeginGroup("Visuals", ThemeAccent))
+        {
+            EndGroup();
+            return;
+        }
+
+        EditorGUILayout.HelpBox("Drag a Sprite from Assets/Addressable/Sprite/Skill/Icon to auto-resolve the Addressable Key.", MessageType.None);
+        string iconPathToResolve = string.IsNullOrEmpty(entry.IconPath) ? "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png" : entry.IconPath;
+        Sprite currentIcon = GetCachedSprite(iconPathToResolve);
+        Sprite newIcon = (Sprite)EditorGUILayout.ObjectField(new GUIContent("Skill Icon", "Sprite loaded from Assets/Addressable/Sprite/Skill/Icon."), currentIcon, typeof(Sprite), false);
+        if (newIcon != currentIcon)
+        {
+            if (newIcon == null)
+            {
+                entry.IconPath = "";
+            }
+            else if (!AssetDatabase.GetAssetPath(newIcon).StartsWith("Assets/Addressable/Sprite/Skill/Icon"))
+            {
+                EditorUtility.DisplayDialog("Invalid Folder", "Please select a Sprite from Assets/Addressable/Sprite/Skill/Icon", "OK");
+            }
+            else
+            {
+                entry.IconPath = GetAddressableKey(newIcon);
+            }
+        }
+
+        EditorGUILayout.BeginHorizontal();
+        entry.IconPath = EditorGUILayout.TextField("Addressable Key", entry.IconPath ?? "");
+        if (GUILayout.Button("Default", GUILayout.Width(60))) entry.IconPath = "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png";
+        EditorGUILayout.EndHorizontal();
+
+        if (GetCachedSprite(string.IsNullOrEmpty(entry.IconPath) ? "Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png" : entry.IconPath) == null && !string.IsNullOrEmpty(entry.IconPath))
+            EditorGUILayout.HelpBox($"Key '{entry.IconPath}' not found in Addressables or Path", MessageType.Warning);
+
+        EditorGUILayout.Space(5);
+        if (!System.Enum.TryParse(entry.VisualType, out VisualCategory vCategory)) vCategory = VisualCategory.InstantHit;
+        entry.VisualType = ((VisualCategory)EditorGUILayout.EnumPopup("Visual Type", vCategory)).ToString();
+
+        DrawVfxPrefabField(ref entry.CastVfxPrefabName, "Cast VFX Prefab", "Played during cast phase of the skill (VCT/FCT).");
+        if (!System.Enum.TryParse(entry.CastVfxSpawnPoint, out VisualAppearance castSpawn)) castSpawn = VisualAppearance.FollowCaster;
+        entry.CastVfxSpawnPoint = ((VisualAppearance)EditorGUILayout.EnumPopup("Cast VFX Spawn Point", castSpawn)).ToString();
+        DrawVfxPrefabField(ref entry.SkillIndicatorPrefabName, "Custom Ground Indicator", "Custom ground warning or targeting indicator prefab spawned at the target location during the casting phase.");
+
+        EditorGUILayout.Space(5);
+        GUILayout.Label("Visual Type Prefabs", EditorStyles.boldLabel);
+        DrawVfxPrefabField(ref entry.EruptionVfxPrefabName, "Eruption VFX Prefab", "Visual effect prefab spawned at the target location when using the GroundEruption visual category.");
+        DrawVfxPrefabField(ref entry.ProjectilePrefabName, "Projectile Prefab", "Visual prefab spawned for the Projectile visual category.");
+        DrawVfxPrefabField(ref entry.ImpactVfxPrefabName, "Impact VFX Prefab", "Visual effect prefab spawned on top of each target when using the InstantHit visual category.");
+        DrawVfxPrefabField(ref entry.AuraVfxPrefabName, "Aura VFX Prefab", "Visual effect prefab spawned and parented to each target when using the AuraBuff visual category.");
+        DrawVfxPrefabField(ref entry.BeamVfxPrefabName, "Beam VFX Prefab", "Visual effect prefab utilizing a LineRenderer component, spawned for the RayBeam visual category.");
+        EndGroup();
     }
 
     private void DrawSupportSkillEditor()
     {
         DrawEditor(_supportSkillData.SupportModifiers, _supportSelectedIndex, (idx) => _supportSelectedIndex = idx, (entry) => {
-            entry.SkillID = EditorGUILayout.IntField("Skill ID", entry.SkillID);
-            entry.ModifierName = EditorGUILayout.TextField("Modifier Name", entry.ModifierName);
-            entry.Description = EditorGUILayout.TextField("Description", entry.Description);
-        }, (entry) => $"[{entry.SkillID}] {entry.ModifierName}", () => new SupportSkillJsonData());
+            BeginInspectorColumns();
+            if (BeginGroup("Basic Info", ThemeAccent))
+            {
+                entry.SkillID = EditorGUILayout.IntField("Skill ID", entry.SkillID);
+                entry.ModifierName = EditorGUILayout.TextField("Modifier Name", entry.ModifierName);
+            }
+            EndGroup();
+            NextInspectorColumn();
+            if (BeginGroup("Description", ThemeAccent))
+            {
+                entry.Description = EditorGUILayout.TextArea(entry.Description ?? string.Empty, EditorStyles.textArea, GUILayout.MinHeight(54f));
+                EditorGUILayout.LabelField("{0}, {1} are filled with the modifier values at runtime.", MutedStyle);
+            }
+            EndGroup();
+            EndInspectorColumns();
+        },
+        (entry) => new EntryView {
+            Id = entry.SkillID.ToString(),
+            Name = entry.ModifierName,
+            Accent = ThemeAccent,
+            Icon = GetCachedSprite(entry.IconPath),
+            Subtitle = "Support Modifier"
+        },
+        () => new SupportSkillJsonData(),
+        SupportFilter, DrawSupportFilters, sorts: GetSupportSorts(), columns: GetSupportColumns());
     }
 
     private void DrawChainOverridesSection(ActiveSkillJsonData entry)
     {
-        _showChainOverrides = EditorGUILayout.BeginFoldoutHeaderGroup(_showChainOverrides, "Skill Chain & Combo Overrides");
-        if (_showChainOverrides)
+        if (entry.ChainOverrides == null) entry.ChainOverrides = new List<SkillChainOverrideJsonData>();
+        if (BeginGroup("Skill Chain & Combo Overrides", ThemeWarn, $"{entry.ChainOverrides.Count} overrides"))
         {
-            if (entry.ChainOverrides == null) entry.ChainOverrides = new List<SkillChainOverrideJsonData>();
-
             if (entry.ChainOverrides.Count == 0)
-            {
                 EditorGUILayout.HelpBox("No chain overrides. Add one to enable combo/mutation for this skill.", MessageType.None);
-            }
 
             for (int i = 0; i < entry.ChainOverrides.Count; i++)
             {
@@ -518,12 +478,17 @@ public partial class GameDataWorkbench : EditorWindow
                 EditorGUILayout.BeginVertical(SectionStyle);
 
                 EditorGUILayout.BeginHorizontal();
-                GUI.color = new Color(1f, 0.7f, 0.2f);
                 EditorGUILayout.LabelField($"Chain Override [{i}]", EditorStyles.boldLabel);
-                GUI.color = Color.white;
                 GUILayout.FlexibleSpace();
-                if (GUILayout.Button("X", GUILayout.Width(22))) { entry.ChainOverrides.RemoveAt(i); break; }
+                bool removed = GUILayout.Button("X", GUILayout.Width(22));
                 EditorGUILayout.EndHorizontal();
+                if (removed)
+                {
+                    entry.ChainOverrides.RemoveAt(i);
+                    MarkDirty();
+                    EditorGUILayout.EndVertical();
+                    break;
+                }
 
                 chain.RequiredBuffCode = EditorGUILayout.TextField(
                     new GUIContent("Required Buff Code", "Code of the TemporaryBuff that must be active on the caster to trigger this override."),
@@ -533,19 +498,17 @@ public partial class GameDataWorkbench : EditorWindow
                 chain.ReplacementSkillID = EditorGUILayout.IntField(
                     new GUIContent("Replacement Skill ID", "The SkillID of the ActiveSkill that replaces this one when the buff is active."),
                     chain.ReplacementSkillID);
-                
                 var replacementSkill = _skillData.ActiveSkills.FirstOrDefault(s => s.SkillID == chain.ReplacementSkillID);
                 if (replacementSkill != null)
                 {
-                    GUI.color = new Color(0.6f, 1f, 0.6f);
                     EditorGUILayout.LabelField(replacementSkill.SkillName, EditorStyles.miniLabel, GUILayout.Width(120));
-                    GUI.color = Color.white;
                 }
                 else if (chain.ReplacementSkillID > 0)
                 {
-                    GUI.color = Color.red;
+                    Color prev = GUI.contentColor;
+                    GUI.contentColor = ThemeError;
                     EditorGUILayout.LabelField("NOT FOUND", EditorStyles.miniLabel, GUILayout.Width(80));
-                    GUI.color = Color.white;
+                    GUI.contentColor = prev;
                 }
                 EditorGUILayout.EndHorizontal();
 
@@ -564,14 +527,10 @@ public partial class GameDataWorkbench : EditorWindow
                 EditorGUILayout.EndVertical();
             }
 
-            GUI.backgroundColor = new Color(1f, 0.7f, 0.2f);
             if (GUILayout.Button("Add Chain Override"))
-            {
                 entry.ChainOverrides.Add(new SkillChainOverrideJsonData { ConsumeBuffOnCast = true, HintColorHex = "#FFFFFFFF" });
-            }
-            GUI.backgroundColor = Color.white;
         }
-        EditorGUILayout.EndFoldoutHeaderGroup();
+        EndGroup();
     }
 
     private void DrawSkillEffectFields(EffectEntry effect)
@@ -582,6 +541,14 @@ public partial class GameDataWorkbench : EditorWindow
         effect.ApplyOnce = EditorGUILayout.Toggle("Apply Once per Cast", effect.ApplyOnce);
 
         EditorGUILayout.Space(3);
+
+        if (effect.EffectType == "SprintEffect")
+        {
+            effect.Value = EditorGUILayout.FloatField(new GUIContent("Sprint Bonus %", "Move speed bonus at full sprint. Jog is half of it, then it fades back to walking."), effect.Value);
+            effect.Duration = EditorGUILayout.FloatField(new GUIContent("Duration (s)", "Sprint 40%, ease to jog 10%, jog 30%, fade to walk 20% of this time."), effect.Duration);
+            effect.BuffName = EditorGUILayout.TextField("Buff Name", effect.BuffName);
+            effect.BuffCode = EditorGUILayout.TextField("Buff Code", effect.BuffCode);
+        }
 
         if (effect.EffectType == "ApplyBuffEffect" || effect.EffectType == "ApplyTemporaryBuffEffect" || effect.EffectType == "HealEffect")
         {
@@ -639,6 +606,14 @@ public partial class GameDataWorkbench : EditorWindow
                 if (effect.UseLerp) effect.LerpDuration = EditorGUILayout.FloatField("Duration", effect.LerpDuration);
             }
         }
+        else if (effect.EffectType == "SpawnProjectileEffect")
+        {
+            var go = string.IsNullOrEmpty(effect.PrefabPath) ? null : AssetDatabase.LoadAssetAtPath<GameObject>(effect.PrefabPath);
+            var newGo = (GameObject)EditorGUILayout.ObjectField(new GUIContent("Projectile Prefab", "Prefab with a ProjectileBehaviour; it carries the skill's DamageEffect to whatever it hits."), go, typeof(GameObject), false);
+            if (newGo != go) effect.PrefabPath = newGo != null ? AssetDatabase.GetAssetPath(newGo) : "";
+            effect.ApplyOnce = true;
+            EditorGUILayout.HelpBox("Spawns BaseProjectileCount projectiles once per cast toward the aim point. Use Self targeting.", MessageType.None);
+        }
         else if (effect.EffectType == "SummonObjectEffect")
         {
             var go = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/" + effect.PrefabPath + ".prefab");
@@ -679,96 +654,80 @@ public partial class GameDataWorkbench : EditorWindow
 
     private void DrawSkillPreview(ActiveSkillJsonData skill)
     {
-        EditorGUILayout.BeginVertical(SectionStyle);
         EditorGUILayout.BeginHorizontal();
-        GUILayout.Label("Skill Graphic Preview", EditorStyles.boldLabel);
+        GUILayout.Label("Drag to pan, scroll to zoom. Caster is at the center.", MutedStyle);
         GUILayout.FlexibleSpace();
-        _previewZoom = EditorGUILayout.Slider("Zoom", _previewZoom, 5, 200, GUILayout.Width(150));
+        _previewZoom = EditorGUILayout.Slider(_previewZoom, 5, 200, GUILayout.Width(150));
         EditorGUILayout.EndHorizontal();
 
-        Rect previewRect = GUILayoutUtility.GetRect(0, 450, GUILayout.ExpandWidth(true));
-        GUI.Box(previewRect, "", EditorStyles.helpBox);
-        
-        if (Event.current.type == EventType.Repaint || Event.current.type == EventType.MouseMove)
+        Rect previewRect = GUILayoutUtility.GetRect(0, 260, GUILayout.ExpandWidth(true));
+        EditorGUI.DrawRect(previewRect, ThemeField);
+        Event e = Event.current;
+        bool inside = previewRect.Contains(e.mousePosition);
+
+        if (e.type == EventType.MouseMove && inside)
+        {
+            _previewTargetPoint = e.mousePosition - previewRect.position;
+            _skillPreviewHover = true;
+        }
+        else if (e.type == EventType.MouseMove && _skillPreviewHover)
+        {
+            _skillPreviewHover = false;
+        }
+
+        if (e.type == EventType.Repaint)
         {
             GUI.BeginGroup(previewRect);
-            
-            Vector2 mousePos = Event.current.mousePosition;
-            if (mousePos.x >= 0 && mousePos.x <= previewRect.width && mousePos.y >= 0 && mousePos.y <= previewRect.height)
-            {
-                _previewTargetPoint = mousePos;
-            }
-
             Rect localRect = new Rect(0, 0, previewRect.width, previewRect.height);
             DrawGrid(localRect, _previewZoom);
             DrawTargetingGraphics(localRect, skill, _previewZoom);
             GUI.EndGroup();
+        }
 
+        if (e.type == EventType.MouseDrag && inside)
+        {
+            _previewOffset += e.delta;
+            e.Use();
             Repaint();
         }
 
-        if (Event.current.type == EventType.MouseDrag && previewRect.Contains(Event.current.mousePosition))
+        if (e.type == EventType.ScrollWheel && inside)
         {
-            _previewOffset += Event.current.delta;
+            _previewZoom = Mathf.Clamp(_previewZoom - e.delta.y, 5, 200);
+            e.Use();
             Repaint();
         }
-        
-        if (previewRect.Contains(Event.current.mousePosition) && Event.current.type == EventType.ScrollWheel)
-        {
-            _previewZoom = Mathf.Clamp(_previewZoom - Event.current.delta.y, 5, 200);
-            Event.current.Use();
-        }
-
-        EditorGUILayout.HelpBox("Drag in preview to move view. Scroll to zoom. Caster is at Center.", MessageType.None);
-        
-        EditorGUILayout.Space(10);
-        DrawSkillSimulator(skill);
-
-        EditorGUILayout.EndVertical();
     }
 
     private void DrawSkillSimulator(ActiveSkillJsonData skill)
     {
-        _showSimulator = EditorGUILayout.BeginFoldoutHeaderGroup(_showSimulator, "Skill Calculator / Simulator");
-        if (_showSimulator)
-        {
-            EditorGUILayout.BeginVertical(GUI.skin.box);
-            EditorGUILayout.LabelField("Simulation Stats", EditorStyles.boldLabel);
-            
-            _simSkillLevel = EditorGUILayout.IntSlider("Skill Level", _simSkillLevel, 1, 10);
-            
-            HashSet<int> usedAttrs = new HashSet<int>();
-            if (skill.Scalings != null)
-            {
-                foreach (var s in skill.Scalings)
-                    if (s.ScalingAttribute > 0) usedAttrs.Add((int)s.ScalingAttribute);
-            }
+        _simSkillLevel = EditorGUILayout.IntSlider("Skill Level", _simSkillLevel, 1, 10);
 
+        HashSet<int> usedAttrs = new HashSet<int>();
+        if (skill.Scalings != null)
+            foreach (var s in skill.Scalings)
+                if (s.ScalingAttribute > 0) usedAttrs.Add((int)s.ScalingAttribute);
+
+        if (usedAttrs.Count > 0)
+        {
+            EditorGUILayout.Space(4);
+            GUILayout.Label("Simulation Stats", EditorStyles.boldLabel);
             foreach (int attrId in usedAttrs)
             {
                 var attr = _attributeData.Attributes.FirstOrDefault(a => a.Id == attrId);
                 string label = attr != null ? $"{attr.FullName} ({attrId})" : $"Attr {attrId}";
-                
                 if (!_mockStats.ContainsKey(attrId)) _mockStats[attrId] = 0;
                 _mockStats[attrId] = EditorGUILayout.IntField(label, _mockStats[attrId]);
             }
-
-            EditorGUILayout.Space(10);
-            EditorGUILayout.LabelField("Calculated Results", EditorStyles.boldLabel);
-            GUI.enabled = false;
-
-            float finalDamage = CalculateSimulatedValue(skill, PayloadTarget.BaseDamage, skill.BaseDamage, _simSkillLevel);
-            float finalAOE = CalculateSimulatedValue(skill, PayloadTarget.AOERadius, skill.BaseAOERadius, _simSkillLevel);
-            float finalVCT = CalculateSimulatedValue(skill, PayloadTarget.VCT, skill.BaseVCT, _simSkillLevel);
-
-            EditorGUILayout.FloatField("Final Base Damage", finalDamage);
-            EditorGUILayout.FloatField("Final AOE Radius", finalAOE);
-            EditorGUILayout.FloatField("Final Cast Time", finalVCT);
-            
-            GUI.enabled = true;
-            EditorGUILayout.EndVertical();
         }
-        EditorGUILayout.EndFoldoutHeaderGroup();
+
+        float finalDamage = CalculateSimulatedValue(skill, PayloadTarget.BaseDamage, skill.BaseDamage, _simSkillLevel);
+        float finalAOE = CalculateSimulatedValue(skill, PayloadTarget.AOERadius, skill.BaseAOERadius, _simSkillLevel);
+        float finalVCT = CalculateSimulatedValue(skill, PayloadTarget.VCT, skill.BaseVCT, _simSkillLevel);
+
+        EditorGUILayout.Space(6);
+        GUILayout.Label("Calculated Results", EditorStyles.boldLabel);
+        DrawStatTiles(("Final Base Damage", finalDamage.ToString("0.##")), ("Final Cast Time", finalVCT.ToString("0.##") + " s"), ("Final AOE Radius", finalAOE.ToString("0.##")));
     }
 
     private float CalculateSimulatedValue(ActiveSkillJsonData skill, PayloadTarget target, float baseVal, int level)
@@ -938,14 +897,14 @@ public partial class GameDataWorkbench : EditorWindow
     {
         switch (element)
         {
-            case ElementType.Fire: return Color.red;
-            case ElementType.Water: return Color.blue;
-            case ElementType.Earth: return new Color(0.4f, 0.2f, 0);
-            case ElementType.Electric: return Color.yellow;
-            case ElementType.Holy: return Color.white;
-            case ElementType.Ghost: return new Color(0.5f, 0, 0.5f);
-            case ElementType.Neutral: return Color.gray;
-            default: return Color.white;
+            case ElementType.Fire: return Hex(0xFF7A45);
+            case ElementType.Water: return Hex(0x5AB4FF);
+            case ElementType.Earth: return Hex(0xC49A5A);
+            case ElementType.Electric: return Hex(0xFFD84D);
+            case ElementType.Holy: return Hex(0xF2E08C);
+            case ElementType.Ghost: return Hex(0xA58CFF);
+            case ElementType.Neutral: return Hex(0xB8BCC4);
+            default: return ThemeMuted;
         }
     }
 

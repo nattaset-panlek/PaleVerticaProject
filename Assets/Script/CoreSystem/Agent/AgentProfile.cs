@@ -47,10 +47,12 @@ namespace CoreSystem.Agent
         public float AISkillCooldown = 1.5f;
 
         [Header("Pathfinding")]
-        [Tooltip("Enable A* pathfinding. Requires a PathfinderGrid in the scene.")]
+        [Tooltip("Enable A* pathfinding over the MapLab walkable grid. Requires a WalkableGridManager in the scene; without one the agent walks straight.")]
         public bool UsePathfinding = true;
         [Tooltip("How often (seconds) to re-request a new path.")]
         public float PathRefreshRate = 0.5f;
+
+        [System.NonSerialized] public Transform HomeAnchor;
         #endregion
 
         #region [Properties]

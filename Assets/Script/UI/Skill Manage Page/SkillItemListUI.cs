@@ -244,63 +244,38 @@ namespace CoreSystem.UI.SkillManagePage
 
             if (_dpsText != null)
             {
-                float dps = CalculateDPS60Sec();
-                _dpsText.text = $"dps {dps:#,##0}";
+                _dpsText.text = $"dmg {CalculateDamagePerOutput():#,##0}";
             }
         }
 
-        private float CalculateDPS60Sec()
+        private float CalculateDamagePerOutput()
         {
             if (_skillInstance == null || _skillInstance.SkillData == null || _player == null) return 0f;
 
             SkillPayload payload = _player.skillCaster.BuildPayload(_skillInstance);
             if (payload == null) return 0f;
 
-            float basePower = payload.BaseDamage;
+            float damage = payload.BaseDamage;
             if (_player.attributeSystem != null)
             {
                 var stats = _player.attributeSystem;
                 if (payload.DamageType == DamageType.Physical)
                 {
-                    basePower += stats.GetAttribute(AttributeType.ATK).CurrentValue;
-                    basePower += stats.GetAttribute(AttributeType.WeaponATK).CurrentValue;
+                    damage += stats.GetAttribute(AttributeType.ATK).CurrentValue;
+                    damage += stats.GetAttribute(AttributeType.WeaponATK).CurrentValue;
                 }
                 else
                 {
-                    basePower += stats.GetAttribute(AttributeType.MATK).CurrentValue;
-                    basePower += stats.GetAttribute(AttributeType.WeaponMATK).CurrentValue;
+                    damage += stats.GetAttribute(AttributeType.MATK).CurrentValue;
+                    damage += stats.GetAttribute(AttributeType.WeaponMATK).CurrentValue;
                 }
 
                 float critRate = Mathf.Clamp(stats.GetAttribute(AttributeType.CriticalRate), 0f, 100f);
                 float critBonus = stats.GetAttribute(AttributeType.CriticalDamage);
-                float critMultiplier = 1f + (critRate / 100f) * (0.5f + critBonus);
-                basePower *= critMultiplier;
+                damage *= 1f + (critRate / 100f) * (0.5f + critBonus);
             }
 
-            int hits = Mathf.Max(1, payload.ProjectileCount);
-            float damagePerCast = basePower * hits;
-
-            if (_skillInstance.SkillData.IsContinuousArea)
-            {
-                float tickRate = Mathf.Max(0.1f, _skillInstance.SkillData.AreaTickRate);
-                float ticksPerSec = 1f / tickRate;
-                return damagePerCast * ticksPerSec;
-            }
-            else if (_skillInstance.SkillData.IsToggle)
-            {
-                return damagePerCast;
-            }
-            else
-            {
-                float castTime = payload.TotalCastTime;
-                float cooldown = payload.Cooldown;
-                float delay = payload.CastDelay;
-                float cycleTime = Mathf.Max(0.1f, castTime + Mathf.Max(cooldown, delay));
-
-                float castsIn60Sec = 60f / cycleTime;
-                float totalDamage60Sec = damagePerCast * castsIn60Sec;
-                return totalDamage60Sec / 60f;
-            }
+            return damage * payload.DamageMultiplier;
         }
         #endregion
     }

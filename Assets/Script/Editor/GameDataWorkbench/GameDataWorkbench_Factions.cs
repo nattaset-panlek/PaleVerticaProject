@@ -6,34 +6,47 @@ using CoreSystem.Data;
 
 public partial class GameDataWorkbench : EditorWindow
 {
-    private static bool _showFactionBasic = true;
-    private int _factionSelectedIndex = -1;
+    #region [Variables/Fields]
+    [SerializeField] private int _factionSelectedIndex = -1;
+    #endregion
 
+    #region [Private Methods]
     private void DrawFactionEditor()
     {
         if (_factionData == null) _factionData = new FactionList { Factions = new List<FactionEntry>() };
 
         DrawEditor(_factionData.Factions, _factionSelectedIndex, (idx) => _factionSelectedIndex = idx, (entry) => {
-            _showFactionBasic = EditorGUILayout.Foldout(_showFactionBasic, "Faction Info", true, EditorStyles.foldoutHeader);
-            if (_showFactionBasic)
+            BeginInspectorColumns();
+            if (BeginGroup("Faction Info", ThemeAccent))
             {
-                EditorGUILayout.BeginVertical(SectionStyle);
                 entry.Id = EditorGUILayout.IntField("ID", entry.Id);
                 entry.Name = EditorGUILayout.TextField("Name", entry.Name);
-                
-                EditorGUILayout.Space(10);
-                EditorGUILayout.LabelField("Positive (Allies)", EditorStyles.boldLabel);
-                DrawFactionListEditor(entry.Positive);
-
-                EditorGUILayout.Space(10);
-                EditorGUILayout.LabelField("Negative (Hostiles)", EditorStyles.boldLabel);
-                DrawFactionListEditor(entry.Negative);
-
-                EditorGUILayout.EndVertical();
             }
-        }, (entry) => $"[{entry.Id}] {entry.Name}", 
+            EndGroup();
+            NextInspectorColumn();
+            if (BeginGroup("Positive (Allies)", ThemeOk, $"{entry.Positive?.Count ?? 0} links"))
+            {
+                if (entry.Positive == null) entry.Positive = new List<int>();
+                DrawFactionListEditor(entry.Positive);
+            }
+            EndGroup();
+            if (BeginGroup("Negative (Hostiles)", ThemeError, $"{entry.Negative?.Count ?? 0} links"))
+            {
+                if (entry.Negative == null) entry.Negative = new List<int>();
+                DrawFactionListEditor(entry.Negative);
+            }
+            EndGroup();
+            EndInspectorColumns();
+        }, (entry) => new EntryView {
+            Id = entry.Id.ToString(),
+            Name = entry.Name,
+            Meta = $"+{entry.Positive?.Count ?? 0} / -{entry.Negative?.Count ?? 0}",
+            MetaColor = ThemeMuted,
+            Accent = ThemeAccent,
+            Subtitle = "Faction"
+        },
         () => new FactionEntry { Id = _factionData.Factions.Count > 0 ? _factionData.Factions.Max(x => x.Id) + 1 : 1, Name = "New Faction", Positive = new List<int>(), Negative = new List<int>() },
-        drawIcon: null, filter: null, drawHeader: null, canModify: (entry) => entry.Id > 3);
+        filter: FactionFilter, drawHeader: DrawFactionFilters, canModify: (entry) => entry.Id > 3, sorts: GetFactionSorts(), columns: GetFactionColumns());
     }
 
     private void DrawFactionListEditor(List<int> factionList)
@@ -43,45 +56,33 @@ public partial class GameDataWorkbench : EditorWindow
         for (int i = 0; i < factionList.Count; i++)
         {
             EditorGUILayout.BeginHorizontal();
-            
-            string currentFactionName = "None";
-            if (factionList[i] > 0)
-            {
-                var f = _factionData?.Factions?.Find(x => x.Id == factionList[i]);
-                if (f != null) currentFactionName = $"[{f.Id}] {f.Name}";
-            }
-
-            if (GUILayout.Button(currentFactionName, EditorStyles.popup))
+            if (GUILayout.Button(GetFactionLabel(factionList[i]), EditorStyles.popup))
             {
                 GenericMenu menu = new GenericMenu();
-                menu.AddItem(new GUIContent("None"), factionList[i] == 0, () => { factionList[i] = 0; });
-                
-                if (_factionData != null && _factionData.Factions != null)
+                int captureIndex = i;
+                menu.AddItem(new GUIContent("None"), factionList[captureIndex] == 0, () => { factionList[captureIndex] = 0; MarkDirty(); });
+                foreach (var f in _factionData.Factions)
                 {
-                    foreach (var f in _factionData.Factions)
-                    {
-                        int fid = f.Id;
-                        int captureIndex = i;
-                        menu.AddItem(new GUIContent($"[{f.Id}] {f.Name}"), factionList[captureIndex] == fid, () => { factionList[captureIndex] = fid; });
-                    }
+                    int fid = f.Id;
+                    menu.AddItem(new GUIContent($"[{f.Id}] {f.Name}"), factionList[captureIndex] == fid, () => { factionList[captureIndex] = fid; MarkDirty(); });
                 }
                 menu.ShowAsContext();
             }
-
-            if (GUILayout.Button("X", GUILayout.Width(25)))
+            if (GUILayout.Button("X", GUILayout.Width(24)))
             {
                 factionList.RemoveAt(i);
+                MarkDirty();
+                EditorGUILayout.EndHorizontal();
                 break;
             }
             EditorGUILayout.EndHorizontal();
         }
 
-        EditorGUILayout.BeginHorizontal();
-        GUILayout.Space(EditorGUIUtility.labelWidth);
-        if (GUILayout.Button("+ Add Faction Link", GUILayout.Width(150)))
+        if (GUILayout.Button("+ Add Faction Link", EditorStyles.miniButton, GUILayout.Width(140)))
         {
             factionList.Add(0);
+            MarkDirty();
         }
-        EditorGUILayout.EndHorizontal();
     }
+    #endregion
 }

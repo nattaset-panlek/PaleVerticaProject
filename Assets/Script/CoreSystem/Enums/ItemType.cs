@@ -10,6 +10,7 @@ namespace CoreSystem
         SkillRune,
         SupportRune,
         Costume,
-        Additional
+        Additional,
+        Progression
     }
 }

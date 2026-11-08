@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CoreSystem.Combat;
 using CoreSystem.Entity;
 using CoreSystem.Enums;
 using CoreSystem.Pathfinding;
@@ -13,6 +14,8 @@ namespace CoreSystem.Agent
         #region [Variables/Fields]
         private const float DecisionTickRate = 0.2f;
         private const float DeathDestroyDelay = 5f;
+        private const int RoamAttempts = 6;
+        private const float RepathDistance = 1f;
 
         private readonly AgentCore _core;
         private readonly Character _character;
@@ -35,9 +38,12 @@ namespace CoreSystem.Agent
         private Vector3 _commandMoveDestination;
         private Transform _commandFollowTarget;
 
-        private List<Vector2> _currentPath;
+        private List<Vector2> _currentPath = new List<Vector2>();
+        private List<Vector2> _nextPath = new List<Vector2>();
         private int _pathIndex;
         private float _nextPathTime;
+        private PathOutcome _pathOutcome = PathOutcome.NoGrid;
+        private Vector2 _pathGoal;
         #endregion
 
         #region [Properties]
@@ -61,6 +67,7 @@ namespace CoreSystem.Agent
         public IReadOnlyList<Vector2> CurrentPath => _currentPath;
         public int PathIndex => _pathIndex;
         private Vector3 Position => _character.transform.position;
+        private bool StoppedShort => _profile.UsePathfinding && _pathIndex >= _currentPath.Count && (_pathOutcome == PathOutcome.StopsShort || _pathOutcome == PathOutcome.NoRoute);
         #endregion
 
         #region [Public Methods]
@@ -102,6 +109,8 @@ namespace CoreSystem.Agent
             }
 
             if (!HasControl) return;
+
+            if (_profile.HomeAnchor != null) _homePosition = _profile.HomeAnchor.position;
 
             switch (_currentState)
             {
@@ -145,12 +154,14 @@ namespace CoreSystem.Agent
         public void SetCommandMove(Vector3 destination)
         {
             _commandMoveDestination = destination;
+            InvalidatePath();
             SetState(AIState.CommandMove);
         }
 
         public void SetCommandFollow(Transform target)
         {
             _commandFollowTarget = target;
+            InvalidatePath();
             SetState(AIState.CommandFollow);
         }
 
@@ -209,6 +220,14 @@ namespace CoreSystem.Agent
             Think();
         }
 
+        public void InvalidatePath()
+        {
+            _currentPath.Clear();
+            _pathIndex = 0;
+            _nextPathTime = 0f;
+            _pathOutcome = PathOutcome.NoGrid;
+        }
+
         public static void SyncEquippedSkills(Character character, AgentProfile profile)
         {
             if (character == null || character.skillCaster == null) return;
@@ -253,7 +272,8 @@ namespace CoreSystem.Agent
             else
             {
                 float dist = Vector3.Distance(Position, _target.position);
-                if (dist > _profile.LoseSightRadius || !IsTargetAliveAndValid(_target))
+                bool leashBroken = _profile.HomeAnchor != null && Vector3.Distance(_homePosition, _target.position) > _profile.LoseSightRadius;
+                if (dist > _profile.LoseSightRadius || leashBroken || !IsTargetAliveAndValid(_target))
                 {
                     _target = null;
                     SetState(AIState.Idle);
@@ -274,7 +294,7 @@ namespace CoreSystem.Agent
             {
                 var c = col.GetComponent<Character>();
                 if (c == null || c == _character) continue;
-                if (!CoreSystem.Data.FactionDatabase.IsHostile(_character.Faction, c.Faction)) continue;
+                if (!TeamRegistry.IsHostile(_character, c)) continue;
 
                 float d = Vector3.Distance(Position, c.transform.position);
                 if (d < closestDist) { closest = c.transform; closestDist = d; }
@@ -299,7 +319,7 @@ namespace CoreSystem.Agent
             else
             {
                 NavigateTo(_roamDestination);
-                bool arrived = Vector3.Distance(Position, _roamDestination) < 0.5f;
+                bool arrived = Vector3.Distance(Position, _roamDestination) < 0.5f || StoppedShort;
                 bool timeout = _stateTimer > 8f;
                 if (arrived || timeout) SetState(AIState.Idle);
             }
@@ -332,7 +352,10 @@ namespace CoreSystem.Agent
                 if (targetEntity != null)
                 {
                     _character.Control.CommandBasicAttack(targetEntity, _core);
-                    _character.Presenter.PlayAttack();
+                    float aspd = _character.attributeSystem != null 
+                        ? _character.attributeSystem.GetAttribute(AttributeType.ASPD).CurrentValue 
+                        : BasicAttackFormula.BaseAspd;
+                    _character.Presenter.PlayAttack(BasicAttackFormula.AttacksPerSecond(aspd));
                 }
             }
         }
@@ -350,7 +373,7 @@ namespace CoreSystem.Agent
         private void UpdateCommandMove()
         {
             NavigateTo(_commandMoveDestination);
-            if (Vector3.Distance(Position, _commandMoveDestination) < 0.5f) SetState(AIState.Idle);
+            if (Vector3.Distance(Position, _commandMoveDestination) < 0.5f || StoppedShort) SetState(AIState.Idle);
         }
 
         private void UpdateCommandFollow()
@@ -396,20 +419,16 @@ namespace CoreSystem.Agent
 
         private void NavigateTo(Vector3 dest)
         {
-            if (_profile.UsePathfinding && PathfinderGrid.Instance != null)
+            if (_profile.UsePathfinding)
             {
-                if (Time.time >= _nextPathTime)
+                bool goalMoved = ((Vector2)dest - _pathGoal).sqrMagnitude > RepathDistance * RepathDistance;
+                if (Time.time >= _nextPathTime || (_pathIndex >= _currentPath.Count && goalMoved))
                 {
                     _nextPathTime = Time.time + _profile.PathRefreshRate;
-                    var path = Pathfinder2D.FindPath(Position, dest);
-                    if (path != null && path.Count > 0)
-                    {
-                        _currentPath = path;
-                        _pathIndex = 0;
-                    }
+                    RefreshPath(dest);
                 }
 
-                if (_currentPath != null && _pathIndex < _currentPath.Count)
+                if (_pathIndex < _currentPath.Count)
                 {
                     Vector3 waypoint = _currentPath[_pathIndex];
                     if (Vector2.Distance(Position, waypoint) < 0.45f) _pathIndex++;
@@ -420,9 +439,24 @@ namespace CoreSystem.Agent
                         return;
                     }
                 }
+
+                if (_pathOutcome == PathOutcome.StopsShort || _pathOutcome == PathOutcome.NoRoute)
+                {
+                    StopMovement();
+                    return;
+                }
             }
 
             MoveTowardsLocation(dest);
+        }
+
+        private void RefreshPath(Vector3 dest)
+        {
+            _pathGoal = dest;
+            _pathOutcome = _core.FindPath(Position, dest, _nextPath);
+            if (GridPathFormula.Found(_pathOutcome)) (_currentPath, _nextPath) = (_nextPath, _currentPath);
+            else _currentPath.Clear();
+            _pathIndex = 0;
         }
 
         private void MoveTowardsLocation(Vector3 dest)
@@ -519,12 +553,19 @@ namespace CoreSystem.Agent
             if (_currentState == newState) return;
             _currentState = newState;
             _stateTimer = 0f;
+            InvalidatePath();
 
             if (newState == AIState.Idle || newState == AIState.Attack) StopMovement();
             else if (newState == AIState.Roam) PickRoamDestination();
         }
 
         private void PickRoamDestination()
+        {
+            _roamDestination = _profile.UsePathfinding ? ReachableRoamPoint() : HomeZonePoint();
+            InvalidatePath();
+        }
+
+        private Vector3 HomeZonePoint()
         {
             Vector2 rnd = Random.insideUnitCircle * _profile.RoamRadius;
             Vector3 candidate = _homePosition + new Vector3(rnd.x, rnd.y, 0);
@@ -535,9 +576,20 @@ namespace CoreSystem.Agent
                 if (offset.magnitude > _profile.HomeZoneRadius) candidate = _homePosition + offset.normalized * _profile.HomeZoneRadius;
             }
 
-            _roamDestination = candidate;
-            _currentPath = null;
-            _nextPathTime = 0f;
+            return candidate;
+        }
+
+        private Vector3 ReachableRoamPoint()
+        {
+            Vector3? fallback = null;
+            for (int attempt = 0; attempt < RoamAttempts; attempt++)
+            {
+                Vector3 candidate = HomeZonePoint();
+                PathOutcome outcome = _core.SnapPoint(Position, candidate, out Vector2 snapped);
+                if (outcome == PathOutcome.NoGrid || outcome == PathOutcome.ReachesTarget) return candidate;
+                if (outcome == PathOutcome.StopsShort && fallback == null) fallback = new Vector3(snapped.x, snapped.y, candidate.z);
+            }
+            return fallback ?? Position;
         }
 
         private static bool IsTargetAliveAndValid(Transform t)

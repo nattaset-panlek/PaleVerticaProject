@@ -1,0 +1,1356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="197" result="Failed(Child)" total="197" passed="195" failed="2" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:37Z" duration="15.620807">
+  <test-suite type="TestSuite" id="1000" name="Realm Hero" fullname="Realm Hero" runstate="Runnable" testcasecount="197" result="Failed" site="Child" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:37Z" duration="15.620807" total="197" passed="195" failed="2" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1149" name="Assembly-CSharp-Editor.dll" fullname="F:/GameProject/Pale Vertica/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll" runstate="Runnable" testcasecount="130" result="Failed" site="Child" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:35Z" duration="13.105361" total="130" passed="128" failed="2" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="459288" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="1150" name="CoreSystem" fullname="CoreSystem" runstate="Runnable" testcasecount="130" result="Failed" site="Child" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:35Z" duration="13.103578" total="130" passed="128" failed="2" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="1151" name="Tests" fullname="CoreSystem.Tests" runstate="Runnable" testcasecount="130" result="Failed" site="Child" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:35Z" duration="13.101838" total="130" passed="128" failed="2" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="1001" name="AttributeMathTests" fullname="CoreSystem.Tests.AttributeMathTests" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.043212" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1006" name="AdditionalChain_KeepsInsertionOrderBeyondSmallListSize" fullname="CoreSystem.Tests.AttributeMathTests.AdditionalChain_KeepsInsertionOrderBeyondSmallListSize" methodname="AdditionalChain_KeepsInsertionOrderBeyondSmallListSize" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" seed="1747254453" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.014554" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="AdditionalChain_KeepsInsertionOrderForEqualOrder" fullname="CoreSystem.Tests.AttributeMathTests.AdditionalChain_KeepsInsertionOrderForEqualOrder" methodname="AdditionalChain_KeepsInsertionOrderForEqualOrder" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" seed="1504582610" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.004154" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="AdditionalChain_RemoveByTagOnlyRemovesMatchingEntries" fullname="CoreSystem.Tests.AttributeMathTests.AdditionalChain_RemoveByTagOnlyRemovesMatchingEntries" methodname="AdditionalChain_RemoveByTagOnlyRemovesMatchingEntries" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" seed="1204582616" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="AdditionalChain_SortsByOrder" fullname="CoreSystem.Tests.AttributeMathTests.AdditionalChain_SortsByOrder" methodname="AdditionalChain_SortsByOrder" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" seed="287191610" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000237" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="DerivedStats_FollowCoreAttributeFormulas" fullname="CoreSystem.Tests.AttributeMathTests.DerivedStats_FollowCoreAttributeFormulas" methodname="DerivedStats_FollowCoreAttributeFormulas" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" seed="1786695322" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.004810" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="DerivedStats_MpRecoveryGainsBonusFrom120Int" fullname="CoreSystem.Tests.AttributeMathTests.DerivedStats_MpRecoveryGainsBonusFrom120Int" methodname="DerivedStats_MpRecoveryGainsBonusFrom120Int" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" seed="1223405149" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000439" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="Recalculate_AppliesBaseThenFlatThenPercentThenAdditional" fullname="CoreSystem.Tests.AttributeMathTests.Recalculate_AppliesBaseThenFlatThenPercentThenAdditional" methodname="Recalculate_AppliesBaseThenFlatThenPercentThenAdditional" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" seed="1074855674" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000507" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="Recalculate_StatBonusesApplyBeforeModifiers" fullname="CoreSystem.Tests.AttributeMathTests.Recalculate_StatBonusesApplyBeforeModifiers" methodname="Recalculate_StatBonusesApplyBeforeModifiers" classname="CoreSystem.Tests.AttributeMathTests" runstate="Runnable" seed="420893830" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1010" name="CombatCoreTests" fullname="CoreSystem.Tests.CombatCoreTests" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.060644" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1013" name="Crit_UsesInjectedRandom" fullname="CoreSystem.Tests.CombatCoreTests.Crit_UsesInjectedRandom" methodname="Crit_UsesInjectedRandom" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="1882758671" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.014521" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1018" name="Dispatch_ResolvesRegisteredHandlerAndBlocksUnknownKinds" fullname="CoreSystem.Tests.CombatCoreTests.Dispatch_ResolvesRegisteredHandlerAndBlocksUnknownKinds" methodname="Dispatch_ResolvesRegisteredHandlerAndBlocksUnknownKinds" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="1300336253" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.004017" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[[CombatCore] No effect handler registered for Custom.
+]]></output>
+            </test-case>
+            <test-case id="1012" name="Execute_AppliesDamageAndRaisesEvents" fullname="CoreSystem.Tests.CombatCoreTests.Execute_AppliesDamageAndRaisesEvents" methodname="Execute_AppliesDamageAndRaisesEvents" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="172107734" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.025040" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="Gate_AllowsSelfProcButNotOtherSelfDamage" fullname="CoreSystem.Tests.CombatCoreTests.Gate_AllowsSelfProcButNotOtherSelfDamage" methodname="Gate_AllowsSelfProcButNotOtherSelfDamage" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="678543735" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000990" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1015" name="Gate_BlocksMissingTargetWithoutThrowing" fullname="CoreSystem.Tests.CombatCoreTests.Gate_BlocksMissingTargetWithoutThrowing" methodname="Gate_BlocksMissingTargetWithoutThrowing" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="1952755037" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000801" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="Gate_BlocksNonHostileTarget" fullname="CoreSystem.Tests.CombatCoreTests.Gate_BlocksNonHostileTarget" methodname="Gate_BlocksNonHostileTarget" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="380111576" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000744" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="NoUser_SkipsHostilityAndUserStats" fullname="CoreSystem.Tests.CombatCoreTests.NoUser_SkipsHostilityAndUserStats" methodname="NoUser_SkipsHostilityAndUserStats" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="1439443161" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000957" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="Resolve_DamageMatchesFormulaAndDoesNotTouchHp" fullname="CoreSystem.Tests.CombatCoreTests.Resolve_DamageMatchesFormulaAndDoesNotTouchHp" methodname="Resolve_DamageMatchesFormulaAndDoesNotTouchHp" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="729795886" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.001377" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1022" name="Result_PredictsKillFromHpDamage" fullname="CoreSystem.Tests.CombatCoreTests.Result_PredictsKillFromHpDamage" methodname="Result_PredictsKillFromHpDamage" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="916643855" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.001524" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1019" name="Rider_ReentersResolveAndAppliesAfterMainHit" fullname="CoreSystem.Tests.CombatCoreTests.Rider_ReentersResolveAndAppliesAfterMainHit" methodname="Rider_ReentersResolveAndAppliesAfterMainHit" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="771734795" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.002737" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1021" name="Rider_RespectsChanceAndTrigger" fullname="CoreSystem.Tests.CombatCoreTests.Rider_RespectsChanceAndTrigger" methodname="Rider_RespectsChanceAndTrigger" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="203273345" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.001219" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1020" name="Rider_StopsAtMaxDepth" fullname="CoreSystem.Tests.CombatCoreTests.Rider_StopsAtMaxDepth" methodname="Rider_StopsAtMaxDepth" classname="CoreSystem.Tests.CombatCoreTests" runstate="Runnable" seed="134341267" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000936" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1023" name="ControlSystemTests" fullname="CoreSystem.Tests.ControlSystemTests" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.012984" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1031" name="ClaimFilter_BlocksPossessionButNotDev" fullname="CoreSystem.Tests.ControlSystemTests.ClaimFilter_BlocksPossessionButNotDev" methodname="ClaimFilter_BlocksPossessionButNotDev" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="797178299" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.003294" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1026" name="HigherLane_TakesOver_AndReturnsWhenReleased" fullname="CoreSystem.Tests.ControlSystemTests.HigherLane_TakesOver_AndReturnsWhenReleased" methodname="HigherLane_TakesOver_AndReturnsWhenReleased" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="2018451192" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000789" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="HolderChangedEvent_ReportsTransitions" fullname="CoreSystem.Tests.ControlSystemTests.HolderChangedEvent_ReportsTransitions" methodname="HolderChangedEvent_ReportsTransitions" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="1989458955" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.001030" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1028" name="KeepWhileCondition_EndsLeaseWhenFalse" fullname="CoreSystem.Tests.ControlSystemTests.KeepWhileCondition_EndsLeaseWhenFalse" methodname="KeepWhileCondition_EndsLeaseWhenFalse" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="1938596273" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000522" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="LegacyOverrideApi_StillWorks" fullname="CoreSystem.Tests.ControlSystemTests.LegacyOverrideApi_StillWorks" methodname="LegacyOverrideApi_StillWorks" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="179291481" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000466" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="LowerLane_CanQueueUnderHigherLane" fullname="CoreSystem.Tests.ControlSystemTests.LowerLane_CanQueueUnderHigherLane" methodname="LowerLane_CanQueueUnderHigherLane" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="1853421214" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000244" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="NoLease_AnySenderCanCommand" fullname="CoreSystem.Tests.ControlSystemTests.NoLease_AnySenderCanCommand" methodname="NoLease_AnySenderCanCommand" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="1281440610" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000188" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="OwnerLease_OnlyOwnerCanCommand" fullname="CoreSystem.Tests.ControlSystemTests.OwnerLease_OnlyOwnerCanCommand" methodname="OwnerLease_OnlyOwnerCanCommand" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="413160413" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000187" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="ReleaseHolder_RemovesAllItsLeases" fullname="CoreSystem.Tests.ControlSystemTests.ReleaseHolder_RemovesAllItsLeases" methodname="ReleaseHolder_RemovesAllItsLeases" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="915449266" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000338" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="SameLane_OtherHolder_IsDenied" fullname="CoreSystem.Tests.ControlSystemTests.SameLane_OtherHolder_IsDenied" methodname="SameLane_OtherHolder_IsDenied" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="453801894" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000197" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1027" name="TimedLease_ExpiresOnTick_AndCallsOnEnded" fullname="CoreSystem.Tests.ControlSystemTests.TimedLease_ExpiresOnTick_AndCallsOnEnded" methodname="TimedLease_ExpiresOnTick_AndCallsOnEnded" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="1841110224" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000288" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="TransferOwnership_ReplacesPreviousOwner" fullname="CoreSystem.Tests.ControlSystemTests.TransferOwnership_ReplacesPreviousOwner" methodname="TransferOwnership_ReplacesPreviousOwner" classname="CoreSystem.Tests.ControlSystemTests" runstate="Runnable" seed="1592715687" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000328" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1036" name="DamageFormulaTests" fullname="CoreSystem.Tests.DamageFormulaTests" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.005364" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1040" name="CriticalResistance_ReducesChance" fullname="CoreSystem.Tests.DamageFormulaTests.CriticalResistance_ReducesChance" methodname="CriticalResistance_ReducesChance" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="282123728" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000298" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="CriticalRoll_AtOrAboveChance_DoesNotCrit" fullname="CoreSystem.Tests.DamageFormulaTests.CriticalRoll_AtOrAboveChance_DoesNotCrit" methodname="CriticalRoll_AtOrAboveChance_DoesNotCrit" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="192494533" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000205" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="Damage_NeverDropsBelowMinimum" fullname="CoreSystem.Tests.DamageFormulaTests.Damage_NeverDropsBelowMinimum" methodname="Damage_NeverDropsBelowMinimum" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="2083272804" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000189" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="PayloadDamageBonus_ScalesTheWholeHit" fullname="CoreSystem.Tests.DamageFormulaTests.PayloadDamageBonus_ScalesTheWholeHit" methodname="PayloadDamageBonus_ScalesTheWholeHit" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="1084143563" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000226" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="ProcSkillIds_AreRecognised" fullname="CoreSystem.Tests.DamageFormulaTests.ProcSkillIds_AreRecognised" methodname="ProcSkillIds_AreRecognised" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="1368406953" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000174" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1042" name="Resistance_AboveBonus_ClampsMultiplierAtZero" fullname="CoreSystem.Tests.DamageFormulaTests.Resistance_AboveBonus_ClampsMultiplierAtZero" methodname="Resistance_AboveBonus_ClampsMultiplierAtZero" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="1764320731" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000176" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1043" name="SizeAndRaceModifiers_Multiply" fullname="CoreSystem.Tests.DamageFormulaTests.SizeAndRaceModifiers_Multiply" methodname="SizeAndRaceModifiers_Multiply" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="328244353" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1046" name="SkillPayload_DamageMultiplierDefaultsToOne_AndSurvivesClone" fullname="CoreSystem.Tests.DamageFormulaTests.SkillPayload_DamageMultiplierDefaultsToOne_AndSurvivesClone" methodname="SkillPayload_DamageMultiplierDefaultsToOne_AndSurvivesClone" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="1184578650" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000431" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="WithCaster_AppliesPowerModifiersAndCriticalInOrder" fullname="CoreSystem.Tests.DamageFormulaTests.WithCaster_AppliesPowerModifiersAndCriticalInOrder" methodname="WithCaster_AppliesPowerModifiersAndCriticalInOrder" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="1177819012" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000188" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="WithoutCaster_UsesBaseDamageElementAndDefenseOnly" fullname="CoreSystem.Tests.DamageFormulaTests.WithoutCaster_UsesBaseDamageElementAndDefenseOnly" methodname="WithoutCaster_UsesBaseDamageElementAndDefenseOnly" classname="CoreSystem.Tests.DamageFormulaTests" runstate="Runnable" seed="304577352" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000217" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1047" name="DevToolDatabaseRowTests" fullname="CoreSystem.Tests.DevToolDatabaseRowTests" classname="CoreSystem.Tests.DevToolDatabaseRowTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.501798" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1048" name="Fill_ClosedGroupsShowOnlyHeaders" fullname="CoreSystem.Tests.DevToolDatabaseRowTests.Fill_ClosedGroupsShowOnlyHeaders" methodname="Fill_ClosedGroupsShowOnlyHeaders" classname="CoreSystem.Tests.DevToolDatabaseRowTests" runstate="Runnable" seed="1837086874" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.494179" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Database: Initializing ItemDatabase...
+ItemDatabase: Loaded 2 equipment sets from JSON.
+ItemDatabase: Parsing 202 entries from Item.json
+ItemDatabase: Successfully loaded 202 items.
+Database: Initializing AttributeDatabase...
+AttributeDatabase: Parsing 154 entries from Attribute.json
+AttributeDatabase: Successfully loaded 154 attributes.
+Database: Initializing Skills...
+Database: Initializing SkillTree...
+[SkillTreeDatabase] โหลดสำเร็จ: 343 nodes, 758 edges
+Database: Loading Characters...
+Database: Parsing Character.json (268 chars)
+Database: Loaded 1 characters.
+Database: Loading Passive Buffs...
+Global Database Initialized.
+]]></output>
+            </test-case>
+            <test-case id="1049" name="Fill_OpenGroupListsItsItemsAfterItsHeader" fullname="CoreSystem.Tests.DevToolDatabaseRowTests.Fill_OpenGroupListsItsItemsAfterItsHeader" methodname="Fill_OpenGroupListsItsItemsAfterItsHeader" classname="CoreSystem.Tests.DevToolDatabaseRowTests" runstate="Runnable" seed="1405287999" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.002432" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="Fill_SearchHidesGroupsWithoutMatches" fullname="CoreSystem.Tests.DevToolDatabaseRowTests.Fill_SearchHidesGroupsWithoutMatches" methodname="Fill_SearchHidesGroupsWithoutMatches" classname="CoreSystem.Tests.DevToolDatabaseRowTests" runstate="Runnable" seed="1438250732" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.002893" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="StateKey_MatchesTheFoldoutKeys" fullname="CoreSystem.Tests.DevToolDatabaseRowTests.StateKey_MatchesTheFoldoutKeys" methodname="StateKey_MatchesTheFoldoutKeys" classname="CoreSystem.Tests.DevToolDatabaseRowTests" runstate="Runnable" seed="1344244880" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000315" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1052" name="DoubleUniquePassiveTests" fullname="CoreSystem.Tests.DoubleUniquePassiveTests" classname="CoreSystem.Tests.DoubleUniquePassiveTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.012410" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1057" name="DoubleAttack_IsNotASkillRepeater" fullname="CoreSystem.Tests.DoubleUniquePassiveTests.DoubleAttack_IsNotASkillRepeater" methodname="DoubleAttack_IsNotASkillRepeater" classname="CoreSystem.Tests.DoubleUniquePassiveTests" runstate="Runnable" seed="217097333" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.004543" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="DoubleAttack_RepeatsBasicAttacksAtFullDamage" fullname="CoreSystem.Tests.DoubleUniquePassiveTests.DoubleAttack_RepeatsBasicAttacksAtFullDamage" methodname="DoubleAttack_RepeatsBasicAttacksAtFullDamage" classname="CoreSystem.Tests.DoubleUniquePassiveTests" runstate="Runnable" seed="100449049" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.001243" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1053" name="DoubleSpell_OnlyRepeatsLevelOneSkills" fullname="CoreSystem.Tests.DoubleUniquePassiveTests.DoubleSpell_OnlyRepeatsLevelOneSkills" methodname="DoubleSpell_OnlyRepeatsLevelOneSkills" classname="CoreSystem.Tests.DoubleUniquePassiveTests" runstate="Runnable" seed="2039180213" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000892" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="DoubleSpell_SecondCastDealsSixtyPercentLess_AndKeepsTheOriginal" fullname="CoreSystem.Tests.DoubleUniquePassiveTests.DoubleSpell_SecondCastDealsSixtyPercentLess_AndKeepsTheOriginal" methodname="DoubleSpell_SecondCastDealsSixtyPercentLess_AndKeepsTheOriginal" classname="CoreSystem.Tests.DoubleUniquePassiveTests" runstate="Runnable" seed="902272076" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.001448" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1055" name="DoubleSpell_StacksWithEchoSpell" fullname="CoreSystem.Tests.DoubleUniquePassiveTests.DoubleSpell_StacksWithEchoSpell" methodname="DoubleSpell_StacksWithEchoSpell" classname="CoreSystem.Tests.DoubleUniquePassiveTests" runstate="Runnable" seed="1824449584" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000798" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1058" name="FireBoltSkillTests" fullname="CoreSystem.Tests.FireBoltSkillTests" classname="CoreSystem.Tests.FireBoltSkillTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.071333" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1060" name="Asset_HasNoVisualOnlyProjectile" fullname="CoreSystem.Tests.FireBoltSkillTests.Asset_HasNoVisualOnlyProjectile" methodname="Asset_HasNoVisualOnlyProjectile" classname="CoreSystem.Tests.FireBoltSkillTests" runstate="Runnable" seed="1947777506" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000559" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="Asset_SpawnsMagicProjectileOncePerCast" fullname="CoreSystem.Tests.FireBoltSkillTests.Asset_SpawnsMagicProjectileOncePerCast" methodname="Asset_SpawnsMagicProjectileOncePerCast" classname="CoreSystem.Tests.FireBoltSkillTests" runstate="Runnable" seed="1972941496" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000481" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1061" name="Database_MergesJsonNumbers" fullname="CoreSystem.Tests.FireBoltSkillTests.Database_MergesJsonNumbers" methodname="Database_MergesJsonNumbers" classname="CoreSystem.Tests.FireBoltSkillTests" runstate="Runnable" seed="1482247164" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.068330" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1062" name="FormulaTests" fullname="CoreSystem.Tests.FormulaTests" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.011206" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1072" name="Aspd_PercentBuff_ScalesAttackSpeedExactly" fullname="CoreSystem.Tests.FormulaTests.Aspd_PercentBuff_ScalesAttackSpeedExactly" methodname="Aspd_PercentBuff_ScalesAttackSpeedExactly" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="1087813194" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000994" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1071" name="BasicAttackFormula_AttacksPerSecond_IsLinearInAspd" fullname="CoreSystem.Tests.FormulaTests.BasicAttackFormula_AttacksPerSecond_IsLinearInAspd" methodname="BasicAttackFormula_AttacksPerSecond_IsLinearInAspd" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="1731764651" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000313" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1070" name="BasicAttackFormula_BonusAndDelay" fullname="CoreSystem.Tests.FormulaTests.BasicAttackFormula_BonusAndDelay" methodname="BasicAttackFormula_BonusAndDelay" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="287146608" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000374" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1066" name="CastTimeFormula_ClampsBothPartsAtZero" fullname="CoreSystem.Tests.FormulaTests.CastTimeFormula_ClampsBothPartsAtZero" methodname="CastTimeFormula_ClampsBothPartsAtZero" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="1493029851" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000421" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1065" name="CastTimeFormula_SplitsVariableAndFixed" fullname="CoreSystem.Tests.FormulaTests.CastTimeFormula_SplitsVariableAndFixed" methodname="CastTimeFormula_SplitsVariableAndFixed" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="692280742" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000284" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1064" name="DerivedStatFormula_MatchesDesignTable" fullname="CoreSystem.Tests.FormulaTests.DerivedStatFormula_MatchesDesignTable" methodname="DerivedStatFormula_MatchesDesignTable" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="182911538" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000313" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1074" name="EquipmentDatabase_ForwardsToProgressionFormula" fullname="CoreSystem.Tests.FormulaTests.EquipmentDatabase_ForwardsToProgressionFormula" methodname="EquipmentDatabase_ForwardsToProgressionFormula" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="2074388638" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.001194" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1073" name="ProgressionFormula_RefineReforgeAndExp" fullname="CoreSystem.Tests.FormulaTests.ProgressionFormula_RefineReforgeAndExp" methodname="ProgressionFormula_RefineReforgeAndExp" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="442600468" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000968" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1068" name="ResourceFormula_AffordAndPayFloors" fullname="CoreSystem.Tests.FormulaTests.ResourceFormula_AffordAndPayFloors" methodname="ResourceFormula_AffordAndPayFloors" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="134488402" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000382" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1069" name="ResourceFormula_RegenRules" fullname="CoreSystem.Tests.FormulaTests.ResourceFormula_RegenRules" methodname="ResourceFormula_RegenRules" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="1233622593" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000339" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1067" name="SkillValueFormula_CooldownAreaScaling" fullname="CoreSystem.Tests.FormulaTests.SkillValueFormula_CooldownAreaScaling" methodname="SkillValueFormula_CooldownAreaScaling" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="687609154" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000416" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1063" name="StatFormula_AppliesBaseFlatPercentThenChain" fullname="CoreSystem.Tests.FormulaTests.StatFormula_AppliesBaseFlatPercentThenChain" methodname="StatFormula_AppliesBaseFlatPercentThenChain" classname="CoreSystem.Tests.FormulaTests" runstate="Runnable" seed="301048969" result="Passed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:22Z" duration="0.000344" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1075" name="InventoryVisualizerTests" fullname="CoreSystem.Tests.InventoryVisualizerTests" classname="CoreSystem.Tests.InventoryVisualizerTests" runstate="Runnable" testcasecount="5" result="Failed" site="Child" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:23Z" duration="0.509869" total="5" passed="3" failed="2" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="1080" name="AddAll_WithRealSlotsStaysInsideOneFrame" fullname="CoreSystem.Tests.InventoryVisualizerTests.AddAll_WithRealSlotsStaysInsideOneFrame" methodname="AddAll_WithRealSlotsStaysInsideOneFrame" classname="CoreSystem.Tests.InventoryVisualizerTests" runstate="Runnable" seed="1795398989" result="Failed" start-time="2026-10-19 03:23:22Z" end-time="2026-10-19 03:23:23Z" duration="0.497785" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 202
+  But was:  200
+]]></message>
+                <stack-trace><![CDATA[at CoreSystem.Tests.InventoryVisualizerTests.AddAll_WithRealSlotsStaysInsideOneFrame () [0x000f2] in F:\GameProject\Pale Vertica\Assets\Script\Editor\Tests\InventoryVisualizerTests.cs:138
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1076" name="AddItems_RaisesOneChangeEvent" fullname="CoreSystem.Tests.InventoryVisualizerTests.AddItems_RaisesOneChangeEvent" methodname="AddItems_RaisesOneChangeEvent" classname="CoreSystem.Tests.InventoryVisualizerTests" runstate="Runnable" seed="1292350434" result="Failed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.001267" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <failure>
+                <message><![CDATA[  Expected: 202
+  But was:  200
+]]></message>
+                <stack-trace><![CDATA[at CoreSystem.Tests.InventoryVisualizerTests.AddItems_RaisesOneChangeEvent () [0x0005c] in F:\GameProject\Pale Vertica\Assets\Script\Editor\Tests\InventoryVisualizerTests.cs:42
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="1078" name="AttachTo_ConvertsTheGridLayoutGroup" fullname="CoreSystem.Tests.InventoryVisualizerTests.AttachTo_ConvertsTheGridLayoutGroup" methodname="AttachTo_ConvertsTheGridLayoutGroup" classname="CoreSystem.Tests.InventoryVisualizerTests" runstate="Runnable" seed="1449958483" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.004649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1077" name="Batch_NestsAndStaysQuietWithoutChanges" fullname="CoreSystem.Tests.InventoryVisualizerTests.Batch_NestsAndStaysQuietWithoutChanges" methodname="Batch_NestsAndStaysQuietWithoutChanges" classname="CoreSystem.Tests.InventoryVisualizerTests" runstate="Runnable" seed="875784111" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000575" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1079" name="FromLayoutGroup_KeepsFixedWidthRowsCentered" fullname="CoreSystem.Tests.InventoryVisualizerTests.FromLayoutGroup_KeepsFixedWidthRowsCentered" methodname="FromLayoutGroup_KeepsFixedWidthRowsCentered" classname="CoreSystem.Tests.InventoryVisualizerTests" runstate="Runnable" seed="725417741" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.001730" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1081" name="RegistryTests" fullname="CoreSystem.Tests.RegistryTests" classname="CoreSystem.Tests.RegistryTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.026494" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1083" name="SupportModifier_CreateReturnsCorrectTypeAndId" fullname="CoreSystem.Tests.RegistryTests.SupportModifier_CreateReturnsCorrectTypeAndId" methodname="SupportModifier_CreateReturnsCorrectTypeAndId" classname="CoreSystem.Tests.RegistryTests" runstate="Runnable" seed="812582706" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.004937" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1082" name="SupportModifier_RegistryMatchesKnownIds" fullname="CoreSystem.Tests.RegistryTests.SupportModifier_RegistryMatchesKnownIds" methodname="SupportModifier_RegistryMatchesKnownIds" classname="CoreSystem.Tests.RegistryTests" runstate="Runnable" seed="1012320081" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.004335" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1084" name="SupportModifier_UnknownIdReturnsNull" fullname="CoreSystem.Tests.RegistryTests.SupportModifier_UnknownIdReturnsNull" methodname="SupportModifier_UnknownIdReturnsNull" classname="CoreSystem.Tests.RegistryTests" runstate="Runnable" seed="2135898884" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000406" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1086" name="UniquePassive_CreateReturnsCorrectType" fullname="CoreSystem.Tests.RegistryTests.UniquePassive_CreateReturnsCorrectType" methodname="UniquePassive_CreateReturnsCorrectType" classname="CoreSystem.Tests.RegistryTests" runstate="Runnable" seed="677239094" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.001359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1087" name="UniquePassive_InternalAndUnknownIdsReturnNull" fullname="CoreSystem.Tests.RegistryTests.UniquePassive_InternalAndUnknownIdsReturnNull" methodname="UniquePassive_InternalAndUnknownIdsReturnNull" classname="CoreSystem.Tests.RegistryTests" runstate="Runnable" seed="1334746376" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1085" name="UniquePassive_RegistryMatchesKnownIds" fullname="CoreSystem.Tests.RegistryTests.UniquePassive_RegistryMatchesKnownIds" methodname="UniquePassive_RegistryMatchesKnownIds" classname="CoreSystem.Tests.RegistryTests" runstate="Runnable" seed="1889401926" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.002108" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1088" name="SkillTimingTests" fullname="CoreSystem.Tests.SkillTimingTests" classname="CoreSystem.Tests.SkillTimingTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.007276" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1095" name="AreaOfEffect_ScalesByPercentBonus" fullname="CoreSystem.Tests.SkillTimingTests.AreaOfEffect_ScalesByPercentBonus" methodname="AreaOfEffect_ScalesByPercentBonus" classname="CoreSystem.Tests.SkillTimingTests" runstate="Runnable" seed="851698546" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000545" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1089" name="CastTime_WithoutStats_ReturnsBaseValues" fullname="CoreSystem.Tests.SkillTimingTests.CastTime_WithoutStats_ReturnsBaseValues" methodname="CastTime_WithoutStats_ReturnsBaseValues" classname="CoreSystem.Tests.SkillTimingTests" runstate="Runnable" seed="873396770" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000326" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1094" name="Cooldown_AppliesFlatThenPercentAndClampsAtZero" fullname="CoreSystem.Tests.SkillTimingTests.Cooldown_AppliesFlatThenPercentAndClampsAtZero" methodname="Cooldown_AppliesFlatThenPercentAndClampsAtZero" classname="CoreSystem.Tests.SkillTimingTests" runstate="Runnable" seed="1791055424" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000490" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1092" name="FixedCastTime_IsNotReducedByDexOrInt" fullname="CoreSystem.Tests.SkillTimingTests.FixedCastTime_IsNotReducedByDexOrInt" methodname="FixedCastTime_IsNotReducedByDexOrInt" classname="CoreSystem.Tests.SkillTimingTests" runstate="Runnable" seed="1663515426" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000890" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1091" name="VariableCastTime_NeverGoesNegative" fullname="CoreSystem.Tests.SkillTimingTests.VariableCastTime_NeverGoesNegative" methodname="VariableCastTime_NeverGoesNegative" classname="CoreSystem.Tests.SkillTimingTests" runstate="Runnable" seed="968031690" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000611" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1090" name="VariableCastTime_ReachesZeroAtStatCap" fullname="CoreSystem.Tests.SkillTimingTests.VariableCastTime_ReachesZeroAtStatCap" methodname="VariableCastTime_ReachesZeroAtStatCap" classname="CoreSystem.Tests.SkillTimingTests" runstate="Runnable" seed="455075497" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000545" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1093" name="VariableCastTime_UsesSquareRootStatCurve" fullname="CoreSystem.Tests.SkillTimingTests.VariableCastTime_UsesSquareRootStatCurve" methodname="VariableCastTime_UsesSquareRootStatCurve" classname="CoreSystem.Tests.SkillTimingTests" runstate="Runnable" seed="1138157192" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000417" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1096" name="SupportExecutionHookTests" fullname="CoreSystem.Tests.SupportExecutionHookTests" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.019780" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1106" name="CastIndicators_OnePerCascadePoint_NoneForInstantCasts" fullname="CoreSystem.Tests.SupportExecutionHookTests.CastIndicators_OnePerCascadePoint_NoneForInstantCasts" methodname="CastIndicators_OnePerCascadePoint_NoneForInstantCasts" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="1569915937" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.005088" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1105" name="CastIndicatorShown_SkipsTheIndicatorVisualAtExecution" fullname="CoreSystem.Tests.SupportExecutionHookTests.CastIndicatorShown_SkipsTheIndicatorVisualAtExecution" methodname="CastIndicatorShown_SkipsTheIndicatorVisualAtExecution" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="45886141" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.003899" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1100" name="EchoSpell_RepeatPayloadIsWeakerAndWider" fullname="CoreSystem.Tests.SupportExecutionHookTests.EchoSpell_RepeatPayloadIsWeakerAndWider" methodname="EchoSpell_RepeatPayloadIsWeakerAndWider" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="1347632467" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000482" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1102" name="RepeatCast_SkipsTheIndicatorVisual_OriginalStillShowsIt" fullname="CoreSystem.Tests.SupportExecutionHookTests.RepeatCast_SkipsTheIndicatorVisual_OriginalStillShowsIt" methodname="RepeatCast_SkipsTheIndicatorVisual_OriginalStillShowsIt" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="384546389" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.001045" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1103" name="RepeatCast_StillPlaysARealEffect" fullname="CoreSystem.Tests.SupportExecutionHookTests.RepeatCast_StillPlaysARealEffect" methodname="RepeatCast_StillPlaysARealEffect" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="893780575" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000730" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1104" name="RepeatCast_SurvivesEchoAndCascade" fullname="CoreSystem.Tests.SupportExecutionHookTests.RepeatCast_SurvivesEchoAndCascade" methodname="RepeatCast_SurvivesEchoAndCascade" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="1873736350" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000553" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1101" name="SpellCascade_EverySplitPlaysItsOwnEruptionVisual" fullname="CoreSystem.Tests.SupportExecutionHookTests.SpellCascade_EverySplitPlaysItsOwnEruptionVisual" methodname="SpellCascade_EverySplitPlaysItsOwnEruptionVisual" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="1936570466" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.001148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1099" name="SpellCascade_OnlySplitsTargetLocationSkills" fullname="CoreSystem.Tests.SupportExecutionHookTests.SpellCascade_OnlySplitsTargetLocationSkills" methodname="SpellCascade_OnlySplitsTargetLocationSkills" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="1345263116" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000501" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1097" name="SpellCascade_SplitsIntoLeftMainRight" fullname="CoreSystem.Tests.SupportExecutionHookTests.SpellCascade_SplitsIntoLeftMainRight" methodname="SpellCascade_SplitsIntoLeftMainRight" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="1978392104" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000664" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1098" name="SpellCascade_UsesUpwardDirectionWhenTargetIsOnCaster" fullname="CoreSystem.Tests.SupportExecutionHookTests.SpellCascade_UsesUpwardDirectionWhenTargetIsOnCaster" methodname="SpellCascade_UsesUpwardDirectionWhenTargetIsOnCaster" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="750973926" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000460" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1107" name="VisualManager_EnsureCreatesOneRuntimeInstance" fullname="CoreSystem.Tests.SupportExecutionHookTests.VisualManager_EnsureCreatesOneRuntimeInstance" methodname="VisualManager_EnsureCreatesOneRuntimeInstance" classname="CoreSystem.Tests.SupportExecutionHookTests" runstate="Runnable" seed="1662444275" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000610" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1108" name="UIArtStyleTests" fullname="CoreSystem.Tests.UIArtStyleTests" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.086840" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1109" name="ArtButton_Danger_RecoloursOnlyTheLabel" fullname="CoreSystem.Tests.UIArtStyleTests.ArtButton_Danger_RecoloursOnlyTheLabel" methodname="ArtButton_Danger_RecoloursOnlyTheLabel" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" seed="1553013685" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.023772" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1111" name="ArtButton_KeepsPrefabFontSizeAndPadding" fullname="CoreSystem.Tests.UIArtStyleTests.ArtButton_KeepsPrefabFontSizeAndPadding" methodname="ArtButton_KeepsPrefabFontSizeAndPadding" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" seed="1164053797" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.005409" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1110" name="ArtButton_Selected_UsesPrimaryArt" fullname="CoreSystem.Tests.UIArtStyleTests.ArtButton_Selected_UsesPrimaryArt" methodname="ArtButton_Selected_UsesPrimaryArt" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" seed="1133173645" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.004689" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1116" name="Badge_UsesDarkTextOnLightColours" fullname="CoreSystem.Tests.UIArtStyleTests.Badge_UsesDarkTextOnLightColours" methodname="Badge_UsesDarkTextOnLightColours" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" seed="463646347" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.011245" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1112" name="CustomNavStyle_KeepsPrefabLookForPagesNotSelected" fullname="CoreSystem.Tests.UIArtStyleTests.CustomNavStyle_KeepsPrefabLookForPagesNotSelected" methodname="CustomNavStyle_KeepsPrefabLookForPagesNotSelected" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" seed="990729949" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.014950" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1113" name="KeyValue_UsesRegisteredStyle" fullname="CoreSystem.Tests.UIArtStyleTests.KeyValue_UsesRegisteredStyle" methodname="KeyValue_UsesRegisteredStyle" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" seed="1126023157" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.006093" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1115" name="RoundedBadge_DoesNotForceItsSize" fullname="CoreSystem.Tests.UIArtStyleTests.RoundedBadge_DoesNotForceItsSize" methodname="RoundedBadge_DoesNotForceItsSize" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" seed="1501412396" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.012051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1114" name="SectionHeader_WithoutStyle_FallsBackToHeading" fullname="CoreSystem.Tests.UIArtStyleTests.SectionHeader_WithoutStyle_FallsBackToHeading" methodname="SectionHeader_WithoutStyle_FallsBackToHeading" classname="CoreSystem.Tests.UIArtStyleTests" runstate="Runnable" seed="368709010" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.003856" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1117" name="UIDocumentTests" fullname="CoreSystem.Tests.UIDocumentTests" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.046084" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1120" name="BlocksStretchInColumns_ButNotInRows" fullname="CoreSystem.Tests.UIDocumentTests.BlocksStretchInColumns_ButNotInRows" methodname="BlocksStretchInColumns_ButNotInRows" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="560066564" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.002143" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1119" name="Containers_GetTheRequestedLayoutGroup" fullname="CoreSystem.Tests.UIDocumentTests.Containers_GetTheRequestedLayoutGroup" methodname="Containers_GetTheRequestedLayoutGroup" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="2026751347" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.002185" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1127" name="Foldout_HeaderStyle_ReappliesAfterToggle" fullname="CoreSystem.Tests.UIDocumentTests.Foldout_HeaderStyle_ReappliesAfterToggle" methodname="Foldout_HeaderStyle_ReappliesAfterToggle" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="1336299211" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.006888" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1126" name="Foldout_ToggleKeepsStateAndShowsContent" fullname="CoreSystem.Tests.UIDocumentTests.Foldout_ToggleKeepsStateAndShowsContent" methodname="Foldout_ToggleKeepsStateAndShowsContent" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="818635490" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.004964" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1118" name="NestedContainers_UnderLayoutGroups_HaveNoContentSizeFitter" fullname="CoreSystem.Tests.UIDocumentTests.NestedContainers_UnderLayoutGroups_HaveNoContentSizeFitter" methodname="NestedContainers_UnderLayoutGroups_HaveNoContentSizeFitter" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="670240975" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.002055" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1125" name="Pages_NavStyle_StylesEveryNavButton_AndFollowsSelection" fullname="CoreSystem.Tests.UIDocumentTests.Pages_NavStyle_StylesEveryNavButton_AndFollowsSelection" methodname="Pages_NavStyle_StylesEveryNavButton_AndFollowsSelection" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="1256659617" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.009134" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1124" name="Pages_ShowPage_SwitchesContent_AndSurvivesFullRefresh" fullname="CoreSystem.Tests.UIDocumentTests.Pages_ShowPage_SwitchesContent_AndSurvivesFullRefresh" methodname="Pages_ShowPage_SwitchesContent_AndSurvivesFullRefresh" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="145740553" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.010766" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1123" name="Refresh_UnknownRegion_ReturnsFalse" fullname="CoreSystem.Tests.UIDocumentTests.Refresh_UnknownRegion_ReturnsFalse" methodname="Refresh_UnknownRegion_ReturnsFalse" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="473806458" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000916" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1122" name="RefreshRegion_RebuildsOnlyThatRegion" fullname="CoreSystem.Tests.UIDocumentTests.RefreshRegion_RebuildsOnlyThatRegion" methodname="RefreshRegion_RebuildsOnlyThatRegion" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="81462439" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.001894" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1121" name="Width_OverridesBlockStretch" fullname="CoreSystem.Tests.UIDocumentTests.Width_OverridesBlockStretch" methodname="Width_OverridesBlockStretch" classname="CoreSystem.Tests.UIDocumentTests" runstate="Runnable" seed="1574125897" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.000902" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1128" name="UIElementRefTests" fullname="CoreSystem.Tests.UIElementRefTests" classname="CoreSystem.Tests.UIElementRefTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.025787" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1130" name="CornerRadius_BiggerRadius_MeansSmallerMultiplier" fullname="CoreSystem.Tests.UIElementRefTests.CornerRadius_BiggerRadius_MeansSmallerMultiplier" methodname="CornerRadius_BiggerRadius_MeansSmallerMultiplier" classname="CoreSystem.Tests.UIElementRefTests" runstate="Runnable" seed="1510081573" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.002516" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1129" name="CornerRadius_RoundsAPlainBackground" fullname="CoreSystem.Tests.UIElementRefTests.CornerRadius_RoundsAPlainBackground" methodname="CornerRadius_RoundsAPlainBackground" classname="CoreSystem.Tests.UIElementRefTests" runstate="Runnable" seed="1023640665" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.001649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1131" name="CornerRadius_Zero_RemovesGeneratedRounding" fullname="CoreSystem.Tests.UIElementRefTests.CornerRadius_Zero_RemovesGeneratedRounding" methodname="CornerRadius_Zero_RemovesGeneratedRounding" classname="CoreSystem.Tests.UIElementRefTests" runstate="Runnable" seed="736101530" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.001599" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1132" name="Elastic_TogglesScrollMovement" fullname="CoreSystem.Tests.UIElementRefTests.Elastic_TogglesScrollMovement" methodname="Elastic_TogglesScrollMovement" classname="CoreSystem.Tests.UIElementRefTests" runstate="Runnable" seed="920346079" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.009674" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1135" name="GapAndPadding_OnScroll_ReachTheContent" fullname="CoreSystem.Tests.UIElementRefTests.GapAndPadding_OnScroll_ReachTheContent" methodname="GapAndPadding_OnScroll_ReachTheContent" classname="CoreSystem.Tests.UIElementRefTests" runstate="Runnable" seed="1890911690" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.002269" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1133" name="Scroll_DefaultScrollbar_KeepsThemeGapFromContent" fullname="CoreSystem.Tests.UIElementRefTests.Scroll_DefaultScrollbar_KeepsThemeGapFromContent" methodname="Scroll_DefaultScrollbar_KeepsThemeGapFromContent" classname="CoreSystem.Tests.UIElementRefTests" runstate="Runnable" seed="1743641995" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.002066" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1134" name="ScrollbarGapAndInset_KeepEachOther" fullname="CoreSystem.Tests.UIElementRefTests.ScrollbarGapAndInset_KeepEachOther" methodname="ScrollbarGapAndInset_KeepEachOther" classname="CoreSystem.Tests.UIElementRefTests" runstate="Runnable" seed="1774294471" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:23Z" duration="0.002381" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1136" name="UILayoutRegressionTests" fullname="CoreSystem.Tests.UILayoutRegressionTests" classname="CoreSystem.Tests.UILayoutRegressionTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:35Z" duration="11.566222" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1137" name="BuilderScreens_HaveNoLayoutErrors" fullname="CoreSystem.Tests.UILayoutRegressionTests.BuilderScreens_HaveNoLayoutErrors" methodname="BuilderScreens_HaveNoLayoutErrors" classname="CoreSystem.Tests.UILayoutRegressionTests" runstate="Runnable" seed="982309341" result="Passed" start-time="2026-10-19 03:23:23Z" end-time="2026-10-19 03:23:35Z" duration="11.564473" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1138" name="UIStyleSizingTests" fullname="CoreSystem.Tests.UIStyleSizingTests" classname="CoreSystem.Tests.UIStyleSizingTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.021455" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1144" name="CodeCornerRadius_WinsOverStyle" fullname="CoreSystem.Tests.UIStyleSizingTests.CodeCornerRadius_WinsOverStyle" methodname="CodeCornerRadius_WinsOverStyle" classname="CoreSystem.Tests.UIStyleSizingTests" runstate="Runnable" seed="214095737" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.002734" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1141" name="CodeModifiers_StillWinOverStyle" fullname="CoreSystem.Tests.UIStyleSizingTests.CodeModifiers_StillWinOverStyle" methodname="CodeModifiers_StillWinOverStyle" classname="CoreSystem.Tests.UIStyleSizingTests" runstate="Runnable" seed="1354437011" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.001966" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1140" name="FixedSize_LocksBothAxes" fullname="CoreSystem.Tests.UIStyleSizingTests.FixedSize_LocksBothAxes" methodname="FixedSize_LocksBothAxes" classname="CoreSystem.Tests.UIStyleSizingTests" runstate="Runnable" seed="1504564594" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.001841" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1139" name="MinSize_RaisesControlHeight" fullname="CoreSystem.Tests.UIStyleSizingTests.MinSize_RaisesControlHeight" methodname="MinSize_RaisesControlHeight" classname="CoreSystem.Tests.UIStyleSizingTests" runstate="Runnable" seed="1378144301" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.002077" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1143" name="StyleCornerRadius_RoundsTheControl" fullname="CoreSystem.Tests.UIStyleSizingTests.StyleCornerRadius_RoundsTheControl" methodname="StyleCornerRadius_RoundsTheControl" classname="CoreSystem.Tests.UIStyleSizingTests" runstate="Runnable" seed="1862392990" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.002468" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1145" name="StyleWithoutCornerRadius_KeepsPrefabShape" fullname="CoreSystem.Tests.UIStyleSizingTests.StyleWithoutCornerRadius_KeepsPrefabShape" methodname="StyleWithoutCornerRadius_KeepsPrefabShape" classname="CoreSystem.Tests.UIStyleSizingTests" runstate="Runnable" seed="1087310888" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.002537" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1142" name="StyleWithoutSizing_KeepsLabelSizing" fullname="CoreSystem.Tests.UIStyleSizingTests.StyleWithoutSizing_KeepsLabelSizing" methodname="StyleWithoutSizing_KeepsLabelSizing" classname="CoreSystem.Tests.UIStyleSizingTests" runstate="Runnable" seed="1222034112" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.002023" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1146" name="UIVisualizerFactoryTests" fullname="CoreSystem.Tests.UIVisualizerFactoryTests" classname="CoreSystem.Tests.UIVisualizerFactoryTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.062661" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1147" name="Visualizer_BuildsOnlyTheVisibleCells" fullname="CoreSystem.Tests.UIVisualizerFactoryTests.Visualizer_BuildsOnlyTheVisibleCells" methodname="Visualizer_BuildsOnlyTheVisibleCells" classname="CoreSystem.Tests.UIVisualizerFactoryTests" runstate="Runnable" seed="163516722" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.024698" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1148" name="Visualizer_RebuildsRecycledCells" fullname="CoreSystem.Tests.UIVisualizerFactoryTests.Visualizer_RebuildsRecycledCells" methodname="Visualizer_RebuildsRecycledCells" classname="CoreSystem.Tests.UIVisualizerFactoryTests" runstate="Runnable" seed="1408109553" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.036125" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1224" name="GlobalVisualizer.Tests.Editor.dll" fullname="F:/GameProject/Pale Vertica/Library/ScriptAssemblies/GlobalVisualizer.Tests.Editor.dll" runstate="Runnable" testcasecount="66" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:37Z" duration="2.501938" total="66" passed="66" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="459288" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1225" name="GlobalVisualizer" fullname="GlobalVisualizer" runstate="Runnable" testcasecount="66" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:37Z" duration="2.500004" total="66" passed="66" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1226" name="Tests" fullname="GlobalVisualizer.Tests" runstate="Runnable" testcasecount="66" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:37Z" duration="2.498731" total="66" passed="66" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1152" name="GlobalVisualizerEditorTests" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:36Z" duration="1.537419" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1163" name="CreatePrefab_BuildsBackgroundIconAndLabel" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.CreatePrefab_BuildsBackgroundIconAndLabel" methodname="CreatePrefab_BuildsBackgroundIconAndLabel" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="604986948" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.286510" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1156" name="Factory_AddsAnEmptyTemplate" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.Factory_AddsAnEmptyTemplate" methodname="Factory_AddsAnEmptyTemplate" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="1192315948" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.020805" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1155" name="Factory_CreatesAFlowVisualizerThatMeasuresItems" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.Factory_CreatesAFlowVisualizerThatMeasuresItems" methodname="Factory_CreatesAFlowVisualizerThatMeasuresItems" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="1500961939" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.012028" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1153" name="Factory_CreatesAVerticalVisualizer" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.Factory_CreatesAVerticalVisualizer" methodname="Factory_CreatesAVerticalVisualizer" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="1767839964" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.009371" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1154" name="Factory_CreatesHorizontalAndGridVisualizers" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.Factory_CreatesHorizontalAndGridVisualizers" methodname="Factory_CreatesHorizontalAndGridVisualizers" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="1657587623" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.018148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1162" name="IsValidName_RejectsBadIdentifiers" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.IsValidName_RejectsBadIdentifiers" methodname="IsValidName_RejectsBadIdentifiers" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="2130310172" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.000904" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1158" name="Preview_CreatesUnsavedViewsAndRemovesThem" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.Preview_CreatesUnsavedViewsAndRemovesThem" methodname="Preview_CreatesUnsavedViewsAndRemovesThem" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="1737902335" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.013308" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1157" name="Preview_RemovesUnsavedViewportChildren" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.Preview_RemovesUnsavedViewportChildren" methodname="Preview_RemovesUnsavedViewportChildren" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="507506218" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:35Z" duration="0.011877" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1161" name="ResolveType_FindsAliasesFullAndSimpleNames" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.ResolveType_FindsAliasesFullAndSimpleNames" methodname="ResolveType_FindsAliasesFullAndSimpleNames" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="110469757" result="Passed" start-time="2026-10-19 03:23:35Z" end-time="2026-10-19 03:23:36Z" duration="1.157823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1159" name="ScriptTemplate_FollowsTheProjectLayout" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.ScriptTemplate_FollowsTheProjectLayout" methodname="ScriptTemplate_FollowsTheProjectLayout" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="1217833882" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.001771" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1160" name="ScriptTemplate_UsesTextMeshProAndFullTypeNames" fullname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests.ScriptTemplate_UsesTextMeshProAndFullTypeNames" methodname="ScriptTemplate_UsesTextMeshProAndFullTypeNames" classname="GlobalVisualizer.Tests.GlobalVisualizerEditorTests" runstate="Runnable" seed="1758570185" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.000357" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1164" name="GlobalVisualizerInteractionTests" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.082341" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1166" name="Click_MultiSelectionUsesRangeAndAdditive" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Click_MultiSelectionUsesRangeAndAdditive" methodname="Click_MultiSelectionUsesRangeAndAdditive" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="833411392" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.007801" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1165" name="Click_SelectsSingleItemAndRaisesEvents" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Click_SelectsSingleItemAndRaisesEvents" methodname="Click_SelectsSingleItemAndRaisesEvents" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="1851421989" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003352" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1167" name="Click_WithoutSelectionModeOnlyRaisesEvents" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Click_WithoutSelectionModeOnlyRaisesEvents" methodname="Click_WithoutSelectionModeOnlyRaisesEvents" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="129507328" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003602" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1168" name="DoubleAndRightClick_RaiseTheirEvents" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.DoubleAndRightClick_RaiseTheirEvents" methodname="DoubleAndRightClick_RaiseTheirEvents" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="1938585707" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003683" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1176" name="Drag_RelayCallsTheHandler" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Drag_RelayCallsTheHandler" methodname="Drag_RelayCallsTheHandler" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="1715482671" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.006025" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1178" name="Drag_ShortListsAlwaysDragItems" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Drag_ShortListsAlwaysDragItems" methodname="Drag_ShortListsAlwaysDragItems" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="1242462940" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.001088" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1177" name="Drag_SkipsItemsThatHandleDragThemselves" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Drag_SkipsItemsThatHandleDragThemselves" methodname="Drag_SkipsItemsThatHandleDragThemselves" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="1387188328" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.001573" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1175" name="Drag_StartsAcrossTheScrollAxisOnly" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Drag_StartsAcrossTheScrollAxisOnly" methodname="Drag_StartsAcrossTheScrollAxisOnly" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="2138924604" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.002386" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1180" name="EnsureVisible_LeavesVisibleItemsAlone" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.EnsureVisible_LeavesVisibleItemsAlone" methodname="EnsureVisible_LeavesVisibleItemsAlone" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="712050126" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003109" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1173" name="InsertAndRemove_ShiftSelectionAndFocus" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.InsertAndRemove_ShiftSelectionAndFocus" methodname="InsertAndRemove_ShiftSelectionAndFocus" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="217523307" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.004274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1170" name="Navigation_FollowsTheGridAndScrollsIntoView" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Navigation_FollowsTheGridAndScrollsIntoView" methodname="Navigation_FollowsTheGridAndScrollsIntoView" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="858320768" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.004974" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1171" name="Navigation_ReportsLeavingTheEdge" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Navigation_ReportsLeavingTheEdge" methodname="Navigation_ReportsLeavingTheEdge" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="1814686435" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.002826" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1179" name="Snap_PicksTheNearestItemEdge" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Snap_PicksTheNearestItemEdge" methodname="Snap_PicksTheNearestItemEdge" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="621611395" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003604" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1174" name="StateListeners_ReceiveSelectionAndFocus" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.StateListeners_ReceiveSelectionAndFocus" methodname="StateListeners_ReceiveSelectionAndFocus" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="1655759848" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003036" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1172" name="Submit_SelectsAndRaisesTheEvent" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Submit_SelectsAndRaisesTheEvent" methodname="Submit_SelectsAndRaisesTheEvent" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="561115757" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003551" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1169" name="Views_GetAnInputRelayUnlessDisabled" fullname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests.Views_GetAnInputRelayUnlessDisabled" methodname="Views_GetAnInputRelayUnlessDisabled" classname="GlobalVisualizer.Tests.GlobalVisualizerInteractionTests" runstate="Runnable" seed="203035661" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003345" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1181" name="GlobalVisualizerSizeTests" fullname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" classname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.217608" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1188" name="EmptyPlaceholder_ShowsOnlyForAnEmptySource" fullname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests.EmptyPlaceholder_ShowsOnlyForAnEmptySource" methodname="EmptyPlaceholder_ShowsOnlyForAnEmptySource" classname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" runstate="Runnable" seed="1111881527" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.002555" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1186" name="Flow_PlacesViewsInRows" fullname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests.Flow_PlacesViewsInRows" methodname="Flow_PlacesViewsInRows" classname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" runstate="Runnable" seed="1593201101" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003399" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1187" name="Grid_IgnoresSizeModes" fullname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests.Grid_IgnoresSizeModes" methodname="Grid_IgnoresSizeModes" classname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" runstate="Runnable" seed="1998937082" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.003435" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1185" name="Measure_NotifyChangedMeasuresAgain" fullname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests.Measure_NotifyChangedMeasuresAgain" methodname="Measure_NotifyChangedMeasuresAgain" classname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" runstate="Runnable" seed="395635673" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.004274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1183" name="Measure_ReadsPreferredSizesOfBoundViews" fullname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests.Measure_ReadsPreferredSizesOfBoundViews" methodname="Measure_ReadsPreferredSizesOfBoundViews" classname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" runstate="Runnable" seed="1811579103" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.004736" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1184" name="Measure_ScrollToKeepsTheTargetAtTheTop" fullname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests.Measure_ScrollToKeepsTheTargetAtTheTop" methodname="Measure_ScrollToKeepsTheTargetAtTheTop" classname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" runstate="Runnable" seed="1092219735" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.004941" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1182" name="Provider_UsesSizesFromCode" fullname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests.Provider_UsesSizesFromCode" methodname="Provider_UsesSizesFromCode" classname="GlobalVisualizer.Tests.GlobalVisualizerSizeTests" runstate="Runnable" seed="1632876313" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:36Z" duration="0.002673" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1189" name="GlobalVisualizerViewTests" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:37Z" duration="0.639618" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1200" name="ChangingThePrefab_RebuildsViewsFromTheNewPrefab" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.ChangingThePrefab_RebuildsViewsFromTheNewPrefab" methodname="ChangingThePrefab_RebuildsViewsFromTheNewPrefab" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="198650390" result="Passed" start-time="2026-10-19 03:23:36Z" end-time="2026-10-19 03:23:37Z" duration="0.005286" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1201" name="EmptyAndClear_LeaveNoActiveViews" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.EmptyAndClear_LeaveNoActiveViews" methodname="EmptyAndClear_LeaveNoActiveViews" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="1059075155" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.002918" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1199" name="Grid_PlacesCellsByRowAndColumn" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.Grid_PlacesCellsByRowAndColumn" methodname="Grid_PlacesCellsByRowAndColumn" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="860074096" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.003020" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1198" name="Horizontal_StretchesHeightAndScrollsHorizontally" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.Horizontal_StretchesHeightAndScrollsHorizontally" methodname="Horizontal_StretchesHeightAndScrollsHorizontally" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="536362491" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.002508" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1196" name="NotifyChanged_RebindsOnlyAVisibleView" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.NotifyChanged_RebindsOnlyAVisibleView" methodname="NotifyChanged_RebindsOnlyAVisibleView" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="646438776" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.003517" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1195" name="NotifyRemoved_UpdatesCountContentAndBindings" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.NotifyRemoved_UpdatesCountContentAndBindings" methodname="NotifyRemoved_UpdatesCountContentAndBindings" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="965183779" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.003322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1191" name="Scrolling_BindsTheVisibleIndices" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.Scrolling_BindsTheVisibleIndices" methodname="Scrolling_BindsTheVisibleIndices" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="1915135581" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.003095" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1193" name="Scrolling_DoesNotAllocate" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.Scrolling_DoesNotAllocate" methodname="Scrolling_DoesNotAllocate" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="1503939105" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.527148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1192" name="ScrollingTheWholeList_ReusesViews" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.ScrollingTheWholeList_ReusesViews" methodname="ScrollingTheWholeList_ReusesViews" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="1655114241" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.076324" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1197" name="ScrollTo_ShowsTheIndex" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.ScrollTo_ShowsTheIndex" methodname="ScrollTo_ShowsTheIndex" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="1521362719" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.002660" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1190" name="SetCount_CreatesOnlyVisibleViews" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.SetCount_CreatesOnlyVisibleViews" methodname="SetCount_CreatesOnlyVisibleViews" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="1737025915" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.001963" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1194" name="SetItems_BindsInterfaceAndCallback" fullname="GlobalVisualizer.Tests.GlobalVisualizerViewTests.SetItems_BindsInterfaceAndCallback" methodname="SetItems_BindsInterfaceAndCallback" classname="GlobalVisualizer.Tests.GlobalVisualizerViewTests" runstate="Runnable" seed="1321438890" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.001428" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1202" name="VisualLayoutTests" fullname="GlobalVisualizer.Tests.VisualLayoutTests" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.008225" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1210" name="EmptyCount_GivesEmptyRangeAndPaddingOnlyContent" fullname="GlobalVisualizer.Tests.VisualLayoutTests.EmptyCount_GivesEmptyRangeAndPaddingOnlyContent" methodname="EmptyCount_GivesEmptyRangeAndPaddingOnlyContent" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="676262795" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000472" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1207" name="Grid_FitColumnsFromViewportWidth" fullname="GlobalVisualizer.Tests.VisualLayoutTests.Grid_FitColumnsFromViewportWidth" methodname="Grid_FitColumnsFromViewportWidth" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="152279086" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000671" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1208" name="Grid_FixedColumnsVisibleRangeCoversWholeRows" fullname="GlobalVisualizer.Tests.VisualLayoutTests.Grid_FixedColumnsVisibleRangeCoversWholeRows" methodname="Grid_FixedColumnsVisibleRangeCoversWholeRows" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="1445137832" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000363" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1209" name="Grid_FixedRowsScrollsHorizontally" fullname="GlobalVisualizer.Tests.VisualLayoutTests.Grid_FixedRowsScrollsHorizontally" methodname="Grid_FixedRowsScrollsHorizontally" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="1307002565" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000389" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1206" name="Horizontal_ContentSizeRectsAndRange" fullname="GlobalVisualizer.Tests.VisualLayoutTests.Horizontal_ContentSizeRectsAndRange" methodname="Horizontal_ContentSizeRectsAndRange" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="587695353" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000376" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1211" name="ScrollPosition_IsClampedToContent" fullname="GlobalVisualizer.Tests.VisualLayoutTests.ScrollPosition_IsClampedToContent" methodname="ScrollPosition_IsClampedToContent" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="899584231" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000361" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1203" name="Vertical_ContentSizeAndItemRects" fullname="GlobalVisualizer.Tests.VisualLayoutTests.Vertical_ContentSizeAndItemRects" methodname="Vertical_ContentSizeAndItemRects" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="693043931" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000464" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1205" name="Vertical_UsesPrefabHeightWhenItemSizeIsZero" fullname="GlobalVisualizer.Tests.VisualLayoutTests.Vertical_UsesPrefabHeightWhenItemSizeIsZero" methodname="Vertical_UsesPrefabHeightWhenItemSizeIsZero" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="1799910929" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000328" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1204" name="Vertical_VisibleRange" fullname="GlobalVisualizer.Tests.VisualLayoutTests.Vertical_VisibleRange" methodname="Vertical_VisibleRange" classname="GlobalVisualizer.Tests.VisualLayoutTests" runstate="Runnable" seed="1586910941" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000352" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1212" name="VisualVariableLayoutTests" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.010092" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1221" name="CrossAlignment_CentersNarrowItems" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.CrossAlignment_CentersNarrowItems" methodname="CrossAlignment_CentersNarrowItems" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="699102917" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000465" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1217" name="Flow_ClampsItemsWiderThanTheViewport" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Flow_ClampsItemsWiderThanTheViewport" methodname="Flow_ClampsItemsWiderThanTheViewport" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="88653131" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000551" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1218" name="Flow_NeighborsFollowRowsAndCenters" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Flow_NeighborsFollowRowsAndCenters" methodname="Flow_NeighborsFollowRowsAndCenters" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="307451632" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000956" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1216" name="Flow_WrapsRowsAndFindsRanges" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Flow_WrapsRowsAndFindsRanges" methodname="Flow_WrapsRowsAndFindsRanges" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="809434400" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000407" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1219" name="Grid_NeighborsStopAtEdges" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Grid_NeighborsStopAtEdges" methodname="Grid_NeighborsStopAtEdges" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="27115760" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000264" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1215" name="Horizontal_VariableWidths" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Horizontal_VariableWidths" methodname="Horizontal_VariableWidths" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="1824706679" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000527" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1223" name="Selection_RangeAdditiveAndShifts" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Selection_RangeAdditiveAndShifts" methodname="Selection_RangeAdditiveAndShifts" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="774031756" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000342" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1222" name="SizeTable_InsertAndRemoveKeepKnownSizes" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.SizeTable_InsertAndRemoveKeepKnownSizes" methodname="SizeTable_InsertAndRemoveKeepKnownSizes" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="193482960" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.001392" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1220" name="Vertical_NeighborsAreLinear" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Vertical_NeighborsAreLinear" methodname="Vertical_NeighborsAreLinear" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="1748243879" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000407" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1214" name="Vertical_UnknownSizesUseTheEstimate" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Vertical_UnknownSizesUseTheEstimate" methodname="Vertical_UnknownSizesUseTheEstimate" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="2075703403" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000302" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1213" name="Vertical_VariableHeightsUseOffsets" fullname="GlobalVisualizer.Tests.VisualVariableLayoutTests.Vertical_VariableHeightsUseOffsets" methodname="Vertical_VariableHeightsUseOffsets" classname="GlobalVisualizer.Tests.VisualVariableLayoutTests" runstate="Runnable" seed="1785519256" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000617" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1230" name="Unity.Addressables.DocExampleCode.Editor.Tests.dll" fullname="F:/GameProject/Pale Vertica/Library/ScriptAssemblies/Unity.Addressables.DocExampleCode.Editor.Tests.dll" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.003366" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="459288" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="1231" name="AddressableAssets" fullname="AddressableAssets" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.002646" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="1232" name="DocExampleCode" fullname="AddressableAssets.DocExampleCode" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.002083" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1228" name="TestStub" fullname="AddressableAssets.DocExampleCode.TestStub" classname="AddressableAssets.DocExampleCode.TestStub" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.001527" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1229" name="RequiredTest" fullname="AddressableAssets.DocExampleCode.TestStub.RequiredTest" methodname="RequiredTest" classname="AddressableAssets.DocExampleCode.TestStub" runstate="Runnable" seed="1976635912" result="Passed" start-time="2026-10-19 03:23:37Z" end-time="2026-10-19 03:23:37Z" duration="0.000224" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -6,6 +6,7 @@ using CoreSystem.UI.Inventory;
 using CoreSystem.UI.Utility;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using CoreSystem.UI.Inventory.Utility;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,8 @@ namespace CoreSystem.UI.GameInterface
         public EquipmentSlot TargetSlot;
         public Image Icon;
         public Image RarityFrame;
+        [SerializeField] private ItemSlotArtView _art;
+        [SerializeField] private GameObject _emptyIcon;
 
         public ItemInstance GetItem() => EquipmentItem;
         public Sprite GetIcon() => (Icon != null && Icon.gameObject.activeSelf) ? Icon.sprite : null;
@@ -181,6 +184,8 @@ namespace CoreSystem.UI.GameInterface
                 ctx.ClearMenu();
             }
 
+            ShowArt(currentEquip);
+
             // Drag support
             if (GetComponent<ItemDragHandler>() == null)
                 gameObject.AddComponent<ItemDragHandler>();
@@ -232,6 +237,16 @@ namespace CoreSystem.UI.GameInterface
                     }
                 });
             }
+        }
+
+        private void ShowArt(ItemInstance current)
+        {
+            bool empty = current == null || current.Item == null;
+            if (_emptyIcon != null) _emptyIcon.SetActive(empty);
+            if (_art == null) return;
+            ItemSlotDisplay display = ItemSlotDisplay.From(empty ? null : current);
+            display.Equipped = false;
+            _art.Show(display);
         }
     }
 }

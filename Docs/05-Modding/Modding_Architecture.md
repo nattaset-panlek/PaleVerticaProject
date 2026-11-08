@@ -1,6 +1,6 @@
 # 🏗️ Modding Architecture & API Design
 
-This document outlines the API structure designed to support future modding in **Realm of Hero**.
+This document outlines the API structure designed to support future modding in **Pale Vertica**.
 
 ---
 

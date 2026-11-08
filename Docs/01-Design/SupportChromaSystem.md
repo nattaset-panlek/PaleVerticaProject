@@ -1,6 +1,6 @@
 # Support Skill Chroma & Mineral System
 
-Support Skills in **Realm of Hero** are categorized by their **Chroma** (Type/Color) and **Mineral** subclass to determine their compatibility, flavor, and base mechanical behavior.
+Support Skills in **Pale Vertica** are categorized by their **Chroma** (Type/Color) and **Mineral** subclass to determine their compatibility, flavor, and base mechanical behavior.
 
 ## Chroma & Mineral Classification
 

@@ -1,5 +1,6 @@
 using CoreSystem.Entity;
 using CoreSystem.UI;
+using CoreSystem.Visuals;
 using UnityEngine;
 
 namespace CoreSystem.Combat
@@ -58,11 +59,19 @@ namespace CoreSystem.Combat
 
             outcome.Amount = finalDamage;
 
+            bool killingBlow = false;
+            float hpRemoved = 0f;
             var attribute = target.attributeSystem.GetAttribute(spec.TargetAttribute);
             if (attribute != null)
             {
+                float hpBefore = attribute.CurrentValue;
                 attribute.BaseValue = Mathf.Max(0f, attribute.CurrentValue - finalDamage);
                 attribute.Recalculate();
+                if (spec.TargetAttribute == AttributeType.HP)
+                {
+                    hpRemoved = Mathf.Max(0f, hpBefore - attribute.CurrentValue);
+                    killingBlow = CombatEvents.IsKillingBlow(hpBefore, attribute.CurrentValue);
+                }
             }
 
             if (userCharacter != null && userCharacter.UniquePassives != null)
@@ -70,17 +79,26 @@ namespace CoreSystem.Combat
                 userCharacter.UniquePassives.TriggerOnPostHit(target, finalDamage, payload);
             }
 
-            if (user != null)
+            IEntity credited = user ?? result.Action.CreditTo;
+            if (credited != null)
             {
-                user.TriggerOnHit(target, finalDamage);
+                credited.TriggerOnHit(target, finalDamage);
             }
 
-            target.TriggerOnTakeDamage(user, finalDamage);
+            target.TriggerOnTakeDamage(credited, finalDamage);
+            KillCreditRegistry.Record(credited, target, hpRemoved);
+            if (killingBlow)
+            {
+                CombatEvents.RaiseKilled(credited, target);
+                KillCreditRegistry.Forget(target);
+            }
 
             if (DamageTextManager.Instance != null)
             {
                 DamageTextManager.Instance.ShowDamage(target.transform.position, finalDamage, payload.DamageType, payload.SkillElement, outcome.IsCritical);
             }
+
+            HitVFXManager.PlayHitVFX(target.transform.position, payload.DamageType, payload.SkillElement);
         }
         #endregion
     }

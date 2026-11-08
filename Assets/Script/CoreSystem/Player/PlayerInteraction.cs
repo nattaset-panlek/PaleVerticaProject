@@ -1,8 +1,8 @@
-using System;
 using System.Collections.Generic;
 using CoreSystem.Agent;
 using CoreSystem.Data;
 using CoreSystem.Entity;
+using CoreSystem.Interaction;
 using CoreSystem.UI.Inspect;
 using CoreSystem.UI.Utility;
 using UnityEngine;
@@ -10,14 +10,16 @@ using UnityEngine.EventSystems;
 
 namespace CoreSystem.Player
 {
-    public sealed class PlayerInteraction
+    public sealed class PlayerInteraction : IInteractionProvider
     {
         #region [Variables/Fields]
-        private static readonly Collider2D[] Hits = new Collider2D[16];
-        #endregion
+        public const string CoreOptionPrefix = "core.";
+        public const string InspectId = "core.inspect";
+        public const string AttackId = "core.attack";
+        public const string FollowId = "core.follow";
+        public const string StopFollowId = "core.stop_follow";
 
-        #region [Properties]
-        public static event Action<Character, Character, List<ContextMenuItem>> OnBuildOptions;
+        private static readonly Collider2D[] Hits = new Collider2D[16];
         #endregion
 
         #region [Public Methods]
@@ -37,6 +39,51 @@ namespace CoreSystem.Player
             return true;
         }
 
+        public bool TryPrimaryInteract(PlayerCore core, Vector3 worldPosition)
+        {
+            if (core == null || core.Controlled == null) return false;
+
+            Character player = core.Controlled;
+            Character target = PickCharacter(worldPosition, player);
+            if (target == null || target == player) return false;
+
+            var interacts = FilterInteractOptions(InteractionCore.GetOptions(player, target, core));
+            if (interacts.Count == 0) return false;
+
+            if (interacts.Count == 1)
+            {
+                InteractionCore.Ensure().Request(player, target, interacts[0], core);
+                return true;
+            }
+
+            if (ContextMenuManager.Instance == null) return false;
+            var items = new List<ContextMenuItem>();
+            for (int i = 0; i < interacts.Count; i++)
+            {
+                var option = interacts[i];
+                items.Add(new ContextMenuItem(option.Label, () => InteractionCore.Ensure().Request(player, target, option, core)));
+            }
+            var mouse = UnityEngine.InputSystem.Mouse.current;
+            ContextMenuManager.Instance.Show(items, mouse != null ? mouse.position.ReadValue() : Vector2.zero);
+            return true;
+        }
+
+        public static bool IsCoreOption(string optionId)
+        {
+            return !string.IsNullOrEmpty(optionId) && optionId.StartsWith(CoreOptionPrefix);
+        }
+
+        public static List<InteractionOption> FilterInteractOptions(IReadOnlyList<InteractionOption> options)
+        {
+            var result = new List<InteractionOption>();
+            if (options == null) return result;
+            for (int i = 0; i < options.Count; i++)
+            {
+                if (options[i] != null && !IsCoreOption(options[i].Id)) result.Add(options[i]);
+            }
+            return result;
+        }
+
         public static Character PickCharacter(Vector3 worldPosition, Character self)
         {
             int count = Physics2D.OverlapPoint(worldPosition, new ContactFilter2D().NoFilter(), Hits);
@@ -54,40 +101,35 @@ namespace CoreSystem.Player
         public static List<ContextMenuItem> BuildOptions(PlayerCore core, Character target)
         {
             var items = new List<ContextMenuItem>();
-            if (target == null) return items;
-
-            items.Add(new ContextMenuItem("Inspect", () => CharacterInspectWindow.Open(target)));
-
             Character player = core != null ? core.Controlled : null;
-            if (player != null && target != player && IsAlive(target))
-            {
-                if (FactionDatabase.IsHostile(player.Faction, target.Faction))
-                {
-                    items.Add(new ContextMenuItem("Attack", () => core.SetAutoAttackTarget(target)));
-                }
-                else if (AgentCore.Instance != null && AgentCore.Instance.GetHandle(target) != null)
-                {
-                    items.Add(new ContextMenuItem("Follow Me", () => AgentCore.Instance?.CommandFollow(target, player.transform)));
-                    items.Add(new ContextMenuItem("Stop Following", () => AgentCore.Instance?.ClearCommand(target)));
-                }
-            }
+            if (player == null || target == null) return items;
 
-            OnBuildOptions?.Invoke(player, target, items);
+            var options = InteractionCore.GetOptions(player, target, core);
+            for (int i = 0; i < options.Count; i++)
+            {
+                var option = options[i];
+                items.Add(new ContextMenuItem(option.Label, () => InteractionCore.Ensure().Request(player, target, option, core)));
+            }
             return items;
         }
-        #endregion
 
-        #region [Private Methods]
-        private static bool IsAlive(Character character)
+        public void Collect(InteractionContext context, List<InteractionOption> options)
         {
-            var hp = character.attributeSystem != null ? character.attributeSystem.GetAttribute(AttributeType.HP) : null;
-            return hp == null || hp.CurrentValue > 0f;
-        }
+            var target = context.Target;
+            options.Add(new InteractionOption(InspectId, "Inspect", ctx => CharacterInspectWindow.Open(ctx.Target), priority: 1000));
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetStatics()
-        {
-            OnBuildOptions = null;
+            if (!(context.Holder is PlayerCore core) || context.IsSelf || target.IsDead) return;
+
+            var player = context.Actor;
+            if (FactionDatabase.IsHostile(player.Faction, target.Faction))
+            {
+                options.Add(new InteractionOption(AttackId, "Attack", ctx => core.SetAutoAttackTarget(ctx.Target), priority: 900));
+            }
+            else if (AgentCore.Instance != null && AgentCore.Instance.GetHandle(target) != null)
+            {
+                options.Add(new InteractionOption(FollowId, "Follow Me", ctx => AgentCore.Instance?.CommandFollow(ctx.Target, ctx.Actor.transform), priority: -100));
+                options.Add(new InteractionOption(StopFollowId, "Stop Following", ctx => AgentCore.Instance?.ClearCommand(ctx.Target), priority: -110));
+            }
         }
         #endregion
     }

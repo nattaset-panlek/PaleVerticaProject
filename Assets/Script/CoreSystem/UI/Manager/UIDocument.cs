@@ -212,7 +212,7 @@ namespace CoreSystem.UI
             {
                 if (pair.Value == null) continue;
                 var scrollRect = FindScrollRect(pair.Value);
-                if (scrollRect == null) continue;
+                if (scrollRect == null || !CanScroll(scrollRect)) continue;
                 if (positions == null) positions = new Dictionary<string, Vector2>();
                 positions[pair.Key] = scrollRect.normalizedPosition;
             }
@@ -231,6 +231,15 @@ namespace CoreSystem.UI
                 LayoutRebuilder.ForceRebuildLayoutImmediate(scrollRect.content);
                 scrollRect.normalizedPosition = pair.Value;
             }
+        }
+
+        private static bool CanScroll(ScrollRect scrollRect)
+        {
+            if (scrollRect.content == null) return false;
+            RectTransform viewport = scrollRect.viewport != null ? scrollRect.viewport : (RectTransform)scrollRect.transform;
+            Vector2 content = scrollRect.content.rect.size;
+            Vector2 view = viewport.rect.size;
+            return (scrollRect.vertical && content.y > view.y) || (scrollRect.horizontal && content.x > view.x);
         }
 
         private static ScrollRect FindScrollRect(GameObject go)

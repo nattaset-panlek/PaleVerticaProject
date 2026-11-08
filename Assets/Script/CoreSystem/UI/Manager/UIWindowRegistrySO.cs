@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CoreSystem.UI
 {
-    [CreateAssetMenu(fileName = "UIWindowRegistry", menuName = "Realm of Hero/UI/Window Registry")]
+    [CreateAssetMenu(fileName = "UIWindowRegistry", menuName = "Pale Vertica/UI/Window Registry")]
     public class UIWindowRegistrySO : ScriptableObject
     {
         #region [Variables/Fields]

@@ -1,7 +1,7 @@
 {
     "icon_attribute_buff": {
         "file": "Icon_Attribute_Buff.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Attribute_Buff.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Buff/Icon_Attribute_Buff.png",
         "tokens": [
             "icon",
             "attribute",
@@ -27,7 +27,7 @@
     },
     "icon_aura_buff": {
         "file": "Icon_Aura_Buff.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Aura_Buff.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Buff/Icon_Aura_Buff.png",
         "tokens": [
             "icon",
             "aura",
@@ -53,7 +53,7 @@
     },
     "icon_default_buff": {
         "file": "Icon_Default_Buff.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Default_Buff.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Buff/Icon_Default_Buff.png",
         "tokens": [
             "icon",
             "default",
@@ -79,7 +79,7 @@
     },
     "icon_effect_buff": {
         "file": "Icon_Effect_Buff.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Effect_Buff.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Buff/Icon_Effect_Buff.png",
         "tokens": [
             "icon",
             "effect",
@@ -105,7 +105,7 @@
     },
     "icon_skill_buff": {
         "file": "Icon_Skill_Buff.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Buff/Icon_Skill_Buff.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Buff/Icon_Skill_Buff.png",
         "tokens": [
             "icon",
             "skill",
@@ -131,7 +131,7 @@
     },
     "ui_accessoryring_icon": {
         "file": "UI_AccessoryRing_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_AccessoryRing_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_AccessoryRing_Icon.png",
         "tokens": [
             "ui",
             "accessoryring",
@@ -157,7 +157,7 @@
     },
     "ui_accessory_icon": {
         "file": "UI_Accessory_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Accessory_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Accessory_Icon.png",
         "tokens": [
             "ui",
             "accessory",
@@ -183,7 +183,7 @@
     },
     "ui_armor_icon": {
         "file": "UI_Armor_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Armor_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Armor_Icon.png",
         "tokens": [
             "ui",
             "armor",
@@ -209,7 +209,7 @@
     },
     "ui_armor_light_icon": {
         "file": "UI_Armor_Light_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Armor_Light_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Armor_Light_Icon.png",
         "tokens": [
             "ui",
             "armor",
@@ -236,7 +236,7 @@
     },
     "ui_dagger_icon": {
         "file": "UI_Dagger_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Dagger_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Dagger_Icon.png",
         "tokens": [
             "ui",
             "dagger",
@@ -262,7 +262,7 @@
     },
     "ui_dagger_light_icon": {
         "file": "UI_Dagger_Light_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Dagger_Light_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Dagger_Light_Icon.png",
         "tokens": [
             "ui",
             "dagger",
@@ -289,7 +289,7 @@
     },
     "ui_essence_icon": {
         "file": "UI_Essence_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Essence_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Essence_Icon.png",
         "tokens": [
             "ui",
             "essence",
@@ -315,7 +315,7 @@
     },
     "ui_fragment_icon": {
         "file": "UI_Fragment_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Fragment_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Fragment_Icon.png",
         "tokens": [
             "ui",
             "fragment",
@@ -341,7 +341,7 @@
     },
     "ui_glove_icon": {
         "file": "UI_Glove_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Glove_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Glove_Icon.png",
         "tokens": [
             "ui",
             "glove",
@@ -367,7 +367,7 @@
     },
     "ui_helmet_icon": {
         "file": "UI_Helmet_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Helmet_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Helmet_Icon.png",
         "tokens": [
             "ui",
             "helmet",
@@ -393,7 +393,7 @@
     },
     "ui_longsword_icon": {
         "file": "UI_LongSword_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_LongSword_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_LongSword_Icon.png",
         "tokens": [
             "ui",
             "longsword",
@@ -419,7 +419,7 @@
     },
     "ui_longsword_light_icon": {
         "file": "UI_LongSword_Light_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_LongSword_Light_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_LongSword_Light_Icon.png",
         "tokens": [
             "ui",
             "longsword",
@@ -446,7 +446,7 @@
     },
     "ui_null_icon": {
         "file": "UI_Null_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Null_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Null_Icon.png",
         "tokens": [
             "ui",
             "null",
@@ -471,7 +471,7 @@
     },
     "ui_shield_icon": {
         "file": "UI_Shield_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Shield_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Shield_Icon.png",
         "tokens": [
             "ui",
             "shield",
@@ -497,7 +497,7 @@
     },
     "ui_talisman_icon": {
         "file": "UI_Talisman_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_Talisman_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_Talisman_Icon.png",
         "tokens": [
             "ui",
             "talisman",
@@ -523,7 +523,7 @@
     },
     "ui_weaponaxe_icon": {
         "file": "UI_WeaponAxe_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_WeaponAxe_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_WeaponAxe_Icon.png",
         "tokens": [
             "ui",
             "weaponaxe",
@@ -549,7 +549,7 @@
     },
     "ui_weaponleft_icon": {
         "file": "UI_WeaponLeft_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_WeaponLeft_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_WeaponLeft_Icon.png",
         "tokens": [
             "ui",
             "weaponleft",
@@ -575,7 +575,7 @@
     },
     "ui_weaponright_icon": {
         "file": "UI_WeaponRight_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_WeaponRight_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_WeaponRight_Icon.png",
         "tokens": [
             "ui",
             "weaponright",
@@ -601,7 +601,7 @@
     },
     "ui_weaponstaff_icon": {
         "file": "UI_WeaponStaff_Icon.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Item/UI_WeaponStaff_Icon.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Item/UI_WeaponStaff_Icon.png",
         "tokens": [
             "ui",
             "weaponstaff",
@@ -627,7 +627,7 @@
     },
     "icon_divineblessing": {
         "file": "Icon_DivineBlessing.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_DivineBlessing.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Icon_DivineBlessing.png",
         "tokens": [
             "icon",
             "divineblessing"
@@ -655,7 +655,7 @@
     },
     "icon_earthshatter": {
         "file": "Icon_Earthshatter.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_Earthshatter.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Icon_Earthshatter.png",
         "tokens": [
             "icon",
             "earthshatter"
@@ -683,7 +683,7 @@
     },
     "icon_hellfireblast": {
         "file": "Icon_HellfireBlast.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_HellfireBlast.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Icon_HellfireBlast.png",
         "tokens": [
             "icon",
             "hellfireblast"
@@ -711,7 +711,7 @@
     },
     "icon_lightningstrike": {
         "file": "Icon_LightningStrike.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_LightningStrike.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Icon_LightningStrike.png",
         "tokens": [
             "icon",
             "lightningstrike"
@@ -739,7 +739,7 @@
     },
     "icon_shadowdash": {
         "file": "Icon_ShadowDash.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon_ShadowDash.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Icon_ShadowDash.png",
         "tokens": [
             "icon",
             "shadowdash"
@@ -767,7 +767,7 @@
     },
     "projectlie_null": {
         "file": "Projectlie_Null.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Projectlie_Null.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Projectlie_Null.png",
         "tokens": [
             "projectlie",
             "null"
@@ -791,7 +791,7 @@
     },
     "symbol_divineblessing": {
         "file": "Symbol_DivineBlessing.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_DivineBlessing.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Symbol_DivineBlessing.png",
         "tokens": [
             "symbol",
             "divineblessing"
@@ -816,7 +816,7 @@
     },
     "symbol_earthshatter": {
         "file": "Symbol_Earthshatter.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_Earthshatter.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Symbol_Earthshatter.png",
         "tokens": [
             "symbol",
             "earthshatter"
@@ -844,7 +844,7 @@
     },
     "symbol_hellfireblast": {
         "file": "Symbol_HellfireBlast.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_HellfireBlast.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Symbol_HellfireBlast.png",
         "tokens": [
             "symbol",
             "hellfireblast"
@@ -869,7 +869,7 @@
     },
     "symbol_lightningstrike": {
         "file": "Symbol_LightningStrike.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_LightningStrike.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Symbol_LightningStrike.png",
         "tokens": [
             "symbol",
             "lightningstrike"
@@ -895,7 +895,7 @@
     },
     "symbol_shadowdash": {
         "file": "Symbol_ShadowDash.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Symbol_ShadowDash.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Symbol_ShadowDash.png",
         "tokens": [
             "symbol",
             "shadowdash"
@@ -923,7 +923,7 @@
     },
     "icon_default": {
         "file": "Icon_Default.png",
-        "path": "F:/GameProject/Realm of Hero/My project/Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png",
+        "path": "F:/GameProject/Pale Vertica/Assets/Addressable/Sprite/Skill/Icon/Icon_Default.png",
         "tokens": [
             "icon",
             "default"

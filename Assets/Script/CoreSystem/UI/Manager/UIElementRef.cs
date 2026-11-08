@@ -47,6 +47,7 @@ namespace CoreSystem.UI
             le.minWidth = width;
             le.flexibleWidth = 0f;
             UnfitAxis(true, false);
+            UIStyleSizeLock.Enforce(GameObject);
             return this;
         }
 
@@ -58,6 +59,7 @@ namespace CoreSystem.UI
             le.minHeight = height;
             le.flexibleHeight = 0f;
             UnfitAxis(false, true);
+            UIStyleSizeLock.Enforce(GameObject);
             return this;
         }
 
@@ -143,6 +145,21 @@ namespace CoreSystem.UI
             return this;
         }
 
+        public UIElementRef LabelVariant(UIVariant variant)
+        {
+            switch (variant)
+            {
+                case UIVariant.Danger:
+                case UIVariant.Success:
+                case UIVariant.Warning:
+                    return SetTextColor(Theme.GetVariantColor(variant));
+                case UIVariant.Ghost:
+                    return Variant(variant);
+                default:
+                    return this;
+            }
+        }
+
         public UIElementRef CornerRadius(float radius)
         {
             if (GameObject == null) return this;
@@ -223,6 +240,7 @@ namespace CoreSystem.UI
         public UIElementRef SetSize(float width, float height)
         {
             if (RectTransform != null) RectTransform.sizeDelta = new Vector2(width, height);
+            UIStyleSizeLock.Enforce(GameObject);
             return this;
         }
 
@@ -233,6 +251,7 @@ namespace CoreSystem.UI
             if (width >= 0) le.preferredWidth = width;
             if (height >= 0) le.preferredHeight = height;
             UnfitAxis(width >= 0, height >= 0);
+            UIStyleSizeLock.Enforce(GameObject);
             return this;
         }
 
@@ -242,6 +261,7 @@ namespace CoreSystem.UI
             var le = GetLayout();
             if (width >= 0) le.minWidth = width;
             if (height >= 0) le.minHeight = height;
+            UIStyleSizeLock.Enforce(GameObject);
             return this;
         }
 
@@ -249,7 +269,11 @@ namespace CoreSystem.UI
         {
             if (GameObject == null) return this;
             var group = GameObject.GetComponent<GridLayoutGroup>();
-            if (group != null) group.cellSize = cellSize;
+            if (group != null)
+            {
+                group.cellSize = cellSize;
+                UIStyleSizeLock.FitGridCell(group);
+            }
             return this;
         }
 
