@@ -5,6 +5,7 @@ using CoreSystem.Agent;
 using CoreSystem.Data;
 using CoreSystem.Entity;
 using CoreSystem.Player;
+using CoreSystem.Utility;
 using UnityEngine;
 
 namespace CoreSystem.UI.Inspect
@@ -13,8 +14,13 @@ namespace CoreSystem.UI.Inspect
     {
         #region [Variables/Fields]
         private const string StatsRegion = "inspect.stats";
-        private static readonly Vector2 WindowSize = new Vector2(480f, 560f);
-        private static readonly Vector2 MaxWindowSize = new Vector2(560f, 760f);
+        private const string WindowTitle = "Inspect";
+        private const string VitalsStyle = "Status Vitals";
+        private const string AttrCellStyle = "Attr Cell";
+        private const int CombatColumns = 3;
+        private const float ChipRadius = 10f;
+        private static readonly Vector2 WindowSize = new Vector2(560f, 760f);
+        private static readonly Vector2 MaxWindowSize = new Vector2(560f, 860f);
         private static readonly Dictionary<int, CharacterInspectWindow> OpenWindows = new Dictionary<int, CharacterInspectWindow>();
 
         private static readonly AttributeType[] CoreAttributes =
@@ -74,13 +80,14 @@ namespace CoreSystem.UI.Inspect
             Setup(_modal);
             _modal.OnClosed += HandleClosed;
             if (_target.attributeSystem != null) _target.attributeSystem.OnAttributesChanged += HandleAttributesChanged;
+            if (_target.expSystem != null) _target.expSystem.OnBaseExpChanged += HandleExpChanged;
             CharacterRegistry.OnUnregistered += HandleUnregistered;
             OpenWindows[_runtimeId] = this;
         }
 
         public void Setup(UIGlobalModal modal)
         {
-            modal.SetTitle($"Inspect - {_target.Name}")
+            modal.SetTitle(WindowTitle)
                  .SetMinSize(new Vector2(380f, 300f))
                  .Build(BuildUI)
                  .FitContent(true, MaxWindowSize, false);
@@ -103,15 +110,18 @@ namespace CoreSystem.UI.Inspect
                 return;
             }
 
-            ui.Row(header =>
+            ui.Column(header =>
             {
-                header.Title(_target.Name).FontSize(24f).Fill();
-                var (relation, color) = Relation(ui.Theme);
-                header.Badge(relation, color);
-                header.Badge(ControllerLabel());
+                header.Title(_target.Name.ToUpperInvariant());
+                header.Row(badges =>
+                {
+                    var (relation, color) = Relation(ui.Theme);
+                    Chip(badges, relation, color);
+                    Chip(badges, ControllerLabel(), ui.Theme.Selected);
+                }).Gap(6f);
+                header.Caption($"{FactionName()}  ·  Base Lv {Value(AttributeType.BaseLevel):0}  ·  Job Lv {Value(AttributeType.JobLevel):0}  ·  #{_runtimeId}");
             }).Gap(6f);
 
-            ui.Caption($"{FactionName()}  |  Base Lv {Value(AttributeType.BaseLevel):0}  |  Job Lv {Value(AttributeType.JobLevel):0}");
             ui.Region(StatsRegion, BuildStats);
         }
 
@@ -119,64 +129,85 @@ namespace CoreSystem.UI.Inspect
         {
             if (_target == null) return;
 
-            ui.Panel(vitals =>
-            {
-                vitals.Heading("Vitals");
-                Bar(vitals, "HP", Value(AttributeType.HP), Value(AttributeType.MaxHP), UIVariant.Danger);
-                Bar(vitals, "MP", Value(AttributeType.MP), Value(AttributeType.MaxMP), UIVariant.Primary);
-            });
+            ui.SectionHeader("VITALS");
+            BuildVitals(ui);
 
-            ui.Panel(panel =>
-            {
-                panel.Heading("Attributes");
-                panel.Grid(grid =>
-                {
-                    foreach (var type in CoreAttributes) StatCell(grid, type.ToString(), Value(type));
-                }).Cell(68f, 52f).Gap(6f);
-            });
-
-            ui.Panel(panel =>
-            {
-                panel.Heading("Combat");
-                panel.Grid(grid =>
-                {
-                    foreach (var stat in CombatAttributes) StatCell(grid, stat.Label, Value(stat.Type));
-                }).Cell(132f, 52f).Gap(6f);
-            });
-
-            if (_target.Tags != CharacterTag.None)
-            {
-                ui.Panel(panel =>
-                {
-                    panel.Heading("Tags");
-                    panel.Row(row =>
-                    {
-                        foreach (CharacterTag tag in Enum.GetValues(typeof(CharacterTag)))
-                        {
-                            if (_target.HasTag(tag)) row.Badge(tag.ToString());
-                        }
-                    }).Gap(6f);
-                });
-            }
-        }
-
-        private static void Bar(UIBuilderContext ui, string label, float current, float max, UIVariant variant)
-        {
+            ui.SectionHeader("ATTRIBUTES");
             ui.Row(row =>
             {
-                row.Label(label).Bold().Width(36f);
-                row.Progress(max > 0f ? current / max : 0f, variant).Fill();
-                row.Caption($"{current:0} / {max:0}").Width(96f).TextAlign(TMPro.TextAlignmentOptions.MidlineRight);
+                for (int i = 0; i < CoreAttributes.Length; i++)
+                {
+                    if (i > 0) row.Spacer();
+                    row.Custom(AttrCellStyle)
+                       .SetText("Label", CoreAttributes[i].ToString())
+                       .SetText("Value", FormatValue(Value(CoreAttributes[i])));
+                }
+            });
+
+            ui.SectionHeader("COMBAT");
+            ui.Column(table =>
+            {
+                for (int start = 0; start < CombatAttributes.Length; start += CombatColumns)
+                {
+                    int first = start;
+                    table.Row(row =>
+                    {
+                        int end = Mathf.Min(first + CombatColumns, CombatAttributes.Length);
+                        for (int i = first; i < end; i++)
+                        {
+                            row.KeyValue(CombatAttributes[i].Label, FormatValue(Value(CombatAttributes[i].Type))).Fill();
+                        }
+                    }).Gap(8f);
+                }
             }).Gap(8f);
+
+            if (_target.Tags == CharacterTag.None) return;
+
+            ui.SectionHeader("TAGS");
+            ui.Row(row =>
+            {
+                foreach (CharacterTag tag in Enum.GetValues(typeof(CharacterTag)))
+                {
+                    if (tag != CharacterTag.None && _target.HasTag(tag)) Chip(row, tag.ToString(), TagColor(tag, ui.Theme));
+                }
+            }).Gap(6f);
         }
 
-        private static void StatCell(UIBuilderContext grid, string label, float value)
+        private void BuildVitals(UIBuilderContext ui)
         {
-            grid.Column(cell =>
+            float hp = Value(AttributeType.HP), maxHp = Value(AttributeType.MaxHP);
+            float mp = Value(AttributeType.MP), maxMp = Value(AttributeType.MaxMP);
+            long exp = _target.CurrentBaseExp, nextExp = _target.NextBaseExp;
+
+            ui.Custom(VitalsStyle)
+              .SetFill("HP Fill", Ratio(hp, maxHp))
+              .SetText("HP Value", $"{hp:F0}/{maxHp:F0}")
+              .SetFill("MP Fill", Ratio(mp, maxMp))
+              .SetText("MP Value", $"{mp:F0}/{maxMp:F0}")
+              .SetFill("EXP Fill", Ratio(exp, nextExp))
+              .SetText("EXP Value", $"{NumberFormatter.FormatWithCommas(exp)} / {NumberFormatter.FormatWithCommas(nextExp)}")
+              .SetText("Base", ((int)Value(AttributeType.BaseLevel)).ToString("000"))
+              .SetText("Job", ((int)Value(AttributeType.JobLevel)).ToString("000"));
+        }
+
+        private static float Ratio(float current, float max)
+        {
+            return max > 0f ? current / max : 0f;
+        }
+
+        private static void Chip(UIBuilderContext ui, string label, Color? color)
+        {
+            ui.Badge(label.ToUpperInvariant(), color).Padding(10, 10, 3, 3).CornerRadius(ChipRadius);
+        }
+
+        private static Color? TagColor(CharacterTag tag, UITheme theme)
+        {
+            switch (tag)
             {
-                cell.Caption(label).TextAlign(TMPro.TextAlignmentOptions.Center);
-                cell.Label(FormatValue(value)).Bold().TextAlign(TMPro.TextAlignmentOptions.Center);
-            }).Background(grid.Theme.PanelAlt).Padding(4).Gap(0f).Align(TextAnchor.MiddleCenter);
+                case CharacterTag.Boss: return theme.Warning;
+                case CharacterTag.Monster: return theme.Selected;
+                default: return null;
+            }
         }
 
         private static string FormatValue(float value)
@@ -220,6 +251,11 @@ namespace CoreSystem.UI.Inspect
             _modal.StartCoroutine(RefreshNextFrame());
         }
 
+        private void HandleExpChanged(long current, long next)
+        {
+            HandleAttributesChanged();
+        }
+
         private IEnumerator RefreshNextFrame()
         {
             yield return null;
@@ -239,6 +275,7 @@ namespace CoreSystem.UI.Inspect
             _modal = null;
             _refreshQueued = false;
             if (_target != null && _target.attributeSystem != null) _target.attributeSystem.OnAttributesChanged -= HandleAttributesChanged;
+            if (_target != null && _target.expSystem != null) _target.expSystem.OnBaseExpChanged -= HandleExpChanged;
             CharacterRegistry.OnUnregistered -= HandleUnregistered;
             if (OpenWindows.TryGetValue(_runtimeId, out var current) && current == this) OpenWindows.Remove(_runtimeId);
         }
