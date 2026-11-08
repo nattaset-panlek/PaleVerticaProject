@@ -13,5 +13,6 @@ namespace CoreSystem.Data.Save
         public string SaveTimestamp = "";
         public string SaveVersion = "1.0.0";
         public float TotalPlayTimeSeconds = 0f;
+        public string SceneName = "";
     }
 }

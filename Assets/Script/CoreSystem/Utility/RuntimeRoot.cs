@@ -12,8 +12,18 @@ namespace CoreSystem.Utility
         #region [Public Methods]
         public static Transform Get()
         {
-            if (_root == null) _root = new GameObject(RootName).transform;
+            if (_root == null)
+            {
+                _root = new GameObject(RootName).transform;
+                if (Application.isPlaying) Object.DontDestroyOnLoad(_root.gameObject);
+            }
             return _root;
+        }
+
+        public static void Clear()
+        {
+            if (_root != null) Object.Destroy(_root.gameObject);
+            _root = null;
         }
 
         public static GameObject CreateChild(string name)

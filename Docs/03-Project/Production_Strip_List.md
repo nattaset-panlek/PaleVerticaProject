@@ -42,8 +42,11 @@ Anything under an `Editor/` folder is left out of player builds by Unity automat
 | Pale Vertica > UI > Render UI Snapshots | `UISnapshotRenderer.cs` |
 | Pale Vertica > UI > Build ItemSlot, Build ItemCard, Build Merchant Stall, Apply ItemSlot To Windows | `ItemSlotPrefabBuilder.cs`, `ItemCardPrefabBuilder.cs`, `MerchantStallPrefabBuilder.cs`, `ItemSlotAdoptionBuilder.cs` (content tools: they rebuild prefabs, keep or move to a dev-only folder; `EditorUIFactory.cs` is their shared helper) |
 | Pale Vertica > UI > Build Status Vitals Element | `StatusVitalsPrefabBuilder.cs` (content tool: rebuilds `Status Vitals.prefab` from `StatusModal Window.prefab`; StatusModal itself is never saved) |
-| Pale Vertica > World > Build Prototype Town and Field | `Editor/World/PrototypeMapsBuilder.cs` (content tool: creates Town and Field scenes from SandBox) |
+| Pale Vertica > World > Set Up SandBox Test Scene | `Editor/World/SandBoxSceneSetup.cs` (one-off migration: delete after SandBox is moved) |
+| Pale Vertica > World > Rebuild Town and Field | `Editor/World/WorldMapsBuilder.cs` (content tool: builds Town and Field from project art; archives the old scenes) |
 | Pale Vertica > Quests > Build Quest Tracker | `Editor/Quests/QuestTrackerBuilder.cs` (content tool: builds the tracker window and its registry entry) |
+| Pale Vertica > World > Convert Scenes To Game Core | `Editor/World/GameCoreSceneConverter.cs` (one-off migration: delete after the scenes are converted) |
+| Pale Vertica > World > Build Title Scene | `Editor/World/TitleSceneBuilder.cs` (content tool: creates the placeholder Title scene) |
 | Pale Vertica > Loot > Build Loot Visuals | `Editor/Loot/LootVisualsBuilder.cs` (content tool: builds loot settings, placeholder drop prefab, label window and its registry entry) |
 | Pale Vertica > Entity > AlchemiteReturn NPCs > Build Prefabs / Place Alchemist In Scene / Place Blacksmith In Scene / Apply Standard To PSBs / Render Preview | `Assets/Script/Editor/NPC/AlchemiteReturnNpcBuilder.cs` (Build and Place are content tools; Render Preview is dev-only) |
 | Tools > MapLab > MapLab Window, GameObject > MapLab > Map / Set, Open MapLab Window button on MapLabMap | `ThirdParty/MapLab/Editor/Window/`, `MapLabSets.cs`, `ExtrudedShapeMenu.cs` (product feature, not dev-only) |

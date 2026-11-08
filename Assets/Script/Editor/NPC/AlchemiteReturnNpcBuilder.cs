@@ -10,7 +10,7 @@ namespace CoreSystem.Editor.NPC
     public static class AlchemiteReturnNpcBuilder
     {
         #region [Variables/Fields]
-        public const string SandBoxScenePath = "Assets/Scenes/SandBox.unity";
+        public const string SandBoxScenePath = "Assets/Scenes/Dev/SandBox.unity";
         public const string PreviewFolder = "Logs/CharacterPreview";
         public const string ReferencePrefabPath = "Assets/Addressable/Prefab/Entity/Ally/Ally.prefab";
         public static readonly Vector3 AlchemistSandBoxPosition = new Vector3(-2.2f, 0.85f, 0f);

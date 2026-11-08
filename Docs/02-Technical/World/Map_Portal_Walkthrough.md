@@ -2,14 +2,13 @@
 
 Maps are separate scenes joined by portals, with the global loading screen. The player's data travels with them.
 
-## Build the prototype maps
+## Rebuild the prototype maps
 
-Run **Pale Vertica > World > Build Prototype Town and Field**. It copies `SandBox.unity` into `Town.unity` and `Field.unity`, turns off spawners in Town, places the four NPCs, a portal and arrival point in each map, adds a Field spawner (melee, ranged, mini boss), and adds both scenes to Build Settings. Afterward, move anything that landed off walkable ground. It refuses to run if either scene already exists.
+Run **Pale Vertica > World > Rebuild Town and Field**. It moves the current scenes to `Assets/Scenes/Archive` and builds both maps from MapLab shapes and art: ground, roads, hills, ruins, trees, boulders, lights, mist, walkable data, NPCs, portals, spawn points and spawners. It does not copy `SandBox`. Anything you hand-placed in those scenes stays only in the archived copy.
 
 ## Make a new map
 
-1. Duplicate `Assets/Scenes/SandBox.unity`, since every map needs its own camera, canvases, managers and player.
-2. Add the scene in **File > Build Profiles** (Scene List).
+Follow [Game Core Walkthrough](./Game_Core_Walkthrough.md). Maps hold only world content.
 
 ## Add a portal
 
@@ -39,4 +38,5 @@ Run **Pale Vertica > World > Build Prototype Town and Field**. It copies `SandBo
 - Scene missing from Build Settings: an error is logged and nothing happens.
 - A spawn id that does not exist: a warning is logged and the player stays at the scene's default position.
 - A portal without a `Collider2D` cannot be clicked.
-- A map with no player character: the loading screen stays up.
+- A spawn point id that does not match: the player stays at their last position.
+er stays at their last position.

@@ -9,8 +9,8 @@ namespace CoreSystem.Editor.World
     public static class WalkableGridSceneInstaller
     {
         #region [Variables/Fields]
-        public const string SandBoxScenePath = "Assets/Scenes/SandBox.unity";
-        public const string SandBoxWalkablePath = "Assets/Scenes/SandBox_MapLab/Environment/Walkable.json";
+        public const string SandBoxScenePath = "Assets/Scenes/Dev/SandBox.unity";
+        public const string SandBoxWalkablePath = "Assets/Scenes/Dev/SandBox_MapLab/Environment/Walkable.json";
         public const string ObjectName = "Walkable Grid";
         #endregion
 

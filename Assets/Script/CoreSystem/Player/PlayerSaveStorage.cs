@@ -17,6 +17,7 @@ namespace CoreSystem.Player
         {
             PlayerDataModel model = new PlayerDataModel();
             model.Quests = GameData.Player.Quests.Capture();
+            model.Meta.SceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
 
             if (character.attributeSystem != null)
             {

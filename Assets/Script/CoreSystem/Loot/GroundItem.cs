@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using CoreSystem.Data;
 using CoreSystem.Data.Items;
 using CoreSystem.Entity;
-using CoreSystem.Utility;
 using UnityEngine;
 
 namespace CoreSystem.Loot
@@ -46,7 +45,7 @@ namespace CoreSystem.Loot
         #region [Public Methods]
         public static GroundItem Create(Item item, int quantity, Vector3 position, IEntity owner)
         {
-            GameObject go = RuntimeRoot.CreateChild("GroundItem " + item.Name);
+            var go = new GameObject("[Runtime] GroundItem " + item.Name);
             go.transform.position = position;
 
             var ground = go.AddComponent<GroundItem>();

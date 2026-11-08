@@ -40,6 +40,7 @@ namespace CoreSystem.UI.SystemMenu
             new SystemMenuItem("Save Game", SaveGame, PlayerCore.Instance != null && PlayerCore.GetPlayer() != null),
             new SystemMenuItem("Load Game", AskLoadGame, PlayerCore.Instance != null && SaveStorage.SlotExists(QuickSaveSlot)),
             SystemMenuItem.Separator,
+            new SystemMenuItem("Return to Title", AskReturnToTitle),
             new SystemMenuItem("Exit Game", AskExitGame)
         };
         #endregion
@@ -142,6 +143,12 @@ namespace CoreSystem.UI.SystemMenu
             var data = SaveStorage.LoadSlot(QuickSaveSlot);
             if (core == null || data == null) return;
             core.LoadData(data);
+        }
+
+        private void AskReturnToTitle()
+        {
+            Close();
+            _confirm.Show("Return to Title", "Return to the title screen? Unsaved progress will be lost.", "Return", CoreSystem.World.GameCoreLoader.ReturnToTitle);
         }
 
         private void AskExitGame()

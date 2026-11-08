@@ -9,7 +9,7 @@ namespace CoreSystem.Editor.CharacterAsset
     public static class CharacterSortingSceneInstaller
     {
         #region [Variables/Fields]
-        public const string SandBoxScenePath = "Assets/Scenes/SandBox.unity";
+        public const string SandBoxScenePath = "Assets/Scenes/Dev/SandBox.unity";
         public const string SandBoxPlayerName = "Player";
         private const string Tag = "[CharacterSortingSceneInstaller]";
         #endregion

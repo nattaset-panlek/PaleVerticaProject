@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using CoreSystem.World;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -69,6 +70,7 @@ namespace CoreSystem.UI.Loading
                 return false;
             }
 
+            GameCoreLoader.PrepareFor(sceneName);
             LoadingManager manager = Ensure();
             manager.Show(message);
             manager.StartCoroutine(manager.RunLoad(sceneName, keepVisibleUntil));
