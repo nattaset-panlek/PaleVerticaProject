@@ -70,7 +70,7 @@ namespace CoreSystem.Editor.UI
             foreach (var card in Cards) slots.Add(BuildCard(panel, card.label, card.icon, card.x, card.iconCentre));
 
             AddSpriteAt(panel, "Help Icon", "Icon_Help.png", new Vector2(61f, 776f));
-            var description = AddText(panel, "Description", Description, BodyFontPath, 16f, Color.white, TextAlignmentOptions.TopLeft, new Rect(86f, 760f, 1397f, 43f), 0f);
+            var description = AddText(panel, "Description", Description, BodyFontPath, 16f, Color.white, TextAlignmentOptions.TopLeft, new Rect(86f, 760f, 1397f, 48f), 0f);
             description.textWrappingMode = TextWrappingModes.Normal;
 
             var close = AddSpriteAt(panel, "Close", "Icon_Close.png", new Vector2(1509f, 31f));
