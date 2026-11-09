@@ -4,6 +4,7 @@ Mechanics, ideas, and world design.
 
 ## Contents
 - [Game Design Document (TH)](./GameDesignDoc.md)
+- Story and world: [06-Lore route](../06-Lore/README.md)
 - [Game Perspective & Map Design Analysis](./GAME_PERSPECTIVE_AND_MAP_DESIGN_ANALYSIS.md)
 - [Support Skill Chroma & Mineral System](./SupportChromaSystem.md)
 - [Unique Passive Ideas (TH)](./UniquePassiveIdeas.md)
