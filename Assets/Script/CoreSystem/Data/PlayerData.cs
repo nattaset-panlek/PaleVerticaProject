@@ -20,6 +20,8 @@ namespace CoreSystem.Data
         public PlayerSkills Skills { get; } = new PlayerSkills();
         public PlayerQuests Quests { get; } = new PlayerQuests();
         public PlayerEvents Events { get; } = new PlayerEvents();
+        public PlayerClass Class { get; } = new PlayerClass();
+        public PlayerAttributePoints AttributePoints { get; } = new PlayerAttributePoints();
 
         public PlayerData()
         {

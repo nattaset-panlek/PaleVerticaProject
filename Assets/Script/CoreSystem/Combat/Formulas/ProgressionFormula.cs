@@ -11,6 +11,8 @@ namespace CoreSystem.Combat
         };
 
         public const float ReforgeValuePerLevel = 5f;
+        public const int BaseAttributePointsPerLevel = 5;
+        public const int LevelsPerPointStep = 10;
         #endregion
 
         #region [Public Methods]
@@ -34,6 +36,18 @@ namespace CoreSystem.Combat
         public static float EquipmentUpgradeBonus(float baseValue, int refineLevel, int reforgeLevel)
         {
             return (baseValue * RefineMultiplier(refineLevel)) + ReforgeBonus(reforgeLevel);
+        }
+
+        public static int AttributePointsForLevel(int level)
+        {
+            if (level <= 0) return 0;
+            return BaseAttributePointsPerLevel + level / LevelsPerPointStep;
+        }
+
+        public static int PassivePointsForLevel(int level)
+        {
+            if (level <= 0) return 0;
+            return level % LevelsPerPointStep == 0 ? 2 : 1;
         }
 
         public static long FallbackBaseExp(int level)

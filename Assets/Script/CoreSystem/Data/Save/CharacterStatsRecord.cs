@@ -8,8 +8,8 @@ namespace CoreSystem.Data.Save
     [Serializable]
     public class CharacterStatsRecord
     {
-        public int BaseLevel = 1;
-        public int JobLevel = 1;
+        public int BaseLevel = 0;
+        public int JobLevel = 0;
         public long CurrentBaseExp = 0;
         public long CurrentJobExp = 0;
         public float BaseSTR = 1;

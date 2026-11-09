@@ -8,7 +8,7 @@
             "IconPath": "Assets/Addressable/Sprite/Skill/Icon/SkillIcon_01_1001_Tackle.png",
             "SkillElement": "Neutral",
             "DamageType": "Physical",
-            "BaseDamage": 1.0,
+            "BaseDamage": 10.0,
             "BaseAOERadius": 0.0,
             "BaseProjectileCount": 0,
             "BaseManaCost": 0.0,

@@ -211,6 +211,14 @@ namespace CoreSystem.Editor.UI
                     });
                 }
 
+                var classSelect = AssetDatabase.LoadAssetAtPath<GameObject>(ClassSelectPrefabBuilder.PrefabPath);
+                if (classSelect != null)
+                {
+                    var issues = ProcessPrefab(scene, classSelect, "class_select", ClassSelectPrefabBuilder.FigmaPosition, FigmaBackdrop, null, render);
+                    found["class_select"] = issues;
+                    summary.AppendLine($"class_select: {issues.Count} issue(s), {issues.FindAll(issue => issue.Severity == UIIssueSeverity.Error).Count} error(s)");
+                }
+
                 var socketWindow = AssetDatabase.LoadAssetAtPath<GameObject>(RefinementAndSocketPrefabBuilder.SocketPrefabPath);
                 if (socketWindow != null)
                 {

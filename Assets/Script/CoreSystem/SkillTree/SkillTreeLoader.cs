@@ -39,6 +39,8 @@ namespace CoreSystem.SkillTree
 
         #region Public Methods
 
+        public static float ToUnityY(float editorY) => -editorY;
+
         /// <summary>โหลดและแปลง SkillTree.json → SkillTreeData</summary>
         public static SkillTreeData Load()
         {
@@ -86,7 +88,7 @@ namespace CoreSystem.SkillTree
                     kind      = r.kind,
                     role      = r.role,
                     x         = r.x,
-                    y         = r.y,
+                    y         = ToUnityY(r.y),
                     isActive  = r.isActive,
                     linkStyle = r.linkStyle,
                     shape     = r.shape,

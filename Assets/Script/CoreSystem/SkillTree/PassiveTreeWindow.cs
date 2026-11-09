@@ -87,6 +87,8 @@ namespace CoreSystem.SkillTree
         {
             base.OnOpen(data);
 
+            GameData.Player.Class.OnClassChanged -= HandleClassChanged;
+            GameData.Player.Class.OnClassChanged += HandleClassChanged;
             LoadFromCharacter(PlayerCore.GetPlayer());
 
             if (_currentCharacter != null)
@@ -97,6 +99,7 @@ namespace CoreSystem.SkillTree
 
         public override void OnClose()
         {
+            GameData.Player.Class.OnClassChanged -= HandleClassChanged;
             base.OnClose();
         }
 
@@ -218,6 +221,12 @@ namespace CoreSystem.SkillTree
 
         #region Private Methods
 
+        private void HandleClassChanged()
+        {
+            _selectedNodeIds.Clear();
+            RefreshUI();
+        }
+
         private void ValidateSelection()
         {
             var unlocked = UnlockedIds;
@@ -229,13 +238,6 @@ namespace CoreSystem.SkillTree
             {
                 var nodeData = SkillTreeDatabase.GetNode(id);
                 if (nodeData == null) continue;
-
-                if (nodeData.IsBaseClass)
-                {
-                    validSelection.Add(id);
-                    queue.Enqueue(id);
-                    continue;
-                }
 
                 bool hasUnlockedNeighbor = SkillTreeDatabase.GetNeighborIds(id).Any(n => unlocked.Contains(n));
                 if (hasUnlockedNeighbor)
@@ -328,24 +330,7 @@ namespace CoreSystem.SkillTree
             if (unlocked.Contains(nodeId)) return false;
 
             var nodeData = SkillTreeDatabase.GetNode(nodeId);
-            if (nodeData.IsBaseClass)
-            {
-                bool hasBase = unlocked
-                    .Select(id => SkillTreeDatabase.GetNode(id))
-                    .Any(n => n != null && n.IsBaseClass);
-
-                if (hasBase) return false;
-
-                if (selection != null)
-                {
-                    bool hasSelectedBase = selection
-                        .Select(id => SkillTreeDatabase.GetNode(id))
-                        .Any(n => n != null && n.IsBaseClass);
-                    if (hasSelectedBase) return false;
-                }
-
-                return true;
-            }
+            if (nodeData.IsBaseClass) return false;
 
             bool hasNeighborUnlocked = SkillTreeDatabase.GetNeighborIds(nodeId)
                 .Any(neighborId => unlocked.Contains(neighborId));

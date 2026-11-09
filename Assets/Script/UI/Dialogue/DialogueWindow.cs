@@ -189,7 +189,7 @@ namespace CoreSystem.UI.Dialogue
             ui.Heading(quest.Name);
             ui.Label(quest.Description);
 
-            foreach (string line in QuestTextFormula.ProgressLines(quests, quest, CoreSystem.UI.Quests.QuestLogWindow.NpcName)) ui.Caption(line);
+            foreach (string line in QuestTextFormula.ProgressLines(quests, quest, CoreSystem.UI.Quests.QuestWindow.NpcName)) ui.Caption(line);
 
             ui.Heading(RewardsHeading);
             foreach (string line in RewardLines(quest.Reward)) ui.Caption(line);

@@ -42,13 +42,6 @@ namespace CoreSystem.Quests
             if (UIManager.Instance != null) UIManager.Instance.Open(TrackerWindowName);
         }
 
-        private void Update()
-        {
-            Keyboard keyboard = Keyboard.current;
-            if (keyboard == null || !keyboard.lKey.wasPressedThisFrame || UIManager.IsTypingInField()) return;
-            QuestLogWindow.Toggle();
-        }
-
         private void OnDestroy()
         {
             CombatEvents.OnKilled -= HandleKilled;

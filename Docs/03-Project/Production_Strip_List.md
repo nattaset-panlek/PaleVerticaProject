@@ -46,6 +46,8 @@ Anything under an `Editor/` folder is left out of player builds by Unity automat
 | Pale Vertica > World > Preview Camera | `Editor/World/ScenePreviewCamera.cs` (editor-only temporary camera for map editing) |
 | Pale Vertica > World > Import Alchemite Monsters And Environment | `Editor/World/AlchemiteContentBuilder.cs` (one-off content import: builds monsters and dresses Town and Field) |
 | Pale Vertica > World > Rebuild Town and Field | `Editor/World/WorldMapsBuilder.cs` (content tool: builds Town and Field from project art; archives the old scenes) |
+| Pale Vertica > UI > Build Class Select | `Editor/UI/ClassSelectPrefabBuilder.cs` (content tool: builds the Class Mastery modal and its registry entry; also snapshot entry `class_select` in `UISnapshotRenderer`) |
+| Pale Vertica > UI > Build Quest Window | `Editor/UI/QuestWindowPrefabBuilder.cs` (content tool: builds the Quest window, its row prefabs and registry entry) |
 | Pale Vertica > Quests > Build Quest Tracker | `Editor/Quests/QuestTrackerBuilder.cs` (content tool: builds the tracker window and its registry entry) |
 | Pale Vertica > World > Convert Scenes To Game Core | `Editor/World/GameCoreSceneConverter.cs` (one-off migration: delete after the scenes are converted) |
 | Pale Vertica > World > Build Title Scene | `Editor/World/TitleSceneBuilder.cs` (content tool: creates the placeholder Title scene) |

@@ -27,7 +27,7 @@ MonoBehaviour:
     Type: 0
     Prefab: {fileID: 5796950925605752723, guid: 85f2581989d1a764ba9f7c0bdd4d890e, type: 3}
     DestroyOnClose: 0
-    Keys: 63000000
+    Keys: 75000000
   - WindowName: CharacterEquipment
     Type: 0
     Prefab: {fileID: 7547035113793444875, guid: 2b2a21adcec1a4647a578e7c18abdc05, type: 3}
@@ -68,3 +68,13 @@ MonoBehaviour:
     Prefab: {fileID: 9152214647640292437, guid: 18de20fbf2204474589ac1d1fb04ee1f, type: 3}
     DestroyOnClose: 0
     Keys: 
+  - WindowName: ClassSelect
+    Type: 1
+    Prefab: {fileID: 3993649267041161024, guid: e22a58cf96919224290aef84538a4322, type: 3}
+    DestroyOnClose: 0
+    Keys: 
+  - WindowName: QuestLog
+    Type: 0
+    Prefab: {fileID: 3158910437566018938, guid: 5abf3987923c20848ae785a10273c515, type: 3}
+    DestroyOnClose: 0
+    Keys: 6c000000

@@ -261,11 +261,11 @@ MonoBehaviour:
   m_Content: {fileID: 1086846649074095321}
   m_Horizontal: 0
   m_Vertical: 1
-  m_MovementType: 2
+  m_MovementType: 1
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 30
+  m_ScrollSensitivity: 10
   m_Viewport: {fileID: 4531592066381828587}
   m_HorizontalScrollbar: {fileID: 0}
   m_VerticalScrollbar: {fileID: 4225116594114763790}
@@ -2523,7 +2523,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2048, y: 1024}
+  m_SizeDelta: {x: 1160, y: 780}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6922561568185153328
 CanvasRenderer:
@@ -2553,8 +2553,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d930f8ad427ab844a8467c59993d622c, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: -5653125141427004875, guid: 5cd825f9094f1904baf6174459d02d50, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

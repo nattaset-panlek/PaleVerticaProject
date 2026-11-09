@@ -84,6 +84,7 @@ namespace CoreSystem.Entity
         [Header("Passive Skill Tree")]
         public List<PassiveNodeRecord> PassiveNodes = new List<PassiveNodeRecord>();
         public int PassivePoints = 0;
+        public int AttributePoints = 0;
 
         [Header("Default Skills")]
         public List<int> DefaultSkillIds = new List<int> { 1001 };
@@ -466,6 +467,7 @@ namespace CoreSystem.Entity
         {
             _uniquePassives.Initialize(this);
             _attributeSystem.Initialize(this);
+            ApplyPlayerStartLevels();
             _buffs.Initialize(_attributeSystem);
             movementSystem.Initialize(this);
             skillCaster.Initialize(this);
@@ -548,6 +550,13 @@ namespace CoreSystem.Entity
             CharacterDataApplier.ApplyBehavior(agentProfile, model);
             agentProfile.OverrideAttackRange(this, model.AttackRange);
             agentProfile.SkillPool = CharacterDataApplier.BuildSkillPool(model);
+        }
+
+        private void ApplyPlayerStartLevels()
+        {
+            if (defaultController != CharacterControllerType.Player) return;
+            _attributeSystem.GetAttribute(AttributeType.BaseLevel).BaseValue = 0f;
+            _attributeSystem.GetAttribute(AttributeType.JobLevel).BaseValue = 0f;
         }
 
         private void ApplyTrainingDummyRule()

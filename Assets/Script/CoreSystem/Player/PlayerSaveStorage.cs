@@ -55,6 +55,7 @@ namespace CoreSystem.Player
             }
 
             model.Stats.PassivePoints = character.PassivePoints;
+            model.Stats.StatPoints = character.AttributePoints;
 
             var allInstances = GameData.Player.Inventory.GetAllItems();
             foreach (var inst in allInstances)
@@ -193,6 +194,7 @@ namespace CoreSystem.Player
                 }
 
                 character.PassivePoints = data.Stats.PassivePoints;
+                character.AttributePoints = data.Stats.StatPoints;
             }
 
             if (character.PassiveNodes != null)

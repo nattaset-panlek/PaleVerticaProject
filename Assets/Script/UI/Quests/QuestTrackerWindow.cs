@@ -38,7 +38,7 @@ namespace CoreSystem.UI.Quests
         #region [Private Methods]
         private void Refresh()
         {
-            _text.text = QuestTextFormula.Tracker(GameData.Player.Quests, QuestDatabase.All, QuestLogWindow.NpcName);
+            _text.text = QuestTextFormula.Tracker(GameData.Player.Quests, QuestDatabase.All, QuestWindow.NpcName);
         }
         #endregion
     }

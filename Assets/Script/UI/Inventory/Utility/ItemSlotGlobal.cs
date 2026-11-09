@@ -15,6 +15,7 @@ namespace CoreSystem.UI.Inventory.Utility
     public class ItemSlotGlobal : MonoBehaviour, IPointerClickHandler, IItemProvider, IDropHandler
     {
         public ItemInstance itemInstance;
+        public bool ReadOnly;
         public Image ItemIcon;
         public Image RarityFrame;
 
@@ -23,6 +24,8 @@ namespace CoreSystem.UI.Inventory.Utility
 
         public void OnDrop(PointerEventData eventData)
         {
+            if (ReadOnly) return;
+
             var draggedItem = GlobalDragManager.Payload as ItemInstance ?? ItemDragHandler.DraggedItem;
             var activeSource = GlobalDragManager.Source as IItemProvider ?? ItemDragHandler.ActiveSource;
 
@@ -79,7 +82,7 @@ namespace CoreSystem.UI.Inventory.Utility
                 if (TryGetComponent(out ContextMenuUI legacyMenu)) legacyMenu.enabled = false;
 
                 // Drag support
-                if (GetComponent<ItemDragHandler>() == null)
+                if (!ReadOnly && GetComponent<ItemDragHandler>() == null)
                     gameObject.AddComponent<ItemDragHandler>();
             }
         }
@@ -88,6 +91,12 @@ namespace CoreSystem.UI.Inventory.Utility
         public virtual void OnPointerClick(PointerEventData eventData)
         {
             if (itemInstance == null || itemInstance.Item == null) return;
+
+            if (ReadOnly)
+            {
+                if (eventData.button == PointerEventData.InputButton.Right && ItemInformationManager.Instance != null) ItemInformationManager.Instance.Open(itemInstance);
+                return;
+            }
 
             if (eventData.button == PointerEventData.InputButton.Right)
             {

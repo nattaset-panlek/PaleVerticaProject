@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoreSystem.Skills.ActiveSkill
   Id: 1001
   Name: Tackle
-  Icon: {fileID: 21300000, guid: bdd1a3af1ebf8e347baf21416aab4898, type: 3}
+  Icon: {fileID: 21300000, guid: 5bc984f9c2642af4e95a7259aee8c59d, type: 3}
   SkillElement: 0
   SkillDamageType: 0
   BaseTargeting:
-    rid: 1245210149551341642
+    rid: 2091417550602109014
   Effects:
-  - rid: 1245210149551341643
-  - rid: 1245210149551341644
+  - rid: 2091417550602109015
+  - rid: 2091417550602109016
   CastVfxPrefab: {fileID: 0}
   CastVfxSpawnPoint: 2
   VisualType: 0
@@ -31,11 +31,12 @@ MonoBehaviour:
   ImpactVfxPrefab: {fileID: 0}
   AuraVfxPrefab: {fileID: 0}
   BeamVfxPrefab: {fileID: 0}
-  BaseDamage: 1
+  BaseDamage: 10
   BaseAOERadius: 0
   BaseProjectileCount: 0
   BaseManaCost: 0
   Tags: 000000000700000008000000
+  Description: 
   IsToggle: 0
   IsContinuousArea: 0
   AreaDuration: 5
@@ -56,20 +57,20 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 1245210149551341642
+    - rid: 2091417550602109014
       type: {class: BoxTargeting, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         AlignmentAction: 0
         IncludeSelf: 0
         BoxSize: {x: 2, y: 2.5}
         Offset: {x: 0, y: 1.5}
-    - rid: 1245210149551341643
+    - rid: 2091417550602109015
       type: {class: DamageEffect, ns: CoreSystem.Skills.Logic, asm: Assembly-CSharp}
       data:
         <ApplyToCaster>k__BackingField: 0
         <ApplyOncePerCast>k__BackingField: 0
         TargetAttribute: 1
-    - rid: 1245210149551341644
+    - rid: 2091417550602109016
       type: {class: MovementEffectLogic, ns: CoreSystem.Skills.Logic.Effects, asm: Assembly-CSharp}
       data:
         <ApplyToCaster>k__BackingField: 0

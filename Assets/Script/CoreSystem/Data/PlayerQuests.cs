@@ -20,6 +20,19 @@ namespace CoreSystem.Data
 
         #region [Properties]
         public IEnumerable<QuestRecord> Records => _records.Values;
+
+        public int TrackedCount
+        {
+            get
+            {
+                int count = 0;
+                foreach (QuestRecord record in _records.Values)
+                {
+                    if (!record.Completed && !record.Untracked) count++;
+                }
+                return count;
+            }
+        }
         #endregion
 
         #region [Public Methods]
@@ -58,9 +71,42 @@ namespace CoreSystem.Data
             return result;
         }
 
-        public List<QuestModel> GetTracked(IEnumerable<QuestModel> quests)
+        public List<QuestModel> GetActive(IEnumerable<QuestModel> quests)
         {
             return Filter(quests, status => status == QuestStatus.Active || status == QuestStatus.ReadyToTurnIn);
+        }
+
+        public List<QuestModel> GetTracked(IEnumerable<QuestModel> quests)
+        {
+            List<QuestModel> active = GetActive(quests);
+            active.RemoveAll(quest => !IsTracked(quest.Id));
+            return active;
+        }
+
+        public bool IsTracked(int questId)
+        {
+            return _records.TryGetValue(questId, out QuestRecord record) && !record.Completed && !record.Untracked;
+        }
+
+        public bool SetTracked(int questId, bool tracked)
+        {
+            if (!_records.TryGetValue(questId, out QuestRecord record) || record.Completed) return false;
+            if (record.Untracked != tracked) return true;
+            if (tracked && TrackedCount >= QuestTextFormula.MaxTrackedQuests) return false;
+
+            record.Untracked = !tracked;
+            OnQuestsChanged?.Invoke();
+            return true;
+        }
+
+        public bool Abandon(QuestModel quest)
+        {
+            QuestStatus status = GetStatus(quest);
+            if (status != QuestStatus.Active && status != QuestStatus.ReadyToTurnIn) return false;
+
+            _records.Remove(quest.Id);
+            OnQuestsChanged?.Invoke();
+            return true;
         }
 
         public List<QuestModel> GetCompleted(IEnumerable<QuestModel> quests)
@@ -113,7 +159,7 @@ namespace CoreSystem.Data
         {
             if (GetStatus(quest) != QuestStatus.Available) return false;
 
-            var record = new QuestRecord { QuestId = quest.Id };
+            var record = new QuestRecord { QuestId = quest.Id, Untracked = TrackedCount >= QuestTextFormula.MaxTrackedQuests };
             foreach (QuestObjectiveModel _ in quest.Objectives) record.Counts.Add(0);
             _records[quest.Id] = record;
             OnQuestsChanged?.Invoke();
@@ -170,6 +216,7 @@ namespace CoreSystem.Data
                 {
                     QuestId = record.QuestId,
                     Completed = record.Completed,
+                    Untracked = record.Untracked,
                     Counts = new List<int>(record.Counts)
                 });
             }
@@ -188,6 +235,7 @@ namespace CoreSystem.Data
                     {
                         QuestId = record.QuestId,
                         Completed = record.Completed,
+                        Untracked = record.Untracked,
                         Counts = record.Counts != null ? new List<int>(record.Counts) : new List<int>()
                     };
                 }

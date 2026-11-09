@@ -32,6 +32,7 @@ namespace CoreSystem.UI
         [SerializeField] private UIGlobalModal _globalModalTemplate;
 
         public static event Action OnEscapeUnhandled;
+        public static Func<string, string> OpenRedirect;
         #endregion
 
         #region [Properties]
@@ -175,6 +176,7 @@ namespace CoreSystem.UI
 
         public UIBaseView Open(string windowName, object data = null)
         {
+            windowName = Redirect(windowName);
             if (string.IsNullOrEmpty(windowName)) return null;
 
             if (!_instantiatedViews.TryGetValue(windowName, out UIBaseView view) || view == null)
@@ -216,6 +218,9 @@ namespace CoreSystem.UI
 
         public void Toggle(string windowName, object data = null)
         {
+            windowName = Redirect(windowName);
+            if (string.IsNullOrEmpty(windowName)) return;
+
             if (IsOpen(windowName))
             {
                 Close(windowName);
@@ -228,6 +233,9 @@ namespace CoreSystem.UI
 
         public T Toggle<T>(string windowName, object data = null) where T : UIBaseView
         {
+            windowName = Redirect(windowName);
+            if (string.IsNullOrEmpty(windowName)) return null;
+
             if (IsOpen(windowName))
             {
                 Close(windowName);
@@ -327,6 +335,11 @@ namespace CoreSystem.UI
         #endregion
 
         #region [Private Methods]
+        private static string Redirect(string windowName)
+        {
+            return OpenRedirect != null ? OpenRedirect(windowName) : windowName;
+        }
+
         private UIBaseView InstantiateView(string windowName, object data)
         {
             if (_registry == null)
@@ -393,6 +406,7 @@ namespace CoreSystem.UI
         private static void ResetStatics()
         {
             OnEscapeUnhandled = null;
+            OpenRedirect = null;
         }
 
         private void RemoveModalFromStack(UIModal modal)

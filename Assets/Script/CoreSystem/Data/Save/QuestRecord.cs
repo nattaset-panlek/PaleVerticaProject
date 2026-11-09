@@ -8,6 +8,7 @@ namespace CoreSystem.Data.Save
     {
         public int QuestId;
         public bool Completed;
+        public bool Untracked;
         public List<int> Counts = new List<int>();
     }
 }

@@ -43,6 +43,7 @@ namespace CoreSystem.Entity
             }
         }
 
+        private bool IsPlayer => _owner != null && _owner.DefaultController == CharacterControllerType.Player;
         public long NextBaseExp => GetNextBaseExp(CurrentBaseLevel);
         public long NextJobExp => GetNextJobExp(CurrentJobLevel);
 
@@ -63,14 +64,16 @@ namespace CoreSystem.Entity
 
         public long GetNextBaseExp(int currentLevel)
         {
-            if (_table != null) return _table.GetBaseExp(currentLevel);
-            return ProgressionFormula.FallbackBaseExp(currentLevel);
+            int level = Mathf.Max(currentLevel, 1);
+            if (_table != null) return _table.GetBaseExp(level);
+            return ProgressionFormula.FallbackBaseExp(level);
         }
 
         public long GetNextJobExp(int currentLevel)
         {
-            if (_table != null) return _table.GetJobExp(currentLevel);
-            return ProgressionFormula.FallbackJobExp(currentLevel);
+            int level = Mathf.Max(currentLevel, 1);
+            if (_table != null) return _table.GetJobExp(level);
+            return ProgressionFormula.FallbackJobExp(level);
         }
 
         public void SetExp(long baseExp, long jobExp)
@@ -142,6 +145,7 @@ namespace CoreSystem.Entity
                 currentLevel++;
                 levelAttr.BaseValue = currentLevel;
                 
+                if (IsPlayer) _owner.AttributePoints += ProgressionFormula.AttributePointsForLevel(currentLevel);
                 Debug.Log($"[LevelUp] Character Base Level Up! {currentLevel-1} -> {currentLevel}");
                 OnBaseLevelUp?.Invoke(currentLevel);
                 
@@ -166,6 +170,7 @@ namespace CoreSystem.Entity
                 currentLevel++;
                 levelAttr.BaseValue = currentLevel;
                 
+                if (IsPlayer) _owner.PassivePoints += ProgressionFormula.PassivePointsForLevel(currentLevel);
                 Debug.Log($"[LevelUp] Character Job Level Up! {currentLevel-1} -> {currentLevel}");
                 OnJobLevelUp?.Invoke(currentLevel);
                 
