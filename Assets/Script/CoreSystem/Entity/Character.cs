@@ -74,6 +74,8 @@ namespace CoreSystem.Entity
         private CoreSystem.Entity.UniquePassives.UniquePassiveSystem _uniquePassives = new CoreSystem.Entity.UniquePassives.UniquePassiveSystem();
         private readonly List<CoreSystem.Entity.UniquePassives.IBasicAttackRepeater> _basicAttackRepeaters = new List<CoreSystem.Entity.UniquePassives.IBasicAttackRepeater>();
         public CoreSystem.Entity.UniquePassives.UniquePassiveSystem UniquePassives => _uniquePassives;
+        private readonly CoreSystem.Entity.UniquePassives.TreeUniquePassiveSystem _treeUniquePassives = new CoreSystem.Entity.UniquePassives.TreeUniquePassiveSystem();
+        public CoreSystem.Entity.UniquePassives.TreeUniquePassiveSystem TreeUniquePassives => _treeUniquePassives;
         private readonly CoreSystem.Visuals.WeaponVfx.WeaponVfxSystem _weaponVfx = new CoreSystem.Visuals.WeaponVfx.WeaponVfxSystem();
         public CoreSystem.Visuals.WeaponVfx.WeaponVfxSystem WeaponVfx => _weaponVfx;
 
@@ -179,8 +181,20 @@ namespace CoreSystem.Entity
         [ContextMenu("RecalculateStats")]
         public void RecalculateStats()
         {
+            _treeUniquePassives.Sync(WantedTreeUniquePassives(), _uniquePassives);
             _attributeSystem.UpdateDerivedAttributes();
             ApplyPassiveRecords();
+        }
+
+        private List<string> WantedTreeUniquePassives()
+        {
+            var wanted = new List<string>();
+            foreach (var rec in PassiveNodes)
+            {
+                var node = CoreSystem.SkillTree.SkillTreeDatabase.GetNode(rec.NodeId);
+                if (node != null && node.HasUniquePassive) wanted.Add(node.uniquePassiveId);
+            }
+            return wanted;
         }
 
         private void ApplyPassiveRecords()

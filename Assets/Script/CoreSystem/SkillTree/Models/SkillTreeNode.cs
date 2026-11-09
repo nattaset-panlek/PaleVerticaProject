@@ -17,10 +17,12 @@ namespace CoreSystem.SkillTree.Models
         public string shape;
         public int    polySides;
         public string iconPath;
+        public string uniquePassiveId;
         public List<AttributeBonus> extras;
 
         public Vector2 Position    => new Vector2(x, y);
         public bool    IsBaseClass => role == "base";
         public bool    HasStats    => extras != null && extras.Count > 0;
+        public bool    HasUniquePassive => !string.IsNullOrEmpty(uniquePassiveId);
     }
 }

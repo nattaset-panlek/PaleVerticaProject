@@ -105,6 +105,14 @@ namespace CoreSystem.SkillTree
                 context.AppendLine($"<b>Unlock Knowledge Classes <color=#62FFFF>{Node.label}</color></b>");
             }
 
+            if (Node.HasUniquePassive)
+            {
+                var entry = CoreSystem.Data.Database.UniquePassives.Find(e => e.Id == Node.uniquePassiveId);
+                if (entry != null) context.AppendLine(entry.Description);
+                if (!CoreSystem.Entity.UniquePassives.UniquePassiveSystem.RegisteredTypes.ContainsKey(Node.uniquePassiveId))
+                    context.AppendLine("<color=#FFB347>Coming soon: no effect yet</color>");
+            }
+
             if (Node.HasStats)
             {
                 context.AppendLine("<b>Bonus Stats</b>");

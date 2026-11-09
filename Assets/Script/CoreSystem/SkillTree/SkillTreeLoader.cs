@@ -32,6 +32,7 @@ namespace CoreSystem.SkillTree
             public string shape;
             public int    polySides;
             public string iconPath;
+            public string uniquePassiveId;
             public List<AttributeBonus> extras;
         }
 
@@ -94,6 +95,7 @@ namespace CoreSystem.SkillTree
                     shape     = r.shape,
                     polySides = r.polySides,
                     iconPath  = r.iconPath,
+                    uniquePassiveId = r.uniquePassiveId,
                     extras    = r.extras ?? new List<AttributeBonus>()
                 });
             }

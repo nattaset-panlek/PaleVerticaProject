@@ -140,6 +140,7 @@ namespace CoreSystem.Player
             {
                 foreach (var id in character.UniquePassives.ActivePassiveIds)
                 {
+                    if (character.TreeUniquePassives.IsGranted(id)) continue;
                     model.ActiveUniquePassiveIds.Add(id);
                 }
             }

@@ -42,6 +42,8 @@ namespace CoreSystem.SkillTree
         public Color UnlockedLineColor = new Color(1f, 0.8f, 0f, 1f);
         public Color SelectedLineColor = new Color(0.5f, 0.9f, 1f, 1f);
 
+        private const float ContentPadding = 400f;
+
         private Dictionary<int, Vector2>          _nodePositions = new Dictionary<int, Vector2>();
         private Dictionary<int, PassiveSkillNode>  _nodeObjects   = new Dictionary<int, PassiveSkillNode>();
         private Dictionary<long, UILineRenderer>  _lineObjects   = new Dictionary<long, UILineRenderer>();
@@ -118,6 +120,7 @@ namespace CoreSystem.SkillTree
 
             SpawnNodes(data.nodes);
             SpawnEdges(data.edges);
+            FitContentToTree();
         }
 
         [ContextMenu("Force Rebuild Tree")]
@@ -362,6 +365,18 @@ namespace CoreSystem.SkillTree
             rt.anchorMin = Vector2.zero; rt.anchorMax = Vector2.one;
             rt.sizeDelta = Vector2.zero; rt.anchoredPosition = Vector2.zero;
             return go.transform;
+        }
+
+        private void FitContentToTree()
+        {
+            if (!(SkillPageParent is RectTransform content)) return;
+
+            float extent = 0f;
+            foreach (Vector2 pos in _nodePositions.Values)
+                extent = Mathf.Max(extent, Mathf.Abs(pos.x), Mathf.Abs(pos.y));
+
+            float size = Mathf.Max(content.sizeDelta.x, (extent + ContentPadding) * 2f);
+            content.sizeDelta = new Vector2(size, size);
         }
 
         private void SpawnNodes(List<SkillTreeNode> nodes)

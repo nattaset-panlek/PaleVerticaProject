@@ -74,6 +74,236 @@
             "Id": "DoubleSpell",
             "Name": "Double Spell",
             "Description": "Level 1 skills cast a second time for free; the second cast deals 60% less damage. Stacks with Echo Spell."
+        },
+        {
+            "Id": "IronMomentum",
+            "Name": "Iron Momentum",
+            "Description": "Damage grows while you keep hitting the same target. Switching targets resets it."
+        },
+        {
+            "Id": "BurdenofKings",
+            "Name": "Burden of Kings",
+            "Description": "ATK rises with carried weight, but movement slows with it."
+        },
+        {
+            "Id": "LastBanner",
+            "Name": "Last Banner",
+            "Description": "Gain a temporary shield the first time HP falls below half in a fight."
+        },
+        {
+            "Id": "AnvilHeart",
+            "Name": "Anvil Heart",
+            "Description": "You cannot critically hit, but every attack deals your average critical damage."
+        },
+        {
+            "Id": "Verdict",
+            "Name": "Verdict",
+            "Description": "Hits brand enemies. Your next attack detonates the brand as Holy damage."
+        },
+        {
+            "Id": "PenitentBlade",
+            "Name": "Penitent Blade",
+            "Description": "Part of your STR counts as INT for Holy skills."
+        },
+        {
+            "Id": "HereticsPyre",
+            "Name": "Heretic's Pyre",
+            "Description": "Enemies that die while branded spread fire to nearby foes."
+        },
+        {
+            "Id": "OathofSilence",
+            "Name": "Oath of Silence",
+            "Description": "You cannot use skills with a cast time, but instant skills hit far harder."
+        },
+        {
+            "Id": "SpellboundEdge",
+            "Name": "Spellbound Edge",
+            "Description": "After a successful cast, your next basic attack carries that skill's element."
+        },
+        {
+            "Id": "QuickenedWeave",
+            "Name": "Quickened Weave",
+            "Description": "Each basic attack shortens the cast time of your next skill."
+        },
+        {
+            "Id": "RunicSkin",
+            "Name": "Runic Skin",
+            "Description": "Gain temporary resistance to the element of your last skill."
+        },
+        {
+            "Id": "TwinConduit",
+            "Name": "Twin Conduit",
+            "Description": "ATK and M.ATK merge into one value, but two-handed weapons cannot be equipped."
+        },
+        {
+            "Id": "MarkedThroat",
+            "Name": "Marked Throat",
+            "Description": "Attacks from behind a target always critically hit."
+        },
+        {
+            "Id": "VeilStep",
+            "Name": "Veil Step",
+            "Description": "Become briefly invisible after dodging an attack."
+        },
+        {
+            "Id": "VenomLedger",
+            "Name": "Venom Ledger",
+            "Description": "The more status effects a target has, the more damage you deal to it."
+        },
+        {
+            "Id": "OneCleanCut",
+            "Name": "One Clean Cut",
+            "Description": "Your first hit on a target is massive. Later hits weaken until you switch targets."
+        },
+        {
+            "Id": "LoadedChamber",
+            "Name": "Loaded Chamber",
+            "Description": "Standing still loads a special round. Your next shot grows with the time stored."
+        },
+        {
+            "Id": "PowderBurn",
+            "Name": "Powder Burn",
+            "Description": "Critical hits set the target on fire."
+        },
+        {
+            "Id": "RicochetDoctrine",
+            "Name": "Ricochet Doctrine",
+            "Description": "Shots that kill an enemy bounce to the next one."
+        },
+        {
+            "Id": "SixFates",
+            "Name": "Six Fates",
+            "Description": "Attacks roll one of six outcomes, from a miss to enormous damage."
+        },
+        {
+            "Id": "Windreader",
+            "Name": "Windreader",
+            "Description": "Damage increases with distance to the target."
+        },
+        {
+            "Id": "PinningShot",
+            "Name": "Pinning Shot",
+            "Description": "Repeated hits briefly pin the target in place."
+        },
+        {
+            "Id": "SkirmishersPace",
+            "Name": "Skirmisher's Pace",
+            "Description": "Shoot while moving without slowing down, but with shorter range."
+        },
+        {
+            "Id": "HollowQuiver",
+            "Name": "Hollow Quiver",
+            "Description": "No automatic basic attacks, but every aimed shot hits hard and pierces."
+        },
+        {
+            "Id": "OverflowingSigil",
+            "Name": "Overflowing Sigil",
+            "Description": "MP restored beyond your maximum is stored as power for your next skill."
+        },
+        {
+            "Id": "GlassCannonTheorem",
+            "Name": "Glass Cannon Theorem",
+            "Description": "The more MP you have left, the higher your M.ATK."
+        },
+        {
+            "Id": "SlowIncantation",
+            "Name": "Slow Incantation",
+            "Description": "Long casts grow stronger with the cast time actually spent."
+        },
+        {
+            "Id": "SingularElement",
+            "Name": "Singular Element",
+            "Description": "Choose one element. It becomes far stronger and all others are unusable."
+        },
+        {
+            "Id": "Hexweaver",
+            "Name": "Hexweaver",
+            "Description": "Curses stack on a single target and grow with each stack."
+        },
+        {
+            "Id": "FickleStars",
+            "Name": "Fickle Stars",
+            "Description": "LUK sets the chance for a skill to cost no MP."
+        },
+        {
+            "Id": "WhisperPact",
+            "Name": "Whisper Pact",
+            "Description": "Power rises with Corruption, but maximum HP falls."
+        },
+        {
+            "Id": "GraveTithe",
+            "Name": "Grave Tithe",
+            "Description": "Enemies dying nearby restore a little HP."
+        },
+        {
+            "Id": "BoneChoir",
+            "Name": "Bone Choir",
+            "Description": "Skeletons dying in range rise as temporary allies."
+        },
+        {
+            "Id": "HollowCrown",
+            "Name": "Hollow Crown",
+            "Description": "Maximum HP is halved, but life leech can exceed maximum HP."
+        },
+        {
+            "Id": "VolatileMixture",
+            "Name": "Volatile Mixture",
+            "Description": "Potions you use explode in a ring around you."
+        },
+        {
+            "Id": "SecondDose",
+            "Name": "Second Dose",
+            "Description": "Potions have a chance not to be consumed."
+        },
+        {
+            "Id": "TransmutedBlood",
+            "Name": "Transmuted Blood",
+            "Description": "Items that restore HP also restore MP."
+        },
+        {
+            "Id": "LivingPhilosopher",
+            "Name": "Living Philosopher",
+            "Description": "You cannot use potions, but HP regenerates steadily with VIT."
+        },
+        {
+            "Id": "AnsweredPrayer",
+            "Name": "Answered Prayer",
+            "Description": "Self-healing grows stronger the lower your HP is."
+        },
+        {
+            "Id": "RadiantRebuke",
+            "Name": "Radiant Rebuke",
+            "Description": "Healing releases a Holy wave that damages nearby enemies."
+        },
+        {
+            "Id": "VowofStillness",
+            "Name": "Vow of Stillness",
+            "Description": "Standing still grants M.DEF and faster MP recovery."
+        },
+        {
+            "Id": "CovenantKeeper",
+            "Name": "Covenant Keeper",
+            "Description": "All healing is greatly increased, but you can only deal Holy damage."
+        },
+        {
+            "Id": "PackInstinct",
+            "Name": "Pack Instinct",
+            "Description": "The more summons you have, the faster you move and attack."
+        },
+        {
+            "Id": "SharedWound",
+            "Name": "Shared Wound",
+            "Description": "Your summons take part of the damage dealt to you."
+        },
+        {
+            "Id": "FeralBond",
+            "Name": "Feral Bond",
+            "Description": "Summons gain a bonus from your DEX and VIT."
+        },
+        {
+            "Id": "AlphasBurden",
+            "Name": "Alpha's Burden",
+            "Description": "You can have only one summon, but it grows larger and much stronger."
         }
     ]
 }
