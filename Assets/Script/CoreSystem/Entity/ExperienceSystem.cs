@@ -139,7 +139,7 @@ namespace CoreSystem.Entity
             int currentLevel = (int)levelAttr.BaseValue;
             long nextExp = GetNextBaseExp(currentLevel);
 
-            while (CurrentBaseExp >= nextExp)
+            while (nextExp > 0 && CurrentBaseExp >= nextExp)
             {
                 CurrentBaseExp -= nextExp;
                 currentLevel++;
@@ -151,7 +151,9 @@ namespace CoreSystem.Entity
                 
                 nextExp = GetNextBaseExp(currentLevel);
             }
-            
+
+            if (nextExp <= 0) CurrentBaseExp = 0;
+
             _owner.attributeSystem.UpdateDerivedAttributes();
         }
 
@@ -164,7 +166,7 @@ namespace CoreSystem.Entity
             int currentLevel = (int)levelAttr.BaseValue;
             long nextExp = GetNextJobExp(currentLevel);
 
-            while (CurrentJobExp >= nextExp)
+            while (nextExp > 0 && CurrentJobExp >= nextExp)
             {
                 CurrentJobExp -= nextExp;
                 currentLevel++;
@@ -176,7 +178,9 @@ namespace CoreSystem.Entity
                 
                 nextExp = GetNextJobExp(currentLevel);
             }
-            
+
+            if (nextExp <= 0) CurrentJobExp = 0;
+
             _owner.attributeSystem.UpdateDerivedAttributes();
         }
         #endregion
