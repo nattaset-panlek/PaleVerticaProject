@@ -1,0 +1,21 @@
+﻿<Solution>
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="LeTai.TrueShadow.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="GlobalVisualizer.Runtime.csproj" />
+  <Project Path="MapLab.Tests.Editor.csproj" />
+  <Project Path="LeTai.TrueShadow.Demo.csproj" />
+  <Project Path="MapLab.Editor.csproj" />
+  <Project Path="GlobalVisualizer.Editor.csproj" />
+  <Project Path="Axnise.SceneSwitcher.Editor.csproj" />
+  <Project Path="MapLab.Samples.csproj" />
+  <Project Path="MapLab.csproj" />
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
+  <Project Path="GlobalVisualizer.Tests.Editor.csproj" />
+  <Project Path="Assembly-CSharp-Editor-firstpass.csproj" />
+  <Project Path="GlobalVisualizer.Tests.Support.csproj" />
+  <Project Path="MapLab.Samples.Elevation.csproj" />
+  <Project Path="LeTai.TrueShadow.Editor.csproj" />
+  <Project Path="MapLab.Samples.Elevation.Editor.csproj" />
+  <Project Path="MapLab.Samples.Editor.csproj" />
+</Solution>

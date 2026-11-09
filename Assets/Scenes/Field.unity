@@ -10823,17 +10823,17 @@ MonoBehaviour:
   _points:
   - {x: -31, y: 0}
   - {x: -21, y: 1.6}
-  - {x: -11, y: -1.8}
+  - {x: -10.805381, y: 0.75784004}
   - {x: 0, y: 0.6}
   - {x: 11, y: -2.4}
   - {x: 31, y: -1}
   _sharp: 000000000000
-  _smoothness: 10
+  _smoothness: 5
   _visualBaked: 0
   _preset: {fileID: 0}
-  _width: 1.8
+  _width: 3.36
   _color: {r: 1, g: 1, b: 1, a: 1}
-  _texture: {fileID: 2800000, guid: 9b7d95211beab844d998ccac396c8c4e, type: 3}
+  _texture: {fileID: 2800000, guid: 53477fa273073334e925b1cd9d7e7a5d, type: 3}
   _textureLength: 2
   _material: {fileID: 2100000, guid: 674f78b65dbeee847a5a29433287e544, type: 2}
   _sortingOrder: -92
@@ -21765,7 +21765,7 @@ SpriteRenderer:
   m_Size: {x: 6.9765625, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &940447598
 Transform:
@@ -23767,7 +23767,7 @@ SpriteRenderer:
   m_Size: {x: 6.9765625, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1037661056
 Transform:
@@ -23931,7 +23931,7 @@ SpriteRenderer:
   m_Size: {x: 6.9765625, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1046497559
 Transform:
@@ -29294,7 +29294,7 @@ SpriteRenderer:
   m_Size: {x: 6.9765625, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1353783028
 Transform:
@@ -32290,7 +32290,7 @@ SpriteRenderer:
   m_Size: {x: 6.9765625, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1497618344
 Transform:
