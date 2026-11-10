@@ -63,6 +63,7 @@ public partial class GameDataWorkbench : EditorWindow
                 DrawValidationErrorGroup("Skills", _validationErrors.Where(e => e.Contains("[Skill")).ToList());
                 DrawValidationErrorGroup("Attributes", _validationErrors.Where(e => e.Contains("[Attribute")).ToList());
                 DrawValidationErrorGroup("Item Sets", _validationErrors.Where(e => e.Contains("[Set")).ToList());
+                DrawValidationErrorGroup("Localization (EN + TH required)", _validationErrors.Where(e => e.Contains(CoreSystem.Editor.Localization.LocalizationCoverageFormula.Tag)).ToList());
             }
         }
         EndGroup();
@@ -133,6 +134,7 @@ public partial class GameDataWorkbench : EditorWindow
     {
         _validationErrors.Clear();
         _isValidated = true;
+        _validationErrors.AddRange(CoreSystem.Editor.Localization.LocalizationCoverageFormula.AuditProject());
 
         // --- Attribute Validation ---
         var attrIds = _attributeData.Attributes.Select(a => a.Id).ToList();

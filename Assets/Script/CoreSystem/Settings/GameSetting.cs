@@ -32,16 +32,19 @@ namespace CoreSystem.Settings
         #region [Public Methods]
         public static void SetLanguage(string lang)
         {
-            Language = lang.ToUpper();
+            string language = CoreSystem.Localization.LocalizationFormula.Normalize(lang);
+            bool changed = language != Language;
+            Language = language;
             Debug.Log($"[GameSetting] Language set to: {Language}");
             PlayerPrefs.SetString(LanguageKey, Language);
             PlayerPrefs.Save();
             OnChanged?.Invoke();
+            if (changed) CoreSystem.Localization.LocalizationEvents.RaiseLanguageChanged(Language);
         }
 
         public static void Load()
         {
-            Language = PlayerPrefs.GetString(LanguageKey, "EN");
+            Language = CoreSystem.Localization.LocalizationFormula.Normalize(PlayerPrefs.GetString(LanguageKey, CoreSystem.Localization.LocalizationFormula.DefaultLanguage));
         }
 
         public static bool TryGetWindowPosition(string windowName, out Vector2 position)
@@ -70,6 +73,14 @@ namespace CoreSystem.Settings
             PlayerPrefs.DeleteKey(key + ".x");
             PlayerPrefs.DeleteKey(key + ".y");
             PlayerPrefs.Save();
+        }
+        #endregion
+
+        #region [Private Methods]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        private static void LoadOnStart()
+        {
+            Load();
         }
         #endregion
     }

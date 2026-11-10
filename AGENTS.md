@@ -88,3 +88,10 @@ The `Assets/Script` directory is highly modular. Maintain and respect this organ
 - **Suffix defines the script type**: `Manager` is reserved for a single global instance; per-character subsystems are `System`; player state is `Player*`; UI is `View`/`Window`/`Modal`/`Slot`; static data/math is `Database`/`Loader`/`Formula`/`Registry`/`Events`.
 - **Runtime-created objects** (not in a prefab or scene) must have a single `Create()`/`Factory` entry point, a `[Runtime]` GameObject name, and self-register their instance.
 - **Do NOT use runtime Find** (`FindAnyObjectByType`, `GameObject.Find`, tag lookups) in game code. Use serialized references, self-registering managers, registries, or events.
+
+## 9. Localization (two languages minimum)
+- **Every player-facing text ships in at least EN and TH.** This covers new UI labels, buttons, messages, tooltips, item, quest and dialogue text, and any new data field the player reads. Do not add a text in one language and plan to translate later.
+- **UI and code text** goes in the string table `Assets/Resources/Localization/Strings.json` (edit it in **GameDataWorkbench > Localization**) and is read with `LocalizationDatabase.Get("key")`, or with a `LocalizedTextView` on the text object so it refreshes when the language changes. Do not hard-code player-facing strings in C#.
+- **Data text** uses a `LocalizedString` field (`EN`, `TH`), never a plain `string`. Older fields that are still plain strings (item, skill, support and unique passive names, skill and passive descriptions) are moved in later phases (see the walkthrough); never add a new one.
+- **The rule is enforced**: the EditMode test `LocalizationTests.ProjectText_HasEveryLanguage` and the Workbench Dashboard fail on any key or data text that has one language but not the other. A task is not done while they report it.
+- Details and steps: `Docs/02-Technical/Localization/Localization_Walkthrough.md`.

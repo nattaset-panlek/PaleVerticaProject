@@ -8,7 +8,7 @@ namespace CoreSystem.Settings
     public static class SettingsCatalog
     {
         #region [Variables/Fields]
-        public static readonly string[] Languages = { "EN", "TH" };
+        public static readonly string[] Languages = CoreSystem.Localization.LocalizationFormula.Languages;
         public const float DefaultBrightness = 50f;
         public const float DefaultZoomSpeed = 50f;
         public const float DefaultHudScale = 100f;

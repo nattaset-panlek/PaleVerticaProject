@@ -1,0 +1,16 @@
+{
+    "Entries": [
+        { "Key": "common.ok", "Text": { "EN": "OK", "TH": "ตกลง" } },
+        { "Key": "common.cancel", "Text": { "EN": "Cancel", "TH": "ยกเลิก" } },
+        { "Key": "common.close", "Text": { "EN": "Close", "TH": "ปิด" } },
+        { "Key": "common.continue", "Text": { "EN": "Continue", "TH": "ต่อไป" } },
+        { "Key": "common.back", "Text": { "EN": "Back", "TH": "ย้อนกลับ" } },
+        { "Key": "common.yes", "Text": { "EN": "Yes", "TH": "ใช่" } },
+        { "Key": "common.no", "Text": { "EN": "No", "TH": "ไม่" } },
+        { "Key": "common.save", "Text": { "EN": "Save", "TH": "บันทึก" } },
+        { "Key": "common.load", "Text": { "EN": "Load", "TH": "โหลด" } },
+        { "Key": "settings.language", "Text": { "EN": "Language", "TH": "ภาษา" } },
+        { "Key": "language.EN", "Text": { "EN": "English", "TH": "English" } },
+        { "Key": "language.TH", "Text": { "EN": "ไทย", "TH": "ไทย" } }
+    ]
+}

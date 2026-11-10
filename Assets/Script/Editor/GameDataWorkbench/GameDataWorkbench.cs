@@ -39,7 +39,8 @@ public partial class GameDataWorkbench : EditorWindow
         Dialogues,
         DropTables,
         Shops,
-        Events
+        Events,
+        Localization
     }
 
     private string _itemJsonPath = "Assets/Resources/Data/Item.json";
@@ -150,6 +151,7 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.Sets:            DrawItemSetEditor(); break;
             case ToolTab.UniquePassives:  DrawUniquePassiveEditor(); break;
             case ToolTab.Experience:      DrawExperienceEditor(); break;
+            case ToolTab.Localization:    DrawLocalizationEditor(); break;
         }
         GUILayout.EndArea();
 
@@ -258,6 +260,7 @@ public partial class GameDataWorkbench : EditorWindow
         _itemSetData = LoadData<ItemSetList>(_setJsonPath) ?? new ItemSetList { Sets = new List<ItemSetEntry>() };
         _uniquePassiveData = LoadData<UniquePassiveDataList>(_uniquePassiveJsonPath) ?? new UniquePassiveDataList { UniquePassives = new List<UniquePassiveEntry>() };
         _factionData = LoadData<FactionList>(_factionJsonPath) ?? new FactionList { Factions = new List<FactionEntry>() };
+        LoadLocalizationData();
         _spriteCache.Clear();
         _isDirty = false;
         RunValidation(false);
@@ -287,6 +290,7 @@ public partial class GameDataWorkbench : EditorWindow
         SaveData(_setJsonPath, _itemSetData);
         SaveData(_uniquePassiveJsonPath, _uniquePassiveData);
         SaveData(_factionJsonPath, _factionData);
+        SaveLocalizationData();
         AssetDatabase.Refresh();
         _isDirty = false;
         RunValidation(false);

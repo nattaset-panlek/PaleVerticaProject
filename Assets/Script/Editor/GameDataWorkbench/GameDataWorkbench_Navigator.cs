@@ -9,7 +9,7 @@ public partial class GameDataWorkbench : EditorWindow
         ("OVERVIEW", new[] { ToolTab.Dashboard }),
         ("DATA", new[] { ToolTab.Attributes, ToolTab.Items, ToolTab.Sets, ToolTab.Characters, ToolTab.Quests, ToolTab.Dialogues, ToolTab.DropTables, ToolTab.Shops, ToolTab.Events, ToolTab.Factions, ToolTab.Experience }),
         ("COMBAT", new[] { ToolTab.Skills, ToolTab.SupportSkills, ToolTab.UniquePassives }),
-        ("SYSTEM", new[] { ToolTab.IdManager })
+        ("SYSTEM", new[] { ToolTab.IdManager, ToolTab.Localization })
     };
 
     private string _navigatorFilter = "";
@@ -118,6 +118,7 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.UniquePassives: return "Unique Passives";
             case ToolTab.IdManager: return "ID Manager";
             case ToolTab.Experience: return "Experience";
+            case ToolTab.Localization: return "Localization";
             default: return tab.ToString();
         }
     }
@@ -139,6 +140,7 @@ public partial class GameDataWorkbench : EditorWindow
             case ToolTab.Skills: return _skillData?.ActiveSkills?.Count ?? 0;
             case ToolTab.SupportSkills: return _supportSkillData?.SupportModifiers?.Count ?? 0;
             case ToolTab.UniquePassives: return _uniquePassiveData?.UniquePassives?.Count ?? 0;
+            case ToolTab.Localization: return _localizationData?.Entries?.Count ?? 0;
             default: return -1;
         }
     }

@@ -15,6 +15,7 @@ Unity **6000.4.8f1**, URP 2D, Input System, Addressables, TMP, Newtonsoft JSON, 
 - UI only **listens** to events. Never poll data in `Update()` when an event exists.
 - **Do not change core formulas** (anything in `CoreSystem/Combat/Formulas/`: stat value, derived stats, damage, cast time, cooldown, cost, regen, ASPD, refine, EXP) without explicit user approval. Callers such as `Attribute`, `AttributeSystem`, `SkillInstance`, `SkillCaster`, `Character`, `Equipment` only gather inputs and apply results; never put arithmetic back into them.
 - Docs go to `Docs/` only (see section 6). Never create `.md` under `Assets/`.
+- **Player-facing text needs EN and TH** (AGENTS.md section 9): UI text through `LocalizationDatabase.Get(key)` / `LocalizedTextView` with the key in `Assets/Resources/Localization/Strings.json`, data text as `LocalizedString`. `LocalizationTests` fails on a missing language.
 
 ## 1b. Naming and references (full standard: `Docs/02-Technical/Coding_Standards.md`)
 - **Suffix = script type.** `Manager` only for a single global instance per scene/session; `System` for a per-character subsystem; `Player*` for player state; `Controller`, `Director`, `View`/`Window`/`Modal`/`Slot` (UI that only listens), `Database`, `Loader`, `Storage`, `Formula`, `Registry`, `Events`, `Factory`; `Settings`/`Table`/`SO` for ScriptableObject data. No `Helper`/`Utils`. Do not invent new suffixes.
