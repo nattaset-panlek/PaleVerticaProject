@@ -14,6 +14,19 @@ namespace CoreSystem.Entity.UniquePassives
         private Character _owner;
         private Dictionary<string, UniquePassive> _activePassives = new Dictionary<string, UniquePassive>();
         private List<UniquePassive> _tempPassiveList = new List<UniquePassive>();
+
+        public event System.Action OnChanged;
+        #endregion
+
+        #region [Properties]
+        public bool UsesFacing
+        {
+            get
+            {
+                foreach (var passive in _activePassives.Values) if (passive != null && passive.UsesFacing) return true;
+                return false;
+            }
+        }
         #endregion
 
         #region [Public Methods]
@@ -31,6 +44,7 @@ namespace CoreSystem.Entity.UniquePassives
                 passive.Initialize(id, _owner);
                 _activePassives[id] = passive;
                 passive.OnEquip();
+                OnChanged?.Invoke();
             }
         }
 
@@ -44,6 +58,7 @@ namespace CoreSystem.Entity.UniquePassives
             }
             _activePassives[passive.Id] = passive;
             passive.OnEquip();
+            OnChanged?.Invoke();
         }
 
         public void RemovePassive(string id)
@@ -52,6 +67,7 @@ namespace CoreSystem.Entity.UniquePassives
             {
                 passive.OnUnequip();
                 _activePassives.Remove(id);
+                OnChanged?.Invoke();
             }
         }
 

@@ -235,6 +235,7 @@ namespace ScenarioTesting
                 case "time": return Elapsed;
                 case "summons": return ScenarioLab.SummonCount(player);
                 case "bars": return StatusBarCount(parts.Length > 1 && parts[1].Equals("orphan", StringComparison.OrdinalIgnoreCase));
+                case "hints": return DirectionHintCount();
                 case "cast": return Lab.LastCastStarted ? 1f : 0f;
                 case "potion": return Lab.LastPotionKept ? 1f : 0f;
                 case "crit": return CoreSystem.Combat.DamageFormula.BaseCriticalMultiplier + AttributeProbe.Read(player, AttributeType.CriticalDamage);
@@ -265,6 +266,16 @@ namespace ScenarioTesting
             foreach (FloatingStatusBar bar in UnityEngine.Object.FindObjectsByType<FloatingStatusBar>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {
                 if (orphanOnly ? bar.character == null : bar.character != null && bar.character != player) count++;
+            }
+            return count;
+        }
+
+        private static float DirectionHintCount()
+        {
+            int count = 0;
+            foreach (CoreSystem.Visuals.DirectionHintView view in UnityEngine.Object.FindObjectsByType<CoreSystem.Visuals.DirectionHintView>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (view.IsShown) count++;
             }
             return count;
         }

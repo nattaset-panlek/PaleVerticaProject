@@ -504,6 +504,7 @@ namespace CoreSystem.Entity
         {
             CharacterRegistry.Register(this);
             CombatEvents.OnKilled += HandleKilled;
+            CoreSystem.Visuals.DirectionHintEvents.OnChanged += RefreshDirectionHint;
         }
 
         protected virtual void Start()
@@ -516,12 +517,14 @@ namespace CoreSystem.Entity
 #endif
             ApplyGameData();
             CharacterFactory.AssignController(this);
+            RefreshDirectionHint();
         }
 
         protected virtual void OnDisable()
         {
             CharacterRegistry.Unregister(this);
             CombatEvents.OnKilled -= HandleKilled;
+            CoreSystem.Visuals.DirectionHintEvents.OnChanged -= RefreshDirectionHint;
         }
 
         private void HandleKilled(IEntity killer, IEntity victim)
@@ -580,6 +583,14 @@ namespace CoreSystem.Entity
             if (defaultController != CharacterControllerType.Player) return;
             _attributeSystem.GetAttribute(AttributeType.BaseLevel).BaseValue = 0f;
             _attributeSystem.GetAttribute(AttributeType.JobLevel).BaseValue = 0f;
+        }
+
+        private void RefreshDirectionHint()
+        {
+            Character player = CoreSystem.Visuals.DirectionHintEvents.Player;
+            bool isPlayer = defaultController == CharacterControllerType.Player || ReferenceEquals(player, this);
+            bool hostile = player != null && !isPlayer && TeamRegistry.IsHostile(player, this);
+            Presenter.SetDirectionHint(CoreSystem.Visuals.DirectionHintFormula.ShouldShow(CoreSystem.Visuals.DirectionHintEvents.PlayerUsesFacing, isPlayer, IsDead, hostile));
         }
 
         private void ApplyTrainingDummyRule()

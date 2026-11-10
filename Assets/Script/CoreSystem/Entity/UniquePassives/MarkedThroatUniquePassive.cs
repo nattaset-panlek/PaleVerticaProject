@@ -11,6 +11,10 @@ namespace CoreSystem.Entity.UniquePassives
     [UniquePassiveId("MarkedThroat")]
     public class MarkedThroatUniquePassive : UniquePassive
     {
+        #region [Properties]
+        public override bool UsesFacing => true;
+        #endregion
+
         #region [Public Methods]
         public override void TriggerOnHit(IEntity target, ref float damage, SkillPayload payload)
         {

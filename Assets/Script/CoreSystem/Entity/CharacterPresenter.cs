@@ -19,6 +19,7 @@ namespace CoreSystem.Entity
         private Character _owner;
         private float _lastFlipTime = -1f;
         private FloatingStatusBar _worldStatusBar;
+        private CoreSystem.Visuals.DirectionHintView _directionHint;
         private bool _hasAttackSpeedParam;
         private bool _hasAttackParam;
         private bool _hasDeadParam;
@@ -149,6 +150,17 @@ namespace CoreSystem.Entity
             if (_worldStatusBar == null) return;
             Object.Destroy(_worldStatusBar.gameObject);
             _worldStatusBar = null;
+        }
+
+        public void SetDirectionHint(bool shown)
+        {
+            if (_owner == null) return;
+            if (_directionHint == null)
+            {
+                if (!shown) return;
+                _directionHint = CoreSystem.Visuals.DirectionHintView.Create(_owner);
+            }
+            if (_directionHint != null) _directionHint.SetShown(shown);
         }
         #endregion
     }

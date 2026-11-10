@@ -17,6 +17,7 @@ namespace CoreSystem.Entity.UniquePassives
         public float Duration { get; set; } = -1f;
         public float RemainingDuration { get; set; } = -1f;
         public virtual int CoreAttributeOrder => 0;
+        public virtual bool UsesFacing => false;
         #endregion
 
         #region [Public Methods]

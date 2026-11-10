@@ -1,0 +1,65 @@
+{
+  "name": "direction_hint",
+  "description": "The Direction Hint ring shows on hostile characters only while the player has a passive that uses facing (Marked Throat), and hides again when the passive is removed.",
+  "tags": [
+    "core",
+    "visual",
+    "passive"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "Expect",
+      "name": "no hint without a facing passive",
+      "value": "hints",
+      "to": 0
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "MarkedThroat"
+      ]
+    },
+    {
+      "do": "Wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "Expect",
+      "name": "Marked Throat shows the hint on the target",
+      "value": "hints",
+      "op": ">=",
+      "to": 1
+    },
+    {
+      "do": "Review",
+      "name": "the ring sits under the target and its arrow points the way the target faces",
+      "note": "A frozen target faces right, so the arrow should point right. The ring should be sharp, about the size of the target."
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "Expect",
+      "name": "removing the passive hides the hint",
+      "value": "hints",
+      "to": 0
+    },
+    {
+      "do": "ExpectNoErrors"
+    }
+  ]
+}
