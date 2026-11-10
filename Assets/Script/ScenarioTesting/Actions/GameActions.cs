@@ -39,13 +39,28 @@ namespace ScenarioTesting.Actions
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += HandleLoaded;
             yield return ScenarioButtonPress.Press(run, button);
 
-            yield return run.WaitFor(() => loaded, step.Float("max", 60f), "the new game scene to load");
+            string slotZero = null;
+            void WatchSlotZero()
+            {
+                string now = ScenarioLab.SkillSlotText(0);
+                if (now == slotZero) return;
+                run.Log($"skill slot 1 is now {now} (frame {Time.frameCount}, scene {ScenarioProbe.SceneName}, loading {ScenarioProbe.IsLoading})");
+                slotZero = now;
+            }
+
+            yield return run.WaitFor(() => { WatchSlotZero(); return loaded; }, step.Float("max", 60f), "the new game scene to load");
             UnityEngine.SceneManagement.SceneManager.sceneLoaded -= HandleLoaded;
             if (run.StepFailed) yield break;
 
-            yield return run.WaitFor(() => ScenarioProbe.IsGameReady, step.Float("max", 60f), "the player and loading screen");
-            yield return new WaitForSeconds(step.Float("settle", 1f));
+            yield return run.WaitFor(() => { WatchSlotZero(); return ScenarioProbe.IsGameReady; }, step.Float("max", 60f), "the player and loading screen");
+            float settleUntil = Time.time + step.Float("settle", 1f);
+            while (Time.time < settleUntil)
+            {
+                WatchSlotZero();
+                yield return null;
+            }
             run.Note($"in scene {ScenarioProbe.SceneName}");
+            run.Log($"skills after the new game: {ScenarioLab.SkillLoadout()}");
         }
         #endregion
     }

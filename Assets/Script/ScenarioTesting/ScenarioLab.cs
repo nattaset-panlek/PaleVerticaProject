@@ -29,6 +29,8 @@ namespace ScenarioTesting
         private const float ScreenMargin = 0.12f;
         private const float NearEnough = 0.8f;
         private const float CameraSettle = 0.25f;
+        private const float BlockingUIWait = 3f;
+        private const int TimelineLimit = 24;
 
         private static readonly System.Reflection.FieldInfo AutoAttackField =
             typeof(CoreSystem.Player.PlayerCore).GetField("_autoAttackTarget", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
@@ -85,6 +87,12 @@ namespace ScenarioTesting
             }
             yield return Spawn(characterId, Player.transform.position + Vector3.right * TargetDistance, true, tank, character => Target = character);
             _run.Name(ScenarioRun.TargetName, Target);
+        }
+
+        public void DropTarget()
+        {
+            if (Target != null) Object.Destroy(Target.gameObject);
+            Target = null;
         }
 
         public static void Refill(Character character)
@@ -152,15 +160,66 @@ namespace ScenarioTesting
 
             int start = _run.Combat.Entries.Count;
             string name = CombatRecorder.NameOf(target);
-            yield return ClickCharacter(target, MouseButton.Left);
+            var timeline = new List<string>();
+            string lastSnapshot = null;
+            void Sample()
+            {
+                string snapshot = AttackSnapshot(target, start, name);
+                if (snapshot == lastSnapshot || timeline.Count >= TimelineLimit) return;
+                timeline.Add($"{_run.Elapsed:0.00}s {snapshot}");
+                lastSnapshot = snapshot;
+            }
+
+            Sample();
+            yield return Sampled(ClickCharacter(target, MouseButton.Left), Sample);
 
             float deadline = Time.time + timeout;
             string firstState = Diagnose(target);
-            while (Time.time < deadline && CountHits(start, name) < hits && target != null && !target.IsDead) yield return null;
+            while (Time.time < deadline && CountHits(start, name) < hits && target != null && !target.IsDead)
+            {
+                Sample();
+                yield return null;
+            }
             string lastState = Diagnose(target);
             yield return StopAttacking();
             CollectHits(start, name);
-            if (_lastHits.Count == 0 && !allowNone) _run.FailStep($"no hits landed. {LastClickReport}. Right after the click: {firstState}. At the end: {lastState}");
+            if (_lastHits.Count == 0 && !allowNone) _run.FailStep($"no hits landed. {LastClickReport}. Right after the click: {firstState}. At the end: {lastState}. Timeline: {string.Join(" | ", timeline)}");
+        }
+
+        private string AttackSnapshot(Character target, int start, string name)
+        {
+            Character player = Player;
+            var core = CoreSystem.Player.PlayerCore.Instance;
+            if (player == null || core == null) return "no player";
+            object selected = AutoAttackField != null ? AutoAttackField.GetValue(core) : null;
+            string selectedName = selected is Object unityObject && unityObject != null ? unityObject.name : selected == null ? "none" : "destroyed";
+            float hp = target != null ? AttributeProbe.Read(target, AttributeType.HP) : -1f;
+            int entries = _run.Combat.Entries.Count - start;
+            return $"auto-attack {selectedName}, attack {(player.BasicAttackCooldownTimer > 0f ? "cooling" : "ready")}, caster {player.skillCaster.CurrentState}, target hp {hp:0}, combat events {entries} (hits {CountHits(start, name)}), interact {Actions.TalkState.Options(target)}";
+        }
+
+        private static IEnumerator Sampled(IEnumerator root, System.Action sample)
+        {
+            var stack = new Stack<IEnumerator>();
+            stack.Push(root);
+            while (stack.Count > 0)
+            {
+                sample();
+                IEnumerator top = stack.Peek();
+                if (!top.MoveNext())
+                {
+                    stack.Pop();
+                    continue;
+                }
+                object current = top.Current;
+                if (current is IEnumerator nested && !(current is CustomYieldInstruction))
+                {
+                    stack.Push(nested);
+                    continue;
+                }
+                yield return current;
+            }
+            sample();
         }
 
         public string Diagnose(Character target)
@@ -172,7 +231,7 @@ namespace ScenarioTesting
             string selectedName = selected is Object unityObject && unityObject != null ? unityObject.name : selected == null ? "none" : "destroyed";
             float distance = target != null ? Vector2.Distance(player.transform.position, target.transform.position) : -1f;
             return $"auto-attack target {selectedName}, distance {distance:0.##} / range {player.AutoAttackRange:0.##}, attack cooldown {player.BasicAttackCooldownTimer:0.##}, "
-                 + $"caster {player.skillCaster.CurrentState}, has control {core.HasControl}, virtual mouse current {_run.Input.OwnsPointer}, focused {Application.isFocused}";
+                 + $"caster {player.skillCaster.CurrentState}, aiming slot {player.skillCaster.AimedSkillSlot}, has control {core.HasControl}, virtual mouse current {_run.Input.OwnsPointer}, focused {Application.isFocused}";
         }
 
         public IEnumerator StopAttacking()
@@ -193,14 +252,24 @@ namespace ScenarioTesting
             int start = _run.Combat.Entries.Count;
             int readyBefore = ReadySkillCount();
             float manaBefore = AttributeProbe.Read(Player, AttributeType.MP);
+            ScenarioCastProbe probe = ScenarioCastProbe.Attach(Player);
+            _run.Log($"before key {key}: {CastState(hotbarSlot)}");
             yield return _run.Input.Tap(key);
+            _run.Log($"after key {key}: {CastState(hotbarSlot)}");
+            if (Player.skillCaster.CurrentState != SkillCasterState.Idle) LastCastStarted = true;
             if (target != null) yield return ClickCharacter(target, MouseButton.Left);
+            _run.Log($"after the click: {CastState(hotbarSlot)}");
 
             float end = Time.time + wait;
             while (Time.time < end)
             {
-                if (ReadySkillCount() < readyBefore || AttributeProbe.Read(Player, AttributeType.MP) < manaBefore) LastCastStarted = true;
+                if (ReadySkillCount() < readyBefore || AttributeProbe.Read(Player, AttributeType.MP) < manaBefore || Player.skillCaster.CurrentState != SkillCasterState.Idle) LastCastStarted = true;
                 yield return null;
+            }
+            if (probe != null)
+            {
+                if (probe.Executions > 0) LastCastStarted = true;
+                probe.Detach();
             }
             if (target != null) CollectHits(start, CombatRecorder.NameOf(target));
         }
@@ -211,7 +280,25 @@ namespace ScenarioTesting
             yield return BringOnScreen(character, VisibleTimeout);
             if (_run.StepFailed) yield break;
 
-            if (!TryFindClickPoint(character, out Vector3 world, out Vector2 screen, out List<string> blocking))
+            float clearBy = Time.unscaledTime + BlockingUIWait;
+            bool found = TryFindClickPoint(character, out Vector3 world, out Vector2 screen, out List<string> blocking);
+            if (found && blocking.Count > 0)
+            {
+                string first = string.Join(", ", blocking);
+                while (found && blocking.Count > 0 && Time.unscaledTime < clearBy && character != null)
+                {
+                    yield return null;
+                    found = TryFindClickPoint(character, out world, out screen, out blocking);
+                }
+                _run.Log(blocking.Count == 0 ? $"waited for UI to clear before clicking {character.name} (was {first})" : $"UI still covers {character.name} after {BlockingUIWait:0}s: {string.Join(", ", blocking)}");
+            }
+
+            if (character == null)
+            {
+                _run.FailStep("the character was destroyed before the click");
+                yield break;
+            }
+            if (!found)
             {
                 _run.FailStep($"{character.name} is not on screen (player at {Player.transform.position.x:0.#},{Player.transform.position.y:0.#}, {character.name} at {character.transform.position.x:0.#},{character.transform.position.y:0.#})");
                 yield break;
@@ -408,6 +495,52 @@ namespace ScenarioTesting
                 _lastHits.Add(entries[i].Amount);
                 LastHitTotal += entries[i].Amount;
             }
+        }
+
+        public static string SkillSlotText(int slot)
+        {
+            Character player = ScenarioProbe.Player;
+            if (player == null || player.skillCaster == null) return "no player";
+            var equipped = player.skillCaster.EquippedSkills;
+            if (slot < 0 || slot >= equipped.Count) return $"missing ({equipped.Count} slots)";
+            var skill = equipped[slot];
+            return skill != null && skill.SkillData != null ? $"skill {skill.SkillData.Id} on {player.name}#{player.GetInstanceID()}" : $"empty on {player.name}#{player.GetInstanceID()}";
+        }
+
+        public static string SkillLoadout()
+        {
+            Character player = ScenarioProbe.Player;
+            if (player == null || player.skillCaster == null) return "no player";
+            var caster = player.skillCaster;
+            var granted = new List<string>();
+            foreach (var skill in caster.GrantedSkills) granted.Add(skill != null && skill.SkillData != null ? skill.SkillData.Id.ToString() : "null");
+            var equipped = new List<string>();
+            foreach (var skill in caster.EquippedSkills) equipped.Add(skill != null && skill.SkillData != null ? skill.SkillData.Id.ToString() : "-");
+            var bar = new List<string>();
+            var hotbar = CoreSystem.UI.Hotbar.HotbarManager.Instance;
+            if (hotbar != null && hotbar.ActiveRows.Count > 0 && hotbar.ActiveRows[0] != null)
+            {
+                foreach (var slot in hotbar.ActiveRows[0].Slots) bar.Add(slot == null || slot.SlotData == null || slot.SlotData.IsEmpty ? "-" : $"{slot.SlotData.ActionType}:{slot.SlotData.SkillId}");
+            }
+            return $"granted [{string.Join(",", granted)}], equipped [{string.Join(",", equipped)}], hotbar row 0 [{string.Join(",", bar)}]";
+        }
+
+        private string CastState(int hotbarSlot)
+        {
+            Character player = Player;
+            if (player == null || player.skillCaster == null) return "no player";
+            var caster = player.skillCaster;
+            var equipped = hotbarSlot >= 0 && hotbarSlot < caster.EquippedSkills.Count ? caster.EquippedSkills[hotbarSlot] : null;
+            string equippedText = equipped != null && equipped.SkillData != null ? $"skill {equipped.SkillData.Id} ready {equipped.IsReady()}" : "empty";
+            string hotbarText = "no hotbar";
+            var hotbar = CoreSystem.UI.Hotbar.HotbarManager.Instance;
+            if (hotbar != null && hotbar.ActiveRows.Count > 0 && hotbar.ActiveRows[0] != null)
+            {
+                var slot = hotbar.ActiveRows[0].GetSlot(hotbarSlot);
+                hotbarText = slot == null ? "no slot" : slot.SlotData == null || slot.SlotData.IsEmpty ? "empty" : $"{slot.SlotData.ActionType} {slot.SlotData.SkillId}";
+            }
+            bool granted = equipped != null && equipped.SkillData != null && caster.GrantedSkills.Exists(s => s.SkillData != null && s.SkillData.Id == equipped.SkillData.Id);
+            return $"hotbar slot {hotbarText}, caster slot {equippedText}, granted {granted}, aiming slot {caster.AimedSkillSlot}, caster {caster.CurrentState}";
         }
 
         private int ReadySkillCount()

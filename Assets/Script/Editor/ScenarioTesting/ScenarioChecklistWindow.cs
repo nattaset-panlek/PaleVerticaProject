@@ -32,6 +32,7 @@ namespace CoreSystem.Editor.ScenarioTesting
         private string _historyFile;
         private ScenarioReport _historyReport;
         private const int HistoryRows = 15;
+        private static readonly int[] HistoryLimitOptions = { 0, 1, 5, 20 };
         #endregion
 
         #region [Unity Methods]
@@ -44,17 +45,21 @@ namespace CoreSystem.Editor.ScenarioTesting
         private void OnEnable()
         {
             Refresh();
-            ScenarioManager.OnRunFinished += HandleRunFinished;
+            ListenForRuns();
+            EditorApplication.playModeStateChanged += HandlePlayModeChanged;
         }
 
         private void OnDisable()
         {
             ScenarioManager.OnRunFinished -= HandleRunFinished;
+            EditorApplication.playModeStateChanged -= HandlePlayModeChanged;
         }
 
         private void OnInspectorUpdate()
         {
-            if (EditorApplication.isPlaying) Repaint();
+            if (!EditorApplication.isPlaying) return;
+            ListenForRuns();
+            Repaint();
         }
 
         private void OnGUI()
@@ -82,9 +87,27 @@ namespace CoreSystem.Editor.ScenarioTesting
             Repaint();
         }
 
+        private void ListenForRuns()
+        {
+            ScenarioManager.OnRunFinished -= HandleRunFinished;
+            ScenarioManager.OnRunFinished += HandleRunFinished;
+        }
+
         private void HandleRunFinished(ScenarioRun run)
         {
-            EditorApplication.delayCall += Refresh;
+            EditorApplication.delayCall += RefreshAfterRun;
+        }
+
+        private void HandlePlayModeChanged(PlayModeStateChange state)
+        {
+            if (state == PlayModeStateChange.EnteredEditMode) RefreshAfterRun();
+        }
+
+        private void RefreshAfterRun()
+        {
+            if (this == null) return;
+            ClearHistoryView();
+            Refresh();
         }
 
         private void DrawToolbar()
@@ -108,6 +131,8 @@ namespace CoreSystem.Editor.ScenarioTesting
             }
             GUILayout.Label($"x{_speed:0.##}", GUILayout.Width(36f));
             _exitWhenDone = GUILayout.Toggle(_exitWhenDone, "Stop play when done", EditorStyles.toolbarButton, GUILayout.Width(125f));
+            if (GUILayout.Button("History", EditorStyles.toolbarDropDown, GUILayout.Width(65f))) ShowHistoryMenu();
+            if (GUILayout.Button(new GUIContent("Copy fails", "Copy the failed and review checks of every scenario"), EditorStyles.toolbarButton, GUILayout.Width(70f))) CopyToClipboard(ScenarioReportFormula.Brief(_entries.Select(entry => entry.Report)));
             GUILayout.FlexibleSpace();
             _filter = GUILayout.TextField(_filter, EditorStyles.toolbarSearchField, GUILayout.Width(160f));
             EditorGUILayout.EndHorizontal();
@@ -201,6 +226,7 @@ namespace CoreSystem.Editor.ScenarioTesting
             if (GUILayout.Button("Open scenario", GUILayout.Width(100f))) EditorUtility.OpenWithDefaultApp(entry.File);
             GUI.enabled = report != null;
             if (GUILayout.Button("Open report", GUILayout.Width(90f))) EditorUtility.OpenWithDefaultApp(ScenarioLibrary.ReportPath(definition));
+            if (GUILayout.Button(new GUIContent("Copy", "Copy the result, failed checks, errors and the log end, ready to paste"), GUILayout.Width(50f))) CopyToClipboard(ScenarioReportFormula.Detailed(entry == _selected && _historyReport != null ? _historyReport : report));
             GUI.enabled = true;
             EditorGUILayout.EndHorizontal();
         }
@@ -210,6 +236,11 @@ namespace CoreSystem.Editor.ScenarioTesting
             List<string> files = ScenarioLibrary.HistoryFiles(entry.Definition);
             _showHistory = EditorGUILayout.Foldout(_showHistory, $"History ({files.Count} runs, kept in Tests/Results)", true);
             if (!_showHistory || files.Count == 0) return;
+
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button("Keep latest only", GUILayout.Width(120f))) AskTrimHistory(entry, 1, $"Delete every run of {entry.Definition.Name} except the latest?");
+            if (GUILayout.Button("Delete all", GUILayout.Width(80f))) AskTrimHistory(entry, 0, $"Delete all {files.Count} history runs of {entry.Definition.Name}? The latest result stays.");
+            EditorGUILayout.EndHorizontal();
 
             if (_historyReport != null)
             {
@@ -244,6 +275,61 @@ namespace CoreSystem.Editor.ScenarioTesting
             ClearHistoryView();
         }
 
+        private void ShowHistoryMenu()
+        {
+            var menu = new GenericMenu();
+            menu.AddItem(new GUIContent("Keep the latest run of every scenario"), false, () =>
+            {
+                if (Confirm("Delete every history run except the latest one of each scenario?")) TrimAllHistory(1);
+            });
+            menu.AddItem(new GUIContent("Delete all history"), false, () =>
+            {
+                if (Confirm("Delete the history of every scenario? Each scenario keeps its latest result.")) TrimAllHistory(0);
+            });
+            menu.AddSeparator(string.Empty);
+            int limit = ScenarioLibrary.HistoryLimit;
+            foreach (int option in HistoryLimitOptions)
+            {
+                int value = option;
+                string label = value == 0 ? "After each run, keep/All runs" : $"After each run, keep/Latest {value}";
+                menu.AddItem(new GUIContent(label), limit == value, () => ScenarioLibrary.HistoryLimit = value);
+            }
+            menu.ShowAsContext();
+        }
+
+        private void AskTrimHistory(Entry entry, int keep, string message)
+        {
+            EditorApplication.delayCall += () =>
+            {
+                if (this != null && Confirm(message)) TrimHistory(entry, keep);
+            };
+        }
+
+        private void TrimHistory(Entry entry, int keep)
+        {
+            int removed = ScenarioLibrary.TrimHistory(entry.Definition, keep);
+            ClearHistoryView();
+            ShowNotification(new GUIContent($"Deleted {removed} runs"));
+        }
+
+        private void TrimAllHistory(int keep)
+        {
+            int removed = ScenarioLibrary.TrimAllHistory(keep);
+            ClearHistoryView();
+            ShowNotification(new GUIContent($"Deleted {removed} runs"));
+        }
+
+        private void CopyToClipboard(string text)
+        {
+            EditorGUIUtility.systemCopyBuffer = text;
+            ShowNotification(new GUIContent("Copied"));
+        }
+
+        private static bool Confirm(string message)
+        {
+            return EditorUtility.DisplayDialog("Scenario history", message, "Delete", "Cancel");
+        }
+
         private void ClearHistoryView()
         {
             _historyFile = null;
@@ -255,6 +341,8 @@ namespace CoreSystem.Editor.ScenarioTesting
             ScenarioRun run = ScenarioManager.Current;
             if (!EditorApplication.isPlaying || run == null || run.Definition.File != entry.File) return;
             ScenarioStep step = run.CurrentStep;
+            float fraction = ScenarioProgressFormula.RunFraction(run);
+            EditorGUI.ProgressBar(EditorGUILayout.GetControlRect(false, 18f), fraction, ScenarioProgressFormula.Describe(run));
             EditorGUILayout.HelpBox($"Running step {(step != null ? step.Index + 1 : 0)}/{run.Definition.Steps.Count}: {step?.Describe()}\nPassed {run.Report.ChecksPassed}  Review {run.Report.ChecksReview}  Failed {run.Report.ChecksFailed}", MessageType.Info);
         }
 

@@ -158,7 +158,7 @@ namespace ScenarioTesting.Actions
         public override IEnumerator Run(ScenarioRun run, ScenarioStep step)
         {
             string path = null;
-            if (step.Bool("screenshot", true))
+            if (step.Bool("screenshot", true) && !Application.isBatchMode)
             {
                 path = ScenarioLibrary.ScreenshotPath(run.Definition, step.Index);
                 System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path));

@@ -72,6 +72,7 @@ namespace ScenarioTesting.Actions
             }
 
             DialogueConversation before = ScenarioProbe.Conversation;
+            string ready = $"{run.Lab.Diagnose(npc)}, interact options {TalkState.Options(npc)}";
             yield return run.Lab.ClickCharacter(npc, MouseButton.Left);
             if (run.StepFailed) yield break;
             string clicked = run.Lab.LastClickReport;
@@ -86,6 +87,9 @@ namespace ScenarioTesting.Actions
 
             yield return run.WaitFor(() => TalkState.IsTalking(npc, before), step.Float("max", 20f),
                 $"a conversation with {npc.name} ({clicked}; visible buttons: {string.Join(", ", ScenarioInput.VisibleButtonLabels())})");
+            if (!run.StepFailed) yield break;
+            run.Log($"before the click: {ready}");
+            run.Log($"at the end: {run.Lab.Diagnose(npc)}, interact options {TalkState.Options(npc)}, conversation {TalkState.Describe(ScenarioProbe.Conversation)}");
         }
         #endregion
     }
@@ -97,6 +101,24 @@ namespace ScenarioTesting.Actions
         {
             DialogueConversation conversation = ScenarioProbe.Conversation;
             return npc != null && conversation != null && conversation != before && !conversation.IsClosed && conversation.CharacterId == npc.CharacterId;
+        }
+
+        public static string Options(Character npc)
+        {
+            var core = CoreSystem.Player.PlayerCore.Instance;
+            Character player = ScenarioProbe.Player;
+            if (npc == null || core == null || player == null) return "unknown";
+            var options = CoreSystem.Player.PlayerInteraction.FilterInteractOptions(CoreSystem.Interaction.InteractionCore.GetOptions(player, npc, core));
+            if (options.Count == 0) return "none";
+            var labels = new System.Collections.Generic.List<string>();
+            foreach (var option in options) labels.Add(option.Label);
+            return string.Join(", ", labels);
+        }
+
+        public static string Describe(DialogueConversation conversation)
+        {
+            if (conversation == null) return "none";
+            return $"character {conversation.CharacterId}, mode {conversation.Mode}, closed {conversation.IsClosed}";
         }
         #endregion
     }

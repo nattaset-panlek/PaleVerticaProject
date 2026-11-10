@@ -172,8 +172,8 @@ namespace ScenarioTesting.Actions
             yield return UIFlow.SetWindow(run, UIFlow.SkillWindow, false);
             CoreSystem.Entity.Character player = ScenarioProbe.Player;
             var equipped = player != null ? player.skillCaster.EquippedSkills : null;
-            bool placed = equipped != null && slot - 1 < equipped.Count && equipped[slot - 1] != null && equipped[slot - 1].SkillData.Id == skill;
-            if (!placed) run.FailStep($"skill {skill} is not in slot {slot} after assigning it");
+            bool placed = equipped != null && slot - 1 >= 0 && slot - 1 < equipped.Count && equipped[slot - 1] != null && equipped[slot - 1].SkillData != null && equipped[slot - 1].SkillData.Id == skill;
+            if (!placed) run.FailStep($"skill {skill} is not in slot {slot} after assigning it ({ScenarioLab.SkillLoadout()})");
             else run.Note($"skill {skill} in slot {slot}");
         }
         #endregion

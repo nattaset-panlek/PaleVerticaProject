@@ -1,0 +1,64 @@
+{
+  "name": "status_bar_scene_change",
+  "description": "Hit a monster so its floating health bar appears, then walk to Field and back. No HealthLocalStatus bar may be left without an owner after a scene change.",
+  "tags": [
+    "core",
+    "ui"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "Spawn",
+      "character": 1001,
+      "x": 1.2,
+      "y": 0,
+      "as": "victim",
+      "tank": false
+    },
+    {
+      "do": "Attack",
+      "target": "victim",
+      "hits": 1,
+      "max": 5
+    },
+    {
+      "do": "Wait",
+      "seconds": 0.3
+    },
+    {
+      "do": "Expect",
+      "name": "the hit shows a floating health bar",
+      "value": "bars",
+      "op": ">=",
+      "to": 1,
+      "note": "if this fails the test cannot show the bug; the monster must be one that shows its bar when hit"
+    },
+    {
+      "do": "UsePortal",
+      "to": "Field",
+      "timeout": 90
+    },
+    {
+      "do": "Expect",
+      "name": "in Field: no health bar without an owner",
+      "value": "bars.orphan",
+      "to": 0
+    },
+    {
+      "do": "UsePortal",
+      "to": "Town",
+      "timeout": 90
+    },
+    {
+      "do": "Expect",
+      "name": "back in Town: no health bar without an owner",
+      "value": "bars.orphan",
+      "to": 0
+    },
+    {
+      "do": "ExpectNoErrors"
+    }
+  ]
+}

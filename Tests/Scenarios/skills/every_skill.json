@@ -1,0 +1,35 @@
+{
+  "name": "active_skill_smoke",
+  "description": "Every Active skill on hotbar slot 1, cast at a tank target like a player does. Checks errors, stuck casts, toggles and hp/mp. Whether each cast started is a Review, since some skills need a condition.",
+  "continueOnFail": true,
+  "tags": [
+    "skill",
+    "slow"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "CastEverySkill",
+      "timeout": 3600
+    },
+    {
+      "do": "ExpectNoErrors",
+      "name": "no errors across every skill"
+    }
+  ]
+}

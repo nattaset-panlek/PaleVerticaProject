@@ -17,6 +17,8 @@ namespace ScenarioTesting
         private string _note = string.Empty;
         private string _counts = string.Empty;
         private string _lastIssue = string.Empty;
+        private string _progress = string.Empty;
+        private float _fraction;
         private Color _statusColor = Color.white;
         private bool _visible;
         private GUIStyle _style;
@@ -42,7 +44,7 @@ namespace ScenarioTesting
             if (!_visible) return;
             if (_style == null) _style = new GUIStyle(GUI.skin.label) { wordWrap = true, fontSize = 13, richText = true };
 
-            float height = 112f + (string.IsNullOrEmpty(_lastIssue) ? 0f : 34f);
+            float height = 140f + (string.IsNullOrEmpty(_lastIssue) ? 0f : 34f);
             var area = new Rect(Margin, Screen.height - height - Margin, Width, height);
             GUI.color = new Color(0f, 0f, 0f, 0.78f);
             GUI.DrawTexture(area, Texture2D.whiteTexture);
@@ -52,6 +54,8 @@ namespace ScenarioTesting
             GUI.color = _statusColor;
             GUILayout.Label(_title, _style);
             GUI.color = Color.white;
+            GUILayout.Label(_progress, _style);
+            DrawBar(GUILayoutUtility.GetRect(area.width - 20f, 6f));
             GUILayout.Label(_step, _style);
             if (!string.IsNullOrEmpty(_note)) GUILayout.Label($"<i>{_note}</i>", _style);
             GUILayout.Label(_counts, _style);
@@ -66,6 +70,15 @@ namespace ScenarioTesting
         #endregion
 
         #region [Private Methods]
+        private void DrawBar(Rect rect)
+        {
+            GUI.color = new Color(1f, 1f, 1f, 0.2f);
+            GUI.DrawTexture(rect, Texture2D.whiteTexture);
+            GUI.color = _statusColor;
+            GUI.DrawTexture(new Rect(rect.x, rect.y, rect.width * _fraction, rect.height), Texture2D.whiteTexture);
+            GUI.color = Color.white;
+        }
+
         private void Refresh(ScenarioRun run)
         {
             _visible = true;
@@ -79,6 +92,8 @@ namespace ScenarioTesting
             _step = step != null ? $"Step {step.Index + 1}/{run.Definition.Steps.Count}: {step.Describe()}" : "Starting";
             _note = step != null ? step.Note : run.Definition.Description;
             _counts = $"Passed {report.ChecksPassed}   Review {report.ChecksReview}   Failed {report.ChecksFailed}";
+            _fraction = ScenarioProgressFormula.RunFraction(run);
+            _progress = ScenarioProgressFormula.Describe(run);
 
             _lastIssue = string.Empty;
             for (int i = report.Checks.Count - 1; i >= 0; i--)

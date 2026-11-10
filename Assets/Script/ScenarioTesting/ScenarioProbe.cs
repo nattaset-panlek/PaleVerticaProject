@@ -18,7 +18,8 @@ namespace ScenarioTesting
         #region [Properties]
         public static Character Player => PlayerCore.GetPlayer();
         public static string SceneName => SceneManager.GetActiveScene().name;
-        public static bool IsLoading => LoadingManager.IsVisible;
+        public static bool IsLoading => LoadingManager.IsVisible || IsLoadingScreenOnScreen;
+        public static bool IsLoadingScreenOnScreen => LoadingManager.Instance != null && LoadingManager.Instance.TryGetComponent(out Canvas canvas) && canvas.enabled;
         public static DialogueConversation Conversation => DialogueConversation.Active;
 
         public static bool IsGameReady => Player != null && !IsLoading && GameCoreLoader.Core != null && SceneName != GameCoreLoader.TitleSceneName;

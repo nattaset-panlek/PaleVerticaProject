@@ -68,7 +68,7 @@ namespace ScenarioTesting
             Report.SaveProfile = SaveStorage.Profile;
             Application.logMessageReceived += HandleLog;
             UnityEngine.Random.InitState(Definition.Seed);
-            Log($"begin, seed {Definition.Seed}, saves in {SaveStorage.SaveFolderPath}");
+            Log($"begin, seed {Definition.Seed}, speed x{Time.timeScale:0.##}, saves in {SaveStorage.SaveFolderPath}");
         }
 
         public void BeginStep(ScenarioStep step)
@@ -120,6 +120,7 @@ namespace ScenarioTesting
 
             string path = Report.Write(System.IO.Path.GetDirectoryName(ScenarioLibrary.ReportPath(Definition)));
             Report.Write(ScenarioLibrary.HistoryFolder(Definition), $"{DateTime.Now:yyyyMMdd_HHmmss}_{Report.Status}.json");
+            if (ScenarioLibrary.HistoryLimit > 0) ScenarioLibrary.TrimHistory(Definition, ScenarioLibrary.HistoryLimit);
             ScenarioResultsIndex.Rebuild(Definition.Agent);
             string summary = Report.Summary();
             if (Report.Status == ScenarioStatus.Failed) Debug.LogWarning($"{summary}\n{path}");
@@ -233,6 +234,7 @@ namespace ScenarioTesting
                 case "errors": return _errors.Count;
                 case "time": return Elapsed;
                 case "summons": return ScenarioLab.SummonCount(player);
+                case "bars": return StatusBarCount(parts.Length > 1 && parts[1].Equals("orphan", StringComparison.OrdinalIgnoreCase));
                 case "cast": return Lab.LastCastStarted ? 1f : 0f;
                 case "potion": return Lab.LastPotionKept ? 1f : 0f;
                 case "crit": return CoreSystem.Combat.DamageFormula.BaseCriticalMultiplier + AttributeProbe.Read(player, AttributeType.CriticalDamage);
@@ -254,6 +256,16 @@ namespace ScenarioTesting
         {
             Character player = ScenarioProbe.Player;
             if (player != null && Combat.Subject != player) Combat.Attach(player);
+        }
+
+        private static float StatusBarCount(bool orphanOnly)
+        {
+            int count = 0;
+            foreach (FloatingStatusBar bar in UnityEngine.Object.FindObjectsByType<FloatingStatusBar>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+            {
+                if (!orphanOnly || bar.character == null) count++;
+            }
+            return count;
         }
 
         private float? EntityValue(string[] parts)

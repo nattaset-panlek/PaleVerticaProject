@@ -55,10 +55,8 @@ namespace ScenarioTesting.Actions
             run.Record($"{label}: removing restores every stat", leaked.Count == 0 ? ScenarioCheckStatus.Passed : ScenarioCheckStatus.Failed, "no change",
                 leaked.Count == 0 ? "no change" : string.Join(", ", leaked.Select(pair => $"{pair.Key} {pair.Value:+0.##;-0.##}")));
         }
-        #endregion
 
-        #region [Private Methods]
-        private static void CheckHealthy(ScenarioRun run, string label, Character character)
+        public static void CheckHealthy(ScenarioRun run, string label, Character character)
         {
             if (character == null) return;
             float hp = AttributeProbe.Read(character, AttributeType.HP);
@@ -67,7 +65,9 @@ namespace ScenarioTesting.Actions
             bool valid = IsFinite(hp) && IsFinite(mp) && hp >= 0f && mp >= 0f && IsFinite(maxHp) && maxHp > 0f;
             run.Record($"{label} hp, mp and max hp are valid", valid ? ScenarioCheckStatus.Passed : ScenarioCheckStatus.Failed, "finite, not negative", $"hp {hp}, mp {mp}, max {maxHp}");
         }
+        #endregion
 
+        #region [Private Methods]
         private static bool IsFinite(float value)
         {
             return !float.IsNaN(value) && !float.IsInfinity(value);

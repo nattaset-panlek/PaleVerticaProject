@@ -26,11 +26,26 @@ Everything in `ScenarioTesting` is wrapped in `#if UNITY_EDITOR || PV_SCENARIO_T
 1. Open **Pale Vertica > Testing > Scenario Checklist**.
 2. Pick a scenario on the left. The right side shows its steps, last result and checks.
 3. Set **Speed** if you want it slower or faster, then press **Run in Play mode**.
-4. Unity enters Play mode and the game plays itself. A panel at the bottom left shows the current step, its note and the counts so far.
+4. Unity enters Play mode and the game plays itself. A panel at the bottom left shows the progress (`Scenario 40%`, and with more than one queued `Run 3/15, overall 17%`) with a bar, then the current step, its note and the counts so far. The selected scenario in the Checklist window shows the same progress bar while it runs. The percentage counts finished steps, so a long step such as `StartNewGame` holds it still for a few seconds.
 5. When it ends the list refreshes. Green is Pass, yellow is Review, red is Fail.
 6. For each Review check open **Screenshot**, type a note if you want, then **Approve** or **Reject**. A scenario with every Review approved counts as Pass.
 
-Run several at once with the checkboxes and **Run checked**, or **Run all** / **Run not passed**. **Stop play when done** leaves Play mode after the queue ends. Do not move the mouse over the Game view while a scenario runs; the virtual mouse is the one clicking.
+Run several at once with the checkboxes and **Run checked**, or **Run all** / **Run not passed**. **Stop play when done** leaves Play mode after the queue ends. While scenarios run, your real mouse and keyboard are switched off for the game (the Editor and this window still work), so only the virtual mouse clicks. They come back when the queue ends or you leave Play mode.
+
+### Copy a result to share
+
+- **Copy** (next to **Open report**) copies the selected run: status, every check and step that did not pass with expected and actual values, the first errors, variables and the end of the log. If you are viewing an older run from History, it copies that run.
+- **Copy fails** (toolbar) copies a short list of every scenario that did not pass, with its failed and review checks.
+
+### Clean up history
+
+Each run adds a file to `Tests/Results/<agent>/history/<name>/`. The latest result of each scenario (`Tests/Results/<agent>/<name>.json`) is never deleted, so the list keeps its status.
+
+- **One scenario:** open its History section and press **Keep latest only** or **Delete all**.
+- **Every scenario:** toolbar **History > Keep the latest run of every scenario** or **History > Delete all history**.
+- **Automatically:** toolbar **History > After each run, keep** and pick **Latest 1**, **5**, **20** or **All runs** (the default). The choice is saved for this computer and also applies to batch runs.
+
+Each delete asks first and cannot be undone, except through git for history files that were committed.
 
 ## Write a scenario
 
@@ -74,9 +89,25 @@ The full list of actions with an example each is in the window under **Actions y
 | Setup | `Give`, `Take`, `ClearPassives`, `SetStat`, `ClearStat`, `SetHp`, `SetMp`, `Refill`, `UseItem`, `AddItem`, `Reset` |
 | Check | `Record`, `Measure`, `Expect`, `ExpectNoErrors`, `Snapshot`, `ExpectSameStats`, `Review` |
 | Flow | `Wait`, `WaitUntil`, `Repeat`, `Watch`, `Log`, `Speed`, `Seed` |
-| Script | `StandardRoutine`, `SmokeAllPassives`, `RandomLoadouts` |
+| Script | `StandardRoutine`, `SmokeAllPassives`, `RandomLoadouts`, `CastEverySkill`, `SkillPassiveCombos` |
 
 Input actions use a virtual keyboard and mouse through the Input System: W/A/S/D to walk, left click to attack or talk, the hotbar key to aim a skill, mouse clicks on UI buttons by their text. Setup actions use existing game APIs directly, because they arrange the test rather than play it.
+
+### Active skill smoke tests
+
+Two slow scenarios in `Tests/Scenarios/skills/` cast every Active skill in `Database.Skills`:
+
+- `every_skill.json` (`CastEverySkill`): each skill alone.
+- `skill_passive_combos.json` (`SkillPassiveCombos`): each skill with every Unique Passive at once (`"mode":"all"`), again without Oath of Silence (`"skipPassives"`), then with seeded random sets (`"mode":"random","count":2,"size":5`).
+
+For each skill the action puts it on hotbar slot 1, presses the key and clicks the target like a player, then records:
+
+- **cast started**. The harness counts a cast when the caster leaves Idle, the skill goes on cooldown, MP drops, or the skill actually executes (a harness-only probe passive, `ScenarioCastProbe`, is attached during the cast and is not registered with the game). If a passive refuses the cast on purpose (`CanCast` is false, for example Oath of Silence on a skill with a cast time) it passes with that note. Anything else is a Review, because some skills need a condition (an incoming hit, an ally, a free spot).
+- **caster returns to Idle** within 10 seconds, so a stuck cast fails.
+- **toggles off** for toggle skills, after a second cast.
+- **hp, mp and max hp are valid** for the player and the target, and **no errors** while that skill ran.
+
+Between skills it refills hp/mp (max MP is raised to 100000 for the run), walks back to the target if a skill moved the player, and spawns a new target if the old one died or changed side. Limit a run with `"skills":[1001,1002]` or leave some out with `"skip":[1019]` and `"skipPassives":["Rock"]`.
 
 ## Values and checks
 
@@ -98,7 +129,7 @@ Input actions use a virtual keyboard and mouse through the Input System: W/A/S/D
 - Inside the tolerance: **Pass**.
 - Outside it but within `review`: **Review**, for borderline numbers.
 - `"severity": "review"`: a miss becomes **Review** instead of Fail, for checks that depend on content.
-- `Review` steps are always Review and take a screenshot for a person.
+- `Review` steps are always Review and take a screenshot for a person. In batch mode (`unity_batch.sh playtests`) they skip the screenshot, because nothing is rendered there; run them in the Editor to get one.
 
 ## Add a C# action
 
@@ -123,6 +154,7 @@ Read arguments with `step.Int`, `step.Float`, `step.String`, `step.Strings`, `ru
 - With Unity closed: `Tools/FigmaToUnity/unity_batch.sh playtests` runs every scenario. `playtests:core/,quests/` runs only files whose path contains one of the parts. `SCENARIO_SPEED=4` plays faster (default 2). It prints each scenario's status and every Review or Fail check.
 - With Unity open: use the Checklist window.
 - `Tools/FigmaToUnity/unity_batch.sh tests` includes `ScenarioFormatTests`, which catches a misspelt action or a broken expression without playing.
+- Every step writes `[Scenario] <name> step <n>/<steps> (run <i>/<runs>): <action>` to the Unity log (`Editor.log`, or `Logs/Batch/playtests.log` in batch). If Unity freezes during a run, the last of these lines shows which step it froze on.
 
 ## Save profiles
 

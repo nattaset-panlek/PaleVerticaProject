@@ -81,6 +81,13 @@ namespace ScenarioTesting
             return values;
         }
 
+        public List<int> Ints(string key)
+        {
+            var values = new List<int>();
+            foreach (string value in Strings(key)) if (int.TryParse(value, out int number)) values.Add(number);
+            return values;
+        }
+
         public string Describe()
         {
             var copy = (JObject)_args.DeepClone();

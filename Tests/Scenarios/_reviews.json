@@ -1,0 +1,28 @@
+{
+  "_verdicts": {
+    "unique_hit_modifiers": {
+      "Anvil Heart: hit equals the average crit": {
+        "Verdict": "approved",
+        "Note": "appove",
+        "Run": "2026-11-10 20:51:00",
+        "Date": "2026-11-10 20:52"
+      }
+    },
+    "dialogue_alchemist_choice": {
+      "the dialogue window looked right": {
+        "Verdict": "approved",
+        "Note": "appove",
+        "Run": "2026-11-10 21:09:22",
+        "Date": "2026-11-10 21:09"
+      }
+    },
+    "input_check": {
+      "the player walked and attacked on screen": {
+        "Verdict": "approved",
+        "Note": "appove",
+        "Run": "2026-11-10 21:09:52",
+        "Date": "2026-11-10 21:53"
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "active_skill_passive_combos",
+  "description": "Every Active skill cast with every Unique Passive at once, again without Oath of Silence, then with two seeded random sets of 5 passives each. Looks for errors, stuck casts and broken hp/mp. A cast a passive blocks on purpose counts as a pass.",
+  "continueOnFail": true,
+  "tags": [
+    "skill",
+    "passive",
+    "combo",
+    "slow"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "SkillPassiveCombos",
+      "mode": "all",
+      "timeout": 3600,
+      "note": "every passive at once with each skill; Oath of Silence blocks skills with a cast time, which counts as a pass"
+    },
+    {
+      "do": "SkillPassiveCombos",
+      "mode": "all",
+      "skipPassives": [
+        "OathOfSilence"
+      ],
+      "timeout": 3600,
+      "note": "every passive except Oath of Silence, so skills with a cast time also run with the other passives"
+    },
+    {
+      "do": "SkillPassiveCombos",
+      "mode": "random",
+      "count": 2,
+      "size": 5,
+      "timeout": 3600,
+      "note": "two seeded random sets of 5 passives per skill"
+    },
+    {
+      "do": "ExpectNoErrors",
+      "name": "no errors across every skill and passive combo"
+    }
+  ]
+}

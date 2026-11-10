@@ -87,6 +87,13 @@
       ]
     },
     {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MPRecovery",
+      "total": 0,
+      "note": "natural MP regen would add about 1 MP and hide whether Transmuted Blood fired"
+    },
+    {
       "do": "SetMp",
       "of": "player",
       "value": 0
@@ -119,6 +126,11 @@
       "value": "target.HP",
       "to": "var.hp",
       "tolerance": 0.01
+    },
+    {
+      "do": "ClearStat",
+      "of": "player",
+      "stat": "MPRecovery"
     },
     {
       "do": "Reset"
@@ -155,6 +167,13 @@
       ]
     },
     {
+      "do": "SetStat",
+      "of": "target",
+      "stat": "HPRecovery",
+      "total": 0,
+      "note": "the Holy brand deals about 2 damage, which the target's HP regen would heal back before the check"
+    },
+    {
       "do": "Record",
       "name": "hp",
       "value": "target.HP"
@@ -169,6 +188,11 @@
       "value": "target.HP",
       "op": "<",
       "to": "var.hp"
+    },
+    {
+      "do": "ClearStat",
+      "of": "target",
+      "stat": "HPRecovery"
     },
     {
       "do": "Reset"

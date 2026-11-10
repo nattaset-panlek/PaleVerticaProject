@@ -19,6 +19,7 @@ namespace ScenarioTesting
         private const int DragKickFrames = 3;
 
         private readonly HashSet<Key> _held = new HashSet<Key>();
+        private readonly List<InputDevice> _silenced = new List<InputDevice>();
         private Keyboard _keyboard;
         private Mouse _mouse;
         private Vector2 _pointer;
@@ -43,6 +44,8 @@ namespace ScenarioTesting
             InputSystem.settings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
             _keyboard = InputSystem.AddDevice<Keyboard>(KeyboardName);
             _mouse = InputSystem.AddDevice<Mouse>(MouseName);
+            foreach (InputDevice device in InputSystem.devices) Silence(device);
+            InputSystem.onDeviceChange += HandleDeviceChange;
             _pointer = new Vector2(Screen.width * 0.5f, Screen.height * 0.5f);
             Send();
         }
@@ -52,6 +55,9 @@ namespace ScenarioTesting
             if (!IsEnabled) return;
             _held.Clear();
             _pressed = null;
+            InputSystem.onDeviceChange -= HandleDeviceChange;
+            foreach (InputDevice device in _silenced) if (device.added && !device.enabled) InputSystem.EnableDevice(device);
+            _silenced.Clear();
             InputSystem.RemoveDevice(_keyboard);
             InputSystem.RemoveDevice(_mouse);
             _keyboard = null;
@@ -239,6 +245,19 @@ namespace ScenarioTesting
         #endregion
 
         #region [Private Methods]
+        private void Silence(InputDevice device)
+        {
+            if (device == null || device == _keyboard || device == _mouse || !device.enabled) return;
+            if (!(device is Pointer) && !(device is Keyboard)) return;
+            InputSystem.DisableDevice(device);
+            if (!_silenced.Contains(device)) _silenced.Add(device);
+        }
+
+        private void HandleDeviceChange(InputDevice device, InputDeviceChange change)
+        {
+            if (change == InputDeviceChange.Added || change == InputDeviceChange.Reconnected || change == InputDeviceChange.Enabled) Silence(device);
+        }
+
         private void Send()
         {
             if (!IsEnabled) return;

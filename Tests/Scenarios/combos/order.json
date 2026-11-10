@@ -1,6 +1,6 @@
 {
   "name": "unique_combo_order",
-  "description": "The same two passives bought in either order should give the same result.",
+  "description": "The same two passives bought in either order should give the same result. Every hit crits (CriticalRate 200 stays above any crit resistance) so the two runs do not differ by crit rolls.",
   "continueOnFail": true,
   "tags": [
     "passive",
@@ -74,7 +74,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -99,7 +99,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -126,7 +126,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -151,7 +151,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -178,7 +178,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -203,7 +203,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -230,7 +230,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -255,7 +255,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -282,7 +282,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",
@@ -307,7 +307,7 @@
       "do": "SetStat",
       "of": "player",
       "stat": "CriticalRate",
-      "total": 50
+      "total": 200
     },
     {
       "do": "Give",

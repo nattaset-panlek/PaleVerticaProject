@@ -21,6 +21,8 @@ namespace ScenarioTesting
         private readonly ScenarioInput _input = new ScenarioInput();
         private Coroutine _routine;
         private bool _exitWhenDone;
+        private int _runTotal;
+        private int _runsFinished;
 
         public static event Action<ScenarioRun> OnRunStarted;
         public static event Action<ScenarioRun> OnRunChanged;
@@ -35,6 +37,9 @@ namespace ScenarioTesting
         public static ScenarioRun Last { get; private set; }
         public bool IsBusy => _routine != null;
         public int Queued => _queue.Count;
+        public static int RunTotal => _instance != null ? _instance._runTotal : 0;
+        public static int RunsFinished => _instance != null ? _instance._runsFinished : 0;
+        public static int RunNumber => Mathf.Min(RunsFinished + 1, RunTotal);
 
         public static float Speed
         {
@@ -83,6 +88,12 @@ namespace ScenarioTesting
         public void Enqueue(ScenarioDefinition definition)
         {
             if (definition == null) return;
+            if (_routine == null)
+            {
+                _runTotal = 0;
+                _runsFinished = 0;
+            }
+            _runTotal++;
             _queue.Enqueue(definition);
             if (_routine == null) _routine = StartCoroutine(Process());
         }
@@ -90,6 +101,7 @@ namespace ScenarioTesting
         public void StopAll()
         {
             _queue.Clear();
+            _runTotal = _runsFinished + (Current != null ? 1 : 0);
             if (Current != null) Current.StopRequested = true;
         }
 
@@ -141,6 +153,7 @@ namespace ScenarioTesting
                     break;
                 }
 
+                Debug.Log($"[Scenario] {definition.Name} step {step.Index + 1}/{definition.Steps.Count} (run {RunNumber}/{RunTotal}): {step.Describe()}");
                 run.BeginStep(step);
                 ScenarioAction action = ScenarioAction.Create(step.Action);
                 if (action == null) run.FailStep($"unknown action '{step.Action}'");
@@ -152,6 +165,7 @@ namespace ScenarioTesting
             }
 
             run.Finish();
+            _runsFinished++;
             Last = run;
             Current = null;
             OnRunFinished?.Invoke(run);
