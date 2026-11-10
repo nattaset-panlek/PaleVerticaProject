@@ -1,11 +1,12 @@
 # Scenario results: claude
 
-Updated 2026-11-10 22:43:57. Failed 0, needs review 4, passed 15.
+Updated 2026-11-10 23:43:53. Failed 0, needs review 5, passed 15.
 
 | Status | Scenario | File | Pass | Review | Fail | Last run |
 |---|---|---|---|---|---|---|
 | NeedsReview | unique_combo_weird | combos/weird.json | 10 | 1 | 0 | 2026-11-10 21:53:10 |
 | NeedsReview | dialogue_alchemist_choice | core/dialogue_alchemist.json | 4 | 1 | 0 | 2026-11-10 21:09:22 |
+| NeedsReview | direction_hint | core/direction_hint.json | 4 | 1 | 0 | 2026-11-10 23:43:45 |
 | NeedsReview | input_check | core/input_check.json | 2 | 1 | 0 | 2026-11-10 21:09:52 |
 | NeedsReview | active_skill_passive_combos | skills/skill_passive_combos.json | 476 | 5 | 0 | 2026-11-10 22:11:48 |
 | Passed | unique_chaos_loadouts | chaos/random_loadouts.json | 51 | 0 | 0 | 2026-11-10 20:58:39 |
@@ -35,6 +36,12 @@ Report: `unique_combo_weird.json`, scenario `Tests/Scenarios/combos/weird.json`
 Report: `dialogue_alchemist_choice.json`, scenario `Tests/Scenarios/core/dialogue_alchemist.json`
 
 - **Review** step 9: the dialogue window looked right. Expected `a person approves`, got `waiting for review` (Check the speaker name, text and buttons in the screenshot.)
+
+## NeedsReview: direction_hint
+
+Report: `direction_hint.json`, scenario `Tests/Scenarios/core/direction_hint.json`
+
+- **Review** step 8: the ring sits under the target and its arrow points the way the target faces. Expected `a person approves`, got `waiting for review` (A frozen target faces right, so the arrow should point right. The ring should be sharp, about the size of the target.)
 
 ## NeedsReview: input_check
 

@@ -1,0 +1,196 @@
+{
+  "Scenario": "direction_hint",
+  "File": "core/direction_hint.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 23:43:45",
+  "DurationSeconds": 2.65618849,
+  "Status": "NeedsReview",
+  "ChecksPassed": 4,
+  "ChecksReview": 1,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.46556294
+    },
+    {
+      "Index": 1,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.46556294,
+      "Duration": 0.1141392
+    },
+    {
+      "Index": 2,
+      "Action": "Wait",
+      "Arguments": "Wait {\"seconds\":0.3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.57970214,
+      "Duration": 0.3029976
+    },
+    {
+      "Index": 3,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"no hint without a facing passive\",\"value\":\"hints\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.88269973,
+      "Duration": 0.0162744522
+    },
+    {
+      "Index": 4,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"MarkedThroat\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.89897418,
+      "Duration": 0.01785779
+    },
+    {
+      "Index": 5,
+      "Action": "Wait",
+      "Arguments": "Wait {\"seconds\":0.3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.916832,
+      "Duration": 0.3000741
+    },
+    {
+      "Index": 6,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Marked Throat shows the hint on the target\",\"value\":\"hints\",\"op\":\">=\",\"to\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.216906,
+      "Duration": 0.01624918
+    },
+    {
+      "Index": 7,
+      "Action": "Review",
+      "Arguments": "Review {\"name\":\"the ring sits under the target and its arrow points the way the target faces\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.23315525,
+      "Duration": 0.07333326
+    },
+    {
+      "Index": 8,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.30648851,
+      "Duration": 0.0158851147
+    },
+    {
+      "Index": 9,
+      "Action": "Wait",
+      "Arguments": "Wait {\"seconds\":0.3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.32237363,
+      "Duration": 0.3006363
+    },
+    {
+      "Index": 10,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"removing the passive hides the hint\",\"value\":\"hints\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.62301,
+      "Duration": 0.016462326
+    },
+    {
+      "Index": 11,
+      "Action": "ExpectNoErrors",
+      "Arguments": "ExpectNoErrors",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.63947225,
+      "Duration": 0.0167162418
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "no hint without a facing passive",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 3,
+      "Time": 1.88269973
+    },
+    {
+      "Name": "Marked Throat shows the hint on the target",
+      "Status": "Passed",
+      "Expected": ">= 1",
+      "Actual": "2",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 6,
+      "Time": 2.216906
+    },
+    {
+      "Name": "the ring sits under the target and its arrow points the way the target faces",
+      "Status": "Review",
+      "Expected": "a person approves",
+      "Actual": "waiting for review",
+      "Note": "A frozen target faces right, so the arrow should point right. The ring should be sharp, about the size of the target.",
+      "Screenshot": "C:\\Personal\\PaleVerticaProject\\Logs\\Scenarios\\claude\\direction_hint_20261110_234352_step8.png",
+      "Step": 7,
+      "Time": 2.30648851
+    },
+    {
+      "Name": "removing the passive hides the hint",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 10,
+      "Time": 2.62301
+    },
+    {
+      "Name": "no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": "errors are listed in the report",
+      "Screenshot": null,
+      "Step": 11,
+      "Time": 2.63947225
+    }
+  ],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, speed x1, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.43s skill slot 1 is now skill 1001 on Player#-1970346 (frame 6, scene Town, loading True)",
+    "1.47s in scene Town",
+    "1.47s skills after the new game: granted [1001], equipped [1001,-,-,-,-,-,-,-,-,-], hotbar row 0 [Skill:1001,-,-,-,-,-,-,-,-,-]",
+    "1.47s step 2: SpawnTarget",
+    "1.58s step 3: Wait {\"seconds\":0.3}",
+    "1.88s step 4: Expect {\"name\":\"no hint without a facing passive\",\"value\":\"hints\",\"to\":0}",
+    "1.90s step 5: Give {\"passives\":[\"MarkedThroat\"]}",
+    "1.92s step 6: Wait {\"seconds\":0.3}",
+    "2.22s step 7: Expect {\"name\":\"Marked Throat shows the hint on the target\",\"value\":\"hints\",\"op\":\">=\",\"to\":1}",
+    "2.23s step 8: Review {\"name\":\"the ring sits under the target and its arrow points the way the target faces\"}",
+    "2.31s step 9: Reset",
+    "2.32s step 10: Wait {\"seconds\":0.3}",
+    "2.62s step 11: Expect {\"name\":\"removing the passive hides the hint\",\"value\":\"hints\",\"to\":0}",
+    "2.64s step 12: ExpectNoErrors"
+  ],
+  "Errors": [],
+  "Combat": []
+}

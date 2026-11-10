@@ -40,11 +40,12 @@ System-level implementation docs, grouped by system. See [02-Technical/README.md
 | Standards | [Coding Standards: naming, script types, references](./02-Technical/Coding_Standards.md) |
 | Testing | [EditMode Tests](./02-Technical/Testing.md), [Scenario Test Walkthrough (JSON scenarios: virtual input, actions, checks with Pass / Review / Fail, Scenario Checklist window, batch runs)](./02-Technical/Testing/PlayMode_Scenario_Walkthrough.md), [Game Flow Map (what a player must do to reach each feature, keys, menus, drag rules, and the matching actions)](./02-Technical/Testing/Game_Flow_Map.md) |
 | Tools | [GDD Tools Walkthrough (design doc editor, PDF / Word export)](./02-Technical/Tools/GDD_Tools_Walkthrough.md), [Scene Switcher Walkthrough (package: scene dropdown beside Play in the main toolbar)](./02-Technical/Tools/Scene_Switcher_Walkthrough.md) |
-| Technical Art | [Setup EN](./02-Technical/TechnicalArt/Technical_Art_Setup_EN.md) / [TH](./02-Technical/TechnicalArt/Technical_Art_Setup_TH.md), [Milestone 1 Walkthrough (TH)](./02-Technical/TechnicalArt/Milestone1_Walkthrough_TH.md), [Slash Stylize V2 Walkthrough (EffectCraft)](./02-Technical/TechnicalArt/Slash_Stylize_V2_Walkthrough.md), [VFX Preview Tool Walkthrough (EffectCraft projects, render, gallery)](./02-Technical/TechnicalArt/VFX_Preview_Tool_Walkthrough.md) |
+| Technical Art | [Direction Hint Walkthrough (facing ring, SDF shader)](./02-Technical/TechnicalArt/Direction_Hint_Walkthrough.md), [Setup EN](./02-Technical/TechnicalArt/Technical_Art_Setup_EN.md) / [TH](./02-Technical/TechnicalArt/Technical_Art_Setup_TH.md), [Milestone 1 Walkthrough (TH)](./02-Technical/TechnicalArt/Milestone1_Walkthrough_TH.md), [Slash Stylize V2 Walkthrough (EffectCraft)](./02-Technical/TechnicalArt/Slash_Stylize_V2_Walkthrough.md), [VFX Preview Tool Walkthrough (EffectCraft projects, render, gallery)](./02-Technical/TechnicalArt/VFX_Preview_Tool_Walkthrough.md) |
 | Visuals | [Slash VFX & Weapon Visuals Walkthrough](./02-Technical/Visuals/Slash_VFX_Walkthrough.md), [Sprite Sheet VFX Workbench Walkthrough](./02-Technical/Visuals/SpriteSheet_Workbench_Walkthrough.md), [Hit VFX System Walkthrough](./02-Technical/Visuals/Hit_VFX_Walkthrough.md), [Weapon VFX System Walkthrough](./02-Technical/Visuals/Weapon_VFX_Walkthrough.md) |
 
 ## 03-Project
 - [Action Plan & Checklist (2026-11-08)](./03-Project/Action_Plan_2026-11-08.md)
+- [Handoff (2026-11-10 evening): game fixes, Localization Core, Direction Hint, scenario tools](./03-Project/Handoff_2026-11-10b.md)
 - [Handoff (2026-11-10): Scenario Test system, passive bug fixes](./03-Project/Handoff_2026-11-10.md)
 - [Handoff (2026-11-09)](./03-Project/Handoff_2026-11-09.md)
 - [Handoff (2026-11-08)](./03-Project/Handoff_2026-11-08.md)
