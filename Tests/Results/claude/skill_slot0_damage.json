@@ -3,12 +3,12 @@
   "File": "core/skill_slot0.json",
   "Agent": "claude",
   "SaveProfile": "claude",
-  "StartedAt": "2026-11-10 16:01:35",
-  "DurationSeconds": 4.20928955,
-  "Status": "Failed",
-  "ChecksPassed": 1,
+  "StartedAt": "2026-11-10 21:33:30",
+  "DurationSeconds": 4.575857,
+  "Status": "Passed",
+  "ChecksPassed": 4,
   "ChecksReview": 0,
-  "ChecksFailed": 3,
+  "ChecksFailed": 0,
   "StepResults": [
     {
       "Index": 0,
@@ -17,7 +17,7 @@
       "Status": "Passed",
       "Message": "in scene Town",
       "StartTime": 0.0,
-      "Duration": 0.2970581
+      "Duration": 1.89355659
     },
     {
       "Index": 1,
@@ -25,8 +25,8 @@
       "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.2970581,
-      "Duration": 0.0
+      "StartTime": 1.89355659,
+      "Duration": 0.01602745
     },
     {
       "Index": 2,
@@ -34,8 +34,8 @@
       "Arguments": "Refill {\"of\":\"player\"}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.2970581,
-      "Duration": 0.159973145
+      "StartTime": 1.909584,
+      "Duration": 0.0165596
     },
     {
       "Index": 3,
@@ -43,8 +43,8 @@
       "Arguments": "SpawnTarget",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.45703125,
-      "Duration": 0.892395
+      "StartTime": 1.92614365,
+      "Duration": 0.133169174
     },
     {
       "Index": 4,
@@ -52,8 +52,8 @@
       "Arguments": "SpawnTarget {\"tank\":false}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 1.34942627,
-      "Duration": 0.05859375
+      "StartTime": 2.05931282,
+      "Duration": 0.01764679
     },
     {
       "Index": 5,
@@ -61,8 +61,8 @@
       "Arguments": "Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
       "Status": "Passed",
       "Message": "var.hp = 1000124",
-      "StartTime": 1.40802,
-      "Duration": 0.0518188477
+      "StartTime": 2.07695961,
+      "Duration": 0.01550293
     },
     {
       "Index": 6,
@@ -70,17 +70,17 @@
       "Arguments": "Record {\"name\":\"mp\",\"value\":\"player.MP\"}",
       "Status": "Passed",
       "Message": "var.mp = 50.5",
-      "StartTime": 1.45983887,
-      "Duration": 0.0555419922
+      "StartTime": 2.09246254,
+      "Duration": 0.0169677734
     },
     {
       "Index": 7,
       "Action": "Cast",
       "Arguments": "Cast {\"slot\":0,\"at\":\"target\",\"wait\":2}",
       "Status": "Passed",
-      "Message": "cast started False, 0 hits",
-      "StartTime": 1.51538086,
-      "Duration": 2.37231445
+      "Message": "cast started True, 1 hits",
+      "StartTime": 2.10943031,
+      "Duration": 2.3833828
     },
     {
       "Index": 8,
@@ -88,8 +88,8 @@
       "Arguments": "Expect {\"name\":\"the cast started\",\"value\":\"cast\",\"to\":1}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 3.88769531,
-      "Duration": 0.06097412
+      "StartTime": 4.492813,
+      "Duration": 0.016620636
     },
     {
       "Index": 9,
@@ -97,8 +97,8 @@
       "Arguments": "Expect {\"name\":\"target lost hp\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 3.94866943,
-      "Duration": 0.06591797
+      "StartTime": 4.50943375,
+      "Duration": 0.016702652
     },
     {
       "Index": 10,
@@ -106,8 +106,8 @@
       "Arguments": "Expect {\"name\":\"damage was recorded on the target\",\"value\":\"hits.total\",\"op\":\">\",\"to\":0}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 4.0145874,
-      "Duration": 0.07220459
+      "StartTime": 4.5261364,
+      "Duration": 0.0171947479
     },
     {
       "Index": 11,
@@ -115,8 +115,8 @@
       "Arguments": "Expect {\"name\":\"mana spent is not negative\",\"value\":\"var.mp - player.MP\",\"op\":\">=\",\"to\":0}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 4.086792,
-      "Duration": 0.0682373047
+      "StartTime": 4.543331,
+      "Duration": 0.0161190033
     },
     {
       "Index": 12,
@@ -124,40 +124,40 @@
       "Arguments": "Measure {\"name\":\"damage\",\"value\":\"var.hp - target.HP\"}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 4.1550293,
-      "Duration": 0.0542602539
+      "StartTime": 4.55945,
+      "Duration": 0.0164070129
     }
   ],
   "Checks": [
     {
       "Name": "the cast started",
-      "Status": "Failed",
+      "Status": "Passed",
       "Expected": "== 1",
-      "Actual": "0",
+      "Actual": "1",
       "Note": null,
       "Screenshot": null,
       "Step": 8,
-      "Time": 3.88769531
+      "Time": 4.492813
     },
     {
       "Name": "target lost hp",
-      "Status": "Failed",
+      "Status": "Passed",
       "Expected": "< 1000124",
-      "Actual": "1000124",
+      "Actual": "1000105",
       "Note": null,
       "Screenshot": null,
       "Step": 9,
-      "Time": 3.94866943
+      "Time": 4.50943375
     },
     {
       "Name": "damage was recorded on the target",
-      "Status": "Failed",
+      "Status": "Passed",
       "Expected": "> 0",
-      "Actual": "0",
+      "Actual": "21.7833",
       "Note": null,
       "Screenshot": null,
       "Step": 10,
-      "Time": 4.0145874
+      "Time": 4.5261364
     },
     {
       "Name": "mana spent is not negative",
@@ -167,36 +167,51 @@
       "Note": null,
       "Screenshot": null,
       "Step": 11,
-      "Time": 4.086792
+      "Time": 4.543331
     }
   ],
   "Metrics": {
-    "damage": 0.0
+    "damage": 18.5625
   },
   "Variables": {
     "hp": 1000123.63,
     "mp": 50.5
   },
   "Log": [
-    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s begin, seed 1337, speed x1, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
     "0.00s step 1: StartNewGame",
-    "0.30s in scene Town",
-    "0.30s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
-    "0.30s step 3: Refill {\"of\":\"player\"}",
-    "0.46s step 4: SpawnTarget",
-    "1.35s step 5: SpawnTarget {\"tank\":false}",
-    "1.41s step 6: Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
-    "1.41s var.hp = 1000124",
-    "1.46s step 7: Record {\"name\":\"mp\",\"value\":\"player.MP\"}",
-    "1.46s var.mp = 50.5",
-    "1.52s step 8: Cast {\"slot\":0,\"at\":\"target\",\"wait\":2}",
-    "3.89s cast started False, 0 hits",
-    "3.89s step 9: Expect {\"name\":\"the cast started\",\"value\":\"cast\",\"to\":1}",
-    "3.95s step 10: Expect {\"name\":\"target lost hp\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
-    "4.01s step 11: Expect {\"name\":\"damage was recorded on the target\",\"value\":\"hits.total\",\"op\":\">\",\"to\":0}",
-    "4.09s step 12: Expect {\"name\":\"mana spent is not negative\",\"value\":\"var.mp - player.MP\",\"op\":\">=\",\"to\":0}",
-    "4.16s step 13: Measure {\"name\":\"damage\",\"value\":\"var.hp - target.HP\"}"
+    "0.00s going back to the title from Town so the old character is dropped",
+    "0.54s skill slot 1 is now skill 1001 on Player#-790980 (frame 1267, scene Title, loading True)",
+    "1.89s in scene Town",
+    "1.89s skills after the new game: granted [1001], equipped [1001,-,-,-,-,-,-,-,-,-], hotbar row 0 [Skill:1001,-,-,-,-,-,-,-,-,-]",
+    "1.89s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "1.91s step 3: Refill {\"of\":\"player\"}",
+    "1.93s step 4: SpawnTarget",
+    "2.06s step 5: SpawnTarget {\"tank\":false}",
+    "2.08s step 6: Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+    "2.08s var.hp = 1000124",
+    "2.09s step 7: Record {\"name\":\"mp\",\"value\":\"player.MP\"}",
+    "2.09s var.mp = 50.5",
+    "2.11s step 8: Cast {\"slot\":0,\"at\":\"target\",\"wait\":2}",
+    "2.11s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "2.16s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "2.48s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "2.48s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Casting",
+    "4.49s cast started True, 1 hits",
+    "4.49s step 9: Expect {\"name\":\"the cast started\",\"value\":\"cast\",\"to\":1}",
+    "4.51s step 10: Expect {\"name\":\"target lost hp\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+    "4.53s step 11: Expect {\"name\":\"damage was recorded on the target\",\"value\":\"hits.total\",\"op\":\">\",\"to\":0}",
+    "4.54s step 12: Expect {\"name\":\"mana spent is not negative\",\"value\":\"var.mp - player.MP\",\"op\":\">=\",\"to\":0}",
+    "4.56s step 13: Measure {\"name\":\"damage\",\"value\":\"var.hp - target.HP\"}"
   ],
   "Errors": [],
-  "Combat": []
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-790980",
+      "Target": "Skeletom(Clone)#-794452",
+      "Amount": 21.7833328,
+      "Time": 23.9211712
+    }
+  ]
 }

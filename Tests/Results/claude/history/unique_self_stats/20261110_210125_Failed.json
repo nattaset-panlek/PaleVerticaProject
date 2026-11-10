@@ -1,0 +1,346 @@
+{
+  "Scenario": "unique_self_stats",
+  "File": "passives/self.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:01:21",
+  "DurationSeconds": 25.82544,
+  "Status": "Failed",
+  "ChecksPassed": 2,
+  "ChecksReview": 0,
+  "ChecksFailed": 1,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.416992
+    },
+    {
+      "Index": 1,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.416992,
+      "Duration": 0.936523438
+    },
+    {
+      "Index": 2,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.35351563,
+      "Duration": 0.128051758
+    },
+    {
+      "Index": 3,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+      "Status": "Passed",
+      "Message": "var.mh = 101",
+      "StartTime": 6.48156738,
+      "Duration": 0.137084961
+    },
+    {
+      "Index": 4,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"HollowCrown\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.61865234,
+      "Duration": 0.130859375
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Hollow Crown: max hp is halved\",\"value\":\"player.MaxHP / var.mh\",\"to\":0.5,\"tolerance\":0.03}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.74951172,
+      "Duration": 0.134277344
+    },
+    {
+      "Index": 6,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.883789,
+      "Duration": 0.13684082
+    },
+    {
+      "Index": 7,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+      "Status": "Passed",
+      "Message": "var.mh = 101",
+      "StartTime": 7.02063,
+      "Duration": 0.128540039
+    },
+    {
+      "Index": 8,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"WhisperPact\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 7.14917,
+      "Duration": 0.135375977
+    },
+    {
+      "Index": 9,
+      "Action": "Repeat",
+      "Arguments": "Repeat {\"times\":6,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1},{\"do\":\"Refill\",\"of\":\"player\"}]}",
+      "Status": "Passed",
+      "Message": "cast started False, 2 hits",
+      "StartTime": 7.284546,
+      "Duration": 15.2003174
+    },
+    {
+      "Index": 10,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Whisper Pact: repeated casts lower max hp\",\"value\":\"player.MaxHP\",\"op\":\"<\",\"to\":\"var.mh\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.4848633,
+      "Duration": 0.134277344
+    },
+    {
+      "Index": 11,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.61914,
+      "Duration": 0.132324219
+    },
+    {
+      "Index": 12,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"OathOfSilence\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.7514648,
+      "Duration": 0.132202148
+    },
+    {
+      "Index": 13,
+      "Action": "Cast",
+      "Arguments": "Cast {\"slot\":0,\"at\":\"target\",\"wait\":1.5}",
+      "Status": "Passed",
+      "Message": "cast started False, 3 hits",
+      "StartTime": 22.883667,
+      "Duration": 2.798584
+    },
+    {
+      "Index": 14,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Oath of Silence: a skill with cast time does not fire\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 25.682251,
+      "Duration": 0.143188477
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "Hollow Crown: max hp is halved",
+      "Status": "Passed",
+      "Expected": "0.5 +/- 0.03",
+      "Actual": "0.5",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 6.74951172
+    },
+    {
+      "Name": "Whisper Pact: repeated casts lower max hp",
+      "Status": "Failed",
+      "Expected": "< 101",
+      "Actual": "101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 10,
+      "Time": 22.4848633
+    },
+    {
+      "Name": "Oath of Silence: a skill with cast time does not fire",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": "Review if slot 1 holds an instant skill, which Oath of Silence allows.",
+      "Screenshot": null,
+      "Step": 14,
+      "Time": 25.682251
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "mh": 101.0,
+    "i": 5.0
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.53s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.87s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.42s in scene Town",
+    "5.42s step 2: SpawnTarget",
+    "6.35s step 3: Reset",
+    "6.48s step 4: Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+    "6.48s var.mh = 101",
+    "6.62s step 5: Give {\"passives\":[\"HollowCrown\"]}",
+    "6.75s step 6: Expect {\"name\":\"Hollow Crown: max hp is halved\",\"value\":\"player.MaxHP / var.mh\",\"to\":0.5,\"tolerance\":0.03}",
+    "6.88s step 7: Reset",
+    "7.02s step 8: Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+    "7.02s var.mh = 101",
+    "7.15s step 9: Give {\"passives\":[\"WhisperPact\"]}",
+    "7.28s step 10: Repeat {\"times\":6,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1},{\"do\":\"Refill\",\"of\":\"player\"}]}",
+    "8.48s clicked Skeletom(Clone) at screen 1068,536 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "9.68s cast started False, 2 hits",
+    "11.02s clicked Skeletom(Clone) at screen 1068,526 world 1.2,-2.15, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "12.22s cast started False, 2 hits",
+    "13.55s clicked Skeletom(Clone) at screen 1068,553 world 1.2,-1.85, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "14.75s cast started False, 3 hits",
+    "16.09s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "17.28s cast started False, 2 hits",
+    "18.60s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "19.82s cast started False, 2 hits",
+    "21.15s clicked Skeletom(Clone) at screen 1068,553 world 1.2,-1.85, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "22.35s cast started False, 2 hits",
+    "22.48s step 11: Expect {\"name\":\"Whisper Pact: repeated casts lower max hp\",\"value\":\"player.MaxHP\",\"op\":\"<\",\"to\":\"var.mh\"}",
+    "22.62s step 12: Reset",
+    "22.75s step 13: Give {\"passives\":[\"OathOfSilence\"]}",
+    "22.88s step 14: Cast {\"slot\":0,\"at\":\"target\",\"wait\":1.5}",
+    "24.09s clicked Skeletom(Clone) at screen 1068,553 world 1.2,-1.85, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "25.68s cast started False, 3 hits",
+    "25.68s step 15: Expect {\"name\":\"Oath of Silence: a skill with cast time does not fire\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1209.58765
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1210.65
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1211.71692
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1212.7865
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1213.84961
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1214.917
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1215.98779
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1217.052
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1218.12219
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1219.18408
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1220.25134
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1221.318
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1222.38806
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1223.45032
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1224.51758
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1225.58411
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-471350",
+      "Target": "Skeletom(Clone)#-474612",
+      "Amount": 10.5333328,
+      "Time": 1226.65259
+    }
+  ]
+}

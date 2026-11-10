@@ -1,0 +1,774 @@
+{
+  "Scenario": "unique_combo_conflicts",
+  "File": "combos/conflicts.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:44:41",
+  "DurationSeconds": 32.3635,
+  "Status": "Passed",
+  "ChecksPassed": 10,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 4.430593
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.430593,
+      "Duration": 0.131842136
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.562435,
+      "Duration": 0.132321835
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.694757,
+      "Duration": 0.9359088
+    },
+    {
+      "Index": 4,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.630666,
+      "Duration": 0.1361022
+    },
+    {
+      "Index": 5,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"Vampire\",\"HollowCrown\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.766768,
+      "Duration": 0.130166531
+    },
+    {
+      "Index": 6,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"player\",\"ratio\":1.2}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.89693451,
+      "Duration": 0.134763241
+    },
+    {
+      "Index": 7,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"start\",\"value\":\"player.HP\"}",
+      "Status": "Passed",
+      "Message": "var.start = 3060.6",
+      "StartTime": 6.03169775,
+      "Duration": 0.131680012
+    },
+    {
+      "Index": 8,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"t0\",\"value\":\"taken\"}",
+      "Status": "Passed",
+      "Message": "var.t0 = 0",
+      "StartTime": 6.163378,
+      "Duration": 0.137275219
+    },
+    {
+      "Index": 9,
+      "Action": "Watch",
+      "Arguments": "Watch {\"name\":\"hp\",\"value\":\"player.HP\",\"steps\":[{\"do\":\"Attack\",\"hits\":4}]}",
+      "Status": "Passed",
+      "Message": "player.HP: min 3060.6, max 3066.92",
+      "StartTime": 6.300653,
+      "Duration": 4.191973
+    },
+    {
+      "Index": 10,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Vampire + Hollow Crown: no damage was taken\",\"value\":\"taken - var.t0\",\"to\":0,\"tolerance\":0.001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.4926262,
+      "Duration": 0.133517265
+    },
+    {
+      "Index": 11,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Vampire + Hollow Crown: Vampire never cuts the overheal\",\"value\":\"var.hp_min\",\"op\":\">=\",\"to\":\"var.start - 0.01\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.6261435,
+      "Duration": 0.134064674
+    },
+    {
+      "Index": 12,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.7602081,
+      "Duration": 0.13405323
+    },
+    {
+      "Index": 13,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"LivingPhilosopher\",\"SecondDose\",\"TransmutedBlood\",\"VolatileMixture\",\"AnsweredPrayer\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.8942614,
+      "Duration": 0.132545471
+    },
+    {
+      "Index": 14,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MPRecovery\",\"total\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.0268068,
+      "Duration": 0.134902
+    },
+    {
+      "Index": 15,
+      "Action": "SetMp",
+      "Arguments": "SetMp {\"of\":\"player\",\"value\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.1617088,
+      "Duration": 0.132352829
+    },
+    {
+      "Index": 16,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 1000124",
+      "StartTime": 11.2940617,
+      "Duration": 0.131797791
+    },
+    {
+      "Index": 17,
+      "Action": "UseItem",
+      "Arguments": "UseItem {\"item\":2001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.4258595,
+      "Duration": 0.13490963
+    },
+    {
+      "Index": 18,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Potion ban: the potion is not used\",\"value\":\"potion\",\"to\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.5607691,
+      "Duration": 0.131390572
+    },
+    {
+      "Index": 19,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Potion ban: Transmuted Blood gives no mana\",\"value\":\"player.MP\",\"to\":0,\"tolerance\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.69216,
+      "Duration": 0.134671211
+    },
+    {
+      "Index": 20,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Potion ban: Volatile Mixture does not explode\",\"value\":\"target.HP\",\"to\":\"var.hp\",\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.8268309,
+      "Duration": 0.134580612
+    },
+    {
+      "Index": 21,
+      "Action": "ClearStat",
+      "Arguments": "ClearStat {\"of\":\"player\",\"stat\":\"MPRecovery\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.9614115,
+      "Duration": 0.134304047
+    },
+    {
+      "Index": 22,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 12.0957155,
+      "Duration": 0.13188839
+    },
+    {
+      "Index": 23,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"HollowQuiver\",\"DoubleAttack\",\"IronMomentum\",\"QuickenedWeave\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 12.2276039,
+      "Duration": 0.133179665
+    },
+    {
+      "Index": 24,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":1,\"max\":2.5,\"allowNone\":true}",
+      "Status": "Passed",
+      "Message": "0 hits, 0 damage",
+      "StartTime": 12.3607836,
+      "Duration": 3.8663187
+    },
+    {
+      "Index": 25,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"No basic attacks: Double Attack and Iron Momentum stay silent\",\"value\":\"hits.count\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.2271023,
+      "Duration": 0.130414963
+    },
+    {
+      "Index": 26,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.3575172,
+      "Duration": 0.138687134
+    },
+    {
+      "Index": 27,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"CovenantKeeper\",\"Verdict\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.4962044,
+      "Duration": 0.128101349
+    },
+    {
+      "Index": 28,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"target\",\"stat\":\"HPRecovery\",\"total\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.6243057,
+      "Duration": 0.144163132
+    },
+    {
+      "Index": 29,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 1000124",
+      "StartTime": 16.7684689,
+      "Duration": 0.123765945
+    },
+    {
+      "Index": 30,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":4}",
+      "Status": "Passed",
+      "Message": "4 hits, 2.11 damage",
+      "StartTime": 16.8922348,
+      "Duration": 3.204319
+    },
+    {
+      "Index": 31,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Covenant Keeper + Verdict: only the Holy brand does damage\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.0965538,
+      "Duration": 0.131551743
+    },
+    {
+      "Index": 32,
+      "Action": "ClearStat",
+      "Arguments": "ClearStat {\"of\":\"target\",\"stat\":\"HPRecovery\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.2281055,
+      "Duration": 0.133337021
+    },
+    {
+      "Index": 33,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.3614426,
+      "Duration": 0.134248734
+    },
+    {
+      "Index": 34,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"Execution\",\"SixFates\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.4956913,
+      "Duration": 0.129814148
+    },
+    {
+      "Index": 35,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"target\",\"ratio\":0.04}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.6255054,
+      "Duration": 0.133756638
+    },
+    {
+      "Index": 36,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3,\"max\":4}",
+      "Status": "Passed",
+      "Message": "1 hits, 10.53 damage",
+      "StartTime": 20.7592621,
+      "Duration": 1.34126282
+    },
+    {
+      "Index": 37,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Execution + Six Fates: even a 0x hit executes\",\"value\":\"target.HP\",\"op\":\"<=\",\"to\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.1005249,
+      "Duration": 0.126396179
+    },
+    {
+      "Index": 38,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.2269211,
+      "Duration": 0.127170563
+    },
+    {
+      "Index": 39,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"PerfectDodge\",\"total\":100}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.3540916,
+      "Duration": 0.138977051
+    },
+    {
+      "Index": 40,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"VeilStep\",\"LastBanner\",\"SharedWound\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.4930687,
+      "Duration": 0.133916855
+    },
+    {
+      "Index": 41,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"t0\",\"value\":\"taken\"}",
+      "Status": "Passed",
+      "Message": "var.t0 = 0",
+      "StartTime": 22.6269855,
+      "Duration": 0.137447357
+    },
+    {
+      "Index": 42,
+      "Action": "TakeHits",
+      "Arguments": "TakeHits {\"count\":3,\"amount\":40}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.7644329,
+      "Duration": 0.7902584
+    },
+    {
+      "Index": 43,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Veil Step + Last Banner + Shared Wound: nothing gets through\",\"value\":\"taken - var.t0\",\"to\":0,\"tolerance\":0.001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 23.5546913,
+      "Duration": 0.143520355
+    },
+    {
+      "Index": 44,
+      "Action": "ClearStat",
+      "Arguments": "ClearStat {\"of\":\"player\",\"stat\":\"PerfectDodge\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 23.6982117,
+      "Duration": 0.13353157
+    },
+    {
+      "Index": 45,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 23.8317432,
+      "Duration": 0.127731323
+    },
+    {
+      "Index": 46,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"OathOfSilence\",\"QuickenedWeave\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 23.9594746,
+      "Duration": 0.131185532
+    },
+    {
+      "Index": 47,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":5}",
+      "Status": "Passed",
+      "Message": "5 hits, 52.67 damage",
+      "StartTime": 24.09066,
+      "Duration": 5.33416176
+    },
+    {
+      "Index": 48,
+      "Action": "Cast",
+      "Arguments": "Cast {\"slot\":0,\"at\":\"target\"}",
+      "Status": "Passed",
+      "Message": "cast started False, 0 hits",
+      "StartTime": 29.4248219,
+      "Duration": 2.80212975
+    },
+    {
+      "Index": 49,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Oath of Silence + Quickened Weave: the shorter cast is still blocked\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 32.22695,
+      "Duration": 0.136547089
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "Vampire + Hollow Crown: no damage was taken",
+      "Status": "Passed",
+      "Expected": "0 +/- 0.001",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 10,
+      "Time": 10.4926262
+    },
+    {
+      "Name": "Vampire + Hollow Crown: Vampire never cuts the overheal",
+      "Status": "Passed",
+      "Expected": ">= 3060.59",
+      "Actual": "3060.6",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 11,
+      "Time": 10.6261435
+    },
+    {
+      "Name": "Potion ban: the potion is not used",
+      "Status": "Passed",
+      "Expected": "== 1",
+      "Actual": "1",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 18,
+      "Time": 11.5607691
+    },
+    {
+      "Name": "Potion ban: Transmuted Blood gives no mana",
+      "Status": "Passed",
+      "Expected": "0 +/- 1",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 19,
+      "Time": 11.69216
+    },
+    {
+      "Name": "Potion ban: Volatile Mixture does not explode",
+      "Status": "Passed",
+      "Expected": "1000124 +/- 0.01",
+      "Actual": "1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 20,
+      "Time": 11.8268309
+    },
+    {
+      "Name": "No basic attacks: Double Attack and Iron Momentum stay silent",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 25,
+      "Time": 16.2271023
+    },
+    {
+      "Name": "Covenant Keeper + Verdict: only the Holy brand does damage",
+      "Status": "Passed",
+      "Expected": "< 1000124",
+      "Actual": "1000122",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 31,
+      "Time": 20.0965538
+    },
+    {
+      "Name": "Execution + Six Fates: even a 0x hit executes",
+      "Status": "Passed",
+      "Expected": "<= 0.01",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 37,
+      "Time": 22.1005249
+    },
+    {
+      "Name": "Veil Step + Last Banner + Shared Wound: nothing gets through",
+      "Status": "Passed",
+      "Expected": "0 +/- 0.001",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 43,
+      "Time": 23.5546913
+    },
+    {
+      "Name": "Oath of Silence + Quickened Weave: the shorter cast is still blocked",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 49,
+      "Time": 32.22695
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "start": 3060.6,
+    "t0": 0.0,
+    "hp_min": 3060.6,
+    "hp_max": 3066.92041,
+    "hp": 1000123.63
+  },
+  "Log": [
+    "0.00s begin, seed 1337, speed x8, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from  so the old character is dropped",
+    "3.02s skill slot 1 is now skill 1001 on Player#-881078 (frame 11, scene Title, loading True)",
+    "4.43s in scene Town",
+    "4.43s skills after the new game: granted [1001], equipped [1001,-,-,-,-,-,-,-,-,-], hotbar row 0 [Skill:1001,-,-,-,-,-,-,-,-,-]",
+    "4.43s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "4.56s step 3: Refill {\"of\":\"player\"}",
+    "4.69s step 4: SpawnTarget",
+    "5.63s step 5: Reset",
+    "5.77s step 6: Give {\"passives\":[\"Vampire\",\"HollowCrown\"]}",
+    "5.90s step 7: SetHp {\"of\":\"player\",\"ratio\":1.2}",
+    "6.03s step 8: Record {\"name\":\"start\",\"value\":\"player.HP\"}",
+    "6.03s var.start = 3060.6",
+    "6.16s step 9: Record {\"name\":\"t0\",\"value\":\"taken\"}",
+    "6.16s var.t0 = 0",
+    "6.30s step 10: Watch {\"name\":\"hp\",\"value\":\"player.HP\",\"steps\":[{\"do\":\"Attack\",\"hits\":4}]}",
+    "7.43s clicked Skeletom(Clone) at screen 1068,534 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "10.49s 4 hits, 42.13 damage",
+    "10.49s player.HP: min 3060.6, max 3066.92",
+    "10.49s step 11: Expect {\"name\":\"Vampire + Hollow Crown: no damage was taken\",\"value\":\"taken - var.t0\",\"to\":0,\"tolerance\":0.001}",
+    "10.63s step 12: Expect {\"name\":\"Vampire + Hollow Crown: Vampire never cuts the overheal\",\"value\":\"var.hp_min\",\"op\":\">=\",\"to\":\"var.start - 0.01\"}",
+    "10.76s step 13: Reset",
+    "10.89s step 14: Give {\"passives\":[\"LivingPhilosopher\",\"SecondDose\",\"TransmutedBlood\",\"VolatileMixture\",\"AnsweredPrayer\"]}",
+    "11.03s step 15: SetStat {\"of\":\"player\",\"stat\":\"MPRecovery\",\"total\":0}",
+    "11.16s step 16: SetMp {\"of\":\"player\",\"value\":0}",
+    "11.29s step 17: Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+    "11.29s var.hp = 1000124",
+    "11.43s step 18: UseItem {\"item\":2001}",
+    "11.56s step 19: Expect {\"name\":\"Potion ban: the potion is not used\",\"value\":\"potion\",\"to\":1}",
+    "11.69s step 20: Expect {\"name\":\"Potion ban: Transmuted Blood gives no mana\",\"value\":\"player.MP\",\"to\":0,\"tolerance\":1}",
+    "11.83s step 21: Expect {\"name\":\"Potion ban: Volatile Mixture does not explode\",\"value\":\"target.HP\",\"to\":\"var.hp\",\"tolerance\":0.01}",
+    "11.96s step 22: ClearStat {\"of\":\"player\",\"stat\":\"MPRecovery\"}",
+    "12.10s step 23: Reset",
+    "12.23s step 24: Give {\"passives\":[\"HollowQuiver\",\"DoubleAttack\",\"IronMomentum\",\"QuickenedWeave\"]}",
+    "12.36s step 25: Attack {\"hits\":1,\"max\":2.5,\"allowNone\":true}",
+    "13.16s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "16.23s 0 hits, 0 damage",
+    "16.23s step 26: Expect {\"name\":\"No basic attacks: Double Attack and Iron Momentum stay silent\",\"value\":\"hits.count\",\"to\":0}",
+    "16.36s step 27: Reset",
+    "16.50s step 28: Give {\"passives\":[\"CovenantKeeper\",\"Verdict\"]}",
+    "16.62s step 29: SetStat {\"of\":\"target\",\"stat\":\"HPRecovery\",\"total\":0}",
+    "16.77s step 30: Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+    "16.77s var.hp = 1000124",
+    "16.89s step 31: Attack {\"hits\":4}",
+    "17.70s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "20.10s 4 hits, 2.11 damage",
+    "20.10s step 32: Expect {\"name\":\"Covenant Keeper + Verdict: only the Holy brand does damage\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+    "20.23s step 33: ClearStat {\"of\":\"target\",\"stat\":\"HPRecovery\"}",
+    "20.36s step 34: Reset",
+    "20.50s step 35: Give {\"passives\":[\"Execution\",\"SixFates\"]}",
+    "20.63s step 36: SetHp {\"of\":\"target\",\"ratio\":0.04}",
+    "20.76s step 37: Attack {\"hits\":3,\"max\":4}",
+    "21.56s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "22.10s 1 hits, 10.53 damage",
+    "22.10s step 38: Expect {\"name\":\"Execution + Six Fates: even a 0x hit executes\",\"value\":\"target.HP\",\"op\":\"<=\",\"to\":0.01}",
+    "22.23s step 39: Reset",
+    "22.35s step 40: SetStat {\"of\":\"player\",\"stat\":\"PerfectDodge\",\"total\":100}",
+    "22.49s step 41: Give {\"passives\":[\"VeilStep\",\"LastBanner\",\"SharedWound\"]}",
+    "22.63s step 42: Record {\"name\":\"t0\",\"value\":\"taken\"}",
+    "22.63s var.t0 = 0",
+    "22.76s step 43: TakeHits {\"count\":3,\"amount\":40}",
+    "23.55s step 44: Expect {\"name\":\"Veil Step + Last Banner + Shared Wound: nothing gets through\",\"value\":\"taken - var.t0\",\"to\":0,\"tolerance\":0.001}",
+    "23.70s step 45: ClearStat {\"of\":\"player\",\"stat\":\"PerfectDodge\"}",
+    "23.83s step 46: Reset",
+    "23.96s step 47: Give {\"passives\":[\"OathOfSilence\",\"QuickenedWeave\"]}",
+    "24.09s step 48: Attack {\"hits\":5}",
+    "24.89s clicked Skeletom(Clone) at screen 1069,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "29.42s 5 hits, 52.67 damage",
+    "29.42s step 49: Cast {\"slot\":0,\"at\":\"target\"}",
+    "29.42s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "29.83s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "30.63s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "30.63s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "32.23s cast started False, 0 hits",
+    "32.23s step 50: Expect {\"name\":\"Oath of Silence + Quickened Weave: the shorter cast is still blocked\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 10.5333328,
+      "Time": 6.827899
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 10.5333328,
+      "Time": 7.87031126
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 10.5333328,
+      "Time": 8.897933
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 10.5333328,
+      "Time": 9.96434
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 0.0,
+      "Time": 17.4236774
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 2.11249924,
+      "Time": 18.4932671
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 0.0,
+      "Time": 18.4932671
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 0.0,
+      "Time": 19.5623112
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-884436",
+      "Amount": 10.5333328,
+      "Time": 21.29436
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-885390",
+      "Target": "Player#-881078",
+      "Amount": 0.0,
+      "Time": 22.7644329
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-885390",
+      "Target": "Player#-881078",
+      "Amount": 0.0,
+      "Time": 23.0257072
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-885390",
+      "Target": "Player#-881078",
+      "Amount": 0.0,
+      "Time": 23.2925777
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-885390",
+      "Amount": 10.5333328,
+      "Time": 24.6324482
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-885390",
+      "Amount": 10.5333328,
+      "Time": 25.69429
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-885390",
+      "Amount": 10.5333328,
+      "Time": 26.7613258
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-885390",
+      "Amount": 10.5333328,
+      "Time": 27.8249912
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-881078",
+      "Target": "Skeletom(Clone)#-885390",
+      "Amount": 10.5333328,
+      "Time": 28.89128
+    }
+  ]
+}

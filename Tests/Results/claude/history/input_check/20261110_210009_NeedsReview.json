@@ -1,0 +1,150 @@
+{
+  "Scenario": "input_check",
+  "File": "core/input_check.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:00:07",
+  "DurationSeconds": 9.390381,
+  "Status": "NeedsReview",
+  "ChecksPassed": 2,
+  "ChecksReview": 1,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.38323975
+    },
+    {
+      "Index": 1,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"x\",\"value\":\"player.x\"}",
+      "Status": "Passed",
+      "Message": "var.x = 0",
+      "StartTime": 5.38323975,
+      "Duration": 0.13684082
+    },
+    {
+      "Index": 2,
+      "Action": "Walk",
+      "Arguments": "Walk {\"dir\":\"right\",\"seconds\":0.6}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.52008057,
+      "Duration": 0.8015137
+    },
+    {
+      "Index": 3,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"the D key moved the player right\",\"value\":\"player.x - var.x\",\"op\":\">\",\"to\":0.05}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.321594,
+      "Duration": 0.133056641
+    },
+    {
+      "Index": 4,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.454651,
+      "Duration": 0.933227539
+    },
+    {
+      "Index": 5,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":1,\"max\":5}",
+      "Status": "Passed",
+      "Message": "1 hits, 9 damage",
+      "StartTime": 7.38787842,
+      "Duration": 1.33398438
+    },
+    {
+      "Index": 6,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"the click started an attack that landed\",\"value\":\"hits.count\",\"op\":\">=\",\"to\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.721863,
+      "Duration": 0.13873291
+    },
+    {
+      "Index": 7,
+      "Action": "Review",
+      "Arguments": "Review {\"name\":\"the player walked and attacked on screen\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.860596,
+      "Duration": 0.529785156
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "the D key moved the player right",
+      "Status": "Passed",
+      "Expected": "> 0.05",
+      "Actual": "4.0089",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 3,
+      "Time": 6.321594
+    },
+    {
+      "Name": "the click started an attack that landed",
+      "Status": "Passed",
+      "Expected": ">= 1",
+      "Actual": "1",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 6,
+      "Time": 8.721863
+    },
+    {
+      "Name": "the player walked and attacked on screen",
+      "Status": "Review",
+      "Expected": "a person approves",
+      "Actual": "waiting for review",
+      "Note": "Look at the screenshot: the player should stand next to the Skeletom.",
+      "Screenshot": "C:\\Personal\\PaleVerticaProject\\Logs\\Scenarios\\claude\\input_check_20261110_210009_step8.png",
+      "Step": 7,
+      "Time": 9.390381
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "x": 0.0
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.52s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.85s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.38s in scene Town",
+    "5.38s step 2: Record {\"name\":\"x\",\"value\":\"player.x\"}",
+    "5.38s var.x = 0",
+    "5.52s step 3: Walk {\"dir\":\"right\",\"seconds\":0.6}",
+    "6.32s step 4: Expect {\"name\":\"the D key moved the player right\",\"value\":\"player.x - var.x\",\"op\":\">\",\"to\":0.05}",
+    "6.45s step 5: SpawnTarget",
+    "7.39s step 6: Attack {\"hits\":1,\"max\":5}",
+    "8.19s clicked Skeletom(Clone) at screen 1133,534 world 5.21,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "8.72s 1 hits, 9 damage",
+    "8.72s step 7: Expect {\"name\":\"the click started an attack that landed\",\"value\":\"hits.count\",\"op\":\">=\",\"to\":1}",
+    "8.86s step 8: Review {\"name\":\"the player walked and attacked on screen\"}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-378052",
+      "Target": "Skeletom(Clone)#-381314",
+      "Amount": 9.0,
+      "Time": 652.274353
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "Scenario": "quest_bones_on_the_road",
+  "File": "quests/bones_on_the_road.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:03:27",
+  "DurationSeconds": 39.8930664,
+  "Status": "Failed",
+  "ChecksPassed": 1,
+  "ChecksReview": 0,
+  "ChecksFailed": 1,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "[setup/new_warrior_lv15.json] StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.36865234
+    },
+    {
+      "Index": 1,
+      "Action": "Level",
+      "Arguments": "[setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
+      "Status": "Passed",
+      "Message": "base 15, job 5, stat points 81, passive points 5",
+      "StartTime": 5.36865234,
+      "Duration": 0.1003418
+    },
+    {
+      "Index": 2,
+      "Action": "SpendStats",
+      "Arguments": "[setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+      "Status": "Passed",
+      "Message": "VIT +20, STR +61; 0 points left",
+      "StartTime": 5.468994,
+      "Duration": 0.128662109
+    },
+    {
+      "Index": 3,
+      "Action": "ChooseClass",
+      "Arguments": "[setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
+      "Status": "Passed",
+      "Message": "class Warrior, origin node 5",
+      "StartTime": 5.59765625,
+      "Duration": 7.63671875
+    },
+    {
+      "Index": 4,
+      "Action": "AssignSkill",
+      "Arguments": "[setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
+      "Status": "Passed",
+      "Message": "skill 1001 in slot 1",
+      "StartTime": 13.234375,
+      "Duration": 2.92797852
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "[setup/new_warrior_lv15.json] Expect {\"name\":\"VIT got its 20 points\",\"value\":\"player.VIT\",\"op\":\">=\",\"to\":20}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.1623535,
+      "Duration": 0.133544922
+    },
+    {
+      "Index": 6,
+      "Action": "TalkTo",
+      "Arguments": "TalkTo {\"character\":2004}",
+      "Status": "Failed",
+      "Message": "waited 20s for a conversation with OldMan (clicked OldMan at screen 960,880 world 0,4.95, collider OldMan, UI under the pointer: none, virtual mouse is current True, distance 0.5; visible buttons: 0 MP)",
+      "StartTime": 16.2958984,
+      "Duration": 23.597168
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "VIT got its 20 points",
+      "Status": "Passed",
+      "Expected": ">= 20",
+      "Actual": "21",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 16.1623535
+    },
+    {
+      "Name": "step 7 TalkTo completes",
+      "Status": "Failed",
+      "Expected": "completes",
+      "Actual": "waited 20s for a conversation with OldMan (clicked OldMan at screen 960,880 world 0,4.95, collider OldMan, UI under the pointer: none, virtual mouse is current True, distance 0.5; visible buttons: 0 MP)",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 6,
+      "Time": 39.8930664
+    }
+  ],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: [setup/new_warrior_lv15.json] StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.56s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.89s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.37s in scene Town",
+    "5.37s step 2: [setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
+    "5.37s base 15, job 5, stat points 81, passive points 5",
+    "5.47s step 3: [setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+    "5.47s VIT +20, STR +61; 0 points left",
+    "5.60s step 4: [setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
+    "6.00s the class screen is already open",
+    "7.34s button \"CLASS\" did not react (attempt 1: clicked 448,540, top UI there \"Background\", interactable True)",
+    "13.23s class Warrior, origin node 5",
+    "13.23s step 5: [setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
+    "16.16s skill 1001 in slot 1",
+    "16.16s step 6: [setup/new_warrior_lv15.json] Expect {\"name\":\"VIT got its 20 points\",\"value\":\"player.VIT\",\"op\":\">=\",\"to\":20}",
+    "16.30s step 7: TalkTo {\"character\":2004}",
+    "18.16s clicked OldMan at screen 960,880 world 0,4.95, collider OldMan, UI under the pointer: none, virtual mouse is current True, distance 0.5",
+    "39.89s step 7 failed: waited 20s for a conversation with OldMan (clicked OldMan at screen 960,880 world 0,4.95, collider OldMan, UI under the pointer: none, virtual mouse is current True, distance 0.5; visible buttons: 0 MP)"
+  ],
+  "Errors": [],
+  "Combat": []
+}

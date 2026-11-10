@@ -1,0 +1,5503 @@
+{
+  "Scenario": "unique_passive_smoke",
+  "File": "passives/smoke_all.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:01:33",
+  "DurationSeconds": 773.2909,
+  "Status": "Passed",
+  "ChecksPassed": 244,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.50256348
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.50256348,
+      "Duration": 0.130249023
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.6328125,
+      "Duration": 0.135620117
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.76843262,
+      "Duration": 0.934448242
+    },
+    {
+      "Index": 4,
+      "Action": "SmokeAllPassives",
+      "Arguments": "SmokeAllPassives {\"timeout\":3600}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.702881,
+      "Duration": 766.588
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "AlphasBurden: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 15.9018555
+    },
+    {
+      "Name": "AlphasBurden: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000054, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 15.9018555
+    },
+    {
+      "Name": "AlphasBurden: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 15.9018555
+    },
+    {
+      "Name": "AlphasBurden: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 16.1712646
+    },
+    {
+      "Name": "AnsweredPrayer: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4963.469, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 28.4337158
+    },
+    {
+      "Name": "AnsweredPrayer: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 28.4337158
+    },
+    {
+      "Name": "AnsweredPrayer: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 28.4337158
+    },
+    {
+      "Name": "AnsweredPrayer: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 28.7056885
+    },
+    {
+      "Name": "AnvilHeart: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 40.9714355
+    },
+    {
+      "Name": "AnvilHeart: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 40.9714355
+    },
+    {
+      "Name": "AnvilHeart: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 40.9714355
+    },
+    {
+      "Name": "AnvilHeart: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 41.23767
+    },
+    {
+      "Name": "Bleeding: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4363.485, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.50049
+    },
+    {
+      "Name": "Bleeding: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.50049
+    },
+    {
+      "Name": "Bleeding: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.50049
+    },
+    {
+      "Name": "Bleeding: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.769043
+    },
+    {
+      "Name": "BlessingOfMagearna: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5012.101, mp 2.333333, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 66.03638
+    },
+    {
+      "Name": "BlessingOfMagearna: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 66.03638
+    },
+    {
+      "Name": "BlessingOfMagearna: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 66.03638
+    },
+    {
+      "Name": "BlessingOfMagearna: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 66.30359
+    },
+    {
+      "Name": "BloodBleeding: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 78.70044
+    },
+    {
+      "Name": "BloodBleeding: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 78.70044
+    },
+    {
+      "Name": "BloodBleeding: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 78.70044
+    },
+    {
+      "Name": "BloodBleeding: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 78.9666748
+    },
+    {
+      "Name": "BloodMage: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 91.28577
+    },
+    {
+      "Name": "BloodMage: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 91.28577
+    },
+    {
+      "Name": "BloodMage: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 91.28577
+    },
+    {
+      "Name": "BloodMage: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 91.55151
+    },
+    {
+      "Name": "BoneChoir: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 103.947876
+    },
+    {
+      "Name": "BoneChoir: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 103.947876
+    },
+    {
+      "Name": "BoneChoir: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 103.947876
+    },
+    {
+      "Name": "BoneChoir: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 104.244019
+    },
+    {
+      "Name": "BurdenOfKings: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 116.618042
+    },
+    {
+      "Name": "BurdenOfKings: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000091, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 116.618042
+    },
+    {
+      "Name": "BurdenOfKings: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 116.618042
+    },
+    {
+      "Name": "BurdenOfKings: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 116.882324
+    },
+    {
+      "Name": "CovenantKeeper: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4999.101, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 129.4176
+    },
+    {
+      "Name": "CovenantKeeper: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000124, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 129.4176
+    },
+    {
+      "Name": "CovenantKeeper: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 129.4176
+    },
+    {
+      "Name": "CovenantKeeper: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 129.6842
+    },
+    {
+      "Name": "CurseOfKanix: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 141.956055
+    },
+    {
+      "Name": "CurseOfKanix: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 141.956055
+    },
+    {
+      "Name": "CurseOfKanix: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 141.956055
+    },
+    {
+      "Name": "CurseOfKanix: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 142.2146
+    },
+    {
+      "Name": "DepressionChaos: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 154.354492
+    },
+    {
+      "Name": "DepressionChaos: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 154.354492
+    },
+    {
+      "Name": "DepressionChaos: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 154.354492
+    },
+    {
+      "Name": "DepressionChaos: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 154.620361
+    },
+    {
+      "Name": "DoubleAttack: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 167.114746
+    },
+    {
+      "Name": "DoubleAttack: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000067, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 167.114746
+    },
+    {
+      "Name": "DoubleAttack: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 167.114746
+    },
+    {
+      "Name": "DoubleAttack: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 167.467773
+    },
+    {
+      "Name": "DoubleSpell: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 179.566162
+    },
+    {
+      "Name": "DoubleSpell: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 179.566162
+    },
+    {
+      "Name": "DoubleSpell: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 179.566162
+    },
+    {
+      "Name": "DoubleSpell: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 179.850952
+    },
+    {
+      "Name": "EldritchFaith: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 192.121216
+    },
+    {
+      "Name": "EldritchFaith: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000095, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 192.121216
+    },
+    {
+      "Name": "EldritchFaith: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 192.121216
+    },
+    {
+      "Name": "EldritchFaith: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 192.3872
+    },
+    {
+      "Name": "Execution: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4962.801, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 204.786011
+    },
+    {
+      "Name": "Execution: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 204.786011
+    },
+    {
+      "Name": "Execution: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 204.786011
+    },
+    {
+      "Name": "Execution: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 205.05603
+    },
+    {
+      "Name": "FeralBond: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 217.4563
+    },
+    {
+      "Name": "FeralBond: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 217.4563
+    },
+    {
+      "Name": "FeralBond: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 217.4563
+    },
+    {
+      "Name": "FeralBond: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 217.778564
+    },
+    {
+      "Name": "FickleStars: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 230.123657
+    },
+    {
+      "Name": "FickleStars: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 230.123657
+    },
+    {
+      "Name": "FickleStars: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 230.123657
+    },
+    {
+      "Name": "FickleStars: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 230.463623
+    },
+    {
+      "Name": "GlassCannonTheorem: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4962.801, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 242.851318
+    },
+    {
+      "Name": "GlassCannonTheorem: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 242.851318
+    },
+    {
+      "Name": "GlassCannonTheorem: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 242.851318
+    },
+    {
+      "Name": "GlassCannonTheorem: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 243.08374
+    },
+    {
+      "Name": "GraveTithe: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 255.51001
+    },
+    {
+      "Name": "GraveTithe: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 255.51001
+    },
+    {
+      "Name": "GraveTithe: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 255.51001
+    },
+    {
+      "Name": "GraveTithe: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 255.754272
+    },
+    {
+      "Name": "HereticsPyre: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 268.234741
+    },
+    {
+      "Name": "HereticsPyre: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 268.234741
+    },
+    {
+      "Name": "HereticsPyre: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 268.234741
+    },
+    {
+      "Name": "HereticsPyre: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 268.480957
+    },
+    {
+      "Name": "Hexweaver: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 280.7234
+    },
+    {
+      "Name": "Hexweaver: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 280.7234
+    },
+    {
+      "Name": "Hexweaver: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 280.7234
+    },
+    {
+      "Name": "Hexweaver: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 280.990723
+    },
+    {
+      "Name": "HollowCrown: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 2550.5, mp 50.5, max 2550.5",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 293.396118
+    },
+    {
+      "Name": "HollowCrown: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 293.396118
+    },
+    {
+      "Name": "HollowCrown: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 293.396118
+    },
+    {
+      "Name": "HollowCrown: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 293.66687
+    },
+    {
+      "Name": "HollowQuiver: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 306.06665
+    },
+    {
+      "Name": "HollowQuiver: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000124, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 306.06665
+    },
+    {
+      "Name": "HollowQuiver: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 306.06665
+    },
+    {
+      "Name": "HollowQuiver: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 306.332764
+    },
+    {
+      "Name": "IronMomentum: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 318.598267
+    },
+    {
+      "Name": "IronMomentum: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 318.598267
+    },
+    {
+      "Name": "IronMomentum: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 318.598267
+    },
+    {
+      "Name": "IronMomentum: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 318.866821
+    },
+    {
+      "Name": "LastBanner: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 331.283447
+    },
+    {
+      "Name": "LastBanner: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 331.283447
+    },
+    {
+      "Name": "LastBanner: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 331.283447
+    },
+    {
+      "Name": "LastBanner: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 331.53064
+    },
+    {
+      "Name": "LivingPhilosopher: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4912.602, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 343.6631
+    },
+    {
+      "Name": "LivingPhilosopher: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 343.6631
+    },
+    {
+      "Name": "LivingPhilosopher: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 343.6631
+    },
+    {
+      "Name": "LivingPhilosopher: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 343.9347
+    },
+    {
+      "Name": "LoadedChamber: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 356.221069
+    },
+    {
+      "Name": "LoadedChamber: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000086, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 356.221069
+    },
+    {
+      "Name": "LoadedChamber: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 356.221069
+    },
+    {
+      "Name": "LoadedChamber: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 356.4823
+    },
+    {
+      "Name": "ManaLeech: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 368.7484
+    },
+    {
+      "Name": "ManaLeech: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 368.7484
+    },
+    {
+      "Name": "ManaLeech: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 368.7484
+    },
+    {
+      "Name": "ManaLeech: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 369.01416
+    },
+    {
+      "Name": "MarkedThroat: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 381.4171
+    },
+    {
+      "Name": "MarkedThroat: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000081, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 381.4171
+    },
+    {
+      "Name": "MarkedThroat: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 381.4171
+    },
+    {
+      "Name": "MarkedThroat: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 381.678345
+    },
+    {
+      "Name": "OathOfSilence: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 394.083618
+    },
+    {
+      "Name": "OathOfSilence: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 394.083618
+    },
+    {
+      "Name": "OathOfSilence: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 394.083618
+    },
+    {
+      "Name": "OathOfSilence: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 394.349
+    },
+    {
+      "Name": "OneCleanCut: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4962.801, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 406.769531
+    },
+    {
+      "Name": "OneCleanCut: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000094, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 406.769531
+    },
+    {
+      "Name": "OneCleanCut: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 406.769531
+    },
+    {
+      "Name": "OneCleanCut: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 407.061768
+    },
+    {
+      "Name": "OverflowingSigil: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 419.4956
+    },
+    {
+      "Name": "OverflowingSigil: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 419.4956
+    },
+    {
+      "Name": "OverflowingSigil: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 419.4956
+    },
+    {
+      "Name": "OverflowingSigil: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 419.760376
+    },
+    {
+      "Name": "PackInstinct: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 431.8944
+    },
+    {
+      "Name": "PackInstinct: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 431.8944
+    },
+    {
+      "Name": "PackInstinct: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 431.8944
+    },
+    {
+      "Name": "PackInstinct: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 432.160278
+    },
+    {
+      "Name": "PenitentBlade: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 444.428955
+    },
+    {
+      "Name": "PenitentBlade: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 444.428955
+    },
+    {
+      "Name": "PenitentBlade: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 444.428955
+    },
+    {
+      "Name": "PenitentBlade: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 444.756958
+    },
+    {
+      "Name": "PinningShot: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 457.0952
+    },
+    {
+      "Name": "PinningShot: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 457.0952
+    },
+    {
+      "Name": "PinningShot: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 457.0952
+    },
+    {
+      "Name": "PinningShot: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 457.36145
+    },
+    {
+      "Name": "PowderBurn: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4962.801, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 469.7837
+    },
+    {
+      "Name": "PowderBurn: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 469.7837
+    },
+    {
+      "Name": "PowderBurn: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 469.7837
+    },
+    {
+      "Name": "PowderBurn: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 470.0027
+    },
+    {
+      "Name": "QuickenedWeave: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 482.311523
+    },
+    {
+      "Name": "QuickenedWeave: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 482.311523
+    },
+    {
+      "Name": "QuickenedWeave: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 482.311523
+    },
+    {
+      "Name": "QuickenedWeave: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 482.577637
+    },
+    {
+      "Name": "RadiantRebuke: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 494.901978
+    },
+    {
+      "Name": "RadiantRebuke: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 494.901978
+    },
+    {
+      "Name": "RadiantRebuke: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 494.901978
+    },
+    {
+      "Name": "RadiantRebuke: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 495.176025
+    },
+    {
+      "Name": "RicochetDoctrine: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 507.652954
+    },
+    {
+      "Name": "RicochetDoctrine: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 507.652954
+    },
+    {
+      "Name": "RicochetDoctrine: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 507.652954
+    },
+    {
+      "Name": "RicochetDoctrine: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 507.921753
+    },
+    {
+      "Name": "Rock: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 520.334839
+    },
+    {
+      "Name": "Rock: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 520.334839
+    },
+    {
+      "Name": "Rock: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 520.334839
+    },
+    {
+      "Name": "Rock: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 520.5984
+    },
+    {
+      "Name": "RunicSkin: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 533.2229
+    },
+    {
+      "Name": "RunicSkin: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 533.2229
+    },
+    {
+      "Name": "RunicSkin: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 533.2229
+    },
+    {
+      "Name": "RunicSkin: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 533.489
+    },
+    {
+      "Name": "SecondDose: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4962.801, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 545.8685
+    },
+    {
+      "Name": "SecondDose: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 545.8685
+    },
+    {
+      "Name": "SecondDose: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 545.8685
+    },
+    {
+      "Name": "SecondDose: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 546.1362
+    },
+    {
+      "Name": "SharedWound: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 558.5637
+    },
+    {
+      "Name": "SharedWound: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 558.5637
+    },
+    {
+      "Name": "SharedWound: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 558.5637
+    },
+    {
+      "Name": "SharedWound: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 558.8125
+    },
+    {
+      "Name": "SingularElement: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 571.214233
+    },
+    {
+      "Name": "SingularElement: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 571.214233
+    },
+    {
+      "Name": "SingularElement: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 571.214233
+    },
+    {
+      "Name": "SingularElement: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 571.4802
+    },
+    {
+      "Name": "SixFates: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4962.801, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 583.8777
+    },
+    {
+      "Name": "SixFates: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000104, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 583.8777
+    },
+    {
+      "Name": "SixFates: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 583.8777
+    },
+    {
+      "Name": "SixFates: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 584.145752
+    },
+    {
+      "Name": "SkirmishersPace: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 596.4127
+    },
+    {
+      "Name": "SkirmishersPace: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 596.4127
+    },
+    {
+      "Name": "SkirmishersPace: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 596.4127
+    },
+    {
+      "Name": "SkirmishersPace: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 596.681763
+    },
+    {
+      "Name": "SlowIncantation: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 608.971558
+    },
+    {
+      "Name": "SlowIncantation: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 608.971558
+    },
+    {
+      "Name": "SlowIncantation: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 608.971558
+    },
+    {
+      "Name": "SlowIncantation: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 609.2367
+    },
+    {
+      "Name": "SpellboundEdge: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 621.505737
+    },
+    {
+      "Name": "SpellboundEdge: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 621.505737
+    },
+    {
+      "Name": "SpellboundEdge: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 621.505737
+    },
+    {
+      "Name": "SpellboundEdge: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 621.772949
+    },
+    {
+      "Name": "Thorn: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 634.1775
+    },
+    {
+      "Name": "Thorn: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000070, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 634.1775
+    },
+    {
+      "Name": "Thorn: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 634.1775
+    },
+    {
+      "Name": "Thorn: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 634.465942
+    },
+    {
+      "Name": "TimeCollector: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 646.5963
+    },
+    {
+      "Name": "TimeCollector: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 646.5963
+    },
+    {
+      "Name": "TimeCollector: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 646.5963
+    },
+    {
+      "Name": "TimeCollector: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 646.8656
+    },
+    {
+      "Name": "TransmutedBlood: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 659.2667
+    },
+    {
+      "Name": "TransmutedBlood: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 659.2667
+    },
+    {
+      "Name": "TransmutedBlood: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 659.2667
+    },
+    {
+      "Name": "TransmutedBlood: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 659.5354
+    },
+    {
+      "Name": "TwinConduit: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 671.822144
+    },
+    {
+      "Name": "TwinConduit: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000096, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 671.822144
+    },
+    {
+      "Name": "TwinConduit: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 671.822144
+    },
+    {
+      "Name": "TwinConduit: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 672.068
+    },
+    {
+      "Name": "Vampire: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4964.761, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 684.4879
+    },
+    {
+      "Name": "Vampire: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 684.4879
+    },
+    {
+      "Name": "Vampire: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 684.4879
+    },
+    {
+      "Name": "Vampire: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 684.7584
+    },
+    {
+      "Name": "VeilStep: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 697.15625
+    },
+    {
+      "Name": "VeilStep: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 697.15625
+    },
+    {
+      "Name": "VeilStep: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 697.15625
+    },
+    {
+      "Name": "VeilStep: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 697.425049
+    },
+    {
+      "Name": "VenomLedger: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4962.801, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 709.8224
+    },
+    {
+      "Name": "VenomLedger: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 709.8224
+    },
+    {
+      "Name": "VenomLedger: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 709.8224
+    },
+    {
+      "Name": "VenomLedger: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 710.0918
+    },
+    {
+      "Name": "Verdict: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 722.508545
+    },
+    {
+      "Name": "Verdict: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000095, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 722.508545
+    },
+    {
+      "Name": "Verdict: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 722.508545
+    },
+    {
+      "Name": "Verdict: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 722.7772
+    },
+    {
+      "Name": "VolatileMixture: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 735.174438
+    },
+    {
+      "Name": "VolatileMixture: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000073, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 735.174438
+    },
+    {
+      "Name": "VolatileMixture: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 735.174438
+    },
+    {
+      "Name": "VolatileMixture: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 735.4435
+    },
+    {
+      "Name": "VowOfStillness: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4962.801, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 747.8237
+    },
+    {
+      "Name": "VowOfStillness: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 747.8237
+    },
+    {
+      "Name": "VowOfStillness: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 747.8237
+    },
+    {
+      "Name": "VowOfStillness: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 748.0873
+    },
+    {
+      "Name": "WhisperPact: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 760.4862
+    },
+    {
+      "Name": "WhisperPact: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 760.4862
+    },
+    {
+      "Name": "WhisperPact: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 760.4862
+    },
+    {
+      "Name": "WhisperPact: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 760.7582
+    },
+    {
+      "Name": "Windreader: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 773.028931
+    },
+    {
+      "Name": "Windreader: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000095, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 773.028931
+    },
+    {
+      "Name": "Windreader: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 773.028931
+    },
+    {
+      "Name": "Windreader: removing restores every stat",
+      "Status": "Passed",
+      "Expected": "no change",
+      "Actual": "no change",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 773.2909
+    }
+  ],
+  "Metrics": {
+    "passives tested": 61.0,
+    "AlphasBurden basic damage": 42.13333,
+    "AnsweredPrayer basic damage": 0.0,
+    "AnvilHeart basic damage": 0.0,
+    "Bleeding basic damage": 0.0,
+    "BlessingOfMagearna basic damage": 0.0,
+    "BloodBleeding basic damage": 0.0,
+    "BloodMage basic damage": 0.0,
+    "BoneChoir basic damage": 0.0,
+    "BurdenOfKings basic damage": 0.0,
+    "CovenantKeeper basic damage": 0.0,
+    "CurseOfKanix basic damage": 0.0,
+    "DepressionChaos basic damage": 0.0,
+    "DoubleAttack basic damage": 0.0,
+    "DoubleSpell basic damage": 0.0,
+    "EldritchFaith basic damage": 0.0,
+    "Execution basic damage": 0.0,
+    "FeralBond basic damage": 0.0,
+    "FickleStars basic damage": 0.0,
+    "GlassCannonTheorem basic damage": 0.0,
+    "GraveTithe basic damage": 0.0,
+    "HereticsPyre basic damage": 0.0,
+    "Hexweaver basic damage": 0.0,
+    "HollowCrown basic damage": 0.0,
+    "HollowQuiver basic damage": 0.0,
+    "IronMomentum basic damage": 0.0,
+    "LastBanner basic damage": 0.0,
+    "LivingPhilosopher basic damage": 0.0,
+    "LoadedChamber basic damage": 0.0,
+    "ManaLeech basic damage": 0.0,
+    "MarkedThroat basic damage": 0.0,
+    "OathOfSilence basic damage": 0.0,
+    "OneCleanCut basic damage": 0.0,
+    "OverflowingSigil basic damage": 0.0,
+    "PackInstinct basic damage": 0.0,
+    "PenitentBlade basic damage": 0.0,
+    "PinningShot basic damage": 0.0,
+    "PowderBurn basic damage": 0.0,
+    "QuickenedWeave basic damage": 0.0,
+    "RadiantRebuke basic damage": 0.0,
+    "RicochetDoctrine basic damage": 0.0,
+    "Rock basic damage": 0.0,
+    "RunicSkin basic damage": 0.0,
+    "SecondDose basic damage": 0.0,
+    "SharedWound basic damage": 0.0,
+    "SingularElement basic damage": 0.0,
+    "SixFates basic damage": 0.0,
+    "SkirmishersPace basic damage": 0.0,
+    "SlowIncantation basic damage": 0.0,
+    "SpellboundEdge basic damage": 0.0,
+    "Thorn basic damage": 0.0,
+    "TimeCollector basic damage": 0.0,
+    "TransmutedBlood basic damage": 0.0,
+    "TwinConduit basic damage": 0.0,
+    "Vampire basic damage": 0.0,
+    "VeilStep basic damage": 0.0,
+    "VenomLedger basic damage": 0.0,
+    "Verdict basic damage": 0.0,
+    "VolatileMixture basic damage": 0.0,
+    "VowOfStillness basic damage": 0.0,
+    "WhisperPact basic damage": 0.0,
+    "Windreader basic damage": 0.0
+  },
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.62s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.96s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.50s in scene Town",
+    "5.50s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "5.63s step 3: Refill {\"of\":\"player\"}",
+    "5.77s step 4: SpawnTarget",
+    "6.70s step 5: SmokeAllPassives {\"timeout\":3600}",
+    "7.50s clicked Skeletom(Clone) at screen 1068,528 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "12.17s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "16.97s clicked Skeletom(Clone) at screen 1235,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.4",
+    "24.70s clicked Skeletom(Clone) at screen 1359,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2",
+    "29.52s clicked Skeletom(Clone) at screen 1246,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
+    "37.24s clicked Skeletom(Clone) at screen 1372,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.2",
+    "42.03s clicked Skeletom(Clone) at screen 1256,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
+    "49.77s clicked Skeletom(Clone) at screen 1380,538 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.3",
+    "54.57s clicked Skeletom(Clone) at screen 1262,542 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
+    "62.44s clicked Skeletom(Clone) at screen 1376,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.3",
+    "67.10s clicked Skeletom(Clone) at screen 1271,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "74.97s clicked Skeletom(Clone) at screen 1389,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.4",
+    "79.79s clicked Skeletom(Clone) at screen 1270,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "87.55s clicked Skeletom(Clone) at screen 1388,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.3",
+    "92.39s clicked Skeletom(Clone) at screen 1267,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
+    "100.22s clicked Skeletom(Clone) at screen 1387,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.3",
+    "105.15s clicked Skeletom(Clone) at screen 1283,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
+    "112.88s clicked Skeletom(Clone) at screen 1387,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.8",
+    "117.69s clicked Skeletom(Clone) at screen 1232,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.1",
+    "125.69s clicked Skeletom(Clone) at screen 1331,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.7",
+    "130.48s clicked Skeletom(Clone) at screen 1283,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "138.22s clicked Skeletom(Clone) at screen 1403,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.5",
+    "143.02s clicked Skeletom(Clone) at screen 1283,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "150.71s clicked Skeletom(Clone) at screen 1402,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 3.1",
+    "155.42s clicked Skeletom(Clone) at screen 1240,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.4",
+    "163.32s clicked Skeletom(Clone) at screen 1358,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "168.25s clicked Skeletom(Clone) at screen 1223,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.1",
+    "175.98s clicked Skeletom(Clone) at screen 1327,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.9",
+    "180.66s clicked Skeletom(Clone) at screen 1208,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.1",
+    "188.52s clicked Skeletom(Clone) at screen 1325,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.7",
+    "193.20s clicked Skeletom(Clone) at screen 1279,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "201.06s clicked Skeletom(Clone) at screen 1399,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.5",
+    "205.86s clicked Skeletom(Clone) at screen 1278,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "213.72s clicked Skeletom(Clone) at screen 1395,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.5",
+    "218.65s clicked Skeletom(Clone) at screen 1289,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "226.39s clicked Skeletom(Clone) at screen 1392,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.4",
+    "231.38s clicked Skeletom(Clone) at screen 1315,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.3",
+    "239.12s clicked Skeletom(Clone) at screen 1440,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.9",
+    "243.96s clicked Skeletom(Clone) at screen 1248,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.5",
+    "251.78s clicked Skeletom(Clone) at screen 1366,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.2",
+    "256.59s clicked Skeletom(Clone) at screen 1264,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
+    "264.58s clicked Skeletom(Clone) at screen 1379,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.3",
+    "269.39s clicked Skeletom(Clone) at screen 1288,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "277.12s clicked Skeletom(Clone) at screen 1398,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.5",
+    "281.90s clicked Skeletom(Clone) at screen 1291,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.1",
+    "289.67s clicked Skeletom(Clone) at screen 1418,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.6",
+    "294.47s clicked Skeletom(Clone) at screen 1286,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "302.20s clicked Skeletom(Clone) at screen 1403,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.5",
+    "307.19s clicked Skeletom(Clone) at screen 1284,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5",
+    "314.87s clicked Skeletom(Clone) at screen 1414,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.6",
+    "319.67s clicked Skeletom(Clone) at screen 1223,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.2",
+    "327.53s clicked Skeletom(Clone) at screen 1341,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
+    "332.33s clicked Skeletom(Clone) at screen 1223,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.2",
+    "340.07s clicked Skeletom(Clone) at screen 1342,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "344.73s clicked Skeletom(Clone) at screen 1247,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.5",
+    "352.60s clicked Skeletom(Clone) at screen 1363,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "357.28s clicked Skeletom(Clone) at screen 1244,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.5",
+    "365.00s clicked Skeletom(Clone) at screen 1361,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "369.85s clicked Skeletom(Clone) at screen 1243,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.5",
+    "377.54s clicked Skeletom(Clone) at screen 1365,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "382.48s clicked Skeletom(Clone) at screen 1270,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "390.33s clicked Skeletom(Clone) at screen 1400,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.6",
+    "395.16s clicked Skeletom(Clone) at screen 1279,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "402.92s clicked Skeletom(Clone) at screen 1395,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.3",
+    "407.86s clicked Skeletom(Clone) at screen 1310,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.4",
+    "415.63s clicked Skeletom(Clone) at screen 1443,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.9",
+    "420.56s clicked Skeletom(Clone) at screen 1289,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.1",
+    "428.29s clicked Skeletom(Clone) at screen 1419,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.8",
+    "432.96s clicked Skeletom(Clone) at screen 1242,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.4",
+    "440.83s clicked Skeletom(Clone) at screen 1360,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2",
+    "445.63s clicked Skeletom(Clone) at screen 1262,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.5",
+    "453.36s clicked Skeletom(Clone) at screen 1366,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "458.16s clicked Skeletom(Clone) at screen 1247,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.5",
+    "465.86s clicked Skeletom(Clone) at screen 1366,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "470.81s clicked Skeletom(Clone) at screen 1271,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "478.54s clicked Skeletom(Clone) at screen 1403,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.5",
+    "483.48s clicked Skeletom(Clone) at screen 1230,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.5",
+    "491.17s clicked Skeletom(Clone) at screen 1369,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "495.98s clicked Skeletom(Clone) at screen 1251,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
+    "503.72s clicked Skeletom(Clone) at screen 1370,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "508.80s clicked Skeletom(Clone) at screen 1263,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "516.47s clicked Skeletom(Clone) at screen 1397,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.4",
+    "521.40s clicked Skeletom(Clone) at screen 1297,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.2",
+    "529.41s clicked Skeletom(Clone) at screen 1424,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.8",
+    "534.35s clicked Skeletom(Clone) at screen 1259,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "542.14s clicked Skeletom(Clone) at screen 1390,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.4",
+    "546.94s clicked Skeletom(Clone) at screen 1269,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
+    "554.80s clicked Skeletom(Clone) at screen 1387,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.4",
+    "559.61s clicked Skeletom(Clone) at screen 1304,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.5",
+    "567.48s clicked Skeletom(Clone) at screen 1456,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 3.1",
+    "572.28s clicked Skeletom(Clone) at screen 1258,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
+    "580.01s clicked Skeletom(Clone) at screen 1372,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.2",
+    "585.02s clicked Skeletom(Clone) at screen 1247,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
+    "592.68s clicked Skeletom(Clone) at screen 1385,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2",
+    "597.48s clicked Skeletom(Clone) at screen 1250,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
+    "605.24s clicked Skeletom(Clone) at screen 1386,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.3",
+    "610.04s clicked Skeletom(Clone) at screen 1268,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "617.91s clicked Skeletom(Clone) at screen 1388,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.6",
+    "622.57s clicked Skeletom(Clone) at screen 1222,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.2",
+    "630.44s clicked Skeletom(Clone) at screen 1338,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
+    "635.26s clicked Skeletom(Clone) at screen 1289,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5",
+    "643.00s clicked Skeletom(Clone) at screen 1409,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.6",
+    "647.71s clicked Skeletom(Clone) at screen 1294,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.1",
+    "655.40s clicked Skeletom(Clone) at screen 1419,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.7",
+    "660.33s clicked Skeletom(Clone) at screen 1260,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "668.19s clicked Skeletom(Clone) at screen 1391,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.4",
+    "672.99s clicked Skeletom(Clone) at screen 1308,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.6",
+    "680.76s clicked Skeletom(Clone) at screen 1463,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 3.2",
+    "685.55s clicked Skeletom(Clone) at screen 1271,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
+    "693.44s clicked Skeletom(Clone) at screen 1388,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.3",
+    "698.27s clicked Skeletom(Clone) at screen 1277,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5",
+    "705.96s clicked Skeletom(Clone) at screen 1406,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.5",
+    "710.89s clicked Skeletom(Clone) at screen 1310,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.3",
+    "718.75s clicked Skeletom(Clone) at screen 1439,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 3",
+    "723.59s clicked Skeletom(Clone) at screen 1252,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
+    "731.44s clicked Skeletom(Clone) at screen 1372,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.2",
+    "736.24s clicked Skeletom(Clone) at screen 1284,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.1",
+    "744.08s clicked Skeletom(Clone) at screen 1417,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.7",
+    "748.90s clicked Skeletom(Clone) at screen 1229,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.3",
+    "756.62s clicked Skeletom(Clone) at screen 1346,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.9",
+    "761.56s clicked Skeletom(Clone) at screen 1265,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.9",
+    "769.43s clicked Skeletom(Clone) at screen 1401,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.5"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1301.96277
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1303.02869
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1304.09814
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1305.16577
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1306.631
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1307.69849
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1308.49609
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1308.76563
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1308.76563
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1309.0304
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1309.83447
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1319.69568
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1320.76672
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1321.0293
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1321.2959
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1321.56677
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1321.84912
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5491333,
+      "Time": 1332.23364
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5491333,
+      "Time": 1333.30078
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1333.56287
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1333.83411
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1334.09485
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5491333,
+      "Time": 1334.36438
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1337.02808
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1337.02808
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1338.09851
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1338.09851
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1339.0293
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1339.0293
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1340.09753
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1340.09753
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1341.03308
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1341.03308
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1342.09924
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1342.09924
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1343.03552
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1343.03552
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1344.09558
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1344.09558
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1344.76929
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1345.03442
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1345.03442
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1345.833
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1346.09631
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1346.09631
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1346.09631
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1346.36658
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1346.63049
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1346.89612
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1347.033
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1347.033
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1348.09424
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-479404",
+      "Target": "Player#-479404",
+      "Amount": 50.7433319,
+      "Time": 1348.09424
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1357.433
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1358.50586
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 38.36,
+      "Time": 1358.76611
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 39.0066681,
+      "Time": 1359.029
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1359.19836
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1359.56348
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1369.96667
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1371.03259
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1371.32336
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1371.61963
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1371.81616
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1372.098
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1382.551
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1383.6156
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1383.87915
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1384.14453
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1384.41821
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1384.67834
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1395.21472
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1396.27808
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1396.55957
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1396.81018
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1397.08313
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1397.34546
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 13.0613327,
+      "Time": 1408.01233
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 13.0613327,
+      "Time": 1409.08362
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1409.21753
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1409.47766
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1409.74609
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 13.0613327,
+      "Time": 1410.14661
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 0.0,
+      "Time": 1420.549
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 0.0,
+      "Time": 1421.61011
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1422.01636
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1422.27649
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1422.5741
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 0.0,
+      "Time": 1422.68079
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1433.21619
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1434.2771
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1434.55115
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1434.81177
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1435.07922
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1435.35
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1445.963
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1446.94531
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1446.94531
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1447.21606
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1447.4762
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1448.0199
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1458.31946
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1458.44836
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1459.47424
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1459.645
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1459.645
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1459.91589
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1460.18347
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1460.45691
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1460.70764
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1471.024
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1472.05261
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1472.35767
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1472.5116
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1472.73083
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1473.11353
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.5333328,
+      "Time": 1483.38416
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.5333328,
+      "Time": 1484.45117
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1484.77014
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1484.98279
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1485.248
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.5333328,
+      "Time": 1485.51611
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1496.05212
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1497.11633
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1497.38562
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1497.65039
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1497.91736
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1498.17871
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1508.71375
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1509.78162
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1510.09338
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1510.31335
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1510.58154
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1510.85278
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1521.386
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1522.45044
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1522.73218
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1522.98462
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1523.25037
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1523.50989
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1534.25024
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1535.31543
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1535.46582
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1535.71973
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1535.98267
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1536.38354
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1546.81628
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1547.85059
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1548.11365
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1548.3822
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1548.65381
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1548.92065
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1559.604
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1560.65149
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1560.82324
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1561.04944
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1561.31433
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1561.71521
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1572.11572
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1573.12317
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1573.448
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1573.59863
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1573.85388
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1574.15491
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1584.66138
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1585.72473
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1585.99487
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1586.27881
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1586.53284
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1586.79382
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1598.52759
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1598.79517
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1599.06067
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1609.992
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.9546661,
+      "Time": 1611.05762
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1611.27551
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1611.54761
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1611.72766
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.3759995,
+      "Time": 1612.25952
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1622.52783
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1623.60193
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1623.85864
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1624.12646
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1624.39124
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1624.66309
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1635.06079
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1636.12659
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1636.39124
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1636.65735
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1636.85669
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1637.196
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1647.59521
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 16.6224174,
+      "Time": 1648.67493
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1648.91675
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1649.07678
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1649.345
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 15.7533016,
+      "Time": 1649.74158
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1660.011
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1661.07251
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1661.3418
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1661.608
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1661.87476
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1662.15552
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 15.7999992,
+      "Time": 1672.546
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 15.7999992,
+      "Time": 1673.60754
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1673.8739
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1674.20483
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1674.41
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 15.7999992,
+      "Time": 1674.67749
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1685.34375
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1686.41174
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1686.67847
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1686.94592
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1687.21362
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1687.4624
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 21.0666656,
+      "Time": 1697.94446
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 7.373333,
+      "Time": 1699.01135
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1699.28259
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1699.5354
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1699.81592
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 7.373333,
+      "Time": 1700.08008
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1710.76
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1711.81458
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1711.9563
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1712.22778
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1712.49377
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1712.89465
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1723.42664
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1724.49023
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1724.62317
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1724.89429
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1725.04846
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1725.561
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1735.87219
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1736.89038
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1737.08521
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1737.29163
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1737.55969
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1737.96155
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1748.35913
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1749.4231
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1749.6925
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1749.95874
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1750.22375
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1750.49438
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1760.88477
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1761.93188
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1762.20032
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1762.53223
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1762.73645
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1763.00085
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1773.66956
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1774.84485
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1774.84485
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1775.03748
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1775.30286
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1775.83557
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1786.17078
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1787.23474
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1787.50037
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1787.8446
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1788.03064
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1788.29968
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1798.69421
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1799.89465
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1800.18774
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1800.36426
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1800.70471
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1800.92017
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1811.46631
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1812.53149
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1812.79846
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1813.14246
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1813.32654
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1813.59216
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1824.51367
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1825.58118
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1825.7113
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1825.97668
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1826.30164
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1826.759
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1837.13611
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1838.1969
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1838.46448
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1838.74231
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1838.99817
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1839.26758
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1849.79968
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1850.85291
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1851.13464
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1851.39465
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1851.66174
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1851.93372
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1862.60571
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1863.67407
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1863.80566
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1864.0907
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1864.33813
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1864.743
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 15.7999992,
+      "Time": 1875.00891
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 0.0,
+      "Time": 1876.1366
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1876.34338
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1876.6106
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1876.87646
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1877.13953
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1887.67468
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1888.74219
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1889.00977
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1889.38672
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1889.54309
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1889.80591
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1900.24634
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1901.30078
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1901.56958
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1901.83447
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1902.099
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1902.37134
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1913.03369
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1914.10144
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1914.23572
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1914.50134
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1914.70154
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1915.16541
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1925.30139
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1926.3728
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 9.597266,
+      "Time": 1926.76624
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1926.76624
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 9.597266,
+      "Time": 1927.03528
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1927.03528
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 9.597266,
+      "Time": 1927.30115
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1927.30115
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1927.44006
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1937.98987
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1939.05945
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1939.3252
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1939.59155
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1939.86
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1940.12744
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1950.53064
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1951.59424
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1951.72607
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1952.05444
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1952.26648
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1952.66077
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.4618492,
+      "Time": 1963.19373
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.4618492,
+      "Time": 1964.12573
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1964.52563
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1964.79285
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1965.06238
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.4618492,
+      "Time": 1965.321
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1975.88367
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1976.95081
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1977.08765
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1977.35217
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1977.61926
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1978.01819
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1988.416
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1989.48779
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1989.7522
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1990.01636
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 1990.2854
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 1990.58215
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2000.95068
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2002.01819
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2002.28442
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2002.61816
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2002.82019
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2003.08569
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2013.884
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 2.11249924,
+      "Time": 2014.95276
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2014.95276
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2015.08862
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2015.35339
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2015.62061
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2016.02393
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2026.44177
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2027.50623
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2027.7821
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2027.94446
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2028.17151
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 23.55,
+      "Time": 2028.44067
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2028.574
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2039.2063
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2040.27478
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2040.40393
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2040.67676
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2040.93982
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2041.3479
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2051.621
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2052.686
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2052.95044
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2053.245
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2053.484
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 10.5333328,
+      "Time": 2053.75537
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.6072826,
+      "Time": 2064.422
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.6072826,
+      "Time": 2065.34229
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2065.75928
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2066.02026
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-482666",
+      "Target": "Player#-479404",
+      "Amount": 63.9333344,
+      "Time": 2066.28857
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-479404",
+      "Target": "Skeletom(Clone)#-482666",
+      "Amount": 11.6072826,
+      "Time": 2066.55444
+    }
+  ]
+}

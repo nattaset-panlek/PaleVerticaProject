@@ -1,0 +1,184 @@
+{
+  "Scenario": "ui_flow",
+  "File": "core/ui_flow.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:37:08",
+  "DurationSeconds": 4.698104,
+  "Status": "Passed",
+  "ChecksPassed": 2,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "[setup/new_warrior_lv15.json] StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.42803872
+    },
+    {
+      "Index": 1,
+      "Action": "Level",
+      "Arguments": "[setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
+      "Status": "Passed",
+      "Message": "base 15, job 5, stat points 81, passive points 5",
+      "StartTime": 1.42803872,
+      "Duration": 0.0253601074
+    },
+    {
+      "Index": 2,
+      "Action": "SpendStats",
+      "Arguments": "[setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+      "Status": "Passed",
+      "Message": "VIT +20, STR +61; 0 points left",
+      "StartTime": 1.45339882,
+      "Duration": 0.0162367821
+    },
+    {
+      "Index": 3,
+      "Action": "ChooseClass",
+      "Arguments": "[setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
+      "Status": "Passed",
+      "Message": "class Warrior, origin node 5",
+      "StartTime": 1.46963561,
+      "Duration": 1.58676183
+    },
+    {
+      "Index": 4,
+      "Action": "AssignSkill",
+      "Arguments": "[setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
+      "Status": "Passed",
+      "Message": "skill 1001 in slot 1",
+      "StartTime": 3.05639744,
+      "Duration": 0.389808178
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "[setup/new_warrior_lv15.json] Expect {\"name\":\"VIT got its 20 points\",\"value\":\"player.VIT\",\"op\":\">=\",\"to\":20}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.44620562,
+      "Duration": 0.0169086456
+    },
+    {
+      "Index": 6,
+      "Action": "OpenWindow",
+      "Arguments": "OpenWindow {\"window\":\"Inventory\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.46311426,
+      "Duration": 0.06768203
+    },
+    {
+      "Index": 7,
+      "Action": "CloseWindow",
+      "Arguments": "CloseWindow {\"window\":\"Inventory\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.53079629,
+      "Duration": 0.06719327
+    },
+    {
+      "Index": 8,
+      "Action": "OpenWindow",
+      "Arguments": "OpenWindow {\"window\":\"CharacterStatus\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.59798956,
+      "Duration": 0.06677508
+    },
+    {
+      "Index": 9,
+      "Action": "CloseWindow",
+      "Arguments": "CloseWindow {\"window\":\"CharacterStatus\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.66476464,
+      "Duration": 0.0665853
+    },
+    {
+      "Index": 10,
+      "Action": "AssignSkill",
+      "Arguments": "AssignSkill {\"skill\":1001,\"slot\":2,\"how\":\"drag\"}",
+      "Status": "Passed",
+      "Message": "skill 1001 in slot 2",
+      "StartTime": 3.73135,
+      "Duration": 0.749639034
+    },
+    {
+      "Index": 11,
+      "Action": "Menu",
+      "Arguments": "Menu {\"item\":\"Save Game\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.480989,
+      "Duration": 0.200016022
+    },
+    {
+      "Index": 12,
+      "Action": "ExpectNoErrors",
+      "Arguments": "ExpectNoErrors",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.681005,
+      "Duration": 0.0170989037
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "VIT got its 20 points",
+      "Status": "Passed",
+      "Expected": ">= 20",
+      "Actual": "21",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 3.44620562
+    },
+    {
+      "Name": "no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": "errors are listed in the report",
+      "Screenshot": null,
+      "Step": 12,
+      "Time": 4.681005
+    }
+  ],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, speed x1, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: [setup/new_warrior_lv15.json] StartNewGame",
+    "0.00s going back to the title from  so the old character is dropped",
+    "0.37s skill slot 1 is now skill 1001 on Player#-800278 (frame 11, scene Title, loading True)",
+    "1.43s in scene Town",
+    "1.43s skills after the new game: granted [1001], equipped [1001,-,-,-,-,-,-,-,-,-], hotbar row 0 [Skill:1001,-,-,-,-,-,-,-,-,-]",
+    "1.43s step 2: [setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
+    "1.43s base 15, job 5, stat points 81, passive points 5",
+    "1.45s step 3: [setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+    "1.45s VIT +20, STR +61; 0 points left",
+    "1.47s step 4: [setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
+    "1.77s the class screen is already open",
+    "3.06s class Warrior, origin node 5",
+    "3.06s step 5: [setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
+    "3.45s skill 1001 in slot 1",
+    "3.45s step 6: [setup/new_warrior_lv15.json] Expect {\"name\":\"VIT got its 20 points\",\"value\":\"player.VIT\",\"op\":\">=\",\"to\":20}",
+    "3.46s step 7: OpenWindow {\"window\":\"Inventory\"}",
+    "3.53s step 8: CloseWindow {\"window\":\"Inventory\"}",
+    "3.60s step 9: OpenWindow {\"window\":\"CharacterStatus\"}",
+    "3.66s step 10: CloseWindow {\"window\":\"CharacterStatus\"}",
+    "3.73s step 11: AssignSkill {\"skill\":1001,\"slot\":2,\"how\":\"drag\"}",
+    "4.21s dragged Item Skill List (661,669) to Skill Slot(Clone) (574,140)",
+    "4.48s skill 1001 in slot 2",
+    "4.48s step 12: Menu {\"item\":\"Save Game\"}",
+    "4.68s step 13: ExpectNoErrors"
+  ],
+  "Errors": [],
+  "Combat": []
+}

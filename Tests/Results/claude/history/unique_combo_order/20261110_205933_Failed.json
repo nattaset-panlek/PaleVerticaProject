@@ -1,0 +1,959 @@
+{
+  "Scenario": "unique_combo_order",
+  "File": "combos/order.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 20:59:27",
+  "DurationSeconds": 45.21869,
+  "Status": "Failed",
+  "ChecksPassed": 3,
+  "ChecksReview": 0,
+  "ChecksFailed": 4,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.449402
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.449402,
+      "Duration": 0.138153076
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.587555,
+      "Duration": 0.13168335
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.71923828,
+      "Duration": 1.06732178
+    },
+    {
+      "Index": 4,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.78656,
+      "Duration": 0.129974365
+    },
+    {
+      "Index": 5,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"CurseOfKanix\",\"EldritchFaith\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.91653442,
+      "Duration": 0.134429932
+    },
+    {
+      "Index": 6,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"atk\",\"value\":\"player.ATK\"}",
+      "Status": "Passed",
+      "Message": "var.atk = 11.533",
+      "StartTime": 7.05096436,
+      "Duration": 0.133605957
+    },
+    {
+      "Index": 7,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"matk\",\"value\":\"player.MATK\"}",
+      "Status": "Passed",
+      "Message": "var.matk = 1.283",
+      "StartTime": 7.18457031,
+      "Duration": 0.133361816
+    },
+    {
+      "Index": 8,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 7.317932,
+      "Duration": 0.136138916
+    },
+    {
+      "Index": 9,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"EldritchFaith\",\"CurseOfKanix\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 7.454071,
+      "Duration": 0.134185791
+    },
+    {
+      "Index": 10,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"order CurseOfKanix + EldritchFaith gives the same ATK\",\"value\":\"player.ATK\",\"to\":\"var.atk\",\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 7.588257,
+      "Duration": 0.131988525
+    },
+    {
+      "Index": 11,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"order CurseOfKanix + EldritchFaith gives the same M.ATK\",\"value\":\"player.MATK\",\"to\":\"var.matk\",\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 7.72024536,
+      "Duration": 0.121124268
+    },
+    {
+      "Index": 12,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 7.84136963,
+      "Duration": 0.141204834
+    },
+    {
+      "Index": 13,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 7.98257446,
+      "Duration": 0.134552
+    },
+    {
+      "Index": 14,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"AnvilHeart\",\"MarkedThroat\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.117126,
+      "Duration": 0.138000488
+    },
+    {
+      "Index": 15,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 53.5 damage",
+      "StartTime": 8.255127,
+      "Duration": 3.18286133
+    },
+    {
+      "Index": 16,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+      "Status": "Passed",
+      "Message": "var.forward = 53.5",
+      "StartTime": 11.4379883,
+      "Duration": 0.148529053
+    },
+    {
+      "Index": 17,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.5865173,
+      "Duration": 0.13079834
+    },
+    {
+      "Index": 18,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.7173157,
+      "Duration": 0.138214111
+    },
+    {
+      "Index": 19,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"MarkedThroat\",\"AnvilHeart\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.85553,
+      "Duration": 0.13192749
+    },
+    {
+      "Index": 20,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 53.5 damage",
+      "StartTime": 11.9874573,
+      "Duration": 3.199524
+    },
+    {
+      "Index": 21,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"order AnvilHeart + MarkedThroat gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 15.1869812,
+      "Duration": 0.130310059
+    },
+    {
+      "Index": 22,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 15.3172913,
+      "Duration": 0.137207031
+    },
+    {
+      "Index": 23,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 15.4544983,
+      "Duration": 0.131988525
+    },
+    {
+      "Index": 24,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"EldritchFaith\",\"IronMomentum\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 15.5864868,
+      "Duration": 0.132385254
+    },
+    {
+      "Index": 25,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 49.15 damage",
+      "StartTime": 15.7188721,
+      "Duration": 3.1975708
+    },
+    {
+      "Index": 26,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+      "Status": "Passed",
+      "Message": "var.forward = 49.149",
+      "StartTime": 18.9164429,
+      "Duration": 0.133575439
+    },
+    {
+      "Index": 27,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 19.0500183,
+      "Duration": 0.133758545
+    },
+    {
+      "Index": 28,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 19.1837769,
+      "Duration": 0.13659668
+    },
+    {
+      "Index": 29,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"IronMomentum\",\"EldritchFaith\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 19.3203735,
+      "Duration": 0.130828857
+    },
+    {
+      "Index": 30,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 42.5 damage",
+      "StartTime": 19.4512024,
+      "Duration": 3.20361328
+    },
+    {
+      "Index": 31,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"order EldritchFaith + IronMomentum gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.6548157,
+      "Duration": 0.127716064
+    },
+    {
+      "Index": 32,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.7825317,
+      "Duration": 0.13973999
+    },
+    {
+      "Index": 33,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.9222717,
+      "Duration": 0.127532959
+    },
+    {
+      "Index": 34,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"EldritchFaith\",\"TwinConduit\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 23.0498047,
+      "Duration": 0.133392334
+    },
+    {
+      "Index": 35,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 49.59 damage",
+      "StartTime": 23.183197,
+      "Duration": 3.20254517
+    },
+    {
+      "Index": 36,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+      "Status": "Passed",
+      "Message": "var.forward = 49.589",
+      "StartTime": 26.3857422,
+      "Duration": 0.1340332
+    },
+    {
+      "Index": 37,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 26.5197754,
+      "Duration": 0.130706787
+    },
+    {
+      "Index": 38,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 26.6504822,
+      "Duration": 0.136993408
+    },
+    {
+      "Index": 39,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"TwinConduit\",\"EldritchFaith\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 26.7874756,
+      "Duration": 0.129272461
+    },
+    {
+      "Index": 40,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 56.37 damage",
+      "StartTime": 26.916748,
+      "Duration": 3.20309448
+    },
+    {
+      "Index": 41,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"order EldritchFaith + TwinConduit gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 30.1198425,
+      "Duration": 0.12991333
+    },
+    {
+      "Index": 42,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 30.2497559,
+      "Duration": 0.136047363
+    },
+    {
+      "Index": 43,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 30.3858032,
+      "Duration": 0.135009766
+    },
+    {
+      "Index": 44,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"PenitentBlade\",\"AnvilHeart\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 30.520813,
+      "Duration": 0.1322937
+    },
+    {
+      "Index": 45,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 41.17 damage",
+      "StartTime": 30.6531067,
+      "Duration": 3.19561768
+    },
+    {
+      "Index": 46,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+      "Status": "Passed",
+      "Message": "var.forward = 41.167",
+      "StartTime": 33.8487244,
+      "Duration": 0.134338379
+    },
+    {
+      "Index": 47,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 33.9830627,
+      "Duration": 0.134399414
+    },
+    {
+      "Index": 48,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 34.1174622,
+      "Duration": 0.1395874
+    },
+    {
+      "Index": 49,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"AnvilHeart\",\"PenitentBlade\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 34.25705,
+      "Duration": 0.117370605
+    },
+    {
+      "Index": 50,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 40.33 damage",
+      "StartTime": 34.37442,
+      "Duration": 3.208374
+    },
+    {
+      "Index": 51,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"order PenitentBlade + AnvilHeart gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 37.5827942,
+      "Duration": 0.136749268
+    },
+    {
+      "Index": 52,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 37.7195435,
+      "Duration": 0.143829346
+    },
+    {
+      "Index": 53,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 37.8633728,
+      "Duration": 0.124267578
+    },
+    {
+      "Index": 54,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"OverflowingSigil\",\"GlassCannonTheorem\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 37.98764,
+      "Duration": 0.128234863
+    },
+    {
+      "Index": 55,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 44.13 damage",
+      "StartTime": 38.1158752,
+      "Duration": 3.20272827
+    },
+    {
+      "Index": 56,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+      "Status": "Passed",
+      "Message": "var.forward = 44.133",
+      "StartTime": 41.3186035,
+      "Duration": 0.13470459
+    },
+    {
+      "Index": 57,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 41.45331,
+      "Duration": 0.1362915
+    },
+    {
+      "Index": 58,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 41.5896,
+      "Duration": 0.128723145
+    },
+    {
+      "Index": 59,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"GlassCannonTheorem\",\"OverflowingSigil\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 41.7183228,
+      "Duration": 0.140869141
+    },
+    {
+      "Index": 60,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 37.87 damage",
+      "StartTime": 41.85919,
+      "Duration": 3.19241333
+    },
+    {
+      "Index": 61,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"order OverflowingSigil + GlassCannonTheorem gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 45.0516052,
+      "Duration": 0.16708374
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "order CurseOfKanix + EldritchFaith gives the same ATK",
+      "Status": "Passed",
+      "Expected": "11.5333 +/- 0.01",
+      "Actual": "11.5333",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 10,
+      "Time": 7.588257
+    },
+    {
+      "Name": "order CurseOfKanix + EldritchFaith gives the same M.ATK",
+      "Status": "Passed",
+      "Expected": "1.2833 +/- 0.01",
+      "Actual": "1.2833",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 11,
+      "Time": 7.72024536
+    },
+    {
+      "Name": "order AnvilHeart + MarkedThroat gives the same damage",
+      "Status": "Passed",
+      "Expected": "1 +/- 0.01",
+      "Actual": "1",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 21,
+      "Time": 15.1869812
+    },
+    {
+      "Name": "order EldritchFaith + IronMomentum gives the same damage",
+      "Status": "Failed",
+      "Expected": "1 +/- 0.01",
+      "Actual": "0.8647",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 31,
+      "Time": 22.6548157
+    },
+    {
+      "Name": "order EldritchFaith + TwinConduit gives the same damage",
+      "Status": "Failed",
+      "Expected": "1 +/- 0.01",
+      "Actual": "1.1368",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 41,
+      "Time": 30.1198425
+    },
+    {
+      "Name": "order PenitentBlade + AnvilHeart gives the same damage",
+      "Status": "Failed",
+      "Expected": "1 +/- 0.01",
+      "Actual": "0.9798",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 51,
+      "Time": 37.5827942
+    },
+    {
+      "Name": "order OverflowingSigil + GlassCannonTheorem gives the same damage",
+      "Status": "Failed",
+      "Expected": "1 +/- 0.01",
+      "Actual": "0.858",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 61,
+      "Time": 45.0516052
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "atk": 11.5333328,
+    "matk": 1.2833333,
+    "forward": 44.13333
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.56s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.89s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.45s in scene Town",
+    "5.45s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "5.59s step 3: Refill {\"of\":\"player\"}",
+    "5.72s step 4: SpawnTarget",
+    "6.79s step 5: Reset",
+    "6.92s step 6: Give {\"passives\":[\"CurseOfKanix\",\"EldritchFaith\"]}",
+    "7.05s step 7: Record {\"name\":\"atk\",\"value\":\"player.ATK\"}",
+    "7.05s var.atk = 11.533",
+    "7.18s step 8: Record {\"name\":\"matk\",\"value\":\"player.MATK\"}",
+    "7.18s var.matk = 1.283",
+    "7.32s step 9: Reset",
+    "7.45s step 10: Give {\"passives\":[\"EldritchFaith\",\"CurseOfKanix\"]}",
+    "7.59s step 11: Expect {\"name\":\"order CurseOfKanix + EldritchFaith gives the same ATK\",\"value\":\"player.ATK\",\"to\":\"var.atk\",\"tolerance\":0.01}",
+    "7.72s step 12: Expect {\"name\":\"order CurseOfKanix + EldritchFaith gives the same M.ATK\",\"value\":\"player.MATK\",\"to\":\"var.matk\",\"tolerance\":0.01}",
+    "7.84s step 13: Reset",
+    "7.98s step 14: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "8.12s step 15: Give {\"passives\":[\"AnvilHeart\",\"MarkedThroat\"]}",
+    "8.26s step 16: Attack {\"hits\":3}",
+    "9.04s clicked Skeletom(Clone) at screen 1068,537 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "11.44s 3 hits, 53.5 damage",
+    "11.44s step 17: Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+    "11.44s var.forward = 53.5",
+    "11.59s step 18: Reset",
+    "11.72s step 19: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "11.86s step 20: Give {\"passives\":[\"MarkedThroat\",\"AnvilHeart\"]}",
+    "11.99s step 21: Attack {\"hits\":3}",
+    "12.79s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "15.19s 3 hits, 53.5 damage",
+    "15.19s step 22: Expect {\"name\":\"order AnvilHeart + MarkedThroat gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+    "15.32s step 23: Reset",
+    "15.45s step 24: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "15.59s step 25: Give {\"passives\":[\"EldritchFaith\",\"IronMomentum\"]}",
+    "15.72s step 26: Attack {\"hits\":3}",
+    "16.52s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "18.92s 3 hits, 49.15 damage",
+    "18.92s step 27: Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+    "18.92s var.forward = 49.149",
+    "19.05s step 28: Reset",
+    "19.18s step 29: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "19.32s step 30: Give {\"passives\":[\"IronMomentum\",\"EldritchFaith\"]}",
+    "19.45s step 31: Attack {\"hits\":3}",
+    "20.25s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "22.65s 3 hits, 42.5 damage",
+    "22.65s step 32: Expect {\"name\":\"order EldritchFaith + IronMomentum gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+    "22.78s step 33: Reset",
+    "22.92s step 34: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "23.05s step 35: Give {\"passives\":[\"EldritchFaith\",\"TwinConduit\"]}",
+    "23.18s step 36: Attack {\"hits\":3}",
+    "23.98s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "26.39s 3 hits, 49.59 damage",
+    "26.39s step 37: Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+    "26.39s var.forward = 49.589",
+    "26.52s step 38: Reset",
+    "26.65s step 39: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "26.79s step 40: Give {\"passives\":[\"TwinConduit\",\"EldritchFaith\"]}",
+    "26.92s step 41: Attack {\"hits\":3}",
+    "27.72s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "30.12s 3 hits, 56.37 damage",
+    "30.12s step 42: Expect {\"name\":\"order EldritchFaith + TwinConduit gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+    "30.25s step 43: Reset",
+    "30.39s step 44: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "30.52s step 45: Give {\"passives\":[\"PenitentBlade\",\"AnvilHeart\"]}",
+    "30.65s step 46: Attack {\"hits\":3}",
+    "31.45s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "33.85s 3 hits, 41.17 damage",
+    "33.85s step 47: Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+    "33.85s var.forward = 41.167",
+    "33.98s step 48: Reset",
+    "34.12s step 49: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "34.26s step 50: Give {\"passives\":[\"AnvilHeart\",\"PenitentBlade\"]}",
+    "34.37s step 51: Attack {\"hits\":3}",
+    "35.19s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "37.58s 3 hits, 40.33 damage",
+    "37.58s step 52: Expect {\"name\":\"order PenitentBlade + AnvilHeart gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}",
+    "37.72s step 53: Reset",
+    "37.86s step 54: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "37.99s step 55: Give {\"passives\":[\"OverflowingSigil\",\"GlassCannonTheorem\"]}",
+    "38.12s step 56: Attack {\"hits\":3}",
+    "38.92s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "41.32s 3 hits, 44.13 damage",
+    "41.32s step 57: Record {\"name\":\"forward\",\"value\":\"hits.total\"}",
+    "41.32s var.forward = 44.133",
+    "41.45s step 58: Reset",
+    "41.59s step 59: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "41.72s step 60: Give {\"passives\":[\"GlassCannonTheorem\",\"OverflowingSigil\"]}",
+    "41.86s step 61: Attack {\"hits\":3}",
+    "42.65s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "45.05s 3 hits, 37.87 damage",
+    "45.05s step 62: Expect {\"name\":\"order OverflowingSigil + GlassCannonTheorem gives the same damage\",\"value\":\"hits.total / var.forward\",\"to\":1,\"tolerance\":0.01}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 19.75,
+      "Time": 375.8526
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 19.75,
+      "Time": 376.916229
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 14.0,
+      "Time": 377.987244
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 19.75,
+      "Time": 379.582458
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 19.75,
+      "Time": 380.653564
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 14.0,
+      "Time": 381.715027
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 11.5333328,
+      "Time": 383.3354
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 18.472,
+      "Time": 384.385956
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 19.144,
+      "Time": 385.4504
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 11.5333328,
+      "Time": 387.0506
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 18.512,
+      "Time": 388.14325
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 12.4559994,
+      "Time": 389.185
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 12.1193638,
+      "Time": 390.7868
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 18.7346821,
+      "Time": 391.8486
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 18.7346821,
+      "Time": 392.965881
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 18.7903175,
+      "Time": 394.521332
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 18.7903175,
+      "Time": 395.583649
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 18.7903175,
+      "Time": 396.655975
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 14.0,
+      "Time": 398.254517
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 13.166666,
+      "Time": 399.3164
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 14.0,
+      "Time": 400.3827
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 13.166666,
+      "Time": 401.9835
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 13.166666,
+      "Time": 403.0491
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 14.0,
+      "Time": 404.116547
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 16.8,
+      "Time": 405.7182
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 16.8,
+      "Time": 406.787018
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 10.5333328,
+      "Time": 407.851959
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 10.5333328,
+      "Time": 409.454834
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 10.5333328,
+      "Time": 410.517883
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-363174",
+      "Target": "Skeletom(Clone)#-366436",
+      "Amount": 16.8,
+      "Time": 411.587067
+    }
+  ]
+}

@@ -1,0 +1,957 @@
+{
+  "Scenario": "unique_hit_modifiers",
+  "File": "passives/hit_modifiers.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:00:59",
+  "DurationSeconds": 48.8294678,
+  "Status": "Passed",
+  "ChecksPassed": 12,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.48022461
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.48022461,
+      "Duration": 0.12902832
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.609253,
+      "Duration": 0.138061523
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.74731445,
+      "Duration": 0.89453125
+    },
+    {
+      "Index": 4,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.6418457,
+      "Duration": 0.1673584
+    },
+    {
+      "Index": 5,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.809204,
+      "Duration": 0.134399414
+    },
+    {
+      "Index": 6,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 31.6 damage",
+      "StartTime": 6.94360352,
+      "Duration": 3.20007324
+    },
+    {
+      "Index": 7,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"base\",\"value\":\"hit.0\"}",
+      "Status": "Passed",
+      "Message": "var.base = 10.533",
+      "StartTime": 10.1436768,
+      "Duration": 0.1352539
+    },
+    {
+      "Index": 8,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"baseline hits are identical\",\"value\":\"hit.1 / var.base\",\"to\":1,\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.2789307,
+      "Duration": 0.133666992
+    },
+    {
+      "Index": 9,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.4125977,
+      "Duration": 0.131713867
+    },
+    {
+      "Index": 10,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.5443115,
+      "Duration": 0.13293457
+    },
+    {
+      "Index": 11,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"IronMomentum\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.6772461,
+      "Duration": 0.136230469
+    },
+    {
+      "Index": 12,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":6}",
+      "Status": "Passed",
+      "Message": "6 hits, 69.52 damage",
+      "StartTime": 10.8134766,
+      "Duration": 6.39831543
+    },
+    {
+      "Index": 13,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Iron Momentum: 6th hit is 1.2x the 1st\",\"value\":\"hit.5 / hit.0\",\"to\":1.2,\"tolerance\":0.03,\"review\":0.1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 17.211792,
+      "Duration": 0.130859375
+    },
+    {
+      "Index": 14,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 17.3426514,
+      "Duration": 0.125366211
+    },
+    {
+      "Index": 15,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 17.4680176,
+      "Duration": 0.140136719
+    },
+    {
+      "Index": 16,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"OneCleanCut\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 17.6081543,
+      "Duration": 0.133300781
+    },
+    {
+      "Index": 17,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":2}",
+      "Status": "Passed",
+      "Message": "2 hits, 28.44 damage",
+      "StartTime": 17.7414551,
+      "Duration": 2.12561035
+    },
+    {
+      "Index": 18,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"One Clean Cut: first hit 2x\",\"value\":\"hit.0 / var.base\",\"to\":2,\"tolerance\":0.03,\"review\":0.1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 19.8670654,
+      "Duration": 0.141235352
+    },
+    {
+      "Index": 19,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"One Clean Cut: second hit 0.7x\",\"value\":\"hit.1 / var.base\",\"to\":0.7,\"tolerance\":0.03,\"review\":0.1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.0083,
+      "Duration": 0.135742188
+    },
+    {
+      "Index": 20,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.144043,
+      "Duration": 0.133666992
+    },
+    {
+      "Index": 21,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.27771,
+      "Duration": 0.136230469
+    },
+    {
+      "Index": 22,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"SixFates\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 20.41394,
+      "Duration": 0.129272461
+    },
+    {
+      "Index": 23,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":8}",
+      "Status": "Passed",
+      "Message": "8 hits, 115.87 damage",
+      "StartTime": 20.5432129,
+      "Duration": 8.533936
+    },
+    {
+      "Index": 24,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Six Fates: average stays between 0 and 3x\",\"value\":\"hits.avg / var.base\",\"op\":\"between\",\"min\":0,\"max\":3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 29.0771484,
+      "Duration": 0.1352539
+    },
+    {
+      "Index": 25,
+      "Action": "Measure",
+      "Arguments": "Measure {\"name\":\"six fates average\",\"value\":\"hits.avg / var.base\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 29.2124023,
+      "Duration": 0.132080078
+    },
+    {
+      "Index": 26,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 29.3444824,
+      "Duration": 0.164550781
+    },
+    {
+      "Index": 27,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 29.5090332,
+      "Duration": 0.0997314453
+    },
+    {
+      "Index": 28,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"Windreader\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 29.6087646,
+      "Duration": 0.13659668
+    },
+    {
+      "Index": 29,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 33.88 damage",
+      "StartTime": 29.7453613,
+      "Duration": 3.20092773
+    },
+    {
+      "Index": 30,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Windreader: distance bonus\",\"value\":\"hit.0 / var.base\",\"op\":\"between\",\"min\":1.001,\"max\":1.6}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 32.94629,
+      "Duration": 0.130249023
+    },
+    {
+      "Index": 31,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 33.0765381,
+      "Duration": 0.137451172
+    },
+    {
+      "Index": 32,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 33.21399,
+      "Duration": 0.13269043
+    },
+    {
+      "Index": 33,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"AnvilHeart\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 33.34668,
+      "Duration": 0.130004883
+    },
+    {
+      "Index": 34,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":4}",
+      "Status": "Passed",
+      "Message": "4 hits, 53.5 damage",
+      "StartTime": 33.4766846,
+      "Duration": 4.26513672
+    },
+    {
+      "Index": 35,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Anvil Heart: hits are the same size\",\"value\":\"hit.3 / hit.0\",\"to\":1,\"tolerance\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 37.74182,
+      "Duration": 0.135131836
+    },
+    {
+      "Index": 36,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Anvil Heart: hit equals the average crit\",\"value\":\"hit.0 / var.base\",\"to\":\"1 + 0.5 * (crit - 1)\",\"tolerance\":0.03,\"review\":0.1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 37.8769531,
+      "Duration": 0.125610352
+    },
+    {
+      "Index": 37,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 38.0025635,
+      "Duration": 0.14453125
+    },
+    {
+      "Index": 38,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 38.1470947,
+      "Duration": 0.131469727
+    },
+    {
+      "Index": 39,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"atk\",\"value\":\"player.ATK\"}",
+      "Status": "Passed",
+      "Message": "var.atk = 11.533",
+      "StartTime": 38.2785645,
+      "Duration": 0.134399414
+    },
+    {
+      "Index": 40,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"matk\",\"value\":\"player.MATK\"}",
+      "Status": "Passed",
+      "Message": "var.matk = 2.033",
+      "StartTime": 38.4129639,
+      "Duration": 0.131103516
+    },
+    {
+      "Index": 41,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"TwinConduit\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 38.5440674,
+      "Duration": 0.1315918
+    },
+    {
+      "Index": 42,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":1}",
+      "Status": "Passed",
+      "Message": "1 hits, 11.46 damage",
+      "StartTime": 38.67566,
+      "Duration": 1.336792
+    },
+    {
+      "Index": 43,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Twin Conduit: adds half of M.ATK\",\"value\":\"hit.0 / var.base\",\"to\":\"1 + var.matk * 0.5 / var.atk\",\"tolerance\":0.03,\"review\":0.1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 40.01245,
+      "Duration": 0.13293457
+    },
+    {
+      "Index": 44,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 40.1453857,
+      "Duration": 0.141967773
+    },
+    {
+      "Index": 45,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"HollowQuiver\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 40.2873535,
+      "Duration": 0.107666016
+    },
+    {
+      "Index": 46,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":1,\"max\":2.5,\"allowNone\":true}",
+      "Status": "Passed",
+      "Message": "0 hits, 0 damage",
+      "StartTime": 40.39502,
+      "Duration": 3.8807373
+    },
+    {
+      "Index": 47,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Hollow Quiver: no basic attacks\",\"value\":\"hits.count\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 44.2757568,
+      "Duration": 0.134155273
+    },
+    {
+      "Index": 48,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 44.4099121,
+      "Duration": 0.137451172
+    },
+    {
+      "Index": 49,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"CovenantKeeper\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 44.5473633,
+      "Duration": 0.131225586
+    },
+    {
+      "Index": 50,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":2}",
+      "Status": "Passed",
+      "Message": "2 hits, 0 damage",
+      "StartTime": 44.67859,
+      "Duration": 2.1315918
+    },
+    {
+      "Index": 51,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Covenant Keeper: neutral hits deal nothing\",\"value\":\"hits.total\",\"to\":0,\"tolerance\":0.001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 46.81018,
+      "Duration": 0.135131836
+    },
+    {
+      "Index": 52,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 46.9453125,
+      "Duration": 0.1352539
+    },
+    {
+      "Index": 53,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"Execution\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 47.0805664,
+      "Duration": 0.12890625
+    },
+    {
+      "Index": 54,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"target\",\"ratio\":0.04}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 47.2094727,
+      "Duration": 0.133056641
+    },
+    {
+      "Index": 55,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":1,\"max\":3}",
+      "Status": "Passed",
+      "Message": "1 hits, 10.53 damage",
+      "StartTime": 47.34253,
+      "Duration": 1.33654785
+    },
+    {
+      "Index": 56,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Execution: a target at 4% hp is executed\",\"value\":\"target.HP\",\"op\":\"<=\",\"to\":0.01}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 48.6790771,
+      "Duration": 0.150390625
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "baseline hits are identical",
+      "Status": "Passed",
+      "Expected": "1 +/- 0.01",
+      "Actual": "1",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 8,
+      "Time": 10.2789307
+    },
+    {
+      "Name": "Iron Momentum: 6th hit is 1.2x the 1st",
+      "Status": "Passed",
+      "Expected": "1.2 +/- 0.03",
+      "Actual": "1.2",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 13,
+      "Time": 17.211792
+    },
+    {
+      "Name": "One Clean Cut: first hit 2x",
+      "Status": "Passed",
+      "Expected": "2 +/- 0.03",
+      "Actual": "2",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 18,
+      "Time": 19.8670654
+    },
+    {
+      "Name": "One Clean Cut: second hit 0.7x",
+      "Status": "Passed",
+      "Expected": "0.7 +/- 0.03",
+      "Actual": "0.7",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 19,
+      "Time": 20.0083
+    },
+    {
+      "Name": "Six Fates: average stays between 0 and 3x",
+      "Status": "Passed",
+      "Expected": "0..3",
+      "Actual": "1.375",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 24,
+      "Time": 29.0771484
+    },
+    {
+      "Name": "Windreader: distance bonus",
+      "Status": "Passed",
+      "Expected": "1.001..1.6",
+      "Actual": "1.072",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 30,
+      "Time": 32.94629
+    },
+    {
+      "Name": "Anvil Heart: hits are the same size",
+      "Status": "Passed",
+      "Expected": "1 +/- 0.01",
+      "Actual": "1",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 35,
+      "Time": 37.74182
+    },
+    {
+      "Name": "Anvil Heart: hit equals the average crit",
+      "Status": "Passed",
+      "Expected": "1.25 +/- 0.03",
+      "Actual": "1.25",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 36,
+      "Time": 37.8769531
+    },
+    {
+      "Name": "Twin Conduit: adds half of M.ATK",
+      "Status": "Passed",
+      "Expected": "1.0882 +/- 0.03",
+      "Actual": "1.0882",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 43,
+      "Time": 40.01245
+    },
+    {
+      "Name": "Hollow Quiver: no basic attacks",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 47,
+      "Time": 44.2757568
+    },
+    {
+      "Name": "Covenant Keeper: neutral hits deal nothing",
+      "Status": "Passed",
+      "Expected": "0 +/- 0.001",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 51,
+      "Time": 46.81018
+    },
+    {
+      "Name": "Execution: a target at 4% hp is executed",
+      "Status": "Passed",
+      "Expected": "<= 0.01",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 56,
+      "Time": 48.6790771
+    }
+  ],
+  "Metrics": {
+    "six fates average": 1.37499988
+  },
+  "Variables": {
+    "base": 10.5333328,
+    "atk": 11.5333328,
+    "matk": 2.0333333
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.59s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.92s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.48s in scene Town",
+    "5.48s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "5.61s step 3: Refill {\"of\":\"player\"}",
+    "5.75s step 4: SpawnTarget",
+    "6.64s step 5: Reset",
+    "6.81s step 6: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+    "6.94s step 7: Attack {\"hits\":3}",
+    "7.74s clicked Skeletom(Clone) at screen 1068,530 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "10.14s 3 hits, 31.6 damage",
+    "10.14s step 8: Record {\"name\":\"base\",\"value\":\"hit.0\"}",
+    "10.14s var.base = 10.533",
+    "10.28s step 9: Expect {\"name\":\"baseline hits are identical\",\"value\":\"hit.1 / var.base\",\"to\":1,\"tolerance\":0.01}",
+    "10.41s step 10: Reset",
+    "10.54s step 11: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+    "10.68s step 12: Give {\"passives\":[\"IronMomentum\"]}",
+    "10.81s step 13: Attack {\"hits\":6}",
+    "11.61s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "17.21s 6 hits, 69.52 damage",
+    "17.21s step 14: Expect {\"name\":\"Iron Momentum: 6th hit is 1.2x the 1st\",\"value\":\"hit.5 / hit.0\",\"to\":1.2,\"tolerance\":0.03,\"review\":0.1}",
+    "17.34s step 15: Reset",
+    "17.47s step 16: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+    "17.61s step 17: Give {\"passives\":[\"OneCleanCut\"]}",
+    "17.74s step 18: Attack {\"hits\":2}",
+    "18.55s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "19.87s 2 hits, 28.44 damage",
+    "19.87s step 19: Expect {\"name\":\"One Clean Cut: first hit 2x\",\"value\":\"hit.0 / var.base\",\"to\":2,\"tolerance\":0.03,\"review\":0.1}",
+    "20.01s step 20: Expect {\"name\":\"One Clean Cut: second hit 0.7x\",\"value\":\"hit.1 / var.base\",\"to\":0.7,\"tolerance\":0.03,\"review\":0.1}",
+    "20.14s step 21: Reset",
+    "20.28s step 22: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+    "20.41s step 23: Give {\"passives\":[\"SixFates\"]}",
+    "20.54s step 24: Attack {\"hits\":8}",
+    "21.34s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "29.08s 8 hits, 115.87 damage",
+    "29.08s step 25: Expect {\"name\":\"Six Fates: average stays between 0 and 3x\",\"value\":\"hits.avg / var.base\",\"op\":\"between\",\"min\":0,\"max\":3}",
+    "29.21s step 26: Measure {\"name\":\"six fates average\",\"value\":\"hits.avg / var.base\"}",
+    "29.34s step 27: Reset",
+    "29.51s step 28: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+    "29.61s step 29: Give {\"passives\":[\"Windreader\"]}",
+    "29.75s step 30: Attack {\"hits\":3}",
+    "30.55s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "32.95s 3 hits, 33.88 damage",
+    "32.95s step 31: Expect {\"name\":\"Windreader: distance bonus\",\"value\":\"hit.0 / var.base\",\"op\":\"between\",\"min\":1.001,\"max\":1.6}",
+    "33.08s step 32: Reset",
+    "33.21s step 33: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":50}",
+    "33.35s step 34: Give {\"passives\":[\"AnvilHeart\"]}",
+    "33.48s step 35: Attack {\"hits\":4}",
+    "34.28s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "37.74s 4 hits, 53.5 damage",
+    "37.74s step 36: Expect {\"name\":\"Anvil Heart: hits are the same size\",\"value\":\"hit.3 / hit.0\",\"to\":1,\"tolerance\":0.01}",
+    "37.88s step 37: Expect {\"name\":\"Anvil Heart: hit equals the average crit\",\"value\":\"hit.0 / var.base\",\"to\":\"1 + 0.5 * (crit - 1)\",\"tolerance\":0.03,\"review\":0.1}",
+    "38.00s step 38: Reset",
+    "38.15s step 39: SetStat {\"of\":\"player\",\"stat\":\"CriticalRate\",\"total\":0}",
+    "38.28s step 40: Record {\"name\":\"atk\",\"value\":\"player.ATK\"}",
+    "38.28s var.atk = 11.533",
+    "38.41s step 41: Record {\"name\":\"matk\",\"value\":\"player.MATK\"}",
+    "38.41s var.matk = 2.033",
+    "38.54s step 42: Give {\"passives\":[\"TwinConduit\"]}",
+    "38.68s step 43: Attack {\"hits\":1}",
+    "39.48s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "40.01s 1 hits, 11.46 damage",
+    "40.01s step 44: Expect {\"name\":\"Twin Conduit: adds half of M.ATK\",\"value\":\"hit.0 / var.base\",\"to\":\"1 + var.matk * 0.5 / var.atk\",\"tolerance\":0.03,\"review\":0.1}",
+    "40.15s step 45: Reset",
+    "40.29s step 46: Give {\"passives\":[\"HollowQuiver\"]}",
+    "40.40s step 47: Attack {\"hits\":1,\"max\":2.5,\"allowNone\":true}",
+    "41.21s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "44.28s 0 hits, 0 damage",
+    "44.28s step 48: Expect {\"name\":\"Hollow Quiver: no basic attacks\",\"value\":\"hits.count\",\"to\":0}",
+    "44.41s step 49: Reset",
+    "44.55s step 50: Give {\"passives\":[\"CovenantKeeper\"]}",
+    "44.68s step 51: Attack {\"hits\":2}",
+    "45.48s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "46.81s 2 hits, 0 damage",
+    "46.81s step 52: Expect {\"name\":\"Covenant Keeper: neutral hits deal nothing\",\"value\":\"hits.total\",\"to\":0,\"tolerance\":0.001}",
+    "46.95s step 53: Reset",
+    "47.08s step 54: Give {\"passives\":[\"Execution\"]}",
+    "47.21s step 55: SetHp {\"of\":\"target\",\"ratio\":0.04}",
+    "47.34s step 56: Attack {\"hits\":1,\"max\":3}",
+    "48.15s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "48.68s 1 hits, 10.53 damage",
+    "48.68s step 57: Expect {\"name\":\"Execution: a target at 4% hp is executed\",\"value\":\"target.HP\",\"op\":\"<=\",\"to\":0.01}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1046.10742
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1047.16882
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1048.2406
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1049.96619
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.9546661,
+      "Time": 1051.03931
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 11.3759995,
+      "Time": 1052.10059
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 11.7973328,
+      "Time": 1053.171
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 12.2186661,
+      "Time": 1054.23462
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 12.6399994,
+      "Time": 1055.30029
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 21.0666656,
+      "Time": 1056.90222
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 7.373333,
+      "Time": 1057.9707
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1059.71765
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 5.26666641,
+      "Time": 1060.76892
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 31.5999985,
+      "Time": 1061.83789
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1062.90588
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1063.96716
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 31.5999985,
+      "Time": 1065.0387
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1066.10583
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 5.26666641,
+      "Time": 1067.16772
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 11.2917328,
+      "Time": 1068.90784
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 11.2917328,
+      "Time": 1069.97266
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 11.2917328,
+      "Time": 1071.038
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 13.166666,
+      "Time": 1072.63611
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 13.166666,
+      "Time": 1073.7063
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 14.0,
+      "Time": 1074.77588
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 13.166666,
+      "Time": 1075.83777
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 11.4618492,
+      "Time": 1077.81653
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 0.0,
+      "Time": 1083.84229
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 0.0,
+      "Time": 1084.90125
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-462162",
+      "Target": "Skeletom(Clone)#-465424",
+      "Amount": 10.5333328,
+      "Time": 1086.50488
+    }
+  ]
+}

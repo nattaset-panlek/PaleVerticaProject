@@ -3,12 +3,12 @@
   "File": "quests/bones_on_the_road.json",
   "Agent": "claude",
   "SaveProfile": "claude",
-  "StartedAt": "2026-11-10 19:31:15",
-  "DurationSeconds": 3.19092178,
-  "Status": "Failed",
-  "ChecksPassed": 0,
+  "StartedAt": "2026-11-10 21:13:30",
+  "DurationSeconds": 26.9241352,
+  "Status": "Passed",
+  "ChecksPassed": 6,
   "ChecksReview": 0,
-  "ChecksFailed": 1,
+  "ChecksFailed": 0,
   "StepResults": [
     {
       "Index": 0,
@@ -17,7 +17,7 @@
       "Status": "Passed",
       "Message": "in scene Town",
       "StartTime": 0.0,
-      "Duration": 1.37447357
+      "Duration": 1.38741994
     },
     {
       "Index": 1,
@@ -25,8 +25,8 @@
       "Arguments": "[setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
       "Status": "Passed",
       "Message": "base 15, job 5, stat points 81, passive points 5",
-      "StartTime": 1.37447357,
-      "Duration": 0.0337944031
+      "StartTime": 1.38741994,
+      "Duration": 0.0280686617
     },
     {
       "Index": 2,
@@ -34,8 +34,8 @@
       "Arguments": "[setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
       "Status": "Passed",
       "Message": "VIT +20, STR +61; 0 points left",
-      "StartTime": 1.408268,
-      "Duration": 0.0108718872
+      "StartTime": 1.4154886,
+      "Duration": 0.0168061256
     },
     {
       "Index": 3,
@@ -43,57 +43,319 @@
       "Arguments": "[setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
       "Status": "Passed",
       "Message": "class Warrior, origin node 5",
-      "StartTime": 1.41913986,
-      "Duration": 1.55343246
+      "StartTime": 1.43229473,
+      "Duration": 1.6287533
     },
     {
       "Index": 4,
       "Action": "AssignSkill",
       "Arguments": "[setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
-      "Status": "Failed",
-      "Message": "NullReferenceException: Object reference not set to an instance of an object",
-      "StartTime": 2.97257233,
-      "Duration": 0.218349457
+      "Status": "Passed",
+      "Message": "skill 1001 in slot 1",
+      "StartTime": 3.061048,
+      "Duration": 0.401747
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "[setup/new_warrior_lv15.json] Expect {\"name\":\"VIT got its 20 points\",\"value\":\"player.VIT\",\"op\":\">=\",\"to\":20}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.462795,
+      "Duration": 0.016494751
+    },
+    {
+      "Index": 6,
+      "Action": "TalkTo",
+      "Arguments": "TalkTo {\"character\":2004}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.47928977,
+      "Duration": 1.13374448
+    },
+    {
+      "Index": 7,
+      "Action": "AcceptQuest",
+      "Arguments": "AcceptQuest {\"quest\":1}",
+      "Status": "Passed",
+      "Message": "quest 1 is Active",
+      "StartTime": 4.61303425,
+      "Duration": 0.301183224
+    },
+    {
+      "Index": 8,
+      "Action": "CloseDialogue",
+      "Arguments": "CloseDialogue",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.91421747,
+      "Duration": 0.150130749
+    },
+    {
+      "Index": 9,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"quest is active\",\"value\":\"quest.1.status\",\"to\":\"status.Active\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.064348,
+      "Duration": 0.0169496536
+    },
+    {
+      "Index": 10,
+      "Action": "UsePortal",
+      "Arguments": "UsePortal {\"to\":\"Field\",\"timeout\":90}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.081298,
+      "Duration": 5.463683
+    },
+    {
+      "Index": 11,
+      "Action": "Kill",
+      "Arguments": "Kill {\"character\":1001,\"count\":3,\"timeout\":600}",
+      "Status": "Passed",
+      "Message": "3 kills",
+      "StartTime": 10.544981,
+      "Duration": 5.887974
+    },
+    {
+      "Index": 12,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"kill objective done\",\"value\":\"quest.1.count.0\",\"to\":3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.4329548,
+      "Duration": 0.0174560547
+    },
+    {
+      "Index": 13,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"quest ready to turn in\",\"value\":\"quest.1.status\",\"to\":\"status.ReadyToTurnIn\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.45041,
+      "Duration": 0.0161266327
+    },
+    {
+      "Index": 14,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"level\",\"value\":\"player.level\"}",
+      "Status": "Passed",
+      "Message": "var.level = 15",
+      "StartTime": 16.4665375,
+      "Duration": 0.0166111
+    },
+    {
+      "Index": 15,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"exp\",\"value\":\"player.baseExp\"}",
+      "Status": "Passed",
+      "Message": "var.exp = 15",
+      "StartTime": 16.4831486,
+      "Duration": 0.0165424347
+    },
+    {
+      "Index": 16,
+      "Action": "UsePortal",
+      "Arguments": "UsePortal {\"to\":\"Town\",\"timeout\":90}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.499691,
+      "Duration": 6.224724
+    },
+    {
+      "Index": 17,
+      "Action": "TalkTo",
+      "Arguments": "TalkTo {\"character\":2004}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 22.7244148,
+      "Duration": 3.867075
+    },
+    {
+      "Index": 18,
+      "Action": "TurnInQuest",
+      "Arguments": "TurnInQuest {\"quest\":1}",
+      "Status": "Passed",
+      "Message": "quest 1 is Completed",
+      "StartTime": 26.59149,
+      "Duration": 0.29983902
+    },
+    {
+      "Index": 19,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"quest completed\",\"value\":\"quest.1.status\",\"to\":\"status.Completed\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 26.8913288,
+      "Duration": 0.01672554
+    },
+    {
+      "Index": 20,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"exp reward arrived\",\"value\":\"(player.level - var.level) * 1000000 + player.baseExp - var.exp\",\"op\":\">\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 26.9080544,
+      "Duration": 0.0160808563
     }
   ],
   "Checks": [
     {
-      "Name": "step 5 AssignSkill completes",
-      "Status": "Failed",
-      "Expected": "completes",
-      "Actual": "NullReferenceException: Object reference not set to an instance of an object",
-      "Note": "a new game has Tackle in skill slot 0 but not on the hotbar",
+      "Name": "VIT got its 20 points",
+      "Status": "Passed",
+      "Expected": ">= 20",
+      "Actual": "21",
+      "Note": null,
       "Screenshot": null,
-      "Step": 4,
-      "Time": 3.19092178
+      "Step": 5,
+      "Time": 3.462795
+    },
+    {
+      "Name": "quest is active",
+      "Status": "Passed",
+      "Expected": "== 2",
+      "Actual": "2",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 9,
+      "Time": 5.064348
+    },
+    {
+      "Name": "kill objective done",
+      "Status": "Passed",
+      "Expected": "== 3",
+      "Actual": "3",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 12,
+      "Time": 16.4329548
+    },
+    {
+      "Name": "quest ready to turn in",
+      "Status": "Passed",
+      "Expected": "== 3",
+      "Actual": "3",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 13,
+      "Time": 16.45041
+    },
+    {
+      "Name": "quest completed",
+      "Status": "Passed",
+      "Expected": "== 4",
+      "Actual": "4",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 19,
+      "Time": 26.8913288
+    },
+    {
+      "Name": "exp reward arrived",
+      "Status": "Passed",
+      "Expected": "> 0",
+      "Actual": "100",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 20,
+      "Time": 26.9080544
     }
   ],
-  "Metrics": {
-    "ui fallback clicks": 1.0
+  "Metrics": {},
+  "Variables": {
+    "level": 15.0,
+    "exp": 15.0
   },
-  "Variables": {},
   "Log": [
-    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s begin, seed 1337, speed x1, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
     "0.00s step 1: [setup/new_warrior_lv15.json] StartNewGame",
-    "0.00s going back to the title from Town so the old character is dropped",
-    "0.18s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
-    "0.24s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
-    "0.29s button \"New Game\" did not react (attempt 3: clicked 960,408, top UI there \"Background\", interactable True)",
-    "0.29s button \"New Game\" pressed through the EventSystem after 3 clicks did nothing (attempt 3: clicked 960,408, top UI there \"Background\", interactable True)",
-    "1.37s in scene Town",
-    "1.37s step 2: [setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
-    "1.37s base 15, job 5, stat points 81, passive points 5",
-    "1.41s step 3: [setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
-    "1.41s VIT +20, STR +61; 0 points left",
-    "1.42s step 4: [setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
-    "1.72s the class screen is already open",
-    "2.97s class Warrior, origin node 5",
-    "2.97s step 5: [setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
-    "3.19s step 5 failed: NullReferenceException: Object reference not set to an instance of an object",
-    "3.19s error logged: NullReferenceException: Object reference not set to an instance of an object"
+    "0.00s going back to the title from  so the old character is dropped",
+    "1.39s in scene Town",
+    "1.39s step 2: [setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
+    "1.39s base 15, job 5, stat points 81, passive points 5",
+    "1.42s step 3: [setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+    "1.42s VIT +20, STR +61; 0 points left",
+    "1.43s step 4: [setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
+    "1.75s the class screen is already open",
+    "3.06s class Warrior, origin node 5",
+    "3.06s step 5: [setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
+    "3.46s skill 1001 in slot 1",
+    "3.46s step 6: [setup/new_warrior_lv15.json] Expect {\"name\":\"VIT got its 20 points\",\"value\":\"player.VIT\",\"op\":\">=\",\"to\":20}",
+    "3.48s step 7: TalkTo {\"character\":2004}",
+    "4.26s clicked OldMan at screen 960,882 world 0,4.5, collider OldMan, UI under the pointer: none, virtual mouse is current True, distance 3.5",
+    "4.61s step 8: AcceptQuest {\"quest\":1}",
+    "4.91s quest 1 is Active",
+    "4.91s step 9: CloseDialogue",
+    "5.06s step 10: Expect {\"name\":\"quest is active\",\"value\":\"quest.1.status\",\"to\":\"status.Active\"}",
+    "5.08s step 11: UsePortal {\"to\":\"Field\",\"timeout\":90}",
+    "8.53s clicked the portal to Field at screen 1620,529, UI under the pointer: ",
+    "10.54s step 12: Kill {\"character\":1001,\"count\":3,\"timeout\":600}",
+    "13.49s clicked Skeletom(Clone) at screen 1637,461 world -0.59,-1.51, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 7.3",
+    "14.45s kill 1/3",
+    "14.78s clicked Skeletom(Clone) at screen 1340,498 world 1.94,-2.33, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 3.8",
+    "15.45s kill 2/3",
+    "15.78s clicked Skeletom(Clone) at screen 1046,282 world 1.18,-5.02, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.7",
+    "16.43s kill 3/3",
+    "16.43s 3 kills",
+    "16.43s step 13: Expect {\"name\":\"kill objective done\",\"value\":\"quest.1.count.0\",\"to\":3}",
+    "16.45s step 14: Expect {\"name\":\"quest ready to turn in\",\"value\":\"quest.1.status\",\"to\":\"status.ReadyToTurnIn\"}",
+    "16.47s step 15: Record {\"name\":\"level\",\"value\":\"player.level\"}",
+    "16.47s var.level = 15",
+    "16.48s step 16: Record {\"name\":\"exp\",\"value\":\"player.baseExp\"}",
+    "16.48s var.exp = 15",
+    "16.50s step 17: UsePortal {\"to\":\"Town\",\"timeout\":90}",
+    "20.49s clicked the portal to Town at screen 297,548, UI under the pointer: ",
+    "22.72s step 18: TalkTo {\"character\":2004}",
+    "25.64s clicked OldMan at screen 288,556 world 0,4.5, collider OldMan, UI under the pointer: none, virtual mouse is current True, distance 7.1",
+    "26.59s step 19: TurnInQuest {\"quest\":1}",
+    "26.89s quest 1 is Completed",
+    "26.89s step 20: Expect {\"name\":\"quest completed\",\"value\":\"quest.1.status\",\"to\":\"status.Completed\"}",
+    "26.91s step 21: Expect {\"name\":\"exp reward arrived\",\"value\":\"(player.level - var.level) * 1000000 + player.baseExp - var.exp\",\"op\":\">\",\"to\":0}"
   ],
-  "Errors": [
-    "Exception: NullReferenceException: Object reference not set to an instance of an object ScenarioTesting.Actions.AssignSkillAction+<Run>d__0.MoveNext () (at Assets/Script/ScenarioTesting/Actions/UIActions.cs:175)"
-  ],
-  "Combat": []
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-657774",
+      "Target": "Skeletom(Clone)#-723476",
+      "Amount": 132.533325,
+      "Time": 14.4546213
+    },
+    {
+      "Kind": "kill",
+      "Source": "Player#-657774",
+      "Target": "Skeletom(Clone)#-723476",
+      "Amount": 1.0,
+      "Time": 14.4546213
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-657774",
+      "Target": "Skeletom(Clone)#-724614",
+      "Amount": 132.533325,
+      "Time": 15.4503393
+    },
+    {
+      "Kind": "kill",
+      "Source": "Player#-657774",
+      "Target": "Skeletom(Clone)#-724614",
+      "Amount": 1.0,
+      "Time": 15.4503393
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-657774",
+      "Target": "Skeletom(Clone)#-722804",
+      "Amount": 132.533325,
+      "Time": 16.4329548
+    },
+    {
+      "Kind": "kill",
+      "Source": "Player#-657774",
+      "Target": "Skeletom(Clone)#-722804",
+      "Amount": 1.0,
+      "Time": 16.4329548
+    }
+  ]
 }

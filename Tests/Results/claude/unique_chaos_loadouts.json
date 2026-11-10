@@ -3,8 +3,8 @@
   "File": "chaos/random_loadouts.json",
   "Agent": "claude",
   "SaveProfile": "claude",
-  "StartedAt": "2026-11-10 19:32:51",
-  "DurationSeconds": 99.1945953,
+  "StartedAt": "2026-11-10 20:58:39",
+  "DurationSeconds": 166.221512,
   "Status": "Passed",
   "ChecksPassed": 51,
   "ChecksReview": 0,
@@ -17,7 +17,7 @@
       "Status": "Passed",
       "Message": "in scene Town",
       "StartTime": 0.0,
-      "Duration": 1.41310525
+      "Duration": 4.117352
     },
     {
       "Index": 1,
@@ -25,8 +25,8 @@
       "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 1.41310525,
-      "Duration": 0.0105499029
+      "StartTime": 4.117352,
+      "Duration": 0.1322856
     },
     {
       "Index": 2,
@@ -34,8 +34,8 @@
       "Arguments": "Refill {\"of\":\"player\"}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 1.42365515,
-      "Duration": 0.007532835
+      "StartTime": 4.2496376,
+      "Duration": 0.133509636
     },
     {
       "Index": 3,
@@ -43,8 +43,8 @@
       "Arguments": "SpawnTarget",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 1.431188,
-      "Duration": 0.118579149
+      "StartTime": 4.38314724,
+      "Duration": 1.06828737
     },
     {
       "Index": 4,
@@ -52,8 +52,8 @@
       "Arguments": "RandomLoadouts {\"count\":12,\"size\":5,\"timeout\":3600}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 1.54976714,
-      "Duration": 88.0043259
+      "StartTime": 5.45143461,
+      "Duration": 148.220566
     },
     {
       "Index": 5,
@@ -61,8 +61,8 @@
       "Arguments": "Reset",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 89.55409,
-      "Duration": 0.009628296
+      "StartTime": 153.672,
+      "Duration": 0.1302185
     },
     {
       "Index": 6,
@@ -70,8 +70,8 @@
       "Arguments": "Give {\"passives\":[\"AlphasBurden\",\"AnsweredPrayer\",\"AnvilHeart\",\"BlessingOfMagearna\",\"BloodBleeding\",\"BloodMage\",\"BoneChoir\",\"BurdenOfKings\",\"CovenantKeeper\",\"CurseOfKanix\",\"DoubleAttack\",\"DoubleSpell\",\"EldritchFaith\",\"Execution\",\"FeralBond\",\"FickleStars\",\"GlassCannonTheorem\",\"GraveTithe\",\"HereticsPyre\",\"Hexweaver\",\"HollowCrown\",\"HollowQuiver\",\"IronMomentum\",\"LastBanner\",\"LivingPhilosopher\",\"LoadedChamber\",\"ManaLeech\",\"MarkedThroat\",\"OathOfSilence\",\"OneCleanCut\",\"OverflowingSigil\",\"PackInstinct\",\"PenitentBlade\",\"PinningShot\",\"PowderBurn\",\"QuickenedWeave\",\"RadiantRebuke\",\"RicochetDoctrine\",\"Rock\",\"RunicSkin\",\"SecondDose\",\"SharedWound\",\"SingularElement\",\"SixFates\",\"SkirmishersPace\",\"SlowIncantation\",\"SpellboundEdge\",\"Thorn\",\"TimeCollector\",\"TransmutedBlood\",\"Vampire\",\"VeilStep\",\"VenomLedger\",\"Verdict\",\"VolatileMixture\",\"VowOfStillness\",\"WhisperPact\",\"Windreader\",\"DepressionChaos\",\"TwinConduit\"]}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 89.56372,
-      "Duration": 0.019241333
+      "StartTime": 153.802216,
+      "Duration": 0.135360718
     },
     {
       "Index": 7,
@@ -79,8 +79,8 @@
       "Arguments": "StandardRoutine {\"label\":\"every passive at once\"}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 89.58296,
-      "Duration": 9.611633
+      "StartTime": 153.937576,
+      "Duration": 12.2839355
     }
   ],
   "Checks": [
@@ -88,21 +88,21 @@
       "Name": "loadout 1: GraveTithe+Execution+DoubleSpell+SecondDose+LoadedChamber: player hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 4960.401, mp 50.5, max 5101",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 8.104474
+      "Time": 14.5894594
     },
     {
       "Name": "loadout 1: GraveTithe+Execution+DoubleSpell+SecondDose+LoadedChamber: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000043, mp 320.2, max 1000124",
+      "Actual": "hp 1000011, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 8.104474
+      "Time": 14.5894594
     },
     {
       "Name": "loadout 1: GraveTithe+Execution+DoubleSpell+SecondDose+LoadedChamber: no errors",
@@ -112,7 +112,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 8.104474
+      "Time": 14.5894594
     },
     {
       "Name": "loadout 1: GraveTithe+Execution+DoubleSpell+SecondDose+LoadedChamber: removing restores every stat",
@@ -122,27 +122,27 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 8.305698
+      "Time": 14.8555
     },
     {
       "Name": "loadout 2: HereticsPyre+VowOfStillness+QuickenedWeave+PenitentBlade+LivingPhilosopher: player hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 4912.341, mp 50.5, max 5101",
+      "Actual": "hp 4912.667, mp 50.5, max 5101",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 15.2306738
+      "Time": 27.2543068
     },
     {
       "Name": "loadout 2: HereticsPyre+VowOfStillness+QuickenedWeave+PenitentBlade+LivingPhilosopher: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000070, mp 320.2, max 1000124",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 15.2306738
+      "Time": 27.2543068
     },
     {
       "Name": "loadout 2: HereticsPyre+VowOfStillness+QuickenedWeave+PenitentBlade+LivingPhilosopher: no errors",
@@ -152,7 +152,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 15.2306738
+      "Time": 27.2543068
     },
     {
       "Name": "loadout 2: HereticsPyre+VowOfStillness+QuickenedWeave+PenitentBlade+LivingPhilosopher: removing restores every stat",
@@ -162,7 +162,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 15.4313173
+      "Time": 27.5197926
     },
     {
       "Name": "loadout 3: Hexweaver+OneCleanCut+SkirmishersPace+PowderBurn+BoneChoir: player hp, mp and max hp are valid",
@@ -172,17 +172,17 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 22.4919643
+      "Time": 39.7863121
     },
     {
       "Name": "loadout 3: Hexweaver+OneCleanCut+SkirmishersPace+PowderBurn+BoneChoir: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000075, mp 320.2, max 1000124",
+      "Actual": "hp 1000094, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 22.4919643
+      "Time": 39.7863121
     },
     {
       "Name": "loadout 3: Hexweaver+OneCleanCut+SkirmishersPace+PowderBurn+BoneChoir: no errors",
@@ -192,7 +192,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 22.4919643
+      "Time": 39.7863121
     },
     {
       "Name": "loadout 3: Hexweaver+OneCleanCut+SkirmishersPace+PowderBurn+BoneChoir: removing restores every stat",
@@ -202,27 +202,27 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 22.6932011
+      "Time": 40.05331
     },
     {
       "Name": "loadout 4: PowderBurn+Windreader+AlphasBurden+PackInstinct+BloodMage: player hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 4960.401, mp 50.5, max 5101",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 29.7050457
+      "Time": 52.45927
     },
     {
       "Name": "loadout 4: PowderBurn+Windreader+AlphasBurden+PackInstinct+BloodMage: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000065, mp 320.2, max 1000124",
+      "Actual": "hp 1000096, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 29.7050457
+      "Time": 52.45927
     },
     {
       "Name": "loadout 4: PowderBurn+Windreader+AlphasBurden+PackInstinct+BloodMage: no errors",
@@ -232,7 +232,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 29.7050457
+      "Time": 52.45927
     },
     {
       "Name": "loadout 4: PowderBurn+Windreader+AlphasBurden+PackInstinct+BloodMage: removing restores every stat",
@@ -242,7 +242,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 29.9108658
+      "Time": 52.7216263
     },
     {
       "Name": "loadout 5: ManaLeech+EldritchFaith+VolatileMixture+HollowQuiver+CurseOfKanix: player hp, mp and max hp are valid",
@@ -252,17 +252,17 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 39.53985
+      "Time": 64.98775
     },
     {
       "Name": "loadout 5: ManaLeech+EldritchFaith+VolatileMixture+HollowQuiver+CurseOfKanix: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000103, mp 320.2, max 1000124",
+      "Actual": "hp 1000102, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 39.53985
+      "Time": 64.98775
     },
     {
       "Name": "loadout 5: ManaLeech+EldritchFaith+VolatileMixture+HollowQuiver+CurseOfKanix: no errors",
@@ -272,7 +272,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 39.53985
+      "Time": 64.98775
     },
     {
       "Name": "loadout 5: ManaLeech+EldritchFaith+VolatileMixture+HollowQuiver+CurseOfKanix: removing restores every stat",
@@ -282,27 +282,27 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 39.74056
+      "Time": 65.25481
     },
     {
       "Name": "loadout 6: Verdict+FeralBond+CurseOfKanix+PenitentBlade+SingularElement: player hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 4960.401, mp 50.5, max 5101",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 45.785202
+      "Time": 77.65864
     },
     {
       "Name": "loadout 6: Verdict+FeralBond+CurseOfKanix+PenitentBlade+SingularElement: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000100, mp 320.2, max 1000124",
+      "Actual": "hp 1000096, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 45.785202
+      "Time": 77.65864
     },
     {
       "Name": "loadout 6: Verdict+FeralBond+CurseOfKanix+PenitentBlade+SingularElement: no errors",
@@ -312,7 +312,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 45.785202
+      "Time": 77.65864
     },
     {
       "Name": "loadout 6: Verdict+FeralBond+CurseOfKanix+PenitentBlade+SingularElement: removing restores every stat",
@@ -322,27 +322,27 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 45.98999
+      "Time": 77.923996
     },
     {
       "Name": "loadout 7: Rock+TimeCollector+OathOfSilence+AnsweredPrayer+Windreader: player hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 4962.281, mp 50.5, max 5101",
+      "Actual": "hp 4963.481, mp 50.5, max 5101",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 53.05077
+      "Time": 90.20423
     },
     {
       "Name": "loadout 7: Rock+TimeCollector+OathOfSilence+AnsweredPrayer+Windreader: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000063, mp 320.2, max 1000124",
+      "Actual": "hp 1000094, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 53.05077
+      "Time": 90.20423
     },
     {
       "Name": "loadout 7: Rock+TimeCollector+OathOfSilence+AnsweredPrayer+Windreader: no errors",
@@ -352,7 +352,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 53.05077
+      "Time": 90.20423
     },
     {
       "Name": "loadout 7: Rock+TimeCollector+OathOfSilence+AnsweredPrayer+Windreader: removing restores every stat",
@@ -362,7 +362,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 53.25626
+      "Time": 90.47396
     },
     {
       "Name": "loadout 8: FeralBond+Thorn+IronMomentum+LastBanner+PenitentBlade: player hp, mp and max hp are valid",
@@ -372,17 +372,17 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 60.2991447
+      "Time": 102.901825
     },
     {
       "Name": "loadout 8: FeralBond+Thorn+IronMomentum+LastBanner+PenitentBlade: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000035, mp 320.2, max 1000124",
+      "Actual": "hp 1000068, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 60.2991447
+      "Time": 102.901825
     },
     {
       "Name": "loadout 8: FeralBond+Thorn+IronMomentum+LastBanner+PenitentBlade: no errors",
@@ -392,7 +392,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 60.2991447
+      "Time": 102.901825
     },
     {
       "Name": "loadout 8: FeralBond+Thorn+IronMomentum+LastBanner+PenitentBlade: removing restores every stat",
@@ -402,7 +402,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 60.4997673
+      "Time": 103.140892
     },
     {
       "Name": "loadout 9: RicochetDoctrine+PackInstinct+QuickenedWeave+VolatileMixture+RunicSkin: player hp, mp and max hp are valid",
@@ -412,17 +412,17 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 67.54513
+      "Time": 115.675072
     },
     {
       "Name": "loadout 9: RicochetDoctrine+PackInstinct+QuickenedWeave+VolatileMixture+RunicSkin: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000048, mp 320.2, max 1000124",
+      "Actual": "hp 1000075, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 67.54513
+      "Time": 115.675072
     },
     {
       "Name": "loadout 9: RicochetDoctrine+PackInstinct+QuickenedWeave+VolatileMixture+RunicSkin: no errors",
@@ -432,7 +432,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 67.54513
+      "Time": 115.675072
     },
     {
       "Name": "loadout 9: RicochetDoctrine+PackInstinct+QuickenedWeave+VolatileMixture+RunicSkin: removing restores every stat",
@@ -442,27 +442,27 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 67.7464
+      "Time": 115.94101
     },
     {
       "Name": "loadout 10: SkirmishersPace+LastBanner+VenomLedger+PackInstinct+AnvilHeart: player hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 4960.401, mp 50.5, max 5101",
+      "Actual": "hp 4961.601, mp 50.5, max 5101",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 74.83296
+      "Time": 128.46933
     },
     {
       "Name": "loadout 10: SkirmishersPace+LastBanner+VenomLedger+PackInstinct+AnvilHeart: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000072, mp 320.2, max 1000124",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 74.83296
+      "Time": 128.46933
     },
     {
       "Name": "loadout 10: SkirmishersPace+LastBanner+VenomLedger+PackInstinct+AnvilHeart: no errors",
@@ -472,7 +472,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 74.83296
+      "Time": 128.46933
     },
     {
       "Name": "loadout 10: SkirmishersPace+LastBanner+VenomLedger+PackInstinct+AnvilHeart: removing restores every stat",
@@ -482,27 +482,27 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 75.0340347
+      "Time": 128.74231
     },
     {
       "Name": "loadout 11: EldritchFaith+GraveTithe+Bleeding+VenomLedger+SixFates: player hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 4605.95, mp 50.5, max 5101",
+      "Actual": "hp 4354.485, mp 50.5, max 5101",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 82.1174545
+      "Time": 140.87178
     },
     {
       "Name": "loadout 11: EldritchFaith+GraveTithe+Bleeding+VenomLedger+SixFates: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 1000090, mp 320.2, max 1000124",
+      "Actual": "hp 1000094, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 82.1174545
+      "Time": 140.87178
     },
     {
       "Name": "loadout 11: EldritchFaith+GraveTithe+Bleeding+VenomLedger+SixFates: no errors",
@@ -512,7 +512,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 82.1174545
+      "Time": 140.87178
     },
     {
       "Name": "loadout 11: EldritchFaith+GraveTithe+Bleeding+VenomLedger+SixFates: removing restores every stat",
@@ -522,7 +522,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 82.31897
+      "Time": 141.137161
     },
     {
       "Name": "loadout 12: RicochetDoctrine+SkirmishersPace+BloodBleeding+SingularElement+PowderBurn: player hp, mp and max hp are valid",
@@ -532,17 +532,17 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 89.3513947
+      "Time": 153.4075
     },
     {
       "Name": "loadout 12: RicochetDoctrine+SkirmishersPace+BloodBleeding+SingularElement+PowderBurn: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 950074.1, mp 320.2, max 1000124",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 89.3513947
+      "Time": 153.4075
     },
     {
       "Name": "loadout 12: RicochetDoctrine+SkirmishersPace+BloodBleeding+SingularElement+PowderBurn: no errors",
@@ -552,7 +552,7 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 89.3513947
+      "Time": 153.4075
     },
     {
       "Name": "loadout 12: RicochetDoctrine+SkirmishersPace+BloodBleeding+SingularElement+PowderBurn: removing restores every stat",
@@ -562,27 +562,27 @@
       "Note": null,
       "Screenshot": null,
       "Step": 4,
-      "Time": 89.55409
+      "Time": 153.672
     },
     {
       "Name": "every passive at once: player hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 4964.7, mp 7.166667, max 2550.5",
+      "Actual": "hp 4964.7, mp 12.16667, max 2550.5",
       "Note": null,
       "Screenshot": null,
       "Step": 7,
-      "Time": 99.1945953
+      "Time": 166.221512
     },
     {
       "Name": "every passive at once: target hp, mp and max hp are valid",
       "Status": "Passed",
       "Expected": "finite, not negative",
-      "Actual": "hp 980136.9, mp 320.2, max 1000124",
+      "Actual": "hp 1000123, mp 320.2, max 1000124",
       "Note": null,
       "Screenshot": null,
       "Step": 7,
-      "Time": 99.1945953
+      "Time": 166.221512
     },
     {
       "Name": "every passive at once: no errors",
@@ -592,940 +592,835 @@
       "Note": null,
       "Screenshot": null,
       "Step": 7,
-      "Time": 99.1945953
+      "Time": 166.221512
     }
   ],
   "Metrics": {
-    "loadout 1: GraveTithe+Execution+DoubleSpell+SecondDose+LoadedChamber basic damage": 58.96311,
-    "loadout 2: HereticsPyre+VowOfStillness+QuickenedWeave+PenitentBlade+LivingPhilosopher basic damage": 42.13333,
-    "loadout 3: Hexweaver+OneCleanCut+SkirmishersPace+PowderBurn+BoneChoir basic damage": 43.1866646,
-    "loadout 4: PowderBurn+Windreader+AlphasBurden+PackInstinct+BloodMage basic damage": 46.6681137,
+    "loadout 1: GraveTithe+Execution+DoubleSpell+SecondDose+LoadedChamber basic damage": 60.1808662,
+    "loadout 2: HereticsPyre+VowOfStillness+QuickenedWeave+PenitentBlade+LivingPhilosopher basic damage": 0.0,
+    "loadout 3: Hexweaver+OneCleanCut+SkirmishersPace+PowderBurn+BoneChoir basic damage": 0.0,
+    "loadout 4: PowderBurn+Windreader+AlphasBurden+PackInstinct+BloodMage basic damage": 0.0,
     "loadout 5: ManaLeech+EldritchFaith+VolatileMixture+HollowQuiver+CurseOfKanix basic damage": 0.0,
-    "loadout 6: Verdict+FeralBond+CurseOfKanix+PenitentBlade+SingularElement basic damage": 33.7124977,
-    "loadout 7: Rock+TimeCollector+OathOfSilence+AnsweredPrayer+Windreader basic damage": 46.6429825,
-    "loadout 8: FeralBond+Thorn+IronMomentum+LastBanner+PenitentBlade basic damage": 44.66133,
-    "loadout 9: RicochetDoctrine+PackInstinct+QuickenedWeave+VolatileMixture+RunicSkin basic damage": 42.13333,
-    "loadout 10: SkirmishersPace+LastBanner+VenomLedger+PackInstinct+AnvilHeart basic damage": 42.1965332,
-    "loadout 11: EldritchFaith+GraveTithe+Bleeding+VenomLedger+SixFates basic damage": 30.3333321,
-    "loadout 12: RicochetDoctrine+SkirmishersPace+BloodBleeding+SingularElement+PowderBurn basic damage": 42.13333,
+    "loadout 6: Verdict+FeralBond+CurseOfKanix+PenitentBlade+SingularElement basic damage": 0.0,
+    "loadout 7: Rock+TimeCollector+OathOfSilence+AnsweredPrayer+Windreader basic damage": 0.0,
+    "loadout 8: FeralBond+Thorn+IronMomentum+LastBanner+PenitentBlade basic damage": 0.0,
+    "loadout 9: RicochetDoctrine+PackInstinct+QuickenedWeave+VolatileMixture+RunicSkin basic damage": 0.0,
+    "loadout 10: SkirmishersPace+LastBanner+VenomLedger+PackInstinct+AnvilHeart basic damage": 0.0,
+    "loadout 11: EldritchFaith+GraveTithe+Bleeding+VenomLedger+SixFates basic damage": 0.0,
+    "loadout 12: RicochetDoctrine+SkirmishersPace+BloodBleeding+SingularElement+PowderBurn basic damage": 0.0,
     "every passive at once basic damage": 0.0
   },
   "Variables": {},
   "Log": [
-    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
     "0.00s step 1: StartNewGame",
-    "0.00s going back to the title from Town so the old character is dropped",
-    "1.41s in scene Town",
-    "1.41s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
-    "1.42s step 3: Refill {\"of\":\"player\"}",
-    "1.43s step 4: SpawnTarget",
-    "1.55s step 5: RandomLoadouts {\"count\":12,\"size\":5,\"timeout\":3600}",
-    "1.92s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
-    "5.12s clicked Skeletom(Clone) at screen 1068,526 world 1.2,-2.15, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
-    "8.58s clicked Skeletom(Clone) at screen 1339,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.1",
-    "12.25s clicked Skeletom(Clone) at screen 1120,527 world 1.2,-2.15, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
-    "15.71s clicked Skeletom(Clone) at screen 1391,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
-    "19.51s clicked Skeletom(Clone) at screen 1074,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.3",
-    "22.97s clicked Skeletom(Clone) at screen 1385,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
-    "26.72s clicked Skeletom(Clone) at screen 1121,527 world 1.2,-2.15, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
-    "30.19s clicked Skeletom(Clone) at screen 1393,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
-    "36.52s clicked Skeletom(Clone) at screen 1119,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
-    "40.01s clicked Skeletom(Clone) at screen 1390,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
-    "42.81s clicked Skeletom(Clone) at screen 1120,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: Value, virtual mouse is current True, distance 1.8",
-    "46.27s clicked Skeletom(Clone) at screen 1392,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
-    "50.07s clicked Skeletom(Clone) at screen 1121,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
-    "53.54s clicked Skeletom(Clone) at screen 1392,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
-    "57.31s clicked Skeletom(Clone) at screen 1120,527 world 1.2,-2.15, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
-    "60.77s clicked Skeletom(Clone) at screen 1394,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
-    "64.56s clicked Skeletom(Clone) at screen 1122,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
-    "68.02s clicked Skeletom(Clone) at screen 1393,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
-    "71.84s clicked Skeletom(Clone) at screen 1080,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.3",
-    "75.31s clicked Skeletom(Clone) at screen 1398,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.8",
-    "79.13s clicked Skeletom(Clone) at screen 1124,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.8",
-    "82.59s clicked Skeletom(Clone) at screen 1390,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
-    "86.36s clicked Skeletom(Clone) at screen 1081,527 world 1.2,-2.15, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.3",
-    "89.55s step 6: Reset",
-    "89.56s step 7: Give {\"passives\":[\"AlphasBurden\",\"AnsweredPrayer\",\"AnvilHeart\",\"BlessingOfMagearna\",\"BloodBleeding\",\"BloodMage\",\"BoneChoir\",\"BurdenOfKings\",\"CovenantKeeper\",\"CurseOfKanix\",\"DoubleAttack\",\"DoubleSpell\",\"EldritchFaith\",\"Execution\",\"FeralBond\",\"FickleStars\",\"GlassCannonTheorem\",\"GraveTithe\",\"HereticsPyre\",\"Hexweaver\",\"HollowCrown\",\"HollowQuiver\",\"IronMomentum\",\"LastBanner\",\"LivingPhilosopher\",\"LoadedChamber\",\"ManaLeech\",\"MarkedThroat\",\"OathOfSilence\",\"OneCleanCut\",\"OverflowingSigil\",\"PackInstinct\",\"PenitentBlade\",\"PinningShot\",\"PowderBurn\",\"QuickenedWeave\",\"RadiantRebuke\",\"RicochetDoctrine\",\"Rock\",\"RunicSkin\",\"SecondDose\",\"SharedWound\",\"SingularElement\",\"SixFates\",\"SkirmishersPace\",\"SlowIncantation\",\"SpellboundEdge\",\"Thorn\",\"TimeCollector\",\"TransmutedBlood\",\"Vampire\",\"VeilStep\",\"VenomLedger\",\"Verdict\",\"VolatileMixture\",\"VowOfStillness\",\"WhisperPact\",\"Windreader\",\"DepressionChaos\",\"TwinConduit\"]}",
-    "89.58s step 8: StandardRoutine {\"label\":\"every passive at once\"}",
-    "89.88s clicked Skeletom(Clone) at screen 1395,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.7",
-    "96.19s clicked Skeletom(Clone) at screen 1076,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.3"
+    "0.00s going back to the title from  so the old character is dropped",
+    "4.12s in scene Town",
+    "4.12s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "4.25s step 3: Refill {\"of\":\"player\"}",
+    "4.38s step 4: SpawnTarget",
+    "5.45s step 5: RandomLoadouts {\"count\":12,\"size\":5,\"timeout\":3600}",
+    "6.59s clicked Skeletom(Clone) at screen 1068,529 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "10.85s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "15.66s clicked Skeletom(Clone) at screen 1234,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.4",
+    "23.52s clicked Skeletom(Clone) at screen 1357,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2",
+    "28.32s clicked Skeletom(Clone) at screen 1236,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.4",
+    "36.05s clicked Skeletom(Clone) at screen 1356,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.6",
+    "40.99s clicked Skeletom(Clone) at screen 1234,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.4",
+    "48.72s clicked Skeletom(Clone) at screen 1353,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2",
+    "53.52s clicked Skeletom(Clone) at screen 1233,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.4",
+    "61.25s clicked Skeletom(Clone) at screen 1352,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2",
+    "66.05s clicked Skeletom(Clone) at screen 1235,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.4",
+    "73.79s clicked Skeletom(Clone) at screen 1354,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2",
+    "78.72s clicked Skeletom(Clone) at screen 1238,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
+    "86.47s clicked Skeletom(Clone) at screen 1370,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "91.28s clicked Skeletom(Clone) at screen 1249,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.5",
+    "99.14s clicked Skeletom(Clone) at screen 1368,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.1",
+    "103.94s clicked Skeletom(Clone) at screen 1255,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.6",
+    "111.81s clicked Skeletom(Clone) at screen 1373,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.2",
+    "116.87s clicked Skeletom(Clone) at screen 1304,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5.1",
+    "124.74s clicked Skeletom(Clone) at screen 1421,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.4",
+    "129.54s clicked Skeletom(Clone) at screen 1207,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.3",
+    "137.27s clicked Skeletom(Clone) at screen 1345,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.9",
+    "141.94s clicked Skeletom(Clone) at screen 1212,541 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 4.1",
+    "149.67s clicked Skeletom(Clone) at screen 1327,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.3",
+    "153.67s step 6: Reset",
+    "153.80s step 7: Give {\"passives\":[\"AlphasBurden\",\"AnsweredPrayer\",\"AnvilHeart\",\"BlessingOfMagearna\",\"BloodBleeding\",\"BloodMage\",\"BoneChoir\",\"BurdenOfKings\",\"CovenantKeeper\",\"CurseOfKanix\",\"DoubleAttack\",\"DoubleSpell\",\"EldritchFaith\",\"Execution\",\"FeralBond\",\"FickleStars\",\"GlassCannonTheorem\",\"GraveTithe\",\"HereticsPyre\",\"Hexweaver\",\"HollowCrown\",\"HollowQuiver\",\"IronMomentum\",\"LastBanner\",\"LivingPhilosopher\",\"LoadedChamber\",\"ManaLeech\",\"MarkedThroat\",\"OathOfSilence\",\"OneCleanCut\",\"OverflowingSigil\",\"PackInstinct\",\"PenitentBlade\",\"PinningShot\",\"PowderBurn\",\"QuickenedWeave\",\"RadiantRebuke\",\"RicochetDoctrine\",\"Rock\",\"RunicSkin\",\"SecondDose\",\"SharedWound\",\"SingularElement\",\"SixFates\",\"SkirmishersPace\",\"SlowIncantation\",\"SpellboundEdge\",\"Thorn\",\"TimeCollector\",\"TransmutedBlood\",\"Vampire\",\"VeilStep\",\"VenomLedger\",\"Verdict\",\"VolatileMixture\",\"VowOfStillness\",\"WhisperPact\",\"Windreader\",\"DepressionChaos\",\"TwinConduit\"]}",
+    "153.94s step 8: StandardRoutine {\"label\":\"every passive at once\"}",
+    "154.71s clicked Skeletom(Clone) at screen 1302,539 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 5",
+    "162.49s clicked Skeletom(Clone) at screen 1406,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2.6"
   ],
   "Errors": [],
   "Combat": [
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.7839727,
-      "Time": 1.82516825
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 12.0403786,
+      "Time": 5.981712
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 15.7242107,
-      "Time": 2.79998922
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 15.8325729,
+      "Time": 6.98672
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 15.7327528,
-      "Time": 3.78773284
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 16.1622925,
+      "Time": 8.05335
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 15.7221756,
-      "Time": 4.772408
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 16.1456223,
+      "Time": 9.123448
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 15.7397709,
-      "Time": 5.761375
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 18.2805271,
+      "Time": 10.5865612
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 16.1156082,
+      "Time": 11.6527958
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 6.622689
+      "Time": 12.4562893
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 15.7339172,
-      "Time": 6.74908066
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 16.1529789,
+      "Time": 12.7248354
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 6.774103
+      "Time": 12.7248354
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 6.9243536
+      "Time": 12.990839
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 8.976739
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 16.15869,
+      "Time": 13.78664
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5333328,
-      "Time": 9.960354
+      "Time": 23.7892723
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5333328,
-      "Time": 10.9462433
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 11.9314489
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 12.9167233
+      "Time": 24.8611965
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 13.7576847
+      "Time": 25.12273
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 25.3874168
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 25.656683
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5333328,
-      "Time": 13.9048777
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 13.9134712
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 14.0648222
+      "Time": 25.9219418
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 21.0666656,
-      "Time": 16.2084
+      "Time": 36.3223343
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 7.373333,
-      "Time": 17.1910381
+      "Time": 37.38976
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 37.6574326
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 37.9242477
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 38.1865273
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 7.373333,
-      "Time": 18.18919
+      "Time": 38.4576874
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 7.373333,
-      "Time": 19.1685677
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 11.2686777,
+      "Time": 48.9908752
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 7.373333,
-      "Time": 20.1517773
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 11.2686777,
+      "Time": 50.0526
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 21.0172539
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 7.373333,
-      "Time": 21.1362972
+      "Time": 50.31982
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 21.1720943
+      "Time": 50.5873566
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 21.3240128
+      "Time": 50.85557
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6670284,
-      "Time": 23.4454689
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6670284,
-      "Time": 24.43042
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6670284,
-      "Time": 25.4132442
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6670284,
-      "Time": 26.397665
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6670284,
-      "Time": 27.38244
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 11.2686777,
+      "Time": 51.1246948
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 28.2205868
+      "Time": 62.8551559
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 63.1155319
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 63.390995
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6670284,
-      "Time": 28.3671551
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 28.375515
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 28.5313015
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 38.02862
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 38.1791763
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 38.3337135
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 23.425,
-      "Time": 38.48578
+      "Time": 63.6558647
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5333328,
-      "Time": 40.50159
+      "Time": 74.0545
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 2.11249924,
-      "Time": 41.502758
+      "Time": 75.1684341
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5333328,
-      "Time": 41.502758
+      "Time": 75.1684341
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 75.38773
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 75.65751
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 75.92089
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5333328,
-      "Time": 42.4885674
+      "Time": 76.18752
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 11.3832531,
+      "Time": 86.74286
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 11.3832531,
+      "Time": 87.80492
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 44.30927
+      "Time": 88.0732
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 44.4610558
+      "Time": 88.3395
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 44.6134644
+      "Time": 88.60912
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6607456,
-      "Time": 46.7567139
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 11.3832531,
+      "Time": 88.8749
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6607456,
-      "Time": 47.7436028
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6607456,
-      "Time": 48.7289352
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6607456,
-      "Time": 49.7113953
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6607456,
-      "Time": 50.6963158
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 51.57207
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.6607456,
-      "Time": 51.6790848
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 51.7244453
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 51.87871
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5333328,
-      "Time": 54.0220833
+      "Time": 99.40667
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.9546661,
-      "Time": 55.00677
+      "Time": 100.474236
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 9.597266,
+      "Time": 100.742195
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 100.742195
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 9.597266,
+      "Time": 101.008087
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 101.008087
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 9.597266,
+      "Time": 101.269119
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 101.269119
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 11.3759995,
-      "Time": 56.0035477
+      "Time": 101.53791
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.7973328,
-      "Time": 56.98817
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 10.5333328,
+      "Time": 112.073975
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 12.2186661,
-      "Time": 57.9898758
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 9.597266,
-      "Time": 58.8131332
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 10.5333328,
+      "Time": 113.136017
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 58.8131332
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 12.6399994,
-      "Time": 58.96185
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 9.597266,
-      "Time": 58.9718933
+      "Time": 113.40461
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 58.9718933
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 9.597266,
-      "Time": 59.1266937
+      "Time": 113.720619
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 59.1266937
+      "Time": 113.943108
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5333328,
-      "Time": 61.2688751
+      "Time": 114.204865
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 62.25497
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 63.23823
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 64.22219
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 65.21335
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 66.0655746
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 66.1955643
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 66.21674
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 66.3703156
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 23.55,
-      "Time": 66.52106
+      "Time": 114.204865
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5491333,
-      "Time": 68.51621
+      "Time": 125.13932
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5491333,
-      "Time": 69.49826
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5491333,
-      "Time": 70.4852142
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5491333,
-      "Time": 71.46966
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5491333,
-      "Time": 72.4547958
+      "Time": 126.206673
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 73.34198
+      "Time": 126.335648
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 126.605492
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 126.8743
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 10.5491333,
-      "Time": 73.45793
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 73.49662
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 73.65049
+      "Time": 127.271523
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 129.805725
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 129.805725
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 130.8744
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 130.8744
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 131.802475
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 131.802475
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 132.8701
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 132.8701
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 133.805649
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 133.805649
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 134.8709
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 134.8709
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 135.808319
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 135.808319
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 136.874756
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 136.874756
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 11.5333328,
-      "Time": 75.8123
+      "Time": 137.54184
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
       "Amount": 51.4933319,
-      "Time": 76.04853
+      "Time": 137.826721
     },
     {
       "Kind": "taken",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
       "Amount": 51.4933319,
-      "Time": 76.04853
+      "Time": 137.826721
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.5333328,
-      "Time": 76.81392
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 77.03629
-    },
-    {
-      "Kind": "taken",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 77.03629
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 1.0,
-      "Time": 77.79947
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 78.03873
-    },
-    {
-      "Kind": "taken",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 78.03873
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 6.26666641,
-      "Time": 78.80328
+      "Time": 138.606659
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
       "Amount": 51.4933319,
-      "Time": 79.0343
+      "Time": 138.872757
     },
     {
       "Kind": "taken",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
       "Amount": 51.4933319,
-      "Time": 79.0343
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 11.5333328,
-      "Time": 79.7868042
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 80.04106
+      "Time": 138.872757
     },
     {
       "Kind": "taken",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 80.04106
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 63.9333344,
-      "Time": 80.63613
+      "Time": 138.872757
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 139.028748
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 139.274277
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 16.8,
+      "Time": 139.671219
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 139.804108
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 139.804108
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 140.87178
+    },
+    {
+      "Kind": "taken",
+      "Source": "Player#-348522",
+      "Target": "Player#-348522",
+      "Amount": 51.4933319,
+      "Time": 140.87178
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 10.5333328,
+      "Time": 149.807053
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 10.5333328,
+      "Time": 150.87326
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 151.275528
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 151.5421
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 63.9333344,
+      "Time": 151.80658
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
+      "Amount": 10.5333328,
+      "Time": 151.942078
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 1.0,
-      "Time": 80.7700653
+      "Time": 164.084549
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 80.79058
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 80.94156
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 81.0340652
-    },
-    {
-      "Kind": "taken",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 81.0340652
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 82.05679
-    },
-    {
-      "Kind": "taken",
-      "Source": "Player#-2862694",
-      "Target": "Player#-2862694",
-      "Amount": 51.4933319,
-      "Time": 82.05679
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 83.0783844
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 84.0617
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 85.04559
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 86.0303345
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 87.02514
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 87.8698349
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 10.5333328,
-      "Time": 88.02468
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 88.02468
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 63.9333344,
-      "Time": 88.17507
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
-      "Amount": 1.0,
-      "Time": 97.69527
-    },
-    {
-      "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
       "Amount": 38.36,
-      "Time": 97.69527
+      "Time": 164.084549
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 1.0,
-      "Time": 97.84639
+      "Time": 164.340836
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 38.36,
-      "Time": 97.84639
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 39.0066681,
+      "Time": 164.340836
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2862694",
-      "Target": "Skeletom(Clone)#-2865438",
+      "Source": "Player#-348522",
+      "Target": "Skeletom(Clone)#-351800",
       "Amount": 1.0,
-      "Time": 98.00103
+      "Time": 164.617264
     },
     {
       "Kind": "taken",
-      "Source": "Skeletom(Clone)#-2865438",
-      "Target": "Player#-2862694",
-      "Amount": 59.58,
-      "Time": 98.00103
+      "Source": "Skeletom(Clone)#-351800",
+      "Target": "Player#-348522",
+      "Amount": 58.9333344,
+      "Time": 164.617264
     }
   ]
 }

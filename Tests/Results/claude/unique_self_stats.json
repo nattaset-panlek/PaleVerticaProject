@@ -3,12 +3,12 @@
   "File": "passives/self.json",
   "Agent": "claude",
   "SaveProfile": "claude",
-  "StartedAt": "2026-11-10 16:01:43",
-  "DurationSeconds": 12.3842163,
-  "Status": "Failed",
-  "ChecksPassed": 1,
+  "StartedAt": "2026-11-10 21:52:39",
+  "DurationSeconds": 12.9715881,
+  "Status": "Passed",
+  "ChecksPassed": 3,
   "ChecksReview": 0,
-  "ChecksFailed": 2,
+  "ChecksFailed": 0,
   "StepResults": [
     {
       "Index": 0,
@@ -17,7 +17,7 @@
       "Status": "Passed",
       "Message": "in scene Town",
       "StartTime": 0.0,
-      "Duration": 0.258056641
+      "Duration": 1.89949036
     },
     {
       "Index": 1,
@@ -25,8 +25,8 @@
       "Arguments": "SpawnTarget",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.258056641,
-      "Duration": 0.16003418
+      "StartTime": 1.89949036,
+      "Duration": 0.0178833
     },
     {
       "Index": 2,
@@ -34,17 +34,17 @@
       "Arguments": "Reset",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.41809082,
-      "Duration": 0.1071167
+      "StartTime": 1.91737366,
+      "Duration": 0.0165405273
     },
     {
       "Index": 3,
       "Action": "Record",
       "Arguments": "Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
       "Status": "Passed",
-      "Message": "var.mh = 55101",
-      "StartTime": 0.5252075,
-      "Duration": 0.0547485352
+      "Message": "var.mh = 101",
+      "StartTime": 1.93391418,
+      "Duration": 0.0170593262
     },
     {
       "Index": 4,
@@ -52,8 +52,8 @@
       "Arguments": "Give {\"passives\":[\"HollowCrown\"]}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.579956055,
-      "Duration": 0.05456543
+      "StartTime": 1.95097351,
+      "Duration": 0.016494751
     },
     {
       "Index": 5,
@@ -61,8 +61,8 @@
       "Arguments": "Expect {\"name\":\"Hollow Crown: max hp is halved\",\"value\":\"player.MaxHP / var.mh\",\"to\":0.5,\"tolerance\":0.03}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.6345215,
-      "Duration": 0.07171631
+      "StartTime": 1.96746826,
+      "Duration": 0.0163116455
     },
     {
       "Index": 6,
@@ -70,17 +70,17 @@
       "Arguments": "Reset",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.7062378,
-      "Duration": 0.0518188477
+      "StartTime": 1.98377991,
+      "Duration": 0.0174102783
     },
     {
       "Index": 7,
       "Action": "Record",
       "Arguments": "Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
       "Status": "Passed",
-      "Message": "var.mh = 55101",
-      "StartTime": 0.758056641,
-      "Duration": 0.05493164
+      "Message": "var.mh = 101",
+      "StartTime": 2.00119019,
+      "Duration": 0.0166015625
     },
     {
       "Index": 8,
@@ -88,17 +88,17 @@
       "Arguments": "Give {\"passives\":[\"WhisperPact\"]}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 0.8129883,
-      "Duration": 0.0560302734
+      "StartTime": 2.01779175,
+      "Duration": 0.0165252686
     },
     {
       "Index": 9,
       "Action": "Repeat",
       "Arguments": "Repeat {\"times\":6,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1},{\"do\":\"Refill\",\"of\":\"player\"}]}",
       "Status": "Passed",
-      "Message": "cast started False, 1 hits",
-      "StartTime": 0.869018555,
-      "Duration": 9.347046
+      "Message": "cast started True, 1 hits",
+      "StartTime": 2.034317,
+      "Duration": 8.987381
     },
     {
       "Index": 10,
@@ -106,8 +106,8 @@
       "Arguments": "Expect {\"name\":\"Whisper Pact: repeated casts lower max hp\",\"value\":\"player.MaxHP\",\"op\":\"<\",\"to\":\"var.mh\"}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 10.2160645,
-      "Duration": 0.06970215
+      "StartTime": 11.021698,
+      "Duration": 0.0169067383
     },
     {
       "Index": 11,
@@ -115,8 +115,8 @@
       "Arguments": "Reset",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 10.2857666,
-      "Duration": 0.0615844727
+      "StartTime": 11.0386047,
+      "Duration": 0.0169677734
     },
     {
       "Index": 12,
@@ -124,17 +124,17 @@
       "Arguments": "Give {\"passives\":[\"OathOfSilence\"]}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 10.3473511,
-      "Duration": 0.07507324
+      "StartTime": 11.0555725,
+      "Duration": 0.01637268
     },
     {
       "Index": 13,
       "Action": "Cast",
       "Arguments": "Cast {\"slot\":0,\"at\":\"target\",\"wait\":1.5}",
       "Status": "Passed",
-      "Message": "cast started False, 1 hits",
-      "StartTime": 10.4224243,
-      "Duration": 1.89337158
+      "Message": "cast started False, 0 hits",
+      "StartTime": 11.0719452,
+      "Duration": 1.88323975
     },
     {
       "Index": 14,
@@ -142,30 +142,30 @@
       "Arguments": "Expect {\"name\":\"Oath of Silence: a skill with cast time does not fire\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}",
       "Status": "Passed",
       "Message": null,
-      "StartTime": 12.3157959,
-      "Duration": 0.06842041
+      "StartTime": 12.9551849,
+      "Duration": 0.0164031982
     }
   ],
   "Checks": [
     {
       "Name": "Hollow Crown: max hp is halved",
-      "Status": "Failed",
+      "Status": "Passed",
       "Expected": "0.5 +/- 0.03",
-      "Actual": "1",
+      "Actual": "0.5",
       "Note": null,
       "Screenshot": null,
       "Step": 5,
-      "Time": 0.6345215
+      "Time": 1.96746826
     },
     {
       "Name": "Whisper Pact: repeated casts lower max hp",
-      "Status": "Failed",
-      "Expected": "< 55101",
-      "Actual": "55101",
+      "Status": "Passed",
+      "Expected": "< 101",
+      "Actual": "96.96",
       "Note": null,
       "Screenshot": null,
       "Step": 10,
-      "Time": 10.2160645
+      "Time": 11.021698
     },
     {
       "Name": "Oath of Silence: a skill with cast time does not fire",
@@ -175,106 +175,116 @@
       "Note": "Review if slot 1 holds an instant skill, which Oath of Silence allows.",
       "Screenshot": null,
       "Step": 14,
-      "Time": 12.3157959
+      "Time": 12.9551849
     }
   ],
   "Metrics": {},
   "Variables": {
-    "mh": 55101.0,
+    "mh": 101.0,
     "i": 5.0
   },
   "Log": [
-    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s begin, seed 1337, speed x1, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
     "0.00s step 1: StartNewGame",
-    "0.26s in scene Town",
-    "0.26s step 2: SpawnTarget",
-    "0.42s step 3: Reset",
-    "0.53s step 4: Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
-    "0.53s var.mh = 55101",
-    "0.58s step 5: Give {\"passives\":[\"HollowCrown\"]}",
-    "0.63s step 6: Expect {\"name\":\"Hollow Crown: max hp is halved\",\"value\":\"player.MaxHP / var.mh\",\"to\":0.5,\"tolerance\":0.03}",
-    "0.71s step 7: Reset",
-    "0.76s step 8: Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
-    "0.76s var.mh = 55101",
-    "0.81s step 9: Give {\"passives\":[\"WhisperPact\"]}",
-    "0.87s step 10: Repeat {\"times\":6,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1},{\"do\":\"Refill\",\"of\":\"player\"}]}",
-    "2.46s cast started False, 0 hits",
-    "3.94s cast started False, 0 hits",
-    "5.44s cast started False, 2 hits",
-    "6.97s cast started False, 1 hits",
-    "8.64s cast started False, 2 hits",
-    "10.15s cast started False, 1 hits",
-    "10.22s step 11: Expect {\"name\":\"Whisper Pact: repeated casts lower max hp\",\"value\":\"player.MaxHP\",\"op\":\"<\",\"to\":\"var.mh\"}",
-    "10.29s step 12: Reset",
-    "10.35s step 13: Give {\"passives\":[\"OathOfSilence\"]}",
-    "10.42s step 14: Cast {\"slot\":0,\"at\":\"target\",\"wait\":1.5}",
-    "12.32s cast started False, 1 hits",
-    "12.32s step 15: Expect {\"name\":\"Oath of Silence: a skill with cast time does not fire\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}"
+    "0.00s going back to the title from Town so the old character is dropped",
+    "0.55s skill slot 1 is now skill 1001 on Player#-919258 (frame 3393, scene Title, loading True)",
+    "1.90s in scene Town",
+    "1.90s skills after the new game: granted [1001], equipped [1001,-,-,-,-,-,-,-,-,-], hotbar row 0 [Skill:1001,-,-,-,-,-,-,-,-,-]",
+    "1.90s step 2: SpawnTarget",
+    "1.92s step 3: Reset",
+    "1.93s step 4: Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+    "1.93s var.mh = 101",
+    "1.95s step 5: Give {\"passives\":[\"HollowCrown\"]}",
+    "1.97s step 6: Expect {\"name\":\"Hollow Crown: max hp is halved\",\"value\":\"player.MaxHP / var.mh\",\"to\":0.5,\"tolerance\":0.03}",
+    "1.98s step 7: Reset",
+    "2.00s step 8: Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+    "2.00s var.mh = 101",
+    "2.02s step 9: Give {\"passives\":[\"WhisperPact\"]}",
+    "2.03s step 10: Repeat {\"times\":6,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1},{\"do\":\"Refill\",\"of\":\"player\"}]}",
+    "2.03s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "2.08s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "2.40s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "2.40s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Casting",
+    "3.52s cast started True, 1 hits",
+    "3.53s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "3.58s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "3.92s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "3.92s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Casting",
+    "5.02s cast started True, 1 hits",
+    "5.03s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "5.08s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "5.40s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "5.40s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Casting",
+    "6.50s cast started True, 1 hits",
+    "6.52s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "6.57s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "6.90s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "6.90s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Casting",
+    "8.02s cast started True, 1 hits",
+    "8.03s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "8.08s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "8.42s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "8.42s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Casting",
+    "9.52s cast started True, 1 hits",
+    "9.53s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "9.58s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "9.90s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "9.90s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Casting",
+    "11.01s cast started True, 1 hits",
+    "11.02s step 11: Expect {\"name\":\"Whisper Pact: repeated casts lower max hp\",\"value\":\"player.MaxHP\",\"op\":\"<\",\"to\":\"var.mh\"}",
+    "11.04s step 12: Reset",
+    "11.06s step 13: Give {\"passives\":[\"OathOfSilence\"]}",
+    "11.07s step 14: Cast {\"slot\":0,\"at\":\"target\",\"wait\":1.5}",
+    "11.07s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "11.12s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "11.45s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "11.45s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "12.96s cast started False, 0 hits",
+    "12.96s step 15: Expect {\"name\":\"Oath of Silence: a skill with cast time does not fire\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}"
   ],
   "Errors": [],
   "Combat": [
     {
       "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 864.8385
+      "Source": "Player#-919258",
+      "Target": "Skeletom(Clone)#-922712",
+      "Amount": 21.7833328,
+      "Time": 150.890884
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 865.8534
+      "Source": "Player#-919258",
+      "Target": "Skeletom(Clone)#-922712",
+      "Amount": 22.3243828,
+      "Time": 152.40773
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 866.8842
+      "Source": "Player#-919258",
+      "Target": "Skeletom(Clone)#-922712",
+      "Amount": 22.8689518,
+      "Time": 153.907669
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 867.9761
+      "Source": "Player#-919258",
+      "Target": "Skeletom(Clone)#-922712",
+      "Amount": 23.4135742,
+      "Time": 155.407761
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 868.9217
+      "Source": "Player#-919258",
+      "Target": "Skeletom(Clone)#-922712",
+      "Amount": 23.9581051,
+      "Time": 156.907791
     },
     {
       "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 869.9335
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 870.995
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 871.998352
-    },
-    {
-      "Kind": "hit",
-      "Source": "Player#-2146916",
-      "Target": "Skeletom(Clone)#-2192226",
-      "Amount": 10.5333328,
-      "Time": 873.03186
+      "Source": "Player#-919258",
+      "Target": "Skeletom(Clone)#-922712",
+      "Amount": 24.50272,
+      "Time": 158.410675
     }
   ]
 }

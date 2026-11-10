@@ -1,10 +1,10 @@
 {
-  "Scenario": "quest_bones_on_the_road",
-  "File": "quests/bones_on_the_road.json",
+  "Scenario": "ui_flow",
+  "File": "core/ui_flow.json",
   "Agent": "claude",
   "SaveProfile": "claude",
-  "StartedAt": "2026-11-10 19:31:15",
-  "DurationSeconds": 3.19092178,
+  "StartedAt": "2026-11-10 21:00:41",
+  "DurationSeconds": 16.9039917,
   "Status": "Failed",
   "ChecksPassed": 0,
   "ChecksReview": 0,
@@ -17,7 +17,7 @@
       "Status": "Passed",
       "Message": "in scene Town",
       "StartTime": 0.0,
-      "Duration": 1.37447357
+      "Duration": 5.48535156
     },
     {
       "Index": 1,
@@ -25,8 +25,8 @@
       "Arguments": "[setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
       "Status": "Passed",
       "Message": "base 15, job 5, stat points 81, passive points 5",
-      "StartTime": 1.37447357,
-      "Duration": 0.0337944031
+      "StartTime": 5.48535156,
+      "Duration": 0.1038208
     },
     {
       "Index": 2,
@@ -34,8 +34,8 @@
       "Arguments": "[setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
       "Status": "Passed",
       "Message": "VIT +20, STR +61; 0 points left",
-      "StartTime": 1.408268,
-      "Duration": 0.0108718872
+      "StartTime": 5.58917236,
+      "Duration": 0.162597656
     },
     {
       "Index": 3,
@@ -43,8 +43,8 @@
       "Arguments": "[setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
       "Status": "Passed",
       "Message": "class Warrior, origin node 5",
-      "StartTime": 1.41913986,
-      "Duration": 1.55343246
+      "StartTime": 5.75177,
+      "Duration": 7.961609
     },
     {
       "Index": 4,
@@ -52,8 +52,8 @@
       "Arguments": "[setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
       "Status": "Failed",
       "Message": "NullReferenceException: Object reference not set to an instance of an object",
-      "StartTime": 2.97257233,
-      "Duration": 0.218349457
+      "StartTime": 13.7133789,
+      "Duration": 3.19061279
     }
   ],
   "Checks": [
@@ -65,32 +65,29 @@
       "Note": "a new game has Tackle in skill slot 0 but not on the hotbar",
       "Screenshot": null,
       "Step": 4,
-      "Time": 3.19092178
+      "Time": 16.9039917
     }
   ],
-  "Metrics": {
-    "ui fallback clicks": 1.0
-  },
+  "Metrics": {},
   "Variables": {},
   "Log": [
-    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
     "0.00s step 1: [setup/new_warrior_lv15.json] StartNewGame",
     "0.00s going back to the title from Town so the old character is dropped",
-    "0.18s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
-    "0.24s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
-    "0.29s button \"New Game\" did not react (attempt 3: clicked 960,408, top UI there \"Background\", interactable True)",
-    "0.29s button \"New Game\" pressed through the EventSystem after 3 clicks did nothing (attempt 3: clicked 960,408, top UI there \"Background\", interactable True)",
-    "1.37s in scene Town",
-    "1.37s step 2: [setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
-    "1.37s base 15, job 5, stat points 81, passive points 5",
-    "1.41s step 3: [setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
-    "1.41s VIT +20, STR +61; 0 points left",
-    "1.42s step 4: [setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
-    "1.72s the class screen is already open",
-    "2.97s class Warrior, origin node 5",
-    "2.97s step 5: [setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
-    "3.19s step 5 failed: NullReferenceException: Object reference not set to an instance of an object",
-    "3.19s error logged: NullReferenceException: Object reference not set to an instance of an object"
+    "1.60s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.93s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.49s in scene Town",
+    "5.49s step 2: [setup/new_warrior_lv15.json] Level {\"base\":15,\"job\":5}",
+    "5.49s base 15, job 5, stat points 81, passive points 5",
+    "5.59s step 3: [setup/new_warrior_lv15.json] SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+    "5.59s VIT +20, STR +61; 0 points left",
+    "5.75s step 4: [setup/new_warrior_lv15.json] ChooseClass {\"class\":\"Warrior\"}",
+    "6.15s the class screen is already open",
+    "7.48s button \"CLASS\" did not react (attempt 1: clicked 448,540, top UI there \"Background\", interactable True)",
+    "13.71s class Warrior, origin node 5",
+    "13.71s step 5: [setup/new_warrior_lv15.json] AssignSkill {\"skill\":1001,\"slot\":1}",
+    "16.90s step 5 failed: NullReferenceException: Object reference not set to an instance of an object",
+    "16.90s error logged: NullReferenceException: Object reference not set to an instance of an object"
   ],
   "Errors": [
     "Exception: NullReferenceException: Object reference not set to an instance of an object ScenarioTesting.Actions.AssignSkillAction+<Run>d__0.MoveNext () (at Assets/Script/ScenarioTesting/Actions/UIActions.cs:175)"

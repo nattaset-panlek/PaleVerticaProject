@@ -1,0 +1,1610 @@
+{
+  "Scenario": "active_skill_smoke",
+  "File": "skills/every_skill.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 22:02:32",
+  "DurationSeconds": 83.38835,
+  "Status": "Passed",
+  "ChecksPassed": 121,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.486515
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.486515,
+      "Duration": 0.0160256624
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.50254071,
+      "Duration": 0.0171405077
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.51968122,
+      "Duration": 0.11645782
+    },
+    {
+      "Index": 4,
+      "Action": "CastEverySkill",
+      "Arguments": "CastEverySkill {\"timeout\":3600}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.636139,
+      "Duration": 81.7364
+    },
+    {
+      "Index": 5,
+      "Action": "ExpectNoErrors",
+      "Arguments": "ExpectNoErrors {\"name\":\"no errors across every skill\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 83.3725357,
+      "Duration": 0.0158157349
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "1001 Tackle: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 4.55112171
+    },
+    {
+      "Name": "1001 Tackle: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 4.55112171
+    },
+    {
+      "Name": "1001 Tackle: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 100000, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 4.85315657
+    },
+    {
+      "Name": "1001 Tackle: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000107, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 4.85315657
+    },
+    {
+      "Name": "1001 Tackle: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 4.85315657
+    },
+    {
+      "Name": "1002 Healing: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 7.774876
+    },
+    {
+      "Name": "1002 Healing: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 7.774876
+    },
+    {
+      "Name": "1002 Healing: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99978.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 8.075072
+    },
+    {
+      "Name": "1002 Healing: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000097, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 8.075072
+    },
+    {
+      "Name": "1002 Healing: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 8.075072
+    },
+    {
+      "Name": "1003 Hellfire Blast: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 10.9635782
+    },
+    {
+      "Name": "1003 Hellfire Blast: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 10.9635782
+    },
+    {
+      "Name": "1003 Hellfire Blast: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99991.16, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 11.2637854
+    },
+    {
+      "Name": "1003 Hellfire Blast: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 999885.7, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 11.2637854
+    },
+    {
+      "Name": "1003 Hellfire Blast: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 11.2637854
+    },
+    {
+      "Name": "1004 Divine Blessing: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 14.1638031
+    },
+    {
+      "Name": "1004 Divine Blessing: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 14.1638031
+    },
+    {
+      "Name": "1004 Divine Blessing: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99985.67, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 14.4638691
+    },
+    {
+      "Name": "1004 Divine Blessing: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000089, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 14.4638691
+    },
+    {
+      "Name": "1004 Divine Blessing: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 14.4638691
+    },
+    {
+      "Name": "1005 Earthshatter: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 17.38051
+    },
+    {
+      "Name": "1005 Earthshatter: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 17.38051
+    },
+    {
+      "Name": "1005 Earthshatter: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 100003.5, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 17.6805115
+    },
+    {
+      "Name": "1005 Earthshatter: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000067, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 17.6805115
+    },
+    {
+      "Name": "1005 Earthshatter: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 17.6805115
+    },
+    {
+      "Name": "1006 Lightning Strike: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 21.4579678
+    },
+    {
+      "Name": "1006 Lightning Strike: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 21.4579678
+    },
+    {
+      "Name": "1006 Lightning Strike: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99986.16, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 21.774332
+    },
+    {
+      "Name": "1006 Lightning Strike: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 999817.3, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 21.774332
+    },
+    {
+      "Name": "1006 Lightning Strike: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 21.774332
+    },
+    {
+      "Name": "1007 Shadow Dash: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 24.6577168
+    },
+    {
+      "Name": "1007 Shadow Dash: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 24.6577168
+    },
+    {
+      "Name": "1007 Shadow Dash: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99995.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 24.9741249
+    },
+    {
+      "Name": "1007 Shadow Dash: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000124, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 24.9741249
+    },
+    {
+      "Name": "1007 Shadow Dash: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 24.9741249
+    },
+    {
+      "Name": "1008 Aura of Flames: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 27.8584137
+    },
+    {
+      "Name": "1008 Aura of Flames: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 31.1418552
+    },
+    {
+      "Name": "1008 Aura of Flames: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 89992.33, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 31.4586868
+    },
+    {
+      "Name": "1008 Aura of Flames: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 999572.1, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 31.4586868
+    },
+    {
+      "Name": "1008 Aura of Flames: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 31.4586868
+    },
+    {
+      "Name": "1009 Lightning Blessing: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 34.34706
+    },
+    {
+      "Name": "1009 Lightning Blessing: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 34.34706
+    },
+    {
+      "Name": "1009 Lightning Blessing: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99991.16, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 34.6473
+    },
+    {
+      "Name": "1009 Lightning Blessing: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000106, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 34.6473
+    },
+    {
+      "Name": "1009 Lightning Blessing: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 34.6473
+    },
+    {
+      "Name": "1010 Fire Pila: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 37.53018
+    },
+    {
+      "Name": "1010 Fire Pila: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 37.53018
+    },
+    {
+      "Name": "1010 Fire Pila: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99982.33, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 37.8469925
+    },
+    {
+      "Name": "1010 Fire Pila: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000109, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 37.8469925
+    },
+    {
+      "Name": "1010 Fire Pila: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 37.8469925
+    },
+    {
+      "Name": "1011 Perfect Parry: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 40.76343
+    },
+    {
+      "Name": "1011 Perfect Parry: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 40.76343
+    },
+    {
+      "Name": "1011 Perfect Parry: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99987.33, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 41.0810623
+    },
+    {
+      "Name": "1011 Perfect Parry: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000124, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 41.0810623
+    },
+    {
+      "Name": "1011 Perfect Parry: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 41.0810623
+    },
+    {
+      "Name": "1012 Chain Lightning: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 43.9741364
+    },
+    {
+      "Name": "1012 Chain Lightning: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 43.9741364
+    },
+    {
+      "Name": "1012 Chain Lightning: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99963.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 44.27555
+    },
+    {
+      "Name": "1012 Chain Lightning: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000031, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 44.27555
+    },
+    {
+      "Name": "1012 Chain Lightning: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 44.27555
+    },
+    {
+      "Name": "1013 Blink Strike: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 47.1696739
+    },
+    {
+      "Name": "1013 Blink Strike: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 47.1696739
+    },
+    {
+      "Name": "1013 Blink Strike: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99973.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 47.485714
+    },
+    {
+      "Name": "1013 Blink Strike: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 999888.2, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 47.485714
+    },
+    {
+      "Name": "1013 Blink Strike: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 47.485714
+    },
+    {
+      "Name": "1014 Time Dilation: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 50.4029045
+    },
+    {
+      "Name": "1014 Time Dilation: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 50.4029045
+    },
+    {
+      "Name": "1014 Time Dilation: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99982.33, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 50.71981
+    },
+    {
+      "Name": "1014 Time Dilation: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000124, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 50.71981
+    },
+    {
+      "Name": "1014 Time Dilation: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 50.71981
+    },
+    {
+      "Name": "1015 Force Nova: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.60911
+    },
+    {
+      "Name": "1015 Force Nova: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.60911
+    },
+    {
+      "Name": "1015 Force Nova: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99992.33, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.9101677
+    },
+    {
+      "Name": "1015 Force Nova: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000124, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.9101677
+    },
+    {
+      "Name": "1015 Force Nova: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 53.9101677
+    },
+    {
+      "Name": "1016 Blink: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 56.7923279
+    },
+    {
+      "Name": "1016 Blink: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 56.7923279
+    },
+    {
+      "Name": "1016 Blink: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99992.33, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 57.1086578
+    },
+    {
+      "Name": "1016 Blink: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000124, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 57.1086578
+    },
+    {
+      "Name": "1016 Blink: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 57.1086578
+    },
+    {
+      "Name": "1017 Chornos Field: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 60.00849
+    },
+    {
+      "Name": "1017 Chornos Field: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 60.00849
+    },
+    {
+      "Name": "1017 Chornos Field: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99973.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 60.3257866
+    },
+    {
+      "Name": "1017 Chornos Field: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000124, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 60.3257866
+    },
+    {
+      "Name": "1017 Chornos Field: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 60.3257866
+    },
+    {
+      "Name": "1018 Summon Valkyrie: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 63.2138443
+    },
+    {
+      "Name": "1018 Summon Valkyrie: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 63.7299576
+    },
+    {
+      "Name": "1018 Summon Valkyrie: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99951.16, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 64.03026
+    },
+    {
+      "Name": "1018 Summon Valkyrie: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000085, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 64.03026
+    },
+    {
+      "Name": "1018 Summon Valkyrie: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 64.03026
+    },
+    {
+      "Name": "1019 Mind Control: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 66.9304352
+    },
+    {
+      "Name": "1019 Mind Control: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 66.9304352
+    },
+    {
+      "Name": "1019 Mind Control: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99971.16, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 67.24677
+    },
+    {
+      "Name": "1019 Mind Control: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000098, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 67.24677
+    },
+    {
+      "Name": "1019 Mind Control: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 67.24677
+    },
+    {
+      "Name": "1020 Fire Bolt: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 70.17356
+    },
+    {
+      "Name": "1020 Fire Bolt: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 70.17356
+    },
+    {
+      "Name": "1020 Fire Bolt: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99995.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 70.47528
+    },
+    {
+      "Name": "1020 Fire Bolt: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000056, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 70.47528
+    },
+    {
+      "Name": "1020 Fire Bolt: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 70.47528
+    },
+    {
+      "Name": "1021 Sprint: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 73.368
+    },
+    {
+      "Name": "1021 Sprint: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 73.368
+    },
+    {
+      "Name": "1021 Sprint: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 100000, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 73.68402
+    },
+    {
+      "Name": "1021 Sprint: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000056, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 73.68402
+    },
+    {
+      "Name": "1021 Sprint: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 73.68402
+    },
+    {
+      "Name": "3001 Wind Slash: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 76.60116
+    },
+    {
+      "Name": "3001 Wind Slash: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 76.60116
+    },
+    {
+      "Name": "3001 Wind Slash: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99998.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 76.9175
+    },
+    {
+      "Name": "3001 Wind Slash: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000050, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 76.9175
+    },
+    {
+      "Name": "3001 Wind Slash: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 76.9175
+    },
+    {
+      "Name": "3002 Crescent Sweep: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 79.88413
+    },
+    {
+      "Name": "3002 Crescent Sweep: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 79.88413
+    },
+    {
+      "Name": "3002 Crescent Sweep: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99998.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 80.18479
+    },
+    {
+      "Name": "3002 Crescent Sweep: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000045, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 80.18479
+    },
+    {
+      "Name": "3002 Crescent Sweep: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 80.18479
+    },
+    {
+      "Name": "3003 Cherry Blossom Execution: cast started",
+      "Status": "Passed",
+      "Expected": "started",
+      "Actual": "started",
+      "Note": "Some skills need a condition (an incoming hit, an ally, a free spot). Look at the log if this one should have started.",
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 83.07192
+    },
+    {
+      "Name": "3003 Cherry Blossom Execution: caster returns to Idle",
+      "Status": "Passed",
+      "Expected": "Idle",
+      "Actual": "Idle",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 83.07192
+    },
+    {
+      "Name": "3003 Cherry Blossom Execution: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 5101, mp 99998.49, max 5101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 83.3725357
+    },
+    {
+      "Name": "3003 Cherry Blossom Execution: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000032, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 83.3725357
+    },
+    {
+      "Name": "3003 Cherry Blossom Execution: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 83.3725357
+    },
+    {
+      "Name": "no errors across every skill",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": "errors are listed in the report",
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 83.3725357
+    }
+  ],
+  "Metrics": {
+    "skills tested": 24.0,
+    "1001 Tackle damage": 21.7833328,
+    "1002 Healing damage": 31.5999985,
+    "1003 Hellfire Blast damage": 239.533325,
+    "1004 Divine Blessing damage": 25.0666656,
+    "1005 Earthshatter damage": 61.5333328,
+    "1006 Lightning Strike damage": 309.533325,
+    "1007 Shadow Dash damage": 0.0,
+    "1008 Aura of Flames damage": 0.0,
+    "1009 Lightning Blessing damage": 21.0666656,
+    "1010 Fire Pila damage": 17.5333328,
+    "1011 Perfect Parry damage": 0.0,
+    "1012 Chain Lightning damage": 97.53333,
+    "1013 Blink Strike damage": 240.299988,
+    "1014 Time Dilation damage": 0.0,
+    "1015 Force Nova damage": 0.0,
+    "1016 Blink damage": 0.0,
+    "1017 Chornos Field damage": 0.0,
+    "1018 Summon Valkyrie damage": 0.0,
+    "1019 Mind Control damage": 0.0,
+    "1020 Fire Bolt damage": 31.5999985,
+    "1021 Sprint damage": 31.5999985,
+    "3001 Wind Slash damage": 19.5333328,
+    "3002 Crescent Sweep damage": 24.5333328,
+    "3003 Cherry Blossom Execution damage": 39.5333328
+  },
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, speed x1, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from  so the old character is dropped",
+    "0.42s skill slot 1 is now skill 1001 on Player#-985882 (frame 11, scene Title, loading True)",
+    "1.49s in scene Town",
+    "1.49s skills after the new game: granted [1001], equipped [1001,-,-,-,-,-,-,-,-,-], hotbar row 0 [Skill:1001,-,-,-,-,-,-,-,-,-]",
+    "1.49s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "1.50s step 3: Refill {\"of\":\"player\"}",
+    "1.52s step 4: SpawnTarget",
+    "1.64s step 5: CastEverySkill {\"timeout\":3600}",
+    "1.68s before key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Idle",
+    "1.73s after key Digit1: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot 0, caster Idle",
+    "2.05s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "2.05s after the click: hotbar slot Skill 1001, caster slot skill 1001 ready True, granted True, aiming slot -1, caster Casting",
+    "4.87s before key Digit1: hotbar slot Skill 1002, caster slot skill 1002 ready True, granted True, aiming slot -1, caster Idle",
+    "4.92s after key Digit1: hotbar slot Skill 1002, caster slot skill 1002 ready True, granted True, aiming slot -1, caster Idle",
+    "5.27s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "5.27s after the click: hotbar slot Skill 1002, caster slot skill 1002 ready True, granted True, aiming slot -1, caster Idle",
+    "8.09s before key Digit1: hotbar slot Skill 1003, caster slot skill 1003 ready True, granted True, aiming slot -1, caster Idle",
+    "8.14s after key Digit1: hotbar slot Skill 1003, caster slot skill 1003 ready True, granted True, aiming slot 0, caster Idle",
+    "8.46s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "8.46s after the click: hotbar slot Skill 1003, caster slot skill 1003 ready True, granted True, aiming slot -1, caster Casting",
+    "11.28s before key Digit1: hotbar slot Skill 1004, caster slot skill 1004 ready True, granted True, aiming slot -1, caster Idle",
+    "11.33s after key Digit1: hotbar slot Skill 1004, caster slot skill 1004 ready True, granted True, aiming slot -1, caster Casting",
+    "11.66s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "11.66s after the click: hotbar slot Skill 1004, caster slot skill 1004 ready True, granted True, aiming slot -1, caster Casting",
+    "14.48s before key Digit1: hotbar slot Skill 1005, caster slot skill 1005 ready True, granted True, aiming slot -1, caster Idle",
+    "14.53s after key Digit1: hotbar slot Skill 1005, caster slot skill 1005 ready True, granted True, aiming slot 0, caster Idle",
+    "14.86s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "14.86s after the click: hotbar slot Skill 1005, caster slot skill 1005 ready True, granted True, aiming slot -1, caster Casting",
+    "18.56s before key Digit1: hotbar slot Skill 1006, caster slot skill 1006 ready True, granted True, aiming slot -1, caster Idle",
+    "18.61s after key Digit1: hotbar slot Skill 1006, caster slot skill 1006 ready True, granted True, aiming slot 0, caster Idle",
+    "18.95s clicked Skeletom(Clone) at screen 1064,540 world 6.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.1",
+    "18.95s after the click: hotbar slot Skill 1006, caster slot skill 1006 ready True, granted True, aiming slot -1, caster Casting",
+    "21.79s before key Digit1: hotbar slot Skill 1007, caster slot skill 1007 ready True, granted True, aiming slot -1, caster Idle",
+    "21.84s after key Digit1: hotbar slot Skill 1007, caster slot skill 1007 ready True, granted True, aiming slot -1, caster Casting",
+    "22.16s clicked Skeletom(Clone) at screen 942,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 2",
+    "22.16s after the click: hotbar slot Skill 1007, caster slot skill 1007 ready False, granted True, aiming slot -1, caster Idle",
+    "25.00s before key Digit1: hotbar slot Skill 1008, caster slot skill 1008 ready True, granted True, aiming slot -1, caster Idle",
+    "25.04s after key Digit1: hotbar slot Skill 1008, caster slot skill 1008 ready True, granted True, aiming slot -1, caster Casting",
+    "25.36s clicked Skeletom(Clone) at screen 778,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.7",
+    "25.36s after the click: hotbar slot Skill 1008, caster slot skill 1008 ready True, granted True, aiming slot -1, caster Casting",
+    "31.48s before key Digit1: hotbar slot Skill 1009, caster slot skill 1009 ready True, granted True, aiming slot -1, caster Idle",
+    "31.52s after key Digit1: hotbar slot Skill 1009, caster slot skill 1009 ready True, granted True, aiming slot -1, caster Casting",
+    "31.85s clicked Skeletom(Clone) at screen 805,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.7",
+    "31.85s after the click: hotbar slot Skill 1009, caster slot skill 1009 ready True, granted True, aiming slot -1, caster Casting",
+    "34.66s before key Digit1: hotbar slot Skill 1010, caster slot skill 1010 ready True, granted True, aiming slot -1, caster Idle",
+    "34.71s after key Digit1: hotbar slot Skill 1010, caster slot skill 1010 ready True, granted True, aiming slot 0, caster Idle",
+    "35.03s clicked Skeletom(Clone) at screen 805,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.7",
+    "35.03s after the click: hotbar slot Skill 1010, caster slot skill 1010 ready True, granted True, aiming slot -1, caster Casting",
+    "37.86s before key Digit1: hotbar slot Skill 1011, caster slot skill 1011 ready True, granted True, aiming slot -1, caster Idle",
+    "37.91s after key Digit1: hotbar slot Skill 1011, caster slot skill 1011 ready True, granted True, aiming slot 0, caster Idle",
+    "38.25s clicked Skeletom(Clone) at screen 805,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.7",
+    "38.25s after the click: hotbar slot Skill 1011, caster slot skill 1011 ready False, granted True, aiming slot -1, caster Idle",
+    "41.10s before key Digit1: hotbar slot Skill 1012, caster slot skill 1012 ready True, granted True, aiming slot -1, caster Idle",
+    "41.15s after key Digit1: hotbar slot Skill 1012, caster slot skill 1012 ready True, granted True, aiming slot 0, caster Idle",
+    "41.46s clicked Skeletom(Clone) at screen 805,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.7",
+    "41.46s after the click: hotbar slot Skill 1012, caster slot skill 1012 ready False, granted True, aiming slot -1, caster Idle",
+    "44.29s before key Digit1: hotbar slot Skill 1013, caster slot skill 1013 ready True, granted True, aiming slot -1, caster Idle",
+    "44.34s after key Digit1: hotbar slot Skill 1013, caster slot skill 1013 ready True, granted True, aiming slot 0, caster Idle",
+    "44.67s clicked Skeletom(Clone) at screen 805,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1",
+    "44.67s after the click: hotbar slot Skill 1013, caster slot skill 1013 ready False, granted True, aiming slot -1, caster Idle",
+    "47.50s before key Digit1: hotbar slot Skill 1014, caster slot skill 1014 ready True, granted True, aiming slot -1, caster Idle",
+    "47.55s after key Digit1: hotbar slot Skill 1014, caster slot skill 1014 ready True, granted True, aiming slot 0, caster Idle",
+    "47.89s clicked Skeletom(Clone) at screen 870,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1",
+    "47.89s after the click: hotbar slot Skill 1014, caster slot skill 1014 ready True, granted True, aiming slot -1, caster Casting",
+    "50.74s before key Digit1: hotbar slot Skill 1015, caster slot skill 1015 ready True, granted True, aiming slot -1, caster Idle",
+    "50.79s after key Digit1: hotbar slot Skill 1015, caster slot skill 1015 ready True, granted True, aiming slot 0, caster Idle",
+    "51.10s clicked Skeletom(Clone) at screen 870,540 world 6.07,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1",
+    "51.10s after the click: hotbar slot Skill 1015, caster slot skill 1015 ready True, granted True, aiming slot -1, caster Casting",
+    "53.93s before key Digit1: hotbar slot Skill 1016, caster slot skill 1016 ready True, granted True, aiming slot -1, caster Idle",
+    "53.98s after key Digit1: hotbar slot Skill 1016, caster slot skill 1016 ready True, granted True, aiming slot 0, caster Idle",
+    "54.29s clicked Skeletom(Clone) at screen 911,540 world 6.6,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 0.5",
+    "54.29s after the click: hotbar slot Skill 1016, caster slot skill 1016 ready True, granted True, aiming slot -1, caster Casting",
+    "57.13s before key Digit1: hotbar slot Skill 1017, caster slot skill 1017 ready True, granted True, aiming slot -1, caster Idle",
+    "57.18s after key Digit1: hotbar slot Skill 1017, caster slot skill 1017 ready True, granted True, aiming slot -1, caster Casting",
+    "57.49s clicked Skeletom(Clone) at screen 960,540 world 6.6,-2, collider Player, UI under the pointer: none, virtual mouse is current True, distance 0",
+    "57.49s after the click: hotbar slot Skill 1017, caster slot skill 1017 ready True, granted True, aiming slot -1, caster Casting",
+    "60.34s before key Digit1: hotbar slot Skill 1018, caster slot skill 1018 ready True, granted True, aiming slot -1, caster Idle",
+    "60.39s after key Digit1: hotbar slot Skill 1018, caster slot skill 1018 ready True, granted True, aiming slot -1, caster Casting",
+    "60.71s clicked Skeletom(Clone) at screen 911,540 world 6.04,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 0.5",
+    "60.71s after the click: hotbar slot Skill 1018, caster slot skill 1018 ready True, granted True, aiming slot -1, caster Casting",
+    "64.05s before key Digit1: hotbar slot Skill 1019, caster slot skill 1019 ready True, granted True, aiming slot -1, caster Idle",
+    "64.10s after key Digit1: hotbar slot Skill 1019, caster slot skill 1019 ready True, granted True, aiming slot 0, caster Idle",
+    "64.41s clicked Skeletom(Clone) at screen 911,540 world 6.04,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 0.5",
+    "64.41s after the click: hotbar slot Skill 1019, caster slot skill 1019 ready True, granted True, aiming slot -1, caster Casting",
+    "67.28s before key Digit1: hotbar slot Skill 1020, caster slot skill 1020 ready True, granted True, aiming slot -1, caster Idle",
+    "67.33s after key Digit1: hotbar slot Skill 1020, caster slot skill 1020 ready True, granted True, aiming slot -1, caster Casting",
+    "67.66s clicked Skeletom(Clone) at screen 1068,540 world 7.78,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "67.66s after the click: hotbar slot Skill 1020, caster slot skill 1020 ready True, granted True, aiming slot -1, caster Casting",
+    "70.50s before key Digit1: hotbar slot Skill 1021, caster slot skill 1021 ready True, granted True, aiming slot -1, caster Idle",
+    "70.55s after key Digit1: hotbar slot Skill 1021, caster slot skill 1021 ready False, granted True, aiming slot -1, caster Idle",
+    "70.86s clicked Skeletom(Clone) at screen 1068,540 world 7.78,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "70.86s after the click: hotbar slot Skill 1021, caster slot skill 1021 ready False, granted True, aiming slot -1, caster Idle",
+    "73.70s before key Digit1: hotbar slot Skill 3001, caster slot skill 3001 ready True, granted True, aiming slot -1, caster Idle",
+    "73.75s after key Digit1: hotbar slot Skill 3001, caster slot skill 3001 ready True, granted True, aiming slot 0, caster Idle",
+    "74.09s clicked Skeletom(Clone) at screen 1068,540 world 7.78,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 0.1",
+    "74.09s after the click: hotbar slot Skill 3001, caster slot skill 3001 ready False, granted True, aiming slot -1, caster CastDelay",
+    "76.93s before key Digit1: hotbar slot Skill 3002, caster slot skill 3002 ready True, granted True, aiming slot -1, caster Idle",
+    "76.98s after key Digit1: hotbar slot Skill 3002, caster slot skill 3002 ready True, granted True, aiming slot 0, caster Idle",
+    "77.32s waited for UI to clear before clicking Skeletom(Clone) (was Value)",
+    "77.38s clicked Skeletom(Clone) at screen 868,526 world 7.56,-2.15, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 0.3",
+    "77.38s after the click: hotbar slot Skill 3002, caster slot skill 3002 ready False, granted True, aiming slot -1, caster CastDelay",
+    "80.20s before key Digit1: hotbar slot Skill 3003, caster slot skill 3003 ready True, granted True, aiming slot -1, caster Idle",
+    "80.25s after key Digit1: hotbar slot Skill 3003, caster slot skill 3003 ready False, granted True, aiming slot -1, caster CastDelay",
+    "80.57s clicked Skeletom(Clone) at screen 1535,643 world 7.44,-1.95, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 7.9",
+    "80.57s after the click: hotbar slot Skill 3003, caster slot skill 3003 ready False, granted True, aiming slot -1, caster CastDelay",
+    "83.37s step 6: ExpectNoErrors {\"name\":\"no errors across every skill\"}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 21.7833328,
+      "Time": 2.34714746
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 10.5333328,
+      "Time": 5.219927
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 10.5333328,
+      "Time": 6.20790625
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 10.5333328,
+      "Time": 7.19239473
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 239.533325,
+      "Time": 10.3082123
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 12.5333328,
+      "Time": 12.5470085
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 12.5333328,
+      "Time": 13.3967361
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 12.5333328,
+      "Time": 14.2467537
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 61.5333328,
+      "Time": 15.0805349
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 309.533325,
+      "Time": 20.2970276
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 542.633362,
+      "Time": 30.1413956
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 10.5333328,
+      "Time": 31.157547
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 10.5333328,
+      "Time": 33.6138763
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 10.5333328,
+      "Time": 34.2973022
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 17.5333328,
+      "Time": 36.0633278
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 97.53333,
+      "Time": 41.43006
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 240.299988,
+      "Time": 44.6359444
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-989346",
+      "Amount": 10.5333328,
+      "Time": 63.7466278
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 10.5333328,
+      "Time": 67.79672
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 10.5333328,
+      "Time": 68.78001
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 10.5333328,
+      "Time": 69.76325
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 10.5333328,
+      "Time": 70.8299255
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 10.5333328,
+      "Time": 71.81334
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 10.5333328,
+      "Time": 72.8014755
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 19.5333328,
+      "Time": 74.05067
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 24.5333328,
+      "Time": 77.35169
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-985882",
+      "Target": "Skeletom(Clone)#-999810",
+      "Amount": 39.5333328,
+      "Time": 80.21752
+    }
+  ]
+}

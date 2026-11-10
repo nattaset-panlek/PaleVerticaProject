@@ -1,0 +1,588 @@
+{
+  "Scenario": "unique_defense",
+  "File": "passives/defense.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:00:54",
+  "DurationSeconds": 14.99176,
+  "Status": "Passed",
+  "ChecksPassed": 5,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.656433
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.656433,
+      "Duration": 0.137817383
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.79425049,
+      "Duration": 0.129882813
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.9241333,
+      "Duration": 1.0635376
+    },
+    {
+      "Index": 4,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.987671,
+      "Duration": 0.139465332
+    },
+    {
+      "Index": 5,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"t0\",\"value\":\"taken\"}",
+      "Status": "Passed",
+      "Message": "var.t0 = 0",
+      "StartTime": 7.127136,
+      "Duration": 0.129272461
+    },
+    {
+      "Index": 6,
+      "Action": "TakeHits",
+      "Arguments": "TakeHits {\"count\":3,\"amount\":40}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 7.25640869,
+      "Duration": 0.801147461
+    },
+    {
+      "Index": 7,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"base\",\"value\":\"taken - var.t0\"}",
+      "Status": "Passed",
+      "Message": "var.base = 191.8",
+      "StartTime": 8.057556,
+      "Duration": 0.131469727
+    },
+    {
+      "Index": 8,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"the lab hits do damage\",\"value\":\"var.base\",\"op\":\">\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.189026,
+      "Duration": 0.133056641
+    },
+    {
+      "Index": 9,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.32208252,
+      "Duration": 0.13482666
+    },
+    {
+      "Index": 10,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"PerfectDodge\",\"total\":100}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.456909,
+      "Duration": 0.134399414
+    },
+    {
+      "Index": 11,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"VeilStep\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.591309,
+      "Duration": 0.132751465
+    },
+    {
+      "Index": 12,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"t0\",\"value\":\"taken\"}",
+      "Status": "Passed",
+      "Message": "var.t0 = 191.8",
+      "StartTime": 8.72406,
+      "Duration": 0.132751465
+    },
+    {
+      "Index": 13,
+      "Action": "TakeHits",
+      "Arguments": "TakeHits {\"count\":3,\"amount\":40}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.856812,
+      "Duration": 0.8018799
+    },
+    {
+      "Index": 14,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Veil Step: 100% dodge takes nothing\",\"value\":\"taken - var.t0\",\"to\":0,\"tolerance\":0.001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 9.658691,
+      "Duration": 0.131896973
+    },
+    {
+      "Index": 15,
+      "Action": "ClearStat",
+      "Arguments": "ClearStat {\"of\":\"player\",\"stat\":\"PerfectDodge\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 9.790588,
+      "Duration": 0.1303711
+    },
+    {
+      "Index": 16,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 9.920959,
+      "Duration": 0.133789063
+    },
+    {
+      "Index": 17,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"player\",\"ratio\":0.52}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.0547485,
+      "Duration": 0.1352539
+    },
+    {
+      "Index": 18,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"t0\",\"value\":\"taken\"}",
+      "Status": "Passed",
+      "Message": "var.t0 = 191.8",
+      "StartTime": 10.1900024,
+      "Duration": 0.131225586
+    },
+    {
+      "Index": 19,
+      "Action": "TakeHits",
+      "Arguments": "TakeHits {\"count\":3,\"amount\":\"player.MaxHP * 0.05\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.321228,
+      "Duration": 0.804931641
+    },
+    {
+      "Index": 20,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"big\",\"value\":\"taken - var.t0\"}",
+      "Status": "Passed",
+      "Message": "var.big = 836.95",
+      "StartTime": 11.12616,
+      "Duration": 0.129272461
+    },
+    {
+      "Index": 21,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.2554321,
+      "Duration": 0.137390137
+    },
+    {
+      "Index": 22,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"LastBanner\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.3928223,
+      "Duration": 0.13104248
+    },
+    {
+      "Index": 23,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"player\",\"ratio\":0.52}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.5238647,
+      "Duration": 0.137268066
+    },
+    {
+      "Index": 24,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"t0\",\"value\":\"taken\"}",
+      "Status": "Passed",
+      "Message": "var.t0 = 1028.75",
+      "StartTime": 11.6611328,
+      "Duration": 0.1270752
+    },
+    {
+      "Index": 25,
+      "Action": "TakeHits",
+      "Arguments": "TakeHits {\"count\":3,\"amount\":\"player.MaxHP * 0.05\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.788208,
+      "Duration": 0.802001953
+    },
+    {
+      "Index": 26,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Last Banner: the shield absorbs hits that cross half hp\",\"value\":\"taken - var.t0\",\"op\":\"<\",\"to\":\"var.big\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 12.59021,
+      "Duration": 0.13494873
+    },
+    {
+      "Index": 27,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 12.7251587,
+      "Duration": 0.13470459
+    },
+    {
+      "Index": 28,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"Thorn\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 12.8598633,
+      "Duration": 0.1605835
+    },
+    {
+      "Index": 29,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 1000124",
+      "StartTime": 13.0204468,
+      "Duration": 0.0725097656
+    },
+    {
+      "Index": 30,
+      "Action": "TakeHits",
+      "Arguments": "TakeHits {\"count\":3,\"amount\":40}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 13.0929565,
+      "Duration": 0.696411133
+    },
+    {
+      "Index": 31,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Thorn: the attacker takes reflected damage\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 13.7893677,
+      "Duration": 0.178161621
+    },
+    {
+      "Index": 32,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 13.9675293,
+      "Duration": 0.1005249
+    },
+    {
+      "Index": 33,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"Rock\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 14.0680542,
+      "Duration": 0.120727539
+    },
+    {
+      "Index": 34,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"x\",\"value\":\"player.x\"}",
+      "Status": "Passed",
+      "Message": "var.x = 0",
+      "StartTime": 14.1887817,
+      "Duration": 0.132751465
+    },
+    {
+      "Index": 35,
+      "Action": "Impulse",
+      "Arguments": "Impulse {\"of\":\"player\",\"x\":1,\"y\":0,\"distance\":3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 14.3215332,
+      "Duration": 0.532409668
+    },
+    {
+      "Index": 36,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Rock: an impulse does not move the player\",\"value\":\"player.x - var.x\",\"op\":\"between\",\"min\":-0.05,\"max\":0.05}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 14.8539429,
+      "Duration": 0.137817383
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "the lab hits do damage",
+      "Status": "Passed",
+      "Expected": "> 0",
+      "Actual": "191.8",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 8,
+      "Time": 8.189026
+    },
+    {
+      "Name": "Veil Step: 100% dodge takes nothing",
+      "Status": "Passed",
+      "Expected": "0 +/- 0.001",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 14,
+      "Time": 9.658691
+    },
+    {
+      "Name": "Last Banner: the shield absorbs hits that cross half hp",
+      "Status": "Passed",
+      "Expected": "< 836.95",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 26,
+      "Time": 12.59021
+    },
+    {
+      "Name": "Thorn: the attacker takes reflected damage",
+      "Status": "Passed",
+      "Expected": "< 1000124",
+      "Actual": "1000095",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 31,
+      "Time": 13.7893677
+    },
+    {
+      "Name": "Rock: an impulse does not move the player",
+      "Status": "Passed",
+      "Expected": "-0.05..0.05",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 36,
+      "Time": 14.8539429
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "t0": 1028.75,
+    "base": 191.8,
+    "big": 836.95,
+    "hp": 1000123.63,
+    "x": 0.0
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.76s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "3.08s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.66s in scene Town",
+    "5.66s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "5.79s step 3: Refill {\"of\":\"player\"}",
+    "5.92s step 4: SpawnTarget",
+    "6.99s step 5: Reset",
+    "7.13s step 6: Record {\"name\":\"t0\",\"value\":\"taken\"}",
+    "7.13s var.t0 = 0",
+    "7.26s step 7: TakeHits {\"count\":3,\"amount\":40}",
+    "8.06s step 8: Record {\"name\":\"base\",\"value\":\"taken - var.t0\"}",
+    "8.06s var.base = 191.8",
+    "8.19s step 9: Expect {\"name\":\"the lab hits do damage\",\"value\":\"var.base\",\"op\":\">\",\"to\":0}",
+    "8.32s step 10: Reset",
+    "8.46s step 11: SetStat {\"of\":\"player\",\"stat\":\"PerfectDodge\",\"total\":100}",
+    "8.59s step 12: Give {\"passives\":[\"VeilStep\"]}",
+    "8.72s step 13: Record {\"name\":\"t0\",\"value\":\"taken\"}",
+    "8.72s var.t0 = 191.8",
+    "8.86s step 14: TakeHits {\"count\":3,\"amount\":40}",
+    "9.66s step 15: Expect {\"name\":\"Veil Step: 100% dodge takes nothing\",\"value\":\"taken - var.t0\",\"to\":0,\"tolerance\":0.001}",
+    "9.79s step 16: ClearStat {\"of\":\"player\",\"stat\":\"PerfectDodge\"}",
+    "9.92s step 17: Reset",
+    "10.05s step 18: SetHp {\"of\":\"player\",\"ratio\":0.52}",
+    "10.19s step 19: Record {\"name\":\"t0\",\"value\":\"taken\"}",
+    "10.19s var.t0 = 191.8",
+    "10.32s step 20: TakeHits {\"count\":3,\"amount\":\"player.MaxHP * 0.05\"}",
+    "11.13s step 21: Record {\"name\":\"big\",\"value\":\"taken - var.t0\"}",
+    "11.13s var.big = 836.95",
+    "11.26s step 22: Reset",
+    "11.39s step 23: Give {\"passives\":[\"LastBanner\"]}",
+    "11.52s step 24: SetHp {\"of\":\"player\",\"ratio\":0.52}",
+    "11.66s step 25: Record {\"name\":\"t0\",\"value\":\"taken\"}",
+    "11.66s var.t0 = 1028.75",
+    "11.79s step 26: TakeHits {\"count\":3,\"amount\":\"player.MaxHP * 0.05\"}",
+    "12.59s step 27: Expect {\"name\":\"Last Banner: the shield absorbs hits that cross half hp\",\"value\":\"taken - var.t0\",\"op\":\"<\",\"to\":\"var.big\"}",
+    "12.73s step 28: Reset",
+    "12.86s step 29: Give {\"passives\":[\"Thorn\"]}",
+    "13.02s step 30: Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+    "13.02s var.hp = 1000124",
+    "13.09s step 31: TakeHits {\"count\":3,\"amount\":40}",
+    "13.79s step 32: Expect {\"name\":\"Thorn: the attacker takes reflected damage\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+    "13.97s step 33: Reset",
+    "14.07s step 34: Give {\"passives\":[\"Rock\"]}",
+    "14.19s step 35: Record {\"name\":\"x\",\"value\":\"player.x\"}",
+    "14.19s var.x = 0",
+    "14.32s step 36: Impulse {\"of\":\"player\",\"x\":1,\"y\":0,\"distance\":3}",
+    "14.85s step 37: Expect {\"name\":\"Rock: an impulse does not move the player\",\"value\":\"player.x - var.x\",\"op\":\"between\",\"min\":-0.05,\"max\":0.05}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 63.9333344,
+      "Time": 1008.2207
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 63.9333344,
+      "Time": 1008.489
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 63.9333344,
+      "Time": 1008.75195
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 0.0,
+      "Time": 1009.82111
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 0.0,
+      "Time": 1010.0849
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 0.0,
+      "Time": 1010.35651
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 278.983337,
+      "Time": 1011.28552
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 278.983337,
+      "Time": 1011.55853
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 278.983337,
+      "Time": 1011.82025
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 0.0,
+      "Time": 1012.7525
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 0.0,
+      "Time": 1013.01941
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 0.0,
+      "Time": 1013.2851
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-457600",
+      "Target": "Skeletom(Clone)#-460862",
+      "Amount": 9.597266,
+      "Time": 1014.05725
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 63.9333344,
+      "Time": 1014.05725
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-457600",
+      "Target": "Skeletom(Clone)#-460862",
+      "Amount": 9.597266,
+      "Time": 1014.22528
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 63.9333344,
+      "Time": 1014.22528
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-457600",
+      "Target": "Skeletom(Clone)#-460862",
+      "Amount": 9.597266,
+      "Time": 1014.48859
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-460862",
+      "Target": "Player#-457600",
+      "Amount": 63.9333344,
+      "Time": 1014.48859
+    }
+  ]
+}

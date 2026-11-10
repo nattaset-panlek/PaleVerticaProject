@@ -1,0 +1,819 @@
+{
+  "Scenario": "unique_combo_weird",
+  "File": "combos/weird.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 20:59:40",
+  "DurationSeconds": 44.2166748,
+  "Status": "Failed",
+  "ChecksPassed": 7,
+  "ChecksReview": 1,
+  "ChecksFailed": 3,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.42095947
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.42095947,
+      "Duration": 0.133026123
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.5539856,
+      "Duration": 0.132720947
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.68670654,
+      "Duration": 0.9161682
+    },
+    {
+      "Index": 4,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.60287476,
+      "Duration": 0.146698
+    },
+    {
+      "Index": 5,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"Thorn\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.74957275,
+      "Duration": 0.133911133
+    },
+    {
+      "Index": 6,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"Thorn\"],\"to\":\"target\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.883484,
+      "Duration": 0.134674072
+    },
+    {
+      "Index": 7,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 31.6 damage",
+      "StartTime": 7.018158,
+      "Duration": 3.18884277
+    },
+    {
+      "Index": 8,
+      "Action": "TakeHits",
+      "Arguments": "TakeHits {\"count\":3,\"amount\":40}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.2070007,
+      "Duration": 0.809783936
+    },
+    {
+      "Index": 9,
+      "Action": "Take",
+      "Arguments": "Take {\"passives\":[\"Thorn\"],\"of\":\"target\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.0167847,
+      "Duration": 0.135375977
+    },
+    {
+      "Index": 10,
+      "Action": "ExpectNoErrors",
+      "Arguments": "ExpectNoErrors {\"name\":\"Thorn vs Thorn: reflections do not loop\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.1521606,
+      "Duration": 0.131011963
+    },
+    {
+      "Index": 11,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Thorn vs Thorn: player hp is valid\",\"value\":\"player.HP\",\"op\":\">=\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.2831726,
+      "Duration": 0.140472412
+    },
+    {
+      "Index": 12,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.423645,
+      "Duration": 0.131195068
+    },
+    {
+      "Index": 13,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"BoneChoir\",\"AlphasBurden\",\"PackInstinct\",\"FeralBond\",\"SharedWound\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.55484,
+      "Duration": 0.135009766
+    },
+    {
+      "Index": 14,
+      "Action": "Spawn",
+      "Arguments": "Spawn {\"character\":1001,\"x\":-1.2,\"y\":0,\"as\":\"victim\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.68985,
+      "Duration": 0.127838135
+    },
+    {
+      "Index": 15,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"victim\",\"value\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 11.817688,
+      "Duration": 0.133758545
+    },
+    {
+      "Index": 16,
+      "Action": "Attack",
+      "Arguments": "Attack {\"target\":\"victim\",\"hits\":1,\"max\":5}",
+      "Status": "Passed",
+      "Message": "1 hits, 10.53 damage",
+      "StartTime": 11.9514465,
+      "Duration": 1.33453369
+    },
+    {
+      "Index": 17,
+      "Action": "Wait",
+      "Arguments": "Wait {\"seconds\":1.5}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 13.28598,
+      "Duration": 1.60073853
+    },
+    {
+      "Index": 18,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Bone Choir + Alpha's Burden: at most one summon\",\"value\":\"summons\",\"op\":\"<=\",\"to\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 14.8867188,
+      "Duration": 0.131713867
+    },
+    {
+      "Index": 19,
+      "Action": "Measure",
+      "Arguments": "Measure {\"name\":\"summons\",\"value\":\"summons\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 15.0184326,
+      "Duration": 0.134613037
+    },
+    {
+      "Index": 20,
+      "Action": "TakeHits",
+      "Arguments": "TakeHits {\"count\":2,\"amount\":40}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 15.1530457,
+      "Duration": 0.536224365
+    },
+    {
+      "Index": 21,
+      "Action": "ExpectNoErrors",
+      "Arguments": "ExpectNoErrors {\"name\":\"summon pack: no errors\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 15.68927,
+      "Duration": 0.13092041
+    },
+    {
+      "Index": 22,
+      "Action": "Review",
+      "Arguments": "Review {\"name\":\"summon pack looks right\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 15.82019,
+      "Duration": 0.545715332
+    },
+    {
+      "Index": 23,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.3659058,
+      "Duration": 0.09262085
+    },
+    {
+      "Index": 24,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"SingularElement\",\"SpellboundEdge\",\"RunicSkin\",\"Hexweaver\",\"SlowIncantation\",\"GlassCannonTheorem\",\"OverflowingSigil\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 16.4585266,
+      "Duration": 0.171142578
+    },
+    {
+      "Index": 25,
+      "Action": "Repeat",
+      "Arguments": "Repeat {\"times\":3,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1}]}",
+      "Status": "Passed",
+      "Message": "cast started False, 2 hits",
+      "StartTime": 16.62967,
+      "Duration": 7.20568848
+    },
+    {
+      "Index": 26,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":3}",
+      "Status": "Passed",
+      "Message": "3 hits, 31.6 damage",
+      "StartTime": 23.8353577,
+      "Duration": 2.79360962
+    },
+    {
+      "Index": 27,
+      "Action": "ExpectNoErrors",
+      "Arguments": "ExpectNoErrors {\"name\":\"caster soup: no errors\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 26.6289673,
+      "Duration": 0.139007568
+    },
+    {
+      "Index": 28,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 26.7679749,
+      "Duration": 0.127471924
+    },
+    {
+      "Index": 29,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"SixFates\",\"AnvilHeart\",\"IronMomentum\",\"OneCleanCut\",\"MarkedThroat\",\"Windreader\",\"LoadedChamber\",\"EldritchFaith\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 26.8954468,
+      "Duration": 0.134765625
+    },
+    {
+      "Index": 30,
+      "Action": "Idle",
+      "Arguments": "Idle {\"seconds\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 27.0302124,
+      "Duration": 1.06625366
+    },
+    {
+      "Index": 31,
+      "Action": "Attack",
+      "Arguments": "Attack {\"hits\":6}",
+      "Status": "Passed",
+      "Message": "6 hits, 244.25 damage",
+      "StartTime": 28.0964661,
+      "Duration": 6.4390564
+    },
+    {
+      "Index": 32,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"damage soup: total is a valid number\",\"value\":\"hits.total\",\"op\":\">=\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 34.5355225,
+      "Duration": 0.0954589844
+    },
+    {
+      "Index": 33,
+      "Action": "ExpectNoErrors",
+      "Arguments": "ExpectNoErrors {\"name\":\"damage soup: no errors\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 34.63098,
+      "Duration": 0.131225586
+    },
+    {
+      "Index": 34,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 34.762207,
+      "Duration": 0.13885498
+    },
+    {
+      "Index": 35,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"CurseOfKanix\",\"EldritchFaith\",\"HollowCrown\",\"WhisperPact\",\"BurdenOfKings\",\"SkirmishersPace\",\"TwinConduit\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 34.901062,
+      "Duration": 0.128753662
+    },
+    {
+      "Index": 36,
+      "Action": "StandardRoutine",
+      "Arguments": "StandardRoutine {\"label\":\"stat soup\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 35.0298157,
+      "Duration": 9.186859
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "Thorn vs Thorn: reflections do not loop",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": "errors are listed in the report",
+      "Screenshot": null,
+      "Step": 10,
+      "Time": 11.1521606
+    },
+    {
+      "Name": "Thorn vs Thorn: player hp is valid",
+      "Status": "Passed",
+      "Expected": ">= 0",
+      "Actual": "4842.044",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 11,
+      "Time": 11.2831726
+    },
+    {
+      "Name": "Bone Choir + Alpha's Burden: at most one summon",
+      "Status": "Passed",
+      "Expected": "<= 1",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 18,
+      "Time": 14.8867188
+    },
+    {
+      "Name": "summon pack: no errors",
+      "Status": "Failed",
+      "Expected": "0 errors",
+      "Actual": "1",
+      "Note": "errors are listed in the report",
+      "Screenshot": null,
+      "Step": 21,
+      "Time": 15.68927
+    },
+    {
+      "Name": "summon pack looks right",
+      "Status": "Review",
+      "Expected": "a person approves",
+      "Actual": "waiting for review",
+      "Note": "Is there at most one, larger summon next to the player?",
+      "Screenshot": "C:\\Personal\\PaleVerticaProject\\Logs\\Scenarios\\claude\\unique_combo_weird_20261110_205942_step23.png",
+      "Step": 22,
+      "Time": 16.3659058
+    },
+    {
+      "Name": "caster soup: no errors",
+      "Status": "Failed",
+      "Expected": "0 errors",
+      "Actual": "1",
+      "Note": "errors are listed in the report",
+      "Screenshot": null,
+      "Step": 27,
+      "Time": 26.6289673
+    },
+    {
+      "Name": "damage soup: total is a valid number",
+      "Status": "Passed",
+      "Expected": ">= 0",
+      "Actual": "244.2492",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 32,
+      "Time": 34.5355225
+    },
+    {
+      "Name": "damage soup: no errors",
+      "Status": "Failed",
+      "Expected": "0 errors",
+      "Actual": "1",
+      "Note": "errors are listed in the report",
+      "Screenshot": null,
+      "Step": 33,
+      "Time": 34.63098
+    },
+    {
+      "Name": "stat soup: player hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 2552.718, mp 50.5, max 2550.5",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 36,
+      "Time": 44.2166748
+    },
+    {
+      "Name": "stat soup: target hp, mp and max hp are valid",
+      "Status": "Passed",
+      "Expected": "finite, not negative",
+      "Actual": "hp 1000020, mp 320.2, max 1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 36,
+      "Time": 44.2166748
+    },
+    {
+      "Name": "stat soup: no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 36,
+      "Time": 44.2166748
+    }
+  ],
+  "Metrics": {
+    "summons": 0.0,
+    "stat soup basic damage": 59.1520424
+  },
+  "Variables": {
+    "i": 2.0
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.54s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.87s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.42s in scene Town",
+    "5.42s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "5.55s step 3: Refill {\"of\":\"player\"}",
+    "5.69s step 4: SpawnTarget",
+    "6.60s step 5: Reset",
+    "6.75s step 6: Give {\"passives\":[\"Thorn\"]}",
+    "6.88s step 7: Give {\"passives\":[\"Thorn\"],\"to\":\"target\"}",
+    "7.02s step 8: Attack {\"hits\":3}",
+    "7.82s clicked Skeletom(Clone) at screen 1068,532 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "10.21s 3 hits, 31.6 damage",
+    "10.21s step 9: TakeHits {\"count\":3,\"amount\":40}",
+    "11.02s step 10: Take {\"passives\":[\"Thorn\"],\"of\":\"target\"}",
+    "11.15s step 11: ExpectNoErrors {\"name\":\"Thorn vs Thorn: reflections do not loop\"}",
+    "11.28s step 12: Expect {\"name\":\"Thorn vs Thorn: player hp is valid\",\"value\":\"player.HP\",\"op\":\">=\",\"to\":0}",
+    "11.42s step 13: Reset",
+    "11.55s step 14: Give {\"passives\":[\"BoneChoir\",\"AlphasBurden\",\"PackInstinct\",\"FeralBond\",\"SharedWound\"]}",
+    "11.69s step 15: Spawn {\"character\":1001,\"x\":-1.2,\"y\":0,\"as\":\"victim\"}",
+    "11.82s step 16: SetHp {\"of\":\"victim\",\"value\":1}",
+    "11.95s step 17: Attack {\"target\":\"victim\",\"hits\":1,\"max\":5}",
+    "12.49s error logged: MissingReferenceException: The object of type 'CoreSystem.Entity.Character' has been destroyed but you are still trying to access it.\nYour script should either check if it is null or you should not destroy the object.",
+    "12.75s clicked Skeletom(Clone) at screen 852,539 world -1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "13.29s 1 hits, 10.53 damage",
+    "13.29s step 18: Wait {\"seconds\":1.5}",
+    "14.89s step 19: Expect {\"name\":\"Bone Choir + Alpha's Burden: at most one summon\",\"value\":\"summons\",\"op\":\"<=\",\"to\":1}",
+    "15.02s step 20: Measure {\"name\":\"summons\",\"value\":\"summons\"}",
+    "15.15s step 21: TakeHits {\"count\":2,\"amount\":40}",
+    "15.69s step 22: ExpectNoErrors {\"name\":\"summon pack: no errors\"}",
+    "15.82s step 23: Review {\"name\":\"summon pack looks right\"}",
+    "16.37s step 24: Reset",
+    "16.46s step 25: Give {\"passives\":[\"SingularElement\",\"SpellboundEdge\",\"RunicSkin\",\"Hexweaver\",\"SlowIncantation\",\"GlassCannonTheorem\",\"OverflowingSigil\"]}",
+    "16.63s step 26: Repeat {\"times\":3,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1}]}",
+    "17.83s clicked Skeletom(Clone) at screen 1069,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "19.03s cast started False, 2 hits",
+    "20.23s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "21.43s cast started False, 2 hits",
+    "22.63s clicked Skeletom(Clone) at screen 1068,527 world 1.2,-2.15, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "23.84s cast started False, 2 hits",
+    "23.84s step 27: Attack {\"hits\":3}",
+    "24.63s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "26.63s 3 hits, 31.6 damage",
+    "26.63s step 28: ExpectNoErrors {\"name\":\"caster soup: no errors\"}",
+    "26.77s step 29: Reset",
+    "26.90s step 30: Give {\"passives\":[\"SixFates\",\"AnvilHeart\",\"IronMomentum\",\"OneCleanCut\",\"MarkedThroat\",\"Windreader\",\"LoadedChamber\",\"EldritchFaith\"]}",
+    "27.03s step 31: Idle {\"seconds\":1}",
+    "28.10s step 32: Attack {\"hits\":6}",
+    "28.89s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "34.54s 6 hits, 244.25 damage",
+    "34.54s step 33: Expect {\"name\":\"damage soup: total is a valid number\",\"value\":\"hits.total\",\"op\":\">=\",\"to\":0}",
+    "34.63s step 34: ExpectNoErrors {\"name\":\"damage soup: no errors\"}",
+    "34.76s step 35: Reset",
+    "34.90s step 36: Give {\"passives\":[\"CurseOfKanix\",\"EldritchFaith\",\"HollowCrown\",\"WhisperPact\",\"BurdenOfKings\",\"SkirmishersPace\",\"TwinConduit\"]}",
+    "35.03s step 37: StandardRoutine {\"label\":\"stat soup\"}",
+    "35.83s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2",
+    "40.55s clicked Skeletom(Clone) at screen 1068,540 world 1.2,-2, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 1.2"
+  ],
+  "Errors": [
+    "Exception: MissingReferenceException: The object of type 'CoreSystem.Entity.Character' has been destroyed but you are still trying to access it.\nYour script should either check if it is null or you should not destroy the object. UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) (at <0ed212dbc30045708ade919c1a8365d7>:0)"
+  ],
+  "Combat": [
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 23.986,
+      "Time": 470.8109
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 470.8109
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 23.986,
+      "Time": 471.878
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 471.878
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 23.986,
+      "Time": 472.946838
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 472.946838
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 9.597266,
+      "Time": 473.466034
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 63.9333344,
+      "Time": 473.466034
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 9.597266,
+      "Time": 473.7454
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 63.9333344,
+      "Time": 473.7454
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 9.597266,
+      "Time": 474.0098
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 63.9333344,
+      "Time": 474.0098
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-372542",
+      "Amount": 10.5333328,
+      "Time": 475.747559
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 63.9333344,
+      "Time": 478.412079
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 63.9333344,
+      "Time": 478.6786
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 480.8203
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 481.887238
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 482.9554
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 484.019745
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 485.085
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 486.155273
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 487.227844
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 488.326874
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.5333328,
+      "Time": 489.358368
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 178.616333,
+      "Time": 491.889435
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 19.7622452,
+      "Time": 492.992767
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 10.8353987,
+      "Time": 494.021667
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 11.21483,
+      "Time": 495.0842
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 1.0,
+      "Time": 496.151764
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 22.8204,
+      "Time": 497.217
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 14.7880106,
+      "Time": 498.824615
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 14.7880106,
+      "Time": 499.89386
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 14.7880106,
+      "Time": 500.953125
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 14.7880106,
+      "Time": 502.0227
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 14.7880106,
+      "Time": 503.4919
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 14.7880106,
+      "Time": 504.557068
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 63.9333344,
+      "Time": 505.355225
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 14.7880106,
+      "Time": 505.6166
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 63.9333344,
+      "Time": 505.6166
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-371790",
+      "Target": "Player#-368528",
+      "Amount": 63.9333344,
+      "Time": 505.8926
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-368528",
+      "Target": "Skeletom(Clone)#-371790",
+      "Amount": 14.7880106,
+      "Time": 506.6896
+    }
+  ]
+}

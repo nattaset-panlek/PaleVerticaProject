@@ -1,0 +1,153 @@
+{
+  "Scenario": "save_load_round_trip",
+  "File": "core/save_load.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 21:00:26",
+  "DurationSeconds": 6.554138,
+  "Status": "Passed",
+  "ChecksPassed": 3,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 5.449768
+    },
+    {
+      "Index": 1,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"potions\",\"value\":\"items.2001\"}",
+      "Status": "Passed",
+      "Message": "var.potions = 0",
+      "StartTime": 5.449768,
+      "Duration": 0.13293457
+    },
+    {
+      "Index": 2,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"exp\",\"value\":\"player.baseExp\"}",
+      "Status": "Passed",
+      "Message": "var.exp = 0",
+      "StartTime": 5.58270264,
+      "Duration": 0.133117676
+    },
+    {
+      "Index": 3,
+      "Action": "Save",
+      "Arguments": "Save {\"slot\":1}",
+      "Status": "Passed",
+      "Message": "C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude\\save_slot_1.json",
+      "StartTime": 5.71582031,
+      "Duration": 0.138244629
+    },
+    {
+      "Index": 4,
+      "Action": "AddItem",
+      "Arguments": "AddItem {\"item\":2001,\"qty\":3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.854065,
+      "Duration": 0.131286621
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"potions were added\",\"value\":\"items.2001\",\"to\":\"var.potions + 3\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.98535156,
+      "Duration": 0.132263184
+    },
+    {
+      "Index": 6,
+      "Action": "Load",
+      "Arguments": "Load {\"slot\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.11761475,
+      "Duration": 0.172729492
+    },
+    {
+      "Index": 7,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"potions after load\",\"value\":\"items.2001\",\"to\":\"var.potions\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.290344,
+      "Duration": 0.132141113
+    },
+    {
+      "Index": 8,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"base exp after load\",\"value\":\"player.baseExp\",\"to\":\"var.exp\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.42248535,
+      "Duration": 0.131652832
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "potions were added",
+      "Status": "Passed",
+      "Expected": "== 3",
+      "Actual": "3",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 5.98535156
+    },
+    {
+      "Name": "potions after load",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 7,
+      "Time": 6.290344
+    },
+    {
+      "Name": "base exp after load",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 8,
+      "Time": 6.42248535
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "potions": 0.0,
+    "exp": 0.0
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "1.56s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "2.89s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "5.45s in scene Town",
+    "5.45s step 2: Record {\"name\":\"potions\",\"value\":\"items.2001\"}",
+    "5.45s var.potions = 0",
+    "5.58s step 3: Record {\"name\":\"exp\",\"value\":\"player.baseExp\"}",
+    "5.58s var.exp = 0",
+    "5.72s step 4: Save {\"slot\":1}",
+    "5.72s C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude\\save_slot_1.json",
+    "5.85s step 5: AddItem {\"item\":2001,\"qty\":3}",
+    "5.99s step 6: Expect {\"name\":\"potions were added\",\"value\":\"items.2001\",\"to\":\"var.potions + 3\"}",
+    "6.12s step 7: Load {\"slot\":1}",
+    "6.29s step 8: Expect {\"name\":\"potions after load\",\"value\":\"items.2001\",\"to\":\"var.potions\"}",
+    "6.42s step 9: Expect {\"name\":\"base exp after load\",\"value\":\"player.baseExp\",\"to\":\"var.exp\"}"
+  ],
+  "Errors": [],
+  "Combat": []
+}
