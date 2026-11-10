@@ -25,14 +25,12 @@ namespace CoreSystem.Data.Items
                 // 1. Try Addressables first (Sync via WaitForCompletion)
                 try
                 {
-                    AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(iconPath);
-                    sprite = handle.WaitForCompletion();
+                    sprite = AddressableAssetLoader.TryLoad<Sprite>(iconPath);
                     
                     if (sprite == null)
                     {
                         // Try with default Addressable prefix if not present
-                        AsyncOperationHandle<Sprite> h2 = Addressables.LoadAssetAsync<Sprite>(BaseFolder + iconPath);
-                        sprite = h2.WaitForCompletion();
+                        sprite = AddressableAssetLoader.TryLoad<Sprite>(BaseFolder + iconPath);
                     }
                 }
                 catch
@@ -66,8 +64,7 @@ namespace CoreSystem.Data.Items
             // Try Addressable fallback first
             try
             {
-                AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(FallbackAddressable);
-                _iconCacheFallback = handle.WaitForCompletion();
+                _iconCacheFallback = AddressableAssetLoader.TryLoad<Sprite>(FallbackAddressable);
             }
             catch {}
 

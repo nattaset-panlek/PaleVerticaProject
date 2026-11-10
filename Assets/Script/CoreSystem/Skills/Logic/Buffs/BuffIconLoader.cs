@@ -1,3 +1,4 @@
+using CoreSystem.Data;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -27,19 +28,16 @@ namespace CoreSystem.Skills.Logic
             try
             {
                 // Try Full Path first
-                AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(iconNameOrPath);
-                sprite = handle.WaitForCompletion();
+                sprite = AddressableAssetLoader.TryLoad<Sprite>(iconNameOrPath);
 
                 if (sprite == null)
                 {
                     // Try Addressable Prefix
-                    AsyncOperationHandle<Sprite> h2 = Addressables.LoadAssetAsync<Sprite>(BaseFolder + iconNameOrPath);
-                    sprite = h2.WaitForCompletion();
+                    sprite = AddressableAssetLoader.TryLoad<Sprite>(BaseFolder + iconNameOrPath);
                     
                     if (sprite == null && !iconNameOrPath.EndsWith(".png"))
                     {
-                         AsyncOperationHandle<Sprite> h3 = Addressables.LoadAssetAsync<Sprite>(BaseFolder + iconNameOrPath + ".png");
-                         sprite = h3.WaitForCompletion();
+                         sprite = AddressableAssetLoader.TryLoad<Sprite>(BaseFolder + iconNameOrPath + ".png");
                     }
                 }
             }
@@ -63,8 +61,7 @@ namespace CoreSystem.Skills.Logic
             // Addressable fallback
             try
             {
-                AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(FallbackAddressable);
-                _iconCacheFallback = handle.WaitForCompletion();
+                _iconCacheFallback = AddressableAssetLoader.TryLoad<Sprite>(FallbackAddressable);
             }
             catch { }
 

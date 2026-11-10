@@ -540,6 +540,8 @@ namespace CoreSystem.Entity
 
         protected virtual void OnDestroy()
         {
+            Presenter.HideWorldStatusBar();
+            _uniquePassives.Clear();
             KillCreditRegistry.Forget(this);
             CharacterFactory.ReleaseController(this);
         }

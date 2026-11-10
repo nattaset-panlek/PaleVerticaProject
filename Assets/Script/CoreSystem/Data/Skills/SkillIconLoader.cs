@@ -28,18 +28,15 @@ namespace CoreSystem.Data.Skills
             {
                 try
                 {
-                    AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(iconPath);
-                    sprite = handle.WaitForCompletion();
+                    sprite = AddressableAssetLoader.TryLoad<Sprite>(iconPath);
 
                     if (sprite == null)
                     {
-                        AsyncOperationHandle<Sprite> h2 = Addressables.LoadAssetAsync<Sprite>(BaseFolder + iconPath);
-                        sprite = h2.WaitForCompletion();
+                        sprite = AddressableAssetLoader.TryLoad<Sprite>(BaseFolder + iconPath);
 
                         if (sprite == null && !iconPath.EndsWith(".png"))
                         {
-                            AsyncOperationHandle<Sprite> h3 = Addressables.LoadAssetAsync<Sprite>(BaseFolder + iconPath + ".png");
-                            sprite = h3.WaitForCompletion();
+                            sprite = AddressableAssetLoader.TryLoad<Sprite>(BaseFolder + iconPath + ".png");
                         }
                     }
                 }
@@ -66,8 +63,7 @@ namespace CoreSystem.Data.Skills
 
             try
             {
-                AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(FallbackAddressable);
-                _iconCacheFallback = handle.WaitForCompletion();
+                _iconCacheFallback = AddressableAssetLoader.TryLoad<Sprite>(FallbackAddressable);
             }
             catch {}
 

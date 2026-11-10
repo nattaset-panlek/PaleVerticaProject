@@ -129,6 +129,10 @@ namespace CoreSystem.Skills
             {
                 EquippedSkills.Add(null);
             }
+            for (int i = 0; i < EquippedSkills.Count; i++)
+            {
+                if (EquippedSkills[i] != null && EquippedSkills[i].SkillData == null) EquippedSkills[i] = null;
+            }
 
             if (character != null && character.DefaultSkillIds != null)
             {

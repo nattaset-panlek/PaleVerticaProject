@@ -20,6 +20,7 @@ namespace CoreSystem.UI.Hotbar
         [SerializeField] private int _defaultOtherRowSlots = 10;
 
         private List<HotbarRowUI> _activeRows = new List<HotbarRowUI>();
+        private bool _isDefaultLayout;
         #endregion
 
         #region [Properties]
@@ -39,12 +40,23 @@ namespace CoreSystem.UI.Hotbar
             _instance = this;
         }
 
+        private void OnEnable()
+        {
+            CoreSystem.Player.PlayerCore.OnPlayerChanged += HandlePlayerChanged;
+        }
+
+        private void OnDisable()
+        {
+            CoreSystem.Player.PlayerCore.OnPlayerChanged -= HandlePlayerChanged;
+        }
+
         private void Start()
         {
             if (_activeRows.Count == 0)
             {
                 InitializeDefaultHotbar();
             }
+            FillDefaultLayout(CoreSystem.Player.PlayerCore.GetPlayer());
         }
 
         private void Update()
@@ -155,8 +167,11 @@ namespace CoreSystem.UI.Hotbar
             if (records == null || records.Count == 0)
             {
                 InitializeDefaultHotbar();
+                FillDefaultLayout(CoreSystem.Player.PlayerCore.GetPlayer());
                 return;
             }
+
+            _isDefaultLayout = false;
 
             // Clear existing rows
             foreach (var row in _activeRows)
@@ -198,6 +213,29 @@ namespace CoreSystem.UI.Hotbar
             if (_activeRows.Count == 0)
             {
                 AddHotbarRow();
+                _isDefaultLayout = true;
+            }
+        }
+
+        private void HandlePlayerChanged(CoreSystem.Entity.Character player)
+        {
+            FillDefaultLayout(player);
+        }
+
+        private void FillDefaultLayout(CoreSystem.Entity.Character player)
+        {
+            if (!_isDefaultLayout || _activeRows.Count == 0 || _activeRows[0] == null) return;
+            if (player == null || player.skillCaster == null || player.skillCaster.EquippedSkills == null) return;
+
+            HotbarRowUI row = _activeRows[0];
+            var equipped = player.skillCaster.EquippedSkills;
+            for (int i = 0; i < equipped.Count; i++)
+            {
+                var instance = equipped[i];
+                if (instance == null || instance.SkillData == null) continue;
+                HotbarSlotView slot = row.GetSlot(i);
+                if (slot == null || (slot.SlotData != null && !slot.SlotData.IsEmpty)) continue;
+                slot.AssignSkill(instance.SkillData.Id);
             }
         }
 
