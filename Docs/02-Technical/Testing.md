@@ -1,5 +1,7 @@
 # Automated Tests (EditMode)
 
+PlayMode scenarios that play the real game are covered in [PlayMode Scenario Walkthrough](./Testing/PlayMode_Scenario_Walkthrough.md).
+
 Core math is covered by NUnit EditMode tests so balance and refactor work can be checked without entering Play mode.
 
 ## Location

@@ -1,7 +1,10 @@
 """Compile-check the game and editor C# without Unity (works while Unity is open or closed).
 
 Usage:
-    python -I compile_check.py [--extra path/to/New.cs ...] [--out folder]
+    python -I compile_check.py [--extra path/to/New.cs ...] [--out folder] [--playmode-tests]
+
+--playmode-tests also compiles code inside #if UNITY_INCLUDE_TESTS (PlayMode scenario tests
+that live in Assembly-CSharp) with NUnit and UnityEngine.TestRunner referenced.
 
 It reads Unity's generated Assembly-CSharp(.csproj) and Assembly-CSharp-Editor.csproj,
 references the DLLs in Library/ScriptAssemblies instead of the project references,
@@ -16,7 +19,7 @@ import sys
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
-def project(name, out, extra_compile, extra_refs):
+def project(name, out, extra_compile, extra_refs, extra_defines=""):
     text = open(os.path.join(ROOT, name + ".csproj"), encoding="utf-8-sig").read()
     compiles = [os.path.join(ROOT, c) for c in re.findall(r'<Compile Include="([^"]+)"', text)]
     compiles = [c for c in compiles if not c.endswith(".cs") or os.path.exists(c)]
@@ -29,7 +32,7 @@ def project(name, out, extra_compile, extra_refs):
     refs += extra_refs
     known = {os.path.normcase(os.path.abspath(c)) for c in compiles}
     compiles += [c for c in extra_compile if os.path.normcase(os.path.abspath(c)) not in known]
-    defines = re.search(r"<DefineConstants>([^<]+)</DefineConstants>", text).group(1)
+    defines = re.search(r"<DefineConstants>([^<]+)</DefineConstants>", text).group(1) + extra_defines
     lang = re.search(r"<LangVersion>([^<]+)</LangVersion>", text).group(1)
 
     items = "\n".join(f'    <Compile Include="{c}" />' for c in compiles)
@@ -84,7 +87,14 @@ def main():
     out = args[args.index("--out") + 1] if "--out" in args else os.path.join(os.environ.get("TEMP", "/tmp"), "pv_compile_check")
     extra = [os.path.abspath(a) for i, a in enumerate(args) if i > 0 and args[i - 1] == "--extra"]
 
-    runtime = project("Assembly-CSharp", out, new_files(False) + [e for e in extra if os.sep + "Editor" not in e], [])
+    test_refs, test_defines = [], ""
+    runtime_text = open(os.path.join(ROOT, "Assembly-CSharp.csproj"), encoding="utf-8-sig").read()
+    if "--playmode-tests" in args or "UNITY_INCLUDE_TESTS" in runtime_text:
+        editor_text = open(os.path.join(ROOT, "Assembly-CSharp-Editor.csproj"), encoding="utf-8-sig").read()
+        test_refs = [h if os.path.isabs(h) else os.path.join(ROOT, h) for h in re.findall(r"<HintPath>([^<]+nunit[^<]+)</HintPath>", editor_text)]
+        test_refs.append(os.path.join(ROOT, "Library", "ScriptAssemblies", "UnityEngine.TestRunner.dll"))
+        test_defines = "" if "UNITY_INCLUDE_TESTS" in runtime_text else ";UNITY_INCLUDE_TESTS"
+    runtime = project("Assembly-CSharp", out, new_files(False) + [e for e in extra if os.sep + "Editor" not in e], test_refs, test_defines)
     ok, errors = build(runtime)
     print("Assembly-CSharp:", "OK" if ok else "FAILED")
     for e in errors:

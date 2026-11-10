@@ -81,6 +81,32 @@ BOUNDARY_LINKS = [('H1u', 'G1'), ('W5', 'G2'), ('T3ou', 'G3'), ('R3', 'G4')]
 SECOND_STAT_KEYS = ('W', 'R', 'T3')
 SLOT_KEYS = ('C1', 'C2', 'C3', 'C4')
 
+STAT_BY_FIRST_ID = {9: 'Strength', 13: 'Vitality', 11: 'Agility', 15: 'Intelligence', 17: 'Dexterity', 19: 'Lucky'}
+CLASS_STAT_PREFERENCE = 2.0
+OUTER_GROUPS = [('W6', 'W7'), ('T3il', 'T3iu', 'T3ol', 'T3ou', 'T3b'), ('R1', 'R2', 'R3'), ('M', 'M2', 'N'),
+                ('H4l', 'H4u', 'H4b'), ('G3', 'G4')]
+NOTABLE_SLOTS = ('H1t', 'H2t', 'T3t-', 'T3t+', 'H4t')
+NOTABLE_STAT_MULTIPLIER = 2.0
+ATK_P, MATK_P, CRIT, ASPD, MOVE, HP_P, MP_P, DEF, MDEF = 22, 24, 43, 41, 131, 4, 8, 31, 35
+HP_REC, MP_REC, CDR, VCT, STATUS, FIRE, ELEC, GHOST, HOLY, DODGE, HEAL, HIT, FLEE = 135, 137, 151, 147, 25, 63, 67, 71, 75, 45, 139, 37, 39
+BONUS_POINT = {ATK_P: 4.0, MATK_P: 4.0, CRIT: 3.0, ASPD: 6.0, MOVE: 5.0, HP_P: 4.0, MP_P: 5.0, DEF: 8.0, MDEF: 8.0, HP_REC: 4.0,
+               MP_REC: 3.0, CDR: 2.0, VCT: 0.4, STATUS: 8.0, FIRE: 6.0, ELEC: 6.0, GHOST: 6.0, HOLY: 6.0, DODGE: 1.5, HEAL: 8.0,
+               HIT: 8.0, FLEE: 8.0}
+NOTABLES = {
+    'Warrior': [('Bulwark', (DEF,)), ('Battle Fury', (ATK_P,)), ('Iron Hide', (HP_P,)), ('Cleaving Arc', (ASPD,)), ('Warlord', (ATK_P, HP_P))],
+    'Inquisitor': [('Zealous Strike', (HOLY,)), ('Sanctified Steel', (ATK_P,)), ("Judge's Focus", (HIT,)), ('Holy Aegis', (MDEF,)), ('Grand Inquest', (HOLY, MATK_P))],
+    'Enchanter': [('Arc Step', (MOVE,)), ('Weave Flow', (VCT,)), ('Edge Sigil', (ASPD,)), ('Runed Mind', (MATK_P,)), ('Spell Blade', (MATK_P, ATK_P))],
+    'Assassin': [('Shadow Gait', (MOVE,)), ('Keen Edge', (CRIT,)), ('Slipstream', (FLEE,)), ('Toxin Craft', (STATUS,)), ('Deathblow', (CRIT, DODGE))],
+    'Gunner': [('Steady Aim', (HIT,)), ('Hair Trigger', (ASPD,)), ('Lucky Round', (CRIT,)), ('Gunpowder', (FIRE,)), ('Dead Eye', (CRIT, ATK_P))],
+    'Archer': [('Swift Draw', (ASPD,)), ('Eagle Sight', (HIT,)), ('Fleetfoot', (MOVE,)), ('Barbed Tips', (ATK_P,)), ('Storm Volley', (ASPD, CRIT))],
+    'Mage': [('Arcane Mind', (MATK_P,)), ('Focused Cast', (VCT,)), ('Deep Well', (MP_P,)), ('Flame Study', (FIRE,)), ('Archmage', (MATK_P, CDR))],
+    'Sorcerer': [('Storm Caller', (ELEC,)), ('Fate Thread', (CRIT,)), ('Mana Tide', (MP_REC,)), ('Hexcraft', (STATUS,)), ('Thunder Sage', (ELEC, CDR))],
+    'Necomancer': [('Grave Touch', (GHOST,)), ('Soul Reservoir', (HP_P,)), ('Dark Study', (MATK_P,)), ('Withering', (STATUS,)), ('Lord of Bones', (GHOST, HP_P))],
+    'Alchemist': [('Potion Lore', (HEAL,)), ('Thick Blood', (HP_REC,)), ('Volatile Salts', (FIRE,)), ('Reagent Flow', (MP_REC,)), ('Grand Elixir', (HEAL, HP_P))],
+    'Priest': [('Blessed Hands', (MATK_P,)), ('Sacred Ward', (MDEF,)), ('Inner Calm', (MP_REC,)), ('Divine Light', (HOLY,)), ('High Cleric', (HOLY, MP_P))],
+    'Temmer': [('Beast Sense', (HIT,)), ('Thick Hide', (DEF,)), ('Wild Pace', (MOVE,)), ("Hunter's Bond", (ASPD,)), ('Pack Lord', (HP_P, ATK_P))],
+}
+
 SILHOUETTE = {0: 0.88, 30: 1.06, 60: 0.84, 90: 1.24, 120: 0.84, 150: 1.06,
               180: 0.88, 210: 1.18, 240: 0.90, 270: 1.26, 300: 0.90, 330: 1.18}
 WARP_START = 600.0
@@ -185,11 +211,42 @@ def concept_slots():
     return {(CLASS_ALIASES.get(name, name), slot + sides.get(side, '')): label for name, slot, side, label in rows}
 
 
+def balanced_stats(positions, big_slots):
+    stats = {slot: stat_for(slot) for slot in positions if slot not in big_slots}
+    groups = collections.defaultdict(list)
+    for slot in stats:
+        if slot[1] in NOTABLE_SLOTS:
+            continue
+        key = slot[1].rstrip('+-')
+        for index, group in enumerate(OUTER_GROUPS):
+            if key in group:
+                groups[(slot[0], index)].append(slot)
+    grouped = {slot for members in groups.values() for slot in members}
+    counts = collections.Counter(stat for slot, stat in stats.items() if slot not in grouped)
+    target = len(stats) / float(len(STAT_EXTRAS))
+    for (sector, _), members in sorted(groups.items(), key=lambda item: (-len(item[1]), item[0])):
+        _, primary, secondary = CLASSES[sector]
+        def score(stat):
+            return target - counts[stat] + (CLASS_STAT_PREFERENCE if stat in (primary, secondary) else 0.0)
+        best = max(STAT_EXTRAS, key=score)
+        counts[best] += len(members)
+        for slot in members:
+            stats[slot] = best
+    return stats
+
+
+def notable_extras(stat, specials):
+    extras = [{'id': e['id'], 'value': e['value'] * NOTABLE_STAT_MULTIPLIER} for e in STAT_EXTRAS[stat]]
+    return extras + [{'id': special, 'value': BONUS_POINT[special]} for special in specials]
+
+
 def build():
     with open(UNIQUE_PATH, encoding='utf-8-sig') as handle:
         unique_ids = {e['Name']: e['Id'] for e in json.load(handle)['UniquePassives']}
     all_slots = {**UNIQUE_SLOTS, **concept_slots()}
     positions = slots()
+    big_slots = {slot for slot in positions if (CLASSES[slot[0]][0], slot[1]) in all_slots}
+    stats = balanced_stats(positions, big_slots)
     count = 12 + len(positions)
     free_ids = iter(i for i in range(count) if i not in ORIGIN_IDS.values())
     nodes, ids = [], {}
@@ -213,9 +270,14 @@ def build():
             node.update(label=unique, shape='rect', iconPath='SkillIcon/Icon_KeySkill.png', extras=[],
                         uniquePassiveId=unique_ids[unique])
         else:
-            stat = stat_for(slot)
-            node.update(label=f'Attribute {stat}', shape='circle', iconPath='SkillIcon/Icon_Attribute.png',
-                        extras=[dict(e) for e in STAT_EXTRAS[stat]])
+            stat = stats[slot]
+            if slot[1] in NOTABLE_SLOTS:
+                name, specials = NOTABLES[CLASSES[slot[0]][0]][NOTABLE_SLOTS.index(slot[1])]
+                node.update(label=name, shape='circle', iconPath='SkillIcon/Icon_Attribute.png', notable=True,
+                            extras=notable_extras(stat, specials))
+            else:
+                node.update(label=f'Attribute {stat}', shape='circle', iconPath='SkillIcon/Icon_Attribute.png',
+                            extras=[dict(e) for e in STAT_EXTRAS[stat]])
         nodes.append(node)
 
     edges = []
@@ -275,7 +337,7 @@ def check(tree):
                                   min(h for i, h in distance.items() if i in big))
     with open(UNIQUE_PATH, encoding='utf-8-sig') as handle:
         uniques = {e['Name'] for e in json.load(handle)['UniquePassives']}
-    stats = collections.Counter(n['label'].split(' ', 1)[1] for n in nodes if n['label'].startswith('Attribute '))
+    stats = collections.Counter(STAT_BY_FIRST_ID[n['extras'][0]['id']] for n in nodes if n['shape'] == 'circle')
     return {
         'nodes': len(nodes), 'links': len(pairs), 'crossings': crossings, 'nearest': round(nearest, 1),
         'edges_through_nodes': grazing, 'class_reach_within15_firstUnique': sorted(set(classes.values())),
@@ -305,7 +367,11 @@ def render(tree, path):
             ax.scatter([x], [y], s=240, marker='h', color='#7a3fb0', zorder=3)
             ax.annotate(node['label'][:4], (x, y), fontsize=6, ha='center', va='center', color='white', zorder=4)
         else:
-            ax.scatter([x], [y], s=24, color=colors[node['label'].split(' ', 1)[1]], zorder=2)
+            color = colors[STAT_BY_FIRST_ID[node['extras'][0]['id']]]
+            if node.get('notable'):
+                ax.scatter([x], [y], s=90, marker='D', color=color, edgecolors='#111111', linewidths=0.8, zorder=3)
+            else:
+                ax.scatter([x], [y], s=24, color=color, zorder=2)
     ax.set_aspect('equal')
     ax.axis('off')
     fig.savefig(path, bbox_inches='tight')

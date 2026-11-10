@@ -1,6 +1,19 @@
 # Unique Node Concepts
 
-Concept ของ Unique Passive สำหรับ Node ใหญ่บน Skill Tree มีแค่ชื่อและแนวคิด ยังไม่มี Script และยังไม่ได้กำหนดตัวเลข ไอเดียชุดเก่าอยู่ที่ [UniquePassiveIdeas.md](./UniquePassiveIdeas.md)
+Unique Passive สำหรับ Node ใหญ่บน Skill Tree ทั้ง 46 อันมี Script แล้ว อยู่ที่ `Assets/Script/CoreSystem/Entity/UniquePassives/` ไอเดียชุดเก่าอยู่ที่ [UniquePassiveIdeas.md](./UniquePassiveIdeas.md)
+
+**อันที่ทำต่างจาก Concept เพราะเกมยังไม่มีระบบนั้น**
+
+| ชื่อ | ทำจริงเป็น |
+|---|---|
+| Burden of Kings | เกมยังไม่มีน้ำหนักของที่แบก จึงนับจำนวนอุปกรณ์ที่สวมแทน |
+| Veil Step | เกมยังไม่มีการหลบ จึงใช้ Perfect Dodge เป็นโอกาสหลบ และล่องหนคือไม่รับดาเมจ 1.5 วินาที |
+| Whisper Pact | ยังไม่มีระบบ Corruption กลาง จึงเก็บค่าไว้ในตัว Passive เพิ่มตอนใช้สกิลและลดตามเวลา |
+| Hexweaver | ยังไม่มีคำสาป จึงให้สกิลทุกอันซ้อน Hex บนเป้า |
+| Singular Element | ธาตุแรกที่ใช้คือธาตุที่เลือก และยังใช้สกิล Neutral ได้ |
+| Skirmisher's Pace | เกมไม่ได้ทำให้เดินช้าตอนโจมตี จึงให้ Move Speed เพิ่ม 15% และระยะโจมตีลด 25% |
+| Hollow Quiver | ปิด Basic Attack ทั้งหมด สกิลแรงขึ้นและเจาะทะลุเพิ่ม 2 |
+| Six Fates | ทอยผลทุกการโจมตี คูณดาเมจ 0, 0.5, 1, 1, 1.5 หรือ 3 เท่า |
 
 **ตำแหน่งบน Tree:** ทุก Class มีช่อง `C1` ใกล้จุดเริ่ม, `C2` กลางสาย, `C3` ซ้ายและขวาอย่างละช่อง, `C4` ปลายสาย ช่อง `C1` มี Unique แล้วทุก Class ชุดนี้จึงเติมช่องที่เหลือ 46 ช่อง
 

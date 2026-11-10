@@ -210,6 +210,7 @@ namespace CoreSystem.UI.Inventory.Utility
         private static void UseItem(ItemInstance instance)
         {
             instance.Item.OnUse();
+            if (instance.Item is CoreSystem.Data.Items.Model.Consumable consumable && !consumable.LastUseConsumed) return;
             if (GameData.Player != null && GameData.Player.Inventory != null)
             {
                 GameData.Player.Inventory.RemoveItemByInstance(instance.Id, 1);

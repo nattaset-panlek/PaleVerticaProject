@@ -370,6 +370,7 @@ namespace CoreSystem.Entity
         {
             if (IsDead || target == null) return;
             if (BasicAttackCooldownTimer > 0) return;
+            if (!_uniquePassives.CanBasicAttack()) return;
 
             StrikeBasicAttack(target, 1f);
 
@@ -418,6 +419,8 @@ namespace CoreSystem.Entity
                 BaseDamage = bonusDamage,
                 DamageMultiplier = damageMultiplier
             };
+
+            _uniquePassives.ModifyBasicAttack(payload);
 
             GameObject prefab = null;
             if (_autoAttackType == AutoAttackType.Range)

@@ -1,0 +1,52 @@
+{
+  "name": "input_check",
+  "description": "Run this first. Checks that the virtual keyboard and mouse reach the game: walk right with D, then click a frozen Skeletom to attack it.",
+  "tags": [
+    "core",
+    "input"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "Record",
+      "name": "x",
+      "value": "player.x"
+    },
+    {
+      "do": "Walk",
+      "dir": "right",
+      "seconds": 0.6,
+      "note": "holds D"
+    },
+    {
+      "do": "Expect",
+      "name": "the D key moved the player right",
+      "value": "player.x - var.x",
+      "op": ">",
+      "to": 0.05
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Attack",
+      "hits": 1,
+      "max": 5,
+      "note": "left-clicks the Skeletom; on failure the step message says what the game saw"
+    },
+    {
+      "do": "Expect",
+      "name": "the click started an attack that landed",
+      "value": "hits.count",
+      "op": ">=",
+      "to": 1
+    },
+    {
+      "do": "Review",
+      "name": "the player walked and attacked on screen",
+      "note": "Look at the screenshot: the player should stand next to the Skeletom."
+    }
+  ]
+}

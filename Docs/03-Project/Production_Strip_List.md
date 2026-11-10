@@ -93,6 +93,11 @@ Anything under an `Editor/` folder is left out of player builds by Unity automat
 
 | Item | Where |
 |---|---|
+| `ScenarioBatchRunner.RunBatch` (batch entry used by `unity_batch.sh playtests`; exits Unity with the result) | `Assets/Script/Editor/ScenarioTesting/` |
+| Scenario runner, virtual input, probes, lab and actions (compiled only with `UNITY_EDITOR` or `PV_SCENARIO_TESTS`, so a release build has none of it) | `Assets/Script/ScenarioTesting/` |
+| Pale Vertica > Testing > Scenario Checklist window | `Assets/Script/Editor/ScenarioTesting/` |
+| Scenario files and human review verdicts | `Tests/Scenarios/` (outside `Assets/`, not in the build) |
+| `unity_batch.sh playtests` and `compile_check.py --playmode-tests` | `Tools/FigmaToUnity/` |
 | `UIStyleSizeLockTests`, `SystemMenuTests`, `ItemInsertRegistryTests` | `Assets/Script/Editor/Tests/` |
 | `UILayoutRegressionTests` (fails on render layout errors) | `Assets/Script/Editor/Tests/` |
 | `AlchemiteReturnNpcTests` (reads the four NPC PSBs and prefabs) | `Assets/Script/Editor/Tests/` |

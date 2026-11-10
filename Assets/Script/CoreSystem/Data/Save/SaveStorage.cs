@@ -7,11 +7,61 @@ namespace CoreSystem.Data.Save
 {
     public static class SaveStorage
     {
+        #region [Variables/Fields]
+        public static event Action<string> OnProfileChanged;
+        #endregion
+
         #region [Properties]
-        public static string SaveFolderPath => Path.Combine(Application.persistentDataPath, "Saves");
+        public static string RootFolderPath => Path.Combine(Application.persistentDataPath, "Saves");
+        public static string SaveFolderPath => SaveProfileFormula.FolderFor(RootFolderPath, Profile);
+        public static string Profile { get; private set; } = string.Empty;
+        public static bool IsDefaultProfile => Profile.Length == 0;
         #endregion
 
         #region [Public Methods]
+        public static void UseProfile(string profile)
+        {
+            string clean = SaveProfileFormula.Sanitize(profile);
+            if (clean == Profile) return;
+            Profile = clean;
+            Debug.Log($"[SaveStorage] Save profile: {(IsDefaultProfile ? "default" : Profile)} ({SaveFolderPath})");
+            OnProfileChanged?.Invoke(Profile);
+        }
+
+        public static void UseDefaultProfile()
+        {
+            UseProfile(string.Empty);
+        }
+
+        public static bool DeleteProfile(string profile)
+        {
+            string clean = SaveProfileFormula.Sanitize(profile);
+            if (clean.Length == 0) return false;
+
+            string folder = SaveProfileFormula.FolderFor(RootFolderPath, clean);
+            if (!Directory.Exists(folder)) return false;
+
+            try
+            {
+                Directory.Delete(folder, true);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[SaveStorage] Failed to delete profile {clean}: {ex.Message}");
+                return false;
+            }
+        }
+
+        public static List<string> GetProfiles()
+        {
+            var result = new List<string>();
+            string folder = Path.Combine(RootFolderPath, SaveProfileFormula.ProfilesFolderName);
+            if (!Directory.Exists(folder)) return result;
+            foreach (string directory in Directory.GetDirectories(folder)) result.Add(Path.GetFileName(directory));
+            return result;
+        }
+
         public static string GetSlotFilePath(int slotIndex)
         {
             return Path.Combine(SaveFolderPath, $"save_slot_{slotIndex}.json");
@@ -120,6 +170,15 @@ namespace CoreSystem.Data.Save
             }
 
             return result;
+        }
+        #endregion
+
+        #region [Private Methods]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics()
+        {
+            Profile = string.Empty;
+            OnProfileChanged = null;
         }
         #endregion
     }

@@ -1,0 +1,42 @@
+{
+  "name": "ui_flow",
+  "description": "Drives menus and drag and drop like a player: windows by key, skill to hotbar by drag, System Menu save.",
+  "tags": [
+    "ui",
+    "core"
+  ],
+  "path": [
+    "setup/new_warrior_lv15.json"
+  ],
+  "steps": [
+    {
+      "do": "OpenWindow",
+      "window": "Inventory"
+    },
+    {
+      "do": "CloseWindow",
+      "window": "Inventory"
+    },
+    {
+      "do": "OpenWindow",
+      "window": "CharacterStatus"
+    },
+    {
+      "do": "CloseWindow",
+      "window": "CharacterStatus"
+    },
+    {
+      "do": "AssignSkill",
+      "skill": 1001,
+      "slot": 2,
+      "how": "drag"
+    },
+    {
+      "do": "Menu",
+      "item": "Save Game"
+    },
+    {
+      "do": "ExpectNoErrors"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "name": "unique_chaos_loadouts",
+  "description": "Seeded random sets of 5 passives through the standard routine (script action), then everything at once.",
+  "tags": [
+    "passive",
+    "slow"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "RandomLoadouts",
+      "count": 12,
+      "size": 5,
+      "timeout": 3600
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "AlphasBurden",
+        "AnsweredPrayer",
+        "AnvilHeart",
+        "BlessingOfMagearna",
+        "BloodBleeding",
+        "BloodMage",
+        "BoneChoir",
+        "BurdenOfKings",
+        "CovenantKeeper",
+        "CurseOfKanix",
+        "DoubleAttack",
+        "DoubleSpell",
+        "EldritchFaith",
+        "Execution",
+        "FeralBond",
+        "FickleStars",
+        "GlassCannonTheorem",
+        "GraveTithe",
+        "HereticsPyre",
+        "Hexweaver",
+        "HollowCrown",
+        "HollowQuiver",
+        "IronMomentum",
+        "LastBanner",
+        "LivingPhilosopher",
+        "LoadedChamber",
+        "ManaLeech",
+        "MarkedThroat",
+        "OathOfSilence",
+        "OneCleanCut",
+        "OverflowingSigil",
+        "PackInstinct",
+        "PenitentBlade",
+        "PinningShot",
+        "PowderBurn",
+        "QuickenedWeave",
+        "RadiantRebuke",
+        "RicochetDoctrine",
+        "Rock",
+        "RunicSkin",
+        "SecondDose",
+        "SharedWound",
+        "SingularElement",
+        "SixFates",
+        "SkirmishersPace",
+        "SlowIncantation",
+        "SpellboundEdge",
+        "Thorn",
+        "TimeCollector",
+        "TransmutedBlood",
+        "Vampire",
+        "VeilStep",
+        "VenomLedger",
+        "Verdict",
+        "VolatileMixture",
+        "VowOfStillness",
+        "WhisperPact",
+        "Windreader",
+        "DepressionChaos",
+        "TwinConduit"
+      ]
+    },
+    {
+      "do": "StandardRoutine",
+      "label": "every passive at once"
+    }
+  ]
+}

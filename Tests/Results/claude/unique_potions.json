@@ -1,0 +1,552 @@
+{
+  "Scenario": "unique_potions",
+  "File": "passives/potions.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 16:01:42",
+  "DurationSeconds": 6.50775146,
+  "Status": "Passed",
+  "ChecksPassed": 8,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 0.236328125
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.236328125,
+      "Duration": 0.0
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.236328125,
+      "Duration": 0.16003418
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.3963623,
+      "Duration": 0.8748169
+    },
+    {
+      "Index": 4,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.2711792,
+      "Duration": 0.05883789
+    },
+    {
+      "Index": 5,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"player\",\"ratio\":0.2}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.33001709,
+      "Duration": 0.051574707
+    },
+    {
+      "Index": 6,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"AnsweredPrayer\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.3815918,
+      "Duration": 0.0551147461
+    },
+    {
+      "Index": 7,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"player.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 11020.2",
+      "StartTime": 1.43670654,
+      "Duration": 0.05279541
+    },
+    {
+      "Index": 8,
+      "Action": "UseItem",
+      "Arguments": "UseItem {\"item\":2001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.489502,
+      "Duration": 0.06213379
+    },
+    {
+      "Index": 9,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Answered Prayer: potion at 20% hp heals 1.8x\",\"value\":\"(player.HP - var.hp) / 50\",\"to\":1.8,\"tolerance\":0.1,\"review\":0.3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.55163574,
+      "Duration": 0.07067871
+    },
+    {
+      "Index": 10,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.62231445,
+      "Duration": 0.0514526367
+    },
+    {
+      "Index": 11,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"player\",\"ratio\":0.5}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.67376709,
+      "Duration": 0.0524292
+    },
+    {
+      "Index": 12,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"CovenantKeeper\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.72619629,
+      "Duration": 0.05255127
+    },
+    {
+      "Index": 13,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"player.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 27550.5",
+      "StartTime": 1.77874756,
+      "Duration": 0.0514526367
+    },
+    {
+      "Index": 14,
+      "Action": "UseItem",
+      "Arguments": "UseItem {\"item\":2001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.8302002,
+      "Duration": 0.0493164063
+    },
+    {
+      "Index": 15,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Covenant Keeper: potion heals 1.75x\",\"value\":\"(player.HP - var.hp) / 50\",\"to\":1.75,\"tolerance\":0.1,\"review\":0.3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.8795166,
+      "Duration": 0.06414795
+    },
+    {
+      "Index": 16,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.94366455,
+      "Duration": 0.0496826172
+    },
+    {
+      "Index": 17,
+      "Action": "SetHp",
+      "Arguments": "SetHp {\"of\":\"player\",\"ratio\":0.5}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.99334717,
+      "Duration": 0.0509643555
+    },
+    {
+      "Index": 18,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"LivingPhilosopher\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.04431152,
+      "Duration": 0.05206299
+    },
+    {
+      "Index": 19,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"player.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 27550.53",
+      "StartTime": 2.09637451,
+      "Duration": 0.05255127
+    },
+    {
+      "Index": 20,
+      "Action": "UseItem",
+      "Arguments": "UseItem {\"item\":2001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.14892578,
+      "Duration": 0.05041504
+    },
+    {
+      "Index": 21,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Living Philosopher: the potion is not used\",\"value\":\"potion\",\"to\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.19934082,
+      "Duration": 0.151611328
+    },
+    {
+      "Index": 22,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Living Philosopher: the potion does not heal\",\"value\":\"player.HP - var.hp\",\"op\":\"<\",\"to\":25}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.35095215,
+      "Duration": 0.0914306641
+    },
+    {
+      "Index": 23,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"player.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 27550.7",
+      "StartTime": 2.44238281,
+      "Duration": 0.0518798828
+    },
+    {
+      "Index": 24,
+      "Action": "Idle",
+      "Arguments": "Idle {\"seconds\":2}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.4942627,
+      "Duration": 2.03057861
+    },
+    {
+      "Index": 25,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Living Philosopher: hp regenerates\",\"value\":\"player.HP\",\"op\":\">\",\"to\":\"var.hp\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.52484131,
+      "Duration": 0.0599365234
+    },
+    {
+      "Index": 26,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.584778,
+      "Duration": 0.0522460938
+    },
+    {
+      "Index": 27,
+      "Action": "SetMp",
+      "Arguments": "SetMp {\"of\":\"player\",\"value\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.637024,
+      "Duration": 0.0510864258
+    },
+    {
+      "Index": 28,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"TransmutedBlood\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.68811035,
+      "Duration": 0.121887207
+    },
+    {
+      "Index": 29,
+      "Action": "UseItem",
+      "Arguments": "UseItem {\"item\":2001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.80999756,
+      "Duration": 0.0489501953
+    },
+    {
+      "Index": 30,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Transmuted Blood: half the potion becomes mana\",\"value\":\"player.MP\",\"to\":25,\"tolerance\":5}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.85894775,
+      "Duration": 0.06640625
+    },
+    {
+      "Index": 31,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.925354,
+      "Duration": 0.0580444336
+    },
+    {
+      "Index": 32,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"VolatileMixture\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.98339844,
+      "Duration": 0.0556030273
+    },
+    {
+      "Index": 33,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 1000124",
+      "StartTime": 5.03900146,
+      "Duration": 0.0500488281
+    },
+    {
+      "Index": 34,
+      "Action": "UseItem",
+      "Arguments": "UseItem {\"item\":2001}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.08905029,
+      "Duration": 0.0795898438
+    },
+    {
+      "Index": 35,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Volatile Mixture: the potion hurts the nearby target\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.16864,
+      "Duration": 0.06933594
+    },
+    {
+      "Index": 36,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.237976,
+      "Duration": 0.057800293
+    },
+    {
+      "Index": 37,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"SecondDose\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 5.29577637,
+      "Duration": 0.053527832
+    },
+    {
+      "Index": 38,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"kept\",\"value\":\"0\"}",
+      "Status": "Passed",
+      "Message": "var.kept = 0",
+      "StartTime": 5.349304,
+      "Duration": 0.0571289063
+    },
+    {
+      "Index": 39,
+      "Action": "Repeat",
+      "Arguments": "Repeat {\"times\":20,\"steps\":[{\"do\":\"UseItem\",\"item\":2001},{\"do\":\"Record\",\"name\":\"kept\",\"value\":\"var.kept + potion\"}]}",
+      "Status": "Passed",
+      "Message": "var.kept = 6",
+      "StartTime": 5.406433,
+      "Duration": 1.04083252
+    },
+    {
+      "Index": 40,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Second Dose: some potions kept, not all\",\"value\":\"var.kept\",\"op\":\"between\",\"min\":1,\"max\":19}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 6.44726563,
+      "Duration": 0.06048584
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "Answered Prayer: potion at 20% hp heals 1.8x",
+      "Status": "Passed",
+      "Expected": "1.8 +/- 0.1",
+      "Actual": "1.824",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 9,
+      "Time": 1.55163574
+    },
+    {
+      "Name": "Covenant Keeper: potion heals 1.75x",
+      "Status": "Passed",
+      "Expected": "1.75 +/- 0.1",
+      "Actual": "1.75",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 15,
+      "Time": 1.8795166
+    },
+    {
+      "Name": "Living Philosopher: the potion is not used",
+      "Status": "Passed",
+      "Expected": "== 1",
+      "Actual": "1",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 21,
+      "Time": 2.19934082
+    },
+    {
+      "Name": "Living Philosopher: the potion does not heal",
+      "Status": "Passed",
+      "Expected": "< 25",
+      "Actual": "0.127",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 22,
+      "Time": 2.35095215
+    },
+    {
+      "Name": "Living Philosopher: hp regenerates",
+      "Status": "Passed",
+      "Expected": "> 27550.7",
+      "Actual": "27555.34",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 25,
+      "Time": 4.52484131
+    },
+    {
+      "Name": "Transmuted Blood: half the potion becomes mana",
+      "Status": "Passed",
+      "Expected": "25 +/- 5",
+      "Actual": "25",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 30,
+      "Time": 4.85894775
+    },
+    {
+      "Name": "Volatile Mixture: the potion hurts the nearby target",
+      "Status": "Passed",
+      "Expected": "< 1000124",
+      "Actual": "1000100",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 35,
+      "Time": 5.16864
+    },
+    {
+      "Name": "Second Dose: some potions kept, not all",
+      "Status": "Passed",
+      "Expected": "1..19",
+      "Actual": "6",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 40,
+      "Time": 6.44726563
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "hp": 1000123.63,
+    "kept": 6.0,
+    "i": 19.0
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.24s in scene Town",
+    "0.24s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "0.24s step 3: Refill {\"of\":\"player\"}",
+    "0.40s step 4: SpawnTarget",
+    "1.27s step 5: Reset",
+    "1.33s step 6: SetHp {\"of\":\"player\",\"ratio\":0.2}",
+    "1.38s step 7: Give {\"passives\":[\"AnsweredPrayer\"]}",
+    "1.44s step 8: Record {\"name\":\"hp\",\"value\":\"player.HP\"}",
+    "1.44s var.hp = 11020.2",
+    "1.49s step 9: UseItem {\"item\":2001}",
+    "1.55s step 10: Expect {\"name\":\"Answered Prayer: potion at 20% hp heals 1.8x\",\"value\":\"(player.HP - var.hp) / 50\",\"to\":1.8,\"tolerance\":0.1,\"review\":0.3}",
+    "1.62s step 11: Reset",
+    "1.67s step 12: SetHp {\"of\":\"player\",\"ratio\":0.5}",
+    "1.73s step 13: Give {\"passives\":[\"CovenantKeeper\"]}",
+    "1.78s step 14: Record {\"name\":\"hp\",\"value\":\"player.HP\"}",
+    "1.78s var.hp = 27550.5",
+    "1.83s step 15: UseItem {\"item\":2001}",
+    "1.88s step 16: Expect {\"name\":\"Covenant Keeper: potion heals 1.75x\",\"value\":\"(player.HP - var.hp) / 50\",\"to\":1.75,\"tolerance\":0.1,\"review\":0.3}",
+    "1.94s step 17: Reset",
+    "1.99s step 18: SetHp {\"of\":\"player\",\"ratio\":0.5}",
+    "2.04s step 19: Give {\"passives\":[\"LivingPhilosopher\"]}",
+    "2.10s step 20: Record {\"name\":\"hp\",\"value\":\"player.HP\"}",
+    "2.10s var.hp = 27550.53",
+    "2.15s step 21: UseItem {\"item\":2001}",
+    "2.20s step 22: Expect {\"name\":\"Living Philosopher: the potion is not used\",\"value\":\"potion\",\"to\":1}",
+    "2.35s step 23: Expect {\"name\":\"Living Philosopher: the potion does not heal\",\"value\":\"player.HP - var.hp\",\"op\":\"<\",\"to\":25}",
+    "2.44s step 24: Record {\"name\":\"hp\",\"value\":\"player.HP\"}",
+    "2.44s var.hp = 27550.7",
+    "2.49s step 25: Idle {\"seconds\":2}",
+    "4.52s step 26: Expect {\"name\":\"Living Philosopher: hp regenerates\",\"value\":\"player.HP\",\"op\":\">\",\"to\":\"var.hp\"}",
+    "4.58s step 27: Reset",
+    "4.64s step 28: SetMp {\"of\":\"player\",\"value\":0}",
+    "4.69s step 29: Give {\"passives\":[\"TransmutedBlood\"]}",
+    "4.81s step 30: UseItem {\"item\":2001}",
+    "4.86s step 31: Expect {\"name\":\"Transmuted Blood: half the potion becomes mana\",\"value\":\"player.MP\",\"to\":25,\"tolerance\":5}",
+    "4.93s step 32: Reset",
+    "4.98s step 33: Give {\"passives\":[\"VolatileMixture\"]}",
+    "5.04s step 34: Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+    "5.04s var.hp = 1000124",
+    "5.09s step 35: UseItem {\"item\":2001}",
+    "5.17s step 36: Expect {\"name\":\"Volatile Mixture: the potion hurts the nearby target\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+    "5.24s step 37: Reset",
+    "5.30s step 38: Give {\"passives\":[\"SecondDose\"]}",
+    "5.35s step 39: Record {\"name\":\"kept\",\"value\":\"0\"}",
+    "5.35s var.kept = 0",
+    "5.41s step 40: Repeat {\"times\":20,\"steps\":[{\"do\":\"UseItem\",\"item\":2001},{\"do\":\"Record\",\"name\":\"kept\",\"value\":\"var.kept + potion\"}]}",
+    "5.47s var.kept = 0",
+    "5.52s var.kept = 0",
+    "5.57s var.kept = 0",
+    "5.62s var.kept = 0",
+    "5.66s var.kept = 1",
+    "5.70s var.kept = 1",
+    "5.75s var.kept = 1",
+    "5.79s var.kept = 1",
+    "5.83s var.kept = 1",
+    "5.88s var.kept = 1",
+    "5.92s var.kept = 2",
+    "6.06s var.kept = 3",
+    "6.12s var.kept = 3",
+    "6.17s var.kept = 4",
+    "6.21s var.kept = 5",
+    "6.25s var.kept = 5",
+    "6.29s var.kept = 5",
+    "6.36s var.kept = 5",
+    "6.41s var.kept = 6",
+    "6.45s var.kept = 6",
+    "6.45s step 41: Expect {\"name\":\"Second Dose: some potions kept, not all\",\"value\":\"var.kept\",\"op\":\"between\",\"min\":1,\"max\":19}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2191054",
+      "Amount": 23.55,
+      "Time": 859.228943
+    }
+  ]
+}

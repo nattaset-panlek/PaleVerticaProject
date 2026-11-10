@@ -1,0 +1,280 @@
+{
+  "Scenario": "unique_self_stats",
+  "File": "passives/self.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 16:01:43",
+  "DurationSeconds": 12.3842163,
+  "Status": "Failed",
+  "ChecksPassed": 1,
+  "ChecksReview": 0,
+  "ChecksFailed": 2,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 0.258056641
+    },
+    {
+      "Index": 1,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.258056641,
+      "Duration": 0.16003418
+    },
+    {
+      "Index": 2,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.41809082,
+      "Duration": 0.1071167
+    },
+    {
+      "Index": 3,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+      "Status": "Passed",
+      "Message": "var.mh = 55101",
+      "StartTime": 0.5252075,
+      "Duration": 0.0547485352
+    },
+    {
+      "Index": 4,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"HollowCrown\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.579956055,
+      "Duration": 0.05456543
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Hollow Crown: max hp is halved\",\"value\":\"player.MaxHP / var.mh\",\"to\":0.5,\"tolerance\":0.03}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.6345215,
+      "Duration": 0.07171631
+    },
+    {
+      "Index": 6,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.7062378,
+      "Duration": 0.0518188477
+    },
+    {
+      "Index": 7,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+      "Status": "Passed",
+      "Message": "var.mh = 55101",
+      "StartTime": 0.758056641,
+      "Duration": 0.05493164
+    },
+    {
+      "Index": 8,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"WhisperPact\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.8129883,
+      "Duration": 0.0560302734
+    },
+    {
+      "Index": 9,
+      "Action": "Repeat",
+      "Arguments": "Repeat {\"times\":6,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1},{\"do\":\"Refill\",\"of\":\"player\"}]}",
+      "Status": "Passed",
+      "Message": "cast started False, 1 hits",
+      "StartTime": 0.869018555,
+      "Duration": 9.347046
+    },
+    {
+      "Index": 10,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Whisper Pact: repeated casts lower max hp\",\"value\":\"player.MaxHP\",\"op\":\"<\",\"to\":\"var.mh\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.2160645,
+      "Duration": 0.06970215
+    },
+    {
+      "Index": 11,
+      "Action": "Reset",
+      "Arguments": "Reset",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.2857666,
+      "Duration": 0.0615844727
+    },
+    {
+      "Index": 12,
+      "Action": "Give",
+      "Arguments": "Give {\"passives\":[\"OathOfSilence\"]}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.3473511,
+      "Duration": 0.07507324
+    },
+    {
+      "Index": 13,
+      "Action": "Cast",
+      "Arguments": "Cast {\"slot\":0,\"at\":\"target\",\"wait\":1.5}",
+      "Status": "Passed",
+      "Message": "cast started False, 1 hits",
+      "StartTime": 10.4224243,
+      "Duration": 1.89337158
+    },
+    {
+      "Index": 14,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"Oath of Silence: a skill with cast time does not fire\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 12.3157959,
+      "Duration": 0.06842041
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "Hollow Crown: max hp is halved",
+      "Status": "Failed",
+      "Expected": "0.5 +/- 0.03",
+      "Actual": "1",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 0.6345215
+    },
+    {
+      "Name": "Whisper Pact: repeated casts lower max hp",
+      "Status": "Failed",
+      "Expected": "< 55101",
+      "Actual": "55101",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 10,
+      "Time": 10.2160645
+    },
+    {
+      "Name": "Oath of Silence: a skill with cast time does not fire",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": "Review if slot 1 holds an instant skill, which Oath of Silence allows.",
+      "Screenshot": null,
+      "Step": 14,
+      "Time": 12.3157959
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "mh": 55101.0,
+    "i": 5.0
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.26s in scene Town",
+    "0.26s step 2: SpawnTarget",
+    "0.42s step 3: Reset",
+    "0.53s step 4: Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+    "0.53s var.mh = 55101",
+    "0.58s step 5: Give {\"passives\":[\"HollowCrown\"]}",
+    "0.63s step 6: Expect {\"name\":\"Hollow Crown: max hp is halved\",\"value\":\"player.MaxHP / var.mh\",\"to\":0.5,\"tolerance\":0.03}",
+    "0.71s step 7: Reset",
+    "0.76s step 8: Record {\"name\":\"mh\",\"value\":\"player.MaxHP\"}",
+    "0.76s var.mh = 55101",
+    "0.81s step 9: Give {\"passives\":[\"WhisperPact\"]}",
+    "0.87s step 10: Repeat {\"times\":6,\"steps\":[{\"do\":\"Cast\",\"slot\":0,\"at\":\"target\",\"wait\":1.1},{\"do\":\"Refill\",\"of\":\"player\"}]}",
+    "2.46s cast started False, 0 hits",
+    "3.94s cast started False, 0 hits",
+    "5.44s cast started False, 2 hits",
+    "6.97s cast started False, 1 hits",
+    "8.64s cast started False, 2 hits",
+    "10.15s cast started False, 1 hits",
+    "10.22s step 11: Expect {\"name\":\"Whisper Pact: repeated casts lower max hp\",\"value\":\"player.MaxHP\",\"op\":\"<\",\"to\":\"var.mh\"}",
+    "10.29s step 12: Reset",
+    "10.35s step 13: Give {\"passives\":[\"OathOfSilence\"]}",
+    "10.42s step 14: Cast {\"slot\":0,\"at\":\"target\",\"wait\":1.5}",
+    "12.32s cast started False, 1 hits",
+    "12.32s step 15: Expect {\"name\":\"Oath of Silence: a skill with cast time does not fire\",\"value\":\"cast\",\"to\":0,\"severity\":\"review\"}"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 864.8385
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 865.8534
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 866.8842
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 867.9761
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 868.9217
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 869.9335
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 870.995
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 871.998352
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2146916",
+      "Target": "Skeletom(Clone)#-2192226",
+      "Amount": 10.5333328,
+      "Time": 873.03186
+    }
+  ]
+}

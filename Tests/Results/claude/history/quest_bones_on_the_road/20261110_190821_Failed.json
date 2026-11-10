@@ -1,0 +1,77 @@
+{
+  "Scenario": "quest_bones_on_the_road",
+  "File": "quests/bones_on_the_road.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 19:08:12",
+  "DurationSeconds": 6.08826256,
+  "Status": "Failed",
+  "ChecksPassed": 0,
+  "ChecksReview": 0,
+  "ChecksFailed": 1,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.00001955
+    },
+    {
+      "Index": 1,
+      "Action": "Level",
+      "Arguments": "Level {\"base\":15,\"job\":5}",
+      "Status": "Passed",
+      "Message": "base 15, job 5, stat points 81, passive points 5",
+      "StartTime": 1.00001955,
+      "Duration": 0.0293873549
+    },
+    {
+      "Index": 2,
+      "Action": "SpendStats",
+      "Arguments": "SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+      "Status": "Passed",
+      "Message": "VIT +20, STR +61; 0 points left",
+      "StartTime": 1.02940691,
+      "Duration": 0.0173088312
+    },
+    {
+      "Index": 3,
+      "Action": "ChooseClass",
+      "Arguments": "ChooseClass {\"class\":\"Warrior\"}",
+      "Status": "Failed",
+      "Message": "waited 5s for the class card Warrior after pressing P (job level 5)",
+      "StartTime": 1.04671574,
+      "Duration": 5.041547
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "step 4 ChooseClass completes",
+      "Status": "Failed",
+      "Expected": "completes",
+      "Actual": "waited 5s for the class card Warrior after pressing P (job level 5)",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 3,
+      "Time": 6.08826256
+    }
+  ],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "1.00s in scene Town",
+    "1.00s step 2: Level {\"base\":15,\"job\":5}",
+    "1.00s base 15, job 5, stat points 81, passive points 5",
+    "1.03s step 3: SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+    "1.03s VIT +20, STR +61; 0 points left",
+    "1.05s step 4: ChooseClass {\"class\":\"Warrior\"}",
+    "6.09s step 4 failed: waited 5s for the class card Warrior after pressing P (job level 5)"
+  ],
+  "Errors": [],
+  "Combat": []
+}

@@ -34,6 +34,12 @@ namespace CoreSystem.Combat
             IEntity target = outcome.Target;
             if (target == null || target.attributeSystem == null) return;
 
+            var healer = outcome.Source as Character;
+            var payload = result.Action.Payload;
+            float amount = outcome.Amount;
+            if (healer != null && healer.UniquePassives != null) healer.UniquePassives.ModifyOutgoingHeal(target, ref amount, payload);
+            outcome.Amount = amount;
+
             var current = target.attributeSystem.GetAttribute(spec.TargetAttribute);
             if (current == null) return;
 
@@ -47,6 +53,8 @@ namespace CoreSystem.Combat
 
             current.BaseValue = value;
             current.Recalculate();
+
+            if (healer != null && healer.UniquePassives != null) healer.UniquePassives.TriggerOnHealed(target, outcome.Amount, payload);
         }
 
         private static AttributeType MaxOf(AttributeType type)

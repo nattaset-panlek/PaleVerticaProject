@@ -1,0 +1,78 @@
+{
+  "name": "skill_slot0_damage",
+  "description": "Press hotbar slot 1 and click a frozen Skeletom; it should lose HP and the player should spend MP.",
+  "tags": [
+    "core",
+    "skill"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "SpawnTarget",
+      "tank": false
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "target.HP"
+    },
+    {
+      "do": "Record",
+      "name": "mp",
+      "value": "player.MP"
+    },
+    {
+      "do": "Cast",
+      "slot": 0,
+      "at": "target",
+      "wait": 2
+    },
+    {
+      "do": "Expect",
+      "name": "the cast started",
+      "value": "cast",
+      "to": 1
+    },
+    {
+      "do": "Expect",
+      "name": "target lost hp",
+      "value": "target.HP",
+      "op": "<",
+      "to": "var.hp"
+    },
+    {
+      "do": "Expect",
+      "name": "damage was recorded on the target",
+      "value": "hits.total",
+      "op": ">",
+      "to": 0
+    },
+    {
+      "do": "Expect",
+      "name": "mana spent is not negative",
+      "value": "var.mp - player.MP",
+      "op": ">=",
+      "to": 0
+    },
+    {
+      "do": "Measure",
+      "name": "damage",
+      "value": "var.hp - target.HP"
+    }
+  ]
+}

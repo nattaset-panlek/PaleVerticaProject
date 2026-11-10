@@ -19,6 +19,7 @@ namespace CoreSystem.Skills
         public bool IsTargetPositionSet; // To distinguish between 0,0,0 and unset
         public bool IsPositionLocked; // If true, range-clamping should be skipped or anchored to the lock-in point
         public bool IsRepeatCast;
+        public bool IsCriticalHit;
         public bool CastIndicatorShown;
         public List<IEntity> Targets = new List<IEntity>();
         

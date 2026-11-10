@@ -1,0 +1,44 @@
+{
+  "Scenario": "dialogue_alchemist_choice",
+  "File": "core/dialogue_alchemist.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 16:03:45",
+  "DurationSeconds": 20.2398682,
+  "Status": "Failed",
+  "ChecksPassed": 0,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 0.204833984
+    },
+    {
+      "Index": 1,
+      "Action": "TalkTo",
+      "Arguments": "TalkTo {\"character\":2001}",
+      "Status": "Failed",
+      "Message": "waited 20s for a conversation with Alchemist",
+      "StartTime": 0.204833984,
+      "Duration": 20.0350342
+    }
+  ],
+  "Checks": [],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.20s in scene Town",
+    "0.20s step 2: TalkTo {\"character\":2001}",
+    "20.24s step 2 failed: waited 20s for a conversation with Alchemist"
+  ],
+  "Errors": [],
+  "Combat": []
+}

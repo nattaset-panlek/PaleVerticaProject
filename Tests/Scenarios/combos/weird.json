@@ -1,0 +1,220 @@
+{
+  "name": "unique_combo_weird",
+  "description": "Stacks that should not break the game.",
+  "continueOnFail": true,
+  "tags": [
+    "passive",
+    "combo"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "Thorn"
+      ]
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "Thorn"
+      ],
+      "to": "target"
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "TakeHits",
+      "count": 3,
+      "amount": 40
+    },
+    {
+      "do": "Take",
+      "passives": [
+        "Thorn"
+      ],
+      "of": "target"
+    },
+    {
+      "do": "ExpectNoErrors",
+      "name": "Thorn vs Thorn: reflections do not loop"
+    },
+    {
+      "do": "Expect",
+      "name": "Thorn vs Thorn: player hp is valid",
+      "value": "player.HP",
+      "op": ">=",
+      "to": 0
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "BoneChoir",
+        "AlphasBurden",
+        "PackInstinct",
+        "FeralBond",
+        "SharedWound"
+      ]
+    },
+    {
+      "do": "Spawn",
+      "character": 1001,
+      "x": -1.2,
+      "y": 0,
+      "as": "victim"
+    },
+    {
+      "do": "SetHp",
+      "of": "victim",
+      "value": 1
+    },
+    {
+      "do": "Attack",
+      "target": "victim",
+      "hits": 1,
+      "max": 5
+    },
+    {
+      "do": "Wait",
+      "seconds": 1.5
+    },
+    {
+      "do": "Expect",
+      "name": "Bone Choir + Alpha's Burden: at most one summon",
+      "value": "summons",
+      "op": "<=",
+      "to": 1
+    },
+    {
+      "do": "Measure",
+      "name": "summons",
+      "value": "summons"
+    },
+    {
+      "do": "TakeHits",
+      "count": 2,
+      "amount": 40
+    },
+    {
+      "do": "ExpectNoErrors",
+      "name": "summon pack: no errors"
+    },
+    {
+      "do": "Review",
+      "name": "summon pack looks right",
+      "note": "Is there at most one, larger summon next to the player?"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "SingularElement",
+        "SpellboundEdge",
+        "RunicSkin",
+        "Hexweaver",
+        "SlowIncantation",
+        "GlassCannonTheorem",
+        "OverflowingSigil"
+      ]
+    },
+    {
+      "do": "Repeat",
+      "times": 3,
+      "steps": [
+        {
+          "do": "Cast",
+          "slot": 0,
+          "at": "target",
+          "wait": 1.1
+        }
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "ExpectNoErrors",
+      "name": "caster soup: no errors"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "SixFates",
+        "AnvilHeart",
+        "IronMomentum",
+        "OneCleanCut",
+        "MarkedThroat",
+        "Windreader",
+        "LoadedChamber",
+        "EldritchFaith"
+      ]
+    },
+    {
+      "do": "Idle",
+      "seconds": 1
+    },
+    {
+      "do": "Attack",
+      "hits": 6
+    },
+    {
+      "do": "Expect",
+      "name": "damage soup: total is a valid number",
+      "value": "hits.total",
+      "op": ">=",
+      "to": 0
+    },
+    {
+      "do": "ExpectNoErrors",
+      "name": "damage soup: no errors"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "CurseOfKanix",
+        "EldritchFaith",
+        "HollowCrown",
+        "WhisperPact",
+        "BurdenOfKings",
+        "SkirmishersPace",
+        "TwinConduit"
+      ]
+    },
+    {
+      "do": "StandardRoutine",
+      "label": "stat soup"
+    }
+  ]
+}

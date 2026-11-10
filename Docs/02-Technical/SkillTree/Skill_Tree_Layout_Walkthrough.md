@@ -39,6 +39,12 @@ python -I Tools/SkillTree/build_balanced_tree.py --render Logs/SkillTree.png
 
 `SILHOUETTE` sets how far each direction reaches, which draws the top spire, shoulders, waist and lower point. `CLUSTER_STYLES` and `STYLE_BY_ANGLE` give each pair of classes differently shaped clusters. These only move nodes. Every class keeps the same links, so balance does not change.
 
+## Stats and Notable nodes
+
+- `balanced_stats` keeps the inner part of each sector on the class stats, then gives outer groups to the stat with the fewest nodes, so the six stats end up about even.
+- `NOTABLES` lists each class's five Notable nodes at `H1t`, `H2t`, both `T3t` and `H4t`. Each gives double the stat of a small node plus its special bonus.
+- `BONUS_POINT` sets one point of each special bonus, sized at about a third of the same bonus on an item. The first four Notables have one point and `H4t` has two, so every class gets the same budget.
+
 ## How a big node gives its Unique Passive
 
 - A node with `uniquePassiveId` in the JSON grants that passive when bought.

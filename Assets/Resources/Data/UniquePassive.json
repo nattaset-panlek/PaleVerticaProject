@@ -81,7 +81,7 @@
             "Description": "Damage grows while you keep hitting the same target. Switching targets resets it."
         },
         {
-            "Id": "BurdenofKings",
+            "Id": "BurdenOfKings",
             "Name": "Burden of Kings",
             "Description": "ATK rises with carried weight, but movement slows with it."
         },
@@ -111,7 +111,7 @@
             "Description": "Enemies that die while branded spread fire to nearby foes."
         },
         {
-            "Id": "OathofSilence",
+            "Id": "OathOfSilence",
             "Name": "Oath of Silence",
             "Description": "You cannot use skills with a cast time, but instant skills hit far harder."
         },
@@ -276,7 +276,7 @@
             "Description": "Healing releases a Holy wave that damages nearby enemies."
         },
         {
-            "Id": "VowofStillness",
+            "Id": "VowOfStillness",
             "Name": "Vow of Stillness",
             "Description": "Standing still grants M.DEF and faster MP recovery."
         },

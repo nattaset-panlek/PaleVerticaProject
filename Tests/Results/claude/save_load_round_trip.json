@@ -1,0 +1,150 @@
+{
+  "Scenario": "save_load_round_trip",
+  "File": "core/save_load.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 16:01:34",
+  "DurationSeconds": 1.28192139,
+  "Status": "Passed",
+  "ChecksPassed": 3,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 0.30090332
+    },
+    {
+      "Index": 1,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"potions\",\"value\":\"items.2001\"}",
+      "Status": "Passed",
+      "Message": "var.potions = 0",
+      "StartTime": 0.30090332,
+      "Duration": 0.0
+    },
+    {
+      "Index": 2,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"exp\",\"value\":\"player.baseExp\"}",
+      "Status": "Passed",
+      "Message": "var.exp = 0",
+      "StartTime": 0.30090332,
+      "Duration": 0.159973145
+    },
+    {
+      "Index": 3,
+      "Action": "Save",
+      "Arguments": "Save {\"slot\":1}",
+      "Status": "Passed",
+      "Message": "C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude\\save_slot_1.json",
+      "StartTime": 0.460876465,
+      "Duration": 0.148193359
+    },
+    {
+      "Index": 4,
+      "Action": "AddItem",
+      "Arguments": "AddItem {\"item\":2001,\"qty\":3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.6090698,
+      "Duration": 0.0595092773
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"potions were added\",\"value\":\"items.2001\",\"to\":\"var.potions + 3\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.6685791,
+      "Duration": 0.06616211
+    },
+    {
+      "Index": 6,
+      "Action": "Load",
+      "Arguments": "Load {\"slot\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.7347412,
+      "Duration": 0.323120117
+    },
+    {
+      "Index": 7,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"potions after load\",\"value\":\"items.2001\",\"to\":\"var.potions\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.05786133,
+      "Duration": 0.0718994141
+    },
+    {
+      "Index": 8,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"base exp after load\",\"value\":\"player.baseExp\",\"to\":\"var.exp\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.12976074,
+      "Duration": 0.152160645
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "potions were added",
+      "Status": "Passed",
+      "Expected": "== 3",
+      "Actual": "3",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 0.6685791
+    },
+    {
+      "Name": "potions after load",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 7,
+      "Time": 1.05786133
+    },
+    {
+      "Name": "base exp after load",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 8,
+      "Time": 1.12976074
+    }
+  ],
+  "Metrics": {},
+  "Variables": {
+    "potions": 0.0,
+    "exp": 0.0
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.30s in scene Town",
+    "0.30s step 2: Record {\"name\":\"potions\",\"value\":\"items.2001\"}",
+    "0.30s var.potions = 0",
+    "0.30s step 3: Record {\"name\":\"exp\",\"value\":\"player.baseExp\"}",
+    "0.30s var.exp = 0",
+    "0.46s step 4: Save {\"slot\":1}",
+    "0.46s C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude\\save_slot_1.json",
+    "0.61s step 5: AddItem {\"item\":2001,\"qty\":3}",
+    "0.67s step 6: Expect {\"name\":\"potions were added\",\"value\":\"items.2001\",\"to\":\"var.potions + 3\"}",
+    "0.73s step 7: Load {\"slot\":1}",
+    "1.06s step 8: Expect {\"name\":\"potions after load\",\"value\":\"items.2001\",\"to\":\"var.potions\"}",
+    "1.13s step 9: Expect {\"name\":\"base exp after load\",\"value\":\"player.baseExp\",\"to\":\"var.exp\"}"
+  ],
+  "Errors": [],
+  "Combat": []
+}

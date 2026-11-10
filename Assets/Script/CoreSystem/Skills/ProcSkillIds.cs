@@ -10,12 +10,13 @@ namespace CoreSystem.Skills
         public const int ParryCounter = -995;
         public const int PoisonTick = -994;
         public const int StatusApply = -993;
+        public const int UniqueProc = -992;
         #endregion
 
         #region [Public Methods]
         public static bool IsProc(int skillId)
         {
-            return skillId == ThornReflect || skillId == ChaosBurst || skillId == BleedTick || skillId == BurnTick || skillId == ParryCounter || skillId == PoisonTick || skillId == StatusApply;
+            return skillId == UniqueProc || skillId == ThornReflect || skillId == ChaosBurst || skillId == BleedTick || skillId == BurnTick || skillId == ParryCounter || skillId == PoisonTick || skillId == StatusApply;
         }
         #endregion
     }

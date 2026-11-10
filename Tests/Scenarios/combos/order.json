@@ -1,0 +1,331 @@
+{
+  "name": "unique_combo_order",
+  "description": "The same two passives bought in either order should give the same result.",
+  "continueOnFail": true,
+  "tags": [
+    "passive",
+    "combo"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "CurseOfKanix",
+        "EldritchFaith"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "atk",
+      "value": "player.ATK"
+    },
+    {
+      "do": "Record",
+      "name": "matk",
+      "value": "player.MATK"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "EldritchFaith",
+        "CurseOfKanix"
+      ]
+    },
+    {
+      "do": "Expect",
+      "name": "order CurseOfKanix + EldritchFaith gives the same ATK",
+      "value": "player.ATK",
+      "to": "var.atk",
+      "tolerance": 0.01
+    },
+    {
+      "do": "Expect",
+      "name": "order CurseOfKanix + EldritchFaith gives the same M.ATK",
+      "value": "player.MATK",
+      "to": "var.matk",
+      "tolerance": 0.01
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "AnvilHeart",
+        "MarkedThroat"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Record",
+      "name": "forward",
+      "value": "hits.total"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "MarkedThroat",
+        "AnvilHeart"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Expect",
+      "name": "order AnvilHeart + MarkedThroat gives the same damage",
+      "value": "hits.total / var.forward",
+      "to": 1,
+      "tolerance": 0.01
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "EldritchFaith",
+        "IronMomentum"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Record",
+      "name": "forward",
+      "value": "hits.total"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "IronMomentum",
+        "EldritchFaith"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Expect",
+      "name": "order EldritchFaith + IronMomentum gives the same damage",
+      "value": "hits.total / var.forward",
+      "to": 1,
+      "tolerance": 0.01
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "EldritchFaith",
+        "TwinConduit"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Record",
+      "name": "forward",
+      "value": "hits.total"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "TwinConduit",
+        "EldritchFaith"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Expect",
+      "name": "order EldritchFaith + TwinConduit gives the same damage",
+      "value": "hits.total / var.forward",
+      "to": 1,
+      "tolerance": 0.01
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "PenitentBlade",
+        "AnvilHeart"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Record",
+      "name": "forward",
+      "value": "hits.total"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "AnvilHeart",
+        "PenitentBlade"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Expect",
+      "name": "order PenitentBlade + AnvilHeart gives the same damage",
+      "value": "hits.total / var.forward",
+      "to": 1,
+      "tolerance": 0.01
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "OverflowingSigil",
+        "GlassCannonTheorem"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Record",
+      "name": "forward",
+      "value": "hits.total"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "GlassCannonTheorem",
+        "OverflowingSigil"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Expect",
+      "name": "order OverflowingSigil + GlassCannonTheorem gives the same damage",
+      "value": "hits.total / var.forward",
+      "to": 1,
+      "tolerance": 0.01
+    }
+  ]
+}

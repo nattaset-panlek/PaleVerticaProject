@@ -1,0 +1,227 @@
+{
+  "name": "unique_potions",
+  "description": "Passives that change potions. Potion 2001 heals 50 HP.",
+  "continueOnFail": true,
+  "tags": [
+    "passive"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetHp",
+      "of": "player",
+      "ratio": 0.2
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "AnsweredPrayer"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "player.HP"
+    },
+    {
+      "do": "UseItem",
+      "item": 2001
+    },
+    {
+      "do": "Expect",
+      "name": "Answered Prayer: potion at 20% hp heals 1.8x",
+      "value": "(player.HP - var.hp) / 50",
+      "to": 1.8,
+      "tolerance": 0.1,
+      "review": 0.3
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetHp",
+      "of": "player",
+      "ratio": 0.5
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "CovenantKeeper"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "player.HP"
+    },
+    {
+      "do": "UseItem",
+      "item": 2001
+    },
+    {
+      "do": "Expect",
+      "name": "Covenant Keeper: potion heals 1.75x",
+      "value": "(player.HP - var.hp) / 50",
+      "to": 1.75,
+      "tolerance": 0.1,
+      "review": 0.3
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetHp",
+      "of": "player",
+      "ratio": 0.5
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "LivingPhilosopher"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "player.HP"
+    },
+    {
+      "do": "UseItem",
+      "item": 2001
+    },
+    {
+      "do": "Expect",
+      "name": "Living Philosopher: the potion is not used",
+      "value": "potion",
+      "to": 1
+    },
+    {
+      "do": "Expect",
+      "name": "Living Philosopher: the potion does not heal",
+      "value": "player.HP - var.hp",
+      "op": "<",
+      "to": 25
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "player.HP"
+    },
+    {
+      "do": "Idle",
+      "seconds": 2
+    },
+    {
+      "do": "Expect",
+      "name": "Living Philosopher: hp regenerates",
+      "value": "player.HP",
+      "op": ">",
+      "to": "var.hp"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetMp",
+      "of": "player",
+      "value": 0
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "TransmutedBlood"
+      ]
+    },
+    {
+      "do": "UseItem",
+      "item": 2001
+    },
+    {
+      "do": "Expect",
+      "name": "Transmuted Blood: half the potion becomes mana",
+      "value": "player.MP",
+      "to": 25,
+      "tolerance": 5
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "VolatileMixture"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "target.HP"
+    },
+    {
+      "do": "UseItem",
+      "item": 2001
+    },
+    {
+      "do": "Expect",
+      "name": "Volatile Mixture: the potion hurts the nearby target",
+      "value": "target.HP",
+      "op": "<",
+      "to": "var.hp"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "SecondDose"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "kept",
+      "value": "0"
+    },
+    {
+      "do": "Repeat",
+      "times": 20,
+      "steps": [
+        {
+          "do": "UseItem",
+          "item": 2001
+        },
+        {
+          "do": "Record",
+          "name": "kept",
+          "value": "var.kept + potion"
+        }
+      ]
+    },
+    {
+      "do": "Expect",
+      "name": "Second Dose: some potions kept, not all",
+      "value": "var.kept",
+      "op": "between",
+      "min": 1,
+      "max": 19
+    }
+  ]
+}

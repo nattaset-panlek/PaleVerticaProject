@@ -1,0 +1,106 @@
+{
+  "Scenario": "setup_new_warrior_lv15",
+  "File": "setup/new_warrior_lv15.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 19:30:39",
+  "DurationSeconds": 3.46300888,
+  "Status": "Passed",
+  "ChecksPassed": 1,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.49383545
+    },
+    {
+      "Index": 1,
+      "Action": "Level",
+      "Arguments": "Level {\"base\":15,\"job\":5}",
+      "Status": "Passed",
+      "Message": "base 15, job 5, stat points 81, passive points 5",
+      "StartTime": 1.49383545,
+      "Duration": 0.0258522034
+    },
+    {
+      "Index": 2,
+      "Action": "SpendStats",
+      "Arguments": "SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+      "Status": "Passed",
+      "Message": "VIT +20, STR +61; 0 points left",
+      "StartTime": 1.51968765,
+      "Duration": 0.03195572
+    },
+    {
+      "Index": 3,
+      "Action": "ChooseClass",
+      "Arguments": "ChooseClass {\"class\":\"Warrior\"}",
+      "Status": "Passed",
+      "Message": "class Warrior, origin node 5",
+      "StartTime": 1.55164337,
+      "Duration": 1.59350967
+    },
+    {
+      "Index": 4,
+      "Action": "AssignSkill",
+      "Arguments": "AssignSkill {\"skill\":1001,\"slot\":1}",
+      "Status": "Passed",
+      "Message": "skill 1001 in slot 1",
+      "StartTime": 3.145153,
+      "Duration": 0.30919075
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"VIT got its 20 points\",\"value\":\"player.VIT\",\"op\":\">=\",\"to\":20}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.4543438,
+      "Duration": 0.008665085
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "VIT got its 20 points",
+      "Status": "Passed",
+      "Expected": ">= 20",
+      "Actual": "21",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 3.4543438
+    }
+  ],
+  "Metrics": {
+    "ui fallback clicks": 1.0
+  },
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from Town so the old character is dropped",
+    "0.18s button \"New Game\" did not react (attempt 1: clicked 960,408, top UI there \"Background\", interactable True)",
+    "0.24s button \"New Game\" did not react (attempt 2: clicked 960,408, top UI there \"Background\", interactable True)",
+    "0.28s button \"New Game\" did not react (attempt 3: clicked 960,408, top UI there \"Background\", interactable True)",
+    "0.28s button \"New Game\" pressed through the EventSystem after 3 clicks did nothing (attempt 3: clicked 960,408, top UI there \"Background\", interactable True)",
+    "1.49s in scene Town",
+    "1.49s step 2: Level {\"base\":15,\"job\":5}",
+    "1.49s base 15, job 5, stat points 81, passive points 5",
+    "1.52s step 3: SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+    "1.52s VIT +20, STR +61; 0 points left",
+    "1.55s step 4: ChooseClass {\"class\":\"Warrior\"}",
+    "1.85s the class screen is already open",
+    "3.15s class Warrior, origin node 5",
+    "3.15s step 5: AssignSkill {\"skill\":1001,\"slot\":1}",
+    "3.45s skill 1001 in slot 1",
+    "3.45s step 6: Expect {\"name\":\"VIT got its 20 points\",\"value\":\"player.VIT\",\"op\":\">=\",\"to\":20}"
+  ],
+  "Errors": [],
+  "Combat": []
+}

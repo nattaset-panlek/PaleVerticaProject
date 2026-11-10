@@ -343,7 +343,7 @@ namespace CoreSystem.UI.Hotbar
                     if (itemInst != null && itemInst.Item is Consumable consumable)
                     {
                         consumable.OnUse();
-                        GameData.Player.Inventory.RemoveItemByInstance(itemInst.Id, 1);
+                        if (consumable.LastUseConsumed) GameData.Player.Inventory.RemoveItemByInstance(itemInst.Id, 1);
 
                         ItemInstance remainingInst = null;
                         if (_slotData.ItemInstanceId >= 0)

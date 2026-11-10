@@ -381,6 +381,7 @@ namespace CoreSystem.Player
 
         private void HandleLookDirection()
         {
+            ForgetDestroyedTarget();
             Vector3 position = _controlled.transform.position;
             if (_autoAttackTarget != null)
             {
@@ -389,6 +390,11 @@ namespace CoreSystem.Player
             }
 
             if (_mainCamera != null) _controlled.FaceDirection.UpdateDirection((GetMouseWorldPosition() - position).normalized);
+        }
+
+        private void ForgetDestroyedTarget()
+        {
+            if (_autoAttackTarget is UnityEngine.Object unityObject && unityObject == null) _autoAttackTarget = null;
         }
 
         private void HandleSkillInput()
@@ -491,6 +497,7 @@ namespace CoreSystem.Player
 
         private void HandleAutoAttack()
         {
+            ForgetDestroyedTarget();
             if (_autoAttackTarget == null) return;
 
             if (_autoAttackTarget.attributeSystem != null)

@@ -1,0 +1,310 @@
+{
+  "name": "unique_hit_modifiers",
+  "description": "Basic attack passives against a no-passive baseline with crits off.",
+  "continueOnFail": true,
+  "tags": [
+    "passive"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 0
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Record",
+      "name": "base",
+      "value": "hit.0"
+    },
+    {
+      "do": "Expect",
+      "name": "baseline hits are identical",
+      "value": "hit.1 / var.base",
+      "to": 1,
+      "tolerance": 0.01
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 0
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "IronMomentum"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 6
+    },
+    {
+      "do": "Expect",
+      "name": "Iron Momentum: 6th hit is 1.2x the 1st",
+      "value": "hit.5 / hit.0",
+      "to": 1.2,
+      "tolerance": 0.03,
+      "review": 0.1
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 0
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "OneCleanCut"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 2
+    },
+    {
+      "do": "Expect",
+      "name": "One Clean Cut: first hit 2x",
+      "value": "hit.0 / var.base",
+      "to": 2,
+      "tolerance": 0.03,
+      "review": 0.1
+    },
+    {
+      "do": "Expect",
+      "name": "One Clean Cut: second hit 0.7x",
+      "value": "hit.1 / var.base",
+      "to": 0.7,
+      "tolerance": 0.03,
+      "review": 0.1
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 0
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "SixFates"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 8
+    },
+    {
+      "do": "Expect",
+      "name": "Six Fates: average stays between 0 and 3x",
+      "value": "hits.avg / var.base",
+      "op": "between",
+      "min": 0,
+      "max": 3
+    },
+    {
+      "do": "Measure",
+      "name": "six fates average",
+      "value": "hits.avg / var.base"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 0
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "Windreader"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 3
+    },
+    {
+      "do": "Expect",
+      "name": "Windreader: distance bonus",
+      "value": "hit.0 / var.base",
+      "op": "between",
+      "min": 1.001,
+      "max": 1.6
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 50
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "AnvilHeart"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 4
+    },
+    {
+      "do": "Expect",
+      "name": "Anvil Heart: hits are the same size",
+      "value": "hit.3 / hit.0",
+      "to": 1,
+      "tolerance": 0.01
+    },
+    {
+      "do": "Expect",
+      "name": "Anvil Heart: hit equals the average crit",
+      "value": "hit.0 / var.base",
+      "to": "1 + 0.5 * (crit - 1)",
+      "tolerance": 0.03,
+      "review": 0.1
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "CriticalRate",
+      "total": 0
+    },
+    {
+      "do": "Record",
+      "name": "atk",
+      "value": "player.ATK"
+    },
+    {
+      "do": "Record",
+      "name": "matk",
+      "value": "player.MATK"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "TwinConduit"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 1
+    },
+    {
+      "do": "Expect",
+      "name": "Twin Conduit: adds half of M.ATK",
+      "value": "hit.0 / var.base",
+      "to": "1 + var.matk * 0.5 / var.atk",
+      "tolerance": 0.03,
+      "review": 0.1
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "HollowQuiver"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 1,
+      "max": 2.5,
+      "allowNone": true
+    },
+    {
+      "do": "Expect",
+      "name": "Hollow Quiver: no basic attacks",
+      "value": "hits.count",
+      "to": 0
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "CovenantKeeper"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 2
+    },
+    {
+      "do": "Expect",
+      "name": "Covenant Keeper: neutral hits deal nothing",
+      "value": "hits.total",
+      "to": 0,
+      "tolerance": 0.001
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "Execution"
+      ]
+    },
+    {
+      "do": "SetHp",
+      "of": "target",
+      "ratio": 0.04
+    },
+    {
+      "do": "Attack",
+      "hits": 1,
+      "max": 3
+    },
+    {
+      "do": "Expect",
+      "name": "Execution: a target at 4% hp is executed",
+      "value": "target.HP",
+      "op": "<=",
+      "to": 0.01
+    }
+  ]
+}

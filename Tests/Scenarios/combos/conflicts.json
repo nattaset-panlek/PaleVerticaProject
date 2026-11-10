@@ -1,0 +1,266 @@
+{
+  "name": "unique_combo_conflicts",
+  "description": "Pairs that touch the same thing; each check states the rule the design wants.",
+  "continueOnFail": true,
+  "tags": [
+    "passive",
+    "combo"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "Vampire",
+        "HollowCrown"
+      ]
+    },
+    {
+      "do": "SetHp",
+      "of": "player",
+      "ratio": 1.2
+    },
+    {
+      "do": "Record",
+      "name": "start",
+      "value": "player.HP"
+    },
+    {
+      "do": "Record",
+      "name": "t0",
+      "value": "taken"
+    },
+    {
+      "do": "Watch",
+      "name": "hp",
+      "value": "player.HP",
+      "steps": [
+        {
+          "do": "Attack",
+          "hits": 4
+        }
+      ]
+    },
+    {
+      "do": "Expect",
+      "name": "Vampire + Hollow Crown: no damage was taken",
+      "value": "taken - var.t0",
+      "to": 0,
+      "tolerance": 0.001
+    },
+    {
+      "do": "Expect",
+      "name": "Vampire + Hollow Crown: Vampire never cuts the overheal",
+      "value": "var.hp_min",
+      "op": ">=",
+      "to": "var.start - 0.01"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "LivingPhilosopher",
+        "SecondDose",
+        "TransmutedBlood",
+        "VolatileMixture",
+        "AnsweredPrayer"
+      ]
+    },
+    {
+      "do": "SetMp",
+      "of": "player",
+      "value": 0
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "target.HP"
+    },
+    {
+      "do": "UseItem",
+      "item": 2001
+    },
+    {
+      "do": "Expect",
+      "name": "Potion ban: the potion is not used",
+      "value": "potion",
+      "to": 1
+    },
+    {
+      "do": "Expect",
+      "name": "Potion ban: Transmuted Blood gives no mana",
+      "value": "player.MP",
+      "to": 0,
+      "tolerance": 1
+    },
+    {
+      "do": "Expect",
+      "name": "Potion ban: Volatile Mixture does not explode",
+      "value": "target.HP",
+      "to": "var.hp",
+      "tolerance": 0.01
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "HollowQuiver",
+        "DoubleAttack",
+        "IronMomentum",
+        "QuickenedWeave"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 1,
+      "max": 2.5,
+      "allowNone": true
+    },
+    {
+      "do": "Expect",
+      "name": "No basic attacks: Double Attack and Iron Momentum stay silent",
+      "value": "hits.count",
+      "to": 0
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "CovenantKeeper",
+        "Verdict"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "target.HP"
+    },
+    {
+      "do": "Attack",
+      "hits": 4
+    },
+    {
+      "do": "Expect",
+      "name": "Covenant Keeper + Verdict: only the Holy brand does damage",
+      "value": "target.HP",
+      "op": "<",
+      "to": "var.hp"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "Execution",
+        "SixFates"
+      ]
+    },
+    {
+      "do": "SetHp",
+      "of": "target",
+      "ratio": 0.04
+    },
+    {
+      "do": "Attack",
+      "hits": 3,
+      "max": 4
+    },
+    {
+      "do": "Expect",
+      "name": "Execution + Six Fates: even a 0x hit executes",
+      "value": "target.HP",
+      "op": "<=",
+      "to": 0.01
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "PerfectDodge",
+      "total": 100
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "VeilStep",
+        "LastBanner",
+        "SharedWound"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "t0",
+      "value": "taken"
+    },
+    {
+      "do": "TakeHits",
+      "count": 3,
+      "amount": 40
+    },
+    {
+      "do": "Expect",
+      "name": "Veil Step + Last Banner + Shared Wound: nothing gets through",
+      "value": "taken - var.t0",
+      "to": 0,
+      "tolerance": 0.001
+    },
+    {
+      "do": "ClearStat",
+      "of": "player",
+      "stat": "PerfectDodge"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "OathOfSilence",
+        "QuickenedWeave"
+      ]
+    },
+    {
+      "do": "Attack",
+      "hits": 5
+    },
+    {
+      "do": "Cast",
+      "slot": 0,
+      "at": "target"
+    },
+    {
+      "do": "Expect",
+      "name": "Oath of Silence + Quickened Weave: the shorter cast is still blocked",
+      "value": "cast",
+      "to": 0,
+      "severity": "review"
+    }
+  ]
+}

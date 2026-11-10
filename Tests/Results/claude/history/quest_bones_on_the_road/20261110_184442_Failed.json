@@ -1,0 +1,119 @@
+{
+  "Scenario": "quest_bones_on_the_road",
+  "File": "quests/bones_on_the_road.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 18:44:31",
+  "DurationSeconds": 7.47906065,
+  "Status": "Failed",
+  "ChecksPassed": 1,
+  "ChecksReview": 0,
+  "ChecksFailed": 1,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.00232923
+    },
+    {
+      "Index": 1,
+      "Action": "TalkTo",
+      "Arguments": "TalkTo {\"character\":2004}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.00232923,
+      "Duration": 1.116505
+    },
+    {
+      "Index": 2,
+      "Action": "AcceptQuest",
+      "Arguments": "AcceptQuest {\"quest\":1}",
+      "Status": "Passed",
+      "Message": "quest 1 is Active",
+      "StartTime": 2.11883426,
+      "Duration": 0.236453533
+    },
+    {
+      "Index": 3,
+      "Action": "CloseDialogue",
+      "Arguments": "CloseDialogue",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.35528779,
+      "Duration": 0.324925184
+    },
+    {
+      "Index": 4,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"quest is active\",\"value\":\"quest.1.status\",\"to\":\"status.Active\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.680213,
+      "Duration": 0.0124440193
+    },
+    {
+      "Index": 5,
+      "Action": "UsePortal",
+      "Arguments": "UsePortal {\"to\":\"Field\",\"timeout\":90}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.692657,
+      "Duration": 4.50243473
+    },
+    {
+      "Index": 6,
+      "Action": "Kill",
+      "Arguments": "Kill {\"character\":1001,\"count\":3,\"timeout\":240}",
+      "Status": "Failed",
+      "Message": "Skeletom(Clone) is not on screen (player at -23,1, Skeletom(Clone) at 2.4,3.7)",
+      "StartTime": 7.19509172,
+      "Duration": 0.283968925
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "quest is active",
+      "Status": "Passed",
+      "Expected": "== 2",
+      "Actual": "2",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 2.680213
+    },
+    {
+      "Name": "step 7 Kill completes",
+      "Status": "Failed",
+      "Expected": "completes",
+      "Actual": "Skeletom(Clone) is not on screen (player at -23,1, Skeletom(Clone) at 2.4,3.7)",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 6,
+      "Time": 7.47906065
+    }
+  ],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "1.00s in scene Town",
+    "1.00s step 2: TalkTo {\"character\":2004}",
+    "1.71s clicked OldMan at screen 960,918 world 0,4.5, collider OldMan, UI under the pointer: none, virtual mouse is current True, distance 3.9",
+    "2.12s step 3: AcceptQuest {\"quest\":1}",
+    "2.36s quest 1 is Active",
+    "2.36s step 4: CloseDialogue",
+    "2.67s the dialogue window is gone but its conversation is still open, closing it",
+    "2.68s step 5: Expect {\"name\":\"quest is active\",\"value\":\"quest.1.status\",\"to\":\"status.Active\"}",
+    "2.69s step 6: UsePortal {\"to\":\"Field\",\"timeout\":90}",
+    "6.03s clicked the portal to Field at screen 1656,527, UI under the pointer: ",
+    "7.20s step 7: Kill {\"character\":1001,\"count\":3,\"timeout\":240}",
+    "7.48s step 7 failed: Skeletom(Clone) is not on screen (player at -23,1, Skeletom(Clone) at 2.4,3.7)"
+  ],
+  "Errors": [],
+  "Combat": []
+}

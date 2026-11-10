@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using CoreSystem.Data;
 using CoreSystem.Dialogue;
@@ -21,164 +20,100 @@ namespace CoreSystem.UI.Dialogue
         private static readonly Vector2 WindowSize = new Vector2(520f, 240f);
         private static readonly Vector2 MaxWindowSize = new Vector2(520f, 620f);
 
-        private readonly DialogueSession _session;
-        private readonly int _characterId;
+        private readonly DialogueConversation _conversation;
         private UIGlobalModal _modal;
-        private QuestModel _selectedQuest;
-        private DialogueSession _questDialogue;
-        private Action _questDialogueDone;
-        private int _questDialogueId;
-        private readonly int _dialogueId;
         #endregion
 
         #region [Public Methods]
         public static DialogueWindow Open(string speakerName, DialogueModel dialogue, int characterId)
         {
-            var window = new DialogueWindow(dialogue, characterId);
-            window.Show(speakerName);
+            DialogueConversation conversation = DialogueConversation.Start(speakerName, dialogue, characterId);
+            if (conversation == null) return null;
+
+            var window = new DialogueWindow(conversation);
+            window.Show();
             return window;
         }
         #endregion
 
         #region [Private Methods]
-        private DialogueWindow(DialogueModel dialogue, int characterId)
+        private DialogueWindow(DialogueConversation conversation)
         {
-            _session = new DialogueSession(dialogue);
-            _dialogueId = dialogue != null ? dialogue.Id : 0;
-            _characterId = characterId;
+            _conversation = conversation;
+            _conversation.OnChanged += Rebuild;
+            _conversation.OnClosed += HandleClosed;
         }
 
-        private void Show(string speakerName)
+        private void Show()
         {
-            if (_session.IsFinished) return;
-
             _modal = UIBuilder.BuildGlobalModal($"{ModalName} #{++_openCount}", null, WindowSize);
             if (_modal == null) return;
 
             _modal.DestroyOnClose = true;
-            _modal.SetTitle(speakerName)
+            _modal.SetTitle(_conversation.Speaker)
                   .Build(BuildUI)
                   .FitContent(true, MaxWindowSize, false);
         }
 
         private void Rebuild()
         {
+            if (_modal == null) return;
             _modal.Build(BuildUI).FitContent(true, MaxWindowSize, false);
         }
 
         private void BuildUI(UIBuilderContext ui)
         {
-            if (_questDialogue != null)
+            switch (_conversation.Mode)
             {
-                BuildQuestDialogue(ui);
-                return;
+                case DialogueConversationMode.QuestDialogue:
+                    BuildNode(ui, ContinueLabel);
+                    return;
+                case DialogueConversationMode.Quest:
+                    BuildQuest(ui, _conversation.SelectedQuest);
+                    return;
+                case DialogueConversationMode.Talk:
+                    ui.Label(_conversation.CurrentNode.Text);
+                    BuildQuestButtons(ui);
+                    BuildChoices(ui, CloseLabel);
+                    return;
             }
+        }
 
-            if (_selectedQuest != null)
+        private void BuildNode(UIBuilderContext ui, string continueLabel)
+        {
+            ui.Label(_conversation.CurrentNode.Text);
+            BuildChoices(ui, continueLabel);
+        }
+
+        private void BuildChoices(UIBuilderContext ui, string continueLabel)
+        {
+            IReadOnlyList<DialogueChoice> choices = _conversation.Choices;
+            if (choices.Count == 0)
             {
-                BuildQuest(ui, _selectedQuest);
-                return;
-            }
-
-            ui.Label(_session.Current.Text);
-            BuildQuestButtons(ui);
-
-            var choices = _session.Current.Choices;
-            if (choices == null || choices.Count == 0)
-            {
-                ui.Button(CloseLabel, FinishDialogue);
+                ui.Button(continueLabel, _conversation.Continue);
                 return;
             }
 
             for (int i = 0; i < choices.Count; i++)
             {
                 int index = i;
-                ui.Button(choices[i].Text, () => Choose(index));
+                ui.Button(choices[i].Text, () => _conversation.Choose(index));
             }
         }
 
         private void BuildQuestButtons(UIBuilderContext ui)
         {
-            PlayerQuests quests = GameData.Player.Quests;
-            foreach (QuestTalk talk in quests.GetDialogueTalks(_characterId, QuestDatabase.All))
+            foreach (QuestTalk talk in _conversation.QuestTalks)
             {
                 QuestTalk captured = talk;
-                ui.Button($"{talk.Quest.Name}: {talk.Quest.Objectives[talk.ObjectiveIndex].Text}", () => PlayObjectiveDialogue(captured));
+                ui.Button($"{talk.Quest.Name}: {talk.Quest.Objectives[talk.ObjectiveIndex].Text}", () => _conversation.PlayQuestTalk(captured));
             }
 
-            foreach (QuestModel quest in quests.GetOffers(_characterId, QuestDatabase.All))
+            foreach (QuestModel quest in _conversation.QuestOffers)
             {
                 QuestModel captured = quest;
-                ui.Button(quest.Name, () => OpenOffer(captured));
+                ui.Button(quest.Name, () => _conversation.OpenOffer(captured));
             }
-        }
-
-        private void BuildQuestDialogue(UIBuilderContext ui)
-        {
-            ui.Label(_questDialogue.Current.Text);
-
-            var choices = _questDialogue.Current.Choices;
-            if (choices == null || choices.Count == 0)
-            {
-                ui.Button(ContinueLabel, FinishQuestDialogue);
-                return;
-            }
-
-            for (int i = 0; i < choices.Count; i++)
-            {
-                int index = i;
-                ui.Button(choices[i].Text, () => ChooseQuestDialogue(index));
-            }
-        }
-
-        private void PlayObjectiveDialogue(QuestTalk talk)
-        {
-            PlayQuestDialogue(talk.Quest.Objectives[talk.ObjectiveIndex].DialogueId, () =>
-            {
-                GameData.Player.Quests.CompleteDialogueObjective(talk.Quest, talk.ObjectiveIndex);
-                Select(null);
-            });
-        }
-
-        private void OpenOffer(QuestModel quest)
-        {
-            bool isTurnIn = GameData.Player.Quests.GetStatus(quest) == QuestStatus.ReadyToTurnIn;
-            PlayQuestDialogue(isTurnIn ? quest.TurnInDialogueId : quest.AcceptDialogueId, () => Select(quest));
-        }
-
-        private void PlayQuestDialogue(int dialogueId, Action onDone)
-        {
-            var session = new DialogueSession(DialogueDatabase.Get(dialogueId));
-            if (session.IsFinished)
-            {
-                onDone();
-                return;
-            }
-
-            _questDialogue = session;
-            _questDialogueId = dialogueId;
-            _questDialogueDone = onDone;
-            Rebuild();
-        }
-
-        private void ChooseQuestDialogue(int index)
-        {
-            _questDialogue.Choose(index);
-            if (_questDialogue.IsFinished)
-            {
-                _questDialogue = null;
-                _questDialogueDone = null;
-            }
-            Rebuild();
-        }
-
-        private void FinishQuestDialogue()
-        {
-            Action done = _questDialogueDone;
-            _questDialogue = null;
-            _questDialogueDone = null;
-            done?.Invoke();
-            DialogueManager.RaiseDialogueEnded(_questDialogueId);
         }
 
         private void BuildQuest(UIBuilderContext ui, QuestModel quest)
@@ -194,9 +129,9 @@ namespace CoreSystem.UI.Dialogue
             ui.Heading(RewardsHeading);
             foreach (string line in RewardLines(quest.Reward)) ui.Caption(line);
 
-            if (status == QuestStatus.Available) ui.Button(AcceptLabel, () => Accept(quest));
-            if (status == QuestStatus.ReadyToTurnIn) ui.Button(TurnInLabel, () => TurnIn(quest));
-            ui.Button(BackLabel, () => Select(null));
+            if (status == QuestStatus.Available) ui.Button(AcceptLabel, _conversation.Accept);
+            if (status == QuestStatus.ReadyToTurnIn) ui.Button(TurnInLabel, _conversation.TurnIn);
+            ui.Button(BackLabel, _conversation.Back);
         }
 
         private static IEnumerable<string> RewardLines(QuestRewardModel reward)
@@ -213,43 +148,10 @@ namespace CoreSystem.UI.Dialogue
             }
         }
 
-        private void Select(QuestModel quest)
+        private void HandleClosed()
         {
-            _selectedQuest = quest;
-            Rebuild();
-        }
-
-        private void Accept(QuestModel quest)
-        {
-            GameData.Player.Quests.Accept(quest);
-            Select(null);
-        }
-
-        private void TurnIn(QuestModel quest)
-        {
-            QuestManager.TurnIn(quest);
-            Select(null);
-        }
-
-        private void Choose(int index)
-        {
-            _session.Choose(index);
-            if (_session.IsFinished)
-            {
-                Close();
-                return;
-            }
-            Rebuild();
-        }
-
-        private void FinishDialogue()
-        {
-            Close();
-            DialogueManager.RaiseDialogueEnded(_dialogueId);
-        }
-
-        private void Close()
-        {
+            _conversation.OnChanged -= Rebuild;
+            _conversation.OnClosed -= HandleClosed;
             if (_modal != null && UIManager.Instance != null) UIManager.Instance.Close(_modal.WindowName);
             _modal = null;
         }

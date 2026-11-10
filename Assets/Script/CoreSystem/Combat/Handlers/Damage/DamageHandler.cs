@@ -47,6 +47,8 @@ namespace CoreSystem.Combat
             var userCharacter = user as Character;
             var targetCharacter = target as Character;
 
+            payload.IsCriticalHit = outcome.IsCritical;
+
             if (userCharacter != null && userCharacter.UniquePassives != null)
             {
                 userCharacter.UniquePassives.TriggerOnHit(target, ref finalDamage, payload);

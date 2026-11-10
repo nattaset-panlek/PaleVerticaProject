@@ -12,13 +12,22 @@ namespace CoreSystem.Data.Items.Model
     {
         public float HealHP;
         public float HealMP;
+        public bool LastUseConsumed { get; private set; } = true;
 
         public override void OnUse()
         {
             var player = PlayerCore.GetPlayer();
             if (player == null) return;
+            if (!player.UniquePassives.CanUseConsumable())
+            {
+                LastUseConsumed = false;
+                return;
+            }
+
             Restore(player, AttributeType.HP, HealHP);
             Restore(player, AttributeType.MP, HealMP);
+            player.UniquePassives.TriggerOnConsumableUsed(this);
+            LastUseConsumed = !player.UniquePassives.ShouldKeepConsumable();
         }
 
         public override Item Clone()

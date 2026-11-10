@@ -1,0 +1,54 @@
+{
+  "name": "dialogue_alchemist_choice",
+  "description": "Talk to the Alchemist by clicking her, pick the first choice, close with Continue.",
+  "tags": [
+    "core",
+    "dialogue"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "TalkTo",
+      "character": 2001,
+      "note": "walks near and left-clicks the NPC"
+    },
+    {
+      "do": "Expect",
+      "name": "talking to the Alchemist",
+      "value": "dialogue.character",
+      "to": 2001
+    },
+    {
+      "do": "Expect",
+      "name": "two choices",
+      "value": "dialogue.choices",
+      "to": 2
+    },
+    {
+      "do": "Choose",
+      "index": 0
+    },
+    {
+      "do": "Expect",
+      "name": "answer node is shown",
+      "value": "dialogue.node",
+      "to": 1
+    },
+    {
+      "do": "Continue"
+    },
+    {
+      "do": "Expect",
+      "name": "conversation closed",
+      "value": "dialogue.open",
+      "to": 0
+    },
+    {
+      "do": "Review",
+      "name": "the dialogue window looked right",
+      "note": "Check the speaker name, text and buttons in the screenshot."
+    }
+  ]
+}

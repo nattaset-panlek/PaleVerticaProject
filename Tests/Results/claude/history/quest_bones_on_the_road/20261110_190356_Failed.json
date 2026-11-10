@@ -1,0 +1,66 @@
+{
+  "Scenario": "quest_bones_on_the_road",
+  "File": "quests/bones_on_the_road.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 19:03:54",
+  "DurationSeconds": 1.26104355,
+  "Status": "Failed",
+  "ChecksPassed": 0,
+  "ChecksReview": 0,
+  "ChecksFailed": 1,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.23945427
+    },
+    {
+      "Index": 1,
+      "Action": "Level",
+      "Arguments": "Level {\"base\":15,\"job\":5}",
+      "Status": "Passed",
+      "Message": "base 15, job 5, stat points 0, passive points 5",
+      "StartTime": 1.23945427,
+      "Duration": 0.008077621
+    },
+    {
+      "Index": 2,
+      "Action": "SpendStats",
+      "Arguments": "SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+      "Status": "Failed",
+      "Message": "only 0 of 20 points went into VIT, 0 left; raise the level first",
+      "StartTime": 1.24753189,
+      "Duration": 0.0135116577
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "step 3 SpendStats completes",
+      "Status": "Failed",
+      "Expected": "completes",
+      "Actual": "only 0 of 20 points went into VIT, 0 left; raise the level first",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 2,
+      "Time": 1.24753189
+    }
+  ],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "1.24s in scene Town",
+    "1.24s step 2: Level {\"base\":15,\"job\":5}",
+    "1.24s base 15, job 5, stat points 0, passive points 5",
+    "1.25s step 3: SpendStats {\"VIT\":20,\"STR\":\"rest\"}",
+    "1.25s step 3 failed: only 0 of 20 points went into VIT, 0 left; raise the level first"
+  ],
+  "Errors": [],
+  "Combat": []
+}

@@ -4,6 +4,14 @@ using CoreSystem.Data;
 
 namespace CoreSystem.Dialogue
 {
+    public enum DialogueConversationMode
+    {
+        Closed,
+        Talk,
+        QuestDialogue,
+        Quest
+    }
+
     [Serializable]
     public class DialogueChoice
     {

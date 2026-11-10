@@ -1,0 +1,88 @@
+{
+  "name": "quest_bones_on_the_road",
+  "description": "Accept quest 1 from the Old Man, walk through the portal to Field, kill 3 Skeletom, walk back, turn it in. Starts from the setup/new_warrior_lv15 path.",
+  "tags": [
+    "quest"
+  ],
+  "path": [
+    "setup/new_warrior_lv15.json"
+  ],
+  "steps": [
+    {
+      "do": "TalkTo",
+      "character": 2004
+    },
+    {
+      "do": "AcceptQuest",
+      "quest": 1
+    },
+    {
+      "do": "CloseDialogue"
+    },
+    {
+      "do": "Expect",
+      "name": "quest is active",
+      "value": "quest.1.status",
+      "to": "status.Active"
+    },
+    {
+      "do": "UsePortal",
+      "to": "Field",
+      "timeout": 90
+    },
+    {
+      "do": "Kill",
+      "character": 1001,
+      "count": 3,
+      "timeout": 600
+    },
+    {
+      "do": "Expect",
+      "name": "kill objective done",
+      "value": "quest.1.count.0",
+      "to": 3
+    },
+    {
+      "do": "Expect",
+      "name": "quest ready to turn in",
+      "value": "quest.1.status",
+      "to": "status.ReadyToTurnIn"
+    },
+    {
+      "do": "Record",
+      "name": "level",
+      "value": "player.level"
+    },
+    {
+      "do": "Record",
+      "name": "exp",
+      "value": "player.baseExp"
+    },
+    {
+      "do": "UsePortal",
+      "to": "Town",
+      "timeout": 90
+    },
+    {
+      "do": "TalkTo",
+      "character": 2004
+    },
+    {
+      "do": "TurnInQuest",
+      "quest": 1
+    },
+    {
+      "do": "Expect",
+      "name": "quest completed",
+      "value": "quest.1.status",
+      "to": "status.Completed"
+    },
+    {
+      "do": "Expect",
+      "name": "exp reward arrived",
+      "value": "(player.level - var.level) * 1000000 + player.baseExp - var.exp",
+      "op": ">",
+      "to": 0
+    }
+  ]
+}

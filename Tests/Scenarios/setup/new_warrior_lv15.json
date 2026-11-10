@@ -1,0 +1,39 @@
+{
+  "name": "setup_new_warrior_lv15",
+  "description": "Shared starting path: new game, base 15 and job 5 through EXP, VIT 20 and the rest in STR, Warrior class, Tackle on hotbar slot 1. Use it with \"path\": [\"setup/new_warrior_lv15.json\"].",
+  "tags": [
+    "setup"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "Level",
+      "base": 15,
+      "job": 5
+    },
+    {
+      "do": "SpendStats",
+      "VIT": 20,
+      "STR": "rest"
+    },
+    {
+      "do": "ChooseClass",
+      "class": "Warrior"
+    },
+    {
+      "do": "AssignSkill",
+      "skill": 1001,
+      "slot": 1,
+      "note": "a new game has Tackle in skill slot 0 but not on the hotbar"
+    },
+    {
+      "do": "Expect",
+      "name": "VIT got its 20 points",
+      "value": "player.VIT",
+      "op": ">=",
+      "to": 20
+    }
+  ]
+}

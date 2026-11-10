@@ -145,6 +145,7 @@ namespace CoreSystem.Entity.UniquePassives
         {
             _tempPassiveList.Clear();
             _tempPassiveList.AddRange(_activePassives.Values);
+            _tempPassiveList.Sort(CompareCoreAttributeOrder);
             for (int i = 0; i < _tempPassiveList.Count; i++)
             {
                 _tempPassiveList[i].ModifyCoreAttributes(ref str, ref agi, ref vit, ref @int, ref dex, ref luk);
@@ -159,6 +160,61 @@ namespace CoreSystem.Entity.UniquePassives
             {
                 _tempPassiveList[i].ModifyManaCost(ref manaCost, ref hpCost, ref isHpCost);
             }
+        }
+
+        public bool CanCast(SkillPayload payload)
+        {
+            foreach (var passive in _activePassives.Values) if (!passive.CanCast(payload)) return false;
+            return true;
+        }
+
+        public void ModifyCast(SkillPayload payload)
+        {
+            foreach (var passive in _activePassives.Values) passive.ModifyCast(payload);
+        }
+
+        public bool CanBasicAttack()
+        {
+            foreach (var passive in _activePassives.Values) if (!passive.CanBasicAttack()) return false;
+            return true;
+        }
+
+        public void ModifyBasicAttack(SkillPayload payload)
+        {
+            foreach (var passive in _activePassives.Values) passive.ModifyBasicAttack(payload);
+        }
+
+        public void ModifyOutgoingHeal(IEntity target, ref float amount, SkillPayload payload)
+        {
+            foreach (var passive in _activePassives.Values) passive.ModifyOutgoingHeal(target, ref amount, payload);
+        }
+
+        public void TriggerOnHealed(IEntity target, float amount, SkillPayload payload)
+        {
+            foreach (var passive in new List<UniquePassive>(_activePassives.Values)) passive.TriggerOnHealed(target, amount, payload);
+        }
+
+        public bool CanUseConsumable()
+        {
+            foreach (var passive in _activePassives.Values) if (!passive.CanUseConsumable()) return false;
+            return true;
+        }
+
+        public bool ShouldKeepConsumable()
+        {
+            foreach (var passive in _activePassives.Values) if (passive.ShouldKeepConsumable()) return true;
+            return false;
+        }
+
+        public void TriggerOnConsumableUsed(CoreSystem.Data.Items.Model.Consumable consumable)
+        {
+            foreach (var passive in new List<UniquePassive>(_activePassives.Values)) passive.TriggerOnConsumableUsed(consumable);
+        }
+
+        public bool CanEquip(CoreSystem.Data.Items.Model.Equipment equipment)
+        {
+            foreach (var passive in _activePassives.Values) if (!passive.CanEquip(equipment)) return false;
+            return true;
         }
 
         public void Tick(float dt)
@@ -185,6 +241,14 @@ namespace CoreSystem.Entity.UniquePassives
         public static UniquePassive CreatePassive(string id)
         {
             return Registry.Create(id);
+        }
+        #endregion
+
+        #region [Private Methods]
+        private static int CompareCoreAttributeOrder(UniquePassive a, UniquePassive b)
+        {
+            int order = a.CoreAttributeOrder.CompareTo(b.CoreAttributeOrder);
+            return order != 0 ? order : string.CompareOrdinal(a.Id, b.Id);
         }
         #endregion
     }

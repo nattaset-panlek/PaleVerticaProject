@@ -60,6 +60,13 @@ The `Assets/Script` directory is highly modular. Maintain and respect this organ
 - **Data Validation**: Ensure all combat formulas strictly follow the **"Additional Value"** order of operations: `Base -> Flat Bonus -> Percentage Multiplier`.
 - **Edge Cases**: Always validate edge cases in the combat economy (e.g., ensuring `Variable Cast Time` can reach zero, but `Fixed Cast Time` can only be reduced by the Reduce FCT attribute, a Rare Attribute Bonus).
 
+## 5b. Verify Your Own Work (Scenario Tests)
+- After any gameplay change, follow `.claude/skills/playmode-scenario/SKILL.md`: write or reuse a JSON scenario in `Tests/Scenarios/`, run it, and read `Tests/Results/<agent>/<scenario>.json`.
+- A gameplay change is not done until its scenario has no Failed checks. Review checks wait for a person in **Pale Vertica > Testing > Scenario Checklist**. Never loosen a check to pass.
+- Scenarios only send input (virtual keyboard and mouse), let the game act, and record what happened. Do not add test hooks to game code; the harness in `Assets/Script/ScenarioTesting/` is editor-only and stays out of release builds.
+- When JSON cannot express a step, add a C# action with `[ScenarioAction]` in `Assets/Script/ScenarioTesting/Actions/`.
+- The `playtester` agent (`.claude/agents/playtester.md`) can run this for you.
+
 ## 6. Boundaries
 - **System Integrity**: Do NOT alter core mathematical formulas (Combat Stats derived from the 6 core attributes) without explicit systemic consideration and user approval.
 - **UI Decoupling**: Do NOT tightly couple the UI to data sources. The UI must only *listen* to state changes (Event-driven) to prevent null reference cascades.

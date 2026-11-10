@@ -1,0 +1,162 @@
+{
+  "Scenario": "quest_bones_on_the_road",
+  "File": "quests/bones_on_the_road.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 18:49:07",
+  "DurationSeconds": 14.80645,
+  "Status": "Failed",
+  "ChecksPassed": 1,
+  "ChecksReview": 0,
+  "ChecksFailed": 1,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.00417542
+    },
+    {
+      "Index": 1,
+      "Action": "TalkTo",
+      "Arguments": "TalkTo {\"character\":2004}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.00417542,
+      "Duration": 1.12820506
+    },
+    {
+      "Index": 2,
+      "Action": "AcceptQuest",
+      "Arguments": "AcceptQuest {\"quest\":1}",
+      "Status": "Passed",
+      "Message": "quest 1 is Active",
+      "StartTime": 2.13238049,
+      "Duration": 0.21893096
+    },
+    {
+      "Index": 3,
+      "Action": "CloseDialogue",
+      "Arguments": "CloseDialogue",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.35131145,
+      "Duration": 0.0592651367
+    },
+    {
+      "Index": 4,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"quest is active\",\"value\":\"quest.1.status\",\"to\":\"status.Active\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.41057658,
+      "Duration": 0.0114953518
+    },
+    {
+      "Index": 5,
+      "Action": "UsePortal",
+      "Arguments": "UsePortal {\"to\":\"Field\",\"timeout\":90}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 2.422072,
+      "Duration": 5.43932867
+    },
+    {
+      "Index": 6,
+      "Action": "Kill",
+      "Arguments": "Kill {\"character\":1001,\"count\":3,\"timeout\":240}",
+      "Status": "Failed",
+      "Message": "the player died after 0 kills",
+      "StartTime": 7.8614006,
+      "Duration": 6.94504929
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "quest is active",
+      "Status": "Passed",
+      "Expected": "== 2",
+      "Actual": "2",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 4,
+      "Time": 2.41057658
+    },
+    {
+      "Name": "step 7 Kill completes",
+      "Status": "Failed",
+      "Expected": "completes",
+      "Actual": "the player died after 0 kills",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 6,
+      "Time": 14.80645
+    }
+  ],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "1.00s in scene Town",
+    "1.00s step 2: TalkTo {\"character\":2004}",
+    "1.71s clicked OldMan at screen 960,921 world 0,4.5, collider OldMan, UI under the pointer: none, virtual mouse is current True, distance 4",
+    "2.13s step 3: AcceptQuest {\"quest\":1}",
+    "2.35s quest 1 is Active",
+    "2.35s step 4: CloseDialogue",
+    "2.41s step 5: Expect {\"name\":\"quest is active\",\"value\":\"quest.1.status\",\"to\":\"status.Active\"}",
+    "2.42s step 6: UsePortal {\"to\":\"Field\",\"timeout\":90}",
+    "5.74s clicked the portal to Field at screen 1661,528, UI under the pointer: ",
+    "7.86s step 7: Kill {\"character\":1001,\"count\":3,\"timeout\":240}",
+    "11.73s clicked Skeletom(Clone) at screen 1661,552 world 1.79,4.56, collider Skeletom(Clone), UI under the pointer: none, virtual mouse is current True, distance 7.6",
+    "14.81s step 7 failed: the player died after 0 kills"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-2539018",
+      "Target": "Skeletom(Clone)#-2547770",
+      "Amount": 9.0,
+      "Time": 12.705019
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-2547770",
+      "Target": "Player#-2539018",
+      "Amount": 45.1833344,
+      "Time": 13.3014641
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2539018",
+      "Target": "Skeletom(Clone)#-2547770",
+      "Amount": 9.0,
+      "Time": 13.7126226
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-2547770",
+      "Target": "Player#-2539018",
+      "Amount": 28.9333344,
+      "Time": 13.808918
+    },
+    {
+      "Kind": "hit",
+      "Source": "Player#-2539018",
+      "Target": "Skeletom(Clone)#-2547770",
+      "Amount": 9.0,
+      "Time": 14.7219553
+    },
+    {
+      "Kind": "taken",
+      "Source": "Skeletom(Clone)#-2547770",
+      "Target": "Player#-2539018",
+      "Amount": 45.1833344,
+      "Time": 14.80645
+    }
+  ]
+}

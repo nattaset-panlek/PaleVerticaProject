@@ -3,6 +3,10 @@ namespace CoreSystem.Entity.UniquePassives
     [UniquePassiveId("CurseOfKanix")]
     public class CurseOfKanixUniquePassive : UniquePassive
     {
+        #region [Properties]
+        public override int CoreAttributeOrder => -100;
+        #endregion
+
         #region [Public Methods]
         public override void ModifyCoreAttributes(ref float str, ref float agi, ref float vit, ref float @int, ref float dex, ref float luk)
         {

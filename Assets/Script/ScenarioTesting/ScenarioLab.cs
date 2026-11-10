@@ -1,0 +1,437 @@
+#if UNITY_EDITOR || PV_SCENARIO_TESTS
+using System.Collections;
+using System.Collections.Generic;
+using CoreSystem;
+using CoreSystem.Attributes;
+using CoreSystem.Combat;
+using CoreSystem.Data;
+using CoreSystem.Data.Items.Model;
+using CoreSystem.Entity;
+using CoreSystem.Skills;
+using CoreSystem.Skills.Summon;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
+
+namespace ScenarioTesting
+{
+    public sealed class ScenarioLab
+    {
+        #region [Variables/Fields]
+        public const int DefaultTargetId = 1001;
+        public const int DefaultPotionId = 2001;
+        public const float TargetDistance = 1.2f;
+        public const float TankHp = 1000000f;
+        public const int LabHitSkillId = 1;
+        private const string LabTag = "ScenarioLab";
+        private const float EmptySearchRadius = 3f;
+        private const float VisibleTimeout = 40f;
+        private const float ScreenMargin = 0.12f;
+        private const float NearEnough = 0.8f;
+        private const float CameraSettle = 0.25f;
+
+        private static readonly System.Reflection.FieldInfo AutoAttackField =
+            typeof(CoreSystem.Player.PlayerCore).GetField("_autoAttackTarget", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+        private static readonly HashSet<AttributeType> ChangingStats = new HashSet<AttributeType> { AttributeType.HP, AttributeType.MP };
+
+        private readonly ScenarioRun _run;
+        private readonly List<float> _lastHits = new List<float>();
+        #endregion
+
+        #region [Properties]
+        public Character Target { get; private set; }
+        public IReadOnlyList<float> LastHits => _lastHits;
+        public float LastHitTotal { get; private set; }
+        public bool LastPotionKept { get; private set; }
+        public bool LastCastStarted { get; private set; }
+        public string LastClickReport { get; private set; } = string.Empty;
+        private Character Player => ScenarioProbe.Player;
+        #endregion
+
+        #region [Public Methods]
+        public ScenarioLab(ScenarioRun run)
+        {
+            _run = run;
+        }
+
+        public IEnumerator Spawn(int characterId, Vector3 position, bool freeze, bool tank, System.Action<Character> onSpawned)
+        {
+            bool done = false;
+            Character spawned = null;
+            CharacterFactory.Spawn(characterId, position, null, character =>
+            {
+                spawned = character;
+                done = true;
+            });
+            yield return _run.WaitFor(() => done, 10f, $"character {characterId} to spawn");
+            if (spawned == null)
+            {
+                _run.FailStep($"character {characterId} did not spawn");
+                yield break;
+            }
+
+            if (freeze) CharacterFactory.ReleaseController(spawned);
+            if (tank) AddStat(spawned, AttributeType.MaxHP, TankHp);
+            Refill(spawned);
+            onSpawned?.Invoke(spawned);
+        }
+
+        public IEnumerator EnsureTarget(int characterId = DefaultTargetId, bool tank = true)
+        {
+            if (Target != null && !Target.IsDead)
+            {
+                Refill(Target);
+                yield break;
+            }
+            yield return Spawn(characterId, Player.transform.position + Vector3.right * TargetDistance, true, tank, character => Target = character);
+            _run.Name(ScenarioRun.TargetName, Target);
+        }
+
+        public static void Refill(Character character)
+        {
+            if (character == null) return;
+            SetResource(character, AttributeType.HP, AttributeProbe.Read(character, AttributeType.MaxHP));
+            SetResource(character, AttributeType.MP, AttributeProbe.Read(character, AttributeType.MaxMP));
+        }
+
+        public static void SetResource(Character character, AttributeType resource, float value)
+        {
+            var attribute = character != null ? character.attributeSystem.GetAttribute(resource) : null;
+            if (attribute == null) return;
+            attribute.BaseValue = value;
+            attribute.Recalculate();
+        }
+
+        public static void AddStat(Character character, AttributeType type, float value)
+        {
+            character.attributeSystem.AddAdditional(type, 2, AdditionalOp.Add, value, LabTag);
+        }
+
+        public static void SetTotal(Character character, AttributeType type, float total)
+        {
+            character.attributeSystem.RemoveAdditionalByTag(type, LabTag);
+            AddStat(character, type, total - AttributeProbe.Read(character, type));
+        }
+
+        public static void ClearLabStat(Character character, AttributeType type)
+        {
+            character.attributeSystem.RemoveAdditionalByTag(type, LabTag);
+        }
+
+        public void Give(Character character, IEnumerable<string> passiveIds)
+        {
+            foreach (string id in passiveIds)
+            {
+                character.UniquePassives.AddPassive(id);
+                if (!character.UniquePassives.HasPassive(id)) _run.FailStep($"unique passive '{id}' is not registered");
+            }
+            character.RecalculateStats();
+        }
+
+        public void ClearPassives(Character character)
+        {
+            foreach (string id in character.UniquePassives.ActivePassiveIds) character.UniquePassives.RemovePassive(id);
+            character.RecalculateStats();
+        }
+
+        public Dictionary<AttributeType, float> StableSnapshot(Character character)
+        {
+            Dictionary<AttributeType, float> values = AttributeProbe.Snapshot(character);
+            foreach (AttributeType type in ChangingStats) values.Remove(type);
+            return values;
+        }
+
+        public IEnumerator Attack(Character target, int hits, float timeout, bool allowNone = false)
+        {
+            ClearHits();
+            if (target == null || target.IsDead)
+            {
+                _run.FailStep("no living target to attack");
+                yield break;
+            }
+
+            int start = _run.Combat.Entries.Count;
+            string name = CombatRecorder.NameOf(target);
+            yield return ClickCharacter(target, MouseButton.Left);
+
+            float deadline = Time.time + timeout;
+            string firstState = Diagnose(target);
+            while (Time.time < deadline && CountHits(start, name) < hits && target != null && !target.IsDead) yield return null;
+            string lastState = Diagnose(target);
+            yield return StopAttacking();
+            CollectHits(start, name);
+            if (_lastHits.Count == 0 && !allowNone) _run.FailStep($"no hits landed. {LastClickReport}. Right after the click: {firstState}. At the end: {lastState}");
+        }
+
+        public string Diagnose(Character target)
+        {
+            Character player = Player;
+            var core = CoreSystem.Player.PlayerCore.Instance;
+            if (player == null || core == null) return "no player";
+            object selected = AutoAttackField != null ? AutoAttackField.GetValue(core) : null;
+            string selectedName = selected is Object unityObject && unityObject != null ? unityObject.name : selected == null ? "none" : "destroyed";
+            float distance = target != null ? Vector2.Distance(player.transform.position, target.transform.position) : -1f;
+            return $"auto-attack target {selectedName}, distance {distance:0.##} / range {player.AutoAttackRange:0.##}, attack cooldown {player.BasicAttackCooldownTimer:0.##}, "
+                 + $"caster {player.skillCaster.CurrentState}, has control {core.HasControl}, virtual mouse current {_run.Input.OwnsPointer}, focused {Application.isFocused}";
+        }
+
+        public IEnumerator StopAttacking()
+        {
+            if (TryEmptyScreenPoint(out Vector2 screen)) yield return _run.Input.Click(screen);
+        }
+
+        public IEnumerator Cast(int hotbarSlot, Character target, float wait)
+        {
+            ClearHits();
+            Key key = ScenarioProbe.HotbarKey(hotbarSlot);
+            if (key == Key.None)
+            {
+                _run.FailStep($"hotbar slot {hotbarSlot} has no key");
+                yield break;
+            }
+
+            int start = _run.Combat.Entries.Count;
+            int readyBefore = ReadySkillCount();
+            float manaBefore = AttributeProbe.Read(Player, AttributeType.MP);
+            yield return _run.Input.Tap(key);
+            if (target != null) yield return ClickCharacter(target, MouseButton.Left);
+
+            float end = Time.time + wait;
+            while (Time.time < end)
+            {
+                if (ReadySkillCount() < readyBefore || AttributeProbe.Read(Player, AttributeType.MP) < manaBefore) LastCastStarted = true;
+                yield return null;
+            }
+            if (target != null) CollectHits(start, CombatRecorder.NameOf(target));
+        }
+
+        public IEnumerator ClickCharacter(Character character, MouseButton button)
+        {
+            if (character == null) yield break;
+            yield return BringOnScreen(character, VisibleTimeout);
+            if (_run.StepFailed) yield break;
+
+            if (!TryFindClickPoint(character, out Vector3 world, out Vector2 screen, out List<string> blocking))
+            {
+                _run.FailStep($"{character.name} is not on screen (player at {Player.transform.position.x:0.#},{Player.transform.position.y:0.#}, {character.name} at {character.transform.position.x:0.#},{character.transform.position.y:0.#})");
+                yield break;
+            }
+
+            Collider2D hit = Physics2D.OverlapPoint(world);
+            yield return _run.Input.Click(screen, button);
+            LastClickReport = $"clicked {character.name} at screen {screen.x:0},{screen.y:0} world {world.x:0.##},{world.y:0.##}, collider {(hit != null ? hit.name : "none")}, "
+                            + $"UI under the pointer: {(blocking.Count == 0 ? "none" : string.Join(", ", blocking))}, virtual mouse is current {_run.Input.OwnsPointer}, distance {Vector2.Distance(Player.transform.position, character.transform.position):0.#}";
+            _run.Log(LastClickReport);
+        }
+
+        public IEnumerator BringOnScreen(Character character, float timeout)
+        {
+            if (character == null) yield break;
+            yield return BringOnScreen(character.transform, timeout);
+        }
+
+        public IEnumerator BringOnScreen(Transform target, float timeout)
+        {
+            float deadline = Time.time + timeout;
+            while (target != null && Player != null && !Player.IsDead && Time.time <= deadline)
+            {
+                if (IsComfortablyVisible(target.position))
+                {
+                    _run.Input.Hold();
+                    yield return new WaitForSeconds(CameraSettle);
+                    if (target == null || IsComfortablyVisible(target.position)) yield break;
+                    continue;
+                }
+                Vector3 offset = target.position - Player.transform.position;
+                _run.Input.Hold(offset.magnitude > NearEnough ? KeysToward(offset) : new Key[0]);
+                yield return null;
+            }
+            _run.Input.Hold();
+        }
+
+        public IEnumerator Approach(Vector3 destination, float range, float timeout)
+        {
+            float deadline = Time.time + timeout;
+            while (Player != null && Vector2.Distance(Player.transform.position, destination) > range)
+            {
+                if (Time.time > deadline)
+                {
+                    _run.Input.Hold();
+                    _run.FailStep($"could not walk within {range} of {destination}");
+                    yield break;
+                }
+                _run.Input.Hold(KeysToward(destination - Player.transform.position));
+                yield return null;
+            }
+            _run.Input.Hold();
+            yield return null;
+        }
+
+        public IEnumerator HoldKeys(Key[] keys, float seconds)
+        {
+            _run.Input.Hold(keys);
+            yield return new WaitForSeconds(seconds);
+            _run.Input.Hold();
+            yield return null;
+        }
+
+        public IEnumerator TakeHits(Character attacker, int count, float amount, float gap)
+        {
+            if (attacker == null)
+            {
+                _run.FailStep("no attacker for the hits");
+                yield break;
+            }
+            for (int i = 0; i < count; i++)
+            {
+                var payload = new SkillPayload
+                {
+                    Caster = attacker,
+                    SkillID = LabHitSkillId,
+                    SkillLevel = 1,
+                    DamageType = DamageType.Physical,
+                    SkillElement = ElementType.Neutral,
+                    BaseDamage = amount
+                };
+                CombatCore.Execute(CombatAction.Damage(payload), attacker, Player);
+                yield return new WaitForSeconds(gap);
+            }
+        }
+
+        public IEnumerator UseItem(int itemId)
+        {
+            var inventory = GameData.Player.Inventory;
+            inventory.AddItem(itemId);
+            var instance = inventory.GetFirstByModelId(itemId);
+            var consumable = instance != null ? instance.Item as Consumable : null;
+            if (consumable == null)
+            {
+                _run.FailStep($"item {itemId} is not a consumable");
+                yield break;
+            }
+
+            consumable.OnUse();
+            LastPotionKept = !consumable.LastUseConsumed;
+            if (consumable.LastUseConsumed) inventory.RemoveItemByInstance(instance.Id, 1);
+            yield return null;
+        }
+
+        public static int SummonCount(Character owner)
+        {
+            int count = 0;
+            if (owner == null) return count;
+            foreach (SummonedUnit unit in SummonRegistry.Units) if (unit != null && unit.Owner == owner) count++;
+            return count;
+        }
+
+        public static Key[] KeysToward(Vector3 direction)
+        {
+            var keys = new List<Key>(2);
+            if (direction.y > 0.15f) keys.Add(Key.W);
+            if (direction.y < -0.15f) keys.Add(Key.S);
+            if (direction.x > 0.15f) keys.Add(Key.D);
+            if (direction.x < -0.15f) keys.Add(Key.A);
+            return keys.ToArray();
+        }
+        #endregion
+
+        #region [Private Methods]
+        private static bool IsComfortablyVisible(Vector3 world)
+        {
+            return ScenarioInput.TryScreenOf(world, out Vector2 screen) && ScenarioInput.IsInside(screen, ScreenMargin);
+        }
+
+        private static bool TryFindClickPoint(Character character, out Vector3 world, out Vector2 screen, out List<string> blocking)
+        {
+            world = character.transform.position;
+            screen = Vector2.zero;
+            blocking = new List<string>();
+            bool found = false;
+            foreach (Vector3 candidate in ClickCandidates(character))
+            {
+                if (!ScenarioInput.TryScreenOf(candidate, out Vector2 point)) continue;
+                List<string> under = ScenarioInput.UIUnder(point);
+                if (!found || under.Count < blocking.Count)
+                {
+                    found = true;
+                    world = candidate;
+                    screen = point;
+                    blocking = under;
+                }
+                if (under.Count == 0) break;
+            }
+            return found;
+        }
+
+        private static IEnumerable<Vector3> ClickCandidates(Character character)
+        {
+            Collider2D collider = character.GetComponentInChildren<Collider2D>();
+            if (collider == null)
+            {
+                yield return character.transform.position;
+                yield break;
+            }
+            Bounds bounds = collider.bounds;
+            Vector3 extents = bounds.extents * 0.6f;
+            Vector3[] offsets = { Vector3.zero, new Vector3(0f, extents.y), new Vector3(0f, -extents.y), new Vector3(extents.x, 0f), new Vector3(-extents.x, 0f) };
+            foreach (Vector3 offset in offsets)
+            {
+                Vector3 point = bounds.center + offset;
+                if (collider.OverlapPoint(point)) yield return point;
+            }
+            yield return character.transform.position;
+        }
+
+        private void ClearHits()
+        {
+            _lastHits.Clear();
+            LastHitTotal = 0f;
+            LastCastStarted = false;
+        }
+
+        private int CountHits(int start, string target)
+        {
+            int count = 0;
+            var entries = _run.Combat.Entries;
+            for (int i = start; i < entries.Count; i++) if (entries[i].Kind == CombatRecorder.HitKind && entries[i].Target == target) count++;
+            return count;
+        }
+
+        private void CollectHits(int start, string target)
+        {
+            _lastHits.Clear();
+            LastHitTotal = 0f;
+            var entries = _run.Combat.Entries;
+            for (int i = start; i < entries.Count; i++)
+            {
+                if (entries[i].Kind != CombatRecorder.HitKind || entries[i].Target != target) continue;
+                _lastHits.Add(entries[i].Amount);
+                LastHitTotal += entries[i].Amount;
+            }
+        }
+
+        private int ReadySkillCount()
+        {
+            int count = 0;
+            if (Player == null || Player.skillCaster == null) return count;
+            foreach (var skill in Player.skillCaster.EquippedSkills) if (skill != null && skill.IsReady()) count++;
+            return count;
+        }
+
+        private bool TryEmptyScreenPoint(out Vector2 screen)
+        {
+            screen = Vector2.zero;
+            if (Player == null) return false;
+            for (int i = 0; i < 16; i++)
+            {
+                float angle = i * 22.5f * Mathf.Deg2Rad;
+                Vector3 point = Player.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)) * EmptySearchRadius;
+                if (Physics2D.OverlapPoint(point) != null) continue;
+                if (ScenarioInput.TryScreenOf(point, out screen)) return true;
+            }
+            return false;
+        }
+        #endregion
+    }
+}
+#endif

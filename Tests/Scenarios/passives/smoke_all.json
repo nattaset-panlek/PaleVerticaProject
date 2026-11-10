@@ -1,0 +1,30 @@
+{
+  "name": "unique_passive_smoke",
+  "description": "Every registered Unique Passive through the standard routine, then a stat leak check (script action).",
+  "tags": [
+    "passive",
+    "slow"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "SmokeAllPassives",
+      "timeout": 3600
+    }
+  ]
+}

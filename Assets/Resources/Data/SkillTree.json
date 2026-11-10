@@ -228,17 +228,22 @@
       "y": 992.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Bulwark",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 9,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 21,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 31,
+          "value": 8.0
         }
       ]
     },
@@ -330,17 +335,22 @@
       "y": 1862.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Battle Fury",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 9,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 21,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 22,
+          "value": 4.0
         }
       ]
     },
@@ -374,17 +384,13 @@
       "y": 2456.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 9,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 21,
-          "value": 2.0
         }
       ]
     },
@@ -396,17 +402,13 @@
       "y": 2693.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 9,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 21,
-          "value": 2.0
         }
       ]
     },
@@ -418,17 +420,13 @@
       "y": 2879.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 9,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 21,
-          "value": 2.0
         }
       ]
     },
@@ -440,17 +438,13 @@
       "y": 2994.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 9,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 21,
-          "value": 2.0
         }
       ]
     },
@@ -476,17 +470,26 @@
       "y": 3646.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Warlord",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 9,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 21,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 22,
+          "value": 4.0
+        },
+        {
+          "id": 4,
+          "value": 4.0
         }
       ]
     },
@@ -894,17 +897,17 @@
       "y": 1906.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -916,17 +919,17 @@
       "y": 1906.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -938,17 +941,17 @@
       "y": 2073.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -960,17 +963,17 @@
       "y": 2073.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -1026,17 +1029,13 @@
       "y": 2178.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1048,17 +1047,13 @@
       "y": 2178.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1070,17 +1065,13 @@
       "y": 2321.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1092,17 +1083,13 @@
       "y": 2321.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1114,17 +1101,13 @@
       "y": 2539.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1136,17 +1119,13 @@
       "y": 2539.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1158,17 +1137,13 @@
       "y": 2235.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1180,17 +1155,13 @@
       "y": 2235.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1202,17 +1173,13 @@
       "y": 2449.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1224,17 +1191,13 @@
       "y": 2449.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -1246,17 +1209,22 @@
       "y": 2611.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Iron Hide",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 4,
+          "value": 4.0
         }
       ]
     },
@@ -1268,17 +1236,22 @@
       "y": 2611.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Cleaving Arc",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 41,
+          "value": 6.0
         }
       ]
     },
@@ -1294,7 +1267,7 @@
       "shape": "rect",
       "iconPath": "SkillIcon/Icon_KeySkill.png",
       "extras": [],
-      "uniquePassiveId": "BurdenofKings"
+      "uniquePassiveId": "BurdenOfKings"
     },
     {
       "id": 64,
@@ -1318,17 +1291,17 @@
       "y": 2754.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -1340,17 +1313,17 @@
       "y": 2754.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -1362,17 +1335,17 @@
       "y": 2958.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -1384,17 +1357,17 @@
       "y": 2958.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -1406,17 +1379,17 @@
       "y": 2820.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -1428,17 +1401,17 @@
       "y": 2820.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -1450,17 +1423,13 @@
       "y": 3135.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 9,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 21,
-          "value": 2.0
         }
       ]
     },
@@ -1472,17 +1441,13 @@
       "y": 3135.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 9,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 21,
-          "value": 2.0
         }
       ]
     },
@@ -1494,17 +1459,13 @@
       "y": 3467.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 9,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 21,
-          "value": 2.0
         }
       ]
     },
@@ -1516,17 +1477,13 @@
       "y": 3467.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 9,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 21,
-          "value": 2.0
         }
       ]
     },
@@ -1706,17 +1663,22 @@
       "y": 826.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Zealous Strike",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 9,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 21,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 75,
+          "value": 6.0
         }
       ]
     },
@@ -1808,17 +1770,22 @@
       "y": 1333.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Sanctified Steel",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 9,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 21,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 22,
+          "value": 4.0
         }
       ]
     },
@@ -1944,7 +1911,7 @@
       "shape": "rect",
       "iconPath": "SkillIcon/Icon_KeySkill.png",
       "extras": [],
-      "uniquePassiveId": "OathofSilence"
+      "uniquePassiveId": "OathOfSilence"
     },
     {
       "id": 95,
@@ -1954,17 +1921,26 @@
       "y": 2087.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Strength",
+      "label": "Grand Inquest",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 9,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 21,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 75,
+          "value": 6.0
+        },
+        {
+          "id": 24,
+          "value": 4.0
         }
       ]
     },
@@ -2372,17 +2348,17 @@
       "y": 1716.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -2394,17 +2370,17 @@
       "y": 1308.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -2416,17 +2392,17 @@
       "y": 1895.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -2438,17 +2414,17 @@
       "y": 1410.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -2504,16 +2480,16 @@
       "y": 1728.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2526,16 +2502,16 @@
       "y": 1470.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2548,16 +2524,16 @@
       "y": 1679.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2570,16 +2546,16 @@
       "y": 1546.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2592,16 +2568,16 @@
       "y": 1762.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2614,16 +2590,16 @@
       "y": 1631.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2636,16 +2612,16 @@
       "y": 1885.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2658,16 +2634,16 @@
       "y": 1489.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2680,16 +2656,16 @@
       "y": 1971.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2702,16 +2678,16 @@
       "y": 1578.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -2724,17 +2700,22 @@
       "y": 1897.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Judge's Focus",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 37,
+          "value": 8.0
         }
       ]
     },
@@ -2746,17 +2727,22 @@
       "y": 1643.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Holy Aegis",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 35,
+          "value": 8.0
         }
       ]
     },
@@ -2796,17 +2782,13 @@
       "y": 2040.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -2818,17 +2800,13 @@
       "y": 1729.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -2840,17 +2818,13 @@
       "y": 2180.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -2862,17 +2836,13 @@
       "y": 1822.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -2884,17 +2854,13 @@
       "y": 2393.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -2906,17 +2872,13 @@
       "y": 1804.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -3060,16 +3022,16 @@
       "y": 1498.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -3082,16 +3044,16 @@
       "y": 1790.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -3184,17 +3146,22 @@
       "y": 509.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Arc Step",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 131,
+          "value": 5.0
         }
       ]
     },
@@ -3286,17 +3253,22 @@
       "y": 836.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Weave Flow",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 147,
+          "value": 0.4
         }
       ]
     },
@@ -3330,17 +3302,17 @@
       "y": 1102.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -3352,17 +3324,17 @@
       "y": 1195.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -3374,17 +3346,17 @@
       "y": 1267.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -3396,17 +3368,17 @@
       "y": 1339.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -3432,17 +3404,26 @@
       "y": 1531.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Spell Blade",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 24,
+          "value": 4.0
+        },
+        {
+          "id": 22,
+          "value": 4.0
         }
       ]
     },
@@ -3850,17 +3831,13 @@
       "y": 1212.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -3872,17 +3849,13 @@
       "y": 580.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -3894,17 +3867,13 @@
       "y": 1335.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -3916,17 +3885,13 @@
       "y": 605.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4202,17 +4167,22 @@
       "y": 1364.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Edge Sigil",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 11,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 131,
-          "value": 0.5
+          "value": 1.0
+        },
+        {
+          "id": 41,
+          "value": 6.0
         }
       ]
     },
@@ -4224,17 +4194,22 @@
       "y": 922.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Runed Mind",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 11,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 131,
-          "value": 0.5
+          "value": 1.0
+        },
+        {
+          "id": 24,
+          "value": 4.0
         }
       ]
     },
@@ -4274,17 +4249,13 @@
       "y": 1495.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4296,17 +4267,13 @@
       "y": 967.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4318,17 +4285,13 @@
       "y": 1611.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4340,17 +4303,13 @@
       "y": 1013.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4362,17 +4321,13 @@
       "y": 1709.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4384,6 +4339,24 @@
       "y": 841.5,
       "isActive": false,
       "linkStyle": "curve",
+      "label": "Attribute Lucky",
+      "shape": "circle",
+      "iconPath": "SkillIcon/Icon_Attribute.png",
+      "extras": [
+        {
+          "id": 19,
+          "value": 1.0
+        }
+      ]
+    },
+    {
+      "id": 209,
+      "kind": "active",
+      "role": "normal",
+      "x": -2314.0,
+      "y": 1513.9,
+      "isActive": false,
+      "linkStyle": "curve",
       "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
@@ -4399,28 +4372,6 @@
       ]
     },
     {
-      "id": 209,
-      "kind": "active",
-      "role": "normal",
-      "x": -2314.0,
-      "y": 1513.9,
-      "isActive": false,
-      "linkStyle": "curve",
-      "label": "Attribute Intelligence",
-      "shape": "circle",
-      "iconPath": "SkillIcon/Icon_Attribute.png",
-      "extras": [
-        {
-          "id": 15,
-          "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
-        }
-      ]
-    },
-    {
       "id": 210,
       "kind": "active",
       "role": "normal",
@@ -4428,17 +4379,17 @@
       "y": 1248.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -4450,17 +4401,17 @@
       "y": 1610.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -4472,17 +4423,17 @@
       "y": 1343.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -4662,17 +4613,22 @@
       "y": 0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Shadow Gait",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 11,
+          "value": 2.0
+        },
+        {
+          "id": 131,
           "value": 1.0
         },
         {
           "id": 131,
-          "value": 0.5
+          "value": 5.0
         }
       ]
     },
@@ -4764,17 +4720,22 @@
       "y": 0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Keen Edge",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 11,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 131,
-          "value": 0.5
+          "value": 1.0
+        },
+        {
+          "id": 43,
+          "value": 3.0
         }
       ]
     },
@@ -4808,17 +4769,13 @@
       "y": 0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4830,17 +4787,13 @@
       "y": 0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4852,17 +4805,13 @@
       "y": 0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4874,17 +4823,13 @@
       "y": 0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -4910,17 +4855,26 @@
       "y": 0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Deathblow",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 11,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 131,
-          "value": 0.5
+          "value": 1.0
+        },
+        {
+          "id": 43,
+          "value": 3.0
+        },
+        {
+          "id": 45,
+          "value": 1.5
         }
       ]
     },
@@ -5288,13 +5242,17 @@
       "y": 357.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5306,13 +5264,17 @@
       "y": -365.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5324,13 +5286,17 @@
       "y": 415.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5342,13 +5308,17 @@
       "y": -427.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5584,13 +5554,18 @@
       "y": 231.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Slipstream",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 19,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 39,
+          "value": 8.0
         }
       ]
     },
@@ -5602,13 +5577,18 @@
       "y": -234.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Toxin Craft",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 19,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 25,
+          "value": 8.0
         }
       ]
     },
@@ -5648,13 +5628,17 @@
       "y": 277.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5666,13 +5650,17 @@
       "y": -281.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5684,13 +5672,17 @@
       "y": 312.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5702,13 +5694,17 @@
       "y": -317.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5720,13 +5716,17 @@
       "y": 481.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5738,13 +5738,17 @@
       "y": -497.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -5756,17 +5760,13 @@
       "y": 105.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -5778,17 +5778,13 @@
       "y": -105.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -5800,17 +5796,13 @@
       "y": 104.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -5822,17 +5814,13 @@
       "y": -104.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 131,
-          "value": 0.5
         }
       ]
     },
@@ -5984,13 +5972,18 @@
       "y": -504.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Steady Aim",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 37,
+          "value": 8.0
         }
       ]
     },
@@ -6070,13 +6063,18 @@
       "y": -864.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Hair Trigger",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 41,
+          "value": 6.0
         }
       ]
     },
@@ -6106,12 +6104,12 @@
       "y": -1186.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -6124,12 +6122,12 @@
       "y": -1296.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -6142,12 +6140,12 @@
       "y": -1382.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -6160,13 +6158,17 @@
       "y": -1469.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 13,
           "value": 1.0
+        },
+        {
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -6192,13 +6194,22 @@
       "y": -1704.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Dead Eye",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 43,
+          "value": 3.0
+        },
+        {
+          "id": 22,
+          "value": 4.0
         }
       ]
     },
@@ -6534,12 +6545,12 @@
       "y": -605.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 17,
           "value": 1.0
         }
       ]
@@ -6552,12 +6563,12 @@
       "y": -1278.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 17,
           "value": 1.0
         }
       ]
@@ -6570,12 +6581,12 @@
       "y": -633.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 17,
           "value": 1.0
         }
       ]
@@ -6588,12 +6599,12 @@
       "y": -1416.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 17,
           "value": 1.0
         }
       ]
@@ -6642,13 +6653,17 @@
       "y": -821.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6660,13 +6675,17 @@
       "y": -1291.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6678,13 +6697,17 @@
       "y": -984.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6696,13 +6719,17 @@
       "y": -1264.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6714,13 +6741,17 @@
       "y": -1090.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6732,13 +6763,17 @@
       "y": -1374.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6750,13 +6785,17 @@
       "y": -759.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6768,13 +6807,17 @@
       "y": -1418.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6786,13 +6829,17 @@
       "y": -861.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6804,13 +6851,17 @@
       "y": -1529.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6822,13 +6873,18 @@
       "y": -1030.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Lucky Round",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 19,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 43,
+          "value": 3.0
         }
       ]
     },
@@ -6840,13 +6896,18 @@
       "y": -1513.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Gunpowder",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 19,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 63,
+          "value": 6.0
         }
       ]
     },
@@ -6914,13 +6975,17 @@
       "y": -1044.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6932,13 +6997,17 @@
       "y": -1624.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6950,13 +7019,17 @@
       "y": -1100.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6968,13 +7041,17 @@
       "y": -1762.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -6986,13 +7063,17 @@
       "y": -902.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -7004,13 +7085,17 @@
       "y": -1862.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -7022,13 +7107,17 @@
       "y": -1371.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 13,
           "value": 1.0
+        },
+        {
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -7040,13 +7129,17 @@
       "y": -1665.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 13,
           "value": 1.0
+        },
+        {
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -7058,13 +7151,17 @@
       "y": -1486.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 13,
           "value": 1.0
+        },
+        {
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -7076,13 +7173,17 @@
       "y": -1784.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 13,
           "value": 1.0
+        },
+        {
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -7234,13 +7335,18 @@
       "y": -858.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Swift Draw",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 41,
+          "value": 6.0
         }
       ]
     },
@@ -7320,13 +7426,18 @@
       "y": -1348.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Eagle Sight",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 37,
+          "value": 8.0
         }
       ]
     },
@@ -7442,13 +7553,22 @@
       "y": -2281.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Storm Volley",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 41,
+          "value": 6.0
+        },
+        {
+          "id": 43,
+          "value": 3.0
         }
       ]
     },
@@ -7824,17 +7944,17 @@
       "y": -1367.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -7846,17 +7966,17 @@
       "y": -1760.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -7868,17 +7988,17 @@
       "y": -1484.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -7890,17 +8010,17 @@
       "y": -1948.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -8168,17 +8288,22 @@
       "y": -1713.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Fleetfoot",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 11,
+          "value": 2.0
+        },
+        {
+          "id": 131,
           "value": 1.0
         },
         {
           "id": 131,
-          "value": 0.5
+          "value": 5.0
         }
       ]
     },
@@ -8190,17 +8315,22 @@
       "y": -1964.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Barbed Tips",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 11,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 131,
-          "value": 0.5
+          "value": 1.0
+        },
+        {
+          "id": 22,
+          "value": 4.0
         }
       ]
     },
@@ -8240,17 +8370,17 @@
       "y": -1832.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8262,17 +8392,17 @@
       "y": -2136.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8284,17 +8414,17 @@
       "y": -1944.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8306,17 +8436,17 @@
       "y": -2291.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8328,17 +8458,17 @@
       "y": -1939.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8350,17 +8480,17 @@
       "y": -2496.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Agility",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 11,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 131,
-          "value": 0.5
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8480,13 +8610,17 @@
       "y": -2237.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -8498,13 +8632,17 @@
       "y": -2742.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -8596,17 +8734,22 @@
       "y": -995.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Arcane Mind",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 24,
+          "value": 4.0
         }
       ]
     },
@@ -8698,17 +8841,22 @@
       "y": -1862.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Focused Cast",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 147,
+          "value": 0.4
         }
       ]
     },
@@ -8742,17 +8890,17 @@
       "y": -2484.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8764,17 +8912,17 @@
       "y": -2727.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8786,17 +8934,17 @@
       "y": -2917.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -8808,16 +8956,16 @@
       "y": -3035.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -8844,16 +8992,25 @@
       "y": -3705.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Archmage",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
+          "value": 4.0
+        },
+        {
+          "id": 24,
+          "value": 4.0
+        },
+        {
+          "id": 151,
           "value": 2.0
         }
       ]
@@ -9338,12 +9495,12 @@
       "y": -2247.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9356,12 +9513,12 @@
       "y": -2247.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9374,12 +9531,12 @@
       "y": -2375.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9392,12 +9549,12 @@
       "y": -2375.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9410,12 +9567,12 @@
       "y": -2558.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9428,12 +9585,12 @@
       "y": -2558.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9446,12 +9603,12 @@
       "y": -2280.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9464,12 +9621,12 @@
       "y": -2280.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9482,12 +9639,12 @@
       "y": -2459.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9500,12 +9657,12 @@
       "y": -2459.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 19,
           "value": 1.0
         }
       ]
@@ -9518,13 +9675,18 @@
       "y": -2611.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Deep Well",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 8,
+          "value": 5.0
         }
       ]
     },
@@ -9536,13 +9698,18 @@
       "y": -2611.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Flame Study",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 63,
+          "value": 6.0
         }
       ]
     },
@@ -9690,16 +9857,16 @@
       "y": -3183.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -9712,16 +9879,16 @@
       "y": -3183.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -9734,16 +9901,16 @@
       "y": -3525.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -9756,16 +9923,16 @@
       "y": -3525.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -9822,17 +9989,17 @@
       "y": -2237.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -9844,17 +10011,17 @@
       "y": -2742.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -9946,17 +10113,22 @@
       "y": -858.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Storm Caller",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 67,
+          "value": 6.0
         }
       ]
     },
@@ -10048,17 +10220,22 @@
       "y": -1348.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Fate Thread",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 43,
+          "value": 3.0
         }
       ]
     },
@@ -10092,17 +10269,13 @@
       "y": -1714.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -10114,17 +10287,13 @@
       "y": -1837.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -10136,17 +10305,13 @@
       "y": -1929.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -10158,17 +10323,13 @@
       "y": -1995.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -10194,16 +10355,25 @@
       "y": -2281.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Thunder Sage",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
+          "value": 4.0
+        },
+        {
+          "id": 67,
+          "value": 6.0
+        },
+        {
+          "id": 151,
           "value": 2.0
         }
       ]
@@ -10688,13 +10858,17 @@
       "y": -1807.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10706,13 +10880,17 @@
       "y": -1555.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10724,13 +10902,17 @@
       "y": -1737.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10742,13 +10924,17 @@
       "y": -1631.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10760,13 +10946,17 @@
       "y": -1815.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10778,13 +10968,17 @@
       "y": -1710.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10796,13 +10990,17 @@
       "y": -1986.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10814,13 +11012,17 @@
       "y": -1572.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10832,13 +11034,17 @@
       "y": -2066.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10850,13 +11056,17 @@
       "y": -1654.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 19,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -10868,13 +11078,18 @@
       "y": -1964.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Mana Tide",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 19,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 137,
+          "value": 3.0
         }
       ]
     },
@@ -10886,13 +11101,18 @@
       "y": -1713.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Lucky",
+      "label": "Hexcraft",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 19,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 25,
+          "value": 8.0
         }
       ]
     },
@@ -11040,17 +11260,13 @@
       "y": -2133.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -11062,17 +11278,13 @@
       "y": -2023.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -11084,17 +11296,13 @@
       "y": -2275.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -11106,17 +11314,13 @@
       "y": -2165.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -11172,17 +11376,13 @@
       "y": -1595.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -11194,17 +11394,13 @@
       "y": -1940.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -11296,17 +11492,22 @@
       "y": -504.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Grave Touch",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 71,
+          "value": 6.0
         }
       ]
     },
@@ -11398,17 +11599,22 @@
       "y": -864.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Soul Reservoir",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 4,
+          "value": 4.0
         }
       ]
     },
@@ -11442,17 +11648,17 @@
       "y": -1186.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -11464,17 +11670,17 @@
       "y": -1296.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -11486,17 +11692,17 @@
       "y": -1382.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -11508,17 +11714,17 @@
       "y": -1469.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -11544,17 +11750,26 @@
       "y": -1704.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Lord of Bones",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 71,
+          "value": 6.0
+        },
+        {
+          "id": 4,
+          "value": 4.0
         }
       ]
     },
@@ -12094,17 +12309,17 @@
       "y": -1291.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12116,17 +12331,17 @@
       "y": -821.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12138,17 +12353,17 @@
       "y": -1264.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12160,17 +12375,17 @@
       "y": -984.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12182,17 +12397,17 @@
       "y": -1374.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12204,17 +12419,17 @@
       "y": -1090.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12226,17 +12441,17 @@
       "y": -1418.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12248,17 +12463,17 @@
       "y": -759.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12270,17 +12485,17 @@
       "y": -1529.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12292,17 +12507,17 @@
       "y": -861.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -12314,17 +12529,22 @@
       "y": -1513.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Dark Study",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 24,
+          "value": 4.0
         }
       ]
     },
@@ -12336,17 +12556,22 @@
       "y": -1030.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Withering",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 25,
+          "value": 8.0
         }
       ]
     },
@@ -12518,17 +12743,17 @@
       "y": -1665.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -12540,17 +12765,17 @@
       "y": -1371.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -12562,17 +12787,17 @@
       "y": -1784.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -12584,17 +12809,17 @@
       "y": -1486.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -12774,17 +12999,22 @@
       "y": -0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Potion Lore",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 139,
+          "value": 8.0
         }
       ]
     },
@@ -12876,17 +13106,22 @@
       "y": -0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Thick Blood",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 135,
+          "value": 4.0
         }
       ]
     },
@@ -12920,17 +13155,17 @@
       "y": -0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -12942,17 +13177,17 @@
       "y": -0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -12964,17 +13199,17 @@
       "y": -0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -12986,17 +13221,17 @@
       "y": -0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -13022,17 +13257,26 @@
       "y": -0.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Grand Elixir",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 139,
+          "value": 8.0
+        },
+        {
+          "id": 4,
+          "value": 4.0
         }
       ]
     },
@@ -13440,17 +13684,17 @@
       "y": -365.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -13462,17 +13706,17 @@
       "y": 357.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -13484,17 +13728,17 @@
       "y": -427.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -13506,17 +13750,17 @@
       "y": 415.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -13572,17 +13816,13 @@
       "y": -237.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13594,17 +13834,13 @@
       "y": 235.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13616,17 +13852,13 @@
       "y": -127.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13638,17 +13870,13 @@
       "y": 127.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13660,17 +13888,13 @@
       "y": -126.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13682,17 +13906,13 @@
       "y": 126.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13704,17 +13924,13 @@
       "y": -352.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13726,17 +13942,13 @@
       "y": 345.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13748,17 +13960,13 @@
       "y": -349.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13770,17 +13978,13 @@
       "y": 342.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -13792,17 +13996,22 @@
       "y": -234.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Volatile Salts",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 63,
+          "value": 6.0
         }
       ]
     },
@@ -13814,17 +14023,22 @@
       "y": 231.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Reagent Flow",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 137,
+          "value": 3.0
         }
       ]
     },
@@ -13864,16 +14078,16 @@
       "y": -281.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -13886,16 +14100,16 @@
       "y": 277.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -13908,16 +14122,16 @@
       "y": -317.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -13930,16 +14144,16 @@
       "y": 312.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -13952,16 +14166,16 @@
       "y": -497.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -13974,16 +14188,16 @@
       "y": 481.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 23,
+          "id": 21,
           "value": 2.0
         }
       ]
@@ -13996,17 +14210,17 @@
       "y": -105.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -14018,17 +14232,17 @@
       "y": 105.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -14040,17 +14254,17 @@
       "y": -104.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -14062,17 +14276,17 @@
       "y": 104.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -14128,17 +14342,17 @@
       "y": 556.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -14150,17 +14364,17 @@
       "y": 667.6,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Vitality",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 13,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 3,
+          "value": 10.0
         }
       ]
     },
@@ -14252,17 +14466,22 @@
       "y": 509.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Blessed Hands",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 24,
+          "value": 4.0
         }
       ]
     },
@@ -14354,17 +14573,22 @@
       "y": 836.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Sacred Ward",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 35,
+          "value": 8.0
         }
       ]
     },
@@ -14398,17 +14622,17 @@
       "y": 1102.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -14420,17 +14644,17 @@
       "y": 1195.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -14442,17 +14666,17 @@
       "y": 1267.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 23,
-          "value": 2.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -14464,17 +14688,13 @@
       "y": 1339.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -14500,17 +14720,26 @@
       "y": 1531.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "High Cleric",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 15,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 23,
-          "value": 2.0
+          "value": 4.0
+        },
+        {
+          "id": 75,
+          "value": 6.0
+        },
+        {
+          "id": 8,
+          "value": 5.0
         }
       ]
     },
@@ -14918,17 +15147,17 @@
       "y": 580.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -14940,17 +15169,17 @@
       "y": 1212.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -14962,17 +15191,17 @@
       "y": 605.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -14984,17 +15213,17 @@
       "y": 1335.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 9,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -15050,17 +15279,13 @@
       "y": 808.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15072,17 +15297,13 @@
       "y": 1246.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15094,17 +15315,13 @@
       "y": 971.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15116,17 +15333,13 @@
       "y": 1167.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15138,17 +15351,13 @@
       "y": 1029.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15160,17 +15369,13 @@
       "y": 1226.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15182,17 +15387,13 @@
       "y": 699.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15204,17 +15405,13 @@
       "y": 1369.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15226,17 +15423,13 @@
       "y": 755.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15248,17 +15441,13 @@
       "y": 1427.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Lucky",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 19,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15270,17 +15459,22 @@
       "y": 922.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Inner Calm",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 137,
+          "value": 3.0
         }
       ]
     },
@@ -15292,17 +15486,22 @@
       "y": 1364.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Divine Light",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 75,
+          "value": 6.0
         }
       ]
     },
@@ -15332,7 +15531,7 @@
       "shape": "rect",
       "iconPath": "SkillIcon/Icon_KeySkill.png",
       "extras": [],
-      "uniquePassiveId": "VowofStillness"
+      "uniquePassiveId": "VowOfStillness"
     },
     {
       "id": 757,
@@ -15342,17 +15541,17 @@
       "y": 967.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -15364,17 +15563,17 @@
       "y": 1495.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -15386,17 +15585,17 @@
       "y": 1013.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -15408,17 +15607,17 @@
       "y": 1611.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -15430,17 +15629,17 @@
       "y": 841.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -15452,17 +15651,17 @@
       "y": 1709.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 11,
           "value": 1.0
         },
         {
-          "id": 3,
-          "value": 10.0
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -15474,17 +15673,13 @@
       "y": 1248.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -15496,17 +15691,13 @@
       "y": 1513.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -15518,17 +15709,13 @@
       "y": 1343.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -15540,17 +15727,13 @@
       "y": 1610.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Intelligence",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 15,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 23,
-          "value": 2.0
         }
       ]
     },
@@ -15606,17 +15789,13 @@
       "y": 1498.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15628,17 +15807,13 @@
       "y": 1790.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15730,17 +15905,22 @@
       "y": 826.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Beast Sense",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 37,
+          "value": 8.0
         }
       ]
     },
@@ -15832,17 +16012,22 @@
       "y": 1333.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Thick Hide",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 31,
+          "value": 8.0
         }
       ]
     },
@@ -15876,17 +16061,13 @@
       "y": 1641.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15898,17 +16079,13 @@
       "y": 1750.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15920,17 +16097,13 @@
       "y": 1830.4,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -15978,17 +16151,26 @@
       "y": 2087.1,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Pack Lord",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 13,
-          "value": 1.0
+          "value": 2.0
         },
         {
           "id": 3,
-          "value": 10.0
+          "value": 20.0
+        },
+        {
+          "id": 4,
+          "value": 4.0
+        },
+        {
+          "id": 22,
+          "value": 4.0
         }
       ]
     },
@@ -16356,13 +16538,17 @@
       "y": 1308.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -16374,13 +16560,17 @@
       "y": 1716.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -16392,13 +16582,17 @@
       "y": 1410.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -16410,13 +16604,17 @@
       "y": 1895.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Agility",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 11,
           "value": 1.0
+        },
+        {
+          "id": 131,
+          "value": 0.5
         }
       ]
     },
@@ -16472,13 +16670,17 @@
       "y": 1470.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16490,13 +16692,17 @@
       "y": 1728.2,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16508,13 +16714,17 @@
       "y": 1546.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16526,13 +16736,17 @@
       "y": 1679.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16544,13 +16758,17 @@
       "y": 1631.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16562,13 +16780,17 @@
       "y": 1762.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16580,13 +16802,17 @@
       "y": 1489.9,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16598,13 +16824,17 @@
       "y": 1885.5,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16616,13 +16846,17 @@
       "y": 1578.0,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16634,13 +16868,17 @@
       "y": 1971.7,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Attribute Strength",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 17,
+          "id": 9,
           "value": 1.0
+        },
+        {
+          "id": 21,
+          "value": 2.0
         }
       ]
     },
@@ -16652,13 +16890,18 @@
       "y": 1643.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Wild Pace",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 131,
+          "value": 5.0
         }
       ]
     },
@@ -16670,13 +16913,18 @@
       "y": 1897.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Dexterity",
+      "label": "Hunter's Bond",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
+      "notable": true,
       "extras": [
         {
           "id": 17,
-          "value": 1.0
+          "value": 2.0
+        },
+        {
+          "id": 41,
+          "value": 6.0
         }
       ]
     },
@@ -16956,17 +17204,13 @@
       "y": 2178.8,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     },
@@ -16978,17 +17222,13 @@
       "y": 2651.3,
       "isActive": false,
       "linkStyle": "curve",
-      "label": "Attribute Vitality",
+      "label": "Attribute Dexterity",
       "shape": "circle",
       "iconPath": "SkillIcon/Icon_Attribute.png",
       "extras": [
         {
-          "id": 13,
+          "id": 17,
           "value": 1.0
-        },
-        {
-          "id": 3,
-          "value": 10.0
         }
       ]
     }

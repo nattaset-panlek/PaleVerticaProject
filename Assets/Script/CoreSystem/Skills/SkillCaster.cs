@@ -428,6 +428,7 @@ namespace CoreSystem.Skills
             
             // Final calculation after all modifiers have potentially touched VCT/FCT
             payload.TotalCastTime = instance.CalculateCastTimeModified(this.character?.attributeSystem, payload.VCT, payload.FCT);
+            if (character != null && character.UniquePassives != null) character.UniquePassives.ModifyCast(payload);
 
             return payload;
         }
@@ -454,6 +455,8 @@ namespace CoreSystem.Skills
 
         private void InitiateCastSequence(SkillInstance instance, SkillPayload payload)
         {
+            if (character != null && character.UniquePassives != null && !character.UniquePassives.CanCast(payload)) return;
+
             if (character != null && character.attributeSystem != null)
             {
                 ResourceCost cost = ResolveCost(payload);

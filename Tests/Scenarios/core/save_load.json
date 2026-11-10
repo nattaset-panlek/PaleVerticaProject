@@ -1,0 +1,56 @@
+{
+  "name": "save_load_round_trip",
+  "description": "Save, change, load and compare, in the agent's own save profile.",
+  "clearSaves": true,
+  "tags": [
+    "core",
+    "save"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "Record",
+      "name": "potions",
+      "value": "items.2001"
+    },
+    {
+      "do": "Record",
+      "name": "exp",
+      "value": "player.baseExp"
+    },
+    {
+      "do": "Save",
+      "slot": 1
+    },
+    {
+      "do": "AddItem",
+      "item": 2001,
+      "qty": 3,
+      "note": "change the state after saving"
+    },
+    {
+      "do": "Expect",
+      "name": "potions were added",
+      "value": "items.2001",
+      "to": "var.potions + 3"
+    },
+    {
+      "do": "Load",
+      "slot": 1
+    },
+    {
+      "do": "Expect",
+      "name": "potions after load",
+      "value": "items.2001",
+      "to": "var.potions"
+    },
+    {
+      "do": "Expect",
+      "name": "base exp after load",
+      "value": "player.baseExp",
+      "to": "var.exp"
+    }
+  ]
+}

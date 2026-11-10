@@ -18,6 +18,16 @@ namespace CoreSystem.Tests
 
         #region [Public Methods]
         [Test]
+        public void EveryTreeUniquePassive_HasARegisteredScript()
+        {
+            CoreSystem.SkillTree.SkillTreeDatabase.Reload();
+            foreach (var node in CoreSystem.SkillTree.SkillTreeDatabase.GetAllNodes())
+            {
+                if (node.HasUniquePassive) Assert.IsTrue(UniquePassiveSystem.RegisteredTypes.ContainsKey(node.uniquePassiveId), node.uniquePassiveId);
+            }
+        }
+
+        [Test]
         public void Sync_GrantsWantedPassive()
         {
             UniquePassiveSystem target = CreateTarget();

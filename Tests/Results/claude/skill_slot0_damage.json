@@ -1,0 +1,202 @@
+{
+  "Scenario": "skill_slot0_damage",
+  "File": "core/skill_slot0.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 16:01:35",
+  "DurationSeconds": 4.20928955,
+  "Status": "Failed",
+  "ChecksPassed": 1,
+  "ChecksReview": 0,
+  "ChecksFailed": 3,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 0.2970581
+    },
+    {
+      "Index": 1,
+      "Action": "SetStat",
+      "Arguments": "SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.2970581,
+      "Duration": 0.0
+    },
+    {
+      "Index": 2,
+      "Action": "Refill",
+      "Arguments": "Refill {\"of\":\"player\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.2970581,
+      "Duration": 0.159973145
+    },
+    {
+      "Index": 3,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 0.45703125,
+      "Duration": 0.892395
+    },
+    {
+      "Index": 4,
+      "Action": "SpawnTarget",
+      "Arguments": "SpawnTarget {\"tank\":false}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 1.34942627,
+      "Duration": 0.05859375
+    },
+    {
+      "Index": 5,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+      "Status": "Passed",
+      "Message": "var.hp = 1000124",
+      "StartTime": 1.40802,
+      "Duration": 0.0518188477
+    },
+    {
+      "Index": 6,
+      "Action": "Record",
+      "Arguments": "Record {\"name\":\"mp\",\"value\":\"player.MP\"}",
+      "Status": "Passed",
+      "Message": "var.mp = 50.5",
+      "StartTime": 1.45983887,
+      "Duration": 0.0555419922
+    },
+    {
+      "Index": 7,
+      "Action": "Cast",
+      "Arguments": "Cast {\"slot\":0,\"at\":\"target\",\"wait\":2}",
+      "Status": "Passed",
+      "Message": "cast started False, 0 hits",
+      "StartTime": 1.51538086,
+      "Duration": 2.37231445
+    },
+    {
+      "Index": 8,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"the cast started\",\"value\":\"cast\",\"to\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.88769531,
+      "Duration": 0.06097412
+    },
+    {
+      "Index": 9,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"target lost hp\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 3.94866943,
+      "Duration": 0.06591797
+    },
+    {
+      "Index": 10,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"damage was recorded on the target\",\"value\":\"hits.total\",\"op\":\">\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.0145874,
+      "Duration": 0.07220459
+    },
+    {
+      "Index": 11,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"mana spent is not negative\",\"value\":\"var.mp - player.MP\",\"op\":\">=\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.086792,
+      "Duration": 0.0682373047
+    },
+    {
+      "Index": 12,
+      "Action": "Measure",
+      "Arguments": "Measure {\"name\":\"damage\",\"value\":\"var.hp - target.HP\"}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.1550293,
+      "Duration": 0.0542602539
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "the cast started",
+      "Status": "Failed",
+      "Expected": "== 1",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 8,
+      "Time": 3.88769531
+    },
+    {
+      "Name": "target lost hp",
+      "Status": "Failed",
+      "Expected": "< 1000124",
+      "Actual": "1000124",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 9,
+      "Time": 3.94866943
+    },
+    {
+      "Name": "damage was recorded on the target",
+      "Status": "Failed",
+      "Expected": "> 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 10,
+      "Time": 4.0145874
+    },
+    {
+      "Name": "mana spent is not negative",
+      "Status": "Passed",
+      "Expected": ">= 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 11,
+      "Time": 4.086792
+    }
+  ],
+  "Metrics": {
+    "damage": 0.0
+  },
+  "Variables": {
+    "hp": 1000123.63,
+    "mp": 50.5
+  },
+  "Log": [
+    "0.00s begin, seed 1337, saves in C:/Users/User/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.30s in scene Town",
+    "0.30s step 2: SetStat {\"of\":\"player\",\"stat\":\"MaxHP\",\"add\":5000}",
+    "0.30s step 3: Refill {\"of\":\"player\"}",
+    "0.46s step 4: SpawnTarget",
+    "1.35s step 5: SpawnTarget {\"tank\":false}",
+    "1.41s step 6: Record {\"name\":\"hp\",\"value\":\"target.HP\"}",
+    "1.41s var.hp = 1000124",
+    "1.46s step 7: Record {\"name\":\"mp\",\"value\":\"player.MP\"}",
+    "1.46s var.mp = 50.5",
+    "1.52s step 8: Cast {\"slot\":0,\"at\":\"target\",\"wait\":2}",
+    "3.89s cast started False, 0 hits",
+    "3.89s step 9: Expect {\"name\":\"the cast started\",\"value\":\"cast\",\"to\":1}",
+    "3.95s step 10: Expect {\"name\":\"target lost hp\",\"value\":\"target.HP\",\"op\":\"<\",\"to\":\"var.hp\"}",
+    "4.01s step 11: Expect {\"name\":\"damage was recorded on the target\",\"value\":\"hits.total\",\"op\":\">\",\"to\":0}",
+    "4.09s step 12: Expect {\"name\":\"mana spent is not negative\",\"value\":\"var.mp - player.MP\",\"op\":\">=\",\"to\":0}",
+    "4.16s step 13: Measure {\"name\":\"damage\",\"value\":\"var.hp - target.HP\"}"
+  ],
+  "Errors": [],
+  "Combat": []
+}

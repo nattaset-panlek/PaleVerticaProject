@@ -1,0 +1,97 @@
+{
+  "name": "unique_self_stats",
+  "description": "Passives that change the owner's own stats or casting.",
+  "continueOnFail": true,
+  "tags": [
+    "passive"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Record",
+      "name": "mh",
+      "value": "player.MaxHP"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "HollowCrown"
+      ]
+    },
+    {
+      "do": "Expect",
+      "name": "Hollow Crown: max hp is halved",
+      "value": "player.MaxHP / var.mh",
+      "to": 0.5,
+      "tolerance": 0.03
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Record",
+      "name": "mh",
+      "value": "player.MaxHP"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "WhisperPact"
+      ]
+    },
+    {
+      "do": "Repeat",
+      "times": 6,
+      "steps": [
+        {
+          "do": "Cast",
+          "slot": 0,
+          "at": "target",
+          "wait": 1.1
+        },
+        {
+          "do": "Refill",
+          "of": "player"
+        }
+      ]
+    },
+    {
+      "do": "Expect",
+      "name": "Whisper Pact: repeated casts lower max hp",
+      "value": "player.MaxHP",
+      "op": "<",
+      "to": "var.mh"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "OathOfSilence"
+      ]
+    },
+    {
+      "do": "Cast",
+      "slot": 0,
+      "at": "target",
+      "wait": 1.5
+    },
+    {
+      "do": "Expect",
+      "name": "Oath of Silence: a skill with cast time does not fire",
+      "value": "cast",
+      "to": 0,
+      "severity": "review",
+      "note": "Review if slot 1 holds an instant skill, which Oath of Silence allows."
+    }
+  ]
+}

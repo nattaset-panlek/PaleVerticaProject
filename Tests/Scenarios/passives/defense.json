@@ -1,0 +1,198 @@
+{
+  "name": "unique_defense",
+  "description": "Passives that change incoming damage.",
+  "continueOnFail": true,
+  "tags": [
+    "passive"
+  ],
+  "steps": [
+    {
+      "do": "StartNewGame"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "MaxHP",
+      "add": 5000
+    },
+    {
+      "do": "Refill",
+      "of": "player"
+    },
+    {
+      "do": "SpawnTarget"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Record",
+      "name": "t0",
+      "value": "taken"
+    },
+    {
+      "do": "TakeHits",
+      "count": 3,
+      "amount": 40
+    },
+    {
+      "do": "Record",
+      "name": "base",
+      "value": "taken - var.t0"
+    },
+    {
+      "do": "Expect",
+      "name": "the lab hits do damage",
+      "value": "var.base",
+      "op": ">",
+      "to": 0
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetStat",
+      "of": "player",
+      "stat": "PerfectDodge",
+      "total": 100
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "VeilStep"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "t0",
+      "value": "taken"
+    },
+    {
+      "do": "TakeHits",
+      "count": 3,
+      "amount": 40
+    },
+    {
+      "do": "Expect",
+      "name": "Veil Step: 100% dodge takes nothing",
+      "value": "taken - var.t0",
+      "to": 0,
+      "tolerance": 0.001
+    },
+    {
+      "do": "ClearStat",
+      "of": "player",
+      "stat": "PerfectDodge"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "SetHp",
+      "of": "player",
+      "ratio": 0.52
+    },
+    {
+      "do": "Record",
+      "name": "t0",
+      "value": "taken"
+    },
+    {
+      "do": "TakeHits",
+      "count": 3,
+      "amount": "player.MaxHP * 0.05",
+      "note": "same hits without Last Banner, crossing half hp"
+    },
+    {
+      "do": "Record",
+      "name": "big",
+      "value": "taken - var.t0"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "LastBanner"
+      ]
+    },
+    {
+      "do": "SetHp",
+      "of": "player",
+      "ratio": 0.52
+    },
+    {
+      "do": "Record",
+      "name": "t0",
+      "value": "taken"
+    },
+    {
+      "do": "TakeHits",
+      "count": 3,
+      "amount": "player.MaxHP * 0.05"
+    },
+    {
+      "do": "Expect",
+      "name": "Last Banner: the shield absorbs hits that cross half hp",
+      "value": "taken - var.t0",
+      "op": "<",
+      "to": "var.big"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "Thorn"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "hp",
+      "value": "target.HP"
+    },
+    {
+      "do": "TakeHits",
+      "count": 3,
+      "amount": 40
+    },
+    {
+      "do": "Expect",
+      "name": "Thorn: the attacker takes reflected damage",
+      "value": "target.HP",
+      "op": "<",
+      "to": "var.hp"
+    },
+    {
+      "do": "Reset"
+    },
+    {
+      "do": "Give",
+      "passives": [
+        "Rock"
+      ]
+    },
+    {
+      "do": "Record",
+      "name": "x",
+      "value": "player.x"
+    },
+    {
+      "do": "Impulse",
+      "of": "player",
+      "x": 1,
+      "y": 0,
+      "distance": 3
+    },
+    {
+      "do": "Expect",
+      "name": "Rock: an impulse does not move the player",
+      "value": "player.x - var.x",
+      "op": "between",
+      "min": -0.05,
+      "max": 0.05
+    }
+  ]
+}

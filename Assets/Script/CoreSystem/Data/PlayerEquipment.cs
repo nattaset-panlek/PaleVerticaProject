@@ -92,6 +92,8 @@ namespace CoreSystem.Data
 
         public void Equip(int slotIndex, ItemInstance instance)
         {
+            if (_character != null && instance != null && instance.Item is CoreSystem.Data.Items.Model.Equipment candidate && !_character.UniquePassives.CanEquip(candidate)) return;
+
             if (_character == null || slotIndex < 0 || slotIndex >= _character.EquipmentSlots.Length) return;
 
             // Check if this specific instance is already equipped in another slot (uniqueness check)

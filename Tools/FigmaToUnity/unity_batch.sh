@@ -4,6 +4,8 @@
 # Usage:
 #   Tools/FigmaToUnity/unity_batch.sh <Method> [<Method> ...]
 #   Tools/FigmaToUnity/unity_batch.sh tests
+#   Tools/FigmaToUnity/unity_batch.sh playtests
+#   Tools/FigmaToUnity/unity_batch.sh playtests:core/,quests/   (scenario files whose path contains any part; SCENARIO_SPEED=4 to speed up)
 #
 # Examples:
 #   unity_batch.sh CoreSystem.Editor.UI.SkillManagePrefabBuilder.BuildBatch CoreSystem.Editor.UI.UISnapshotRenderer.RenderAllBatch
@@ -28,7 +30,31 @@ fi
 
 status=0
 for method in "$@"; do
-  if [ "$method" = "tests" ]; then
+  if [ "${method%%:*}" = "playtests" ]; then
+    log="$LOGS/playtests.log"
+    filter=""
+    [ "$method" != "playtests" ] && filter="${method#playtests:}"
+    started=$(date +%s)
+    "$UNITY" -batchmode -projectPath "$PROJECT" -executeMethod CoreSystem.Editor.ScenarioTesting.ScenarioBatchRunner.RunBatch -scenarios "$filter" -scenarioSpeed "${SCENARIO_SPEED:-2}" -logFile "$log"
+    code=$?
+    grep -E "\[ScenarioBatch\]|error CS" "$log" | head -40
+    python -I - "$started" "$PROJECT/Tests/Results" <<'EOF2'
+import sys, os, json, glob
+started = int(sys.argv[1])
+for path in sorted(glob.glob(os.path.join(sys.argv[2], "*", "*.json"))):
+    if os.path.getmtime(path) < started:
+        continue
+    r = json.load(open(path, encoding="utf-8"))
+    total = r["ChecksPassed"] + r["ChecksReview"] + r["ChecksFailed"]
+    print(f"scenario {r['Agent']}/{r['Scenario']}: {r['Status']} {r['ChecksPassed']} passed, {r['ChecksReview']} review, {r['ChecksFailed']} failed of {total} ({path})")
+    for step in r["StepResults"]:
+        if step["Status"] == "Failed":
+            print(f"  STEP {step['Index'] + 1} {step['Action']} failed: {step['Message']}")
+    for check in r["Checks"]:
+        if check["Status"] != "Passed":
+            print(f"  {check['Status'].upper()} {check['Name']}: expected {check['Expected']}, actual {check['Actual']}")
+EOF2
+  elif [ "$method" = "tests" ]; then
     log="$LOGS/tests.log"
     "$UNITY" -batchmode -nographics -projectPath "$PROJECT" -runTests -testPlatform EditMode -testResults "$LOGS/results.xml" -logFile "$log"
     code=$?
