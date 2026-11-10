@@ -364,7 +364,11 @@ namespace CoreSystem.Entity
         public event System.Action OnCostumeChanged;
 
         public void TriggerOnHit(IEntity target, float damage) => OnHitTarget?.Invoke(target, damage);
-        public void TriggerOnTakeDamage(IEntity attacker, float damage) => OnTakeDamage?.Invoke(attacker, damage);
+        public void TriggerOnTakeDamage(IEntity attacker, float damage)
+        {
+            if (!IsDead && DefaultController != CharacterControllerType.Player) Presenter.ShowWorldStatusBar();
+            OnTakeDamage?.Invoke(attacker, damage);
+        }
 
         public virtual void BasicAttack(IEntity target)
         {

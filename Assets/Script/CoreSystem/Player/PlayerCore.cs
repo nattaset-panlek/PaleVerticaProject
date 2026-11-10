@@ -31,6 +31,7 @@ namespace CoreSystem.Player
         private IEntity _lastAttacker;
         private readonly PlayerInteraction _interaction = new PlayerInteraction();
         private const float LootPickupRange = 1f;
+        private const float ChaseReach = 0.9f;
         private readonly PlayerApproach _approach = new PlayerApproach();
         private bool _isDead;
         private int _selectedSkillSlot = -1;
@@ -495,6 +496,12 @@ namespace CoreSystem.Player
             _controlled.skillCaster.AimedSkillSlot = -1;
         }
 
+        private Vector2? ChasePosition()
+        {
+            if (_autoAttackTarget == null || (_autoAttackTarget is UnityEngine.Object unityObject && unityObject == null)) return null;
+            return _autoAttackTarget.transform.position;
+        }
+
         private void HandleAutoAttack()
         {
             ForgetDestroyedTarget();
@@ -517,11 +524,15 @@ namespace CoreSystem.Player
 
             if (dist > _controlled.AutoAttackRange)
             {
+                if (_approach.IsActive) return;
+                if (_approach.Begin(_controlled, _autoAttackTarget.transform.position, ChasePosition, _controlled.AutoAttackRange * ChaseReach, null)) return;
                 _controlled.Control.CommandMove(direction, this);
                 _controlled.Presenter.Face(direction);
                 _controlled.Presenter.SetMoving(true);
                 return;
             }
+
+            if (_approach.IsActive) _approach.Cancel();
 
             _controlled.Presenter.SetMoving(false);
             _controlled.transform.up = direction;
