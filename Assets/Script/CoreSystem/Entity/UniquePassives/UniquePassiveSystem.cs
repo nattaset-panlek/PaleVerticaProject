@@ -195,6 +195,12 @@ namespace CoreSystem.Entity.UniquePassives
             return true;
         }
 
+        public bool ForcesCritical(IEntity target, SkillPayload payload)
+        {
+            foreach (var passive in _activePassives.Values) if (passive != null && passive.ForcesCritical(target, payload)) return true;
+            return false;
+        }
+
         public void ModifyBasicAttack(SkillPayload payload)
         {
             foreach (var passive in _activePassives.Values) passive.ModifyBasicAttack(payload);

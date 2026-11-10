@@ -37,7 +37,7 @@ Back to [all tables](./README.md).
 | LivingPhilosopher | Living Philosopher | You cannot use potions, but HP regenerates steadily with VIT. | CanUseConsumable, Tick | 1 |
 | LoadedChamber | Loaded Chamber | Standing still loads a special round. Your next shot grows with the time stored. | Tick, TriggerOnHit | 1 |
 | ManaLeech | Mana Leech | 30% chance to leech mana on hit. | TriggerOnPostHit | 1 |
-| MarkedThroat | Marked Throat | Attacks from behind a target always critically hit. | TriggerOnHit | 1 |
+| MarkedThroat | Marked Throat | Attacks from behind a target always critically hit. | ForcesCritical | 1 |
 | OathOfSilence | Oath of Silence | You cannot use skills with a cast time, but instant skills hit far harder. | CanCast, TriggerOnHit | 1 |
 | OneCleanCut | One Clean Cut | Your first hit on a target is massive. Later hits weaken until you switch targets. | TriggerOnHit | 1 |
 | OverflowingSigil | Overflowing Sigil | MP restored beyond your maximum is stored as power for your next skill. | Tick, TriggerOnHit | 1 |

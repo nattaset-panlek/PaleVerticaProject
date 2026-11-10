@@ -25,6 +25,10 @@ namespace CoreSystem.Combat
         {
             DamageInput input = DamageFormula.BuildInput(context.Action.Payload, context.User, context.Target);
             float critRoll = input.HasCasterStats ? context.Random.Range(0f, 100f) : 0f;
+            if (input.HasCasterStats && context.User is Character attacker && attacker.UniquePassives != null && attacker.UniquePassives.ForcesCritical(context.Target, context.Action.Payload))
+            {
+                critRoll = DamageFormula.ForcedCriticalRoll;
+            }
             return new Outgoing { Input = input, Offense = DamageFormula.Offense(input, critRoll) };
         }
 
@@ -53,6 +57,7 @@ namespace CoreSystem.Combat
             {
                 userCharacter.UniquePassives.TriggerOnHit(target, ref finalDamage, payload);
             }
+            outcome.IsCritical = payload.IsCriticalHit;
 
             if (targetCharacter != null && targetCharacter.UniquePassives != null)
             {

@@ -11,16 +11,25 @@ namespace CoreSystem.Entity.UniquePassives
     [UniquePassiveId("MarkedThroat")]
     public class MarkedThroatUniquePassive : UniquePassive
     {
+        #region [Variables/Fields]
+        public const float BehindThreshold = 0.3f;
+        #endregion
+
         #region [Properties]
         public override bool UsesFacing => true;
         #endregion
 
         #region [Public Methods]
-        public override void TriggerOnHit(IEntity target, ref float damage, SkillPayload payload)
+        public override bool ForcesCritical(IEntity target, SkillPayload payload)
         {
-            if (!IsOwnHit(payload) || target == null || payload.IsCriticalHit) return;
-            Vector3 toTarget = (target.transform.position - Owner.transform.position).normalized;
-            if (Vector3.Dot(target.FacingDirection, toTarget) > 0.3f) damage *= DamageFormula.BaseCriticalMultiplier + Stat(AttributeType.CriticalDamage);
+            if (!IsOwnHit(payload) || target == null || Owner == null) return false;
+            return IsBehind(target.FacingDirection, target.transform.position - Owner.transform.position);
+        }
+
+        public static bool IsBehind(Vector2 targetFacing, Vector2 attackerToTarget)
+        {
+            if (targetFacing.sqrMagnitude < 1e-6f || attackerToTarget.sqrMagnitude < 1e-6f) return false;
+            return Vector2.Dot(targetFacing.normalized, attackerToTarget.normalized) > BehindThreshold;
         }
         #endregion
     }

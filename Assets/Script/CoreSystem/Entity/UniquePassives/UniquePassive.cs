@@ -41,6 +41,7 @@ namespace CoreSystem.Entity.UniquePassives
         public virtual bool CanCast(SkillPayload payload) => true;
         public virtual void ModifyCast(SkillPayload payload) {}
         public virtual bool CanBasicAttack() => true;
+        public virtual bool ForcesCritical(IEntity target, SkillPayload payload) => false;
         public virtual void ModifyBasicAttack(SkillPayload payload) {}
         public virtual void ModifyOutgoingHeal(IEntity target, ref float amount, SkillPayload payload) {}
         public virtual void TriggerOnHealed(IEntity target, float amount, SkillPayload payload) {}

@@ -18,9 +18,14 @@ Design: Figma file `zZ5QnVfPMSFuiMFjpIGbOC`, node `1850:7370` (`Direction_Hint`)
 - **Why an SDF:** the ring is drawn by the shader from a distance field (`smoothstep` with `fwidth`), so it stays sharp at any size. A plain PNG would blur when a big monster scales it up.
 - **Pivot:** the sprite pivot is the Figma `Center` element: (169.5, 183) in the 338 x 344 group, which is (0.501, 0.468) in Unity. It is in `DirectionHintFormula.Pivot`.
 - **Size:** diameter = the longer side of the character's body collider (the first non-trigger `Collider2D`) x **Size Multiplier** (default 1.6), never below **Minimum Diameter** (0.6).
+- **Position:** the ring sits on the body collider centre, moved by **Offset** (world units) plus **Offset By Size** (a fraction of the collider size, so tall and short characters move alike). Example: Offset By Size Y = -0.5 puts the ring at the feet.
 - **Direction:** every frame the ring turns so its arrow points along `Character.FacingDirection`. Monsters face where they walk and their target; a character with no AI keeps its default facing (right).
 - **When it shows:** a passive class overrides `UsesFacing => true`. `UniquePassiveSystem.OnChanged` tells `DirectionHintEvents`, which tells every character to show or hide its hint: shown on living characters hostile to the player, hidden on the player, the dead and allies.
 - **Drawn under the body:** it copies the sorting layer of the character's largest sprite and uses its order + **Sorting Order Offset** (default -1).
+
+## How "behind" makes a crit
+
+Marked Throat does not multiply damage itself. It overrides `ForcesCritical`: when the target faces away from the attacker (dot of the target facing and the attacker-to-target direction > 0.3, `MarkedThroatUniquePassive.IsBehind`), `DamageHandler.Offense` replaces the crit roll with `DamageFormula.ForcedCriticalRoll` (-1). The normal crit check then always passes, even with 0 Critical Rate or high Crit Resist, and the hit uses the normal crit damage (1.5 + Critical Damage), crit number and all. Tests: `MarkedThroatCriticalTests`.
 
 ## Steps
 
@@ -28,7 +33,7 @@ Design: Figma file `zZ5QnVfPMSFuiMFjpIGbOC`, node `1850:7370` (`Direction_Hint`)
 2. **Tune the look:** select `Assets/Resources/Materials/DirectionHint.mat`:
    - **Color** (HDR) and its alpha, **Edge Softness** (higher = softer edge), **Thicken** (makes every line thicker or thinner), **Glow Color** / **Glow Width** for a soft halo.
    - For a new visual, write another shader that reads the same SDF texture (red channel, 0.5 = edge) and assign it in the settings asset's **Material** field.
-3. **Tune size and order:** select `DirectionHintSettings.asset` and change **Size Multiplier**, **Minimum Diameter**, **Color** or **Sorting Order Offset**.
+3. **Tune size, position and order:** select `Assets/Resources/Settings/DirectionHintSettings.asset` and change **Size Multiplier**, **Minimum Diameter**, **Offset**, **Offset By Size**, **Color** or **Sorting Order Offset**. Changes show live in Play mode.
 4. **A new passive that cares about facing:** add `public override bool UsesFacing => true;` to its class. Nothing else is needed.
 5. **Check it:** run the scenario `core/direction_hint` (Scenario Checklist). It checks the hint is off without the passive, on with Marked Throat, and off again after removing it, and asks you to approve a screenshot.
 

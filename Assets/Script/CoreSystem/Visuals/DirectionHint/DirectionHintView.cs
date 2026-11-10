@@ -75,8 +75,10 @@ namespace CoreSystem.Visuals
         private Vector3 Center()
         {
             Vector3 center = _collider != null ? _collider.bounds.center : _owner.transform.position;
-            center.z = _owner.transform.position.z;
-            return center;
+            Vector2 size = _collider != null ? (Vector2)_collider.bounds.size : Vector2.zero;
+            DirectionHintSettings settings = DirectionHintSettings.Instance;
+            Vector2 offset = DirectionHintFormula.Offset(size, settings.Offset, settings.OffsetBySize);
+            return new Vector3(center.x + offset.x, center.y + offset.y, _owner.transform.position.z);
         }
 
         private void ApplySize()

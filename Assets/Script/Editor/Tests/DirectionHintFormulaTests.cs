@@ -38,6 +38,14 @@ namespace CoreSystem.Tests
             Assert.AreEqual(expected, DirectionHintFormula.Diameter(new Vector2(w, h), multiplier, minimum), 1e-4f);
         }
 
+        [Test]
+        public void Offset_AddsWorldAndSizeParts()
+        {
+            Vector2 offset = DirectionHintFormula.Offset(new Vector2(2f, 4f), new Vector2(0.1f, -0.2f), new Vector2(0f, -0.25f));
+            Assert.AreEqual(0.1f, offset.x, 1e-4f);
+            Assert.AreEqual(-1.2f, offset.y, 1e-4f);
+        }
+
         [TestCase(true, false, false, true, true)]
         [TestCase(false, false, false, true, false)]
         [TestCase(true, true, false, true, false)]

@@ -10,6 +10,7 @@ namespace CoreSystem.Combat
         #region [Variables/Fields]
         public const float BaseCriticalMultiplier = 1.5f;
         public const float MinimumDamage = 1f;
+        public const float ForcedCriticalRoll = -1f;
         #endregion
 
         #region [Public Methods]

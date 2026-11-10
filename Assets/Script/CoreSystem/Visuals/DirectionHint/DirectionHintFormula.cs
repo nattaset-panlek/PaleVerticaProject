@@ -19,6 +19,11 @@ namespace CoreSystem.Visuals
             return Mathf.Max(minimum, side * Mathf.Max(0f, multiplier));
         }
 
+        public static Vector2 Offset(Vector2 colliderSize, Vector2 worldOffset, Vector2 offsetBySize)
+        {
+            return worldOffset + new Vector2(Mathf.Abs(colliderSize.x) * offsetBySize.x, Mathf.Abs(colliderSize.y) * offsetBySize.y);
+        }
+
         public static float AngleDegrees(Vector2 facing)
         {
             if (facing.sqrMagnitude < 1e-6f) return 0f;
