@@ -10,6 +10,7 @@ Verified against code and data: **2026-10-17**. Catalog of what is in the game r
 | [Active_Skills.md](./Active_Skills.md) | All 23 active skills: numbers, targeting, effects, scalings, tags, combos, compatible supports, status | `Skill.json`, `Resources/Skill/ActiveSkill/**/*.asset`, `Skills/UniqueSkill/` |
 | [Support_Skills.md](./Support_Skills.md) | All 22 support skills: chroma, link rule, numbers, what the code does, compatibility matrix | `SupportSkill.json`, `Skills/Modifiers/` |
 | [Unique_Passives.md](./Unique_Passives.md) | All 15 unique passives (+ the internal Blood Bleeding DOT): hook, exact numbers, notes | `UniquePassive.json`, `Entity/UniquePassives/` |
+| [Tables/](./Tables/README.md) | Generated quick tables of every active skill, support, unique passive and item from the current data (counts as of the last run, newer than the 2026-10-17 pages) | `node Tools/DataDocs/build_data_tables.js`, see [Data_Tables_Walkthrough.md](./Data_Tables_Walkthrough.md) |
 | [Items.md](./Items.md) | 199 items: equipment stats and effects, sets, fragments, runes, costumes, other types | `Item.json`, `ItemSet.json`, `Data/Items/` |
 | [Known_Data_Issues.md](./Known_Data_Issues.md) | Every mismatch found between code, data and docs | all of the above |
 

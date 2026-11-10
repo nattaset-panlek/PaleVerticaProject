@@ -2,7 +2,7 @@
 
 Verified: **2026-10-17**. How to keep the game data catalog in `Docs/02-Technical/Data/` in sync after skills, supports, unique passives, items, attributes or formulas change.
 
-The catalog is written by hand from the real data and code; nothing generates it. Every page has a **Verified** date at the top. A page is correct only for the data as of that date.
+The catalog is written by hand from the real data and code. Quick generated tables of the same data live in [Tables/](./Tables/README.md) ([Data_Tables_Walkthrough.md](./Data_Tables_Walkthrough.md)); regenerate them after any data change, and use them to spot rows that changed since the Verified date. Every page has a **Verified** date at the top. A page is correct only for the data as of that date.
 
 ## When to update
 
