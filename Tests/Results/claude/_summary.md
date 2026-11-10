@@ -1,10 +1,9 @@
 # Scenario results: claude
 
-Updated 2026-11-10 22:31:01. Failed 1, needs review 4, passed 14.
+Updated 2026-11-10 22:43:57. Failed 0, needs review 4, passed 15.
 
 | Status | Scenario | File | Pass | Review | Fail | Last run |
 |---|---|---|---|---|---|---|
-| Failed | status_bar_scene_change | core/status_bar_scene.json | 1 | 0 | 1 | 2026-11-10 22:30:49 |
 | NeedsReview | unique_combo_weird | combos/weird.json | 10 | 1 | 0 | 2026-11-10 21:53:10 |
 | NeedsReview | dialogue_alchemist_choice | core/dialogue_alchemist.json | 4 | 1 | 0 | 2026-11-10 21:09:22 |
 | NeedsReview | input_check | core/input_check.json | 2 | 1 | 0 | 2026-11-10 21:09:52 |
@@ -14,6 +13,7 @@ Updated 2026-11-10 22:31:01. Failed 1, needs review 4, passed 14.
 | Passed | unique_combo_order | combos/order.json | 7 | 0 | 0 | 2026-11-10 21:47:25 |
 | Passed | save_load_round_trip | core/save_load.json | 3 | 0 | 0 | 2026-11-10 21:00:26 |
 | Passed | skill_slot0_damage | core/skill_slot0.json | 4 | 0 | 0 | 2026-11-10 21:33:30 |
+| Passed | status_bar_scene_change | core/status_bar_scene.json | 4 | 0 | 0 | 2026-11-10 22:43:44 |
 | Passed | ui_flow | core/ui_flow.json | 2 | 0 | 0 | 2026-11-10 21:37:08 |
 | Passed | unique_defense | passives/defense.json | 5 | 0 | 0 | 2026-11-10 21:00:54 |
 | Passed | unique_hit_modifiers | passives/hit_modifiers.json | 12 | 0 | 0 | 2026-11-10 21:00:59 |
@@ -23,12 +23,6 @@ Updated 2026-11-10 22:31:01. Failed 1, needs review 4, passed 14.
 | Passed | quest_bones_on_the_road | quests/bones_on_the_road.json | 6 | 0 | 0 | 2026-11-10 21:13:30 |
 | Passed | setup_new_warrior_lv15 | setup/new_warrior_lv15.json | 1 | 0 | 0 | 2026-11-10 21:03:37 |
 | Passed | active_skill_smoke | skills/every_skill.json | 121 | 0 | 0 | 2026-11-10 22:02:32 |
-
-## Failed: status_bar_scene_change
-
-Report: `status_bar_scene_change.json`, scenario `Tests/Scenarios/core/status_bar_scene.json`
-
-- **Failed** step 6: step 6 UsePortal completes. Expected `completes`, got `waited 60s for scene Field`
 
 ## NeedsReview: unique_combo_weird
 

@@ -31,6 +31,11 @@ namespace ScenarioTesting
         private const float CameraSettle = 0.25f;
         private const float BlockingUIWait = 3f;
         private const int TimelineLimit = 24;
+        private const float WaypointReach = 0.2f;
+        private const float StuckDistance = 0.05f;
+        private const float StuckTime = 1f;
+        private const float WalkTimeout = 20f;
+        private const float AttackReach = 0.8f;
 
         private static readonly System.Reflection.FieldInfo AutoAttackField =
             typeof(CoreSystem.Player.PlayerCore).GetField("_autoAttackTarget", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
@@ -306,8 +311,10 @@ namespace ScenarioTesting
 
             Collider2D hit = Physics2D.OverlapPoint(world);
             yield return _run.Input.Click(screen, button);
+            CoreSystem.World.MapPortal portalHere = CoreSystem.World.MapPortal.AtPoint(world);
             LastClickReport = $"clicked {character.name} at screen {screen.x:0},{screen.y:0} world {world.x:0.##},{world.y:0.##}, collider {(hit != null ? hit.name : "none")}, "
-                            + $"UI under the pointer: {(blocking.Count == 0 ? "none" : string.Join(", ", blocking))}, virtual mouse is current {_run.Input.OwnsPointer}, distance {Vector2.Distance(Player.transform.position, character.transform.position):0.#}";
+                            + $"UI under the pointer: {(blocking.Count == 0 ? "none" : string.Join(", ", blocking))}, virtual mouse is current {_run.Input.OwnsPointer}, distance {Vector2.Distance(Player.transform.position, character.transform.position):0.#}, "
+                            + $"portal under the click: {(portalHere != null ? portalHere.name : "none")}, walking to a spot: {PlayerIsApproaching()}, game sees: {GameClickView()}";
             _run.Log(LastClickReport);
         }
 
@@ -339,19 +346,50 @@ namespace ScenarioTesting
         public IEnumerator Approach(Vector3 destination, float range, float timeout)
         {
             float deadline = Time.time + timeout;
+            var path = new List<Vector2>();
+            int index = 0;
+            bool pathed = FindPath(destination, path);
+            float stuckSince = Time.time;
+            Vector2 lastPosition = Player != null ? (Vector2)Player.transform.position : Vector2.zero;
+
             while (Player != null && Vector2.Distance(Player.transform.position, destination) > range)
             {
                 if (Time.time > deadline)
                 {
                     _run.Input.Hold();
-                    _run.FailStep($"could not walk within {range} of {destination}");
+                    _run.FailStep($"could not walk within {range} of {destination} (path {(pathed ? $"{path.Count} points, at point {index}" : "none, walked straight")}, player at {Player.transform.position.x:0.##},{Player.transform.position.y:0.##})");
                     yield break;
                 }
-                _run.Input.Hold(KeysToward(destination - Player.transform.position));
+
+                Vector2 position = Player.transform.position;
+                while (pathed && index < path.Count && Vector2.Distance(position, path[index]) <= WaypointReach) index++;
+                Vector2 next = pathed && index < path.Count ? path[index] : (Vector2)destination;
+
+                if (Vector2.Distance(position, lastPosition) > StuckDistance)
+                {
+                    lastPosition = position;
+                    stuckSince = Time.time;
+                }
+                else if (Time.time - stuckSince > StuckTime)
+                {
+                    pathed = FindPath(destination, path);
+                    index = 0;
+                    stuckSince = Time.time;
+                    _run.Log($"stuck at {position.x:0.##},{position.y:0.##} on the way to {destination.x:0.##},{destination.y:0.##}, path again ({(pathed ? $"{path.Count} points" : "none")})");
+                }
+
+                _run.Input.Hold(KeysToward((Vector3)next - Player.transform.position));
                 yield return null;
             }
             _run.Input.Hold();
             yield return null;
+        }
+
+        public IEnumerator WalkInRange(Character target, float range, float timeout)
+        {
+            if (target == null || Player == null) yield break;
+            if (Vector2.Distance(Player.transform.position, target.transform.position) <= range) yield break;
+            yield return Approach(target.transform.position, range, timeout);
         }
 
         public IEnumerator HoldKeys(Key[] keys, float seconds)
@@ -523,6 +561,41 @@ namespace ScenarioTesting
                 foreach (var slot in hotbar.ActiveRows[0].Slots) bar.Add(slot == null || slot.SlotData == null || slot.SlotData.IsEmpty ? "-" : $"{slot.SlotData.ActionType}:{slot.SlotData.SkillId}");
             }
             return $"granted [{string.Join(",", granted)}], equipped [{string.Join(",", equipped)}], hotbar row 0 [{string.Join(",", bar)}]";
+        }
+
+        private static readonly System.Reflection.FieldInfo ApproachField =
+            typeof(CoreSystem.Player.PlayerCore).GetField("_approach", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+
+        private string GameClickView()
+        {
+            var core = CoreSystem.Player.PlayerCore.Instance;
+            Character player = Player;
+            if (core == null || player == null) return "no player";
+            Vector3 mouseWorld = core.GetMouseWorldPosition();
+            Collider2D first = Physics2D.OverlapPoint(mouseWorld);
+            IEntity entity = first != null ? first.GetComponentInParent<IEntity>() : null;
+            string entityName = entity is Object unityObject && unityObject != null ? unityObject.name : entity == null ? "none" : "destroyed";
+            bool self = ReferenceEquals(entity, player);
+            bool hostile = entity != null && !self && TeamRegistry.IsHostile(player, entity);
+            var all = new List<string>();
+            foreach (Collider2D collider in Physics2D.OverlapPointAll(mouseWorld)) all.Add(collider.name);
+            return $"mouse world {mouseWorld.x:0.##},{mouseWorld.y:0.##}, first collider {(first != null ? first.name : "none")} of {all.Count} [{string.Join(", ", all)}], entity {entityName}{(self ? " (the player)" : string.Empty)}, "
+                 + $"hostile {hostile}, player faction {player.Faction}, target faction {(entity != null ? entity.Faction.ToString() : "-")}, pointer over UI {CoreSystem.UI.UIManager.IsPointerOverUI()}, portal {(CoreSystem.World.MapPortal.AtPoint(mouseWorld) != null)}";
+        }
+
+        private bool FindPath(Vector3 destination, List<Vector2> path)
+        {
+            path.Clear();
+            var grid = CoreSystem.Pathfinding.WalkableGridManager.Instance;
+            if (grid == null || Player == null) return false;
+            CoreSystem.Pathfinding.PathOutcome outcome = grid.FindPath(Player.transform.position, destination, path);
+            return CoreSystem.Pathfinding.GridPathFormula.Found(outcome) && path.Count > 0;
+        }
+
+        public static bool PlayerIsApproaching()
+        {
+            var core = CoreSystem.Player.PlayerCore.Instance;
+            return core != null && ApproachField != null && ApproachField.GetValue(core) is CoreSystem.Player.PlayerApproach approach && approach.IsActive;
         }
 
         private string CastState(int hotbarSlot)

@@ -1,6 +1,6 @@
 {
   "name": "status_bar_scene_change",
-  "description": "Hit a monster so its floating health bar appears, then walk to Field and back. No HealthLocalStatus bar may be left without an owner after a scene change.",
+  "description": "Hit the training Dummy in Town so its floating health bar appears, then walk to Field and back. No HealthLocalStatus bar may be left without an owner after a scene change.",
   "tags": [
     "core",
     "ui"
@@ -10,18 +10,11 @@
       "do": "StartNewGame"
     },
     {
-      "do": "Spawn",
-      "character": 1001,
-      "x": 1.2,
-      "y": 0,
-      "as": "victim",
-      "tank": false
-    },
-    {
       "do": "Attack",
-      "target": "victim",
+      "target": "10",
       "hits": 1,
-      "max": 5
+      "max": 15,
+      "note": "10 is the Dummy that stands in Town; the player walks to it"
     },
     {
       "do": "Wait",
@@ -29,11 +22,11 @@
     },
     {
       "do": "Expect",
-      "name": "the hit shows a floating health bar",
+      "name": "the hit shows the Dummy's floating health bar",
       "value": "bars",
       "op": ">=",
       "to": 1,
-      "note": "if this fails the test cannot show the bug; the monster must be one that shows its bar when hit"
+      "note": "bars counts health bars of characters other than the player; if this fails the test cannot show the bug"
     },
     {
       "do": "UsePortal",

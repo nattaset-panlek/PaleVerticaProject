@@ -261,9 +261,10 @@ namespace ScenarioTesting
         private static float StatusBarCount(bool orphanOnly)
         {
             int count = 0;
+            Character player = ScenarioProbe.Player;
             foreach (FloatingStatusBar bar in UnityEngine.Object.FindObjectsByType<FloatingStatusBar>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {
-                if (!orphanOnly || bar.character == null) count++;
+                if (orphanOnly ? bar.character == null : bar.character != null && bar.character != player) count++;
             }
             return count;
         }

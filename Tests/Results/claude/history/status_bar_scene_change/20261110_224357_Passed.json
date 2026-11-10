@@ -1,0 +1,169 @@
+{
+  "Scenario": "status_bar_scene_change",
+  "File": "core/status_bar_scene.json",
+  "Agent": "claude",
+  "SaveProfile": "claude",
+  "StartedAt": "2026-11-10 22:43:44",
+  "DurationSeconds": 10.3645878,
+  "Status": "Passed",
+  "ChecksPassed": 4,
+  "ChecksReview": 0,
+  "ChecksFailed": 0,
+  "StepResults": [
+    {
+      "Index": 0,
+      "Action": "StartNewGame",
+      "Arguments": "StartNewGame",
+      "Status": "Passed",
+      "Message": "in scene Town",
+      "StartTime": 0.0,
+      "Duration": 1.45304012
+    },
+    {
+      "Index": 1,
+      "Action": "Attack",
+      "Arguments": "Attack {\"target\":\"10\",\"hits\":1,\"max\":15}",
+      "Status": "Passed",
+      "Message": "1 hits, 11 damage",
+      "StartTime": 1.45304012,
+      "Duration": 2.68963814
+    },
+    {
+      "Index": 2,
+      "Action": "Wait",
+      "Arguments": "Wait {\"seconds\":0.3}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.14267826,
+      "Duration": 0.3002553
+    },
+    {
+      "Index": 3,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"the hit shows the Dummy's floating health bar\",\"value\":\"bars\",\"op\":\">=\",\"to\":1}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.44293356,
+      "Duration": 0.0175566673
+    },
+    {
+      "Index": 4,
+      "Action": "UsePortal",
+      "Arguments": "UsePortal {\"to\":\"Field\",\"timeout\":90}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 4.46049,
+      "Duration": 3.79641628
+    },
+    {
+      "Index": 5,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"in Field: no health bar without an owner\",\"value\":\"bars.orphan\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.25690651,
+      "Duration": 0.01585865
+    },
+    {
+      "Index": 6,
+      "Action": "UsePortal",
+      "Arguments": "UsePortal {\"to\":\"Town\",\"timeout\":90}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 8.272765,
+      "Duration": 2.05839539
+    },
+    {
+      "Index": 7,
+      "Action": "Expect",
+      "Arguments": "Expect {\"name\":\"back in Town: no health bar without an owner\",\"value\":\"bars.orphan\",\"to\":0}",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.3311605,
+      "Duration": 0.016087532
+    },
+    {
+      "Index": 8,
+      "Action": "ExpectNoErrors",
+      "Arguments": "ExpectNoErrors",
+      "Status": "Passed",
+      "Message": null,
+      "StartTime": 10.3472481,
+      "Duration": 0.0173397064
+    }
+  ],
+  "Checks": [
+    {
+      "Name": "the hit shows the Dummy's floating health bar",
+      "Status": "Passed",
+      "Expected": ">= 1",
+      "Actual": "1",
+      "Note": "bars counts health bars of characters other than the player; if this fails the test cannot show the bug",
+      "Screenshot": null,
+      "Step": 3,
+      "Time": 4.44293356
+    },
+    {
+      "Name": "in Field: no health bar without an owner",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 5,
+      "Time": 8.25690651
+    },
+    {
+      "Name": "back in Town: no health bar without an owner",
+      "Status": "Passed",
+      "Expected": "== 0",
+      "Actual": "0",
+      "Note": null,
+      "Screenshot": null,
+      "Step": 7,
+      "Time": 10.3311605
+    },
+    {
+      "Name": "no errors",
+      "Status": "Passed",
+      "Expected": "0 errors",
+      "Actual": "0",
+      "Note": "errors are listed in the report",
+      "Screenshot": null,
+      "Step": 8,
+      "Time": 10.3472481
+    }
+  ],
+  "Metrics": {},
+  "Variables": {},
+  "Log": [
+    "0.00s begin, seed 1337, speed x1, saves in C:/Users/Pc/AppData/LocalLow/DefaultCompany/Realm Hero\\Saves\\Profiles\\claude",
+    "0.00s step 1: StartNewGame",
+    "0.00s going back to the title from  so the old character is dropped",
+    "0.39s skill slot 1 is now skill 1001 on Player#-1274816 (frame 11, scene Title, loading True)",
+    "1.45s in scene Town",
+    "1.45s skills after the new game: granted [1001], equipped [1001,-,-,-,-,-,-,-,-,-], hotbar row 0 [Skill:1001,-,-,-,-,-,-,-,-,-]",
+    "1.45s step 2: Attack {\"target\":\"10\",\"hits\":1,\"max\":15}",
+    "3.09s clicked Dummy at screen 1626,531 world 14,-5, collider Dummy, UI under the pointer: none, virtual mouse is current True, distance 7.1, portal under the click: none, walking to a spot: True, game sees: mouse world 14.07,-4.97, first collider Dummy of 1 [Dummy], entity Dummy, hostile True, player faction 1, target faction 2, pointer over UI False, portal False",
+    "4.14s 1 hits, 11 damage",
+    "4.14s step 3: Wait {\"seconds\":0.3}",
+    "4.44s step 4: Expect {\"name\":\"the hit shows the Dummy's floating health bar\",\"value\":\"bars\",\"op\":\">=\",\"to\":1}",
+    "4.46s step 5: UsePortal {\"to\":\"Field\",\"timeout\":90}",
+    "6.01s clicked the portal to Field at screen 1633,556, UI under the pointer: , walking to it: True, player at 17.91,0.28",
+    "8.26s step 6: Expect {\"name\":\"in Field: no health bar without an owner\",\"value\":\"bars.orphan\",\"to\":0}",
+    "8.27s step 7: UsePortal {\"to\":\"Town\",\"timeout\":90}",
+    "8.59s clicked the portal to Town at screen 600,504, UI under the pointer: , walking to it: True, player at -23.3,0.97",
+    "10.33s step 8: Expect {\"name\":\"back in Town: no health bar without an owner\",\"value\":\"bars.orphan\",\"to\":0}",
+    "10.35s step 9: ExpectNoErrors"
+  ],
+  "Errors": [],
+  "Combat": [
+    {
+      "Kind": "hit",
+      "Source": "Player#-1274816",
+      "Target": "Dummy#-1277080",
+      "Amount": 11.0,
+      "Time": 4.03791237
+    }
+  ]
+}

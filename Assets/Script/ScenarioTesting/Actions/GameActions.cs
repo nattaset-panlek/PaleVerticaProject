@@ -108,7 +108,7 @@ namespace ScenarioTesting.Actions
                 yield break;
             }
             yield return run.Input.Click(screen);
-            run.Log($"clicked the portal to {scene} at screen {screen.x:0},{screen.y:0}, UI under the pointer: {string.Join(", ", ScenarioInput.UIUnder(screen))}");
+            run.Log($"clicked the portal to {scene} at screen {screen.x:0},{screen.y:0}, UI under the pointer: {string.Join(", ", ScenarioInput.UIUnder(screen))}, walking to it: {ScenarioLab.PlayerIsApproaching()}, player at {ScenarioProbe.Player.transform.position.x:0.##},{ScenarioProbe.Player.transform.position.y:0.##}");
             yield return run.WaitFor(() => ScenarioProbe.SceneName == scene && ScenarioProbe.IsGameReady, step.Float("max", 60f), $"scene {scene}");
             yield return new WaitForSeconds(step.Float("settle", 1f));
         }
